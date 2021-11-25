@@ -1,0 +1,610 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15EC9DF2274FD1FD00F70CD9 /* Lilico_liteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9DF1274FD1FD00F70CD9 /* Lilico_liteApp.swift */; };
+		15EC9DF4274FD1FD00F70CD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9DF3274FD1FD00F70CD9 /* ContentView.swift */; };
+		15EC9DF6274FD1FD00F70CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */; };
+		15EC9DF9274FD1FD00F70CD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */; };
+		15EC9E03274FD1FD00F70CD9 /* Lilico_liteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9E02274FD1FD00F70CD9 /* Lilico_liteTests.swift */; };
+		15EC9E0D274FD1FD00F70CD9 /* Lilico_liteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9E0C274FD1FD00F70CD9 /* Lilico_liteUITests.swift */; };
+		15EC9E0F274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9E0E274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15EC9DFF274FD1FD00F70CD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15EC9DED274FD1FC00F70CD9;
+			remoteInfo = "Lilico-lite";
+		};
+		15EC9E09274FD1FD00F70CD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15EC9DED274FD1FC00F70CD9;
+			remoteInfo = "Lilico-lite";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15EC9DEE274FD1FC00F70CD9 /* Lilico-lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lilico-lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15EC9DF1274FD1FD00F70CD9 /* Lilico_liteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_liteApp.swift; sourceTree = "<group>"; };
+		15EC9DF3274FD1FD00F70CD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		15EC9DFE274FD1FD00F70CD9 /* Lilico-liteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lilico-liteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15EC9E02274FD1FD00F70CD9 /* Lilico_liteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_liteTests.swift; sourceTree = "<group>"; };
+		15EC9E08274FD1FD00F70CD9 /* Lilico-liteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lilico-liteUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15EC9E0C274FD1FD00F70CD9 /* Lilico_liteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_liteUITests.swift; sourceTree = "<group>"; };
+		15EC9E0E274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_liteUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15EC9DEB274FD1FC00F70CD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15EC9DFB274FD1FD00F70CD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15EC9E05274FD1FD00F70CD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15EC9DE5274FD1FC00F70CD9 = {
+			isa = PBXGroup;
+			children = (
+				15EC9DF0274FD1FC00F70CD9 /* Lilico-lite */,
+				15EC9E01274FD1FD00F70CD9 /* Lilico-liteTests */,
+				15EC9E0B274FD1FD00F70CD9 /* Lilico-liteUITests */,
+				15EC9DEF274FD1FC00F70CD9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15EC9DEF274FD1FC00F70CD9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15EC9DEE274FD1FC00F70CD9 /* Lilico-lite.app */,
+				15EC9DFE274FD1FD00F70CD9 /* Lilico-liteTests.xctest */,
+				15EC9E08274FD1FD00F70CD9 /* Lilico-liteUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15EC9DF0274FD1FC00F70CD9 /* Lilico-lite */ = {
+			isa = PBXGroup;
+			children = (
+				15EC9DF1274FD1FD00F70CD9 /* Lilico_liteApp.swift */,
+				15EC9DF3274FD1FD00F70CD9 /* ContentView.swift */,
+				15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */,
+				15EC9DF7274FD1FD00F70CD9 /* Preview Content */,
+			);
+			path = "Lilico-lite";
+			sourceTree = "<group>";
+		};
+		15EC9DF7274FD1FD00F70CD9 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		15EC9E01274FD1FD00F70CD9 /* Lilico-liteTests */ = {
+			isa = PBXGroup;
+			children = (
+				15EC9E02274FD1FD00F70CD9 /* Lilico_liteTests.swift */,
+			);
+			path = "Lilico-liteTests";
+			sourceTree = "<group>";
+		};
+		15EC9E0B274FD1FD00F70CD9 /* Lilico-liteUITests */ = {
+			isa = PBXGroup;
+			children = (
+				15EC9E0C274FD1FD00F70CD9 /* Lilico_liteUITests.swift */,
+				15EC9E0E274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift */,
+			);
+			path = "Lilico-liteUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15EC9DED274FD1FC00F70CD9 /* Lilico-lite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15EC9E12274FD1FD00F70CD9 /* Build configuration list for PBXNativeTarget "Lilico-lite" */;
+			buildPhases = (
+				15EC9DEA274FD1FC00F70CD9 /* Sources */,
+				15EC9DEB274FD1FC00F70CD9 /* Frameworks */,
+				15EC9DEC274FD1FC00F70CD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Lilico-lite";
+			productName = "Lilico-lite";
+			productReference = 15EC9DEE274FD1FC00F70CD9 /* Lilico-lite.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15EC9DFD274FD1FD00F70CD9 /* Lilico-liteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15EC9E15274FD1FD00F70CD9 /* Build configuration list for PBXNativeTarget "Lilico-liteTests" */;
+			buildPhases = (
+				15EC9DFA274FD1FD00F70CD9 /* Sources */,
+				15EC9DFB274FD1FD00F70CD9 /* Frameworks */,
+				15EC9DFC274FD1FD00F70CD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15EC9E00274FD1FD00F70CD9 /* PBXTargetDependency */,
+			);
+			name = "Lilico-liteTests";
+			productName = "Lilico-liteTests";
+			productReference = 15EC9DFE274FD1FD00F70CD9 /* Lilico-liteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		15EC9E07274FD1FD00F70CD9 /* Lilico-liteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15EC9E18274FD1FD00F70CD9 /* Build configuration list for PBXNativeTarget "Lilico-liteUITests" */;
+			buildPhases = (
+				15EC9E04274FD1FD00F70CD9 /* Sources */,
+				15EC9E05274FD1FD00F70CD9 /* Frameworks */,
+				15EC9E06274FD1FD00F70CD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15EC9E0A274FD1FD00F70CD9 /* PBXTargetDependency */,
+			);
+			name = "Lilico-liteUITests";
+			productName = "Lilico-liteUITests";
+			productReference = 15EC9E08274FD1FD00F70CD9 /* Lilico-liteUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15EC9DE6274FD1FC00F70CD9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					15EC9DED274FD1FC00F70CD9 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					15EC9DFD274FD1FD00F70CD9 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 15EC9DED274FD1FC00F70CD9;
+					};
+					15EC9E07274FD1FD00F70CD9 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 15EC9DED274FD1FC00F70CD9;
+					};
+				};
+			};
+			buildConfigurationList = 15EC9DE9274FD1FC00F70CD9 /* Build configuration list for PBXProject "Lilico-lite" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15EC9DE5274FD1FC00F70CD9;
+			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15EC9DED274FD1FC00F70CD9 /* Lilico-lite */,
+				15EC9DFD274FD1FD00F70CD9 /* Lilico-liteTests */,
+				15EC9E07274FD1FD00F70CD9 /* Lilico-liteUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15EC9DEC274FD1FC00F70CD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15EC9DF9274FD1FD00F70CD9 /* Preview Assets.xcassets in Resources */,
+				15EC9DF6274FD1FD00F70CD9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15EC9DFC274FD1FD00F70CD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15EC9E06274FD1FD00F70CD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15EC9DEA274FD1FC00F70CD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15EC9DF4274FD1FD00F70CD9 /* ContentView.swift in Sources */,
+				15EC9DF2274FD1FD00F70CD9 /* Lilico_liteApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15EC9DFA274FD1FD00F70CD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15EC9E03274FD1FD00F70CD9 /* Lilico_liteTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15EC9E04274FD1FD00F70CD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15EC9E0F274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift in Sources */,
+				15EC9E0D274FD1FD00F70CD9 /* Lilico_liteUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15EC9E00274FD1FD00F70CD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15EC9DED274FD1FC00F70CD9 /* Lilico-lite */;
+			targetProxy = 15EC9DFF274FD1FD00F70CD9 /* PBXContainerItemProxy */;
+		};
+		15EC9E0A274FD1FD00F70CD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15EC9DED274FD1FC00F70CD9 /* Lilico-lite */;
+			targetProxy = 15EC9E09274FD1FD00F70CD9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		15EC9E10274FD1FD00F70CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		15EC9E11274FD1FD00F70CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15EC9E13274FD1FD00F70CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lilico-lite/Preview Content\"";
+				DEVELOPMENT_TEAM = YT49SH5NXF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.outbloc.lilico.lite.Lilico-lite";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15EC9E14274FD1FD00F70CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lilico-lite/Preview Content\"";
+				DEVELOPMENT_TEAM = YT49SH5NXF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.outbloc.lilico.lite.Lilico-lite";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		15EC9E16274FD1FD00F70CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YT49SH5NXF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.outbloc.lilico.lite.Lilico-liteTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lilico-lite.app/Lilico-lite";
+			};
+			name = Debug;
+		};
+		15EC9E17274FD1FD00F70CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YT49SH5NXF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.outbloc.lilico.lite.Lilico-liteTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lilico-lite.app/Lilico-lite";
+			};
+			name = Release;
+		};
+		15EC9E19274FD1FD00F70CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YT49SH5NXF;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.outbloc.lilico.lite.Lilico-liteUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Lilico-lite";
+			};
+			name = Debug;
+		};
+		15EC9E1A274FD1FD00F70CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YT49SH5NXF;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.outbloc.lilico.lite.Lilico-liteUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Lilico-lite";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15EC9DE9274FD1FC00F70CD9 /* Build configuration list for PBXProject "Lilico-lite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15EC9E10274FD1FD00F70CD9 /* Debug */,
+				15EC9E11274FD1FD00F70CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15EC9E12274FD1FD00F70CD9 /* Build configuration list for PBXNativeTarget "Lilico-lite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15EC9E13274FD1FD00F70CD9 /* Debug */,
+				15EC9E14274FD1FD00F70CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15EC9E15274FD1FD00F70CD9 /* Build configuration list for PBXNativeTarget "Lilico-liteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15EC9E16274FD1FD00F70CD9 /* Debug */,
+				15EC9E17274FD1FD00F70CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15EC9E18274FD1FD00F70CD9 /* Build configuration list for PBXNativeTarget "Lilico-liteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15EC9E19274FD1FD00F70CD9 /* Debug */,
+				15EC9E1A274FD1FD00F70CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
+}
