@@ -7,13 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153C43FF2751CF74006D1E8D /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */; };
+		153C44012751CFA4006D1E8D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C44002751CFA4006D1E8D /* Color.swift */; };
+		153C440327520752006D1E8D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C440227520752006D1E8D /* View.swift */; };
+		153C4409275258AF006D1E8D /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C4408275258AF006D1E8D /* TabBar.swift */; };
+		153C440C27525D04006D1E8D /* BackgroundModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C440B27525D04006D1E8D /* BackgroundModifer.swift */; };
+		159A54322753681F004BCACC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A54312753681F004BCACC /* ViewModel.swift */; };
+		159A55FF27536CD9004BCACC /* ColorBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A55FD27536CD9004BCACC /* ColorBook.swift */; };
+		159A560027536CD9004BCACC /* ImageBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A55FE27536CD9004BCACC /* ImageBook.swift */; };
+		159A560227536E4E004BCACC /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A560127536E4E004BCACC /* Endpoint.swift */; };
+		15DDFB8E2750D039008263A2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 15DDFB8D2750D039008263A2 /* SwiftUIX */; };
+		15DDFB9127510C96008263A2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDFB9027510C96008263A2 /* OnboardingView.swift */; };
+		15DDFB962751139A008263A2 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDFB952751139A008263A2 /* CustomColor.swift */; };
 		15EC9DF2274FD1FD00F70CD9 /* Lilico_liteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9DF1274FD1FD00F70CD9 /* Lilico_liteApp.swift */; };
 		15EC9DF4274FD1FD00F70CD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9DF3274FD1FD00F70CD9 /* ContentView.swift */; };
 		15EC9DF6274FD1FD00F70CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */; };
 		15EC9DF9274FD1FD00F70CD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */; };
 		15EC9E03274FD1FD00F70CD9 /* Lilico_liteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9E02274FD1FD00F70CD9 /* Lilico_liteTests.swift */; };
-		15EC9E0D274FD1FD00F70CD9 /* Lilico_liteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9E0C274FD1FD00F70CD9 /* Lilico_liteUITests.swift */; };
-		15EC9E0F274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9E0E274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift */; };
+		15EC9E1C274FD6C000F70CD9 /* WalletSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9E1B274FD6C000F70CD9 /* WalletSetupView.swift */; };
+		15EC9E1E274FD78600F70CD9 /* LightDarkSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9E1D274FD78600F70CD9 /* LightDarkSwitcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,16 +36,21 @@
 			remoteGlobalIDString = 15EC9DED274FD1FC00F70CD9;
 			remoteInfo = "Lilico-lite";
 		};
-		15EC9E09274FD1FD00F70CD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 15EC9DED274FD1FC00F70CD9;
-			remoteInfo = "Lilico-lite";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
+		153C44002751CFA4006D1E8D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		153C440227520752006D1E8D /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		153C4408275258AF006D1E8D /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		153C440B27525D04006D1E8D /* BackgroundModifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundModifer.swift; sourceTree = "<group>"; };
+		159A54312753681F004BCACC /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		159A55FD27536CD9004BCACC /* ColorBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorBook.swift; sourceTree = "<group>"; };
+		159A55FE27536CD9004BCACC /* ImageBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBook.swift; sourceTree = "<group>"; };
+		159A560127536E4E004BCACC /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		15DDFB8F2750D03E008263A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15DDFB9027510C96008263A2 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		15DDFB952751139A008263A2 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		15EC9DEE274FD1FC00F70CD9 /* Lilico-lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lilico-lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15EC9DF1274FD1FD00F70CD9 /* Lilico_liteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_liteApp.swift; sourceTree = "<group>"; };
 		15EC9DF3274FD1FD00F70CD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -41,9 +58,8 @@
 		15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15EC9DFE274FD1FD00F70CD9 /* Lilico-liteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lilico-liteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15EC9E02274FD1FD00F70CD9 /* Lilico_liteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_liteTests.swift; sourceTree = "<group>"; };
-		15EC9E08274FD1FD00F70CD9 /* Lilico-liteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lilico-liteUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		15EC9E0C274FD1FD00F70CD9 /* Lilico_liteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_liteUITests.swift; sourceTree = "<group>"; };
-		15EC9E0E274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_liteUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		15EC9E1B274FD6C000F70CD9 /* WalletSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSetupView.swift; sourceTree = "<group>"; };
+		15EC9E1D274FD78600F70CD9 /* LightDarkSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightDarkSwitcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15DDFB8E2750D039008263A2 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,22 +78,127 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15EC9E05274FD1FD00F70CD9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		153C440427520811006D1E8D /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				159A543627536890004BCACC /* Login */,
+				159A543527536887004BCACC /* Onboarding */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		153C440A27525CF3006D1E8D /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				153C440B27525D04006D1E8D /* BackgroundModifer.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
+		159A54302753680C004BCACC /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				159A54312753681F004BCACC /* ViewModel.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		159A543327536842004BCACC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				15DDFB932751137E008263A2 /* Component */,
+				15DDFB9227511375008263A2 /* Extension */,
+				15DDFB9427511386008263A2 /* Style */,
+				153C440A27525CF3006D1E8D /* Modifier */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		159A54342753686B004BCACC /* App */ = {
+			isa = PBXGroup;
+			children = (
+				15DDFB8F2750D03E008263A2 /* Info.plist */,
+				15EC9DF1274FD1FD00F70CD9 /* Lilico_liteApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		159A543527536887004BCACC /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				15DDFB9027510C96008263A2 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		159A543627536890004BCACC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				15EC9E1B274FD6C000F70CD9 /* WalletSetupView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		159A5437275368BF004BCACC /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		159A5438275368DA004BCACC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				159A560127536E4E004BCACC /* Endpoint.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		159A56062753848B004BCACC /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				159A54302753680C004BCACC /* Base */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		15DDFB9227511375008263A2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				153C44002751CFA4006D1E8D /* Color.swift */,
+				153C440227520752006D1E8D /* View.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		15DDFB932751137E008263A2 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */,
+				153C4408275258AF006D1E8D /* TabBar.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		15DDFB9427511386008263A2 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				159A55FD27536CD9004BCACC /* ColorBook.swift */,
+				159A55FE27536CD9004BCACC /* ImageBook.swift */,
+				15DDFB952751139A008263A2 /* CustomColor.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
 		15EC9DE5274FD1FC00F70CD9 = {
 			isa = PBXGroup;
 			children = (
 				15EC9DF0274FD1FC00F70CD9 /* Lilico-lite */,
 				15EC9E01274FD1FD00F70CD9 /* Lilico-liteTests */,
-				15EC9E0B274FD1FD00F70CD9 /* Lilico-liteUITests */,
 				15EC9DEF274FD1FC00F70CD9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,7 +208,6 @@
 			children = (
 				15EC9DEE274FD1FC00F70CD9 /* Lilico-lite.app */,
 				15EC9DFE274FD1FD00F70CD9 /* Lilico-liteTests.xctest */,
-				15EC9E08274FD1FD00F70CD9 /* Lilico-liteUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,9 +215,14 @@
 		15EC9DF0274FD1FC00F70CD9 /* Lilico-lite */ = {
 			isa = PBXGroup;
 			children = (
-				15EC9DF1274FD1FD00F70CD9 /* Lilico_liteApp.swift */,
+				159A56062753848B004BCACC /* Foundation */,
+				159A5438275368DA004BCACC /* Network */,
+				159A5437275368BF004BCACC /* Resource */,
+				159A54342753686B004BCACC /* App */,
+				159A543327536842004BCACC /* UI */,
+				153C440427520811006D1E8D /* Screen */,
 				15EC9DF3274FD1FD00F70CD9 /* ContentView.swift */,
-				15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */,
+				15EC9E1D274FD78600F70CD9 /* LightDarkSwitcher.swift */,
 				15EC9DF7274FD1FD00F70CD9 /* Preview Content */,
 			);
 			path = "Lilico-lite";
@@ -118,15 +244,6 @@
 			path = "Lilico-liteTests";
 			sourceTree = "<group>";
 		};
-		15EC9E0B274FD1FD00F70CD9 /* Lilico-liteUITests */ = {
-			isa = PBXGroup;
-			children = (
-				15EC9E0C274FD1FD00F70CD9 /* Lilico_liteUITests.swift */,
-				15EC9E0E274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift */,
-			);
-			path = "Lilico-liteUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +260,9 @@
 			dependencies = (
 			);
 			name = "Lilico-lite";
+			packageProductDependencies = (
+				15DDFB8D2750D039008263A2 /* SwiftUIX */,
+			);
 			productName = "Lilico-lite";
 			productReference = 15EC9DEE274FD1FC00F70CD9 /* Lilico-lite.app */;
 			productType = "com.apple.product-type.application";
@@ -165,24 +285,6 @@
 			productReference = 15EC9DFE274FD1FD00F70CD9 /* Lilico-liteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		15EC9E07274FD1FD00F70CD9 /* Lilico-liteUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 15EC9E18274FD1FD00F70CD9 /* Build configuration list for PBXNativeTarget "Lilico-liteUITests" */;
-			buildPhases = (
-				15EC9E04274FD1FD00F70CD9 /* Sources */,
-				15EC9E05274FD1FD00F70CD9 /* Frameworks */,
-				15EC9E06274FD1FD00F70CD9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				15EC9E0A274FD1FD00F70CD9 /* PBXTargetDependency */,
-			);
-			name = "Lilico-liteUITests";
-			productName = "Lilico-liteUITests";
-			productReference = 15EC9E08274FD1FD00F70CD9 /* Lilico-liteUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -200,10 +302,6 @@
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = 15EC9DED274FD1FC00F70CD9;
 					};
-					15EC9E07274FD1FD00F70CD9 = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = 15EC9DED274FD1FC00F70CD9;
-					};
 				};
 			};
 			buildConfigurationList = 15EC9DE9274FD1FC00F70CD9 /* Build configuration list for PBXProject "Lilico-lite" */;
@@ -215,13 +313,15 @@
 				Base,
 			);
 			mainGroup = 15EC9DE5274FD1FC00F70CD9;
+			packageReferences = (
+				15DDFB8C2750D039008263A2 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				15EC9DED274FD1FC00F70CD9 /* Lilico-lite */,
 				15EC9DFD274FD1FD00F70CD9 /* Lilico-liteTests */,
-				15EC9E07274FD1FD00F70CD9 /* Lilico-liteUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -243,13 +343,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15EC9E06274FD1FD00F70CD9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -258,7 +351,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				15EC9DF4274FD1FD00F70CD9 /* ContentView.swift in Sources */,
+				15EC9E1E274FD78600F70CD9 /* LightDarkSwitcher.swift in Sources */,
+				15DDFB962751139A008263A2 /* CustomColor.swift in Sources */,
+				153C43FF2751CF74006D1E8D /* OffsetPageTabView.swift in Sources */,
 				15EC9DF2274FD1FD00F70CD9 /* Lilico_liteApp.swift in Sources */,
+				153C440327520752006D1E8D /* View.swift in Sources */,
+				159A55FF27536CD9004BCACC /* ColorBook.swift in Sources */,
+				153C44012751CFA4006D1E8D /* Color.swift in Sources */,
+				15DDFB9127510C96008263A2 /* OnboardingView.swift in Sources */,
+				15EC9E1C274FD6C000F70CD9 /* WalletSetupView.swift in Sources */,
+				153C4409275258AF006D1E8D /* TabBar.swift in Sources */,
+				159A560027536CD9004BCACC /* ImageBook.swift in Sources */,
+				159A54322753681F004BCACC /* ViewModel.swift in Sources */,
+				153C440C27525D04006D1E8D /* BackgroundModifer.swift in Sources */,
+				159A560227536E4E004BCACC /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,15 +376,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15EC9E04274FD1FD00F70CD9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15EC9E0F274FD1FD00F70CD9 /* Lilico_liteUITestsLaunchTests.swift in Sources */,
-				15EC9E0D274FD1FD00F70CD9 /* Lilico_liteUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -286,11 +383,6 @@
 			isa = PBXTargetDependency;
 			target = 15EC9DED274FD1FC00F70CD9 /* Lilico-lite */;
 			targetProxy = 15EC9DFF274FD1FD00F70CD9 /* PBXContainerItemProxy */;
-		};
-		15EC9E0A274FD1FD00F70CD9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 15EC9DED274FD1FC00F70CD9 /* Lilico-lite */;
-			targetProxy = 15EC9E09274FD1FD00F70CD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -422,6 +514,7 @@
 				DEVELOPMENT_TEAM = YT49SH5NXF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Lilico-lite/App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -451,6 +544,7 @@
 				DEVELOPMENT_TEAM = YT49SH5NXF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Lilico-lite/App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -519,52 +613,6 @@
 			};
 			name = Release;
 		};
-		15EC9E19274FD1FD00F70CD9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YT49SH5NXF;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.outbloc.lilico.lite.Lilico-liteUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Lilico-lite";
-			};
-			name = Debug;
-		};
-		15EC9E1A274FD1FD00F70CD9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YT49SH5NXF;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.outbloc.lilico.lite.Lilico-liteUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Lilico-lite";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -595,16 +643,26 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15EC9E18274FD1FD00F70CD9 /* Build configuration list for PBXNativeTarget "Lilico-liteUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				15EC9E19274FD1FD00F70CD9 /* Debug */,
-				15EC9E1A274FD1FD00F70CD9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		15DDFB8C2750D039008263A2 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		15DDFB8D2750D039008263A2 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15DDFB8C2750D039008263A2 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
 }
