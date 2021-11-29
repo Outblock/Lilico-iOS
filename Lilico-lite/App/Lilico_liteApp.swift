@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct Lilico_liteApp: App {
-    
     var body: some Scene {
         WindowGroup {
                 OnboardingView()
+                .environmentObject(
+                    OnboardingViewModel().toAnyViewModel()
+                )
         }
     }
 }

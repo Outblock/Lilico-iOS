@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Toggle
+
 /// State picker component that toggles between off, on, or disabled states, and displays content.
 ///
 /// Component can be initialized with content, title, or without body. `Bool` can also be passed as state.
@@ -27,17 +28,19 @@ import SwiftUI
 ///
 public struct VToggle<Content>: View where Content: View {
     // MARK: Properties
+
     private let model: VToggleModel
-    
+
     @Binding private var state: VToggleState
     @State private var animatableState: VToggleState?
     @State private var isPressed: Bool = false
     private var internalState: VToggleInternalState { .init(state: animatableState ?? state, isPressed: isPressed) }
     private var contentIsEnabled: Bool { internalState.isEnabled && model.misc.contentIsClickable }
-    
+
     private let content: (() -> Content)?
-    
+
     // MARK: Initializers - State
+
     /// Initializes component with state and content.
     public init(
         model: VToggleModel = .init(),
@@ -45,7 +48,7 @@ public struct VToggle<Content>: View where Content: View {
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.model = model
-        self._state = state
+        _state = state
         self.content = content
     }
 
@@ -70,7 +73,7 @@ public struct VToggle<Content>: View where Content: View {
             }
         )
     }
-    
+
     /// Initializes component with state.
     public init(
         model: VToggleModel = .init(),
@@ -79,11 +82,12 @@ public struct VToggle<Content>: View where Content: View {
         where Content == Never
     {
         self.model = model
-        self._state = state
-        self.content = nil
+        _state = state
+        content = nil
     }
-    
+
     // MARK: Initializers - Bool
+
     /// Initializes component with bool and content.
     public init(
         model: VToggleModel = .init(),
@@ -118,7 +122,7 @@ public struct VToggle<Content>: View where Content: View {
             }
         )
     }
-    
+
     /// Initializes component with bool.
     public init(
         model: VToggleModel = .init(),
@@ -127,19 +131,20 @@ public struct VToggle<Content>: View where Content: View {
         where Content == Never
     {
         self.model = model
-        self._state = .init(bool: isOn)
-        self.content = nil
+        _state = .init(bool: isOn)
+        content = nil
     }
 
     // MARK: Body
+
     public var body: some View {
         setStatesFromBodyRender()
-        
+
         return Group(content: {
             switch content {
             case nil:
                 toggle
-                
+
             case let content?:
                 HStack(spacing: 0, content: {
                     toggle
@@ -149,7 +154,7 @@ public struct VToggle<Content>: View where Content: View {
             }
         })
     }
-    
+
     private var toggle: some View {
         VBaseButton(isEnabled: internalState.isEnabled, action: setNextState, onPress: { _ in }, content: {
             ZStack(content: {
@@ -161,10 +166,10 @@ public struct VToggle<Content>: View where Content: View {
                     .foregroundColor(model.colors.thumb.for(internalState))
                     .offset(x: thumbOffset)
             })
-                .frame(size: model.layout.size)
+            .frame(size: model.layout.size)
         })
     }
-    
+
     private var spacerView: some View {
         VBaseButton(isEnabled: contentIsEnabled, action: setNextState, onPress: { _ in }, content: {
             Rectangle()
@@ -173,7 +178,7 @@ public struct VToggle<Content>: View where Content: View {
                 .foregroundColor(.clear)
         })
     }
-    
+
     private func contentView(
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
@@ -184,28 +189,31 @@ public struct VToggle<Content>: View where Content: View {
     }
 
     // MARK: State Sets
+
     private func setStatesFromBodyRender() {
-        DispatchQueue.main.async(execute: {
+        DispatchQueue.main.async {
             setAnimatableState()
-        })
+        }
     }
 
     // MARK: Actions
+
     private func setNextState() {
-        withAnimation(model.animations.stateChange, { animatableState?.setNextState() })
+        withAnimation(model.animations.stateChange) { animatableState?.setNextState() }
         state.setNextState()
     }
-    
+
     private func setAnimatableState() {
         if animatableState == nil || animatableState != state {
-            withAnimation(model.animations.stateChange, { animatableState = state })
+            withAnimation(model.animations.stateChange) { animatableState = state }
         }
     }
 
     // MARK: Thumb Position
+
     private var thumbOffset: CGFloat {
         let offset: CGFloat = model.layout.animationOffset
-        
+
         switch internalState {
         case .off: return -offset
         case .on: return offset
@@ -217,6 +225,7 @@ public struct VToggle<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+
 struct VToggle_Previews: PreviewProvider {
     @State private static var state: VToggleState = .on
 

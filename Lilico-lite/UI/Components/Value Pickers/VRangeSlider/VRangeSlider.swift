@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Range Slider
+
 /// Value picker component that selects values from a bounded linear range of values to represent a range.
 ///
 /// Model, range, step, state, and onChange callbacks can be passed as parameters.
@@ -29,30 +30,32 @@ import SwiftUI
 ///
 public struct VRangeSlider: View {
     // MARK: Properties
+
     private let model: VRangeSliderModel
 
     private let min, max: Double
-    private var range: ClosedRange<Double> { min...max }
+    private var range: ClosedRange<Double> { min ... max }
     private let difference: Double
     private let step: Double?
-    
+
     private let state: VRangeSliderState
 
     @Binding private var valueLow: Double
     @Binding private var valueHigh: Double
     @State private var animatableValueLow: Double?
     @State private var animatableValueHigh: Double?
-    
+
     private let actionLow: ((Bool) -> Void)?
     private let actionHigh: ((Bool) -> Void)?
-    
+
     private let isLayoutValid: Bool
 
     // MARK: Initializers
+
     /// Initializes component with diffrene, and low and high values.
     public init<V>(
         model: VRangeSliderModel = .init(),
-        range: ClosedRange<V> = 0...1,
+        range: ClosedRange<V> = 0 ... 1,
         difference: V,
         step: V? = nil,
         state: VRangeSliderState = .enabled,
@@ -62,8 +65,8 @@ public struct VRangeSlider: View {
         onChangeHigh actionHigh: ((Bool) -> Void)? = nil
     )
         where
-            V: BinaryFloatingPoint,
-            V.Stride: BinaryFloatingPoint
+        V: BinaryFloatingPoint,
+        V.Stride: BinaryFloatingPoint
     {
         self.model = model
         self.min = .init(range.lowerBound)
@@ -71,52 +74,53 @@ public struct VRangeSlider: View {
         self.difference = .init(difference)
         self.step = step.let { .init($0) }
         self.state = state
-        self._valueLow = .init(from: valueLow, range: range, step: step)
-        self._valueHigh = .init(from: valueHigh, range: range, step: step)
+        _valueLow = .init(from: valueLow, range: range, step: step)
+        _valueHigh = .init(from: valueHigh, range: range, step: step)
         self.actionLow = actionLow
         self.actionHigh = actionHigh
-        
-        self.isLayoutValid = valueLow.wrappedValue <= valueHigh.wrappedValue - difference
+
+        isLayoutValid = valueLow.wrappedValue <= valueHigh.wrappedValue - difference
     }
 
     // MARK: Body
+
     public var body: some View {
         setStatesFromBodyRender()
-        
+
         return Group(content: {
             switch isLayoutValid {
             case false: invalidBody
             case true: validBody
             }
         })
-            .padding(.horizontal, model.layout.thumbDimension / 2)
+        .padding(.horizontal, model.layout.thumbDimension / 2)
     }
-    
+
     private var invalidBody: some View {
         track
             .mask(RoundedRectangle(cornerRadius: model.layout.cornerRadius))
             .frame(height: model.layout.height)
     }
-    
+
     private var validBody: some View {
         GeometryReader(content: { proxy in
             ZStack(alignment: .leading, content: {
                 track
                 progress(in: proxy)
             })
-                .mask(RoundedRectangle(cornerRadius: model.layout.cornerRadius))
+            .mask(RoundedRectangle(cornerRadius: model.layout.cornerRadius))
 
-                .overlay(thumb(in: proxy, thumb: .low))
-                .overlay(thumb(in: proxy, thumb: .high))
+            .overlay(thumb(in: proxy, thumb: .low))
+            .overlay(thumb(in: proxy, thumb: .high))
 
-                .disabled(!state.isEnabled)
+            .disabled(!state.isEnabled)
         })
-            .frame(height: model.layout.height)
+        .frame(height: model.layout.height)
     }
 
     private var track: some View {
         Rectangle()
-            .foregroundColor( model.colors.track.for(state))
+            .foregroundColor(model.colors.track.for(state))
     }
 
     private func progress(in proxy: GeometryProxy) -> some View {
@@ -137,29 +141,32 @@ public struct VRangeSlider: View {
                 RoundedRectangle(cornerRadius: model.layout.thumbCornerRadius)
                     .strokeBorder(model.colors.thumbBorder.for(state), lineWidth: model.layout.thumbBorderWidth)
             })
-                .frame(dimension: model.layout.thumbDimension)
-                .offset(x: thumbOffset(in: proxy, thumb: thumb))
+            .frame(dimension: model.layout.thumbDimension)
+            .offset(x: thumbOffset(in: proxy, thumb: thumb))
         })
-            .frame(maxWidth: .infinity, alignment: .leading)    // Must be put into group, as content already has frame
+        .frame(maxWidth: .infinity, alignment: .leading) // Must be put into group, as content already has frame
 
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged({ dragChanged(drag: $0, in: proxy, thumb: thumb) })
-                    .onEnded({ dragEnded(drag: $0, thumb: thumb) })
-            )
+        .gesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { dragChanged(drag: $0, in: proxy, thumb: thumb) }
+                .onEnded { dragEnded(drag: $0, thumb: thumb) }
+        )
     }
 
     // MARK: State Sets
+
     private func setStatesFromBodyRender() {
-        DispatchQueue.main.async(execute: {
+        DispatchQueue.main.async {
             setAnimatableValues()
-        })
+        }
     }
-    
+
     // MARK: Thumb
+
     fileprivate enum Thumb { case low, high }
 
     // MARK: Drag
+
     private func dragChanged(drag: DragGesture.Value, in proxy: GeometryProxy, thumb: Thumb) {
         let rawValue: Double = {
             let value: Double = .init(drag.location.x)
@@ -198,7 +205,7 @@ public struct VRangeSlider: View {
         }
     }
 
-    private func dragEnded(drag: DragGesture.Value, thumb: Thumb) {
+    private func dragEnded(drag _: DragGesture.Value, thumb: Thumb) {
         switch thumb {
         case .low: actionLow?(false)
         case .high: actionHigh?(false)
@@ -206,27 +213,29 @@ public struct VRangeSlider: View {
     }
 
     // MARK: Actions
+
     private func setValueLow(to value: Double) {
-        withAnimation(model.animations.progress, { animatableValueLow = value })
-        self.valueLow = value
+        withAnimation(model.animations.progress) { animatableValueLow = value }
+        valueLow = value
     }
-    
+
     private func setValueHigh(to value: Double) {
-        withAnimation(model.animations.progress, { animatableValueHigh = value })
-        self.valueHigh = value
+        withAnimation(model.animations.progress) { animatableValueHigh = value }
+        valueHigh = value
     }
-    
+
     private func setAnimatableValues() {
         if animatableValueLow == nil || animatableValueLow != valueLow {
-            withAnimation(model.animations.progress, { animatableValueLow = valueLow })
+            withAnimation(model.animations.progress) { animatableValueLow = valueLow }
         }
-        
+
         if animatableValueHigh == nil || animatableValueHigh != valueHigh {
-            withAnimation(model.animations.progress, { animatableValueHigh = valueHigh })
+            withAnimation(model.animations.progress) { animatableValueHigh = valueHigh }
         }
     }
 
     // MARK: Progress
+
     private func progress(in proxy: GeometryProxy, thumb: Thumb) -> CGFloat {
         let value: CGFloat = {
             switch thumb {
@@ -244,6 +253,7 @@ public struct VRangeSlider: View {
     }
 
     // MARK: Thumb
+
     private func thumbOffset(in proxy: GeometryProxy, thumb: Thumb) -> CGFloat {
         let progressW: CGFloat = progress(in: proxy, thumb: thumb)
         let thumbW: CGFloat = model.layout.thumbDimension
@@ -257,6 +267,7 @@ public struct VRangeSlider: View {
 }
 
 // MARK: - Preview
+
 struct VRangeSlider_Previews: PreviewProvider {
     @State private static var valueLow: Double = 0.1
     @State private static var valueHigh: Double = 0.8

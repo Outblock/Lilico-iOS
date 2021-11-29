@@ -8,19 +8,22 @@
 import SwiftUI
 
 // MARK: - _ V Toast
+
 struct _VToast: View {
     // MARK: Properties
+
     private let model: VToastModel
     private let toastType: VToastType
-    
+
     @Binding private var isHCPresented: Bool
     @State private var isViewPresented: Bool = false
-    
+
     private let title: String
-    
+
     @State private var height: CGFloat = .zero
-    
+
     // MARK: Initializers
+
     init(
         model: VToastModel,
         toastType: VToastType,
@@ -29,21 +32,22 @@ struct _VToast: View {
     ) {
         self.model = model
         self.toastType = toastType
-        self._isHCPresented = isPresented
+        _isHCPresented = isPresented
         self.title = title
     }
 
     // MARK: Body
+
     var body: some View {
         Group(content: {
             contentView
         })
-            .edgesIgnoringSafeArea(.all)
-            .frame(maxHeight: .infinity, alignment: .top)
-            .onAppear(perform: animateIn)
-            .onAppear(perform: animateOutAfterLifecycle)
+        .edgesIgnoringSafeArea(.all)
+        .frame(maxHeight: .infinity, alignment: .top)
+        .onAppear(perform: animateIn)
+        .onAppear(perform: animateOutAfterLifecycle)
     }
-    
+
     private var contentView: some View {
         textView
             .background(background)
@@ -51,7 +55,7 @@ struct _VToast: View {
             .readSize(onChange: { height = $0.height })
             .offset(y: isViewPresented ? presentedOffset : initialOffset)
     }
-    
+
     private var textView: some View {
         VText(
             type: toastType,
@@ -59,57 +63,61 @@ struct _VToast: View {
             color: model.colors.text,
             title: title
         )
-            .padding(.horizontal, model.layout.contentMargins.horizontal)
-            .padding(.vertical, model.layout.contentMargins.vertical)
+        .padding(.horizontal, model.layout.contentMargins.horizontal)
+        .padding(.vertical, model.layout.contentMargins.vertical)
     }
-    
+
     private var background: some View {
         RoundedRectangle(cornerRadius: cornerRadius)
             .foregroundColor(model.colors.background)
     }
 
     // MARK: Offsets
+
     private var initialOffset: CGFloat {
         switch model.layout.presentationEdge {
         case .top: return -height
         case .bottom: return UIScreen.main.bounds.height
         }
     }
-    
+
     private var presentedOffset: CGFloat {
         switch model.layout.presentationEdge {
         case .top:
             return UIView.topSafeAreaHeight + model.layout.presentationOffsetFromSafeEdge
-        
+
         case .bottom:
             return UIScreen.main.bounds.height - UIView.bottomSafeAreaHeight - height - model.layout.presentationOffsetFromSafeEdge
         }
     }
 
     // MARK: Corner Radius
+
     private var cornerRadius: CGFloat {
         switch model.layout.cornerRadiusType {
         case .rounded: return height / 2
-        case .custom(let value): return value
+        case let .custom(value): return value
         }
     }
 
     // MARK: Animations
+
     private func animateIn() {
-        withAnimation(model.animations.appear?.asSwiftUIAnimation, { isViewPresented = true })
+        withAnimation(model.animations.appear?.asSwiftUIAnimation) { isViewPresented = true }
     }
-    
+
     private func animateOut() {
-        withAnimation(model.animations.disappear?.asSwiftUIAnimation, { isViewPresented = false })
-        DispatchQueue.main.asyncAfter(deadline: .now() + (model.animations.disappear?.duration ?? 0), execute: { isHCPresented = false })
+        withAnimation(model.animations.disappear?.asSwiftUIAnimation) { isViewPresented = false }
+        DispatchQueue.main.asyncAfter(deadline: .now() + (model.animations.disappear?.duration ?? 0)) { isHCPresented = false }
     }
-    
+
     private func animateOutAfterLifecycle() {
         DispatchQueue.main.asyncAfter(deadline: .now() + model.animations.duration, execute: animateOut)
     }
 }
 
 // MARK: - Preview
+
 struct _VToast_Previews: PreviewProvider {
     static var previews: some View {
         _VToast(

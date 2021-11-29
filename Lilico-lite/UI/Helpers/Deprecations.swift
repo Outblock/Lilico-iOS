@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Web Link
+
 @available(*, deprecated, renamed: "VWebLink")
 public typealias VLink = VWebLink
 
@@ -18,27 +19,31 @@ public typealias VLinkPreset = VWebLinkPreset
 public typealias VLinkState = VWebLinkState
 
 // MARK: - V Toggle
+
 extension VToggleState {
     @available(*, deprecated, renamed: "setNextState")
     mutating func nextState() { setNextState() }
 }
 
 // MARK: - V CheckBox
-extension VCheckBoxState {
+
+public extension VCheckBoxState {
     @available(*, deprecated, renamed: "indeterminate")
-    public static var intermediate: Self { indeterminate }
-    
+    static var intermediate: Self { indeterminate }
+
     @available(*, deprecated, renamed: "setNextState")
-    public mutating func nextState() { setNextState() }
+    mutating func nextState() { setNextState() }
 }
 
 // MARK: - V Radio Button
-extension VRadioButtonState {
+
+public extension VRadioButtonState {
     @available(*, deprecated, renamed: "setNextState")
-    public mutating func nextState() { setNextState() }
+    mutating func nextState() { setNextState() }
 }
 
 // MARK: - V List
+
 @available(*, deprecated, renamed: "VList")
 public typealias VSection = VList
 
@@ -49,6 +54,7 @@ public typealias VSectionLayoutType = VListLayoutType
 public typealias VSectionModel = VListModel
 
 // MARK: - V Section List
+
 @available(*, deprecated, renamed: "VSectionList")
 public typealias VTable = VSectionList
 
@@ -70,59 +76,63 @@ public typealias VSectionListSection = VSectionListSectionViewModelable
 @available(*, deprecated, renamed: "VSectionListRowViewModelable")
 public typealias VSectionListRow = VSectionListRowViewModelable
 
-extension VSectionListSectionViewModelable {
+public extension VSectionListSectionViewModelable {
     @available(*, deprecated, renamed: "VSectionListRowViewModelable")
-    public typealias VSectionListRow = VSectionListRowViewModelable
+    typealias VSectionListRow = VSectionListRowViewModelable
 }
 
 @available(*, deprecated, message: "`VSectionListRowViewModelable` has been dropped. Use `Identifiable` instead.")
 public typealias VSectionListRowViewModelable = Identifiable
 
 // MARK: - V Accordion
-extension VAccordionState {
+
+public extension VAccordionState {
     @available(*, deprecated, renamed: "setNextState")
-    public mutating func nextState() { setNextState() }
+    mutating func nextState() { setNextState() }
 }
 
 // MARK: - Half Modal
-extension VHalfModalModel.Layout {
+
+public extension VHalfModalModel.Layout {
     @available(*, deprecated, renamed: "grabberSize")
-    public var resizeIndicatorSize: CGSize {
+    var resizeIndicatorSize: CGSize {
         get { grabberSize }
         set { grabberSize = newValue }
     }
-    
+
     @available(*, deprecated, renamed: "grabberCornerRadius")
-    public var resizeIndicatorCornerRadius: CGFloat {
+    var resizeIndicatorCornerRadius: CGFloat {
         get { grabberCornerRadius }
         set { grabberCornerRadius = newValue }
     }
-    
+
     @available(*, deprecated, renamed: "grabberMargins")
-    public var resizeIndicatorMargins: VerticalMargins {
+    var resizeIndicatorMargins: VerticalMargins {
         get { grabberMargins }
         set { grabberMargins = newValue }
     }
 }
 
-extension VHalfModalModel.Colors {
+public extension VHalfModalModel.Colors {
     @available(*, deprecated, renamed: "grabber")
-    public var resizeIndicator: Color {
+    var resizeIndicator: Color {
         get { grabber }
         set { grabber = newValue }
     }
 }
 
 // MARK: - V Navigation View
-extension VNavigationViewModel.Colors {
+
+public extension VNavigationViewModel.Colors {
     @available(*, deprecated, renamed: "bar")
-    public var background: Color {
+    var background: Color {
         get { bar }
         set { bar = newValue }
     }
 }
 
 // MARK: - V Lazy Scroll View
+
 @available(*, deprecated, renamed: "VLazyScrollView")
 public typealias VLazyList = VLazyScrollView
 
@@ -136,18 +146,19 @@ public typealias VLazyListModelVertical = VLazyScrollViewModelVertical
 public typealias VLazyListModelHorizontal = VLazyScrollViewModelHorizontal
 
 // MARK: - State Colors
-extension StateColors_OOID {
+
+public extension StateColors_OOID {
     @available(*, deprecated, renamed: "indeterminate")
-    public var intermediate: Color {
+    var intermediate: Color {
         get { indeterminate }
         set { indeterminate = newValue }
     }
-    
+
     @available(*, deprecated, message: "Use `init(off:_, on:_, intermediate:_, disabled:_)` instead")
-    public init(off: Color, on: Color, intermediate: Color, disabled: Color) {
+    init(off: Color, on: Color, intermediate: Color, disabled: Color) {
         self.off = off
         self.on = on
-        self.indeterminate = intermediate
+        indeterminate = intermediate
         self.disabled = disabled
     }
 }
@@ -155,33 +166,33 @@ extension StateColors_OOID {
 @available(*, deprecated, renamed: "StateColors_EFSEPD")
 public typealias StateColors_EpFpSpEpD = StateColors_EFSEPD
 
-extension StateColors_EFSEPD {
+public extension StateColors_EFSEPD {
     @available(*, deprecated, renamed: "pressedEnabled")
-    public var enabledPressed: Color {
+    var enabledPressed: Color {
         get { pressedEnabled }
         set { pressedEnabled = newValue }
     }
-    
+
     @available(*, deprecated, renamed: "pressedFocused")
-    public var focusedPressed: Color {
+    var focusedPressed: Color {
         get { pressedFocused }
         set { pressedFocused = newValue }
     }
-    
+
     @available(*, deprecated, renamed: "pressedSuccess")
-    public var successPressed: Color {
+    var successPressed: Color {
         get { pressedSuccess }
         set { pressedSuccess = newValue }
     }
-    
+
     @available(*, deprecated, renamed: "pressedError")
-    public var errorPressed: Color {
+    var errorPressed: Color {
         get { pressedError }
         set { pressedError = newValue }
     }
-    
+
     @available(*, deprecated, message: "Use init with parameters of different labels")
-    public init(
+    init(
         enabled: Color,
         enabledPressed: Color,
         focused: Color,
@@ -196,10 +207,10 @@ extension StateColors_EFSEPD {
         self.focused = focused
         self.success = success
         self.error = error
-        self.pressedEnabled = enabledPressed
-        self.pressedFocused = focusedPressed
-        self.pressedSuccess = successPressed
-        self.pressedError = errorPressed
+        pressedEnabled = enabledPressed
+        pressedFocused = focusedPressed
+        pressedSuccess = successPressed
+        pressedError = errorPressed
         self.disabled = disabled
     }
 }
@@ -207,33 +218,33 @@ extension StateColors_EFSEPD {
 @available(*, deprecated, renamed: "StateColorsAndOpacities_EFSEPD_PD")
 public typealias StateColors_EpFpSpEpD_PD = StateColorsAndOpacities_EFSEPD_PD
 
-extension StateColorsAndOpacities_EFSEPD_PD {
+public extension StateColorsAndOpacities_EFSEPD_PD {
     @available(*, deprecated, renamed: "pressedEnabled")
-    public var enabledPressed: Color {
+    var enabledPressed: Color {
         get { pressedEnabled }
         set { pressedEnabled = newValue }
     }
-    
+
     @available(*, deprecated, renamed: "pressedFocused")
-    public var focusedPressed: Color {
+    var focusedPressed: Color {
         get { pressedFocused }
         set { pressedFocused = newValue }
     }
-    
+
     @available(*, deprecated, renamed: "pressedSuccess")
-    public var successPressed: Color {
+    var successPressed: Color {
         get { pressedSuccess }
         set { pressedSuccess = newValue }
     }
-    
+
     @available(*, deprecated, renamed: "pressedError")
-    public var errorPressed: Color {
+    var errorPressed: Color {
         get { pressedError }
         set { pressedError = newValue }
     }
-    
+
     @available(*, deprecated, message: "Use init with parameters of different labels")
-    public init(
+    init(
         enabled: Color,
         enabledPressed: Color,
         focused: Color,
@@ -250,10 +261,10 @@ extension StateColorsAndOpacities_EFSEPD_PD {
         self.focused = focused
         self.success = success
         self.error = error
-        self.pressedEnabled = enabledPressed
-        self.pressedFocused = focusedPressed
-        self.pressedSuccess = successPressed
-        self.pressedError = errorPressed
+        pressedEnabled = enabledPressed
+        pressedFocused = focusedPressed
+        pressedSuccess = successPressed
+        pressedError = errorPressed
         self.disabled = disabled
         self.pressedOpacity = pressedOpacity
         self.disabledOpacity = disabledOpacity
@@ -261,13 +272,15 @@ extension StateColorsAndOpacities_EFSEPD_PD {
 }
 
 // MARK: - Colors
-extension ColorBook {
+
+public extension ColorBook {
     @available(*, deprecated, message: "Use SwiftUI's Color.clear")
-    public static let clear: Color = .clear
+    static let clear: Color = .clear
 }
 
 // MARK: - Basic Animations
-extension BasicAnimation {
+
+public extension BasicAnimation {
     @available(*, deprecated, renamed: "AnimationCurve")
-    public typealias VAnimationCurve = AnimationCurve
+    typealias VAnimationCurve = AnimationCurve
 }

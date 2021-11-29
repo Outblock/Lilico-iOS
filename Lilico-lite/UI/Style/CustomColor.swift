@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    class LL {
+    enum LL {
         static let background = Color("Background")
         static let rebackground = Color("Rebacground")
         static let primary = Color("Primary")

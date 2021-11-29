@@ -7,6 +7,14 @@ protocol ViewModel: ObservableObject where ObjectWillChangePublisher.Output == V
 
     var state: State { get }
     func trigger(_ input: Input)
+    
+    func toAnyViewModel() -> AnyViewModel<State, Input>
+}
+
+extension ViewModel {
+    func toAnyViewModel() -> AnyViewModel<State, Input> {
+        AnyViewModel(self)
+    }
 }
 
 extension AnyViewModel: Identifiable where State: Identifiable {
@@ -17,7 +25,6 @@ extension AnyViewModel: Identifiable where State: Identifiable {
 
 @dynamicMemberLookup
 final class AnyViewModel<State, Input>: ViewModel {
-
     // MARK: Stored properties
 
     private let wrappedObjectWillChange: () -> AnyPublisher<Void, Never>
@@ -51,5 +58,4 @@ final class AnyViewModel<State, Input>: ViewModel {
         self.wrappedState = { viewModel.state }
         self.wrappedTrigger = viewModel.trigger
     }
-
 }

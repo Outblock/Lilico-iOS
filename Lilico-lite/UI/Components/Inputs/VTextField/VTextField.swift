@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Text Field
+
 /// Input component that displays an editable text interface.
 ///
 /// Model, type, highlight, palceholder, header, footer, and event callbacks can be passed as parameters.
@@ -112,7 +113,7 @@ import SwiftUI
 public struct VTextField: View {
     private let model: VTextFieldModel
     private let textFieldType: VTextFieldType
-    
+
     @State private var stateInternally: VTextFieldState = .enabled
     @Binding private var stateExternally: VTextFieldState
     private let stateManagament: ComponentStateManagement
@@ -132,26 +133,27 @@ public struct VTextField: View {
             }
         )
     }
-    
+
     private let highlight: VTextFieldHighlight
-    
+
     private let placeholder: String?
     private let headerTitle: String?
     private let footerTitle: String?
     @Binding private var text: String
-                
+
     private let beginHandler: (() -> Void)?
     private let changeHandler: (() -> Void)?
     private let endHandler: (() -> Void)?
-    
+
     private let returnButtonAction: VTextFieldReturnButtonAction
     private let clearButtonAction: VTextFieldClearButtonAction
     private let cancelButtonAction: VTextFieldCancelButtonAction
-    
+
     @State private var isTextNonEmpty: Bool = false
     @State private var secureFieldIsVisible: Bool = false
 
     // MARK: Initialiers
+
     /// Initializes component with state and text.
     public init(
         model: VTextFieldModel = .init(),
@@ -171,13 +173,13 @@ public struct VTextField: View {
     ) {
         self.model = model
         self.textFieldType = textFieldType
-        self._stateExternally = state
-        self.stateManagament = .external
+        _stateExternally = state
+        stateManagament = .external
         self.highlight = highlight
         self.placeholder = placeholder
         self.headerTitle = headerTitle
         self.footerTitle = footerTitle
-        self._text = text
+        _text = text
         self.beginHandler = beginHandler
         self.changeHandler = changeHandler
         self.endHandler = endHandler
@@ -185,7 +187,7 @@ public struct VTextField: View {
         self.clearButtonAction = clearButtonAction
         self.cancelButtonAction = cancelButtonAction
     }
-    
+
     /// Initializes component with text.
     public init(
         model: VTextFieldModel = .init(),
@@ -204,13 +206,13 @@ public struct VTextField: View {
     ) {
         self.model = model
         self.textFieldType = textFieldType
-        self._stateExternally = .constant(.enabled)
-        self.stateManagament = .internal
+        _stateExternally = .constant(.enabled)
+        stateManagament = .internal
         self.highlight = highlight
         self.placeholder = placeholder
         self.headerTitle = headerTitle
         self.footerTitle = footerTitle
-        self._text = text
+        _text = text
         self.beginHandler = beginHandler
         self.changeHandler = changeHandler
         self.endHandler = endHandler
@@ -220,16 +222,17 @@ public struct VTextField: View {
     }
 
     // MARK: Body
+
     public var body: some View {
         setStatesFromBodyRender()
-        
+
         return VStack(alignment: .leading, spacing: model.layout.headerFooterSpacing, content: {
             headerView
             textFieldView
             footerView
         })
     }
-    
+
     private var textFieldView: some View {
         HStack(spacing: model.layout.contentSpacing, content: {
             HStack(spacing: model.layout.contentSpacing, content: {
@@ -238,15 +241,15 @@ public struct VTextField: View {
                 clearButton
                 visibilityButton
             })
-                .padding(.horizontal, model.layout.contentMarginHorizontal)
-                .frame(height: model.layout.height)
-                .background(background)
-            
+            .padding(.horizontal, model.layout.contentMarginHorizontal)
+            .frame(height: model.layout.height)
+            .background(background)
+
             cancelButton
         })
-            .frame(height: model.layout.height)
+        .frame(height: model.layout.height)
     }
-    
+
     @ViewBuilder private var headerView: some View {
         if let headerTitle = headerTitle, !headerTitle.isEmpty {
             VText(
@@ -255,11 +258,11 @@ public struct VTextField: View {
                 color: model.colors.header.for(state.wrappedValue, highlight: highlight),
                 title: headerTitle
             )
-                .padding(.horizontal, model.layout.headerFooterMarginHorizontal)
-                .opacity(model.colors.content.for(state.wrappedValue))
+            .padding(.horizontal, model.layout.headerFooterMarginHorizontal)
+            .opacity(model.colors.content.for(state.wrappedValue))
         }
     }
-    
+
     @ViewBuilder private var footerView: some View {
         if let footerTitle = footerTitle, !footerTitle.isEmpty {
             VText(
@@ -268,11 +271,11 @@ public struct VTextField: View {
                 color: model.colors.footer.for(state.wrappedValue, highlight: highlight),
                 title: footerTitle
             )
-                .padding(.horizontal, model.layout.headerFooterMarginHorizontal)
-                .opacity(model.colors.content.for(state.wrappedValue))
+            .padding(.horizontal, model.layout.headerFooterMarginHorizontal)
+            .opacity(model.colors.content.for(state.wrappedValue))
         }
     }
-    
+
     @ViewBuilder private var searchIcon: some View {
         if textFieldType.isSearch {
             ImageBook.search
@@ -282,7 +285,7 @@ public struct VTextField: View {
                 .opacity(model.colors.content.for(state.wrappedValue))
         }
     }
-    
+
     private var textFieldContentView: some View {
         UIKitTextFieldRepresentable(
             model: model.baseTextFieldSubModel(state: state.wrappedValue, isSecureTextEntry: textFieldType.isSecure && !secureFieldIsVisible),
@@ -294,11 +297,11 @@ public struct VTextField: View {
             onEnd: endHandler,
             onReturn: returnButtonAction
         )
-            .onChange(of: text, perform: textChanged)
+        .onChange(of: text, perform: textChanged)
     }
-    
+
     @ViewBuilder private var clearButton: some View {
-        if !textFieldType.isSecure && isTextNonEmpty && model.misc.clearButton {
+        if !textFieldType.isSecure, isTextNonEmpty, model.misc.clearButton {
             VCloseButton(
                 model: model.clearSubButtonModel(state: state.wrappedValue, highlight: highlight),
                 state: state.wrappedValue.clearButtonState,
@@ -306,7 +309,7 @@ public struct VTextField: View {
             )
         }
     }
-    
+
     @ViewBuilder private var visibilityButton: some View {
         if textFieldType.isSecure {
             VSquareButton(
@@ -322,7 +325,7 @@ public struct VTextField: View {
             )
         }
     }
-    
+
     @ViewBuilder private var cancelButton: some View {
         if !textFieldType.isSecure, isTextNonEmpty, state.wrappedValue.isFocused, let cancelButton = model.misc.cancelButton, !cancelButton.isEmpty {
             VPlainButton(
@@ -333,29 +336,31 @@ public struct VTextField: View {
             )
         }
     }
-    
+
     private var background: some View {
         ZStack(content: {
             RoundedRectangle(cornerRadius: model.layout.cornerRadius)
                 .foregroundColor(model.colors.background.for(state.wrappedValue, highlight: highlight))
-            
+
             RoundedRectangle(cornerRadius: model.layout.cornerRadius)
                 .strokeBorder(model.colors.border.for(state.wrappedValue, highlight: highlight), lineWidth: model.layout.borderWidth)
         })
     }
 
     // MARK: State Sets
+
     private func setStatesFromBodyRender() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + model.animations.delayToAnimateButtons, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + model.animations.delayToAnimateButtons) {
             isTextNonEmpty = !text.isEmpty
-        })
-        
-        DispatchQueue.main.async(execute: {
-            if secureFieldIsVisible && !textFieldType.isSecure { secureFieldIsVisible = false }
-        })
+        }
+
+        DispatchQueue.main.async {
+            if secureFieldIsVisible, !textFieldType.isSecure { secureFieldIsVisible = false }
+        }
     }
 
     // MARK: Visiblity Icon
+
     private var visiblityIcon: Image {
         switch secureFieldIsVisible {
         case false: return ImageBook.visibilityOff
@@ -364,33 +369,35 @@ public struct VTextField: View {
     }
 
     // MARK: Actions
+
     private func textChanged(_ text: String) {
-        withAnimation(model.animations.buttonsAppearDisappear, { isTextNonEmpty = !text.isEmpty })
+        withAnimation(model.animations.buttonsAppearDisappear) { isTextNonEmpty = !text.isEmpty }
     }
-    
+
     private func runClearAction() {
         switch clearButtonAction {
         case .clear: zeroText()
-        case .custom(let action): action()
-        case .clearAndCustom(let action): zeroText(); action()
+        case let .custom(action): action()
+        case let .clearAndCustom(action): zeroText(); action()
         }
     }
-    
+
     private func runCancelAction() {
         switch cancelButtonAction {
         case .clear: zeroText()
-        case .custom(let action): action()
-        case .clearAndCustom(let action): zeroText(); action()
+        case let .custom(action): action()
+        case let .clearAndCustom(action): zeroText(); action()
         }
     }
-    
+
     private func zeroText() {
         text = ""
-        withAnimation(model.animations.buttonsAppearDisappear, { isTextNonEmpty = false })
+        withAnimation(model.animations.buttonsAppearDisappear) { isTextNonEmpty = false }
     }
 }
 
 // MARK: - Preview
+
 struct VTextField_Previews: PreviewProvider {
     @State private static var state: VTextFieldState = .enabled
     @State private static var text: String = "Lorem ipsum"
@@ -408,6 +415,6 @@ struct VTextField_Previews: PreviewProvider {
                 )
             })
         })
-            .padding()
+        .padding()
     }
 }

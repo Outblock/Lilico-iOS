@@ -8,16 +8,19 @@
 import SwiftUI
 
 // MARK: - State Colors (Enabled, Disabled)
+
 /// Color group containing `enabled` and `disabled` values.
 public struct StateColors_ED: Equatable {
     // MARK: Properties
+
     /// Enabled color.
     public var enabled: Color
-    
+
     /// Disabled color.
     public var disabled: Color
-    
+
     // MARK: Initializers
+
     /// Initializes group with values.
     public init(
         enabled: Color,
@@ -26,13 +29,13 @@ public struct StateColors_ED: Equatable {
         self.enabled = enabled
         self.disabled = disabled
     }
-    
+
     /// Initializes group with clear values.
     public init() {
-        self.enabled = .clear
-        self.disabled = .clear
+        enabled = .clear
+        disabled = .clear
     }
-    
+
     /// Initializes group with clear values.
     public static var clear: Self { .init() }
 }

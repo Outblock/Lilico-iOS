@@ -8,24 +8,28 @@
 import SwiftUI
 
 // MARK: - V Text Field Highlight
+
 /// State that describes highlight state, such as `none`, `success`, or `error`.
 public enum VTextFieldHighlight: Int, CaseIterable {
     // MARK: Cases
+
     /// No highlight.
     case none
-    
+
     /// Success highlight with green accent.
     case success
-    
+
     /// Error highlight with red accent.
     case error
-    
+
     // MARK: Initailizers
+
     /// Default value. Set to `none`.
     public static var `default`: Self { .none }
 }
 
 // MARK: - Mapping
+
 extension StateColors_EFSEPD {
     func `for`(highlight: VTextFieldHighlight) -> Color {
         switch highlight {
@@ -48,7 +52,7 @@ extension StateColorsAndOpacities_EFSEPD_PD {
         case (.error, .focused): return error
         }
     }
-    
+
     func `for`(highlight: VTextFieldHighlight) -> Color {
         switch highlight {
         case .none: return pressedEnabled

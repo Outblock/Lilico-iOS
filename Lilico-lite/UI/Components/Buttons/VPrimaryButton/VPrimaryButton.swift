@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Primary Button
+
 /// Large colored button component that performs action when triggered.
 ///
 /// Component can be initialized with content or title.
@@ -23,20 +24,22 @@ import SwiftUI
 ///         )
 ///             .padding()
 ///     }
-///     
+///
 public struct VPrimaryButton<Content>: View where Content: View {
     // MARK: Properties
+
     private let model: VPrimaryButtonModel
-    
+
     private let state: VPrimaryButtonState
     @State private var isPressed: Bool = false
     private var internalState: VPrimaryButtonInternalState { .init(state: state, isPressed: isPressed) }
-    
+
     private let action: () -> Void
-    
+
     private let content: () -> Content
 
     // MARK: Initializers
+
     /// Initializes component with action and content.
     public init(
         model: VPrimaryButtonModel = .init(),
@@ -75,6 +78,7 @@ public struct VPrimaryButton<Content>: View where Content: View {
     }
 
     // MARK: Body
+
     public var body: some View {
         VBaseButton(
             isEnabled: internalState.isEnabled,
@@ -83,14 +87,14 @@ public struct VPrimaryButton<Content>: View where Content: View {
             content: { buttonView }
         )
     }
-    
+
     private var buttonView: some View {
         buttonContent
             .frame(height: model.layout.height)
             .background(backgroundView)
             .overlay(border)
     }
-    
+
     private var buttonContent: some View {
         HStack(alignment: .center, spacing: model.layout.loaderSpacing, content: {
             loaderCompensatorView
@@ -101,29 +105,29 @@ public struct VPrimaryButton<Content>: View where Content: View {
 
             loaderView
         })
-            .padding(.horizontal, model.layout.contentMargin.horizontal)
-            .padding(.vertical, model.layout.contentMargin.vertical)
+        .padding(.horizontal, model.layout.contentMargin.horizontal)
+        .padding(.vertical, model.layout.contentMargin.vertical)
     }
-    
+
     @ViewBuilder private var loaderCompensatorView: some View {
         if internalState.isLoading {
             Spacer()
                 .frame(width: model.layout.loaderWidth, alignment: .leading)
         }
     }
-    
+
     @ViewBuilder private var loaderView: some View {
         if internalState.isLoading {
             VSpinner(type: .continous(model.spinnerSubModel))
                 .frame(width: model.layout.loaderWidth, alignment: .trailing)
         }
     }
-    
+
     private var backgroundView: some View {
         RoundedRectangle(cornerRadius: model.layout.cornerRadius)
             .foregroundColor(model.colors.background.for(internalState))
     }
-    
+
     @ViewBuilder private var border: some View {
         if model.layout.hasBorder {
             RoundedRectangle(cornerRadius: model.layout.cornerRadius)
@@ -133,6 +137,7 @@ public struct VPrimaryButton<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+
 struct VPrimaryButton_Previews: PreviewProvider {
     static var previews: some View {
         VPrimaryButton(action: {}, title: "Lorem ipsum")

@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Action Sheet
+
 /// Modal component that presents half modal menu of actions.
 ///
 /// Description can be passed as parameter.
@@ -36,11 +37,13 @@ import SwiftUI
 ///
 public struct VActionSheet {
     // MARK: Properties
+
     fileprivate let title: String
     fileprivate let description: String?
     fileprivate let rows: [VActionSheetRow]
-    
+
     // MARK: Initializrs
+
     /// Initializes component with title, description, and rows.
     public init(
         title: String,
@@ -54,14 +57,15 @@ public struct VActionSheet {
 }
 
 // MARK: - Extension
-extension View {
+
+public extension View {
     /// Presents `VActionSheet`.
-    public func vActionSheet(
+    func vActionSheet(
         isPresented: Binding<Bool>,
         actionSheet: @escaping () -> VActionSheet
     ) -> some View {
         let actionSheet = actionSheet()
-        
+
         return self
             .actionSheet(isPresented: isPresented, content: {
                 ActionSheet(
@@ -73,7 +77,7 @@ extension View {
                             return nil
                         }
                     }(),
-                    buttons: actionSheet.rows.map { $0.actionSheetButton }
+                    buttons: actionSheet.rows.map(\.actionSheetButton)
                 )
             })
     }

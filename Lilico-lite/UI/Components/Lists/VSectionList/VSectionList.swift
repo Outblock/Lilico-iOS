@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Section List
+
 /// Sectioned container component that draws a background, and computes views on demad from an underlying collection of identified data.
 ///
 /// Model, layout, and header, and footer can be passed as parameters.
@@ -70,25 +71,27 @@ import SwiftUI
 ///
 public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowContent>: View
     where
-        Section: VSectionListSectionViewModelable,
-        Row == Section.VSectionListRowViewModelable,
-        HeaderContent: View,
-        FooterContent: View,
-        RowContent: View
+    Section: VSectionListSectionViewModelable,
+    Row == Section.VSectionListRowViewModelable,
+    HeaderContent: View,
+    FooterContent: View,
+    RowContent: View
 {
     // MARK: Properties
+
     private let model: VSectionListModel
-    
+
     private let layoutType: VSectionListLayoutType
-    
+
     private let sections: [Section]
-    
+
     private let headerContent: ((Section) -> HeaderContent)?
     private let footerContent: ((Section) -> FooterContent)?
-    
+
     private let rowContent: (Row) -> RowContent
-    
+
     // MARK: Initializers - Header and Footer
+
     /// Initializes component with sections, header, footer, and row content.
     public init(
         model: VSectionListModel = .init(),
@@ -105,7 +108,7 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
         self.footerContent = footerContent
         self.rowContent = rowContent
     }
-    
+
     /// Initializes component with sections, header title, footer, and row content.
     public init(
         model: VSectionListModel = .init(),
@@ -133,7 +136,7 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
             rowContent: rowContent
         )
     }
-    
+
     /// Initializes component with sections, header, footer title, and row content.
     public init(
         model: VSectionListModel = .init(),
@@ -161,7 +164,7 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
             rowContent: rowContent
         )
     }
-    
+
     /// Initializes component with sections, header title, footer title, and row content.
     public init(
         model: VSectionListModel = .init(),
@@ -172,8 +175,8 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
         @ViewBuilder rowContent: @escaping (Row) -> RowContent
     )
         where
-            HeaderContent == VBaseHeaderFooter,
-            FooterContent == VBaseHeaderFooter
+        HeaderContent == VBaseHeaderFooter,
+        FooterContent == VBaseHeaderFooter
     {
         self.init(
             model: model,
@@ -198,8 +201,9 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
             rowContent: rowContent
         )
     }
-    
+
     // MARK: Initializers - Header
+
     /// Initializes component with sections, header, and row content.
     public init(
         model: VSectionListModel = .init(),
@@ -214,10 +218,10 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
         self.layoutType = layoutType
         self.sections = sections
         self.headerContent = headerContent
-        self.footerContent = nil
+        footerContent = nil
         self.rowContent = rowContent
     }
-    
+
     /// Initializes component with sections, header title, and row content.
     public init(
         model: VSectionListModel = .init(),
@@ -227,8 +231,8 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
         @ViewBuilder rowContent: @escaping (Row) -> RowContent
     )
         where
-            HeaderContent == VBaseHeaderFooter,
-            FooterContent == Never
+        HeaderContent == VBaseHeaderFooter,
+        FooterContent == Never
     {
         self.init(
             model: model,
@@ -247,6 +251,7 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
     }
 
     // MARK: Initializers - Footer
+
     /// Initializes component with sections, footer, and row content.
     public init(
         model: VSectionListModel = .init(),
@@ -260,11 +265,11 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
         self.model = model
         self.layoutType = layoutType
         self.sections = sections
-        self.headerContent = nil
+        headerContent = nil
         self.footerContent = footerContent
         self.rowContent = rowContent
     }
-    
+
     /// Initializes component with sections, footer title, and row content.
     public init(
         model: VSectionListModel = .init(),
@@ -274,8 +279,8 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
         @ViewBuilder rowContent: @escaping (Row) -> RowContent
     )
         where
-            HeaderContent == Never,
-            FooterContent == VBaseHeaderFooter
+        HeaderContent == Never,
+        FooterContent == VBaseHeaderFooter
     {
         self.init(
             model: model,
@@ -294,6 +299,7 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
     }
 
     // MARK: Initializers - _
+
     /// Initializes component with sections and row content.
     public init(
         model: VSectionListModel = .init(),
@@ -302,18 +308,19 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
         @ViewBuilder rowContent: @escaping (Row) -> RowContent
     )
         where
-            HeaderContent == Never,
-            FooterContent == Never
+        HeaderContent == Never,
+        FooterContent == Never
     {
         self.model = model
         self.layoutType = layoutType
         self.sections = sections
-        self.headerContent = nil
-        self.footerContent = nil
+        headerContent = nil
+        footerContent = nil
         self.rowContent = rowContent
     }
 
     // MARK: Body
+
     public var body: some View {
         VSheet(model: model.sheetSubModel, content: {
             Group(content: {
@@ -322,22 +329,22 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
                 case .flexible: VLazyScrollView(content: { contentView })
                 }
             })
-                .padding([.leading, .top, .bottom], model.layout.contentMargin)
-                .frame(maxWidth: .infinity)
+            .padding([.leading, .top, .bottom], model.layout.contentMargin)
+            .frame(maxWidth: .infinity)
         })
     }
-    
+
     private var contentView: some View {
-        ForEach(sections.enumeratedArray(), id: \.element.id, content: { (i, section) in
+        ForEach(sections.enumeratedArray(), id: \.element.id, content: { i, section in
             headerView(i: i, section: section)
             rowViews(section: section)
             footerView(i: i, section: section)
             padding(i: i)
         })
-            .padding(.trailing, model.layout.contentMargin)
+        .padding(.trailing, model.layout.contentMargin)
     }
 
-    private func headerView(i: Int, section: Section) -> some View {
+    private func headerView(i _: Int, section: Section) -> some View {
         headerContent?(section)
             .padding(.bottom, model.layout.headerMarginBottom)
     }
@@ -351,7 +358,7 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
         )
     }
 
-    private func footerView(i: Int, section: Section) -> some View {
+    private func footerView(i _: Int, section: Section) -> some View {
         footerContent?(section)
             .padding(.top, model.layout.footerMarginTop)
     }
@@ -364,18 +371,20 @@ public struct VSectionList<Section, Row, HeaderContent, FooterContent, RowConten
     }
 
     // MARK: Helpers
+
     private func showSectionSpacing(for i: Int) -> Bool {
-        i <= sections.count-2
+        i <= sections.count - 2
     }
 }
 
 // MARK: - Preview
+
 struct VSectionList_Previews: PreviewProvider {
     private struct Section: VSectionListSectionViewModelable {
         let id: Int
         let title: String
         let rows: [Row]
-        
+
         static var count: Int { 2 }
     }
 
@@ -383,18 +392,18 @@ struct VSectionList_Previews: PreviewProvider {
         let id: Int
         let color: Color
         let title: String
-        
+
         static var count: Int { 3 }
     }
 
     private static var sections: [Section] {
-        (0..<Section.count).map { i in
+        (0 ..< Section.count).map { i in
             .init(
                 id: i,
-                
+
                 title: spellOut(i + 1),
-                
-                rows: (0..<Row.count).map { ii in
+
+                rows: (0 ..< Row.count).map { ii in
                     let num: Int = i * Row.count + ii + 1
                     return .init(
                         id: num,
@@ -405,7 +414,7 @@ struct VSectionList_Previews: PreviewProvider {
             )
         }
     }
-    
+
     private static func spellOut(_ i: Int) -> String {
         let formatter: NumberFormatter = .init()
         formatter.numberStyle = .spellOut
@@ -428,7 +437,7 @@ struct VSectionList_Previews: PreviewProvider {
                     )
                 }
             )
-                .padding(20)
+            .padding(20)
         })
     }
 }

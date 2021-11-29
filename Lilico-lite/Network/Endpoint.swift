@@ -18,14 +18,10 @@ protocol Endpoint {
     var method: HTTPMethod { get set }
     var headers: [String: String]? { get set }
     var parameter: [String: String]? { get set }
-    
 }
 
 extension Endpoint {
-    var headers: [String: String]? {
-        get { nil }
-    }
-    var parameter: [String: String]? {
-        get { nil }
-    }
+    var headers: [String: String]? { nil }
+
+    var parameter: [String: String]? { nil }
 }

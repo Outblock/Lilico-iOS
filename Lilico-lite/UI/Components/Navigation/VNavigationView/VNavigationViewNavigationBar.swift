@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - Modifier
+
 extension View {
     func setUpNavigationViewNavigationBar() -> some View {
         modifier(VNaviggationViewNavigationBar())
@@ -15,6 +16,7 @@ extension View {
 }
 
 // MARK: - V Navigation View Navigation Bar
+
 struct VNaviggationViewNavigationBar: ViewModifier {
     func body(content: Content) -> some View {
         content

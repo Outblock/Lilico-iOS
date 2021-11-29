@@ -8,16 +8,19 @@
 import SwiftUI
 
 // MARK: - V Chevron Button State
+
 /// Enum that describes state, such as `enabled` or `disabled`.
 public enum VChevronButtonState: Int, CaseIterable {
     // MARK: Cases
+
     /// Enabled.
     case enabled
-    
+
     /// Disabled.
     case disabled
-    
+
     // MARK: Properties
+
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -28,13 +31,16 @@ public enum VChevronButtonState: Int, CaseIterable {
 }
 
 // MARK: - V Chevron Button Internal State
+
 enum VChevronButtonInternalState {
     // MARK: Cases
+
     case enabled
     case pressed
     case disabled
-    
+
     // MARK: Properties
+
     var isEnabled: Bool {
         switch self {
         case .enabled: return true
@@ -42,8 +48,9 @@ enum VChevronButtonInternalState {
         case .disabled: return false
         }
     }
-    
+
     // MARK: Initializers
+
     init(state: VChevronButtonState, isPressed: Bool) {
         switch (state, isPressed) {
         case (.enabled, false): self = .enabled
@@ -54,6 +61,7 @@ enum VChevronButtonInternalState {
 }
 
 // MARK: - Mapping
+
 extension StateColors_EPD {
     func `for`(_ state: VChevronButtonInternalState) -> Color {
         switch state {

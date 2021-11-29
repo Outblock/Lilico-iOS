@@ -8,19 +8,22 @@
 import SwiftUI
 
 // MARK: - V Text Field State
+
 /// Enum that describes state, such as `enabled`, `focused`, or `disabled`.
 public enum VTextFieldState: Int, CaseIterable {
     // MARK: Cases
+
     /// Enabled.
     case enabled
-    
+
     /// Focused.
     case focused
-    
+
     /// Disabled.
     case disabled
-    
+
     // MARK: Properties
+
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -29,7 +32,7 @@ public enum VTextFieldState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-    
+
     var isFocused: Bool {
         switch self {
         case .enabled: return false
@@ -39,6 +42,7 @@ public enum VTextFieldState: Int, CaseIterable {
     }
 
     // MARK: Helpers
+
     static func baseTextFieldState(_ state: Binding<VTextFieldState>) -> Binding<VBaseTextFieldState> {
         .init(
             get: {
@@ -57,7 +61,7 @@ public enum VTextFieldState: Int, CaseIterable {
             }
         )
     }
-    
+
     var clearButtonState: VCloseButtonState {
         switch self {
         case .enabled: return .enabled
@@ -65,7 +69,7 @@ public enum VTextFieldState: Int, CaseIterable {
         case .disabled: return .disabled
         }
     }
-    
+
     var visiblityButtonState: VSquareButtonState {
         switch self {
         case .enabled: return .enabled
@@ -73,7 +77,7 @@ public enum VTextFieldState: Int, CaseIterable {
         case .disabled: return .disabled
         }
     }
-    
+
     var cancelButtonState: VPlainButtonState {
         switch self {
         case .enabled: return .enabled
@@ -84,6 +88,7 @@ public enum VTextFieldState: Int, CaseIterable {
 }
 
 // MARK: - Mapping
+
 extension StateColors_EFD {
     func `for`(_ state: VTextFieldState) -> Color {
         switch state {
@@ -140,7 +145,7 @@ extension StateColorsAndOpacities_EP_D {
         case .disabled: return disabled
         }
     }
-    
+
     func `for`(_ state: VTextFieldState) -> Double {
         switch state {
         case .enabled: return 1

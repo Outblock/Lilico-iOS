@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 
 // MARK: - V Base Button
+
 /// Core component that is used throughout the library as button.
 ///
 /// `Bool` can also be passed as state.
@@ -30,17 +31,19 @@ import UIKit
 ///             content: { Text("Lorem ipsum") }
 ///         )
 ///     }
-///     
+///
 public struct VBaseButton<Content>: View where Content: View {
     // MARK: Properties
+
     private let state: VBaseButtonState
-    
+
     private let action: () -> Void
     private let pressHandler: (Bool) -> Void
-    
+
     private let content: () -> Content
-    
+
     // MARK: Initializers - State
+
     /// Initializes component with state, action, press handler, and content.
     public init(
         state: VBaseButtonState,
@@ -53,8 +56,9 @@ public struct VBaseButton<Content>: View where Content: View {
         self.pressHandler = pressHandler
         self.content = content
     }
-    
+
     // MARK: Initializers - Bool
+
     /// Initializes component with bool, action, press handler, and content.
     public init(
         isEnabled: Bool,
@@ -62,13 +66,14 @@ public struct VBaseButton<Content>: View where Content: View {
         onPress pressHandler: @escaping (Bool) -> Void,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.state = .init(isEnabled: isEnabled)
+        state = .init(isEnabled: isEnabled)
         self.action = action
         self.pressHandler = pressHandler
         self.content = content
     }
 
     // MARK: Body
+
     public var body: some View {
         content()
             .overlay(UIKitTouchView(isEnabled: state.isEnabled, action: action, pressHandler: pressHandler))
@@ -76,9 +81,10 @@ public struct VBaseButton<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+
 struct VBaseButton_Previews: PreviewProvider {
     @State private static var state: VBaseButtonState = .enabled
-    
+
     static var previews: some View {
         VBaseButton(
             state: state,

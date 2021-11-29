@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Base Title
+
 /// Core component that is used throughout the library as text.
 ///
 /// Usage example:
@@ -23,12 +24,14 @@ import SwiftUI
 ///
 public struct VText: View {
     // MARK: Properties
+
     private let textType: VTextType
     private let font: Font
     private let color: Color
     private let title: String
-    
+
     // MARK: Initializers
+
     /// Initializes component with type, font, color, and title.
     public init(
         type textType: VTextType,
@@ -43,6 +46,7 @@ public struct VText: View {
     }
 
     // MARK: Body
+
     @ViewBuilder public var body: some View {
         switch textType {
         case .oneLine:
@@ -51,8 +55,8 @@ public struct VText: View {
                 .truncationMode(.tail)
                 .foregroundColor(color)
                 .font(font)
-            
-        case .multiLine(let limit, let alignment):
+
+        case let .multiLine(limit, alignment):
             Text(title)
                 .lineLimit(limit)
                 .multilineTextAlignment(alignment)
@@ -64,6 +68,7 @@ public struct VText: View {
 }
 
 // MARK: - Preview
+
 struct VText_Previews: PreviewProvider {
     static var previews: some View {
         VText(

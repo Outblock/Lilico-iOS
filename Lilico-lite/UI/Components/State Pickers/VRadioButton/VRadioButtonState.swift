@@ -8,19 +8,22 @@
 import SwiftUI
 
 // MARK: - V Radio Button State
+
 /// Enum that describes state, such as `off`, `on`, or `disabled`.
 public enum VRadioButtonState: Int, CaseIterable {
     // MARK: Cases
+
     /// Off.
     case off
-    
+
     /// On.
     case on
-    
+
     /// Disabled.
     case disabled
-    
+
     // MARK: Properties
+
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -29,7 +32,7 @@ public enum VRadioButtonState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-    
+
     /// Indicates if state is on.
     public var isOn: Bool {
         switch self {
@@ -40,6 +43,7 @@ public enum VRadioButtonState: Int, CaseIterable {
     }
 
     // MARK: Next State
+
     /// Goes to the next state.
     public mutating func setNextState() {
         switch self {
@@ -51,15 +55,18 @@ public enum VRadioButtonState: Int, CaseIterable {
 }
 
 // MARK: - V Radio Button Internal State
+
 enum VRadioButtonInternalState {
     // MARK: Cases
+
     case off
     case on
     case pressedOff
     case pressedOn
     case disabled
-    
+
     // MARK: Properties
+
     var isEnabled: Bool {
         switch self {
         case .off: return true
@@ -69,8 +76,9 @@ enum VRadioButtonInternalState {
         case .disabled: return false
         }
     }
-    
+
     // MARK: Initializers
+
     init(state: VRadioButtonState, isPressed: Bool) {
         switch (state, isPressed) {
         case (.off, false): self = .off
@@ -80,7 +88,7 @@ enum VRadioButtonInternalState {
         case (.disabled, _): self = .disabled
         }
     }
-    
+
     init(bool state: Bool, isPressed: Bool) {
         switch (state, isPressed) {
         case (false, false): self = .off
@@ -92,6 +100,7 @@ enum VRadioButtonInternalState {
 }
 
 // MARK: - Mapping
+
 extension StateColors_OOD {
     func `for`(_ state: VRadioButtonInternalState) -> Color {
         switch state {
@@ -117,9 +126,10 @@ extension StateOpacities_PD {
 }
 
 // MARK: - Helpers
-extension Binding where Value == VRadioButtonState {
+
+public extension Binding where Value == VRadioButtonState {
     /// Initializes state with bool.
-    public init(bool: Binding<Bool>) {
+    init(bool: Binding<Bool>) {
         self.init(
             get: { bool.wrappedValue ? .on : .off },
             set: { bool.wrappedValue = $0.isOn }

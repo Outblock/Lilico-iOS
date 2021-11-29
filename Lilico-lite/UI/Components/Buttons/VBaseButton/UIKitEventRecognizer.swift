@@ -8,14 +8,17 @@
 import UIKit
 
 // MARK: - UIKit Event Recognizer
+
 final class UIKitEventRecognizer: UITapGestureRecognizer {
     // MARK: Properties
+
     private var action: () -> Void
     private var pressHandler: (Bool) -> Void
-    
+
     private let allowedOffset: CGFloat = 20
-    
+
     // MARK: Initializers
+
     init(
         action: @escaping () -> Void,
         pressHandler: @escaping (Bool) -> Void
@@ -26,6 +29,7 @@ final class UIKitEventRecognizer: UITapGestureRecognizer {
     }
 
     // MARK: Updates
+
     func update(
         action: @escaping () -> Void,
         pressHandler: @escaping (Bool) -> Void
@@ -35,33 +39,34 @@ final class UIKitEventRecognizer: UITapGestureRecognizer {
     }
 
     // MARK: Touches
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+
+    override func touchesBegan(_: Set<UITouch>, with _: UIEvent) {
         state = .began
         pressHandler(true)
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+    override func touchesEnded(_: Set<UITouch>, with _: UIEvent) {
         state = .ended
         pressHandler(false)
         action()
     }
 
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+    override func touchesCancelled(_: Set<UITouch>, with _: UIEvent) {
         state = .ended
         pressHandler(false)
     }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+
+    override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent) {
         guard
             let touch: UITouch = touches.first,
             let size: CGSize = view?.frame.size
         else {
             return
         }
-        
+
         let location: CGPoint = touch.location(in: view)
         let isOn: Bool = location.isOn(size, offset: allowedOffset)
-        
+
         if !isOn {
             state = .ended
             pressHandler(false)
@@ -70,8 +75,9 @@ final class UIKitEventRecognizer: UITapGestureRecognizer {
 }
 
 // MARK: - Point on Frame
-extension CGPoint {
-    fileprivate func isOn(_ frame: CGSize, offset: CGFloat) -> Bool {
+
+private extension CGPoint {
+    func isOn(_ frame: CGSize, offset: CGFloat) -> Bool {
         let xIsOnTarget: Bool = {
             let isPositive: Bool = x >= 0
             switch isPositive {

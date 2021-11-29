@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Base Text Field
+
 /// Core component that is used throughout the library as textfield.
 ///
 /// Model, state, placeholder, event callbacks, and button action can be passed as parameters.
@@ -60,7 +61,7 @@ import SwiftUI
 ///
 public struct VBaseTextField: View {
     private let model: VBaseTextFieldModel
-    
+
     @State private var stateInternally: VBaseTextFieldState = .enabled
     @Binding private var stateExternally: VBaseTextFieldState
     private let stateManagament: ComponentStateManagement
@@ -80,17 +81,18 @@ public struct VBaseTextField: View {
             }
         )
     }
-    
+
     private let placeholder: String?
     @Binding private var text: String
-    
+
     private let beginHandler: (() -> Void)?
     private let changeHandler: (() -> Void)?
     private let endHandler: (() -> Void)?
-    
+
     private let returnAction: VBaseTextFieldReturnButtonAction
-    
+
     // MARK: Initialiers
+
     /// Initializes component with state and text.
     public init(
         model: VBaseTextFieldModel = .init(),
@@ -103,16 +105,16 @@ public struct VBaseTextField: View {
         onReturn returnAction: VBaseTextFieldReturnButtonAction = .default
     ) {
         self.model = model
-        self._stateExternally = state
-        self.stateManagament = .external
+        _stateExternally = state
+        stateManagament = .external
         self.placeholder = placeholder
-        self._text = text
+        _text = text
         self.beginHandler = beginHandler
         self.changeHandler = changeHandler
         self.endHandler = endHandler
         self.returnAction = returnAction
     }
-    
+
     /// Initializes component with text.
     public init(
         model: VBaseTextFieldModel = .init(),
@@ -124,10 +126,10 @@ public struct VBaseTextField: View {
         onReturn returnAction: VBaseTextFieldReturnButtonAction = .default
     ) {
         self.model = model
-        self._stateExternally = .constant(.enabled)
-        self.stateManagament = .internal
+        _stateExternally = .constant(.enabled)
+        stateManagament = .internal
         self.placeholder = placeholder
-        self._text = text
+        _text = text
         self.beginHandler = beginHandler
         self.changeHandler = changeHandler
         self.endHandler = endHandler
@@ -135,6 +137,7 @@ public struct VBaseTextField: View {
     }
 
     // MARK: Body
+
     public var body: some View {
         UIKitTextFieldRepresentable(
             model: model,
@@ -150,16 +153,17 @@ public struct VBaseTextField: View {
 }
 
 // MARK: - Preview
+
 struct VBaseTextField_Previews: PreviewProvider {
     @State private static var state: VBaseTextFieldState = .enabled
     @State private static var text: String = "Lorem ipsum"
-    
+
     static var previews: some View {
         VBaseTextField(
             state: $state,
             placeholder: "Lorem ipsum",
             text: $text
         )
-            .padding()
+        .padding()
     }
 }

@@ -7,8 +7,16 @@
 
 import SwiftUI
 
-extension View{
-    func screenBounds()->CGRect{
-        return UIScreen.main.bounds
+extension View {
+    var screenBounds: CGRect {
+        UIScreen.main.bounds
+    }
+    
+    var screenWidth: CGFloat {
+        screenBounds.width
+    }
+    
+    var screenHeight: CGFloat {
+        screenBounds.height
     }
 }

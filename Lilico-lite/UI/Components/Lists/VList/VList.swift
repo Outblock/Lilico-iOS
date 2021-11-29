@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V List
+
 /// Container component that draws a background, and computes views on demad from an underlying collection of identified data.
 ///
 /// Model and layout can be passed as parameters.
@@ -52,19 +53,21 @@ import SwiftUI
 ///
 public struct VList<Data, ID, RowContent>: View
     where
-        Data: RandomAccessCollection,
-        ID: Hashable,
-        RowContent: View
-    {
+    Data: RandomAccessCollection,
+    ID: Hashable,
+    RowContent: View
+{
     // MARK: Properties
+
     private let model: VListModel
     private let layoutType: VListLayoutType
-    
+
     private let data: Data
     private let id: KeyPath<Data.Element, ID>
     private let rowContent: (Data.Element) -> RowContent
-    
+
     // MARK: Initializers - View Builder
+
     /// Initializes component with data, id, and row content.
     public init(
         model: VListModel = .init(),
@@ -79,8 +82,9 @@ public struct VList<Data, ID, RowContent>: View
         self.id = id
         self.rowContent = rowContent
     }
-    
+
     // MARK: Initializers - Identified View Builder
+
     /// Initializes component with data and row content.
     public init(
         model: VListModel = .init(),
@@ -89,8 +93,8 @@ public struct VList<Data, ID, RowContent>: View
         @ViewBuilder rowContent: @escaping (Data.Element) -> RowContent
     )
         where
-            Data.Element: Identifiable,
-            ID == Data.Element.ID
+        Data.Element: Identifiable,
+        ID == Data.Element.ID
     {
         self.init(
             model: model,
@@ -102,10 +106,11 @@ public struct VList<Data, ID, RowContent>: View
     }
 
     // MARK: Body
+
     public var body: some View {
         VSheet(model: model.sheetSubModel, content: { contentView })
     }
-    
+
     private var contentView: some View {
         VBaseList(
             model: model.baseListSubModel,
@@ -114,22 +119,23 @@ public struct VList<Data, ID, RowContent>: View
             id: id,
             rowContent: rowContent
         )
-            .padding([.leading, .top, .bottom], model.layout.contentMargin)
-            .frame(maxWidth: .infinity)
+        .padding([.leading, .top, .bottom], model.layout.contentMargin)
+        .frame(maxWidth: .infinity)
     }
 }
 
 // MARK: - Preview
+
 struct VList_Previews: PreviewProvider {
     static var previews: some View {
         ZStack(alignment: .top, content: {
             ColorBook.canvas
                 .edgesIgnoringSafeArea(.all)
-            
+
             VList(data: VBaseList_Previews.rows, rowContent: { row in
                 VBaseList_Previews.rowContent(title: row.title, color: row.color)
             })
-                .padding(20)
+            .padding(20)
         })
     }
 }

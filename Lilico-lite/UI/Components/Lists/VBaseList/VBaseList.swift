@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Base List
+
 /// Core component that is used throughout the library as a structure that either hosts content, or computes views on demad from an underlying collection of identified data.
 ///
 /// Model, and layout can be passed as parameters.
@@ -50,21 +51,23 @@ import SwiftUI
 ///
 public struct VBaseList<Data, ID, RowContent>: View
     where
-        Data: RandomAccessCollection,
-        ID: Hashable,
-        RowContent: View
+    Data: RandomAccessCollection,
+    ID: Hashable,
+    RowContent: View
 {
     // MARK: Properties
+
     private let model: VBaseListModel
-    
+
     private let layoutType: VBaseListLayoutType
-    
+
     private let data: [Element]
     private let rowContent: (Data.Element) -> RowContent
-    
+
     typealias Element = VBaseListElement<ID, Data.Element>
-    
+
     // MARK: Initializers - View Builder
+
     /// Initializes component with data, id, and row content.
     public init(
         model: VBaseListModel = .init(),
@@ -78,8 +81,9 @@ public struct VBaseList<Data, ID, RowContent>: View
         self.data = data.map { .init(id: $0[keyPath: id], value: $0) }
         self.rowContent = rowContent
     }
-    
+
     // MARK: Initializers - Identified View Builder
+
     /// Initializes component with data and row content.
     public init(
         model: VBaseListModel = .init(),
@@ -88,8 +92,8 @@ public struct VBaseList<Data, ID, RowContent>: View
         @ViewBuilder rowContent: @escaping (Data.Element) -> RowContent
     )
         where
-            Data.Element: Identifiable,
-            ID == Data.Element.ID
+        Data.Element: Identifiable,
+        ID == Data.Element.ID
     {
         self.model = model
         self.layoutType = layoutType
@@ -98,6 +102,7 @@ public struct VBaseList<Data, ID, RowContent>: View
     }
 
     // MARK: Body
+
     @ViewBuilder public var body: some View {
         switch layoutType {
         case .fixed:
@@ -108,7 +113,7 @@ public struct VBaseList<Data, ID, RowContent>: View
                     content: { contentView(i: $0, element: $1) }
                 )
             })
-            
+
         case .flexible:
             VLazyScrollView(
                 type: .vertical(model.lazyScrollViewSubModel),
@@ -118,7 +123,7 @@ public struct VBaseList<Data, ID, RowContent>: View
             )
         }
     }
-    
+
     private func contentView(i: Int, element: Element) -> some View {
         VStack(spacing: 0, content: {
             rowContent(element.value)
@@ -132,17 +137,19 @@ public struct VBaseList<Data, ID, RowContent>: View
                     .foregroundColor(model.colors.divider)
             }
         })
-            .padding(.trailing, model.layout.marginTrailing)
+        .padding(.trailing, model.layout.marginTrailing)
     }
 
     // MARK: Helpers
+
     private func showDivider(for i: Int) -> Bool {
         model.layout.hasDivider &&
-        i <= data.count-2
+            i <= data.count - 2
     }
 }
 
 // MARK: - Preview
+
 struct VBaseList_Previews: PreviewProvider {
     struct Row: Identifiable {
         let id: Int
@@ -151,9 +158,9 @@ struct VBaseList_Previews: PreviewProvider {
 
         static var count: Int { 10 }
     }
-    
+
     static var rows: [Row] {
-        (0..<Row.count).map { i in
+        (0 ..< Row.count).map { i in
             .init(
                 id: i,
                 color: [.red, .green, .blue][i % 3],
@@ -161,13 +168,13 @@ struct VBaseList_Previews: PreviewProvider {
             )
         }
     }
-    
+
     private static func spellOut(_ i: Int) -> String {
         let formatter: NumberFormatter = .init()
         formatter.numberStyle = .spellOut
         return formatter.string(from: .init(value: i))?.capitalized ?? ""
     }
-    
+
     static func rowContent(title: String, color: Color) -> some View {
         HStack(spacing: 10, content: {
             RoundedRectangle(cornerRadius: 8)
@@ -178,14 +185,14 @@ struct VBaseList_Previews: PreviewProvider {
                 .font(.body)
                 .foregroundColor(ColorBook.primary)
         })
-            .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
-    
+
     static var previews: some View {
         VBaseList(data: rows, rowContent: { row in
             rowContent(title: row.title, color: row.color)
         })
-            .frame(maxHeight: .infinity, alignment: .top)
-            .padding(20)
+        .frame(maxHeight: .infinity, alignment: .top)
+        .padding(20)
     }
 }

@@ -18,16 +18,16 @@ struct TabItem: Identifiable {
 var tabItems = [
     TabItem(name: "Learn Now", icon: "house", color: .teal, selection: .wallet),
     TabItem(name: "Explore", icon: "magnifyingglass", color: .blue, selection: .explore),
-    TabItem(name: "Notifications", icon: "bell", color: .red, selection: .profile)
+    TabItem(name: "Notifications", icon: "bell", color: .red, selection: .profile),
 ]
 
 enum Tab: String, Equatable {
     case wallet
     case explore
     case profile
-    
+
     static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.rawValue == rhs.rawValue
+        lhs.rawValue == rhs.rawValue
     }
 }
 
@@ -42,13 +42,13 @@ struct TabBar: View {
     @State var color: Color = .teal
     @State var selectedX: CGFloat = 0
     @State var x: [CGFloat] = [0, 0, 0, 0]
-    
+
     @AppStorage("selectedTab") var selectedTab: Tab = .wallet
-    
+
     var body: some View {
         GeometryReader { proxy in
             let hasHomeIndicator = proxy.safeAreaInsets.bottom > 0
-            
+
             HStack {
                 content
             }
@@ -78,11 +78,11 @@ struct TabBar: View {
 //            .accessibility(hidden: !model.showTab)
         }
     }
-    
+
     var content: some View {
         ForEach(Array(tabItems.enumerated()), id: \.offset) { index, tab in
             if index == 0 { Spacer() }
-            
+
             Button {
                 selectedTab = tab.selection
                 withAnimation(.tabSelection) {
@@ -119,10 +119,9 @@ struct TabBar: View {
             Spacer()
         }
     }
-    
-    
+
     func checkTab(_ tab: Tab) -> Bool {
-        return selectedTab == tab
+        selectedTab == tab
     }
 }
 

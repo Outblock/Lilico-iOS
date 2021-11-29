@@ -8,16 +8,19 @@
 import SwiftUI
 
 // MARK: - UIKit Touch View
+
 struct UIKitTouchView: UIViewRepresentable {
     // MARK: Properties
+
     private let isEnabled: Bool
-    
+
     private let action: () -> Void
     private let pressHandler: (Bool) -> Void
-    
+
     @State private var gesture: UIKitEventRecognizer?
-    
+
     // MARK: Initializers
+
     init(
         isEnabled: Bool,
         action: @escaping () -> Void,
@@ -29,26 +32,27 @@ struct UIKitTouchView: UIViewRepresentable {
     }
 
     // MARK: Representable
-    func makeUIView(context: Context) -> UIView {
+
+    func makeUIView(context _: Context) -> UIView {
         let view: UIView = .init(frame: .zero)
-        
-        DispatchQueue.main.async(execute: {
+
+        DispatchQueue.main.async {
             gesture = UIKitEventRecognizer(action: action, pressHandler: pressHandler)
             view.addGestureRecognizer(gesture!)
-        })
-        
-        //setBindedValues(view, context: context)
-        
+        }
+
+        // setBindedValues(view, context: context)
+
         return view
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
         setBindedValues(uiView, context: context)
     }
-    
-    private func setBindedValues(_ view: UIView, context: Context) {
+
+    private func setBindedValues(_ view: UIView, context _: Context) {
         view.isUserInteractionEnabled = isEnabled
-        
+
         gesture?.update(action: action, pressHandler: pressHandler)
     }
 }

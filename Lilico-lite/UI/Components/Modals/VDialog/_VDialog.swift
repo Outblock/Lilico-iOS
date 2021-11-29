@@ -8,20 +8,23 @@
 import SwiftUI
 
 // MARK: - _ V Dialog
+
 struct _VDialog<Content>: View where Content: View {
     // MARK: Properties
+
     private let model: VDialogModel
-    
+
     @Binding private var isHCPresented: Bool
     @State private var isViewPresented: Bool = false
-    
+
     private let dialogButtons: VDialogButtons
-    
+
     private let title: String?
     private let description: String?
     private let content: (() -> Content)?
-    
+
     // MARK: Initializers
+
     init(
         model: VDialogModel,
         isPresented: Binding<Bool>,
@@ -31,7 +34,7 @@ struct _VDialog<Content>: View where Content: View {
         content: (() -> Content)?
     ) {
         self.model = model
-        self._isHCPresented = isPresented
+        _isHCPresented = isPresented
         self.dialogButtons = dialogButtons
         self.title = title
         self.description = description
@@ -39,21 +42,22 @@ struct _VDialog<Content>: View where Content: View {
     }
 
     // MARK: Body
+
     var body: some View {
         ZStack(content: {
             blinding
             modalView
         })
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .ignoresSafeArea(.keyboard, edges: model.layout.ignoredKeybordSafeAreaEdges)
-            .onAppear(perform: animateIn)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea(.keyboard, edges: model.layout.ignoredKeybordSafeAreaEdges)
+        .onAppear(perform: animateIn)
     }
-    
+
     private var blinding: some View {
         model.colors.blinding
             .edgesIgnoringSafeArea(.all)
     }
-    
+
     private var modalView: some View {
         VStack(spacing: 0, content: {
             VStack(spacing: model.layout.titlesAndContentSpacing, content: {
@@ -61,24 +65,24 @@ struct _VDialog<Content>: View where Content: View {
                 descriptionView
                 freeContentView
             })
-                .padding(.horizontal, model.layout.titlesAndContentMargins.horizontal)
-                .padding(.vertical, model.layout.titlesAndContentMargins.vertical)
-            
+            .padding(.horizontal, model.layout.titlesAndContentMargins.horizontal)
+            .padding(.vertical, model.layout.titlesAndContentMargins.vertical)
+
             dialogView
         })
-            .padding(model.layout.margin)
-            .scaleEffect(isViewPresented ? 1 : model.animations.scaleEffect)
-            .opacity(isViewPresented ? 1 : model.animations.opacity)
-            .blur(radius: isViewPresented ? 0 : model.animations.blur)
-            .background(background)
-            .frame(width: model.layout.width)
+        .padding(model.layout.margin)
+        .scaleEffect(isViewPresented ? 1 : model.animations.scaleEffect)
+        .opacity(isViewPresented ? 1 : model.animations.opacity)
+        .blur(radius: isViewPresented ? 0 : model.animations.blur)
+        .background(background)
+        .frame(width: model.layout.width)
     }
-    
+
     private var background: some View {
         model.colors.background
             .cornerRadius(model.layout.cornerRadius)
     }
-    
+
     @ViewBuilder private var titleView: some View {
         if let title = title, !title.isEmpty {
             VText(
@@ -89,7 +93,7 @@ struct _VDialog<Content>: View where Content: View {
             )
         }
     }
-    
+
     @ViewBuilder private var descriptionView: some View {
         if let description = description, !description.isEmpty {
             VText(
@@ -100,22 +104,22 @@ struct _VDialog<Content>: View where Content: View {
             )
         }
     }
-    
+
     @ViewBuilder private var freeContentView: some View {
         if let content = content {
             content()
                 .padding(.vertical, model.layout.contentMarginVertical)
         }
     }
-    
+
     @ViewBuilder private var dialogView: some View {
         switch dialogButtons {
-        case .one(let button): oneButtonDialogView(button: button)
-        case .two(let primary, let secondary): twoButtonDialogView(primary: primary, secondary: secondary)
-        case .many(let buttons): manyButtonDialogView(buttons: buttons)
+        case let .one(button): oneButtonDialogView(button: button)
+        case let .two(primary, secondary): twoButtonDialogView(primary: primary, secondary: secondary)
+        case let .many(buttons): manyButtonDialogView(buttons: buttons)
         }
     }
-    
+
     private func oneButtonDialogView(button: VDialogButton) -> some View {
         VPrimaryButton(
             model: button.model.buttonSubModel,
@@ -124,7 +128,7 @@ struct _VDialog<Content>: View where Content: View {
             title: button.title
         )
     }
-    
+
     private func twoButtonDialogView(primary: VDialogButton, secondary: VDialogButton) -> some View {
         HStack(spacing: model.layout.twoButtonSpacing, content: {
             VPrimaryButton(
@@ -133,7 +137,7 @@ struct _VDialog<Content>: View where Content: View {
                 action: { animateOut(and: secondary.action) },
                 title: secondary.title
             )
-            
+
             VPrimaryButton(
                 model: primary.model.buttonSubModel,
                 state: primary.isEnabled ? .enabled : .disabled,
@@ -142,10 +146,10 @@ struct _VDialog<Content>: View where Content: View {
             )
         })
     }
-    
+
     private func manyButtonDialogView(buttons: [VDialogButton]) -> some View {
         VStack(spacing: model.layout.manyButtonSpacing, content: {
-            ForEach(0..<buttons.count, content: { i in
+            ForEach(0 ..< buttons.count, content: { i in
                 VPrimaryButton(
                     model: buttons[i].model.buttonSubModel,
                     state: buttons[i].isEnabled ? .enabled : .disabled,
@@ -157,18 +161,20 @@ struct _VDialog<Content>: View where Content: View {
     }
 
     // MARK: Animations
+
     private func animateIn() {
-        withAnimation(model.animations.appear?.asSwiftUIAnimation, { isViewPresented = true })
+        withAnimation(model.animations.appear?.asSwiftUIAnimation) { isViewPresented = true }
     }
-    
+
     private func animateOut(and action: @escaping () -> Void) {
         action()
-        withAnimation(model.animations.disappear?.asSwiftUIAnimation, { isViewPresented = false })
-        DispatchQueue.main.asyncAfter(deadline: .now() + (model.animations.disappear?.duration ?? 0), execute: { isHCPresented = false })
+        withAnimation(model.animations.disappear?.asSwiftUIAnimation) { isViewPresented = false }
+        DispatchQueue.main.asyncAfter(deadline: .now() + (model.animations.disappear?.duration ?? 0)) { isHCPresented = false }
     }
 }
 
 // MARK: - Preview
+
 struct VDialog_Previews: PreviewProvider {
     static var previews: some View {
         _VDialog(

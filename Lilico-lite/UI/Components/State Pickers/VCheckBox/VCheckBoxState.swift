@@ -7,27 +7,28 @@
 
 import SwiftUI
 
-
-
 // MARK: - V Toggle State
+
 /// Enum that describes state, such as `off`, `on`, `indeterminate`, or `disabled`.
 public enum VCheckBoxState: Int, CaseIterable {
     // MARK: Cases
+
     /// Of.
     case off
-    
+
     /// On.
     case on
-    
+
     /// indeterminate.
     ///
     /// Upon press, component goes to `on` state.
     case indeterminate
-    
+
     /// Disabled.
     case disabled
-    
+
     // MARK: Properties
+
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -37,7 +38,7 @@ public enum VCheckBoxState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-    
+
     /// Indicates if state is on.
     public var isOn: Bool {
         switch self {
@@ -49,6 +50,7 @@ public enum VCheckBoxState: Int, CaseIterable {
     }
 
     // MARK: Next State
+
     /// Goes to the next state.
     public mutating func setNextState() {
         switch self {
@@ -61,8 +63,10 @@ public enum VCheckBoxState: Int, CaseIterable {
 }
 
 // MARK: - V Checkbox Internal State
+
 enum VCheckBoxInternalState {
     // MARK: Cases
+
     case off
     case on
     case indeterminate
@@ -70,8 +74,9 @@ enum VCheckBoxInternalState {
     case pressedOn
     case pressedIndeterminate
     case disabled
-    
+
     // MARK: Properties
+
     var isEnabled: Bool {
         switch self {
         case .off: return true
@@ -83,8 +88,9 @@ enum VCheckBoxInternalState {
         case .disabled: return false
         }
     }
-    
+
     // MARK: Initializers
+
     init(state: VCheckBoxState, isPressed: Bool) {
         switch (state, isPressed) {
         case (.off, false): self = .off
@@ -96,7 +102,7 @@ enum VCheckBoxInternalState {
         case (.disabled, _): self = .disabled
         }
     }
-    
+
     init(bool state: Bool, isPressed: Bool) {
         switch (state, isPressed) {
         case (false, false): self = .off
@@ -108,6 +114,7 @@ enum VCheckBoxInternalState {
 }
 
 // MARK: - Mapping
+
 extension StateColors_OOID {
     func `for`(_ state: VCheckBoxInternalState) -> Color {
         switch state {
@@ -137,9 +144,10 @@ extension StateOpacities_PD {
 }
 
 // MARK: - Helpers
-extension Binding where Value == VCheckBoxState {
+
+public extension Binding where Value == VCheckBoxState {
     /// Initializes state with bool.
-    public init(bool: Binding<Bool>) {
+    init(bool: Binding<Bool>) {
         self.init(
             get: { bool.wrappedValue ? .on : .off },
             set: { bool.wrappedValue = $0.isOn }
