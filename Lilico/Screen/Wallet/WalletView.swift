@@ -76,7 +76,7 @@ struct WalletView: View {
                     self.viewState = .zero
                     self.isDragging = false
                 }
-        )
+            )
         }
         .frame(maxWidth:.infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))

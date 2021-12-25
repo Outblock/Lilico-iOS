@@ -11,8 +11,6 @@ import Stinsen
 
 class OnboardingViewModel: ViewModel {
     
-    var main: MainCoordinator.Router? = RouterStore.shared.retrieve()
-    
     @RouterObject
     var router: NavigationRouter<OnBoradingCoordinator>!
     

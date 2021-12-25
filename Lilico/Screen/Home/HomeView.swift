@@ -13,12 +13,14 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            ZStack {
                 Group {
                     switch selectedTab {
                     case .wallet:
-                        WalletView()
-                            .navigationBarHidden(true)
+//                        WalletView()
+//                            .navigationBarHidden(true)
+                        EmptyWalletView(viewModel: EmptyWalletViewModel()
+                                            .toAnyViewModel())
                     case .explore:
                         WalletView()
                     case .profile:
@@ -26,17 +28,18 @@ struct HomeView: View {
                     }
                 }
                 .hideNavigationBar()
-                .safeAreaInset(edge: .bottom) {
-                    VStack {}.frame(height: 44)
-                }
+//                .safeAreaInset(edge: .bottom) {
+//                    VStack {}.frame(height: 44)
+//                }
                 
                 InnerCircleTabBar()
+//                TabBar()
             }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
+//            .navigationBarTitle("")
+//            .navigationBarHidden(true)
         }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
+//        .navigationBarTitle("")
+//        .navigationBarHidden(true)
 //        .hideNavigationBar()
     }
 }

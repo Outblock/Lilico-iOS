@@ -85,6 +85,12 @@
 		15BCFF0827758B30000B7863 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF0727758B30000B7863 /* TabCoordinator.swift */; };
 		15BCFF0927758B30000B7863 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF0727758B30000B7863 /* TabCoordinator.swift */; };
 		15BCFF102775986E000B7863 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 15BCFF0F2775986E000B7863 /* SPIndicator */; };
+		15BCFF1427770D76000B7863 /* EmptyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1327770D76000B7863 /* EmptyWalletView.swift */; };
+		15BCFF1527770D76000B7863 /* EmptyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1327770D76000B7863 /* EmptyWalletView.swift */; };
+		15BCFF1B277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */; };
+		15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */; };
+		15BCFF1E27772E86000B7863 /* EmptyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1D27772E86000B7863 /* EmptyViewModel.swift */; };
+		15BCFF1F27772E86000B7863 /* EmptyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1D27772E86000B7863 /* EmptyViewModel.swift */; };
 		15DDFB8E2750D039008263A2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 15DDFB8D2750D039008263A2 /* SwiftUIX */; };
 		15DDFB9127510C96008263A2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDFB9027510C96008263A2 /* OnboardingView.swift */; };
 		15DDFB962751139A008263A2 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDFB952751139A008263A2 /* CustomColor.swift */; };
@@ -165,6 +171,9 @@
 		15B1A685276B53F70006B621 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndPolicy.swift; sourceTree = "<group>"; };
 		15BCFF0727758B30000B7863 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		15BCFF1327770D76000B7863 /* EmptyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletView.swift; sourceTree = "<group>"; };
+		15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletViewModel.swift; sourceTree = "<group>"; };
+		15BCFF1D27772E86000B7863 /* EmptyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewModel.swift; sourceTree = "<group>"; };
 		15DDFB8F2750D03E008263A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15DDFB9027510C96008263A2 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		15DDFB952751139A008263A2 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -246,6 +255,7 @@
 		1507C7EA2755FCB100890C5D /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				15BCFF1627772994000B7863 /* Empty */,
 				1507C7EB2755FCBF00890C5D /* WalletView.swift */,
 			);
 			path = Wallet;
@@ -411,6 +421,16 @@
 				15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		15BCFF1627772994000B7863 /* Empty */ = {
+			isa = PBXGroup;
+			children = (
+				15BCFF1327770D76000B7863 /* EmptyWalletView.swift */,
+				15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */,
+				15BCFF1D27772E86000B7863 /* EmptyViewModel.swift */,
+			);
+			path = Empty;
 			sourceTree = "<group>";
 		};
 		15DDFB9227511375008263A2 /* Extension */ = {
@@ -748,18 +768,21 @@
 				154B8904276A1EEB00780E93 /* OffsetPageTabView.swift in Sources */,
 				1536813B276F4DD400913268 /* EmptyAccountView.swift in Sources */,
 				154B8905276A1EEB00780E93 /* ImportWalletView.swift in Sources */,
+				15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
 				15BCFEFC277565F0000B7863 /* TermsAndPolicy.swift in Sources */,
 				154B8906276A1EEB00780E93 /* Lilico_liteApp.swift in Sources */,
 				154B8907276A1EEB00780E93 /* View.swift in Sources */,
 				154B8908276A1EEB00780E93 /* ColorBook.swift in Sources */,
 				154B8909276A1EEB00780E93 /* Color.swift in Sources */,
 				154B890A276A1EEB00780E93 /* OnboardingView.swift in Sources */,
+				15BCFF1F27772E86000B7863 /* EmptyViewModel.swift in Sources */,
 				154B890B276A1EEB00780E93 /* OnboardingViewModel.swift in Sources */,
 				154B890C276A1EEB00780E93 /* WalletSetupView.swift in Sources */,
 				154B890D276A1EEB00780E93 /* AppDelegate.swift in Sources */,
 				154B890E276A1EEB00780E93 /* WalletView.swift in Sources */,
 				154B890F276A1EEB00780E93 /* TabBar.swift in Sources */,
 				154B8910276A1EEB00780E93 /* HomeView.swift in Sources */,
+				15BCFF1527770D76000B7863 /* EmptyWalletView.swift in Sources */,
 				154B8911276A1EEB00780E93 /* AppCoordinator.swift in Sources */,
 				154B8912276A1EEB00780E93 /* WalletSetupViewModel.swift in Sources */,
 				15BCFF0927758B30000B7863 /* TabCoordinator.swift in Sources */,
@@ -785,18 +808,21 @@
 				153C43FF2751CF74006D1E8D /* OffsetPageTabView.swift in Sources */,
 				1536813A276F4DD400913268 /* EmptyAccountView.swift in Sources */,
 				1507C7DB2754F4E000890C5D /* ImportWalletView.swift in Sources */,
+				15BCFF1B277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
 				15BCFEFB277565F0000B7863 /* TermsAndPolicy.swift in Sources */,
 				15EC9DF2274FD1FD00F70CD9 /* Lilico_liteApp.swift in Sources */,
 				153C440327520752006D1E8D /* View.swift in Sources */,
 				159A55FF27536CD9004BCACC /* ColorBook.swift in Sources */,
 				153C44012751CFA4006D1E8D /* Color.swift in Sources */,
 				15DDFB9127510C96008263A2 /* OnboardingView.swift in Sources */,
+				15BCFF1E27772E86000B7863 /* EmptyViewModel.swift in Sources */,
 				15F43D102753A678004F6F49 /* OnboardingViewModel.swift in Sources */,
 				15EC9E1C274FD6C000F70CD9 /* WalletSetupView.swift in Sources */,
 				154B88862765F33400780E93 /* AppDelegate.swift in Sources */,
 				1507C7EC2755FCBF00890C5D /* WalletView.swift in Sources */,
 				153C4409275258AF006D1E8D /* TabBar.swift in Sources */,
 				1507C7DF275502AF00890C5D /* HomeView.swift in Sources */,
+				15BCFF1427770D76000B7863 /* EmptyWalletView.swift in Sources */,
 				152F985C275CDED0001C5855 /* AppCoordinator.swift in Sources */,
 				159A569427539A2C004BCACC /* WalletSetupViewModel.swift in Sources */,
 				15BCFF0827758B30000B7863 /* TabCoordinator.swift in Sources */,

@@ -8,7 +8,6 @@ protocol ViewModel: ObservableObject where ObjectWillChangePublisher.Output == V
 
     var state: State { get }
     func trigger(_ input: Input)
-    
     func toAnyViewModel() -> AnyViewModel<State, Input>
 }
 
