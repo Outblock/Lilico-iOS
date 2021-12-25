@@ -7,16 +7,19 @@
 
 import Foundation
 import SwiftUI
-import sRouting
+import Stinsen
 
-class OnboardingViewModel: Router<AppRoute>, ViewModel {
+class OnboardingViewModel: ViewModel {
+    
+    var main: MainCoordinator.Router? = RouterStore.shared.retrieve()
+    
+    @RouterObject
+    var router: NavigationRouter<OnBoradingCoordinator>!
     
     @Published
     private(set) var state: OnboardingState
     
-    var router: Router<AppRoute> = .init()
-    
-    public override init() {
+    public init() {
         let intros: [Intro] = [
             Intro(image: "Onboarding_1",
                   title: "Secure your funds",
@@ -34,22 +37,24 @@ class OnboardingViewModel: Router<AppRoute>, ViewModel {
                   color: Color.LL.orange,
                   rectColor: Color(hex: "#00ACFB")),
         ]
-        
         state = OnboardingState(intros: intros)
     }
     
     func trigger(_ input: OnboardingAction) {
         switch input {
         case .finish, .skip:
-            router.trigger(to: .home, with: .push)
-            trigger(to: .home, with: .push)
+            router.coordinator.route(to: \.setup)
+//            router.trigger(to: .home, with: .push)
+//            trigger(to: .home, with: .push)
 //            appRouter.trigger(to: .home, with: .push)
 //            break;
             
 //            router?.navigate(to: Routes.home)
 //            router?.navigate(to: Routes.home, using: SheetPresenter(), source: .none)
-        case let .bind(router):
-            self.router = router
+            break;
+//        case let .bind(router):
+//            self.router = router
+//            break;
         }
     }
 

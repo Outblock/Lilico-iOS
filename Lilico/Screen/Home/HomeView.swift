@@ -13,7 +13,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
+            VStack {
                 Group {
                     switch selectedTab {
                     case .wallet:
@@ -30,7 +30,7 @@ struct HomeView: View {
                     VStack {}.frame(height: 44)
                 }
                 
-                TabBar()
+                InnerCircleTabBar()
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)

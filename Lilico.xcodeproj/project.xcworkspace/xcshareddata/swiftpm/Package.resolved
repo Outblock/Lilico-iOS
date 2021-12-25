@@ -137,12 +137,21 @@
         }
       },
       {
-        "package": "sRouting",
-        "repositoryURL": "https://github.com/ThangKM/sRouting",
+        "package": "SPIndicator",
+        "repositoryURL": "https://github.com/ivanvorobei/SPIndicator",
         "state": {
-          "branch": "main",
-          "revision": "8aeb19462f5e8b7229738a09f2fba67ffb52e5a4",
-          "version": null
+          "branch": null,
+          "revision": "34abf152dc88a40a27746e9a3d7d2c398485ffbf",
+          "version": "1.6.0"
+        }
+      },
+      {
+        "package": "Stinsen",
+        "repositoryURL": "https://github.com/rundfunk47/stinsen",
+        "state": {
+          "branch": null,
+          "revision": "be9b90a6077cfbb3ccfa5ed9293643e0632c94b8",
+          "version": "2.0.6"
         }
       },
       {

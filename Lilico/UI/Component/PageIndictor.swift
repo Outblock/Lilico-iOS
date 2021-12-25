@@ -14,7 +14,6 @@ struct PageIndictor: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            
             ForEach(0..<count) { index in
                 Capsule()
                     .fill(currentIndex == index ? .yellow : .primary)

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftUIX
-import sRouting
 
 struct OnboardingView: View {
     @State var offset: CGFloat = 0
@@ -38,13 +37,8 @@ struct OnboardingView: View {
     
     @Environment(\.presentationMode)
     private var presentationMode
-    
-//    @StateObject
-//    private var router: Router<AppRoute> = .init()
-    
-    var body: some View {
         
-        ScreenView(router: viewModel, presentationMode: presentationMode) {
+    var body: some View {
         ZStack {
             VStack {
                 OffsetPageTabView(offset: $offset) {
@@ -90,7 +84,6 @@ struct OnboardingView: View {
                         // last page
                         if currentIndex == (viewModel.intros.count-1) {
                             viewModel.trigger(.finish)
-//                            router.trigger(to: .home, with: .push)
                         }
                         
                         // updating offset...
@@ -135,10 +128,7 @@ struct OnboardingView: View {
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
         .hiddenNavigationBarStyle()
-        }.onAppear{
-            viewModel.trigger(.bind(viewModel))
         }
-    }
 }
 
 struct OnboardingView_Previews: PreviewProvider {

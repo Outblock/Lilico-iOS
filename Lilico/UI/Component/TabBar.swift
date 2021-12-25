@@ -119,7 +119,7 @@ struct TabBar: View {
             }
             .frame(width: 44)
             .foregroundColor(checkTab(tab.selection) ? color : .secondary)
-//            .blendMode(checkTab(tab.selection) ? .overlay : .normal)
+            .blendMode(checkTab(tab.selection) ? .overlay : .normal)
             Spacer()
         }
     }
@@ -131,7 +131,6 @@ struct TabBar: View {
 
 struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
         HomeView().colorScheme(.dark)
     }
 }

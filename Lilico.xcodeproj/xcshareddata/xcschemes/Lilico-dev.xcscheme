@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "154B88F0276A1EEB00780E93"
-               BuildableName = "Lilico copy.app"
+               BuildableName = "Lilico-dev.app"
                BlueprintName = "Lilico-dev"
                ReferencedContainer = "container:Lilico.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "154B88F0276A1EEB00780E93"
-            BuildableName = "Lilico copy.app"
+            BuildableName = "Lilico-dev.app"
             BlueprintName = "Lilico-dev"
             ReferencedContainer = "container:Lilico.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "154B88F0276A1EEB00780E93"
-            BuildableName = "Lilico copy.app"
+            BuildableName = "Lilico-dev.app"
             BlueprintName = "Lilico-dev"
             ReferencedContainer = "container:Lilico.xcodeproj">
          </BuildableReference>

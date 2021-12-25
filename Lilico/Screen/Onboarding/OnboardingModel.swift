@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import sRouting
 
 struct Intro: Identifiable {
     var id = UUID().uuidString
@@ -25,5 +24,4 @@ struct OnboardingState {
 enum OnboardingAction {
     case finish
     case skip
-    case bind(Router<AppRoute>)
 }

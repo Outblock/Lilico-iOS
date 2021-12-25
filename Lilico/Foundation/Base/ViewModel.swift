@@ -1,6 +1,5 @@
 import Combine
 import Foundation
-import sRouting
 import SwiftUI
 
 protocol ViewModel: ObservableObject where ObjectWillChangePublisher.Output == Void {
@@ -26,7 +25,7 @@ extension AnyViewModel: Identifiable where State: Identifiable {
 }
 
 @dynamicMemberLookup
-final class AnyViewModel<State, Input>: Router<AppRoute>, ViewModel {
+final class AnyViewModel<State, Input>: ViewModel {
     // MARK: Stored properties
 
     private let wrappedObjectWillChange: () -> AnyPublisher<Void, Never>
