@@ -13,11 +13,11 @@ enum HTTPMethod {
 }
 
 protocol Endpoint {
-    var baseURL: URL { get set }
-    var path: String { get set }
-    var method: HTTPMethod { get set }
-    var headers: [String: String]? { get set }
-    var parameter: [String: String]? { get set }
+    var baseURL: URL { get }
+    var path: String { get }
+    var method: HTTPMethod { get }
+    var headers: [String: String]? { get }
+    var parameter: [String: String]? { get }
 }
 
 extension Endpoint {

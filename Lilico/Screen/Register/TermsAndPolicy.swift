@@ -10,14 +10,18 @@ import WalletCore
 
 struct TermsAndPolicy: View {
     
+    
+    @EnvironmentObject
+    var router: RegisterCoordinator.Router
+    
     var btnBack : some View {
         Button{
-            
+            router.dismissCoordinator()
         } label: {
             HStack {
                 Image(systemName: "arrow.backward")
                     .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.LL.rebackground)
             }
         }
     }
@@ -83,7 +87,7 @@ struct TermsAndPolicy: View {
                         .bold()
                         .frame(maxWidth: .infinity,alignment: .center)
                         .padding(.vertical, 20)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.LL.background)
                         .background {
                             RoundedRectangle(cornerRadius: 16)
                                 .foregroundColor(Color.LL.rebackground)

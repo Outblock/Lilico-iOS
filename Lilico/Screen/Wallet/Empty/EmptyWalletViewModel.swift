@@ -8,11 +8,17 @@
 import Foundation
 import SwiftUI
 import SwiftUIX
+import Stinsen
 
 class EmptyWalletViewModel: ViewModel {
  
     @Published
     private(set) var state: EmptyWalletState
+    
+    @RouterObject
+    var router: NavigationRouter<HomeCoordinator>!
+    
+//    var main: MainCoordinator.Router? = RouterStore.shared.retrieve()
     
     init() {
         let dataSource = [
@@ -22,14 +28,14 @@ class EmptyWalletViewModel: ViewModel {
                            buttonText: "CREATE",
                            icon: Image(systemName: "plus"),
                            iconColor: .purple,
-                           action: .signIn),
+                           action: .signUp),
             CardDataSource(title: "Already have \nan account?",
                            bgGradient: [Color(hex: "#659EAF"), Color(hex: "#88CBE1")],
                            bgImage: Image(componentAsset: "Gradient-Rect"),
                            buttonText: "IMPORT",
                            icon: Image(systemName: "arrow.forward.to.line"),
                            iconColor: .yellow,
-                           action: .signUp)
+                           action: .signIn)
         ]
         state = EmptyWalletState(dataSource: dataSource)
     }
@@ -37,7 +43,10 @@ class EmptyWalletViewModel: ViewModel {
     func trigger(_ input: EmptyWalletAction) {
         switch input {
         case .signUp:
-            
+//            router?
+//            router.route(to: )
+            router.coordinator.routeToAuthenticated()
+//            router.route(to: \.register)
             break
         case .signIn:
             break

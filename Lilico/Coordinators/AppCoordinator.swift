@@ -14,10 +14,10 @@ final class MainCoordinator: NavigationCoordinatable {
     var stack: NavigationStack<MainCoordinator>
 
     @Root var onboarding = makeOnboarding
-//    @Root var home = makeHome
+    @Root var home = makeHome
     
     init() {
-        stack = NavigationStack(initial: \MainCoordinator.onboarding)
+        stack = NavigationStack(initial: \MainCoordinator.home)
     }
 }
 
@@ -26,36 +26,7 @@ extension MainCoordinator {
         return NavigationViewCoordinator(OnBoradingCoordinator())
     }
     
-//    func makeHome() -> HomeCoordinator {
-//        return HomeCoordinator()
-//    }
-}
-//
-//final class HomeCoordinator: TabCoordinatable {
-//    var child = TabChild(startingItems: [
-//
-//    ])
-//
-//    func test() {
-//
-//    }
-//}
-
-final class OnBoradingCoordinator: NavigationCoordinatable {
-    var stack = NavigationStack(initial: \OnBoradingCoordinator.start)
-    
-//    let stack = NavigationStack(initial: \UnauthenticatedCoordinator.start)
-//    let unauthenticatedServices = UnauthenticatedServices()
-//
-    @Root var start = makeOnBorading
-    @Route(.push) var setup = makeSetup
-//    @Route(.push) var registration = makeRegistration
-    
-    @ViewBuilder func makeOnBorading() -> some View {
-        OnboardingView(viewModel: OnboardingViewModel().toAnyViewModel())
-    }
-    
-    @ViewBuilder func makeSetup() -> some View {
-        WalletSetupView()
+    func makeHome() -> NavigationViewCoordinator<HomeCoordinator> {
+        return NavigationViewCoordinator(HomeCoordinator())
     }
 }

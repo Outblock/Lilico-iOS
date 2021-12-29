@@ -14,7 +14,8 @@ struct Lilico_App: App {
     
     var body: some Scene {
         WindowGroup {
-            MainCoordinator().view()
+            MainCoordinator()
+                .view()
         }
     }
 }

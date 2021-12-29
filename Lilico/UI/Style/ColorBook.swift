@@ -41,13 +41,20 @@ public struct ColorBook {
 public extension Color {
     /// Initializes color from library's local assets library from a name.
     init(componentAsset name: String) {
-        guard
-            let uiColor: UIColor = .init(named: name, in: Bundle.main, compatibleWith: nil)
-        else {
-            fatalError()
-        }
-
-        self.init(uiColor)
+//        guard
+//            let uiColor: UIColor = .init(named: name, in: Bundle.main, compatibleWith: nil)
+//        else {
+//            self = .black
+//            return
+//        }
+        
+//        self.init(uiColor)
+//        guard let color = .init(name) else {
+//            fatalError()
+//        }
+//        return color
+        
+        self.init(name)
     }
 }
 
