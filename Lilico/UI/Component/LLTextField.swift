@@ -20,6 +20,11 @@ extension LL {
             case error(String = "Error")
         }
         
+        public enum Style {
+            case normal
+            case secure
+        }
+        
         public struct Delegate {
             var onEditingChanged: (Bool) -> Void
             var onCommit: () -> Void
@@ -33,7 +38,8 @@ extension LL {
         
         var placeHolder: String
         
-//        var delegate: Delegate
+        @Binding
+        var style: Style
         
         var onEditingChanged: BoolBlock?
         
@@ -61,14 +67,28 @@ extension LL {
         
         var body: some View {
             HStack {
-                SwiftUI
-                    .TextField(placeHolder,
-                               text: $text,
-                               onEditingChanged: onEditingChanged ?? {_ in },
-                               onCommit: onCommit ?? {}
-                    )
-                    .focused($focusState)
-                    .padding()
+                switch style {
+                case .secure:
+                    SwiftUI.SecureField(placeHolder,
+                                        text: $text,
+                                        onCommit: onCommit ?? {})
+                        .onChange(of: text, perform: { value in
+                            if let block = onEditingChanged {
+                                block(true)
+                            }
+                        })
+                        .focused($focusState)
+                        .padding()
+                case .normal:
+                    SwiftUI
+                        .TextField(placeHolder,
+                                   text: $text,
+                                   onEditingChanged: onEditingChanged ?? {_ in },
+                                   onCommit: onCommit ?? {}
+                        )
+                        .focused($focusState)
+                        .padding()
+                }
                 
                 HStack(spacing: 5) {
                     switch self.status {
@@ -103,12 +123,14 @@ extension LL {
         
         init(placeHolder: String = "",
              text: Binding<String>,
-             status: Binding<LL.TextField.Status>,
+             status: Binding<LL.TextField.Status> = .constant(.normal),
+             style: Binding<LL.TextField.Style> = .constant(.normal),
              onEditingChanged: BoolBlock? = nil,
              onCommit: VoidBlock? = nil) {
             self.placeHolder = placeHolder
             self._status = status
             self._text = text
+            self._style = style
             self.onEditingChanged = onEditingChanged
             self.onCommit = onCommit
         }
@@ -154,6 +176,7 @@ struct LLTextField_Previews: PreviewProvider {
         }
             .previewLayout(.sizeThatFits)
             .padding()
+            .background(.black)
             .colorScheme(.dark)
     }
 }

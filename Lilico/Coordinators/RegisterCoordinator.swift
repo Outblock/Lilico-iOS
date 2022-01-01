@@ -12,9 +12,15 @@ final class RegisterCoordinator: NavigationCoordinatable {
     var stack = NavigationStack(initial: \RegisterCoordinator.termScreen)
     
     @Root var termScreen = makeTerms
+    @Route(.push) var userName = makeUsername
     
     @ViewBuilder func makeTerms() -> some View {
         TermsAndPolicy()
+            .hideNavigationBar()
+    }
+    
+    @ViewBuilder func makeUsername() -> some View {
+        UsernameView(viewModel: UsernameViewModel().toAnyViewModel())
             .hideNavigationBar()
     }
 }

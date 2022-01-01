@@ -7,14 +7,4 @@
 
 import SwiftUI
 
-var btnBack : some View {
-    Button{
-        
-    } label: {
-        HStack {
-            Image(systemName: "arrow.backward")
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.black)
-        }
-    }
-}
+

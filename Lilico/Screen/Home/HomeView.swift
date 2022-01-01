@@ -22,7 +22,7 @@ struct HomeView: View {
                         EmptyWalletView(viewModel: EmptyWalletViewModel()
                                             .toAnyViewModel())
                     case .explore:
-                        WalletView()
+                        OldWalletView()
                     case .profile:
                         ProfileView()
                     }

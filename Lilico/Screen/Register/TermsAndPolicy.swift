@@ -10,7 +10,6 @@ import WalletCore
 
 struct TermsAndPolicy: View {
     
-    
     @EnvironmentObject
     var router: RegisterCoordinator.Router
     
@@ -80,13 +79,13 @@ struct TermsAndPolicy: View {
                 .padding(.bottom)
                 
                 Button {
-                    
+                    router.route(to: \.userName)
                 } label: {
                     Text("I Accept")
-                        .font(.title3)
+                        .font(.headline)
                         .bold()
                         .frame(maxWidth: .infinity,alignment: .center)
-                        .padding(.vertical, 20)
+                        .padding(.vertical, 18)
                         .foregroundColor(Color.LL.background)
                         .background {
                             RoundedRectangle(cornerRadius: 16)
@@ -94,6 +93,7 @@ struct TermsAndPolicy: View {
                                 
                         }
                 }
+                .padding(.bottom)
             }
             .padding(.horizontal, 30)
             .navigationBarBackButtonHidden(true)

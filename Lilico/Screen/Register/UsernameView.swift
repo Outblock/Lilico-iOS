@@ -10,6 +10,9 @@ import SwiftUIX
 
 struct UsernameView: View {
     
+    @EnvironmentObject
+    var router: RegisterCoordinator.Router
+    
     @StateObject
     var viewModel: AnyViewModel<UsernameViewState, UsernameViewAction>
     
@@ -18,6 +21,18 @@ struct UsernameView: View {
     
     @State
     var textStatus: LL.TextField.Status = .normal
+    
+    var btnBack : some View {
+        Button{
+            router.pop()
+        } label: {
+            HStack {
+                Image(systemName: "arrow.backward")
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(Color.LL.rebackground)
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -59,13 +74,14 @@ struct UsernameView: View {
                         .bold()
                         .frame(maxWidth: .infinity,alignment: .center)
                         .padding(.vertical, 18)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.LL.background)
                         .background {
                             RoundedRectangle(cornerRadius: 16)
                                 .foregroundColor(Color.LL.rebackground)
                                 
                         }
                 }
+                .padding(.bottom)
             }
                 .padding(.horizontal, 30)
 //                .padding(.bottom)

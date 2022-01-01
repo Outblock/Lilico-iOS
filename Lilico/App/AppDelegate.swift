@@ -8,15 +8,20 @@
 import Foundation
 import UIKit
 import Firebase
-//import Bagel
+import Resolver
+import GoogleSignIn
+import IQKeyboardManagerSwift
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-        #if DEBUG
-//        Bagel.start()
-        #endif
+        Resolver.registerAllServices()
+        IQKeyboardManager.shared.enable = true
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance.handle(url)
     }
 }

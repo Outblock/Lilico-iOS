@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "AppAuth",
+        "repositoryURL": "https://github.com/openid/AppAuth-iOS.git",
+        "state": {
+          "branch": null,
+          "revision": "01131d68346c8ae552961c768d583c715fbe1410",
+          "version": "1.4.0"
+        }
+      },
+      {
         "package": "BigInt",
         "repositoryURL": "https://github.com/attaswift/BigInt.git",
         "state": {
@@ -56,6 +65,15 @@
         }
       },
       {
+        "package": "GoogleAPIClientForREST",
+        "repositoryURL": "https://github.com/google/google-api-objectivec-client-for-rest",
+        "state": {
+          "branch": null,
+          "revision": "392de3fb0d5350a874396e7651541e8755322be1",
+          "version": null
+        }
+      },
+      {
         "package": "GoogleAppMeasurement",
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {
@@ -71,6 +89,15 @@
           "branch": null,
           "revision": "15ccdfd25ac55b9239b82809531ff26605e7556e",
           "version": "9.1.2"
+        }
+      },
+      {
+        "package": "GoogleSignIn",
+        "repositoryURL": "https://github.com/google/GoogleSignIn-iOS",
+        "state": {
+          "branch": null,
+          "revision": "60ca2bfd218ccb194a746a79b41d9d50eb7e3af0",
+          "version": "6.1.0"
         }
       },
       {
@@ -101,12 +128,30 @@
         }
       },
       {
-        "package": "GTMSessionFetcher",
-        "repositoryURL": "https://github.com/google/gtm-session-fetcher.git",
+        "package": "GTMAppAuth",
+        "repositoryURL": "https://github.com/google/GTMAppAuth.git",
         "state": {
           "branch": null,
-          "revision": "bc6a19702ac76ac4e488b68148710eb815f9bc56",
-          "version": "1.7.0"
+          "revision": "40f4103fb52109032c05599a0c39ad43edbdf80a",
+          "version": "1.2.2"
+        }
+      },
+      {
+        "package": "IQKeyboardManagerSwift",
+        "repositoryURL": "https://github.com/hackiftekhar/IQKeyboardManager",
+        "state": {
+          "branch": null,
+          "revision": "474f849accae40fe61b5302d9b057dd48ee073ba",
+          "version": "6.5.9"
+        }
+      },
+      {
+        "package": "KeychainAccess",
+        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess",
+        "state": {
+          "branch": null,
+          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
+          "version": "4.2.2"
         }
       },
       {
@@ -173,12 +218,21 @@
         }
       },
       {
+        "package": "SkeletonUI",
+        "repositoryURL": "https://github.com/CSolanaM/SkeletonUI.git",
+        "state": {
+          "branch": null,
+          "revision": "132f12a34b7fdab275bfc61968749b1f11c36300",
+          "version": "1.0.7"
+        }
+      },
+      {
         "package": "SPIndicator",
         "repositoryURL": "https://github.com/ivanvorobei/SPIndicator",
         "state": {
           "branch": null,
-          "revision": "34abf152dc88a40a27746e9a3d7d2c398485ffbf",
-          "version": "1.6.0"
+          "revision": "2f67eeace945680865ba2baeb38fb0654fa4d537",
+          "version": "1.6.3"
         }
       },
       {
@@ -251,6 +305,15 @@
           "branch": null,
           "revision": "7e2c5f3cbbeea68e004915e3a8961e20bd11d824",
           "version": "1.18.0"
+        }
+      },
+      {
+        "package": "SnapshotTesting",
+        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing",
+        "state": {
+          "branch": null,
+          "revision": "f8a9c997c3c1dab4e216a8ec9014e23144cbab37",
+          "version": "1.9.0"
         }
       },
       {

@@ -45,11 +45,10 @@ class EmptyWalletViewModel: ViewModel {
         case .signUp:
 //            router?
 //            router.route(to: )
-            router.coordinator.routeToAuthenticated()
-//            router.route(to: \.register)
-            break
+//            router.coordinator.routeToAuthenticated()
+            router.route(to: \.register)
         case .signIn:
-            break
+            router.route(to: \.login)
         }
     }
 }

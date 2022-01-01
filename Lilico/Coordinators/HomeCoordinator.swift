@@ -13,6 +13,7 @@ final class HomeCoordinator: NavigationCoordinatable {
 
     @Root var start = makeStart
     @Route(.push) var register = makeRegister
+    @Route(.push) var login = makeLogin
 
     @ViewBuilder func makeStart() -> some View {
         EmptyWalletView(viewModel: EmptyWalletViewModel().toAnyViewModel())
@@ -21,6 +22,10 @@ final class HomeCoordinator: NavigationCoordinatable {
     
     func makeRegister() -> RegisterCoordinator {
         RegisterCoordinator()
+    }
+    
+    func makeLogin() -> LoginCoordinator {
+        LoginCoordinator()
     }
     
     func routeToAuthenticated() {
