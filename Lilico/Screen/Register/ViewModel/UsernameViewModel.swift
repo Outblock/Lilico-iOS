@@ -13,11 +13,6 @@ typealias VoidBlock = () -> Void
 typealias BoolBlock = (Bool) -> Void
 
 struct UsernameViewState {
-//    var delegate: LL.TextField.Delegate
-
-//    var isChecking: Bool = false
-//    var isVaildate: Bool? = nil
-    
     var status: LL.TextField.Status = .normal
 }
 
@@ -31,6 +26,10 @@ class UsernameViewModel: ViewModel {
     @Published
     private(set) var state: UsernameViewState
 
+    var lastUpdateTime: Date = .init()
+    var task: DispatchWorkItem?
+    var currentText: String = ""
+
     init() {
         state = .init()
     }
@@ -40,21 +39,51 @@ class UsernameViewModel: ViewModel {
         case .next:
             break
         case let .onEditingChanged(text):
-            checkUsername(text)
+            currentText = text
+            if localCheckUserName(text) {
+                state.status = .loading()
+                task?.cancel()
+                task = DispatchWorkItem {
+                    self.checkUsername(text)
+                }
+                if let work = task {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: work)
+                }
+            }
         case .onCommit:
             break
         }
     }
 
-    func checkUsername(_ username: String)  {
-        state.status = .loading()
+    func localCheckUserName(_ username: String) -> Bool {
+        if username.count < 3 {
+            state.status = .error("At least 3 character length")
+            return false
+        }
+
+        if username.count > 15 {
+            state.status = .error("Can't import more than 15 character length")
+            return false
+        }
+
+        guard let _ = username.range(of: "^[A-Za-z0-9_]{3,15}$", options: .regularExpression) else {
+            state.status = .error("Can't contain specific character")
+            return false
+        }
+
+        return true
+    }
+
+    func checkUsername(_ username: String) {
         Task {
             do {
-                let model:CheckUserNameModel = try await Network.request(LilicoEndpoint.checkUsername(username))
+                let model: CheckUserNameModel = try await Network.request(LilicoEndpoint.checkUsername(username))
                 await MainActor.run {
-                    self.state.status = model.unique ? .success() : .error()
+                    if model.userName == currentText {
+                        self.state.status = model.unique ? .success() : .error("It's taken")
+                    }
                 }
-            } catch let error {
+            } catch {
                 await MainActor.run {
                     self.state.status = .error()
                 }

@@ -8,25 +8,28 @@
 import SwiftUI
 
 // MARK: - State Colors (Enabled, Focused, Success, Error, Disabled)
+
 /// Color group containing `enabled`, `focused`, `success`, `error`, and `disabled` values.
 public struct StateColors_EFSED: Equatable {
     // MARK: Properties
+
     /// Enabled color.
     public var enabled: Color
-    
+
     /// Focused color.
     public var focused: Color
-    
+
     /// Success color.
     public var success: Color
-    
+
     /// Error color.
     public var error: Color
-    
+
     /// Disabled color.
     public var disabled: Color
-    
+
     // MARK: Initializers
+
     /// Initializes group with values.
     public init(
         enabled: Color,
@@ -41,16 +44,16 @@ public struct StateColors_EFSED: Equatable {
         self.error = error
         self.disabled = disabled
     }
-    
+
     /// Initializes group with clear values.
     public init() {
-        self.enabled = .clear
-        self.focused = .clear
-        self.success = .clear
-        self.error = .clear
-        self.disabled = .clear
+        enabled = .clear
+        focused = .clear
+        success = .clear
+        error = .clear
+        disabled = .clear
     }
-    
+
     /// Initializes group with clear values.
     public static var clear: Self { .init() }
 }

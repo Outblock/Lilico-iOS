@@ -8,14 +8,17 @@
 import SwiftUI
 
 // MARK: - V Base Button View Representable
+
 struct VBaseButtonViewRepresentable: UIViewRepresentable {
     // MARK: Properties
+
     private let isEnabled: Bool
     private let gestureHandler: (VBaseButtonGestureState) -> Void
-    
+
     @State private var gestureRecognizer: VBaseButtonTapGestureRecognizer?
-    
+
     // MARK: Initializers
+
     init(
         isEnabled: Bool,
         gesture gestureHandler: @escaping (VBaseButtonGestureState) -> Void
@@ -25,28 +28,29 @@ struct VBaseButtonViewRepresentable: UIViewRepresentable {
     }
 
     // MARK: Representable
-    func makeUIView(context: Context) -> UIView {
+
+    func makeUIView(context _: Context) -> UIView {
         let view: UIView = .init(frame: .zero)
-        
-        DispatchQueue.main.async(execute: {
+
+        DispatchQueue.main.async {
             let gestureRecognizer: VBaseButtonTapGestureRecognizer = .init(gesture: gestureHandler)
-            
+
             self.gestureRecognizer = gestureRecognizer
             view.addGestureRecognizer(gestureRecognizer)
-        })
-        
-        //setBindedValues(view, context: context)
-        
+        }
+
+        // setBindedValues(view, context: context)
+
         return view
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
         setBindedValues(uiView, context: context)
     }
-    
-    private func setBindedValues(_ view: UIView, context: Context) {
+
+    private func setBindedValues(_ view: UIView, context _: Context) {
         view.isUserInteractionEnabled = isEnabled
-        
+
         gestureRecognizer?.update(gesture: gestureHandler)
     }
 }

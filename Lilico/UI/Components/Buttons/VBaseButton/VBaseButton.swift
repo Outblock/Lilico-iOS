@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 
 // MARK: - V Base Button
+
 /// Core component that is used throughout the library as button.
 ///
 /// `Bool` can also be passed as state.
@@ -43,13 +44,15 @@ import UIKit
 ///
 public struct VBaseButton<Content>: View where Content: View {
     // MARK: Properties
+
     private let state: VBaseButtonState
-    
+
     private var gestureHandler: (VBaseButtonGestureState) -> Void
-    
+
     private let content: () -> Content
-    
+
     // MARK: Initializers - State
+
     /// Initializes component with state, gesture handler, and content.
     public init(
         state: VBaseButtonState,
@@ -60,7 +63,7 @@ public struct VBaseButton<Content>: View where Content: View {
         self.gestureHandler = gestureHandler
         self.content = content
     }
-    
+
     /// Initializes component with state, action, and content.
     public init(
         state: VBaseButtonState,
@@ -68,34 +71,36 @@ public struct VBaseButton<Content>: View where Content: View {
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.state = state
-        self.gestureHandler = { gestureState in if gestureState.isClicked { action() } }
+        gestureHandler = { gestureState in if gestureState.isClicked { action() } }
         self.content = content
     }
-    
+
     // MARK: Initializers - Bool
+
     /// Initializes component with bool, gesture handler, and content.
     public init(
         isEnabled: Bool,
         gesture gestureHandler: @escaping (VBaseButtonGestureState) -> Void,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.state = .init(isEnabled: isEnabled)
+        state = .init(isEnabled: isEnabled)
         self.gestureHandler = gestureHandler
         self.content = content
     }
-    
+
     /// Initializes component with bool, action, and content.
     public init(
         isEnabled: Bool,
         action: @escaping () -> Void,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.state = .init(isEnabled: isEnabled)
-        self.gestureHandler = { gestureState in if gestureState.isClicked { action() } }
+        state = .init(isEnabled: isEnabled)
+        gestureHandler = { gestureState in if gestureState.isClicked { action() } }
         self.content = content
     }
 
     // MARK: Body
+
     public var body: some View {
         content()
             .overlay(VBaseButtonViewRepresentable(
@@ -106,9 +111,10 @@ public struct VBaseButton<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+
 struct VBaseButton_Previews: PreviewProvider {
     @State private static var state: VBaseButtonState = .enabled
-    
+
     static var previews: some View {
         VBaseButton(
             state: state,

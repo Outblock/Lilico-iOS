@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - Optional Let Block Transformation
+
 extension Optional {
     func `let`<T>(_ transform: (Wrapped) throws -> T?) rethrows -> T? {
         guard
@@ -16,7 +17,7 @@ extension Optional {
         else {
             return nil
         }
-        
+
         return result
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Modal
+
 /// Modal component that draws a background, hosts content, and is present when condition is true.
 ///
 /// Model and header can be passed as parameters.
@@ -33,16 +34,18 @@ import SwiftUI
 ///
 public struct VModal<Content, HeaderContent>
     where
-        Content: View,
-        HeaderContent: View
+    Content: View,
+    HeaderContent: View
 {
     // MARK: Properties
+
     fileprivate let model: VModalModel
-    
+
     fileprivate let headerContent: (() -> HeaderContent)?
     fileprivate let content: () -> Content
-    
+
     // MARK: Initializers - Header
+
     /// Initializes component with header and content.
     public init(
         model: VModalModel = .init(),
@@ -53,7 +56,7 @@ public struct VModal<Content, HeaderContent>
         self.headerContent = headerContent
         self.content = content
     }
-    
+
     /// Initializes component with header title and content.
     public init(
         model: VModalModel = .init(),
@@ -75,8 +78,9 @@ public struct VModal<Content, HeaderContent>
             content: content
         )
     }
-    
+
     // MARK: Initializers - _
+
     /// Initializes component content.
     public init(
         model: VModalModel = .init(),
@@ -85,38 +89,38 @@ public struct VModal<Content, HeaderContent>
         where HeaderContent == Never
     {
         self.model = model
-        self.headerContent = nil
+        headerContent = nil
         self.content = content
     }
 }
 
 // MARK: - Extension
-extension View {
+
+public extension View {
     /// Presents `VModal`.
-    public func vModal<Content, headerContent>(
+    func vModal<Content, headerContent>(
         isPresented: Binding<Bool>,
         modal: @escaping () -> VModal<Content, headerContent>
     ) -> some View
         where
-            Content: View,
-            headerContent: View
+        Content: View,
+        headerContent: View
     {
         let modal = modal()
-        
-        return self
-            .overlay(Group(content: {
-                if isPresented.wrappedValue {
-                    WindowOverlayView(
+
+        return overlay(Group(content: {
+            if isPresented.wrappedValue {
+                WindowOverlayView(
+                    isPresented: isPresented,
+                    content:
+                    _VModal(
+                        model: modal.model,
                         isPresented: isPresented,
-                        content:
-                            _VModal(
-                                model: modal.model,
-                                isPresented: isPresented,
-                                headerContent: modal.headerContent,
-                                content: modal.content
-                            )
+                        headerContent: modal.headerContent,
+                        content: modal.content
                     )
-                }
-            }))
+                )
+            }
+        }))
     }
 }

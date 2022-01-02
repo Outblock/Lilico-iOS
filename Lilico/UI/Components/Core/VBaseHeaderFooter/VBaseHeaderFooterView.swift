@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Base Header Footer
+
 /// Core component that is used throughout the library.
 ///
 /// Usage example:
@@ -23,13 +24,15 @@ import SwiftUI
 ///
 public struct VBaseHeaderFooter: View {
     // MARK: Proeprties
+
     private let frameType: VBaseHeaderFooterFrameType
     private let textType: VTextType = .oneLine
     private let font: Font
     private let color: Color
     private let title: String
-    
+
     // MARK: Initializers
+
     /// Initializes component with frame type, font, color, and title.
     public init(
         frameType: VBaseHeaderFooterFrameType,
@@ -44,13 +47,14 @@ public struct VBaseHeaderFooter: View {
     }
 
     // MARK: Body
+
     @ViewBuilder public var body: some View {
         switch frameType {
         case .fixed: contentView
-        case .flexible(let alignment): contentView.frame(maxWidth: .infinity, alignment: alignment.asAlignment)
+        case let .flexible(alignment): contentView.frame(maxWidth: .infinity, alignment: alignment.asAlignment)
         }
     }
-    
+
     private var contentView: some View {
         VText(
             type: textType,
@@ -62,6 +66,7 @@ public struct VBaseHeaderFooter: View {
 }
 
 // MARK: - Preview
+
 struct VBaseHeaderFooter_Previews: PreviewProvider {
     static var previews: some View {
         VSectionList_Previews.previews

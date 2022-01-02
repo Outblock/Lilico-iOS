@@ -8,16 +8,19 @@
 import UIKit
 
 // MARK: - V Base Button Tap Gesture Recognizer
+
 final class VBaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRecognizerDelegate {
     // MARK: Properties
+
     private var gestureHandler: (VBaseButtonGestureState) -> Void
-    
+
     private let maxOutOfBoundsOffsetToRegisterTap: CGFloat = 10
-    
+
     private var initialTouchViewCenterLocationOnSuperView: CGPoint?
     private let maxOffsetToRegisterTapInScrollView: CGFloat = 5
-    
+
     // MARK: Initializers
+
     init(
         gesture gestureHandler: @escaping (VBaseButtonGestureState) -> Void
     ) {
@@ -25,13 +28,15 @@ final class VBaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRe
         super.init(target: nil, action: nil)
         setUp()
     }
-    
+
     // MARK: Setup
+
     private func setUp() {
         delegate = self
     }
-    
+
     // MARK: Updates
+
     func update(
         gesture gestureHandler: @escaping (VBaseButtonGestureState) -> Void
     ) {
@@ -39,13 +44,14 @@ final class VBaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRe
     }
 
     // MARK: Touches
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+
+    override func touchesBegan(_: Set<UITouch>, with _: UIEvent) {
         state = .began
         initialTouchViewCenterLocationOnSuperView = view?.centerLocationOnSuperView
         gestureHandler(.press)
     }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+
+    override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent) {
         if
             touchIsOnView(touches) == false ||
             gestureViewLocationIsUnchanged == false
@@ -56,16 +62,16 @@ final class VBaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRe
         }
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+    override func touchesEnded(_: Set<UITouch>, with _: UIEvent) {
         switch gestureViewLocationIsUnchanged {
         case nil:
             break
-            
+
         case true?:
             state = .ended
             initialTouchViewCenterLocationOnSuperView = nil
             gestureHandler(.click)
-            
+
         case false?:
             state = .ended
             initialTouchViewCenterLocationOnSuperView = nil
@@ -73,21 +79,23 @@ final class VBaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRe
         }
     }
 
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+    override func touchesCancelled(_: Set<UITouch>, with _: UIEvent) {
         state = .ended
         initialTouchViewCenterLocationOnSuperView = nil
         gestureHandler(.none)
     }
-    
+
     // MARK: Gesture Recognizer Delegate
+
     func gestureRecognizer(
-        _ gestureRecognizer: UIGestureRecognizer,
-        shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
+        _: UIGestureRecognizer,
+        shouldRecognizeSimultaneouslyWith _: UIGestureRecognizer
     ) -> Bool {
         true
     }
-    
+
     // MARK: Touch Detection
+
     private var gestureViewLocationIsUnchanged: Bool? {
         guard
             let initialTouchViewCenterLocationOnSuperView = initialTouchViewCenterLocationOnSuperView,
@@ -98,7 +106,7 @@ final class VBaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRe
 
         return location.equals(initialTouchViewCenterLocationOnSuperView, tolerance: maxOffsetToRegisterTapInScrollView)
     }
-    
+
     private func touchIsOnView(_ touches: Set<UITouch>) -> Bool? {
         guard
             let touch: UITouch = touches.first,
@@ -106,7 +114,7 @@ final class VBaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRe
         else {
             return nil
         }
-        
+
         return touch
             .location(in: view)
             .isOn(view.frame.size, offset: maxOutOfBoundsOffsetToRegisterTap)
@@ -114,8 +122,9 @@ final class VBaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRe
 }
 
 // MARK: - Helpers
-extension CGPoint {
-    fileprivate func isOn(_ frame: CGSize, offset: CGFloat) -> Bool {
+
+private extension CGPoint {
+    func isOn(_ frame: CGSize, offset: CGFloat) -> Bool {
         let xIsOnTarget: Bool = {
             let isPositive: Bool = x >= 0
             switch isPositive {
@@ -134,15 +143,15 @@ extension CGPoint {
 
         return xIsOnTarget && yIsOnTarget
     }
-    
-    fileprivate func equals(_ other: CGPoint, tolerance: CGFloat) -> Bool {
+
+    func equals(_ other: CGPoint, tolerance: CGFloat) -> Bool {
         abs(x - other.x) < tolerance &&
-        abs(y - other.y) < tolerance
+            abs(y - other.y) < tolerance
     }
 }
 
-extension UIView {
-    fileprivate var centerLocationOnSuperView: CGPoint? {
+private extension UIView {
+    var centerLocationOnSuperView: CGPoint? {
         superview?.convert(center, to: nil)
     }
 }

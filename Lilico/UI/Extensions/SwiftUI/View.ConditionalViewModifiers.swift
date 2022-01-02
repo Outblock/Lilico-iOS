@@ -8,7 +8,8 @@
 import SwiftUI
 
 // MARK: - Conditional View Modifiers
-//extension View {
+
+// extension View {
 //    /// Applies modifier and transforms view if condition is met.
 //    @ViewBuilder public func `if`<Content>(
 //        _ condition: Bool,
@@ -66,4 +67,4 @@ import SwiftUI
 //        case nil: elseTransform(self)
 //        }
 //    }
-//}
+// }

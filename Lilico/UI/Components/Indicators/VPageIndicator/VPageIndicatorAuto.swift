@@ -8,17 +8,20 @@
 import SwiftUI
 
 // MARK: - V Page Indicator Auto
+
 struct VPageIndicatorAuto: View {
     // MARK: Properties
+
     private let model: VPageIndicatorModel
     private let visible: Int
     private let center: Int
     private let finiteLimit: Int
-    
+
     private let total: Int
     private let selectedIndex: Int
 
     // MARK: Intializers
+
     init(
         model: VPageIndicatorModel,
         visible: Int,
@@ -36,11 +39,12 @@ struct VPageIndicatorAuto: View {
     }
 
     // MARK: Body
+
     @ViewBuilder var body: some View {
         switch total {
         case ...finiteLimit:
             VPageIndicatorFinite(model: model, total: total, selectedIndex: selectedIndex)
-            
+
         default:
             VPageIndicatorInfinite(model: model, visible: visible, center: center, total: total, selectedIndex: selectedIndex)
         }
@@ -48,6 +52,7 @@ struct VPageIndicatorAuto: View {
 }
 
 // MARK: - Preview
+
 struct VPageIndicatorAuto_Previews: PreviewProvider {
     static var previews: some View {
         VPageIndicatorAuto(

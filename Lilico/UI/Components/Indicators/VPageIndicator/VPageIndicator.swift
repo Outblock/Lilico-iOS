@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Page Indicator
+
 /// Indicator component that indicates selection in page control.
 ///
 /// Model and type can be passed as parameters.
@@ -39,15 +40,17 @@ import SwiftUI
 ///
 public struct VPageIndicator: View {
     // MARK: Properties
+
     private let model: VPageIndicatorModel
     private let pageIndicatorType: VPageIndicatorType
-    
+
     private let total: Int
-    
+
     private let selectedIndex: Int
     @State private var animatableSelectedIndex: Int?
 
     // MARK: Intializers
+
     /// Initializes component with total and selected index.
     public init(
         model: VPageIndicatorModel = .init(),
@@ -62,9 +65,10 @@ public struct VPageIndicator: View {
     }
 
     // MARK: Body
+
     public var body: some View {
         syncInternalStateWithState()
-        
+
         return Group(content: {
             switch pageIndicatorType {
             case .finite:
@@ -73,8 +77,8 @@ public struct VPageIndicator: View {
                     total: total,
                     selectedIndex: animatableSelectedIndex ?? selectedIndex
                 )
-            
-            case .infinite(let visible, let center):
+
+            case let .infinite(visible, center):
                 VPageIndicatorInfinite(
                     model: model,
                     visible: visible,
@@ -82,8 +86,8 @@ public struct VPageIndicator: View {
                     total: total,
                     selectedIndex: animatableSelectedIndex ?? selectedIndex
                 )
-            
-            case .auto(let visible, let center, let finiteLimit):
+
+            case let .auto(visible, center, finiteLimit):
                 VPageIndicatorAuto(
                     model: model,
                     visible: visible,
@@ -97,16 +101,18 @@ public struct VPageIndicator: View {
     }
 
     // MARK: State Syncs
+
     private func syncInternalStateWithState() {
-        DispatchQueue.main.async(execute: {
-            withAnimation(model.animations.transition, {
+        DispatchQueue.main.async {
+            withAnimation(model.animations.transition) {
                 animatableSelectedIndex = selectedIndex
-            })
-        })
+            }
+        }
     }
 }
 
 // MARK: - Preview
+
 struct VPageIndicator_Previews: PreviewProvider {
     static var previews: some View {
         VStack(content: {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Check Box
+
 /// State picker component that toggles between off, on, indeterminate, or disabled states, and displays content.
 ///
 /// Component can be initialized with content, title, or without body. `Bool` can also be passed as state.
@@ -27,17 +28,19 @@ import SwiftUI
 ///
 public struct VCheckBox<Content>: View where Content: View {
     // MARK: Properties
+
     private let model: VCheckBoxModel
-    
+
     @Binding private var state: VCheckBoxState
     @State private var internalStateRaw: VCheckBoxInternalState?
     private var internalState: VCheckBoxInternalState { internalStateRaw ?? .default(state: state) }
-    
+
     private let content: (() -> Content)?
-    
+
     private var contentIsEnabled: Bool { internalState.isEnabled && model.misc.contentIsClickable }
-    
+
     // MARK: Initializers - State
+
     /// Initializes component with state and content.
     public init(
         model: VCheckBoxModel = .init(),
@@ -45,7 +48,7 @@ public struct VCheckBox<Content>: View where Content: View {
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.model = model
-        self._state = state
+        _state = state
         self.content = content
     }
 
@@ -70,7 +73,7 @@ public struct VCheckBox<Content>: View where Content: View {
             }
         )
     }
-    
+
     /// Initializes component with state.
     public init(
         model: VCheckBoxModel = .init(),
@@ -79,11 +82,12 @@ public struct VCheckBox<Content>: View where Content: View {
         where Content == Never
     {
         self.model = model
-        self._state = state
-        self.content = nil
+        _state = state
+        content = nil
     }
-    
+
     // MARK: Initializers - Bool
+
     /// Initializes component with bool and content.
     public init(
         model: VCheckBoxModel = .init(),
@@ -127,19 +131,20 @@ public struct VCheckBox<Content>: View where Content: View {
         where Content == Never
     {
         self.model = model
-        self._state = .init(bool: isOn)
-        self.content = nil
+        _state = .init(bool: isOn)
+        content = nil
     }
 
     // MARK: Body
+
     public var body: some View {
         syncInternalStateWithState()
-        
+
         return Group(content: {
             switch content {
             case nil:
                 checkBox
-                
+
             case let content?:
                 HStack(spacing: 0, content: {
                     checkBox
@@ -149,7 +154,7 @@ public struct VCheckBox<Content>: View where Content: View {
             }
         })
     }
-    
+
     private var checkBox: some View {
         VBaseButton(
             isEnabled: internalState.isEnabled,
@@ -158,7 +163,7 @@ public struct VCheckBox<Content>: View where Content: View {
                 ZStack(content: {
                     RoundedRectangle(cornerRadius: model.layout.cornerRadius)
                         .foregroundColor(model.colors.fill.for(internalState))
-                    
+
                     RoundedRectangle(cornerRadius: model.layout.cornerRadius)
                         .strokeBorder(model.colors.border.for(internalState), lineWidth: model.layout.borderWith)
 
@@ -169,12 +174,12 @@ public struct VCheckBox<Content>: View where Content: View {
                             .foregroundColor(model.colors.icon.for(internalState))
                     }
                 })
-                    .frame(dimension: model.layout.dimension)
-                    .padding(model.layout.hitBox)
+                .frame(dimension: model.layout.dimension)
+                .padding(model.layout.hitBox)
             }
         )
     }
-    
+
     private var spacerView: some View {
         VBaseButton(
             isEnabled: contentIsEnabled,
@@ -187,7 +192,7 @@ public struct VCheckBox<Content>: View where Content: View {
             }
         )
     }
-    
+
     private func contentView(
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
@@ -202,18 +207,20 @@ public struct VCheckBox<Content>: View where Content: View {
     }
 
     // MARK: State Syncs
+
     private func syncInternalStateWithState() {
-        DispatchQueue.main.async(execute: {
+        DispatchQueue.main.async {
             if
                 internalStateRaw == nil ||
                 .init(internalState: internalState) != state
             {
-                withAnimation(model.animations.stateChange, { internalStateRaw = .default(state: state) })
+                withAnimation(model.animations.stateChange) { internalStateRaw = .default(state: state) }
             }
-        })
+        }
     }
 
     // MARK: Actions
+
     private func gestureHandler(gestureState: VBaseButtonGestureState) {
         switch gestureState.isClicked {
         case false:
@@ -221,11 +228,12 @@ public struct VCheckBox<Content>: View where Content: View {
 
         case true:
             state.setNextState()
-            withAnimation(model.animations.stateChange, { internalStateRaw?.setNextState() })
+            withAnimation(model.animations.stateChange) { internalStateRaw?.setNextState() }
         }
     }
 
     // MARK: Icon
+
     private var icon: Image? {
         switch state {
         case .off: return nil
@@ -237,6 +245,7 @@ public struct VCheckBox<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+
 struct VCheckBox_Previews: PreviewProvider {
     @State private static var state: VCheckBoxState = .on
 

@@ -8,19 +8,22 @@
 import Foundation
 
 // MARK: - V Accordion State
+
 /// Enum that describes state, such as `collapsed`, `expanded`, or `disabled`.
 public enum VAccordionState: Int, CaseIterable {
     // MARK: Cases
+
     /// Case collapsed.
     case collapsed
-    
+
     /// Case expanded.
     case expanded
-    
+
     /// Case disabled.
     case disabled
-    
+
     // MARK: Properties
+
     /// Indicates if state is Enabled.
     public var isEnabled: Bool {
         switch self {
@@ -29,7 +32,7 @@ public enum VAccordionState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-    
+
     /// Indicates if state is expanded.
     public var isExpanded: Bool {
         switch self {
@@ -38,7 +41,7 @@ public enum VAccordionState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-    
+
     var chevronButtonState: VChevronButtonState {
         switch self {
         case .collapsed: return .enabled
@@ -46,7 +49,7 @@ public enum VAccordionState: Int, CaseIterable {
         case .disabled: return .disabled
         }
     }
-    
+
     var chevronButtonDirection: VChevronButtonDirection {
         switch self {
         case .collapsed: return .down
@@ -56,6 +59,7 @@ public enum VAccordionState: Int, CaseIterable {
     }
 
     // MARK: Next State
+
     /// Goes to the next state.
     public mutating func setNextState() {
         switch self {
@@ -67,6 +71,7 @@ public enum VAccordionState: Int, CaseIterable {
 }
 
 // MARK: - Mapping
+
 extension StateOpacities_D {
     func `for`(_ state: VAccordionState) -> Double {
         switch state {

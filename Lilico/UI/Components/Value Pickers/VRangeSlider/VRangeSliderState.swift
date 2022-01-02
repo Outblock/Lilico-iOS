@@ -8,16 +8,19 @@
 import SwiftUI
 
 // MARK: - V Range Slider State
+
 /// Enum that describes state, such as `enabled` or `disabled`.
 public enum VRangeSliderState: Int, CaseIterable {
     // MARK: Cases
+
     /// Enabled.
     case enabled
-    
+
     /// Disabled.
     case disabled
-    
+
     // MARK: Properties
+
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -28,6 +31,7 @@ public enum VRangeSliderState: Int, CaseIterable {
 }
 
 // MARK: - Mapping
+
 extension StateColors_ED {
     func `for`(_ state: VRangeSliderState) -> Color {
         switch state {

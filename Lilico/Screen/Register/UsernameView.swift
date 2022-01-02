@@ -18,20 +18,31 @@ struct UsernameView: View {
     @State
     var text: String = ""
 
-//    @State
-//    var highlight: VTextFieldHighlight {
-//        get {
-//            switch viewModel.status {
-//            case .success:
-//                return .success
-//            case .error:
-//                return .error
-//            }
-//        }
-//    }
-//    
-//    @State
-//    var
+    var highlight: VTextFieldHighlight {
+        switch viewModel.status {
+        case .success:
+            return .success
+        case .error:
+            return .error
+        case .normal:
+            return .none
+        case .loading:
+            return .loading
+        }
+    }
+
+    var footerText: String {
+        switch viewModel.status {
+        case .success:
+            return "Nice one"
+        case let .error(message):
+            return message
+        case .normal:
+            return " "
+        case .loading:
+            return "Checking"
+        }
+    }
 
     var btnBack: some View {
         Button {
@@ -77,29 +88,23 @@ struct UsernameView: View {
 //                             .padding(.bottom)
 
                 VTextField(model: TextFieldStyle.primary,
-                           highlight: .none,
+                           type: .userName,
+                           highlight: highlight,
                            placeholder: "Username",
-                           footerTitle: " ",
+                           footerTitle: footerText,
                            text: $text,
                            onChange: {
-                    viewModel.trigger(.onEditingChanged(text))
-                },
-                           onClear: .clear)
+                               viewModel.trigger(.onEditingChanged(text))
+                           },
+                           onClear: .clearAndCustom {
+                               viewModel.trigger(.onEditingChanged(text))
+                           })
 //                    .padding(.bottom)
-                
-                Button {} label: {
-                    Text("Next")
-                        .font(.headline)
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.vertical, 18)
-                        .foregroundColor(Color.LL.background)
-                        .background {
-                            RoundedRectangle(cornerRadius: 16)
-                                .foregroundColor(Color.LL.rebackground)
-                        }
-                }
-                .padding(.bottom)
+
+                VPrimaryButton(model: ButtonStyle.primary,
+                               state: highlight == .success ? .enabled : .disabled,
+                               action: {}, title: "Next")
+                    .padding(.bottom)
             }
             .padding(.horizontal, 30)
 //                .padding(.bottom)

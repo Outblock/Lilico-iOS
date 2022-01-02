@@ -8,19 +8,22 @@
 import SwiftUI
 
 // MARK: - V Toggle State
+
 /// Enum that describes state, such as `off`, `on`, or `disabled`.
 public enum VToggleState: Int, CaseIterable {
     // MARK: Cases
+
     /// Off.
     case off
-    
+
     /// On.
     case on
-    
+
     /// Disabled.
     case disabled
-    
+
     // MARK: Properties
+
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -29,7 +32,7 @@ public enum VToggleState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-    
+
     /// Indicates if state is on.
     public var isOn: Bool {
         switch self {
@@ -38,8 +41,9 @@ public enum VToggleState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-    
+
     // MARK: Initializers
+
     init(internalState: VToggleInternalState) {
         switch internalState {
         case .off, .pressedOff: self = .off
@@ -49,6 +53,7 @@ public enum VToggleState: Int, CaseIterable {
     }
 
     // MARK: Next State
+
     /// Goes to the next state.
     public mutating func setNextState() {
         switch self {
@@ -60,15 +65,18 @@ public enum VToggleState: Int, CaseIterable {
 }
 
 // MARK: - V Toggle Internal State
+
 enum VToggleInternalState {
     // MARK: Cases
+
     case off
     case on
     case pressedOff
     case pressedOn
     case disabled
-    
+
     // MARK: Properties
+
     var isEnabled: Bool {
         switch self {
         case .off: return true
@@ -78,8 +86,9 @@ enum VToggleInternalState {
         case .disabled: return false
         }
     }
-    
+
     // MARK: Initializers
+
     init(state: VToggleState, isPressed: Bool) {
         switch (state, isPressed) {
         case (.off, false): self = .off
@@ -89,7 +98,7 @@ enum VToggleInternalState {
         case (.disabled, _): self = .disabled
         }
     }
-    
+
     init(bool state: Bool, isPressed: Bool) {
         switch (state, isPressed) {
         case (false, false): self = .off
@@ -98,12 +107,13 @@ enum VToggleInternalState {
         case (true, true): self = .pressedOn
         }
     }
-    
+
     static func `default`(state: VToggleState) -> Self {
         .init(state: state, isPressed: false)
     }
-    
+
     // MARK: Next State
+
     mutating func setNextState() {
         switch self {
         case .off, .pressedOff: self = .on
@@ -114,6 +124,7 @@ enum VToggleInternalState {
 }
 
 // MARK: Mapping
+
 extension StateColors_OOD {
     func `for`(_ state: VToggleInternalState) -> Color {
         switch state {
@@ -139,9 +150,10 @@ extension StateOpacities_PD {
 }
 
 // MARK: - Helpers
-extension Binding where Value == VToggleState {
+
+public extension Binding where Value == VToggleState {
     /// Initializes state with bool
-    public init(bool: Binding<Bool>) {
+    init(bool: Binding<Bool>) {
         self.init(
             get: { bool.wrappedValue ? .on : .off },
             set: { bool.wrappedValue = $0.isOn }

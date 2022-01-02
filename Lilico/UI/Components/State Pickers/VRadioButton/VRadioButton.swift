@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Radio Button
+
 /// State picker component that toggles between off, on, or disabled states, and displays content.
 ///
 /// Component can be initialized with content, title, or without body. `Bool` can also be passed as state.
@@ -51,20 +52,22 @@ import SwiftUI
 ///             })
 ///         })
 ///     }
-///     
+///
 public struct VRadioButton<Content>: View where Content: View {
     // MARK: Properties
+
     private let model: VRadioButtonModel
-    
+
     @Binding private var state: VRadioButtonState
     @State private var internalStateRaw: VRadioButtonInternalState?
     private var internalState: VRadioButtonInternalState { internalStateRaw ?? .default(state: state) }
-    
+
     private let content: (() -> Content)?
-    
+
     private var contentIsEnabled: Bool { internalState.isEnabled && model.misc.contentIsClickable }
-    
+
     // MARK: Initializers - State
+
     /// Initializes component with state and content.
     public init(
         model: VRadioButtonModel = .init(),
@@ -72,10 +75,10 @@ public struct VRadioButton<Content>: View where Content: View {
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.model = model
-        self._state = state
+        _state = state
         self.content = content
     }
-    
+
     /// Initializes component with state and title.
     public init(
         model: VRadioButtonModel = .init(),
@@ -97,7 +100,7 @@ public struct VRadioButton<Content>: View where Content: View {
             }
         )
     }
-    
+
     /// Initializes component with state.
     public init(
         model: VRadioButtonModel = .init(),
@@ -106,11 +109,12 @@ public struct VRadioButton<Content>: View where Content: View {
         where Content == Never
     {
         self.model = model
-        self._state = state
-        self.content = nil
+        _state = state
+        content = nil
     }
 
     // MARK: Initializers - Bool
+
     /// Initializes component with bool and content.
     public init(
         model: VRadioButtonModel = .init(),
@@ -154,11 +158,12 @@ public struct VRadioButton<Content>: View where Content: View {
         where Content == Never
     {
         self.model = model
-        self._state = .init(bool: isOn)
-        self.content = nil
+        _state = .init(bool: isOn)
+        content = nil
     }
-    
+
     // MARK: Initializers - Pickable Item
+
     /// Initializes component with `VPickableItem` and content.
     public init<Item>(
         model: VRadioButtonModel = .init(),
@@ -177,7 +182,7 @@ public struct VRadioButton<Content>: View where Content: View {
             content: content
         )
     }
-    
+
     /// Initializes component with `VPickableItem`.
     public init<Item>(
         model: VRadioButtonModel = .init(),
@@ -185,8 +190,8 @@ public struct VRadioButton<Content>: View where Content: View {
         selects selectingValue: Item
     )
         where
-            Content == Never,
-            Item: VPickableItem
+        Content == Never,
+        Item: VPickableItem
     {
         self.init(
             model: model,
@@ -196,8 +201,9 @@ public struct VRadioButton<Content>: View where Content: View {
             )
         )
     }
-    
+
     // MARK: Initializers - Pickable Titled Item
+
     /// Initializes component with `VPickableTitledItem` and content.
     public init<Item>(
         model: VRadioButtonModel = .init(),
@@ -205,8 +211,8 @@ public struct VRadioButton<Content>: View where Content: View {
         selects selectingValue: Item
     )
         where
-            Content == VText,
-            Item: VPickableTitledItem
+        Content == VText,
+        Item: VPickableTitledItem
     {
         self.init(
             model: model,
@@ -226,14 +232,15 @@ public struct VRadioButton<Content>: View where Content: View {
     }
 
     // MARK: Body
+
     public var body: some View {
         syncInternalStateWithState()
-        
+
         return Group(content: {
             switch content {
             case nil:
                 radioButton
-                
+
             case let content?:
                 HStack(spacing: 0, content: {
                     radioButton
@@ -243,7 +250,7 @@ public struct VRadioButton<Content>: View where Content: View {
             }
         })
     }
-    
+
     private var radioButton: some View {
         VBaseButton(
             isEnabled: internalState.isEnabled,
@@ -253,21 +260,21 @@ public struct VRadioButton<Content>: View where Content: View {
                     Circle()
                         .frame(dimension: model.layout.dimension)
                         .foregroundColor(model.colors.fill.for(internalState))
-                    
+
                     Circle()
                         .strokeBorder(model.colors.border.for(internalState), lineWidth: model.layout.borderWith)
                         .frame(dimension: model.layout.dimension)
-                    
+
                     Circle()
                         .frame(dimension: model.layout.bulletDimension)
                         .foregroundColor(model.colors.bullet.for(internalState))
                 })
-                    .frame(dimension: model.layout.dimension)
-                    .padding(model.layout.hitBox)
+                .frame(dimension: model.layout.dimension)
+                .padding(model.layout.hitBox)
             }
         )
     }
-    
+
     private var spacerView: some View {
         VBaseButton(
             isEnabled: contentIsEnabled,
@@ -280,7 +287,7 @@ public struct VRadioButton<Content>: View where Content: View {
             }
         )
     }
-    
+
     private func contentView(
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
@@ -295,18 +302,20 @@ public struct VRadioButton<Content>: View where Content: View {
     }
 
     // MARK: State Syncs
+
     private func syncInternalStateWithState() {
-        DispatchQueue.main.async(execute: {
+        DispatchQueue.main.async {
             if
                 internalStateRaw == nil ||
                 .init(internalState: internalState) != state
             {
-                withAnimation(model.animations.stateChange, { internalStateRaw = .default(state: state) })
+                withAnimation(model.animations.stateChange) { internalStateRaw = .default(state: state) }
             }
-        })
+        }
     }
 
     // MARK: Actions
+
     private func gestureHandler(gestureState: VBaseButtonGestureState) {
         switch gestureState.isClicked {
         case false:
@@ -314,12 +323,13 @@ public struct VRadioButton<Content>: View where Content: View {
 
         case true:
             state.setNextState()
-            withAnimation(model.animations.stateChange, { internalStateRaw?.setNextState() })
+            withAnimation(model.animations.stateChange) { internalStateRaw?.setNextState() }
         }
     }
 }
 
 // MARK: - Preview
+
 struct VRadioButton_Previews: PreviewProvider {
     @State private static var state: VRadioButtonState = .on
 

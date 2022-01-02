@@ -153,8 +153,7 @@ struct LLTextField_Previews: PreviewProvider {
     private static var delegate = LL.TextField.Delegate()
 
     static var previews: some View {
-        VStack(spacing: 50) {
-        }
+        VStack(spacing: 50) {}
 //            LL.TextField(placeHolder: "Test",
 //                         text: $text,
 //                         status: $normalStatus)

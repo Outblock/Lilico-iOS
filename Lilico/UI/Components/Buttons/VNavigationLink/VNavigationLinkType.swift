@@ -8,15 +8,18 @@
 import SwiftUI
 
 // MARK: - V Navigation Link Type
+
 typealias VNavigationLinkType = DerivedButtonType
 
 // MARK: - V Navigation Link Preset
+
 /// Enum that describes navigation link preset, such as `primary`, `secondary`, `square`, or `plain`.
 ///
 /// Custom type can be used via inits that do not take preset as a parameter.
 public typealias VNavigationLinkPreset = DerivedButtonPreset
 
 // MARK: - Button
+
 extension VNavigationLinkType {
     @ViewBuilder static func navLinkButton<Content>(
         buttonType: VNavigationLinkType,
@@ -27,38 +30,38 @@ extension VNavigationLinkType {
         where Content: View
     {
         switch buttonType {
-        case .primary(let model):
+        case let .primary(model):
             VPrimaryButton(
                 model: model,
                 state: isEnabled ? .enabled : .disabled,
                 action: action,
                 content: content
             )
-            
-        case .secondary(let model):
+
+        case let .secondary(model):
             VSecondaryButton(
                 model: model,
                 state: isEnabled ? .enabled : .disabled,
                 action: action,
                 content: content
             )
-            
-        case .square(let model):
+
+        case let .square(model):
             VSquareButton(
                 model: model,
                 state: isEnabled ? .enabled : .disabled,
                 action: action,
                 content: content
             )
-            
-        case .plain(let model):
+
+        case let .plain(model):
             VPlainButton(
                 model: model,
                 state: isEnabled ? .enabled : .disabled,
                 action: action,
                 content: content
             )
-            
+
         case .custom:
             content()
                 .allowsHitTesting(isEnabled)

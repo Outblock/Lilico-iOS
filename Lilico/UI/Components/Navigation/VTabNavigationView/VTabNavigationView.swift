@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Tab Navigation View
+
 /// Navigation component that switches between multiple views using interactive user interface elements.
 ///
 /// Model can be passed as parameter.
@@ -44,16 +45,17 @@ import SwiftUI
 ///
 public struct VTabNavigationView<C0, C1, C2, C3, C4, C5>: View
     where
-        C0: View,
-        C1: View,
-        C2: View,
-        C3: View,
-        C4: View,
-        C5: View
+    C0: View,
+    C1: View,
+    C2: View,
+    C3: View,
+    C4: View,
+    C5: View
 {
     // MARK: Properties
+
     private let model: VTabNavigationViewModel
-    
+
     @Binding private var selection: Int
 
     private let pageOne: VTabNavigationViewPage<C0>?
@@ -62,8 +64,9 @@ public struct VTabNavigationView<C0, C1, C2, C3, C4, C5>: View
     private let pageFour: VTabNavigationViewPage<C3>?
     private let pageFive: VTabNavigationViewPage<C4>?
     private let pageSix: VTabNavigationViewPage<C5>?
-    
+
     // MARK: Initializers
+
     /// Initializes component with selected index and six pages.
     public init(
         model: VTabNavigationViewModel = .init(),
@@ -76,7 +79,7 @@ public struct VTabNavigationView<C0, C1, C2, C3, C4, C5>: View
         pageSix: VTabNavigationViewPage<C5>
     ) {
         self.model = model
-        self._selection = selection
+        _selection = selection
         self.pageOne = pageOne
         self.pageTwo = pageTwo
         self.pageThree = pageThree
@@ -84,7 +87,7 @@ public struct VTabNavigationView<C0, C1, C2, C3, C4, C5>: View
         self.pageFive = pageFive
         self.pageSix = pageSix
     }
-    
+
     /// Initializes component with selected index and five pages.
     public init(
         model: VTabNavigationViewModel = .init(),
@@ -98,15 +101,15 @@ public struct VTabNavigationView<C0, C1, C2, C3, C4, C5>: View
         where C5 == Never
     {
         self.model = model
-        self._selection = selection
+        _selection = selection
         self.pageOne = pageOne
         self.pageTwo = pageTwo
         self.pageThree = pageThree
         self.pageFour = pageFour
         self.pageFive = pageFive
-        self.pageSix = nil
+        pageSix = nil
     }
-    
+
     /// Initializes component with selected index and four pages.
     public init(
         model: VTabNavigationViewModel = .init(),
@@ -117,17 +120,17 @@ public struct VTabNavigationView<C0, C1, C2, C3, C4, C5>: View
         pageFour: VTabNavigationViewPage<C3>
     )
         where
-            C4 == Never,
-            C5 == Never
+        C4 == Never,
+        C5 == Never
     {
         self.model = model
-        self._selection = selection
+        _selection = selection
         self.pageOne = pageOne
         self.pageTwo = pageTwo
         self.pageThree = pageThree
         self.pageFour = pageFour
-        self.pageFive = nil
-        self.pageSix = nil
+        pageFive = nil
+        pageSix = nil
     }
 
     /// Initializes component with selected index and three pages.
@@ -139,18 +142,18 @@ public struct VTabNavigationView<C0, C1, C2, C3, C4, C5>: View
         pageThree: VTabNavigationViewPage<C2>
     )
         where
-            C3 == Never,
-            C4 == Never,
-            C5 == Never
+        C3 == Never,
+        C4 == Never,
+        C5 == Never
     {
         self.model = model
-        self._selection = selection
+        _selection = selection
         self.pageOne = pageOne
         self.pageTwo = pageTwo
         self.pageThree = pageThree
-        self.pageFour = nil
-        self.pageFive = nil
-        self.pageSix = nil
+        pageFour = nil
+        pageFive = nil
+        pageSix = nil
     }
 
     /// Initializes component with selected index and four pages.
@@ -161,22 +164,23 @@ public struct VTabNavigationView<C0, C1, C2, C3, C4, C5>: View
         pageTwo: VTabNavigationViewPage<C1>
     )
         where
-            C2 == Never,
-            C3 == Never,
-            C4 == Never,
-            C5 == Never
+        C2 == Never,
+        C3 == Never,
+        C4 == Never,
+        C5 == Never
     {
         self.model = model
-        self._selection = selection
+        _selection = selection
         self.pageOne = pageOne
         self.pageTwo = pageTwo
-        self.pageThree = nil
-        self.pageFour = nil
-        self.pageFive = nil
-        self.pageSix = nil
+        pageThree = nil
+        pageFour = nil
+        pageFive = nil
+        pageSix = nil
     }
 
     // MARK: Body
+
     public var body: some View {
         TabView(selection: $selection, content: {
             if let page = pageOne { pageContent(page).tag(0) }
@@ -186,42 +190,43 @@ public struct VTabNavigationView<C0, C1, C2, C3, C4, C5>: View
             if let page = pageFive { pageContent(page).tag(4) }
             if let page = pageSix { pageContent(page).tag(5) }
         })
-            .setUpTabNavigationViewAppearance(model: model)
+        .setUpTabNavigationViewAppearance(model: model)
     }
-    
+
     private func pageContent<PageContent>(
         _ page: VTabNavigationViewPage<PageContent>
     ) -> some View
         where PageContent: View
     {
-        let originalAccentColor: Color = Color(UIColor(Color.accentColor).cgColor)
-        
+        let originalAccentColor = Color(UIColor(Color.accentColor).cgColor)
+
         return page.content
             .accentColor(originalAccentColor)
-            .tabItem({
+            .tabItem {
                 switch page.item {
-                case .titled(let title):
+                case let .titled(title):
                     Text(title)
-                    
-                case .systemIcon(let name):
+
+                case let .systemIcon(name):
                     Image(systemName: name).renderingMode(.template)
-                
-                case .assetIcon(let name, let bundle):
+
+                case let .assetIcon(name, bundle):
                     Image(name, bundle: bundle).renderingMode(.template)
-                    
-                case .titledSystemIcon(let title, let name):
+
+                case let .titledSystemIcon(title, name):
                     Text(title)
                     Image(systemName: name).renderingMode(.template)
-                
-                case .titledAssetIcon(let title, let name, let bundle):
+
+                case let .titledAssetIcon(title, name, bundle):
                     Text(title)
                     Image(name, bundle: bundle).renderingMode(.template)
                 }
-            })
+            }
     }
 }
 
 // MARK: Preview
+
 struct VTabNavigationView_Previews: PreviewProvider {
     private static var pageOne: VTabNavigationViewPage<Color> { .init(item: .titled(title: "Red"), content: Color.red) }
     private static var pageTwo: VTabNavigationViewPage<Color> { .init(item: .titled(title: "Green"), content: Color.green) }

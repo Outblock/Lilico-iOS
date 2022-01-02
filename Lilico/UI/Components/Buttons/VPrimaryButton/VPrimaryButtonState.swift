@@ -8,21 +8,24 @@
 import SwiftUI
 
 // MARK: - V Primary Button State
+
 /// Enum that describes state, such as `enabled`, `disabled`, or `loading`.
 public enum VPrimaryButtonState: Int, CaseIterable {
     // MARK: Cases
+
     /// Enabled.
     case enabled
-    
+
     /// Disabled.
     case disabled
-    
+
     /// Loading.
     ///
     /// Unique state during which spinner appears.
     case loading
 
     // MARK: Properties
+
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -31,8 +34,9 @@ public enum VPrimaryButtonState: Int, CaseIterable {
         case .loading: return false
         }
     }
-    
+
     // MARK: Initializers
+
     init(internalState: VPrimaryButtonInternalState) {
         switch internalState {
         case .enabled: self = .enabled
@@ -44,14 +48,17 @@ public enum VPrimaryButtonState: Int, CaseIterable {
 }
 
 // MARK: - V Primary Button Internal State
+
 enum VPrimaryButtonInternalState {
     // MARK: Cases
+
     case enabled
     case pressed
     case disabled
     case loading
-    
+
     // MARK: Properties
+
     var isEnabled: Bool {
         switch self {
         case .enabled: return true
@@ -60,7 +67,7 @@ enum VPrimaryButtonInternalState {
         case .loading: return false
         }
     }
-    
+
     var isLoading: Bool {
         switch self {
         case .enabled: return false
@@ -69,8 +76,9 @@ enum VPrimaryButtonInternalState {
         case .loading: return true
         }
     }
-    
+
     // MARK: Initializers
+
     init(state: VPrimaryButtonState, isPressed: Bool) {
         switch (state, isPressed) {
         case (.enabled, false): self = .enabled
@@ -79,13 +87,14 @@ enum VPrimaryButtonInternalState {
         case (.loading, _): self = .loading
         }
     }
-    
+
     static func `default`(state: VPrimaryButtonState) -> Self {
         .init(state: state, isPressed: false)
     }
 }
 
 // MARK: - Mapping
+
 extension StateColors_EPLD {
     func `for`(_ state: VPrimaryButtonInternalState) -> Color {
         switch state {

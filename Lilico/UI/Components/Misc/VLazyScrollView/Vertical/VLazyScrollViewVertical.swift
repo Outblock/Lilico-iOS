@@ -8,12 +8,15 @@
 import SwiftUI
 
 // MARK: - V Lazy Scroll View Vertical
+
 struct VLazyScrollViewVertical<Content>: View where Content: View {
     // MARK: Properties
+
     private let model: VLazyScrollViewModelVertical
     private let content: () -> Content
-    
+
     // MARK: Initializers
+
     init(
         model: VLazyScrollViewModelVertical,
         @ViewBuilder content: @escaping () -> Content
@@ -23,6 +26,7 @@ struct VLazyScrollViewVertical<Content>: View where Content: View {
     }
 
     // MARK: Body
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: model.misc.showIndicator, content: {
             LazyVStack(alignment: model.layout.alignment, spacing: model.layout.rowSpacing, content: {
@@ -33,10 +37,11 @@ struct VLazyScrollViewVertical<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+
 struct VLazyScrollViewVertical_Previews: PreviewProvider {
     static var previews: some View {
         VLazyScrollViewVertical(model: .init(), content: {
-            ForEach(1..<100, content: { num in
+            ForEach(1 ..< 100, content: { num in
                 Text(String(num))
             })
         })

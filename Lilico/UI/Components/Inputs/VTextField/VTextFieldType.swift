@@ -8,48 +8,46 @@
 import Foundation
 
 // MARK: - V Text Field Type
+
 /// Enum that describes type, such as `standard`, `secure`, or `search`.
 public enum VTextFieldType: Int, CaseIterable {
     // MARK: Cases
+
     /// Standard textfield.
     case standard
-    
+
     /// Secure textfield.
     ///
     /// Visibility icon is present, and securities, such as copying is enabled.
     case secure
-    
+
     /// Search textfield.
     ///
     /// Magnification icon is present.
     case search
-    
+
+    case userName
+
     // MARK: Properties
+
     var isStandard: Bool {
-        switch self {
-        case .standard: return true
-        case .secure: return false
-        case .search: return false
-        }
+        self == .standard
     }
-    
+
     var isSecure: Bool {
-        switch self {
-        case .standard: return false
-        case .secure: return true
-        case .search: return false
-        }
+        self == .secure
     }
-    
+
     var isSearch: Bool {
-        switch self {
-        case .standard: return false
-        case .secure: return false
-        case .search: return true
-        }
+        self == .secure
     }
-    
+
+    var isUserName: Bool {
+        self == .userName
+    }
+
     // MARK: Initailizers
+
     /// Default value. Set to `standard`.
     public static var `default`: Self { .standard }
 }

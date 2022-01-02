@@ -8,8 +8,10 @@
 import Foundation
 
 // MARK: - Component State Management
+
 enum ComponentStateManagement {
     // MARK: Cases
+
     case `internal`
     case external
 }

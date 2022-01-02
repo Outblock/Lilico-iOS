@@ -19,26 +19,26 @@ public enum NetworkError: Error {
     case emptyData
 }
 
-class Network {
+enum Network {
 //    var cancelllables: [AnyCancellable] = []
 
     struct Response<T: Decodable>: Decodable {
         let httpCode: Int
         let message: String
         let data: T?
-        
+
         enum CodingKeys: String, CodingKey {
             case httpCode = "status"
             case message
             case data
         }
     }
-    
+
     static func fetchIDToken() async throws -> String {
         if let currentUser = Auth.auth().currentUser {
             return try await currentUser.getIDToken()
         }
-        
+
         let result = try await Auth.auth().signInAnonymously()
         return try await result.user.getIDToken()
     }
@@ -55,7 +55,7 @@ class Network {
             guard let model = try? decoder.decode(Response<T>.self, from: response.data) else {
                 throw NetworkError.decodeFailed
             }
-            
+
             guard let data = model.data else {
                 throw NetworkError.emptyData
             }

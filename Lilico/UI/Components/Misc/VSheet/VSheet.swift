@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - V Sheet
+
 /// Container component that draws a background and hosts content.
 ///
 /// Model can be passed as parameter.
@@ -32,10 +33,12 @@ import SwiftUI
 ///
 public struct VSheet<Content>: View where Content: View {
     // MARK: Properties
+
     private let model: VSheetModel
     private let content: () -> Content
-    
+
     // MARK: Initializers
+
     /// Initializes component with content.
     public init(
         model: VSheetModel = .init(),
@@ -44,7 +47,7 @@ public struct VSheet<Content>: View where Content: View {
         self.model = model
         self.content = content
     }
-    
+
     /// Initializes component.
     public init(
         model: VSheetModel = .init()
@@ -52,15 +55,16 @@ public struct VSheet<Content>: View where Content: View {
         where Content == Color
     {
         self.model = model
-        self.content = { .clear }
+        content = { .clear }
     }
 
     // MARK: Body
+
     public var body: some View {
         contentView
             .background(sheetView)
     }
-    
+
     private var sheetView: some View {
         model.colors.background
             .cornerRadius(
@@ -68,7 +72,7 @@ public struct VSheet<Content>: View where Content: View {
                 corners: model.layout.roundedCorners.uiRectCorner
             )
     }
-    
+
     private var contentView: some View {
         content()
             .padding(model.layout.contentMargin)
@@ -76,20 +80,21 @@ public struct VSheet<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+
 struct VSheet_Previews: PreviewProvider {
     static var previews: some View {
         ZStack(content: {
             ColorBook.canvas
                 .edgesIgnoringSafeArea(.all)
-            
+
             VSheet(content: {
-                VLazyScrollView(range: 1..<100, content: { num in
+                VLazyScrollView(range: 1 ..< 100, content: { num in
                     Text(String(num))
                         .padding(.vertical, 10)
                 })
             })
-                .padding()
-                .background(ColorBook.canvas)
+            .padding()
+            .background(ColorBook.canvas)
         })
     }
 }

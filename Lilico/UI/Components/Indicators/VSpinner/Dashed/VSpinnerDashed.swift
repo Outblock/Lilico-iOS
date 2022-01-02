@@ -8,16 +8,20 @@
 import SwiftUI
 
 // MARK: - V Spinner Dashed
+
 struct VSpinnerDashed: View {
     // MARK: Properties
+
     private let model: VSpinnerModelDashed
-    
+
     // MARK: Initializers
+
     init(model: VSpinnerModelDashed) {
         self.model = model
     }
 
     // MARK: Body
+
     var body: some View {
         ProgressView()
             .progressViewStyle(CircularProgressViewStyle(tint: model.colors.spinner))
@@ -25,6 +29,7 @@ struct VSpinnerDashed: View {
 }
 
 // MARK: - Preview
+
 struct VSpinnerDashed_Previews: PreviewProvider {
     static var previews: some View {
         VSpinnerDashed(model: .init())
