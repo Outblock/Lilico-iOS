@@ -8,7 +8,6 @@
 import Foundation
 
 // MARK: - V Section List Section ViewModelable
-
 /// ViewModel that creates `VSectionList` sections.
 public protocol VSectionListSectionViewModelable: Identifiable {
     associatedtype VSectionListRowViewModelable: Identifiable

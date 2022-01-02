@@ -8,15 +8,12 @@
 import SwiftUI
 
 // MARK: V Stepper Button
-
 enum VStepperButton {
     // MARK: Cases
-
     case minus
     case plus
-
+    
     // MARK: Properties
-
     var icon: Image {
         switch self {
         case .minus: return ImageBook.minus

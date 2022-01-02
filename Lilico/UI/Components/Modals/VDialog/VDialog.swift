@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Dialog
-
 /// Modal component that presents dialog when condition is true.
 ///
 /// Model, title, description, and content can be passed as parameters.
@@ -48,15 +47,13 @@ import SwiftUI
 ///
 public struct VDialog<Content> where Content: View {
     // MARK: Properties
-
     fileprivate let model: VDialogModel
     fileprivate let dialogButtons: VDialogButtons
     fileprivate let title: String?
     fileprivate let description: String?
     fileprivate let content: (() -> Content)?
-
+    
     // MARK: Initializers
-
     /// Initializes component with buttons, title, description, and content.
     public init(
         model: VDialogModel = .init(),
@@ -71,7 +68,7 @@ public struct VDialog<Content> where Content: View {
         self.description = description
         self.content = content
     }
-
+    
     /// Initializes component with buttons, title, and description.
     public init(
         model: VDialogModel = .init(),
@@ -85,37 +82,37 @@ public struct VDialog<Content> where Content: View {
         self.dialogButtons = dialogButtons
         self.title = title
         self.description = description
-        content = nil
+        self.content = nil
     }
 }
 
 // MARK: - Extension
-
-public extension View {
+extension View {
     /// Presents `VDialog`.
-    func vDialog<Content>(
+    public func vDialog<Content>(
         isPresented: Binding<Bool>,
         dialog: @escaping () -> VDialog<Content>
     ) -> some View
         where Content: View
     {
         let dialog = dialog()
-
-        return overlay(Group(content: {
-            if isPresented.wrappedValue {
-                WindowOverlayView(
-                    isPresented: isPresented,
-                    content:
-                    _VDialog(
-                        model: dialog.model,
+        
+        return self
+            .overlay(Group(content: {
+                if isPresented.wrappedValue {
+                    WindowOverlayView(
                         isPresented: isPresented,
-                        dialogButtons: dialog.dialogButtons,
-                        title: dialog.title,
-                        description: dialog.description,
-                        content: dialog.content
+                        content:
+                            _VDialog(
+                                model: dialog.model,
+                                isPresented: isPresented,
+                                dialogButtons: dialog.dialogButtons,
+                                title: dialog.title,
+                                description: dialog.description,
+                                content: dialog.content
+                            )
                     )
-                )
-            }
-        }))
+                }
+            }))
     }
 }

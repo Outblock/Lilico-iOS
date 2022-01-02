@@ -8,19 +8,16 @@
 import SwiftUI
 
 // MARK: - V Wheel Picker State
-
 /// Enum that describes state, such as `enabled` or `disabled`.
 public enum VWheelPickerState: Int, CaseIterable {
     // MARK: Cases
-
     /// Case enabled.
     case enabled
-
+    
     /// Case disabled.
     case disabled
-
+    
     // MARK: Properties
-
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -31,7 +28,6 @@ public enum VWheelPickerState: Int, CaseIterable {
 }
 
 // MARK: - Mapping
-
 extension StateColors_ED {
     func `for`(_ state: VWheelPickerState) -> Color {
         switch state {

@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Wheel Picker
-
 /// Item picker component that selects from a set of mutually exclusive values, and displays their representative content in a scrollable wheel.
 ///
 /// Component can be initialized with data, row titles, `VPickableItem`, or `VPickableTitledItem`.
@@ -40,28 +39,26 @@ import SwiftUI
 ///
 public struct VWheelPicker<Data, RowContent>: View
     where
-    Data: RandomAccessCollection,
-    Data.Index == Int,
-    RowContent: View
+        Data: RandomAccessCollection,
+        Data.Index == Int,
+        RowContent: View
 {
     // MARK: Properties
-
     private let model: VWheelPickerModel
-
+    
     private let state: VWheelPickerState
-
+    
     @Binding private var selectedIndex: Int
-
+    
     private let headerTitle: String?
     private let footerTitle: String?
-
+    
     private let data: Data
     private let rowContent: (Data.Element) -> RowContent
-
+    
     @State private var rowWidth: CGFloat = .zero
-
+    
     // MARK: Initializers - View Builder
-
     /// Initializes component with selected index, header, footer, data, and row content.
     public init(
         model: VWheelPickerModel = .init(),
@@ -74,7 +71,7 @@ public struct VWheelPicker<Data, RowContent>: View
     ) {
         self.model = model
         self.state = state
-        _selectedIndex = selectedIndex
+        self._selectedIndex = selectedIndex
         self.headerTitle = headerTitle
         self.footerTitle = footerTitle
         self.data = data
@@ -82,7 +79,6 @@ public struct VWheelPicker<Data, RowContent>: View
     }
 
     // MARK: Initializes: Row Titles
-
     /// Initializes component with selected index, header, footer, and row titles.
     public init(
         model: VWheelPickerModel = .init(),
@@ -93,8 +89,8 @@ public struct VWheelPicker<Data, RowContent>: View
         rowTitles: [String]
     )
         where
-        Data == [String],
-        RowContent == VText
+            Data == Array<String>,
+            RowContent == VText
     {
         self.init(
             model: model,
@@ -115,7 +111,6 @@ public struct VWheelPicker<Data, RowContent>: View
     }
 
     // MARK: Initialzers: Pickable Item
-
     /// Initializes component with `VPickableItem`, header, footer, and row content.
     public init<Item>(
         model: VWheelPickerModel = .init(),
@@ -126,8 +121,8 @@ public struct VWheelPicker<Data, RowContent>: View
         @ViewBuilder rowContent: @escaping (Item) -> RowContent
     )
         where
-        Data == [Item],
-        Item: VPickableItem
+            Data == Array<Item>,
+            Item: VPickableItem
     {
         self.init(
             model: model,
@@ -144,7 +139,6 @@ public struct VWheelPicker<Data, RowContent>: View
     }
 
     // MARK: Initialzers: Pickable Titled Item
-
     /// Initializes component with `VPickableTitledItem`, header, and footer.
     public init<Item>(
         model: VWheelPickerModel = .init(),
@@ -154,9 +148,9 @@ public struct VWheelPicker<Data, RowContent>: View
         footerTitle: String? = nil
     )
         where
-        Data == [Item],
-        RowContent == VText,
-        Item: VPickableTitledItem
+            Data == Array<Item>,
+            RowContent == VText,
+            Item: VPickableTitledItem
     {
         self.init(
             model: model,
@@ -180,7 +174,6 @@ public struct VWheelPicker<Data, RowContent>: View
     }
 
     // MARK: Body
-
     public var body: some View {
         VStack(alignment: .leading, spacing: model.layout.headerFooterSpacing, content: {
             headerView
@@ -188,23 +181,23 @@ public struct VWheelPicker<Data, RowContent>: View
             footerView
         })
     }
-
+    
     private var pickerView: some View {
         Picker(selection: $selectedIndex, label: EmptyView(), content: {
-            ForEach(0 ..< data.count, content: { i in
+            ForEach(0..<data.count, content: { i in
                 rowContent(data[i])
                     .tag(i)
             })
         })
-        .pickerStyle(WheelPickerStyle())
-        .labelsHidden()
-
-        .disabled(!state.isEnabled) // Luckily, doesn't affect colors
-        .opacity(model.colors.content.for(state))
-
-        .background(model.colors.background.for(state).cornerRadius(model.layout.cornerRadius))
+            .pickerStyle(WheelPickerStyle())
+            .labelsHidden()
+            
+            .disabled(!state.isEnabled) // Luckily, doesn't affect colors
+            .opacity(model.colors.content.for(state))
+            
+            .background(model.colors.background.for(state).cornerRadius(model.layout.cornerRadius))
     }
-
+    
     @ViewBuilder private var headerView: some View {
         if let headerTitle = headerTitle, !headerTitle.isEmpty {
             VText(
@@ -213,11 +206,11 @@ public struct VWheelPicker<Data, RowContent>: View
                 color: model.colors.header.for(state),
                 title: headerTitle
             )
-            .padding(.horizontal, model.layout.headerMarginHorizontal)
-            .opacity(model.colors.content.for(state))
+                .padding(.horizontal, model.layout.headerMarginHorizontal)
+                .opacity(model.colors.content.for(state))
         }
     }
-
+    
     @ViewBuilder private var footerView: some View {
         if let footerTitle = footerTitle, !footerTitle.isEmpty {
             VText(
@@ -226,23 +219,22 @@ public struct VWheelPicker<Data, RowContent>: View
                 color: model.colors.footer.for(state),
                 title: footerTitle
             )
-            .padding(.horizontal, model.layout.headerMarginHorizontal)
-            .opacity(model.colors.content.for(state))
+                .padding(.horizontal, model.layout.headerMarginHorizontal)
+                .opacity(model.colors.content.for(state))
         }
     }
 }
 
 // MARK: - Preview
-
 struct VWheelPicker_Previews: PreviewProvider {
     @State private static var selectedIndex: Int = 7
-
+    
     private static var rowTitles: [String] {
         [
             "January", "February", "March",
             "April", "May", "June",
             "July", "August", "September",
-            "October", "November", "December",
+            "October", "November", "December"
         ]
     }
 
@@ -253,6 +245,6 @@ struct VWheelPicker_Previews: PreviewProvider {
             footerTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             rowTitles: rowTitles
         )
-        .padding(20)
+            .padding(20)
     }
 }

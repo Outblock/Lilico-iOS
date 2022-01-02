@@ -8,7 +8,6 @@
 import Foundation
 
 // MARK: - V Accordion Layout Type
-
 /// Enum that describes layout type, such as `fixed` or `flexible`.
 ///
 /// There are three posible layouts:

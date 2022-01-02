@@ -8,22 +8,19 @@
 import SwiftUI
 
 // MARK: - V Radio Button State
-
 /// Enum that describes state, such as `off`, `on`, or `disabled`.
 public enum VRadioButtonState: Int, CaseIterable {
     // MARK: Cases
-
     /// Off.
     case off
-
+    
     /// On.
     case on
-
+    
     /// Disabled.
     case disabled
-
+    
     // MARK: Properties
-
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -32,7 +29,7 @@ public enum VRadioButtonState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-
+    
     /// Indicates if state is on.
     public var isOn: Bool {
         switch self {
@@ -41,32 +38,37 @@ public enum VRadioButtonState: Int, CaseIterable {
         case .disabled: return false
         }
     }
+    
+    // MARK: Initializers
+    init(internalState: VRadioButtonInternalState) {
+        switch internalState {
+        case .off, .pressedOff: self = .off
+        case .on, .pressedOn: self = .on
+        case .disabled: self = .disabled
+        }
+    }
 
     // MARK: Next State
-
     /// Goes to the next state.
     public mutating func setNextState() {
         switch self {
         case .off: self = .on
-        case .on: break
+        case .on: self = .on
         case .disabled: break
         }
     }
 }
 
 // MARK: - V Radio Button Internal State
-
 enum VRadioButtonInternalState {
     // MARK: Cases
-
     case off
     case on
     case pressedOff
     case pressedOn
     case disabled
-
+    
     // MARK: Properties
-
     var isEnabled: Bool {
         switch self {
         case .off: return true
@@ -76,9 +78,8 @@ enum VRadioButtonInternalState {
         case .disabled: return false
         }
     }
-
+    
     // MARK: Initializers
-
     init(state: VRadioButtonState, isPressed: Bool) {
         switch (state, isPressed) {
         case (.off, false): self = .off
@@ -88,7 +89,7 @@ enum VRadioButtonInternalState {
         case (.disabled, _): self = .disabled
         }
     }
-
+    
     init(bool state: Bool, isPressed: Bool) {
         switch (state, isPressed) {
         case (false, false): self = .off
@@ -97,17 +98,29 @@ enum VRadioButtonInternalState {
         case (true, true): self = .pressedOn
         }
     }
+    
+    static func `default`(state: VRadioButtonState) -> Self {
+        .init(state: state, isPressed: false)
+    }
+    
+    // MARK: Next State
+    mutating func setNextState() {
+        switch self {
+        case .off, .pressedOff: self = .on
+        case .on, .pressedOn: self = .on
+        case .disabled: break
+        }
+    }
 }
 
 // MARK: - Mapping
-
 extension StateColors_OOD {
     func `for`(_ state: VRadioButtonInternalState) -> Color {
         switch state {
         case .off: return off
         case .on: return on
-        case .pressedOff: return off
-        case .pressedOn: return on
+        case .pressedOff: return pressedOff
+        case .pressedOn: return pressedOn
         case .disabled: return disabled
         }
     }
@@ -126,10 +139,9 @@ extension StateOpacities_PD {
 }
 
 // MARK: - Helpers
-
-public extension Binding where Value == VRadioButtonState {
+extension Binding where Value == VRadioButtonState {
     /// Initializes state with bool.
-    init(bool: Binding<Bool>) {
+    public init(bool: Binding<Bool>) {
         self.init(
             get: { bool.wrappedValue ? .on : .off },
             set: { bool.wrappedValue = $0.isOn }

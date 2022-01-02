@@ -8,9 +8,8 @@
 import Foundation
 
 // MARK: - Enumerated Array
-
 extension Collection {
-    func enumeratedArray() -> [(offset: Int, element: Self.Element)] {
-        .init(enumerated())
+    func enumeratedArray() -> Array<(offset: Int, element: Self.Element)> {
+        .init(self.enumerated())
     }
 }

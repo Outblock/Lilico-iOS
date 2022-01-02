@@ -8,10 +8,9 @@
 import SwiftUI
 
 // MARK: - Custom View Frames
-
-public extension View {
+extension View {
     /// Positions this view within an invisible frame with the specified dimension.
-    func frame(
+    public func frame(
         dimension: CGFloat,
         alignment: Alignment = .center
     ) -> some View {
@@ -20,9 +19,9 @@ public extension View {
             alignment: alignment
         )
     }
-
+    
     /// Positions this view within an invisible frame with the specified size.
-    func frame(
+    public func frame(
         size: CGSize,
         alignment: Alignment = .center
     ) -> some View {
@@ -32,9 +31,9 @@ public extension View {
             alignment: alignment
         )
     }
-
+    
     /// Positions this view within an invisible frame with the specified size configuration.
-    func frame(
+    public func frame(
         size: SizeConfiguration,
         alignment: Alignment = .center
     ) -> some View {
@@ -42,33 +41,30 @@ public extension View {
             minWidth: size.min.width,
             idealWidth: size.ideal.width,
             maxWidth: size.max.width,
-
+            
             minHeight: size.min.height,
             idealHeight: size.ideal.height,
             maxHeight: size.max.height,
-
+            
             alignment: alignment
         )
     }
 }
 
 // MARK: - Size Configuration
-
 /// Object containing minimum, ideal, and maximum size configurations.
 public struct SizeConfiguration {
     // MARK: Properties
-
     /// Minimum size.
     public var min: CGSize
-
+    
     /// Ideal size.
     public var ideal: CGSize
-
+    
     /// Maximum size.
     public var max: CGSize
-
+    
     // MARK: Initializers
-
     /// Initializes `SizeConfiguration`.
     public init(min: CGSize, ideal: CGSize, max: CGSize) {
         self.min = min

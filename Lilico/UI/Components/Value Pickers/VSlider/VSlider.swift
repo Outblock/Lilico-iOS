@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Slider
-
 /// Value picker component that selects value from a bounded linear range of values.
 ///
 /// Model, range, step, state, and onChange callback can be passed as parameters.
@@ -24,67 +23,64 @@ import SwiftUI
 ///
 public struct VSlider: View {
     // MARK: Properties
-
     private let model: VSliderModel
-
+    
     private let min, max: Double
-    private var range: ClosedRange<Double> { min ... max }
+    private var range: ClosedRange<Double> { min...max }
     private let step: Double?
-
+    
     private let state: VSliderState
-
+    
     @Binding private var value: Double
     @State private var animatableValue: Double?
-
+    
     private let action: ((Bool) -> Void)?
-
+    
     // MARK: Initializers
-
     /// Initializes component with value.
     public init<V>(
         model: VSliderModel = .init(),
-        range: ClosedRange<V> = 0 ... 1,
+        range: ClosedRange<V> = 0...1,
         step: V? = nil,
         state: VSliderState = .enabled,
         value: Binding<V>,
         onChange action: ((Bool) -> Void)? = nil
     )
         where
-        V: BinaryFloatingPoint,
-        V.Stride: BinaryFloatingPoint
+            V: BinaryFloatingPoint,
+            V.Stride: BinaryFloatingPoint
     {
         self.model = model
         self.min = .init(range.lowerBound)
         self.max = .init(range.upperBound)
         self.step = step.let { .init($0) }
         self.state = state
-        _value = .init(from: value, range: range, step: step)
+        self._value = .init(from: value, range: range, step: step)
         self.action = action
     }
 
     // MARK: Body
-
     public var body: some View {
-        setStatesFromBodyRender()
-
+        syncInternalStateWithState()
+        
         return GeometryReader(content: { proxy in
             ZStack(alignment: .leading, content: {
                 track
                 progress(in: proxy)
             })
-            .mask(RoundedRectangle(cornerRadius: model.layout.cornerRadius))
-
-            .overlay(thumb(in: proxy))
-
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged { dragChanged(drag: $0, in: proxy) }
-                    .onEnded(dragEnded)
-            )
-            .disabled(!state.isEnabled)
+                .mask(RoundedRectangle(cornerRadius: model.layout.cornerRadius))
+            
+                .overlay(thumb(in: proxy))
+            
+                .gesture(
+                    DragGesture(minimumDistance: 0)
+                        .onChanged({ dragChanged(drag: $0, in: proxy) })
+                        .onEnded(dragEnded)
+                )
+                .disabled(!state.isEnabled)
         })
-        .frame(height: model.layout.height)
-        .padding(.horizontal, model.layout.thumbDimension / 2)
+            .frame(height: model.layout.height)
+            .padding(.horizontal, model.layout.thumbDimension / 2)
     }
 
     private var track: some View {
@@ -98,7 +94,7 @@ public struct VSlider: View {
 
             .foregroundColor(model.colors.progress.for(state))
     }
-
+    
     @ViewBuilder private func thumb(in proxy: GeometryProxy) -> some View {
         if model.layout.hasThumb {
             Group(content: {
@@ -106,28 +102,28 @@ public struct VSlider: View {
                     RoundedRectangle(cornerRadius: model.layout.thumbCornerRadius)
                         .foregroundColor(model.colors.thumb.for(state))
                         .shadow(color: model.colors.thumbShadow.for(state), radius: model.layout.thumbShadowRadius)
-
+                    
                     RoundedRectangle(cornerRadius: model.layout.thumbCornerRadius)
                         .strokeBorder(model.colors.thumbBorder.for(state), lineWidth: model.layout.thumbBorderWidth)
                 })
-                .frame(dimension: model.layout.thumbDimension)
-                .offset(x: thumbOffset(in: proxy))
+                    .frame(dimension: model.layout.thumbDimension)
+                    .offset(x: thumbOffset(in: proxy))
             })
-            .frame(maxWidth: .infinity, alignment: .leading) // Must be put into group, as content already has frame
-            .allowsHitTesting(false)
+                .frame(maxWidth: .infinity, alignment: .leading)    // Must be put into group, as content already has frame
+                .allowsHitTesting(false)
         }
     }
 
-    // MARK: State Sets
-
-    private func setStatesFromBodyRender() {
-        DispatchQueue.main.async {
-            setAnimatableValue()
-        }
+    // MARK: State Syncs
+    private func syncInternalStateWithState() {
+        DispatchQueue.main.async(execute: {
+            if animatableValue == nil || animatableValue != value {
+                withAnimation(model.animations.progress, { animatableValue = value })
+            }
+        })
     }
 
     // MARK: Drag
-
     private func dragChanged(drag: DragGesture.Value, in proxy: GeometryProxy) {
         let rawValue: Double = {
             let value: Double = .init(drag.location.x)
@@ -136,35 +132,27 @@ public struct VSlider: View {
 
             return (value / width) * range + min
         }()
-
+        
         let valueFixed: Double = rawValue.fixedInRange(min: min, max: max, step: step)
-
+        
         setValue(to: valueFixed)
-
+        
         action?(true)
     }
-
-    private func dragEnded(drag _: DragGesture.Value) {
+    
+    private func dragEnded(drag: DragGesture.Value) {
         action?(false)
     }
 
     // MARK: Actions
-
     private func setValue(to value: Double) {
-        withAnimation(model.animations.progress) { animatableValue = value }
+        withAnimation(model.animations.progress, { animatableValue = value })
         self.value = value
     }
 
-    private func setAnimatableValue() {
-        if animatableValue == nil || animatableValue != value {
-            withAnimation(model.animations.progress) { animatableValue = value }
-        }
-    }
-
     // MARK: Progress
-
     private func progressWidth(in proxy: GeometryProxy) -> CGFloat {
-        let value: CGFloat = .init((animatableValue ?? value) - min)
+        let value: CGFloat = .init((animatableValue ?? self.value) - min)
         let range: CGFloat = .init(max - min)
         let width: CGFloat = proxy.size.width
 
@@ -172,18 +160,16 @@ public struct VSlider: View {
     }
 
     // MARK: Thumb Offset
-
     private func thumbOffset(in proxy: GeometryProxy) -> CGFloat {
         let progressW: CGFloat = progressWidth(in: proxy)
         let thumbW: CGFloat = model.layout.thumbDimension
         let offset: CGFloat = progressW - thumbW / 2
-
+        
         return offset
     }
 }
 
 // MARK: - Preview
-
 struct VSlider_Previews: PreviewProvider {
     @State private static var value: Double = 0.5
 

@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Web Link
-
 /// Button component that controls a navigation presentation to an URL.
 ///
 /// Component can be initialized with content or title.
@@ -29,16 +28,14 @@ import SwiftUI
 ///
 public struct VWebLink<Content>: View where Content: View {
     // MARK: Properties
-
     @Environment(\.openURL) private var openURLAction: OpenURLAction
-
+    
     private let linkButtonType: VWebLinkType
     private let state: VWebLinkState
     private let url: URL?
     private let content: () -> Content
-
+    
     // MARK: Initializers - Preset
-
     /// Initializes component with preset, url and content.
     public init(
         preset linkPreset: VWebLinkPreset,
@@ -46,12 +43,12 @@ public struct VWebLink<Content>: View where Content: View {
         url: URL?,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        linkButtonType = linkPreset.buttonType
+        self.linkButtonType = linkPreset.buttonType
         self.state = state
         self.url = url
         self.content = content
     }
-
+    
     /// Initializes component with preset, url and title.
     public init(
         preset linkPreset: VWebLinkPreset,
@@ -68,23 +65,21 @@ public struct VWebLink<Content>: View where Content: View {
             content: { linkPreset.text(from: title, isEnabled: state.isEnabled) }
         )
     }
-
+    
     // MARK: Initializers - Custom
-
     /// Initializes component with url and content.
     public init(
         state: VWebLinkState = .enabled,
         url: URL?,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        linkButtonType = .custom
+        self.linkButtonType = .custom
         self.state = state
         self.url = url
         self.content = content
     }
 
     // MARK: Body
-
     public var body: some View {
         VWebLinkType.webLinkButton(
             buttonType: linkButtonType,
@@ -95,7 +90,6 @@ public struct VWebLink<Content>: View where Content: View {
     }
 
     // MARK: Actions
-
     private func openURL() {
         guard let url = url else { return }
         openURLAction(url)
@@ -103,7 +97,6 @@ public struct VWebLink<Content>: View where Content: View {
 }
 
 // MARK: - Preview
-
 struct VWebLink_Previews: PreviewProvider {
     static var previews: some View {
         VWebLink(

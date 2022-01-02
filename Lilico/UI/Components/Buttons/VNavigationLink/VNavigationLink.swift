@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Navigation Link
-
 /// Button component that controls a navigation presentation.
 ///
 /// Component can be initialized with content or title.
@@ -84,15 +83,14 @@ import SwiftUI
 ///
 public struct VNavigationLink<Destination, Content>: View
     where
-    Destination: View,
-    Content: View
+        Destination: View,
+        Content: View
 {
     // MARK: Properties
-
     private let navLinkButtonType: VNavigationLinkType
-
+    
     private let state: VNavigationLinkState
-
+    
     @State private var isActiveInternally: Bool = false
     @Binding private var isActiveExternally: Bool
     private let stateManagament: ComponentStateManagement
@@ -112,12 +110,11 @@ public struct VNavigationLink<Destination, Content>: View
             }
         )
     }
-
+    
     private let destination: Destination
     private let content: () -> Content
-
+    
     // MARK: Initializers - Preset and Tap
-
     /// Initiales component with preset, destination and content.
     public init(
         preset navLinkPreset: VNavigationLinkPreset,
@@ -125,14 +122,14 @@ public struct VNavigationLink<Destination, Content>: View
         destination: Destination,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        navLinkButtonType = navLinkPreset.buttonType
+        self.navLinkButtonType = navLinkPreset.buttonType
         self.state = state
-        _isActiveExternally = .constant(false)
-        stateManagament = .internal
+        self._isActiveExternally = .constant(false)
+        self.stateManagament = .internal
         self.destination = destination
         self.content = content
     }
-
+    
     /// Initiales component with preset, destination and title.
     public init(
         preset navLinkPreset: VNavigationLinkPreset,
@@ -149,9 +146,8 @@ public struct VNavigationLink<Destination, Content>: View
             content: { navLinkPreset.text(from: title, isEnabled: state.isEnabled) }
         )
     }
-
+    
     // MARK: Initializers - Preset and State
-
     /// Initiales component with preset, active state, destination and content.
     public init(
         preset navLinkPreset: VNavigationLinkPreset,
@@ -160,14 +156,14 @@ public struct VNavigationLink<Destination, Content>: View
         destination: Destination,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        navLinkButtonType = navLinkPreset.buttonType
+        self.navLinkButtonType = navLinkPreset.buttonType
         self.state = state
-        _isActiveExternally = isActive
-        stateManagament = .external
+        self._isActiveExternally = isActive
+        self.stateManagament = .external
         self.destination = destination
         self.content = content
     }
-
+    
     /// Initiales component with preset, active state, destination and title.
     public init(
         preset navLinkPreset: VNavigationLinkPreset,
@@ -186,25 +182,23 @@ public struct VNavigationLink<Destination, Content>: View
             content: { navLinkPreset.text(from: title, isEnabled: state.isEnabled) }
         )
     }
-
+    
     // MARK: Initializers - Custom and Tap
-
     /// Initiales component with destination and content.
     public init(
         state: VNavigationLinkState = .enabled,
         destination: Destination,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        navLinkButtonType = .custom
+        self.navLinkButtonType = .custom
         self.state = state
-        _isActiveExternally = .constant(false)
-        stateManagament = .internal
+        self._isActiveExternally = .constant(false)
+        self.stateManagament = .internal
         self.destination = destination
         self.content = content
     }
-
+    
     // MARK: Initializers - Custom and State
-
     /// Initiales component with destination, active state, and content.
     public init(
         state: VNavigationLinkState = .enabled,
@@ -212,16 +206,15 @@ public struct VNavigationLink<Destination, Content>: View
         destination: Destination,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        navLinkButtonType = .custom
+        self.navLinkButtonType = .custom
         self.state = state
-        _isActiveExternally = isActive
-        stateManagament = .external
+        self._isActiveExternally = isActive
+        self.stateManagament = .external
         self.destination = destination
         self.content = content
     }
 
     // MARK: Body
-
     public var body: some View {
         contentView(isActive: isActive)
             .background({
@@ -230,7 +223,7 @@ public struct VNavigationLink<Destination, Content>: View
                     .opacity(0)
             }())
     }
-
+    
     private func contentView(isActive: Binding<Bool>) -> some View {
         VNavigationLinkType.navLinkButton(
             buttonType: navLinkButtonType,
@@ -239,33 +232,32 @@ public struct VNavigationLink<Destination, Content>: View
             content: content
         )
     }
-
+    
     private var destinationView: some View {
         destination.environment(\.vNavigationViewBackButtonHidden, false)
     }
 }
 
 // MARK: - Preview
-
 struct VNavigationLink_Previews: PreviewProvider {
     private static var destination: some View {
         VBaseView(title: "Destination", content: {
             ZStack(content: {
                 ColorBook.canvas.edgesIgnoringSafeArea(.all)
-
+                
                 VSheet()
             })
         })
     }
-
+    
     static var previews: some View {
         VNavigationView(content: {
             VBaseView(title: "Home", content: {
                 ZStack(content: {
                     ColorBook.canvas.edgesIgnoringSafeArea(.all)
-
+                    
                     VSheet()
-
+                    
                     VNavigationLink(
                         preset: .secondary(),
                         destination: destination,

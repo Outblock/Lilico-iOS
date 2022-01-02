@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Modifier
-
 extension View {
     func addNavigationBarSwipeGesture(completion: @escaping () -> Void) -> some View {
         modifier(VBaseViewSwipeGesture(completion: completion))
@@ -16,17 +15,14 @@ extension View {
 }
 
 // MARK: - V Base View Swipe Gesture
-
 struct VBaseViewSwipeGesture: ViewModifier {
     // MARK: Properties
-
     private let completion: () -> Void
-
+    
     private let edgeOffset: CGFloat = 20
     private let distanceToSwipe: CGFloat = 100
-
+    
     // MARK: Initializers
-
     init(
         completion: @escaping () -> Void
     ) {
@@ -34,20 +30,20 @@ struct VBaseViewSwipeGesture: ViewModifier {
     }
 
     // MARK: Body
-
     func body(content: Content) -> some View {
         content
             .gesture(DragGesture()
-                .onEnded { value in
+                .onEnded({ value in
                     guard
                         value.startLocation.x <= edgeOffset,
                         value.translation.width >= distanceToSwipe
                     else {
                         return
+                        
                     }
 
                     completion()
-                }
+                })
             )
     }
 }

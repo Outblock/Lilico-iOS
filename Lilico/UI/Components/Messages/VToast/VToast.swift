@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Toast
-
 /// Message component that present text modally.
 ///
 /// Model can be passed as parameter.
@@ -34,13 +33,11 @@ import SwiftUI
 ///
 public struct VToast {
     // MARK: Properties
-
     fileprivate let model: VToastModel
     fileprivate let toastType: VToastType
     fileprivate let title: String
-
+    
     // MARK: Initializers
-
     /// Initializes component with type and title.
     public init(
         model: VToastModel = .init(),
@@ -54,30 +51,30 @@ public struct VToast {
 }
 
 // MARK: - Extension
-
-public extension View {
+extension View {
     /// Presents `VToast`.
-    func vToast(
+    public func vToast(
         isPresented: Binding<Bool>,
         toast: @escaping () -> VToast
     ) -> some View {
         let toast = toast()
-
-        return overlay(Group(content: {
-            if isPresented.wrappedValue {
-                WindowOverlayView(
-                    allowsHitTesting: false,
-                    isPresented: isPresented,
-                    content:
-                    _VToast(
-                        model: toast.model,
-                        toastType: toast.toastType,
+        
+        return self
+            .overlay(Group(content: {
+                if isPresented.wrappedValue {
+                    WindowOverlayView(
+                        allowsHitTesting: false,
                         isPresented: isPresented,
-                        title: toast.title
+                        content:
+                            _VToast(
+                                model: toast.model,
+                                toastType: toast.toastType,
+                                isPresented: isPresented,
+                                title: toast.title
+                            )
                     )
-                )
-                .allowsHitTesting(false)
-            }
-        }))
+                        .allowsHitTesting(false)
+                }
+            }))
     }
 }

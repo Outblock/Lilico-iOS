@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Half Modal Navigation View Close Button
-
 struct VHalfModalNavigationViewCloseButton: EnvironmentKey {
     static var defaultValue: Bool = false
 }

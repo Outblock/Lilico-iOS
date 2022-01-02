@@ -8,8 +8,7 @@
 import SwiftUI
 
 // MARK: - Extension
-
-public extension View {
+extension View {
     /// Allows for navigation without an explicit `VNavigationLink`.
     ///
     /// Usage example:
@@ -44,20 +43,21 @@ public extension View {
     ///         })
     ///     }
     ///
-    @ViewBuilder func vNavigationLink<Destination>(
+    @ViewBuilder public func vNavigationLink<Destination>(
         isActive: Binding<Bool>,
         destination: Destination
     ) -> some View
         where Destination: View
     {
-        background(
-            VNavigationLink(
-                isActive: isActive,
-                destination: destination,
-                content: { EmptyView() }
+        self
+            .background(
+                VNavigationLink(
+                    isActive: isActive,
+                    destination: destination,
+                    content: { EmptyView() }
+                )
+                    .allowsHitTesting(false)
+                    .opacity(0)
             )
-            .allowsHitTesting(false)
-            .opacity(0)
-        )
     }
 }

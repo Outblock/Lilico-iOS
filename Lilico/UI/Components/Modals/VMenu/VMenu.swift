@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Menu
-
 /// Modal component that presents menu of actions.
 ///
 /// Preset and state can be passed as parameters.
@@ -37,14 +36,12 @@ import SwiftUI
 ///
 public struct VMenu<Label>: View where Label: View {
     // MARK: Properties
-
     private let menuButtonType: VMenuButtonType
     private let state: VMenuState
     private let rows: [VMenuRow]
     private let label: () -> Label
-
+    
     // MARK: Initializers - Preset
-
     /// Initializes component with preset, rows, and label.
     public init(
         preset menuButtonPreset: VMenuButtonPreset,
@@ -52,12 +49,12 @@ public struct VMenu<Label>: View where Label: View {
         rows: [VMenuRow],
         @ViewBuilder label: @escaping () -> Label
     ) {
-        menuButtonType = menuButtonPreset.buttonType
+        self.menuButtonType = menuButtonPreset.buttonType
         self.state = state
         self.rows = rows
         self.label = label
     }
-
+    
     /// Initializes component with preset, rows, and title.
     public init(
         preset menuButtonPreset: VMenuButtonPreset,
@@ -74,32 +71,30 @@ public struct VMenu<Label>: View where Label: View {
             label: { menuButtonPreset.text(from: title, isEnabled: state.isEnabled) }
         )
     }
-
+    
     // MARK: Initializers - Custom
-
     /// Initializes component with rows and label.
     public init(
         state: VMenuState = .enabled,
         rows: [VMenuRow],
         @ViewBuilder label: @escaping () -> Label
     ) {
-        menuButtonType = .custom
+        self.menuButtonType = .custom
         self.state = state
         self.rows = rows
         self.label = label
     }
 
     // MARK: Body
-
     public var body: some View {
         Menu(content: contentView, label: labelView)
-            .allowsHitTesting(state.isEnabled) // Adding this on label has no effect
+            .allowsHitTesting(state.isEnabled)  // Adding this on label has no effect
     }
-
+    
     private func contentView() -> some View {
         VMenuSubMenu(rows: rows)
     }
-
+    
     @ViewBuilder private func labelView() -> some View {
         VMenuButtonType.menuButton(
             buttonType: menuButtonType,
@@ -110,7 +105,6 @@ public struct VMenu<Label>: View where Label: View {
 }
 
 // MARK: - Preview
-
 struct VMenu_Previews: PreviewProvider {
     static var previews: some View {
         VMenu(
@@ -127,8 +121,8 @@ struct VMenu_Previews: PreviewProvider {
                     .menu(title: "Four...", rows: [
                         .titled(action: {}, title: "One"),
                         .titled(action: {}, title: "Two"),
-                    ]),
-                ]),
+                    ])
+                ])
             ],
             title: "Lorem ipsum"
         )

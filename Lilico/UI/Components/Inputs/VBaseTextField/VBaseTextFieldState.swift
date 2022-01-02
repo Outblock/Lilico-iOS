@@ -8,22 +8,19 @@
 import SwiftUI
 
 // MARK: - V Base Text Field State
-
 /// Enum that describes state, such as `enabled`, `focused`, or `disabled`.
 public enum VBaseTextFieldState: Int, CaseIterable {
     // MARK: Cases
-
     /// Case enabled.
     case enabled
-
+    
     /// Case focused.
     case focused
-
+    
     /// Case disabled.
     case disabled
-
+    
     // MARK: Properties
-
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -32,7 +29,7 @@ public enum VBaseTextFieldState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-
+    
     var isFocused: Bool {
         switch self {
         case .enabled: return false
@@ -42,7 +39,6 @@ public enum VBaseTextFieldState: Int, CaseIterable {
     }
 
     // MARK: Next State
-
     mutating func setFocus(from state: Bool) {
         switch state {
         case false: self = .enabled
@@ -52,7 +48,6 @@ public enum VBaseTextFieldState: Int, CaseIterable {
 }
 
 // MARK: - Mapping
-
 extension StateColorsAndOpacities_EP_D {
     func `for`(_ state: VBaseTextFieldState) -> Color {
         switch state {
@@ -61,7 +56,7 @@ extension StateColorsAndOpacities_EP_D {
         case .disabled: return disabled
         }
     }
-
+    
     func `for`(_ state: VBaseTextFieldState) -> Double {
         switch state {
         case .enabled: return 1

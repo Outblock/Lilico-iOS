@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Modifier
-
 extension View {
     func setUpBaseViewNavigationBarCenter<LeadingItem, Title, TrailingItem>(
         model: VBaseViewModel,
@@ -19,9 +18,9 @@ extension View {
         onBack backAction: @escaping () -> Void
     ) -> some View
         where
-        LeadingItem: View,
-        Title: View,
-        TrailingItem: View
+            LeadingItem: View,
+            Title: View,
+            TrailingItem: View
     {
         modifier(VBaseViewNavigationBarCenter(
             model: model,
@@ -35,19 +34,17 @@ extension View {
 }
 
 // MARK: - V Base View Navigation Bar Center
-
 struct VBaseViewNavigationBarCenter<TrailingItem, Title, LeadingItem>: ViewModifier
     where
-    LeadingItem: View,
-    Title: View,
-    TrailingItem: View
+        LeadingItem: View,
+        Title: View,
+        TrailingItem: View
 {
     // MARK: Properties
-
     @Environment(\.vHalfModalNavigationViewCloseButton) private var vHalfModalNavigationViewCloseButton: Bool
-
+    
     private let model: VBaseViewModel
-
+    
     private let titleContent: () -> Title
     private let leadingItemContent: (() -> LeadingItem)?
     private let trailingItemContent: (() -> TrailingItem)?
@@ -61,9 +58,8 @@ struct VBaseViewNavigationBarCenter<TrailingItem, Title, LeadingItem>: ViewModif
         let max: CGFloat? = [leadingWidth, trailingWidth].max()
         return max != .zero ? max : nil
     }
-
+    
     // MARK: Initializers
-
     init(
         model: VBaseViewModel,
         @ViewBuilder titleContent: @escaping () -> Title,
@@ -81,7 +77,6 @@ struct VBaseViewNavigationBarCenter<TrailingItem, Title, LeadingItem>: ViewModif
     }
 
     // MARK: Body
-
     func body(content: Content) -> some View {
         content
             .toolbar(content: { ToolbarItem(placement: .principal, content: { items }) })
@@ -94,9 +89,9 @@ struct VBaseViewNavigationBarCenter<TrailingItem, Title, LeadingItem>: ViewModif
 
                 if showBackButton { VChevronButton(model: model.backButtonSubModel, direction: .left, action: backAction) }
             })
-            .frame(minWidth: leadingTrailingWidth, alignment: .leading)
-            .layoutPriority(1)
-            .readSize(onChange: { leadingWidth = $0.width })
+                .frame(minWidth: leadingTrailingWidth, alignment: .leading)
+                .layoutPriority(1)
+                .readSize(onChange: { leadingWidth = $0.width })
 
             Spacer()
 
@@ -109,12 +104,12 @@ struct VBaseViewNavigationBarCenter<TrailingItem, Title, LeadingItem>: ViewModif
             HStack(spacing: model.layout.navBarSpacing, content: {
                 if let trailingItemContent = trailingItemContent { trailingItemContent() }
             })
-            .frame(minWidth: leadingTrailingWidth, alignment: .trailing)
-            .layoutPriority(1)
-            .readSize(onChange: { trailingWidth = $0.width })
+                .frame(minWidth: leadingTrailingWidth, alignment: .trailing)
+                .layoutPriority(1)
+                .readSize(onChange: { trailingWidth = $0.width })
         })
-        .lineLimit(1)
-        .padding(.trailing, vHalfModalNavigationViewCloseButton ? VHalfModalModel.Layout.navBarTrailingItemMarginTrailing : 0)
-        .frame(width: model.layout.width)
+            .lineLimit(1)
+            .padding(.trailing, vHalfModalNavigationViewCloseButton ? VHalfModalModel.Layout.navBarTrailingItemMarginTrailing : 0)
+            .frame(width: model.layout.width)
     }
 }

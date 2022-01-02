@@ -8,7 +8,6 @@
 import Foundation
 
 // MARK: - V Section List Layout Type
-
 /// Enum that describes layout, such as fixed or flexible.
 ///
 /// There are three posible layouts:

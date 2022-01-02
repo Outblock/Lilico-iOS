@@ -7,28 +7,27 @@
 
 import SwiftUI
 
-// MARK: - V Toggle State
 
+
+// MARK: - V Toggle State
 /// Enum that describes state, such as `off`, `on`, `indeterminate`, or `disabled`.
 public enum VCheckBoxState: Int, CaseIterable {
     // MARK: Cases
-
     /// Of.
     case off
-
+    
     /// On.
     case on
-
+    
     /// indeterminate.
     ///
     /// Upon press, component goes to `on` state.
     case indeterminate
-
+    
     /// Disabled.
     case disabled
-
+    
     // MARK: Properties
-
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -38,7 +37,7 @@ public enum VCheckBoxState: Int, CaseIterable {
         case .disabled: return false
         }
     }
-
+    
     /// Indicates if state is on.
     public var isOn: Bool {
         switch self {
@@ -48,9 +47,18 @@ public enum VCheckBoxState: Int, CaseIterable {
         case .disabled: return false
         }
     }
+    
+    // MARK: Initializers
+    init(internalState: VCheckBoxInternalState) {
+        switch internalState {
+        case .off, .pressedOff: self = .off
+        case .on, .pressedOn: self = .on
+        case .indeterminate, .pressedIndeterminate: self = .indeterminate
+        case .disabled: self = .disabled
+        }
+    }
 
     // MARK: Next State
-
     /// Goes to the next state.
     public mutating func setNextState() {
         switch self {
@@ -63,10 +71,8 @@ public enum VCheckBoxState: Int, CaseIterable {
 }
 
 // MARK: - V Checkbox Internal State
-
 enum VCheckBoxInternalState {
     // MARK: Cases
-
     case off
     case on
     case indeterminate
@@ -74,9 +80,8 @@ enum VCheckBoxInternalState {
     case pressedOn
     case pressedIndeterminate
     case disabled
-
+    
     // MARK: Properties
-
     var isEnabled: Bool {
         switch self {
         case .off: return true
@@ -88,9 +93,8 @@ enum VCheckBoxInternalState {
         case .disabled: return false
         }
     }
-
+    
     // MARK: Initializers
-
     init(state: VCheckBoxState, isPressed: Bool) {
         switch (state, isPressed) {
         case (.off, false): self = .off
@@ -102,7 +106,7 @@ enum VCheckBoxInternalState {
         case (.disabled, _): self = .disabled
         }
     }
-
+    
     init(bool state: Bool, isPressed: Bool) {
         switch (state, isPressed) {
         case (false, false): self = .off
@@ -111,19 +115,32 @@ enum VCheckBoxInternalState {
         case (true, true): self = .pressedOn
         }
     }
+    
+    static func `default`(state: VCheckBoxState) -> Self {
+        .init(state: state, isPressed: false)
+    }
+    
+    // MARK: Next State
+    mutating func setNextState() {
+        switch self {
+        case .off, .pressedOff: self = .on
+        case .on, .pressedOn: self = .off
+        case .indeterminate, .pressedIndeterminate: self = .on
+        case .disabled: break
+        }
+    }
 }
 
 // MARK: - Mapping
-
 extension StateColors_OOID {
     func `for`(_ state: VCheckBoxInternalState) -> Color {
         switch state {
         case .off: return off
         case .on: return on
         case .indeterminate: return indeterminate
-        case .pressedOff: return off
-        case .pressedOn: return on
-        case .pressedIndeterminate: return indeterminate
+        case .pressedOff: return pressedOff
+        case .pressedOn: return pressedOn
+        case .pressedIndeterminate: return pressedIndeterminate
         case .disabled: return disabled
         }
     }
@@ -144,10 +161,9 @@ extension StateOpacities_PD {
 }
 
 // MARK: - Helpers
-
-public extension Binding where Value == VCheckBoxState {
+extension Binding where Value == VCheckBoxState {
     /// Initializes state with bool.
-    init(bool: Binding<Bool>) {
+    public init(bool: Binding<Bool>) {
         self.init(
             get: { bool.wrappedValue ? .on : .off },
             set: { bool.wrappedValue = $0.isOn }

@@ -8,19 +8,16 @@
 import SwiftUI
 
 // MARK: - V Stepper State
-
 /// Enum that describes state, such as `enabled` or `disabled`.
 public enum VStepperState: Int, CaseIterable {
     // MARK: Cases
-
     /// Case enabled.
     case enabled
-
+    
     /// Case disabled.
     case disabled
-
+    
     // MARK: Properties
-
     /// Indicates if state is enabled.
     public var isEnabled: Bool {
         switch self {
@@ -31,18 +28,15 @@ public enum VStepperState: Int, CaseIterable {
 }
 
 // MARK: - V Stepper Button State
-
 enum VStepperButtonState {
     // MARK: Cases
-
     case enabled
     case pressed
     case disabled
-
+    
     // MARK: Initializers
-
     init(isEnabled: Bool, isPressed: Bool) {
-        if isPressed, isEnabled {
+        if isPressed && isEnabled {
             self = .pressed
         } else {
             switch isEnabled {
@@ -54,7 +48,6 @@ enum VStepperButtonState {
 }
 
 // MARK: - Mapping
-
 extension StateColors_ED {
     func `for`(_ state: VStepperState) -> Color {
         switch state {
@@ -82,7 +75,7 @@ extension StateColorsAndOpacities_EPD_PD {
         case .disabled: return disabled
         }
     }
-
+    
     func `for`(_ state: VStepperButtonState) -> Double {
         switch state {
         case .enabled: return 1

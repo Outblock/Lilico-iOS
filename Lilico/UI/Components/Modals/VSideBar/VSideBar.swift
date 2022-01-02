@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Side Bar
-
 /// Modal component that draws a from left side with background, hosts content, and is present when condition is true.
 ///
 /// Model can be passed as parameter.
@@ -33,12 +32,10 @@ import SwiftUI
 ///
 public struct VSideBar<Content> where Content: View {
     // MARK: Properties
-
     fileprivate let model: VSideBarModel
     fileprivate let content: () -> Content
-
+    
     // MARK: Initializers
-
     /// Initializes component with content.
     public init(
         model: VSideBarModel = .init(),
@@ -50,29 +47,29 @@ public struct VSideBar<Content> where Content: View {
 }
 
 // MARK: - Extension
-
-public extension View {
+extension View {
     /// Presents `VSideBar`.
-    func vSideBar<Content>(
+    public func vSideBar<Content>(
         isPresented: Binding<Bool>,
         sideBar: @escaping () -> VSideBar<Content>
     ) -> some View
         where Content: View
     {
         let sideBar = sideBar()
-
-        return overlay(Group(content: {
-            if isPresented.wrappedValue {
-                WindowOverlayView(
-                    isPresented: isPresented,
-                    content:
-                    _VSideBar(
-                        model: sideBar.model,
+        
+        return self
+            .overlay(Group(content: {
+                if isPresented.wrappedValue {
+                    WindowOverlayView(
                         isPresented: isPresented,
-                        content: sideBar.content
+                        content:
+                            _VSideBar(
+                                model: sideBar.model,
+                                isPresented: isPresented,
+                                content: sideBar.content
+                            )
                     )
-                )
-            }
-        }))
+                }
+            }))
     }
 }

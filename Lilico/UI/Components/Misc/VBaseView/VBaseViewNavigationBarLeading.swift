@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Modifier
-
 extension View {
     func setUpBaseViewNavigationBarLeading<LeadingItem, Title, TrailingItem>(
         model: VBaseViewModel,
@@ -19,9 +18,9 @@ extension View {
         onBack backAction: @escaping () -> Void
     ) -> some View
         where
-        LeadingItem: View,
-        Title: View,
-        TrailingItem: View
+            LeadingItem: View,
+            Title: View,
+            TrailingItem: View
     {
         modifier(VBaseViewNavigationBarLeading(
             model: model,
@@ -35,28 +34,25 @@ extension View {
 }
 
 // MARK: - V Base View Navigation Bar Leading
-
 struct VBaseViewNavigationBarLeading<TrailingItem, Title, LeadingItem>: ViewModifier
     where
-    LeadingItem: View,
-    Title: View,
-    TrailingItem: View
+        LeadingItem: View,
+        Title: View,
+        TrailingItem: View
 {
     // MARK: Properties
-
     @Environment(\.vHalfModalNavigationViewCloseButton) private var vHalfModalNavigationViewCloseButton: Bool
-
+    
     private let model: VBaseViewModel
-
+    
     private let titleContent: () -> Title
     private let leadingItemContent: (() -> LeadingItem)?
     private let trailingItemContent: (() -> TrailingItem)?
-
+    
     private let showBackButton: Bool
     private let backAction: () -> Void
-
+    
     // MARK: Initializers
-
     init(
         model: VBaseViewModel,
         @ViewBuilder titleContent: @escaping () -> Title,
@@ -74,7 +70,6 @@ struct VBaseViewNavigationBarLeading<TrailingItem, Title, LeadingItem>: ViewModi
     }
 
     // MARK: Body
-
     func body(content: Content) -> some View {
         content
             .toolbar(content: { ToolbarItem(placement: .principal, content: { items }) })
@@ -92,8 +87,8 @@ struct VBaseViewNavigationBarLeading<TrailingItem, Title, LeadingItem>: ViewModi
 
             if let trailingItemContent = trailingItemContent { trailingItemContent().layoutPriority(1) }
         })
-        .lineLimit(1)
-        .padding(.trailing, vHalfModalNavigationViewCloseButton ? VHalfModalModel.Layout.navBarTrailingItemMarginTrailing : 0)
-        .frame(width: model.layout.width)
+            .lineLimit(1)
+            .padding(.trailing, vHalfModalNavigationViewCloseButton ? VHalfModalModel.Layout.navBarTrailingItemMarginTrailing : 0)
+            .frame(width: model.layout.width)
     }
 }

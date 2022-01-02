@@ -8,7 +8,6 @@
 import UIKit
 
 // MARK: - Safe Areas
-
 extension UIView {
     static let topSafeAreaHeight: CGFloat =
         UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.safeAreaInsets.top ?? 0

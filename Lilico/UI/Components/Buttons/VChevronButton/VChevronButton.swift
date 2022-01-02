@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - V Chevron Button
-
 /// Circular colored chevron button component that performs action when triggered.
 ///
 /// Model and state can be passed as parameters.
@@ -22,22 +21,20 @@ import SwiftUI
 ///             print("Pressed")
 ///         })
 ///     }
-///
+///     
 public struct VChevronButton: View {
     // MARK: Properties
-
     private let model: VChevronButtonModel
-
+    
     private let direction: VChevronButtonDirection
-
+    
     private let state: VChevronButtonState
-    @State private var isPressed: Bool = false
-    private var internalState: VChevronButtonInternalState { .init(state: state, isPressed: isPressed) }
-
+    @State private var internalStateRaw: VChevronButtonInternalState?
+    private var internalState: VChevronButtonInternalState { internalStateRaw ?? .default(state: state) }
+    
     private let action: () -> Void
-
+    
     // MARK: Initializers
-
     /// Initializes component with direction and action.
     public init(
         model: VChevronButtonModel = .init(),
@@ -52,28 +49,28 @@ public struct VChevronButton: View {
     }
 
     // MARK: Body
-
     public var body: some View {
-        VBaseButton(
+        syncInternalStateWithState()
+        
+        return VBaseButton(
             isEnabled: internalState.isEnabled,
-            action: action,
-            onPress: { isPressed = $0 },
-            content: { hitBox }
+            gesture: gestureHandler,
+            content: { hitBoxButtonView }
         )
     }
-
-    private var hitBox: some View {
+    
+    private var hitBoxButtonView: some View {
         buttonView
             .padding(.horizontal, model.layout.hitBox.horizontal)
             .padding(.vertical, model.layout.hitBox.vertical)
     }
-
+    
     private var buttonView: some View {
         buttonContent
             .frame(dimension: model.layout.dimension)
             .background(backgroundView)
     }
-
+    
     private var buttonContent: some View {
         ImageBook.chevronUp
             .resizable()
@@ -83,17 +80,34 @@ public struct VChevronButton: View {
             .rotationEffect(.init(degrees: direction.angle))
             .ifLet(model.layout.navigationBarBackButtonOffsetX, transform: { $0.offset(x: $1, y: 0) })
     }
-
+    
     private var backgroundView: some View {
         Circle()
             .foregroundColor(model.colors.background.for(internalState))
     }
+    
+    // MARK: State Syncs
+    private func syncInternalStateWithState() {
+        DispatchQueue.main.async(execute: {
+            if
+                internalStateRaw == nil ||
+                .init(internalState: internalState) != state
+            {
+                internalStateRaw = .default(state: state)
+            }
+        })
+    }
+    
+    // MARK: Actions
+    private func gestureHandler(gestureState: VBaseButtonGestureState) {
+        internalStateRaw = .init(state: state, isPressed: gestureState.isPressed)
+        if gestureState.isClicked { action() }
+    }
 }
 
 // MARK: - Rotation
-
-private extension VChevronButtonDirection {
-    var angle: Double {
+extension VChevronButtonDirection {
+    fileprivate var angle: Double {
         switch self {
         case .up: return 0
         case .right: return 90
@@ -104,7 +118,6 @@ private extension VChevronButtonDirection {
 }
 
 // MARK: - Preview
-
 struct VChevronButton_Previews: PreviewProvider {
     static var previews: some View {
         VChevronButton(direction: .right, action: {})
