@@ -128,12 +128,30 @@
         }
       },
       {
+        "package": "GTMSessionFetcher",
+        "repositoryURL": "https://github.com/google/gtm-session-fetcher",
+        "state": {
+          "branch": null,
+          "revision": "bc6a19702ac76ac4e488b68148710eb815f9bc56",
+          "version": "1.7.0"
+        }
+      },
+      {
         "package": "GTMAppAuth",
         "repositoryURL": "https://github.com/google/GTMAppAuth.git",
         "state": {
           "branch": null,
           "revision": "40f4103fb52109032c05599a0c39ad43edbdf80a",
           "version": "1.2.2"
+        }
+      },
+      {
+        "package": "Haneke",
+        "repositoryURL": "https://github.com/Haneke/HanekeSwift",
+        "state": {
+          "branch": "master",
+          "revision": "a2e8e5b9a91eef90138a4f43c9a0044c4e90a6ef",
+          "version": null
         }
       },
       {

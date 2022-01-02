@@ -6,13 +6,12 @@
 //
 
 import Foundation
+import GoogleAPIClientForREST_Drive
+import GoogleAPIClientForRESTCore
 import GoogleSignIn
 import GTMSessionFetcherCore
-import GoogleAPIClientForRESTCore
-import GoogleAPIClientForREST_Drive
 
 class RestoreWalletViewModel {
-    
     func restoreSignIn() {
         GIDSignIn.sharedInstance.restorePreviousSignIn { [weak self] user, error in
             if error != nil || user == nil {
@@ -26,64 +25,60 @@ class RestoreWalletViewModel {
             }
         }
     }
-    
+
     func signInButtonTapped() {
-       // 1
+        // 1
         let signInConfig = GIDConfiguration(clientID: "246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com")
-        
-        
+
         let topVC = UIApplication.shared.topMostViewController!
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: topVC) { [weak self] user, error in
 
-                   guard let self = self else { return }
+            guard let self = self else { return }
 
-           if let error = error {
-               print("SignIn failed, \(error), \(error.localizedDescription)")
-           } else {
-               print("Authenticate successfully")
-               
-               
-               let driveScope = kGTLRAuthScopeDriveAppdata
-               guard let user = user else { return }
+            if let error = error {
+                print("SignIn failed, \(error), \(error.localizedDescription)")
+            } else {
+                print("Authenticate successfully")
 
-               let grantedScopes = user.grantedScopes
-               print("scopes: \(String(describing: grantedScopes))")
+                let driveScope = kGTLRAuthScopeDriveAppdata
+                guard let user = user else { return }
 
-               // 2
-               if grantedScopes == nil || !grantedScopes!.contains(driveScope) {
-                   GIDSignIn.sharedInstance.addScopes([driveScope], presenting: topVC) { [weak self] user, error in
- 
-                                           if let error = error {
-                           print("add scope failed, \(error), \(error.localizedDescription)")
-                       }
+                let grantedScopes = user.grantedScopes
+                print("scopes: \(String(describing: grantedScopes))")
 
-                       guard let user = user else { return }
+                // 2
+                if grantedScopes == nil || !grantedScopes!.contains(driveScope) {
+                    GIDSignIn.sharedInstance.addScopes([driveScope], presenting: topVC) { [weak self] user, error in
 
-                       DispatchQueue.main.async {
-                           print("userDidSignInGoogle")
+                        if let error = error {
+                            print("add scope failed, \(error), \(error.localizedDescription)")
+                        }
+
+                        guard let user = user else { return }
+
+                        DispatchQueue.main.async {
+                            print("userDidSignInGoogle")
 //                           self?.updateScreen()
-                       }
+                        }
 
-                       // Check if the user granted access to the scopes you requested.
-                       if let scopes = user.grantedScopes,
-                           scopes.contains(driveScope) {
-                               print("Scope added")
-                               // 3
-                               self?.createGoogleDriveService(user: user)
-                           }
-                       }
-                   }
-               }
-           }
-   }
+                        // Check if the user granted access to the scopes you requested.
+                        if let scopes = user.grantedScopes,
+                           scopes.contains(driveScope)
+                        {
+                            print("Scope added")
+                            // 3
+                            self?.createGoogleDriveService(user: user)
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-    
     func createGoogleDriveService(user: GIDGoogleUser) {
-        
-        let metadata = GTLRDrive_File.init()
+        let metadata = GTLRDrive_File()
         metadata.name = "[DO_NOT_DELETE]_Lilico_app_backup_v1_lmcmz"
-        
-        
+
         // 1. set service type to GoogleDrive
         let service = GTLRDriveService()
         service.authorizer = user.authentication.fetcherAuthorizer()
@@ -109,56 +104,53 @@ class RestoreWalletViewModel {
 //            self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
+
     func uploadFile(service: GTLRDriveService, name: String,
-                    data: Data,mimeType: String = "application/vnd.google-apps.document") {
+                    data: Data, mimeType: String = "application/vnd.google-apps.document")
+    {
         let file = GTLRDrive_File()
         file.name = name
 //        file.parents = [folderID]
-        
+
         let uploadParameters = GTLRUploadParameters(data: data, mimeType: mimeType)
         let query = GTLRDriveQuery_FilesCreate.query(withObject: file, uploadParameters: uploadParameters)
-        
-        service.uploadProgressBlock = { _, totalBytesUploaded, totalBytesExpectedToUpload in
+
+        service.uploadProgressBlock = { _, _, _ in
             // This block is called multiple times during upload and can
             // be used to update a progress indicator visible to the user.
         }
-        
-        service.executeQuery(query) { (_, result, error) in
+
+        service.executeQuery(query) { _, _, error in
             guard error == nil else {
                 fatalError(error!.localizedDescription)
             }
-            
         }
     }
-    
 }
 
-
 extension UIApplication {
-  var currentKeyWindow: UIWindow? {
-    UIApplication.shared.connectedScenes
-      .filter { $0.activationState == .foregroundActive }
-      .map { $0 as? UIWindowScene }
-      .compactMap { $0 }
-      .first?.windows
-      .filter { $0.isKeyWindow }
-      .first
-  }
+    var currentKeyWindow: UIWindow? {
+        UIApplication.shared.connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .map { $0 as? UIWindowScene }
+            .compactMap { $0 }
+            .first?.windows
+            .filter { $0.isKeyWindow }
+            .first
+    }
 
-  var rootViewController: UIViewController? {
-    currentKeyWindow?.rootViewController
-  }
+    var rootViewController: UIViewController? {
+        currentKeyWindow?.rootViewController
+    }
 
-  var topMostViewController: UIViewController? {
-      guard var topController = rootViewController else {
-          return nil
-      }
-      
-      while let presentedViewController = topController.presentedViewController {
-          topController = presentedViewController
-      }
-      return topController
-  }
-    
+    var topMostViewController: UIViewController? {
+        guard var topController = rootViewController else {
+            return nil
+        }
+
+        while let presentedViewController = topController.presentedViewController {
+            topController = presentedViewController
+        }
+        return topController
+    }
 }

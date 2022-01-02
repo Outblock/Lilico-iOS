@@ -11,51 +11,51 @@ import SwiftUIX
 struct OnboardingView: View {
     @State var offset: CGFloat = 0
     @State var gotoWallet: String? = ""
-    
+
     @StateObject
     var viewModel: AnyViewModel<OnboardingState, OnboardingAction>
-    
+
     // offset for indicator...
     var indicatorOffset: CGFloat {
         let progress = offset / screenWidth
         let maxWidth: CGFloat = 12 + 7
         return progress * maxWidth
     }
-    
-    var currentIndex:Int {
+
+    var currentIndex: Int {
         let progress = round(offset / screenWidth)
         // For Saftey...
         let index = min(Int(progress), viewModel.intros.count - 1)
         return index
     }
-    
+
     var rotation: Double {
         let progress = offset / (screenWidth * 4)
         let rotation = Double(progress) * 360
         return rotation
     }
-    
+
     @Environment(\.presentationMode)
     private var presentationMode
-        
+
     var body: some View {
         ZStack {
             VStack {
                 OffsetPageTabView(offset: $offset) {
                     HStack(spacing: 0) {
                         ForEach(viewModel.intros) { intro in
-                            
+
                             VStack {
                                 Image(intro.image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(height: screenHeight / 2)
-                                
+
                                 VStack(alignment: .leading, spacing: 22) {
                                     Text(intro.title)
                                         .foregroundColor(.primary)
                                         .font(.largeTitle.bold())
-                                    
+
                                     Text(intro.description)
                                         .fontWeight(.semibold)
                                         .foregroundColor(.secondary)
@@ -70,26 +70,25 @@ struct OnboardingView: View {
                         }
                     }
                 }
-                
+
                 // Animated Indicator....
                 HStack {
                     // Indicators...
                     PageIndictor(indicatorOffset: indicatorOffset,
                                  currentIndex: currentIndex,
                                  count: viewModel.intros.count)
-                    
+
                     Spacer()
                     Button {
-                        
                         // last page
-                        if currentIndex == (viewModel.intros.count-1) {
+                        if currentIndex == (viewModel.intros.count - 1) {
                             viewModel.trigger(.finish)
                         }
-                        
+
                         // updating offset...
                         let index = min(currentIndex + 1, viewModel.intros.count - 1)
                         offset = CGFloat(index) * screenWidth
-                        
+
                     } label: {
                         Image(systemName: "arrow.right")
                             .font(.title2.bold())
@@ -108,27 +107,27 @@ struct OnboardingView: View {
             .background(
                 RoundedRectangle(cornerRadius: 50)
                     .fill(viewModel.intros[currentIndex].rectColor)
-                // Size as image size...
+                    // Size as image size...
                     .frame(width: screenWidth * 0.8,
                            height: screenWidth * 0.9)
                     .scaleEffect(2)
                     .rotationEffect(.init(degrees: 25))
                     .rotationEffect(.init(degrees: rotation))
                     .offset(y: -screenWidth + 20),
-                
+
                 alignment: .leading
             )
             .background(Color.LL.background.edgesIgnoringSafeArea(.all))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             // Animating when index Changes...
             .animation(.easeInOut, value: currentIndex)
-         
+
             SmallButton(text: "Skip") {
                 viewModel.trigger(.skip)
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
         .hiddenNavigationBarStyle()
-        }
+    }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
@@ -142,7 +141,7 @@ struct OnboardingView_Previews: PreviewProvider {
 struct SmallButton: View {
     let text: String
     var action: () -> Void
-    
+
     var body: some View {
         Button {
             action()

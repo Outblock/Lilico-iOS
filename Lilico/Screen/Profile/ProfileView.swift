@@ -13,22 +13,21 @@ struct Address: Identifiable, Decodable {
 }
 
 struct ProfileView: View {
-    
     @State var isPinned = false
     @State var isDeleted = false
-    
+
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("isLogged") var isLogged = false
     @AppStorage("isLiteMode") var isLiteMode = true
-    @State var address: Address = Address(id: 1, country: "Canada")
-    
+    @State var address = Address(id: 1, country: "Canada")
+
     var body: some View {
         NavigationView {
             List {
                 Section {
                     profile
                 }
-                
+
                 Section {
                     NavigationLink {} label: {
 //                        Label("Keys", systemImage: "key")
@@ -38,7 +37,7 @@ struct ProfileView: View {
                                 .sizeToFit()
                         }
                     }
-                    
+
                     NavigationLink {} label: {
                         Label("Network") {
                             Image("network")
@@ -46,7 +45,7 @@ struct ProfileView: View {
                                 .sizeToFit()
                         }
                     }
-                    
+
                     NavigationLink {} label: {
                         Label("Cloud") {
                             Image("cloud-security")
@@ -56,15 +55,15 @@ struct ProfileView: View {
                     }
                 }
                 .listRowSeparator(.automatic)
-                
+
                 Section {
                     Toggle(isOn: $isLiteMode) {
                         Label("Face ID", systemImage: "faceid")
                     }
                 }
-                
+
                 linksSection
-                
+
 //                updatesSection
 //                Button {} label: {
 //                    Text("Sign out")
@@ -89,7 +88,7 @@ struct ProfileView: View {
 //            }
         }
     }
-    
+
     var linksSection: some View {
         Section {
             if !isDeleted {
@@ -127,7 +126,7 @@ struct ProfileView: View {
                     .tint(.red)
                 }
             }
-            
+
 //            Link(destination: URL(string: "https://designcode.io")!) {
 //                HStack {
 //                    Label("YouTube", systemImage: "tv")
@@ -140,7 +139,7 @@ struct ProfileView: View {
         }
         .listRowSeparator(.automatic)
     }
-    
+
     var profile: some View {
         VStack {
             Image("safe-box")

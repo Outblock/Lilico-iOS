@@ -10,9 +10,9 @@ import SwiftUI
 struct ChooseAccountView: View {
     @EnvironmentObject
     var router: RegisterCoordinator.Router
-    
-    var btnBack : some View {
-        Button{
+
+    var btnBack: some View {
+        Button {
             router.dismissCoordinator()
         } label: {
             HStack {
@@ -22,7 +22,7 @@ struct ChooseAccountView: View {
             }
         }
     }
-    
+
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
@@ -36,7 +36,7 @@ struct ChooseAccountView: View {
                             .bold()
                     }
                     .font(.largeTitle)
-                    
+
                     Text("Multiple accouns found.")
                         .font(.body)
                         .bold()
@@ -44,9 +44,9 @@ struct ChooseAccountView: View {
                         .padding(.top, 1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                
+
                 Spacer()
-                
+
                 Button {
                     router.route(to: \.userName)
                 } label: {
@@ -54,8 +54,8 @@ struct ChooseAccountView: View {
                         Text("Username")
                             .font(.headline)
                             .bold()
-                            .frame(maxWidth: .infinity,alignment: .center)
-                            
+                            .frame(maxWidth: .infinity, alignment: .center)
+
                         Image(systemName: "chevron.right")
                             .padding(.trailing)
                     }
@@ -66,7 +66,7 @@ struct ChooseAccountView: View {
                             .foregroundColor(.separator)
                     }
                 }
-                
+
                 Spacer()
             }
             .padding(.horizontal, 30)
@@ -75,7 +75,6 @@ struct ChooseAccountView: View {
             .navigationBarItems(leading: btnBack)
         }
     }
-
 }
 
 struct ChooseAccountView_Previews: PreviewProvider {

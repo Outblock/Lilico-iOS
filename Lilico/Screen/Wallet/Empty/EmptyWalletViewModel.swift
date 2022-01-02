@@ -6,20 +6,19 @@
 //
 
 import Foundation
+import Stinsen
 import SwiftUI
 import SwiftUIX
-import Stinsen
 
 class EmptyWalletViewModel: ViewModel {
- 
     @Published
     private(set) var state: EmptyWalletState
-    
+
     @RouterObject
     var router: NavigationRouter<HomeCoordinator>!
-    
+
 //    var main: MainCoordinator.Router? = RouterStore.shared.retrieve()
-    
+
     init() {
         let dataSource = [
             CardDataSource(title: "Don't have \nan account?",
@@ -35,11 +34,11 @@ class EmptyWalletViewModel: ViewModel {
                            buttonText: "IMPORT",
                            icon: Image(systemName: "arrow.forward.to.line"),
                            iconColor: .yellow,
-                           action: .signIn)
+                           action: .signIn),
         ]
         state = EmptyWalletState(dataSource: dataSource)
     }
-    
+
     func trigger(_ input: EmptyWalletAction) {
         switch input {
         case .signUp:

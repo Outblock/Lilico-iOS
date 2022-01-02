@@ -18,15 +18,12 @@ enum WalletSetupAction {
 }
 
 class WalletSetupViewModel: ViewModel {
-    
     @Published
     private(set) var state: WalletSetupState
-    
+
     init() {
         state = WalletSetupState()
     }
-    
-    func trigger(_ input: WalletSetupAction) {
-        
-    }
+
+    func trigger(_: WalletSetupAction) {}
 }

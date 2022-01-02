@@ -47,13 +47,13 @@ public extension Color {
 //            self = .black
 //            return
 //        }
-        
+
 //        self.init(uiColor)
 //        guard let color = .init(name) else {
 //            fatalError()
 //        }
 //        return color
-        
+
         self.init(name)
     }
 }

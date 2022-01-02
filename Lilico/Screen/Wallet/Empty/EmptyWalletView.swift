@@ -10,12 +10,12 @@ import SwiftUI
 struct EnumeratedForEach<ItemType, ContentView: View>: View {
     let data: [ItemType]
     let content: (Int, ItemType) -> ContentView
-    
+
     init(_ data: [ItemType], @ViewBuilder content: @escaping (Int, ItemType) -> ContentView) {
         self.data = data
         self.content = content
     }
-    
+
     var body: some View {
         ForEach(Array(self.data.enumerated()), id: \.offset) { idx, item in
             self.content(idx, item)
@@ -24,27 +24,25 @@ struct EnumeratedForEach<ItemType, ContentView: View>: View {
 }
 
 struct EmptyWalletView: View {
-    
     @StateObject
     var viewModel: AnyViewModel<EmptyWalletState, EmptyWalletAction>
-    
+
     @State
-    var viewStateArray:[CGSize] = [.zero, .zero]
-    
+    var viewStateArray: [CGSize] = [.zero, .zero]
+
     @State
     var isDraggingArray: [Bool] = [false, false]
-    
+
     fileprivate func cardView(_ dataSource: CardDataSource, index: Int) -> some View {
-        
-        return VStack(spacing: 50){
+        return VStack(spacing: 50) {
             Text(dataSource.title)
                 .font(.title)
                 .bold()
                 .foregroundColor(Color.white)
-                .frame(maxWidth:.infinity, alignment: .topLeading)
-                .offset(x: viewStateArray[index].width/10,
-                        y: viewStateArray[index].height/10)
-            
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .offset(x: viewStateArray[index].width / 10,
+                        y: viewStateArray[index].height / 10)
+
             Button {
                 viewModel.trigger(dataSource.action)
             } label: {
@@ -64,21 +62,21 @@ struct EmptyWalletView: View {
                         .foregroundColor(.white)
                 }
             }
-            .frame(maxWidth:.infinity, alignment: .bottomTrailing)
+            .frame(maxWidth: .infinity, alignment: .bottomTrailing)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         .background {
-                dataSource.bgImage
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(
-                        LinearGradient(colors: dataSource.bgGradient,
-                                       startPoint: .bottomTrailing,
-                                       endPoint: .topLeading)
-                    )
-                    .cornerRadius(20)
-                    .offset(x: viewStateArray[index].width/25,
-                            y: viewStateArray[index].height/25)
+            dataSource.bgImage
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    LinearGradient(colors: dataSource.bgGradient,
+                                   startPoint: .bottomTrailing,
+                                   endPoint: .topLeading)
+                )
+                .cornerRadius(20)
+                .offset(x: viewStateArray[index].width / 25,
+                        y: viewStateArray[index].height / 25)
         }
         .padding()
         .scaleEffect(isDraggingArray[index] ? 0.9 : 1)
@@ -90,7 +88,7 @@ struct EmptyWalletView: View {
                 self.viewStateArray[index] = value.translation
                 self.isDraggingArray[index] = true
             }
-            .onEnded { value in
+            .onEnded { _ in
                 self.viewStateArray[index] = .zero
                 self.isDraggingArray[index] = false
             }
@@ -99,29 +97,29 @@ struct EmptyWalletView: View {
             viewModel.trigger(dataSource.action)
         }
     }
-    
+
     var body: some View {
-        VStack{
+        VStack {
             HStack {
                 Image(systemName: "person.fill")
                     .foregroundColor(.secondary)
                     .padding(8)
                     .overlay {
                         Circle().foregroundColor(.separator)
-                }
+                    }
                 Spacer()
                 Image(systemName: "qrcode.viewfinder")
                     .font(.title2)
             }.padding(.horizontal, 20)
-            .padding(.vertical, 8)
-            
+                .padding(.vertical, 8)
+
             EnumeratedForEach(viewModel.dataSource) { index, dataSource in
                 cardView(dataSource, index: index)
             }
-        }.onAppear{
+        }.onAppear {
 //            isDraggingArray
         }
-        .frame(maxWidth:.infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))
     }
 }

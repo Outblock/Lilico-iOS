@@ -9,16 +9,14 @@ import SwiftUI
 import SwiftUIX
 
 struct WalletSetupView: View {
-    
     @State var show = false
-    
+
     @State var goHome: String? = ""
-    
+
     @EnvironmentObject
     private var viewModel: AnyViewModel<WalletSetupState, WalletSetupAction>
-    
+
     var body: some View {
-        
         NavigationView {
             ZStack {
                 VStack(alignment: .center) {
@@ -26,8 +24,8 @@ struct WalletSetupView: View {
                     Image("06")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-    //                    .frame(width: screenWidth)
-                    
+                    //                    .frame(width: screenWidth)
+
                     Text("Welcome ")
                         .foregroundColor(Color.LL.rebackground)
                         .padding()
@@ -38,22 +36,22 @@ struct WalletSetupView: View {
                                    iconName: "plus.circle.fill") {
                             self.show = false
                         }
-                        
+
                         LongButton(text: "Import a wallet",
-                                   color: Color(hex:"FFcf4e"),
+                                   color: Color(hex: "FFcf4e"),
                                    iconName: "arrow.uturn.down.circle.fill") {
                             self.show = true
                         }
                         .onAppear {
                             self.show = true
                         }
-                        
+
                         NavigationLink(destination: HomeView(),
                                        tag: "A",
                                        selection: $goHome) { EmptyView() }
-                                       .navigationBarHidden(true)
-                        
-                        Button{
+                            .navigationBarHidden(true)
+
+                        Button {
                             goHome = "A"
                         } label: {
                             HStack {
@@ -63,56 +61,54 @@ struct WalletSetupView: View {
                                     .foregroundColor(Color.LL.rebackground)
                                     .padding(5)
                                     .padding(.horizontal)
-        //                            .background(Color.link)
+                                    //                            .background(Color.link)
                                     .cornerRadius(10)
                                     .padding()
-                                
+
                                 Image(systemName: "chevron.forward.circle.fill")
                                     .foregroundColor(Color.LL.orange)
                             }
                         }
-                        
 
-    //                    Spacer()
-    //                    Divider().frame(height: 5)
-    //                        .foregroundColor(Color.LL.rebackground.opacity(0.8))
-    //
-    //                    Text("Already have a **key?**")
-    //                        .font(.footnote)
-    //
-    //                    HStack(alignment: .center, spacing: 20) {
-    //                        Spacer()
-    //                        Button {} label: {
-    //                            ImageBook.googleDrive
-    //                                .renderingMode(.original)
-    //                                .resizable()
-    //                                .frame(maxWidth: 35, maxHeight: 35)
-    //                                .padding(15)
-    //                                .background(
-    //                                    Color.LL.rebackground.opacity(0.1),
-    //                                    in: RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-    //                                )
-    //                        }.aspectRatio(1, contentMode: .fit)
-    //
-    //                        Button {} label: {
-    //                            ImageBook.icloud
-    //                                .renderingMode(.original)
-    //                                .resizable()
-    //                                .frame(maxWidth: 35, maxHeight: 35)
-    //                                .padding(15)
-    //                                .background(
-    //                                    Color.LL.rebackground.opacity(0.1),
-    //                                    in: RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-    //                                )
-    //                        }.aspectRatio(1, contentMode: .fit)
-    //                        Spacer()
-    //                    }
+                        //                    Spacer()
+                        //                    Divider().frame(height: 5)
+                        //                        .foregroundColor(Color.LL.rebackground.opacity(0.8))
+                        //
+                        //                    Text("Already have a **key?**")
+                        //                        .font(.footnote)
+                        //
+                        //                    HStack(alignment: .center, spacing: 20) {
+                        //                        Spacer()
+                        //                        Button {} label: {
+                        //                            ImageBook.googleDrive
+                        //                                .renderingMode(.original)
+                        //                                .resizable()
+                        //                                .frame(maxWidth: 35, maxHeight: 35)
+                        //                                .padding(15)
+                        //                                .background(
+                        //                                    Color.LL.rebackground.opacity(0.1),
+                        //                                    in: RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                        //                                )
+                        //                        }.aspectRatio(1, contentMode: .fit)
+                        //
+                        //                        Button {} label: {
+                        //                            ImageBook.icloud
+                        //                                .renderingMode(.original)
+                        //                                .resizable()
+                        //                                .frame(maxWidth: 35, maxHeight: 35)
+                        //                                .padding(15)
+                        //                                .background(
+                        //                                    Color.LL.rebackground.opacity(0.1),
+                        //                                    in: RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                        //                                )
+                        //                        }.aspectRatio(1, contentMode: .fit)
+                        //                        Spacer()
+                        //                    }
                     }.padding()
-    //                    .frame(height: screenHeight * 0.5)
+                        //                    .frame(height: screenHeight * 0.5)
                         .padding(.bottom, 30)
                         .background(Color.LL.background.edgesIgnoringSafeArea(.all))
                         .cornerRadius([.topRight, .topLeft], 30)
-
                 }
                 .frame(screenBounds.size)
                 .ignoresSafeArea()
@@ -138,7 +134,7 @@ struct WalletSetupView: View {
 //                }
 //            }
             .background(Color.LL.background.edgesIgnoringSafeArea(.all))
-        } .navigationBarHidden(true)
+        }.navigationBarHidden(true)
             .hideNavigationBar()
     }
 }
@@ -178,10 +174,10 @@ struct OutlineModifier: ViewModifier {
 
 struct LongButton: View {
     var text: String
-    var color: Color = Color(hex: "#2F2E39")
+    var color = Color(hex: "#2F2E39")
     var iconName: String
     var action: () -> Void
-    
+
     var body: some View {
         Button {
             action()

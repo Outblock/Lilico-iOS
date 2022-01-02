@@ -9,10 +9,7 @@
 import XCTest
 
 class Lilico_liteTests: XCTestCase {
-
-    func testExample() throws {
-        
-    }
+    func testExample() throws {}
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

@@ -5,8 +5,8 @@
 //  Created by Hao Fu on 24/12/21.
 //
 
-import SwiftUI
 import Stinsen
+import SwiftUI
 
 final class TabBarCoordinator: TabCoordinatable {
     var child = TabChild(
@@ -17,7 +17,7 @@ final class TabBarCoordinator: TabCoordinatable {
 //            \AuthenticatedCoordinator.testbed
         ]
     )
-    
+
 //    let todosStore: TodosStore
 //    let user: User
 
@@ -25,12 +25,12 @@ final class TabBarCoordinator: TabCoordinatable {
 //    @Route(tabItem: makeTodosTab) var todos = makeTodos
 //    @Route(tabItem: makeProfileTab) var profile = makeProfile
 //    @Route(tabItem: makeTestbedTab) var testbed = makeTestbed
-    
+
     init() {
 //        self.todosStore = TodosStore(user: user)
 //        self.user = user
     }
-    
+
     deinit {
         print("Deinit AuthenticatedCoordinator")
     }
@@ -49,12 +49,12 @@ extension TabBarCoordinator {
     func makeHome() -> HomeCoordinator {
         return HomeCoordinator()
     }
-    
+
     @ViewBuilder func makeHomeTab(isActive: Bool) -> some View {
         Image(systemName: "house" + (isActive ? ".fill" : ""))
         Text("Home")
     }
-    
+
 //    func makeTodos() -> NavigationViewCoordinator<TodosCoordinator> {
 //        return NavigationViewCoordinator(TodosCoordinator(todosStore: todosStore))
 //    }

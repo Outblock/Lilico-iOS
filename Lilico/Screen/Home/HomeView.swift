@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    
     @AppStorage("selectedTab") var selectedTab: Tab = .wallet
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -20,7 +19,7 @@ struct HomeView: View {
 //                        WalletView()
 //                            .navigationBarHidden(true)
                         EmptyWalletView(viewModel: EmptyWalletViewModel()
-                                            .toAnyViewModel())
+                            .toAnyViewModel())
                     case .explore:
                         OldWalletView()
                     case .profile:
@@ -31,7 +30,7 @@ struct HomeView: View {
 //                .safeAreaInset(edge: .bottom) {
 //                    VStack {}.frame(height: 44)
 //                }
-                
+
                 InnerCircleTabBar()
 //                TabBar()
             }

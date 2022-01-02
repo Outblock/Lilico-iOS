@@ -6,17 +6,14 @@
 //
 
 import Foundation
+import GoogleAPIClientForREST_Drive
+import GoogleAPIClientForRESTCore
 import GoogleSignIn
 import GTMSessionFetcherCore
-import GoogleAPIClientForRESTCore
-import GoogleAPIClientForREST_Drive
 
-//protocol BackupDelegate {
-//}
+// protocol BackupDelegate {
+// }
 
 class BackupManager: ObservableObject {
- 
     var hasBackup: Bool = false
-    
-    
 }

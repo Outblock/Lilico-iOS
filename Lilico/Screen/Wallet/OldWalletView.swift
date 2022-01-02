@@ -8,20 +8,18 @@
 import SwiftUI
 
 struct OldWalletView: View {
-    
     @State var viewState = CGSize.zero
     @State var isDragging = false
-    
+
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 15) {
-                
                 HStack(spacing: 20) {
                     ImageBook.flow
                         .renderingMode(.original)
-                        .shadow(color: Color(hex:"000000").opacity(0.5),
+                        .shadow(color: Color(hex: "000000").opacity(0.5),
                                 radius: 20, x: 10, y: 5)
-                    
+
                     VStack(alignment: .leading) {
                         Text("Account")
                             .font(.title2)
@@ -30,19 +28,16 @@ struct OldWalletView: View {
                             .font(.body)
                     }
                     Spacer()
-                    
-                    Button {
-                        
-                    } label: {
+
+                    Button {} label: {
                         Image(systemName: "eye.fill")
                             .foregroundColor(Color.primary)
                             .padding()
                             .cornerRadius(10)
                             .modifier(OutlineModifier(cornerRadius: 5))
-                            
                     }
                 }
-                
+
                 HStack {
                     Text("89.45")
                         .font(.title, weight: .bold)
@@ -51,7 +46,7 @@ struct OldWalletView: View {
                         .font(.title)
                         .foregroundColor(.secondary)
                 }
-                
+
                 Text("0x123123123")
             }
             .padding()
@@ -61,7 +56,7 @@ struct OldWalletView: View {
             .background {
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundColor(Color.LL.rebackground.opacity(0.1))
-                    .offset(x: viewState.width/25, y: viewState.height/25)
+                    .offset(x: viewState.width / 25, y: viewState.height / 25)
             }
             .padding()
             .scaleEffect(isDragging ? 0.9 : 1)
@@ -72,17 +67,17 @@ struct OldWalletView: View {
                     self.viewState = value.translation
                     self.isDragging = true
                 }
-                .onEnded { value in
+                .onEnded { _ in
                     self.viewState = .zero
                     self.isDragging = false
                 }
             )
         }
-        .frame(maxWidth:.infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))
 //        .navigationBarTitleDisplayMode(.inline)
 //        .hideNavigationBar()
-        
+
         .navigationBarTitle("")
         .navigationBarHidden(true)
     }

@@ -5,8 +5,8 @@
 //  Created by Hao Fu on 29/12/21.
 //
 
-import SwiftUI
 import Stinsen
+import SwiftUI
 
 final class HomeCoordinator: NavigationCoordinatable {
     let stack = NavigationStack(initial: \HomeCoordinator.start)
@@ -19,15 +19,15 @@ final class HomeCoordinator: NavigationCoordinatable {
         EmptyWalletView(viewModel: EmptyWalletViewModel().toAnyViewModel())
             .hideNavigationBar()
     }
-    
+
     func makeRegister() -> RegisterCoordinator {
         RegisterCoordinator()
     }
-    
+
     func makeLogin() -> LoginCoordinator {
         LoginCoordinator()
     }
-    
+
     func routeToAuthenticated() {
         route(to: \.register)
     }

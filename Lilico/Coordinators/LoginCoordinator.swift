@@ -10,9 +10,9 @@ import SwiftUI
 
 final class LoginCoordinator: NavigationCoordinatable {
     var stack = NavigationStack(initial: \LoginCoordinator.restore)
-    
+
     @Root var restore = makeRestore
-    
+
     @ViewBuilder func makeRestore() -> some View {
         RestoreWalletView(viewModel: .init())
             .hideNavigationBar()

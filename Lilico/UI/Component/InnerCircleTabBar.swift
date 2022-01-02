@@ -12,13 +12,13 @@ struct InnerCircleTabBar: View {
     @State var color: Color = .teal
     @State var selectedX: CGFloat = 0
     @State var x: [CGFloat] = [0, 0, 0, 0]
-    
+
     @AppStorage("selectedTab") var selectedTab: Tab = .wallet
-    
+
     var body: some View {
         GeometryReader { proxy in
             let hasHomeIndicator = proxy.safeAreaInsets.bottom > 0
-            
+
             HStack {
                 content
             }
@@ -48,11 +48,11 @@ struct InnerCircleTabBar: View {
 //            .accessibility(hidden: !model.showTab)
         }
     }
-    
+
     var content: some View {
         ForEach(Array(tabItems.enumerated()), id: \.offset) { index, tab in
             if index == 0 { Spacer() }
-            
+
             Button {
                 selectedTab = tab.selection
                 withAnimation(.tabSelection) {
@@ -86,16 +86,15 @@ struct InnerCircleTabBar: View {
             .frame(width: 44)
             .foregroundColor(checkTab(tab.selection) ? color : .secondary)
 //            .blendMode(checkTab(tab.selection) ? .overlay : .normal)
-            
+
             Spacer()
         }
     }
-    
+
     func checkTab(_ tab: Tab) -> Bool {
         selectedTab == tab
     }
 }
-
 
 struct InnerCircleTabBar_Previews: PreviewProvider {
     static var previews: some View {

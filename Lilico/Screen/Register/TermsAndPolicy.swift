@@ -9,12 +9,11 @@ import SwiftUI
 import WalletCore
 
 struct TermsAndPolicy: View {
-    
     @EnvironmentObject
     var router: RegisterCoordinator.Router
-    
-    var btnBack : some View {
-        Button{
+
+    var btnBack: some View {
+        Button {
             router.dismissCoordinator()
         } label: {
             HStack {
@@ -24,7 +23,7 @@ struct TermsAndPolicy: View {
             }
         }
     }
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -46,9 +45,8 @@ struct TermsAndPolicy: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
-                
+
                 VStack(alignment: .leading) {
-                    
                     Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
                         Text("Terms of Service")
                             .font(.callout)
@@ -56,10 +54,10 @@ struct TermsAndPolicy: View {
                         Image(systemName: "chevron.right")
                             .font(Font.caption2.weight(.bold))
                     }.padding()
-                    
+
 //                    Rectangle().frame(width: .infinity, height: 1)
                     Divider().foregroundColor(Color.LL.rebackground.opacity(0.5))
-                    
+
                     Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
                         Text("Privacy Policy")
                             .font(.callout)
@@ -67,30 +65,28 @@ struct TermsAndPolicy: View {
                         Image(systemName: "chevron.right")
                             .font(Font.caption2.weight(.bold))
                     }.padding()
-                    
-                    
+
                 }.foregroundColor(Color.LL.rebackground)
-                
-                .overlay(
+
+                    .overlay(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke(Color.LL.rebackground.opacity(0.5),
                                     lineWidth: 0.5)
-                )
-                .padding(.bottom)
-                
+                    )
+                    .padding(.bottom)
+
                 Button {
                     router.route(to: \.userName)
                 } label: {
                     Text("I Accept")
                         .font(.headline)
                         .bold()
-                        .frame(maxWidth: .infinity,alignment: .center)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 18)
                         .foregroundColor(Color.LL.background)
                         .background {
                             RoundedRectangle(cornerRadius: 16)
                                 .foregroundColor(Color.LL.rebackground)
-                                
                         }
                 }
                 .padding(.bottom)

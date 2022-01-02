@@ -9,21 +9,32 @@ import SwiftUI
 import SwiftUIX
 
 struct UsernameView: View {
-    
     @EnvironmentObject
     var router: RegisterCoordinator.Router
-    
+
     @StateObject
     var viewModel: AnyViewModel<UsernameViewState, UsernameViewAction>
-    
+
     @State
     var text: String = ""
-    
-    @State
-    var textStatus: LL.TextField.Status = .normal
-    
-    var btnBack : some View {
-        Button{
+
+//    @State
+//    var highlight: VTextFieldHighlight {
+//        get {
+//            switch viewModel.status {
+//            case .success:
+//                return .success
+//            case .error:
+//                return .error
+//            }
+//        }
+//    }
+//    
+//    @State
+//    var
+
+    var btnBack: some View {
+        Button {
             router.pop()
         } label: {
             HStack {
@@ -33,7 +44,7 @@ struct UsernameView: View {
             }
         }
     }
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -54,41 +65,47 @@ struct UsernameView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
-                
-                LL.TextField(placeHolder: "Username",
-                             text: $text,
-                             status: $textStatus,
-                             onEditingChanged: { isEditing in
-                    if isEditing {
-                        viewModel.trigger(.onEditingChanged(text))
-                    }
-                })
-                .padding(.bottom)
 
+//                LL.TextField(placeHolder: "Username",
+//                             text: $text,
+//                             status: viewModel.status,
+//                             onEditingChanged: { isEditing in
+//                                 if isEditing {
+//                                     viewModel.trigger(.onEditingChanged(text))
+//                                 }
+//                             })
+//                             .padding(.bottom)
+
+                VTextField(model: TextFieldStyle.primary,
+                           highlight: .none,
+                           placeholder: "Username",
+                           footerTitle: " ",
+                           text: $text,
+                           onChange: {
+                    viewModel.trigger(.onEditingChanged(text))
+                },
+                           onClear: .clear)
+//                    .padding(.bottom)
                 
-                Button {
-                    
-                } label: {
+                Button {} label: {
                     Text("Next")
                         .font(.headline)
                         .bold()
-                        .frame(maxWidth: .infinity,alignment: .center)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 18)
                         .foregroundColor(Color.LL.background)
                         .background {
                             RoundedRectangle(cornerRadius: 16)
                                 .foregroundColor(Color.LL.rebackground)
-                                
                         }
                 }
                 .padding(.bottom)
             }
-                .padding(.horizontal, 30)
+            .padding(.horizontal, 30)
 //                .padding(.bottom)
-                .navigationBarBackButtonHidden(true)
-                .navigationBarItems(leading: btnBack)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: btnBack)
         }
-        
     }
 }
 

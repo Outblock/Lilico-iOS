@@ -29,9 +29,9 @@ struct ImageBook {
 
     static var googleDrive: Image { .init(componentAsset: "Google.Drive") }
     static var icloud: Image { .init(componentAsset: "Icloud") }
-    
+
     static var flow: Image { .init(componentAsset: "Flow") }
-    
+
     // MARK: Initializers
 
     private init() {}

@@ -10,63 +10,58 @@ import SwiftUI
 struct WalletView: View {
     @StateObject
     var viewModel: AnyViewModel<EmptyWalletState, EmptyWalletAction>
-    
+
     @State
-    var viewState:CGSize = .zero
-    
+    var viewState: CGSize = .zero
+
     @State
     var isDragging: Bool = false
-    
+
     fileprivate func cardView() -> some View {
-        
-        return VStack(spacing: 50){
+        return VStack(spacing: 50) {
             Text("Blowfish Wallet")
                 .font(.headline)
                 .bold()
                 .foregroundColor(Color.white)
-                .frame(maxWidth:.infinity, alignment: .topLeading)
-                .offset(x: viewState.width/30,
-                        y: viewState.height/30)
-            
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .offset(x: viewState.width / 30,
+                        y: viewState.height / 30)
+
             Text("$ 1290.00")
                 .font(.largeTitle)
                 .bold()
                 .foregroundColor(Color.white)
-                .frame(maxWidth:.infinity, alignment: .leading)
-                .offset(x: viewState.width/25,
-                        y: viewState.height/25)
-            
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .offset(x: viewState.width / 25,
+                        y: viewState.height / 25)
+
             HStack {
-                Button {
-                    
-                } label: {
+                Button {} label: {
                     HStack {
                         Text("0x123123123")
                         Image(componentAsset: "Copy")
                     }
                 }
-                
+
                 Spacer()
-                
-                Button {
-                    
-                } label: {
+
+                Button {} label: {
                     Image(systemName: "eye.fill")
                 }
             }.foregroundColor(.white)
-                .offset(x: viewState.width/20,
-                        y: viewState.height/20)
+                .offset(x: viewState.width / 20,
+                        y: viewState.height / 20)
         }
         .padding()
         .background {
             Image(componentAsset: "Card-circle")
                 .aspectRatio(contentMode: .fill)
-            .frame(maxWidth: .infinity, alignment: .bottomTrailing)
+                .frame(maxWidth: .infinity, alignment: .bottomTrailing)
 //                .background(Color(hex: "2F2F2F"))
 //                .cornerRadius(20)
-            .offset(x: 0, y: 30)
-                .offset(x: viewState.width/25,
-                        y: viewState.height/25)
+                .offset(x: 0, y: 30)
+                .offset(x: viewState.width / 25,
+                        y: viewState.height / 25)
         }
         .background(Color(hex: "2F2F2F"))
         .cornerRadius(20)
@@ -75,8 +70,8 @@ struct WalletView: View {
             Image(componentAsset: "BlowFish")
                 .frame(maxWidth: .infinity, alignment: .topTrailing)
                 .offset(x: 20, y: -90)
-                .offset(x: viewState.width/10,
-                        y: viewState.height/10)
+                .offset(x: viewState.width / 10,
+                        y: viewState.height / 10)
         }
         .shadow(color: Color(hex: "2F2F2F").opacity(0.3),
                 radius: 10, x: 0, y: 0)
@@ -90,15 +85,15 @@ struct WalletView: View {
                 self.viewState = value.translation
                 self.isDragging = true
             }
-            .onEnded { value in
+            .onEnded { _ in
                 self.viewState = .zero
                 self.isDragging = false
             }
         )
     }
-    
+
     var body: some View {
-        VStack{
+        VStack {
             HStack {
                 Text("Wallet")
                     .font(.title)
@@ -107,26 +102,26 @@ struct WalletView: View {
                 Image(systemName: "qrcode.viewfinder")
                     .font(.title2)
             }.padding(.horizontal, 20)
-            .padding(.vertical, 8)
-            
+                .padding(.vertical, 8)
+
             cardView()
                 .redacted(reason: [])
 //                .shimmering()
-            
+
             ActionView()
-            
+
             List {
                 HStack(spacing: 8) {
                     Image(componentAsset: "Flow")
                         .aspectRatio(contentMode: .fit)
-                    
+
                     VStack {
                         Text("Flow")
                         Text("$ 8.9")
                     }
-                    
+
                     Spacer()
-                    
+
                     VStack {
                         Text("Flow")
                         Text("$ 8.9")
@@ -134,11 +129,11 @@ struct WalletView: View {
                 }
                 .background(.clear)
             }
-            
-        }.onAppear{
+
+        }.onAppear {
 //            isDraggingArray
         }
-        .frame(maxWidth:.infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))
     }
 }
@@ -152,9 +147,7 @@ struct WalletView_Previews: PreviewProvider {
 struct ActionView: View {
     var body: some View {
         HStack(spacing: 0) {
-            Button {
-                
-            } label: {
+            Button {} label: {
                 VStack(spacing: 5) {
                     Image(systemName: "arrow.up.left.circle.fill")
                         .font(.title)
@@ -163,10 +156,8 @@ struct ActionView: View {
                 }
             }
             .frame(minWidth: 0, maxWidth: .infinity)
-            
-            Button {
-                
-            } label: {
+
+            Button {} label: {
                 VStack(spacing: 5) {
                     Image(systemName: "arrow.down.right.circle.fill")
                         .font(.title)
@@ -175,10 +166,8 @@ struct ActionView: View {
                 }
             }
             .frame(minWidth: 0, maxWidth: .infinity)
-            
-            Button {
-                
-            } label: {
+
+            Button {} label: {
                 VStack(spacing: 5) {
                     Image(systemName: "creditcard.circle.fill")
                         .font(.title)
@@ -187,10 +176,8 @@ struct ActionView: View {
                 }
             }
             .frame(minWidth: 0, maxWidth: .infinity)
-            
-            Button {
-                
-            } label: {
+
+            Button {} label: {
                 VStack(spacing: 5) {
                     Image(systemName: "arrow.left.arrow.right.circle.fill")
                         .font(.title)
@@ -199,12 +186,11 @@ struct ActionView: View {
                 }
             }
             .frame(minWidth: 0, maxWidth: .infinity)
-            
         }
         .foregroundColor(.gray)
         .padding()
         .frame(maxWidth: .infinity, alignment: .center)
-        .background(Color(hex:"FCFCFC"))
+        .background(Color(hex: "FCFCFC"))
         .cornerRadius(16)
         .padding(.horizontal)
         .shadow(color: Color(hex: "2F2F2F").opacity(0.1),

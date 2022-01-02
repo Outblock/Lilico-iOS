@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct RestoreWalletView: View {
-    
     @EnvironmentObject
     var router: LoginCoordinator.Router
-    
+
     var viewModel: RestoreWalletViewModel
-    
-    var btnBack : some View {
-        Button{
+
+    var btnBack: some View {
+        Button {
             router.dismissCoordinator()
         } label: {
             HStack {
@@ -25,8 +24,7 @@ struct RestoreWalletView: View {
             }
         }
     }
-    
-    
+
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
@@ -40,7 +38,7 @@ struct RestoreWalletView: View {
                             .bold()
                     }
                     .font(.largeTitle)
-                    
+
                     Text("Restore your wallet with the 12 word \n recovery phrase that you have written down.")
                         .font(.body)
                         .bold()
@@ -48,16 +46,16 @@ struct RestoreWalletView: View {
                         .padding(.top, 1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                
+
                 Spacer()
-                
+
                 Button {
 //                    router.route(to: \.userName)
                 } label: {
                     Text("Restore with iCloud")
                         .font(.headline)
                         .bold()
-                        .frame(maxWidth: .infinity,alignment: .center)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 18)
                         .foregroundColor(Color.LL.background)
                         .background {
@@ -65,14 +63,14 @@ struct RestoreWalletView: View {
                                 .foregroundColor(Color.LL.rebackground)
                         }
                 }
-                
+
                 Button {
                     viewModel.signInButtonTapped()
                 } label: {
                     Text("Restore with Google Drive")
                         .font(.headline)
                         .bold()
-                        .frame(maxWidth: .infinity,alignment: .center)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 18)
                         .foregroundColor(Color.LL.rebackground)
                         .overlay {
@@ -81,14 +79,14 @@ struct RestoreWalletView: View {
                                 .foregroundColor(Color.LL.rebackground)
                         }
                 }
-                
+
                 Button {
 //                    router.route(to: \.userName)
                 } label: {
                     Text("Restore with Recovery Phrase")
                         .font(.headline)
                         .bold()
-                        .frame(maxWidth: .infinity,alignment: .center)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 18)
                         .foregroundColor(Color.LL.rebackground)
 //                        .background {

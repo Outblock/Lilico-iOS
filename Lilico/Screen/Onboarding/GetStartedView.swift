@@ -9,11 +9,9 @@ import SwiftUI
 
 struct GetStartedView: View {
     var body: some View {
-        VStack{
+        VStack {
             Spacer()
-            Button {
-                
-            } label: {
+            Button {} label: {
                 Text("Get Started")
             }
             .tint(Color.LL.background)

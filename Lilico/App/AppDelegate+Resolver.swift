@@ -10,8 +10,8 @@ import Resolver
 
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
-        register{ UserManager() }
-        register{ WalletManager() }
-        register{ BackupManager() }
+        register { UserManager() }
+        register { WalletManager() }
+        register { BackupManager() }
     }
 }

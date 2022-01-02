@@ -6,17 +6,16 @@
 //
 
 import Foundation
-import SwiftUI
 import Stinsen
+import SwiftUI
 
 class OnboardingViewModel: ViewModel {
-    
     @RouterObject
     var router: NavigationRouter<OnBoradingCoordinator>!
-    
+
     @Published
     private(set) var state: OnboardingState
-    
+
     public init() {
         let intros: [Intro] = [
             Intro(image: "Onboarding_1",
@@ -37,7 +36,7 @@ class OnboardingViewModel: ViewModel {
         ]
         state = OnboardingState(intros: intros)
     }
-    
+
     func trigger(_ input: OnboardingAction) {
         switch input {
         case .finish, .skip:
@@ -46,14 +45,12 @@ class OnboardingViewModel: ViewModel {
 //            trigger(to: .home, with: .push)
 //            appRouter.trigger(to: .home, with: .push)
 //            break;
-            
+
 //            router?.navigate(to: Routes.home)
 //            router?.navigate(to: Routes.home, using: SheetPresenter(), source: .none)
-            break;
 //        case let .bind(router):
 //            self.router = router
 //            break;
         }
     }
-
 }
