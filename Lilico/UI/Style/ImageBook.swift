@@ -43,6 +43,6 @@ extension Image {
     /// Initializes color from library's local assets library from a name.
     init(componentAsset name: String) {
         self = Image(name, bundle: Bundle.main)
-            .renderingMode(.original)
+            .renderingMode(.template)
     }
 }

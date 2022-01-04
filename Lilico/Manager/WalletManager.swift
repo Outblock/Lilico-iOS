@@ -14,18 +14,25 @@ enum LLError: Error {
     case createWalletFailed
     case aesKeyEncryptionFailed
     case aesEncryptionFailed
+    case missingUserInfoWhilBackup
+    case emptyiCloudBackup
+    case decryptBackupFailed
+    case incorrectPhrase
 }
 
 class WalletManager: ObservableObject {
     static let flowPath = "m/44'/539'/0'/0/0"
+
+    static let shared = WalletManager()
+
     private let storeKey = "lilico.mnemonic"
-    private let encryptionKey = "4047b6b927bcff0c"
+    static let encryptionKey = "4047b6b927bcff0c"
 
     var hasWallet: Bool {
         return wallet != nil
     }
 
-    private var wallet: HDWallet?
+    var wallet: HDWallet?
 
     let mnemonicStrength: Int32 = 128
     var defaultBundleID = "io.outblock.lilico"
@@ -35,7 +42,24 @@ class WalletManager: ObservableObject {
         .accessibility(.whenUnlocked)
 
     init() {
-        restoreWalletFromKeychain()
+        if !restoreWalletFromKeychain() {
+            do {
+                try createNewWallet()
+            } catch {
+                print("error -> \(error)")
+            }
+        }
+    }
+
+//    func getFlowAccountKey() -> AccountKey {
+//        wallet?.
+//    }
+
+    func getMnemoic() -> String? {
+        guard let wallet = wallet else {
+            return nil
+        }
+        return wallet.mnemonic
     }
 
     @discardableResult
@@ -53,7 +77,12 @@ class WalletManager: ObservableObject {
             return
         }
 
-        let wallet = HDWallet(strength: mnemonicStrength, passphrase: passphrase)
+        if let phrase = mnemonic {
+            wallet = HDWallet(mnemonic: phrase, passphrase: passphrase)
+        } else {
+            wallet = HDWallet(strength: mnemonicStrength, passphrase: passphrase)
+        }
+
         guard var mnemonic = wallet?.mnemonic else {
             throw LLError.createWalletFailed
         }
@@ -69,14 +98,37 @@ class WalletManager: ObservableObject {
 //        let pk = wallet?.getCurveKey(curve: .nist256p1, derivationPath: flowPath)
     }
 
-    func encryptionAES(key: String, iv: String = "0102030405060708", data: Data) throws -> Data {
-        guard let keyData = key.data(using: .utf8), let ivData = iv.data(using: .utf8) else {
+    static func encryptionAES(key: String, iv: String = "0102030405060708", data: Data) throws -> Data {
+        guard var keyData = key.data(using: .utf8), let ivData = iv.data(using: .utf8) else {
             throw LLError.aesKeyEncryptionFailed
         }
+        if keyData.count > 16 {
+            keyData = keyData.prefix(16)
+        } else {
+            keyData = keyData.paddingZeroRight(blockSize: 16)
+        }
+//        let hashKey = Hash.sha256(data: keyData).prefix(16)
         guard let encrypted = AES.encryptCBC(key: keyData, data: data, iv: ivData, mode: .pkcs7) else {
             throw LLError.aesEncryptionFailed
         }
         return encrypted
+    }
+
+    static func decryptionAES(key: String, iv: String = "0102030405060708", data: Data) throws -> Data {
+        guard var keyData = key.data(using: .utf8), let ivData = iv.data(using: .utf8) else {
+            throw LLError.aesKeyEncryptionFailed
+        }
+
+        if keyData.count > 16 {
+            keyData = keyData.prefix(16)
+        } else {
+            keyData = keyData.paddingZeroRight(blockSize: 16)
+        }
+//        let hashKey = Hash.sha256(data: keyData).prefix(16)
+        guard let decrypted = AES.decryptCBC(key: keyData, data: data, iv: ivData, mode: .pkcs7) else {
+            throw LLError.aesEncryptionFailed
+        }
+        return decrypted
     }
 }
 
@@ -93,6 +145,15 @@ extension HDWallet {
                                signAlgo: .ECDSA_P256,
                                hashAlgo: .SHA2_256,
                                weight: 1000)
+    }
+}
+
+extension Flow.AccountKey {
+    func toCodableModel() -> AccountKey {
+        return AccountKey(hashAlgo: hashAlgo.index,
+                          publicKey: publicKey.hex,
+                          sign_algo: signAlgo.index,
+                          weight: weight)
     }
 }
 

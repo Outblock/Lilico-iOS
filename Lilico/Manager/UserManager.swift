@@ -9,9 +9,21 @@ import Firebase
 import FirebaseAuth
 import Foundation
 
+struct UserInfo {
+    let avatar: String
+    let userName: String
+    let address: String? = nil
+}
+
 class UserManager: ObservableObject {
+    static let shared = UserManager()
+
+    var userInfo: UserInfo?
+
     @Published
     var isLoggedIn = false
+
+    var isAnonymous: Bool = true
 
     var handle: AuthStateDidChangeListenerHandle?
 
@@ -22,9 +34,12 @@ class UserManager: ObservableObject {
     func listenAuthenticationState() {
         handle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             if let user = user {
+                print("Sign in -> \(user.uid)")
+                print("isAnonymous -> \(user.isAnonymous)")
                 print(user)
                 self!.isLoggedIn = true
             } else {
+                print("Sign out ->")
                 self!.isLoggedIn = false
             }
         }
@@ -32,11 +47,23 @@ class UserManager: ObservableObject {
 
     func login() async {
         do {
-            let result = try await Auth.auth().signInAnonymously()
-            print("Logged in -> \(result.user.uid)")
+            if Auth.auth().currentUser == nil {
+                let result = try await Auth.auth().signInAnonymously()
+                print("Logged in -> \(result.user.uid)")
+                print("isAnonymous -> \(result.user.isAnonymous)")
+            }
         } catch {
             debugPrint(error.localizedDescription)
         }
+    }
+
+    func loginWithCustomToken(_ token: String) async throws {
+//        do {
+//            let _ = try await Auth.auth().currentUser?.delete()
+        let result = try await Auth.auth().signIn(withCustomToken: token)
+        print("Logged in -> \(result.user.uid)")
+        await fetchUserInfo()
+        await fetchWalletInfo()
     }
 
     func getIdToken() async -> String? {
@@ -61,6 +88,30 @@ class UserManager: ObservableObject {
     func unbind() {
         if let handle = handle {
             Auth.auth().removeStateDidChangeListener(handle)
+        }
+    }
+
+    func fetchUserInfo() async {
+        do {
+            let response: UserInfoResponse = try await Network.request(LilicoEndpoint.userInfo)
+            userInfo = UserInfo(avatar: response.avatar, userName: response.nickName)
+
+//            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+//            changeRequest?.displayName = userInfo?.userName
+//            await changeRequest?.commitChanges()
+        } catch {
+            // TODO:
+            debugPrint(error)
+        }
+    }
+
+    func fetchWalletInfo() async {
+        do {
+            let response: UserWalletResponse = try await Network.request(LilicoEndpoint.userWallet)
+            print(response)
+//            userInfo =
+        } catch {
+            debugPrint(error)
         }
     }
 

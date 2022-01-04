@@ -104,13 +104,13 @@ struct WalletView: View {
             }.padding(.horizontal, 20)
                 .padding(.vertical, 8)
 
-            cardView()
-                .redacted(reason: [])
+            ScrollView {
+                cardView()
+                    .redacted(reason: [])
 //                .shimmering()
 
-            ActionView()
+                ActionView()
 
-            List {
                 HStack(spacing: 8) {
                     Image(componentAsset: "Flow")
                         .aspectRatio(contentMode: .fit)

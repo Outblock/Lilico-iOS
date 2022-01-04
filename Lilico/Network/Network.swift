@@ -34,6 +34,16 @@ enum Network {
         }
     }
 
+    struct EmptyResponse: Decodable {
+        let httpCode: Int
+        let message: String
+
+        enum CodingKeys: String, CodingKey {
+            case httpCode = "status"
+            case message
+        }
+    }
+
     static func fetchIDToken() async throws -> String {
         if let currentUser = Auth.auth().currentUser {
             return try await currentUser.getIDToken()
@@ -43,7 +53,7 @@ enum Network {
         return try await result.user.getIDToken()
     }
 
-    static func request<T: Codable, U: TargetType>(_ target: U) async throws -> T {
+    static func request<T: Decodable, U: TargetType>(_ target: U) async throws -> T {
         let token = try await fetchIDToken()
         let authPlugin = AccessTokenPlugin { _ in token }
         let provider = MoyaProvider<U>(plugins: [NetworkLoggerPlugin(), authPlugin])
@@ -60,6 +70,25 @@ enum Network {
                 throw NetworkError.emptyData
             }
             return data
+        case let .failure(error):
+            throw error
+        }
+    }
+
+    static func requestWithRawModel<T: Decodable, U: TargetType>(_ target: U) async throws -> T {
+        let token = try await fetchIDToken()
+        let authPlugin = AccessTokenPlugin { _ in token }
+        let provider = MoyaProvider<U>(plugins: [NetworkLoggerPlugin(), authPlugin])
+        let result = await provider.asyncRequest(target)
+        switch result {
+        case let .success(response):
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            guard let model = try? decoder.decode(T.self, from: response.data) else {
+                throw NetworkError.decodeFailed
+            }
+
+            return model
         case let .failure(error):
             throw error
         }

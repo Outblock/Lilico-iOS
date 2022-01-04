@@ -74,6 +74,16 @@
 		156AC7B1278042DE00ED5E3E /* GTMSessionFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7B0278042DE00ED5E3E /* GTMSessionFetcher */; };
 		156AC7B327804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
 		156AC7B427804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
+		158CE87D27829E68006A8394 /* RecoveryPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */; };
+		158CE87E27829E68006A8394 /* RecoveryPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */; };
+		158CE8802782BEAA006A8394 /* TYNKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */; };
+		158CE8812782BEAA006A8394 /* TYNKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */; };
+		158CE8852782DA87006A8394 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE8842782DA87006A8394 /* RegisterRequest.swift */; };
+		158CE8862782DA87006A8394 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE8842782DA87006A8394 /* RegisterRequest.swift */; };
+		158CE8882782DAD7006A8394 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE8872782DAD7006A8394 /* RegisterResponse.swift */; };
+		158CE8892782DAD7006A8394 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE8872782DAD7006A8394 /* RegisterResponse.swift */; };
+		158CE88B2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */; };
+		158CE88C2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */; };
 		158CEFBC277DB3FF004EF2C7 /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF99277DB3D7004EF2C7 /* WalletCore.xcframework */; };
 		158CEFBD277DB3FF004EF2C7 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF99277DB3D7004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		158CEFBF277DB419004EF2C7 /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEFA5277DB3D7004EF2C7 /* SwiftProtobuf.xcframework */; };
@@ -114,6 +124,10 @@
 		15D5775B277C23BF00045E79 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 15D5775A277C23BF00045E79 /* Moya */; };
 		15D5775D277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */; };
 		15D5775E277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */; };
+		15D92829278338DB00382226 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D92828278338DB00382226 /* UIApplication.swift */; };
+		15D9282A278338DB00382226 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D92828278338DB00382226 /* UIApplication.swift */; };
+		15D9282C2783395F00382226 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282B2783395F00382226 /* HUDManager.swift */; };
+		15D9282D2783395F00382226 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282B2783395F00382226 /* HUDManager.swift */; };
 		15DC1D3E27809F83000B187A /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D3D27809F83000B187A /* BackupManager.swift */; };
 		15DC1D3F27809F83000B187A /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D3D27809F83000B187A /* BackupManager.swift */; };
 		15DC1D422780A44D000B187A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 15DC1D412780A44D000B187A /* IQKeyboardManagerSwift */; };
@@ -512,6 +526,10 @@
 		15DC21EB27819C57000B187A /* StateOpacities_P.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC207227819C56000B187A /* StateOpacities_P.swift */; };
 		15DC21EC27819C57000B187A /* StateColors_OOID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC207327819C56000B187A /* StateColors_OOID.swift */; };
 		15DC21ED27819C57000B187A /* StateColors_OOID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC207327819C56000B187A /* StateColors_OOID.swift */; };
+		15DC21EF2781F388000B187A /* TYNKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC21EE2781F388000B187A /* TYNKView.swift */; };
+		15DC21F02781F388000B187A /* TYNKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC21EE2781F388000B187A /* TYNKView.swift */; };
+		15DC21F22781F7D9000B187A /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC21F12781F7D9000B187A /* Keyboard.swift */; };
+		15DC21F32781F7D9000B187A /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC21F12781F7D9000B187A /* Keyboard.swift */; };
 		15DDFB8E2750D039008263A2 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 15DDFB8D2750D039008263A2 /* SwiftUIX */; };
 		15DDFB9127510C96008263A2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDFB9027510C96008263A2 /* OnboardingView.swift */; };
 		15DDFB962751139A008263A2 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDFB952751139A008263A2 /* CustomColor.swift */; };
@@ -599,6 +617,12 @@
 		154B8930276A23ED00780E93 /* InnerCircleTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCircleTabBar.swift; sourceTree = "<group>"; };
 		156AC7AE2780427900ED5E3E /* Lilico-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lilico-Bridging-Header.h"; sourceTree = "<group>"; };
 		156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPhraseView.swift; sourceTree = "<group>"; };
+		158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYNKViewModel.swift; sourceTree = "<group>"; };
+		158CE8842782DA87006A8394 /* RegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
+		158CE8872782DAD7006A8394 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
+		158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPhraseViewModel.swift; sourceTree = "<group>"; };
+		158CE88D27830889006A8394 /* Lilico.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lilico.entitlements; sourceTree = "<group>"; };
 		158CEF0E277D4493004EF2C7 /* WalletCore.framework.ios-arm64.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "WalletCore.framework.ios-arm64.dSYM"; sourceTree = "<group>"; };
 		158CEF0F277D4493004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-simulator.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "WalletCore.framework.ios-arm64_x86_64-simulator.dSYM"; sourceTree = "<group>"; };
 		158CEF10277D4493004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-maccatalyst.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "WalletCore.framework.ios-arm64_x86_64-maccatalyst.dSYM"; sourceTree = "<group>"; };
@@ -675,6 +699,9 @@
 		15D5774D277C119400045E79 /* NavigateBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateBackButton.swift; sourceTree = "<group>"; };
 		15D57750277C224300045E79 /* LilicoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilicoEndpoint.swift; sourceTree = "<group>"; };
 		15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
+		15D92827278331FE00382226 /* Lilico-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lilico-dev.entitlements"; sourceTree = "<group>"; };
+		15D92828278338DB00382226 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		15D9282B2783395F00382226 /* HUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDManager.swift; sourceTree = "<group>"; };
 		15DC1D3D27809F83000B187A /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		15DC1D4527814A68000B187A /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		15DC1D4827814AD1000B187A /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
@@ -872,6 +899,8 @@
 		15DC207127819C56000B187A /* StateColors_OOD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateColors_OOD.swift; sourceTree = "<group>"; };
 		15DC207227819C56000B187A /* StateOpacities_P.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateOpacities_P.swift; sourceTree = "<group>"; };
 		15DC207327819C56000B187A /* StateColors_OOID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateColors_OOID.swift; sourceTree = "<group>"; };
+		15DC21EE2781F388000B187A /* TYNKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYNKView.swift; sourceTree = "<group>"; };
+		15DC21F12781F7D9000B187A /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		15DDFB8F2750D03E008263A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15DDFB9027510C96008263A2 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		15DDFB952751139A008263A2 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -1027,6 +1056,7 @@
 			children = (
 				153C440B27525D04006D1E8D /* BackgroundModifer.swift */,
 				15DE22EA277F0B0C00B5EE03 /* Shimmer.swift */,
+				15DC21F12781F7D9000B187A /* Keyboard.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -1043,6 +1073,7 @@
 		154B892C276A1FBC00780E93 /* Dev */ = {
 			isa = PBXGroup;
 			children = (
+				15D92827278331FE00382226 /* Lilico-dev.entitlements */,
 				15DE22FC27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist */,
 				154B88832765EBF700780E93 /* GoogleService-Info.plist */,
 			);
@@ -1052,6 +1083,7 @@
 		154B892D276A1FCB00780E93 /* Prod */ = {
 			isa = PBXGroup;
 			children = (
+				158CE88D27830889006A8394 /* Lilico.entitlements */,
 				154B892E276A1FD700780E93 /* GoogleService-Info.plist */,
 			);
 			path = Prod;
@@ -1062,6 +1094,23 @@
 			children = (
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		158CE8822782DA6E006A8394 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				158CE8842782DA87006A8394 /* RegisterRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		158CE8832782DA76006A8394 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				15DC1D4C27814F46000B187A /* CheckUserNameModel.swift */,
+				158CE8872782DAD7006A8394 /* RegisterResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		158CEF0D277D4493004EF2C7 /* WalletCore.dSYMs */ = {
@@ -1275,6 +1324,8 @@
 				15D57748277C0FED00045E79 /* ViewModel */,
 				15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */,
 				15D574C8277816F200045E79 /* UsernameView.swift */,
+				15DC21EE2781F388000B187A /* TYNKView.swift */,
+				158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -1293,6 +1344,8 @@
 			isa = PBXGroup;
 			children = (
 				15D57749277C0FFB00045E79 /* UsernameViewModel.swift */,
+				158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */,
+				158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1307,7 +1360,8 @@
 		15DC1D4B27814F38000B187A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				15DC1D4C27814F46000B187A /* CheckUserNameModel.swift */,
+				158CE8832782DA76006A8394 /* Response */,
+				158CE8822782DA6E006A8394 /* Request */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2048,6 +2102,7 @@
 				15DC1D5A27816F37000B187A /*  MoayAsync */,
 				153C44002751CFA4006D1E8D /* Color.swift */,
 				153C440227520752006D1E8D /* View.swift */,
+				15D92828278338DB00382226 /* UIApplication.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2086,6 +2141,7 @@
 				15DE22D1277DBE0000B5EE03 /* UserManager.swift */,
 				15DC1D3D27809F83000B187A /* BackupManager.swift */,
 				15DC1D5427816605000B187A /* CacheManager.swift */,
+				15D9282B2783395F00382226 /* HUDManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -2458,6 +2514,7 @@
 				15DC21C327819C56000B187A /* LayoutGroup_TB.swift in Sources */,
 				15DC21C727819C56000B187A /* LayoutGroup_HV.swift in Sources */,
 				15DC21B327819C56000B187A /* Optional.LetBlockTransformation.swift in Sources */,
+				158CE8862782DA87006A8394 /* RegisterRequest.swift in Sources */,
 				15DC1F7327819B74000B187A /* SpinnerStyle.swift in Sources */,
 				15DC20A927819C56000B187A /* VWebLink.swift in Sources */,
 				15DC207D27819C56000B187A /* VBaseViewSwipeGesture.swift in Sources */,
@@ -2468,6 +2525,7 @@
 				15DE23012780208300B5EE03 /* RestoreWalletViewModel.swift in Sources */,
 				15DC216527819C56000B187A /* _VHalfModal.swift in Sources */,
 				154B8904276A1EEB00780E93 /* OffsetPageTabView.swift in Sources */,
+				158CE8812782BEAA006A8394 /* TYNKViewModel.swift in Sources */,
 				15DC21E727819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
 				15DC20B727819C56000B187A /* VChevronButton.swift in Sources */,
 				15DC20E127819C56000B187A /* VListModel.swift in Sources */,
@@ -2496,6 +2554,7 @@
 				15DC218D27819C56000B187A /* VRadioButton.swift in Sources */,
 				15DC21BF27819C56000B187A /* WindowOverlayView.swift in Sources */,
 				15DC20FD27819C56000B187A /* VStepperButton.swift in Sources */,
+				15DC21F32781F7D9000B187A /* Keyboard.swift in Sources */,
 				15DC208127819C56000B187A /* VBaseViewNavigationBarCenter.swift in Sources */,
 				15DC213B27819C56000B187A /* VMenuPicker.swift in Sources */,
 				15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
@@ -2514,6 +2573,7 @@
 				15DC209927819C56000B187A /* VToastModel.swift in Sources */,
 				15DC20F327819C56000B187A /* VSectionList.swift in Sources */,
 				15DC20AD27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
+				158CE88C2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */,
 				154B8906276A1EEB00780E93 /* Lilico_App.swift in Sources */,
 				15DC20BB27819C56000B187A /* VChevronButtonState.swift in Sources */,
 				154B8907276A1EEB00780E93 /* View.swift in Sources */,
@@ -2548,6 +2608,8 @@
 				15DC21A527819C56000B187A /* VBaseTextFieldState.swift in Sources */,
 				15DC213127819C56000B187A /* VWheelPickerModel.swift in Sources */,
 				15DC20B127819C56000B187A /* VBaseButtonState.swift in Sources */,
+				15D9282D2783395F00382226 /* HUDManager.swift in Sources */,
+				15D9282A278338DB00382226 /* UIApplication.swift in Sources */,
 				15DC20B927819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209127819C56000B187A /* VSheet.swift in Sources */,
 				154B890B276A1EEB00780E93 /* OnboardingViewModel.swift in Sources */,
@@ -2632,6 +2694,7 @@
 				15DC215927819C56000B187A /* VMenu.swift in Sources */,
 				15D5775E277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
 				15DC215127819C56000B187A /* VNavigationView.swift in Sources */,
+				15DC21F02781F388000B187A /* TYNKView.swift in Sources */,
 				15DC211927819C56000B187A /* VPageIndicatorType.swift in Sources */,
 				15DC20AF27819C56000B187A /* VBaseButtonGestureState.swift in Sources */,
 				15DE22E9277EDC4700B5EE03 /* WalletView.swift in Sources */,
@@ -2639,9 +2702,11 @@
 				15DC217127819C56000B187A /* VDialogButtons.swift in Sources */,
 				15DE22E0277DF37D00B5EE03 /* RestoreWalletView.swift in Sources */,
 				15DC21BB27819C56000B187A /* View.CornerRadius.swift in Sources */,
+				158CE87E27829E68006A8394 /* RecoveryPhraseView.swift in Sources */,
 				15DC217727819C56000B187A /* _VDialog.swift in Sources */,
 				15DC20DF27819C56000B187A /* VListLayoutType.swift in Sources */,
 				154B8916276A1EEB00780E93 /* BackgroundModifer.swift in Sources */,
+				158CE8892782DAD7006A8394 /* RegisterResponse.swift in Sources */,
 				15DC214B27819C56000B187A /* VBaseNaviationViewNavigationBar.swift in Sources */,
 				154B8917276A1EEB00780E93 /* PageIndictor.swift in Sources */,
 				15DC216B27819C56000B187A /* VHalfModalModel.swift in Sources */,
@@ -2713,6 +2778,7 @@
 				15DC21C227819C56000B187A /* LayoutGroup_TB.swift in Sources */,
 				15DC21C627819C56000B187A /* LayoutGroup_HV.swift in Sources */,
 				15DC21B227819C56000B187A /* Optional.LetBlockTransformation.swift in Sources */,
+				158CE8852782DA87006A8394 /* RegisterRequest.swift in Sources */,
 				15DC1F7227819B74000B187A /* SpinnerStyle.swift in Sources */,
 				15DC20A827819C56000B187A /* VWebLink.swift in Sources */,
 				15DC207C27819C56000B187A /* VBaseViewSwipeGesture.swift in Sources */,
@@ -2723,6 +2789,7 @@
 				15DE23002780208300B5EE03 /* RestoreWalletViewModel.swift in Sources */,
 				15DC216427819C56000B187A /* _VHalfModal.swift in Sources */,
 				153C43FF2751CF74006D1E8D /* OffsetPageTabView.swift in Sources */,
+				158CE8802782BEAA006A8394 /* TYNKViewModel.swift in Sources */,
 				15DC21E627819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
 				15DC20B627819C56000B187A /* VChevronButton.swift in Sources */,
 				15DC20E027819C56000B187A /* VListModel.swift in Sources */,
@@ -2751,6 +2818,7 @@
 				15DC218C27819C56000B187A /* VRadioButton.swift in Sources */,
 				15DC21BE27819C56000B187A /* WindowOverlayView.swift in Sources */,
 				15DC20FC27819C56000B187A /* VStepperButton.swift in Sources */,
+				15DC21F22781F7D9000B187A /* Keyboard.swift in Sources */,
 				15DC208027819C56000B187A /* VBaseViewNavigationBarCenter.swift in Sources */,
 				15DC213A27819C56000B187A /* VMenuPicker.swift in Sources */,
 				15BCFF1B277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
@@ -2769,6 +2837,7 @@
 				15DC209827819C56000B187A /* VToastModel.swift in Sources */,
 				15DC20F227819C56000B187A /* VSectionList.swift in Sources */,
 				15DC20AC27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
+				158CE88B2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */,
 				15EC9DF2274FD1FD00F70CD9 /* Lilico_App.swift in Sources */,
 				15DC20BA27819C56000B187A /* VChevronButtonState.swift in Sources */,
 				153C440327520752006D1E8D /* View.swift in Sources */,
@@ -2803,6 +2872,8 @@
 				15DC21A427819C56000B187A /* VBaseTextFieldState.swift in Sources */,
 				15DC213027819C56000B187A /* VWheelPickerModel.swift in Sources */,
 				15DC20B027819C56000B187A /* VBaseButtonState.swift in Sources */,
+				15D9282C2783395F00382226 /* HUDManager.swift in Sources */,
+				15D92829278338DB00382226 /* UIApplication.swift in Sources */,
 				15DC20B827819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209027819C56000B187A /* VSheet.swift in Sources */,
 				15F43D102753A678004F6F49 /* OnboardingViewModel.swift in Sources */,
@@ -2887,6 +2958,7 @@
 				15DC215827819C56000B187A /* VMenu.swift in Sources */,
 				15D5775D277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
 				15DC215027819C56000B187A /* VNavigationView.swift in Sources */,
+				15DC21EF2781F388000B187A /* TYNKView.swift in Sources */,
 				15DC211827819C56000B187A /* VPageIndicatorType.swift in Sources */,
 				15DC20AE27819C56000B187A /* VBaseButtonGestureState.swift in Sources */,
 				15DE22E8277EDC4700B5EE03 /* WalletView.swift in Sources */,
@@ -2894,9 +2966,11 @@
 				15DC217027819C56000B187A /* VDialogButtons.swift in Sources */,
 				15DE22DF277DF37D00B5EE03 /* RestoreWalletView.swift in Sources */,
 				15DC21BA27819C56000B187A /* View.CornerRadius.swift in Sources */,
+				158CE87D27829E68006A8394 /* RecoveryPhraseView.swift in Sources */,
 				15DC217627819C56000B187A /* _VDialog.swift in Sources */,
 				15DC20DE27819C56000B187A /* VListLayoutType.swift in Sources */,
 				153C440C27525D04006D1E8D /* BackgroundModifer.swift in Sources */,
+				158CE8882782DAD7006A8394 /* RegisterResponse.swift in Sources */,
 				15DC214A27819C56000B187A /* VBaseNaviationViewNavigationBar.swift in Sources */,
 				15F43D122753B4F6004F6F49 /* PageIndictor.swift in Sources */,
 				15DC216A27819C56000B187A /* VHalfModalModel.swift in Sources */,
@@ -2954,6 +3028,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Preview Content\"";
@@ -2990,6 +3065,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Preview Content\"";
@@ -3139,6 +3215,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Lilico/App/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Preview Content\"";
@@ -3170,6 +3247,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Lilico/App/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Preview Content\"";
@@ -3204,6 +3282,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YT49SH5NXF;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SWIFT_PACKAGE=1",
+					"$(inherited)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3229,6 +3311,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YT49SH5NXF;
+				GCC_PREPROCESSOR_DEFINITIONS = "SWIFT_PACKAGE=1";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3428,8 +3511,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/outblock/flow-swift";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = revision;
+				revision = 8a0a716c724ac64c14bd65021c7f36c64c020692;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

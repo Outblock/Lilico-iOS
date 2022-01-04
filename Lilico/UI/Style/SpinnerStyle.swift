@@ -12,6 +12,7 @@ class SpinnerStyle {
     static let primary: VSpinnerModelContinous = {
         var model: VSpinnerModelContinous = .init()
         model.colors.spinner = Color.LL.orange
+        model.layout.dimension = 19
         return model
     }()
 }

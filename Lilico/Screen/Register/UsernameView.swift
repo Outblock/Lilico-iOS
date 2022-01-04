@@ -77,16 +77,6 @@ struct UsernameView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
 
-//                LL.TextField(placeHolder: "Username",
-//                             text: $text,
-//                             status: viewModel.status,
-//                             onEditingChanged: { isEditing in
-//                                 if isEditing {
-//                                     viewModel.trigger(.onEditingChanged(text))
-//                                 }
-//                             })
-//                             .padding(.bottom)
-
                 VTextField(model: TextFieldStyle.primary,
                            type: .userName,
                            highlight: highlight,
@@ -96,20 +86,24 @@ struct UsernameView: View {
                            onChange: {
                                viewModel.trigger(.onEditingChanged(text))
                            },
-                           onClear: .clearAndCustom {
+                           onReturn: .returnAndCustom {
+                               viewModel.trigger(.next)
+                           }, onClear: .clearAndCustom {
                                viewModel.trigger(.onEditingChanged(text))
                            })
-//                    .padding(.bottom)
 
                 VPrimaryButton(model: ButtonStyle.primary,
                                state: highlight == .success ? .enabled : .disabled,
-                               action: {}, title: "Next")
+                               action: {
+                                   viewModel.trigger(.next)
+                               }, title: "Next")
                     .padding(.bottom)
             }
+            .dismissKeyboardOnDrag()
             .padding(.horizontal, 30)
-//                .padding(.bottom)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: btnBack)
+            .background(Color.LL.background, ignoresSafeAreaEdges: .all)
         }
     }
 }

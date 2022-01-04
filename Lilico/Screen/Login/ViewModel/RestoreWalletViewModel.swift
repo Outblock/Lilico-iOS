@@ -12,6 +12,15 @@ import GoogleSignIn
 import GTMSessionFetcherCore
 
 class RestoreWalletViewModel {
+    func getKeyFromiCloud() {
+        do {
+            let nameList = try BackupManager.shared.getBackupNameList()
+            try BackupManager.shared.loadAccountDataFromiCloud(userName: nameList.first!)
+        } catch {
+            HUD.present(title: "Restore Failed")
+        }
+    }
+
     func restoreSignIn() {
         GIDSignIn.sharedInstance.restorePreviousSignIn { [weak self] user, error in
             if error != nil || user == nil {
@@ -125,32 +134,5 @@ class RestoreWalletViewModel {
                 fatalError(error!.localizedDescription)
             }
         }
-    }
-}
-
-extension UIApplication {
-    var currentKeyWindow: UIWindow? {
-        UIApplication.shared.connectedScenes
-            .filter { $0.activationState == .foregroundActive }
-            .map { $0 as? UIWindowScene }
-            .compactMap { $0 }
-            .first?.windows
-            .filter { $0.isKeyWindow }
-            .first
-    }
-
-    var rootViewController: UIViewController? {
-        currentKeyWindow?.rootViewController
-    }
-
-    var topMostViewController: UIViewController? {
-        guard var topController = rootViewController else {
-            return nil
-        }
-
-        while let presentedViewController = topController.presentedViewController {
-            topController = presentedViewController
-        }
-        return topController
     }
 }

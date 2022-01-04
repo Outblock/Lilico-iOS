@@ -94,6 +94,7 @@ struct TermsAndPolicy: View {
             .padding(.horizontal, 30)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: btnBack)
+            .background(Color.LL.background, ignoresSafeAreaEdges: .all)
         }
     }
 }

@@ -59,8 +59,8 @@
         "package": "Flow",
         "repositoryURL": "https://github.com/outblock/flow-swift",
         "state": {
-          "branch": "main",
-          "revision": "27ea8a1c3426ed83f608935e6c010e268ce1fdf7",
+          "branch": null,
+          "revision": "8a0a716c724ac64c14bd65021c7f36c64c020692",
           "version": null
         }
       },

@@ -13,6 +13,10 @@ final class RegisterCoordinator: NavigationCoordinatable {
 
     @Root var termScreen = makeTerms
     @Route(.push) var userName = makeUsername
+    @Route(.push) var TYNK = makeTYNK
+    @Route(.push) var recoveryPhrase = makeRecoveryPhrase
+
+    var name: String?
 
     @ViewBuilder func makeTerms() -> some View {
         TermsAndPolicy()
@@ -21,6 +25,20 @@ final class RegisterCoordinator: NavigationCoordinatable {
 
     @ViewBuilder func makeUsername() -> some View {
         UsernameView(viewModel: UsernameViewModel().toAnyViewModel())
+            .hideNavigationBar()
+    }
+
+    @ViewBuilder func makeTYNK() -> some View {
+        if let username = name {
+            TYNKView(viewModel: TYNKViewModel(userName: username).toAnyViewModel())
+                .hideNavigationBar()
+        } else {
+            Text("Error: Empty username")
+        }
+    }
+
+    @ViewBuilder func makeRecoveryPhrase() -> some View {
+        RecoveryPhraseView(viewModel: RecoveryPhraseViewModel().toAnyViewModel())
             .hideNavigationBar()
     }
 }

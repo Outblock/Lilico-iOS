@@ -19,7 +19,6 @@ struct UsernameViewState {
 enum UsernameViewAction {
     case next
     case onEditingChanged(String)
-    case onCommit
 }
 
 class UsernameViewModel: ViewModel {
@@ -30,6 +29,8 @@ class UsernameViewModel: ViewModel {
     var task: DispatchWorkItem?
     var currentText: String = ""
 
+    var router: RegisterCoordinator.Router? = RouterStore.shared.retrieve()
+
     init() {
         state = .init()
     }
@@ -37,7 +38,9 @@ class UsernameViewModel: ViewModel {
     func trigger(_ input: UsernameViewAction) {
         switch input {
         case .next:
-            break
+            UIApplication.shared.endEditing()
+            router?.coordinator.name = currentText
+            router?.route(to: \.TYNK)
         case let .onEditingChanged(text):
             currentText = text
             if localCheckUserName(text) {
@@ -50,8 +53,6 @@ class UsernameViewModel: ViewModel {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: work)
                 }
             }
-        case .onCommit:
-            break
         }
     }
 

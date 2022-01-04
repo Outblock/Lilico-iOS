@@ -16,7 +16,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         Resolver.registerAllServices()
-        IQKeyboardManager.shared.enable = true
+//        IQKeyboardManager.shared.enable = true
         return true
     }
 

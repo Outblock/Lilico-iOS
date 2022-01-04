@@ -29,8 +29,7 @@ public struct VCloseButton: View {
     private let state: VCloseButtonState
     @State private var internalStateRaw: VCloseButtonInternalState?
     private var internalState: VCloseButtonInternalState {
-//        internalStateRaw ??
-        .default(state: state)
+        internalStateRaw ?? .default(state: state)
     }
 
     private let action: () -> Void

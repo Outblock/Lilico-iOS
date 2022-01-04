@@ -28,6 +28,7 @@ struct RestoreWalletView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
+                Spacer()
                 VStack(alignment: .leading, spacing: 18) {
                     HStack {
                         Text("Restore")
@@ -50,7 +51,7 @@ struct RestoreWalletView: View {
                 Spacer()
 
                 Button {
-//                    router.route(to: \.userName)
+                    viewModel.getKeyFromiCloud()
                 } label: {
                     Text("Restore with iCloud")
                         .font(.headline)

@@ -14,23 +14,25 @@ class EmptyWalletViewModel: ViewModel {
     @Published
     private(set) var state: EmptyWalletState
 
-    @RouterObject
-    var router: NavigationRouter<HomeCoordinator>!
+//    @RouterObject
+//    var router: NavigationRouter<HomeCoordinator>!
 
-//    var main: MainCoordinator.Router? = RouterStore.shared.retrieve()
+    var router: HomeCoordinator.Router? = RouterStore.shared.retrieve()
 
     init() {
         let dataSource = [
             CardDataSource(title: "Don't have \nan account?",
                            bgGradient: [.red, Color.LL.orange],
-                           bgImage: Image(componentAsset: "Gradient-Circle"),
+                           bgImage: Image(componentAsset: "Gradient-Circle")
+                               .renderingMode(.original),
                            buttonText: "CREATE",
                            icon: Image(systemName: "plus"),
                            iconColor: .purple,
                            action: .signUp),
             CardDataSource(title: "Already have \nan account?",
                            bgGradient: [Color(hex: "#659EAF"), Color(hex: "#88CBE1")],
-                           bgImage: Image(componentAsset: "Gradient-Rect"),
+                           bgImage: Image(componentAsset: "Gradient-Rect")
+                               .renderingMode(.original),
                            buttonText: "IMPORT",
                            icon: Image(systemName: "arrow.forward.to.line"),
                            iconColor: .yellow,
@@ -45,9 +47,9 @@ class EmptyWalletViewModel: ViewModel {
 //            router?
 //            router.route(to: )
 //            router.coordinator.routeToAuthenticated()
-            router.route(to: \.register)
+            router?.route(to: \.register)
         case .signIn:
-            router.route(to: \.login)
+            router?.route(to: \.login)
         }
     }
 }

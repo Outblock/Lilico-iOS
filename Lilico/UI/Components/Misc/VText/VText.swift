@@ -55,6 +55,7 @@ public struct VText: View {
                 .truncationMode(.tail)
                 .foregroundColor(color)
                 .font(font)
+                .minimumScaleFactor(0.5)
 
         case let .multiLine(limit, alignment):
             Text(title)
@@ -63,6 +64,7 @@ public struct VText: View {
                 .truncationMode(.tail)
                 .foregroundColor(color)
                 .font(font)
+                .minimumScaleFactor(0.5)
         }
     }
 }

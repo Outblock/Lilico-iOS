@@ -11,14 +11,21 @@ import Haneke
 import Moya
 import Resolver
 
-let authPlugin = AccessTokenPlugin { _ in
-    ""
-}
-
-let lilicoProvider = MoyaProvider<LilicoEndpoint>(plugins: [authPlugin, NetworkLoggerPlugin()])
-
 enum LilicoEndpoint {
+    case register(RegisterReuqest)
     case checkUsername(String)
+    case userAddress
+    case userInfo
+    case userWallet
+
+    static var jsonEncoder: JSONEncoder {
+        switch self {
+        default:
+            let coder = JSONEncoder()
+            coder.keyEncodingStrategy = .convertToSnakeCase
+            return coder
+        }
+    }
 }
 
 extension LilicoEndpoint: TargetType, AccessTokenAuthorizable {
@@ -34,20 +41,32 @@ extension LilicoEndpoint: TargetType, AccessTokenAuthorizable {
         switch self {
         case let .checkUsername(name):
             return "/user/check/\(name)"
+        case .register:
+            return "/register"
+        case .userAddress:
+            return "/user/address"
+        case .userInfo:
+            return "/user/info"
+        case .userWallet:
+            return "/user/wallet"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .checkUsername:
+        case .checkUsername, .userInfo, .userWallet:
             return .get
+        case .register, .userAddress:
+            return .post
         }
     }
 
     var task: Task {
         switch self {
-        case .checkUsername:
+        case .checkUsername, .userAddress, .userInfo, .userWallet:
             return .requestPlain
+        case let .register(request):
+            return .requestCustomJSONEncodable(request, encoder: LilicoEndpoint.jsonEncoder)
         }
     }
 
