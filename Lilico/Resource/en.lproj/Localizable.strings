@@ -1,0 +1,10 @@
+/* 
+  AppString.strings
+  Lilico
+
+  Created by Hao Fu on 6/1/22.
+  
+*/
+
+"selectLanguage" = "Select language";
+"languagesList" = "Languages list";

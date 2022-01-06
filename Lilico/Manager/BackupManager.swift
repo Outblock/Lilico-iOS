@@ -52,11 +52,11 @@ class BackupManager: ObservableObject {
             throw LLError.missingUserInfoWhilBackup
         }
 
-        let encryptData = try WalletManager.encryptionAES(key: userInfo.userName, data: data)
-        let accountData = AccountData(data: encryptData.hexValue, address: [userInfo.address ?? ""], name: userInfo.userName)
+        let encryptData = try WalletManager.encryptionAES(key: userInfo.username, data: data)
+        let accountData = AccountData(data: encryptData.hexValue, address: [userInfo.address ?? ""], name: userInfo.username)
         let jsonData = try JSONEncoder().encode(accountData)
         let storeData = try WalletManager.encryptionAES(key: WalletManager.encryptionKey, data: jsonData)
-        let finalData = StoreData(users: [userInfo.userName], data: [storeData.base64EncodedString()])
+        let finalData = StoreData(users: [userInfo.username], data: [storeData.base64EncodedString()])
         let finalJsonData = try JSONEncoder().encode(finalData)
         icloudStore.set(finalJsonData.base64EncodedString(), forKey: BackupManager.backupName)
         icloudStore.synchronize()
@@ -75,7 +75,7 @@ class BackupManager: ObservableObject {
         return model.users
     }
 
-    func loadAccountDataFromiCloud(userName: String) throws {
+    func loadAccountDataFromiCloud(username: String) throws {
         guard let dataString = icloudStore.string(forKey: BackupManager.backupName) else {
             throw LLError.emptyiCloudBackup
         }
@@ -85,7 +85,7 @@ class BackupManager: ObservableObject {
         }
 
         let model = try JSONDecoder().decode(StoreData.self, from: data)
-        guard let index = model.users.firstIndex(of: userName),
+        guard let index = model.users.firstIndex(of: username),
               let storeString = model.data[safe: index],
               let storeData = Data(base64Encoded: storeString)
         else {
@@ -99,12 +99,5 @@ class BackupManager: ObservableObject {
             throw LLError.emptyiCloudBackup
         }
         try WalletManager.shared.createNewWallet(mnemonic: mnemonic, forceCreate: true)
-    }
-}
-
-extension Collection {
-    /// Returns the element at the specified index if it is within bounds, otherwise nil.
-    subscript(safe index: Index) -> Element? {
-        return indices.contains(index) ? self[index] : nil
     }
 }

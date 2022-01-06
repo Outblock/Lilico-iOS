@@ -19,11 +19,11 @@ class TYNKViewModel: ViewModel {
     @Injected
     var userManager: UserManager
 
-    var userName: String
+    var username: String
     var router: RegisterCoordinator.Router? = RouterStore.shared.retrieve()
 
-    init(userName: String) {
-        self.userName = userName
+    init(username: String) {
+        self.username = username
     }
 
     func trigger(_ input: TYNKView.Action) {
@@ -37,7 +37,7 @@ class TYNKViewModel: ViewModel {
                 await MainActor.run {
                     state.isLoading = true
                 }
-                let request = RegisterReuqest(userName: userName, accountKey: key.toCodableModel())
+                let request = RegisterReuqest(username: username, accountKey: key.toCodableModel())
                 do {
                     let model: RegisterResponse = try await Network.request(LilicoEndpoint.register(request))
                     try await userManager.loginWithCustomToken(model.customToken)

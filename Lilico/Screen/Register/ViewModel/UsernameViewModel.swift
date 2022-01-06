@@ -50,7 +50,7 @@ class UsernameViewModel: ViewModel {
                     self.checkUsername(text)
                 }
                 if let work = task {
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: work)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: work)
                 }
             }
         }
@@ -80,7 +80,7 @@ class UsernameViewModel: ViewModel {
             do {
                 let model: CheckUserNameModel = try await Network.request(LilicoEndpoint.checkUsername(username))
                 await MainActor.run {
-                    if model.userName == currentText {
+                    if model.username == currentText {
                         self.state.status = model.unique ? .success() : .error("It's taken")
                     }
                 }

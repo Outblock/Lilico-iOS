@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 extension View {
     var screenBounds: CGRect {
@@ -79,4 +80,10 @@ public extension View {
         case nil: elseTransform(self)
         }
     }
+}
+
+extension UIScreen {
+    static let screenWidth = UIScreen.main.bounds.size.width
+    static let screenHeight = UIScreen.main.bounds.size.height
+    static let screenSize = UIScreen.main.bounds.size
 }

@@ -45,6 +45,12 @@ class TextFieldStyle {
                   pressedOpacity: 0.5,
                   disabledOpacity: 0.1)
 
+        model.colors.footer = .init(enabled: Color.LL.rebackground.opacity(0.2),
+                                    focused: Color.LL.rebackground.opacity(0.6),
+                                    success: Color.LL.success,
+                                    error: Color.LL.error,
+                                    disabled: .gray)
+
         model.layout.cornerRadius = 16
         model.layout.height = 60
         model.layout.headerFooterSpacing = 8

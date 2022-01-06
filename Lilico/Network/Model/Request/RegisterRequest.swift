@@ -8,7 +8,7 @@
 import Foundation
 
 struct RegisterReuqest: Codable {
-    let userName: String
+    let username: String
     let accountKey: AccountKey
 }
 

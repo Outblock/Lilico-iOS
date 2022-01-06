@@ -27,7 +27,7 @@ struct UserInfoResponse: Codable {
 struct UserWalletResponse: Codable {
     let id: String
     let primaryWallet: Int
-    let userName: String
+    let username: String
     let wallet: [WalletResponse]?
 }
 

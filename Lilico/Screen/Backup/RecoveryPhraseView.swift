@@ -98,15 +98,23 @@ struct RecoveryPhraseView: View {
                                    }, title: "Backup to iCould")
 
                     VPrimaryButton(model: ButtonStyle.border,
-                                   action: {}, title: "Backup to Google Drive")
+                                   action: {
+                                       viewModel.trigger(.googleBackup)
+                                   }, title: "Backup to Google Drive")
 
                     VPrimaryButton(model: ButtonStyle.plain,
-                                   action: {}, title: "Backup Manually")
+                                   action: {
+                                       viewModel.trigger(.manualBackup)
+                                   }, title: "Backup Manually")
                 }
 //                    .padding(.bottom)
             }
+            .onAppear {
+                overrideNavigationAppearance()
+            }
             .padding(.horizontal, 30)
-            .navigationBarBackButtonHidden(true)
+//            .navigationBarBackButtonHidden(true)
+            .navigationTitle("Recovery Phrase")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: btnBack)
             .background(Color.LL.background, ignoresSafeAreaEdges: .all)

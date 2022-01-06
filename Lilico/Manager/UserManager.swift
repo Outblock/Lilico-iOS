@@ -11,7 +11,7 @@ import Foundation
 
 struct UserInfo {
     let avatar: String
-    let userName: String
+    let username: String
     let address: String? = nil
 }
 
@@ -20,10 +20,16 @@ class UserManager: ObservableObject {
 
     var userInfo: UserInfo?
 
-    @Published
-    var isLoggedIn = false
+//    @Published
+//    var isLoggedIn: Bool = false
+    var isLoggedIn: Bool {
+        Auth.auth().currentUser != nil
+    }
 
-    var isAnonymous: Bool = true
+//    @Published
+    var isAnonymous: Bool {
+        Auth.auth().currentUser?.isAnonymous ?? true
+    }
 
     var handle: AuthStateDidChangeListenerHandle?
 
@@ -31,16 +37,22 @@ class UserManager: ObservableObject {
 //        listenAuthenticationState()
 //    }
 
+    init() {}
+
     func listenAuthenticationState() {
         handle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
+            guard let self = self else { return }
             if let user = user {
                 print("Sign in -> \(user.uid)")
                 print("isAnonymous -> \(user.isAnonymous)")
                 print(user)
-                self!.isLoggedIn = true
+
+//                self.isAnonymous = user.isAnonymous
+//                self.isLoggedIn = true
             } else {
                 print("Sign out ->")
-                self!.isLoggedIn = false
+//                self.isLoggedIn = false
+//                self.isAnonymous = true
             }
         }
     }
@@ -94,7 +106,7 @@ class UserManager: ObservableObject {
     func fetchUserInfo() async {
         do {
             let response: UserInfoResponse = try await Network.request(LilicoEndpoint.userInfo)
-            userInfo = UserInfo(avatar: response.avatar, userName: response.nickName)
+            userInfo = UserInfo(avatar: response.avatar, username: response.nickName)
 
 //            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
 //            changeRequest?.displayName = userInfo?.userName

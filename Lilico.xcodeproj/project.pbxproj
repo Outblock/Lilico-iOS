@@ -95,6 +95,18 @@
 		159A569427539A2C004BCACC /* WalletSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A569327539A2C004BCACC /* WalletSetupViewModel.swift */; };
 		15B1A686276B53F70006B621 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1A685276B53F70006B621 /* GetStartedView.swift */; };
 		15B1A687276B53F70006B621 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1A685276B53F70006B621 /* GetStartedView.swift */; };
+		15B1F6232785B1C200847BB5 /* NavigationDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6222785B1C200847BB5 /* NavigationDemo.swift */; };
+		15B1F6242785B1C200847BB5 /* NavigationDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6222785B1C200847BB5 /* NavigationDemo.swift */; };
+		15B1F6262785B1DA00847BB5 /* NavigateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6252785B1DA00847BB5 /* NavigateDetail.swift */; };
+		15B1F6272785B1DA00847BB5 /* NavigateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6252785B1DA00847BB5 /* NavigateDetail.swift */; };
+		15B1F62C2786ABE400847BB5 /* BackupPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F62B2786ABE400847BB5 /* BackupPasswordView.swift */; };
+		15B1F62D2786ABE400847BB5 /* BackupPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F62B2786ABE400847BB5 /* BackupPasswordView.swift */; };
+		15B1F62F2786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F62E2786AC9E00847BB5 /* BackupPasswordViewModel.swift */; };
+		15B1F6302786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F62E2786AC9E00847BB5 /* BackupPasswordViewModel.swift */; };
+		15B1F6322786B1BB00847BB5 /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6312786B1BB00847BB5 /* CheckboxStyle.swift */; };
+		15B1F6332786B1BB00847BB5 /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6312786B1BB00847BB5 /* CheckboxStyle.swift */; };
+		15B1F6382786B89800847BB5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B1F63B2786B89800847BB5 /* Localizable.strings */; };
+		15B1F6392786B89800847BB5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B1F63B2786B89800847BB5 /* Localizable.strings */; };
 		15BCFEFB277565F0000B7863 /* TermsAndPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */; };
 		15BCFEFC277565F0000B7863 /* TermsAndPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */; };
 		15BCFF04277587C1000B7863 /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 15BCFF03277587C1000B7863 /* Stinsen */; };
@@ -128,6 +140,12 @@
 		15D9282A278338DB00382226 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D92828278338DB00382226 /* UIApplication.swift */; };
 		15D9282C2783395F00382226 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282B2783395F00382226 /* HUDManager.swift */; };
 		15D9282D2783395F00382226 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282B2783395F00382226 /* HUDManager.swift */; };
+		15D9282F27843D4900382226 /* ManualBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282E27843D4900382226 /* ManualBackupView.swift */; };
+		15D9283027843D4900382226 /* ManualBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282E27843D4900382226 /* ManualBackupView.swift */; };
+		15D9283227843DAD00382226 /* ManualBackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9283127843DAD00382226 /* ManualBackupViewModel.swift */; };
+		15D9283327843DAD00382226 /* ManualBackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9283127843DAD00382226 /* ManualBackupViewModel.swift */; };
+		15D9283527849E6800382226 /* BackupCorrdinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9283427849E6800382226 /* BackupCorrdinator.swift */; };
+		15D9283627849E6800382226 /* BackupCorrdinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9283427849E6800382226 /* BackupCorrdinator.swift */; };
 		15DC1D3E27809F83000B187A /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D3D27809F83000B187A /* BackupManager.swift */; };
 		15DC1D3F27809F83000B187A /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D3D27809F83000B187A /* BackupManager.swift */; };
 		15DC1D422780A44D000B187A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 15DC1D412780A44D000B187A /* IQKeyboardManagerSwift */; };
@@ -688,6 +706,12 @@
 		159A560127536E4E004BCACC /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		159A569327539A2C004BCACC /* WalletSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSetupViewModel.swift; sourceTree = "<group>"; };
 		15B1A685276B53F70006B621 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
+		15B1F6222785B1C200847BB5 /* NavigationDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDemo.swift; sourceTree = "<group>"; };
+		15B1F6252785B1DA00847BB5 /* NavigateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateDetail.swift; sourceTree = "<group>"; };
+		15B1F62B2786ABE400847BB5 /* BackupPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPasswordView.swift; sourceTree = "<group>"; };
+		15B1F62E2786AC9E00847BB5 /* BackupPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPasswordViewModel.swift; sourceTree = "<group>"; };
+		15B1F6312786B1BB00847BB5 /* CheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
+		15B1F63A2786B89800847BB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndPolicy.swift; sourceTree = "<group>"; };
 		15BCFF0727758B30000B7863 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		15BCFF1327770D76000B7863 /* EmptyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletView.swift; sourceTree = "<group>"; };
@@ -702,6 +726,9 @@
 		15D92827278331FE00382226 /* Lilico-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lilico-dev.entitlements"; sourceTree = "<group>"; };
 		15D92828278338DB00382226 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		15D9282B2783395F00382226 /* HUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDManager.swift; sourceTree = "<group>"; };
+		15D9282E27843D4900382226 /* ManualBackupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualBackupView.swift; sourceTree = "<group>"; };
+		15D9283127843DAD00382226 /* ManualBackupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualBackupViewModel.swift; sourceTree = "<group>"; };
+		15D9283427849E6800382226 /* BackupCorrdinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupCorrdinator.swift; sourceTree = "<group>"; };
 		15DC1D3D27809F83000B187A /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		15DC1D4527814A68000B187A /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		15DC1D4827814AD1000B187A /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
@@ -1033,6 +1060,7 @@
 				15BCFF0727758B30000B7863 /* TabBarCoordinator.swift */,
 				1537B3D9277C8DC8008ECD05 /* HomeCoordinator.swift */,
 				1537B3DC277C8E2A008ECD05 /* OnBoradingCoordinator.swift */,
+				15D9283427849E6800382226 /* BackupCorrdinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1040,6 +1068,7 @@
 		153C440427520811006D1E8D /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				15B1F6282786A36900847BB5 /* Backup */,
 				15BCFEF9277560C2000B7863 /* Register */,
 				1507C7ED275634BC00890C5D /* Profile */,
 				1507C7EA2755FCB100890C5D /* Wallet */,
@@ -1248,6 +1277,8 @@
 				154B88852765F33400780E93 /* AppDelegate.swift */,
 				15DE22D4277DCCED00B5EE03 /* AppDelegate+Resolver.swift */,
 				156AC7AE2780427900ED5E3E /* Lilico-Bridging-Header.h */,
+				15B1F6222785B1C200847BB5 /* NavigationDemo.swift */,
+				15B1F6252785B1DA00847BB5 /* NavigateDetail.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1279,6 +1310,7 @@
 			isa = PBXGroup;
 			children = (
 				15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */,
+				15B1F63B2786B89800847BB5 /* Localizable.strings */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1318,6 +1350,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		15B1F6282786A36900847BB5 /* Backup */ = {
+			isa = PBXGroup;
+			children = (
+				15B1F6292786A37F00847BB5 /* ViewModel */,
+				158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */,
+				15D9282E27843D4900382226 /* ManualBackupView.swift */,
+				15B1F62B2786ABE400847BB5 /* BackupPasswordView.swift */,
+			);
+			path = Backup;
+			sourceTree = "<group>";
+		};
+		15B1F6292786A37F00847BB5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				15D9283127843DAD00382226 /* ManualBackupViewModel.swift */,
+				158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */,
+				15B1F62E2786AC9E00847BB5 /* BackupPasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		15BCFEF9277560C2000B7863 /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -1325,7 +1378,6 @@
 				15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */,
 				15D574C8277816F200045E79 /* UsernameView.swift */,
 				15DC21EE2781F388000B187A /* TYNKView.swift */,
-				158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -1345,7 +1397,6 @@
 			children = (
 				15D57749277C0FFB00045E79 /* UsernameViewModel.swift */,
 				158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */,
-				158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2130,6 +2181,7 @@
 				15DC1D4527814A68000B187A /* ButtonStyle.swift */,
 				15DC1D4827814AD1000B187A /* TextFieldStyle.swift */,
 				15DC1F7127819B74000B187A /* SpinnerStyle.swift */,
+				15B1F6312786B1BB00847BB5 /* CheckboxStyle.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -2371,6 +2423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				154B8922276A1EEB00780E93 /* Preview Assets.xcassets in Resources */,
+				15B1F6392786B89800847BB5 /* Localizable.strings in Resources */,
 				154B8923276A1EEB00780E93 /* Assets.xcassets in Resources */,
 				154B8929276A1F4600780E93 /* GoogleService-Info.plist in Resources */,
 				15DE22FD27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */,
@@ -2382,6 +2435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15EC9DF9274FD1FD00F70CD9 /* Preview Assets.xcassets in Resources */,
+				15B1F6382786B89800847BB5 /* Localizable.strings in Resources */,
 				15EC9DF6274FD1FD00F70CD9 /* Assets.xcassets in Resources */,
 				154B892F276A1FD700780E93 /* GoogleService-Info.plist in Resources */,
 			);
@@ -2487,6 +2541,7 @@
 				15DC209F27819C56000B187A /* VSecondaryButtonModel.swift in Sources */,
 				15DC21B527819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
 				15DC210327819C56000B187A /* VStepperState.swift in Sources */,
+				15D9283627849E6800382226 /* BackupCorrdinator.swift in Sources */,
 				15DC20CD27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DD27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AD27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
@@ -2568,6 +2623,8 @@
 				15DC216927819C56000B187A /* VHalfModalNavigationViewCloseButton.swift in Sources */,
 				15DC20D727819C56000B187A /* VPlainButtonState.swift in Sources */,
 				15DC1D4A27814AD1000B187A /* TextFieldStyle.swift in Sources */,
+				15B1F6242785B1C200847BB5 /* NavigationDemo.swift in Sources */,
+				15D9283027843D4900382226 /* ManualBackupView.swift in Sources */,
 				15DC21D927819C56000B187A /* StateColors_EPLD.swift in Sources */,
 				15BCFEFC277565F0000B7863 /* TermsAndPolicy.swift in Sources */,
 				15DC209927819C56000B187A /* VToastModel.swift in Sources */,
@@ -2582,6 +2639,7 @@
 				15DC211F27819C56000B187A /* VSpinnerType.swift in Sources */,
 				15DC207F27819C56000B187A /* VBaseViewNavigationBarLeading.swift in Sources */,
 				15DC207B27819C56000B187A /* VBaseView.swift in Sources */,
+				15D9283327843DAD00382226 /* ManualBackupViewModel.swift in Sources */,
 				15DC208927819C56000B187A /* VLazyScrollView.swift in Sources */,
 				15DC214727819C56000B187A /* VTabNavigationViewPage.swift in Sources */,
 				15DC20F927819C56000B187A /* VBaseList.swift in Sources */,
@@ -2594,6 +2652,7 @@
 				154B8908276A1EEB00780E93 /* ColorBook.swift in Sources */,
 				15DC212127819C56000B187A /* VSpinnerModelDashed.swift in Sources */,
 				15DC20DB27819C56000B187A /* VPrimaryButtonState.swift in Sources */,
+				15B1F6332786B1BB00847BB5 /* CheckboxStyle.swift in Sources */,
 				154B8909276A1EEB00780E93 /* Color.swift in Sources */,
 				154B890A276A1EEB00780E93 /* OnboardingView.swift in Sources */,
 				15DC211127819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
@@ -2609,6 +2668,7 @@
 				15DC213127819C56000B187A /* VWheelPickerModel.swift in Sources */,
 				15DC20B127819C56000B187A /* VBaseButtonState.swift in Sources */,
 				15D9282D2783395F00382226 /* HUDManager.swift in Sources */,
+				15B1F6302786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				15D9282A278338DB00382226 /* UIApplication.swift in Sources */,
 				15DC20B927819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209127819C56000B187A /* VSheet.swift in Sources */,
@@ -2616,6 +2676,7 @@
 				15DC208727819C56000B187A /* VLazyScrollViewType.swift in Sources */,
 				154B890C276A1EEB00780E93 /* WalletSetupView.swift in Sources */,
 				15DC20F527819C56000B187A /* VBaseListModel.swift in Sources */,
+				15B1F62D2786ABE400847BB5 /* BackupPasswordView.swift in Sources */,
 				15DC21AF27819C56000B187A /* UINavigationBar.NavigationBarHeight.swift in Sources */,
 				15DC216327819C56000B187A /* _VSideBar.swift in Sources */,
 				15DC208B27819C56000B187A /* VLazyScrollViewVertical.swift in Sources */,
@@ -2635,6 +2696,7 @@
 				15DC20E727819C56000B187A /* VAccordionModel.swift in Sources */,
 				15DC21C527819C56000B187A /* LayoutGroup_LT.swift in Sources */,
 				15DC21A727819C56000B187A /* VBaseTextField.swift in Sources */,
+				15B1F6272785B1DA00847BB5 /* NavigateDetail.swift in Sources */,
 				15DC210727819C56000B187A /* VSliderState.swift in Sources */,
 				15DC215B27819C56000B187A /* VMenuButtonType.swift in Sources */,
 				15DC217F27819C56000B187A /* VActionSheetRow.swift in Sources */,
@@ -2751,6 +2813,7 @@
 				15DC209E27819C56000B187A /* VSecondaryButtonModel.swift in Sources */,
 				15DC21B427819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
 				15DC210227819C56000B187A /* VStepperState.swift in Sources */,
+				15D9283527849E6800382226 /* BackupCorrdinator.swift in Sources */,
 				15DC20CC27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DC27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AC27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
@@ -2832,6 +2895,8 @@
 				15DC216827819C56000B187A /* VHalfModalNavigationViewCloseButton.swift in Sources */,
 				15DC20D627819C56000B187A /* VPlainButtonState.swift in Sources */,
 				15DC1D4927814AD1000B187A /* TextFieldStyle.swift in Sources */,
+				15B1F6232785B1C200847BB5 /* NavigationDemo.swift in Sources */,
+				15D9282F27843D4900382226 /* ManualBackupView.swift in Sources */,
 				15DC21D827819C56000B187A /* StateColors_EPLD.swift in Sources */,
 				15BCFEFB277565F0000B7863 /* TermsAndPolicy.swift in Sources */,
 				15DC209827819C56000B187A /* VToastModel.swift in Sources */,
@@ -2846,6 +2911,7 @@
 				15DC211E27819C56000B187A /* VSpinnerType.swift in Sources */,
 				15DC207E27819C56000B187A /* VBaseViewNavigationBarLeading.swift in Sources */,
 				15DC207A27819C56000B187A /* VBaseView.swift in Sources */,
+				15D9283227843DAD00382226 /* ManualBackupViewModel.swift in Sources */,
 				15DC208827819C56000B187A /* VLazyScrollView.swift in Sources */,
 				15DC214627819C56000B187A /* VTabNavigationViewPage.swift in Sources */,
 				15DC20F827819C56000B187A /* VBaseList.swift in Sources */,
@@ -2858,6 +2924,7 @@
 				159A55FF27536CD9004BCACC /* ColorBook.swift in Sources */,
 				15DC212027819C56000B187A /* VSpinnerModelDashed.swift in Sources */,
 				15DC20DA27819C56000B187A /* VPrimaryButtonState.swift in Sources */,
+				15B1F6322786B1BB00847BB5 /* CheckboxStyle.swift in Sources */,
 				153C44012751CFA4006D1E8D /* Color.swift in Sources */,
 				15DDFB9127510C96008263A2 /* OnboardingView.swift in Sources */,
 				15DC211027819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
@@ -2873,6 +2940,7 @@
 				15DC213027819C56000B187A /* VWheelPickerModel.swift in Sources */,
 				15DC20B027819C56000B187A /* VBaseButtonState.swift in Sources */,
 				15D9282C2783395F00382226 /* HUDManager.swift in Sources */,
+				15B1F62F2786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				15D92829278338DB00382226 /* UIApplication.swift in Sources */,
 				15DC20B827819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209027819C56000B187A /* VSheet.swift in Sources */,
@@ -2880,6 +2948,7 @@
 				15DC208627819C56000B187A /* VLazyScrollViewType.swift in Sources */,
 				15EC9E1C274FD6C000F70CD9 /* WalletSetupView.swift in Sources */,
 				15DC20F427819C56000B187A /* VBaseListModel.swift in Sources */,
+				15B1F62C2786ABE400847BB5 /* BackupPasswordView.swift in Sources */,
 				15DC21AE27819C56000B187A /* UINavigationBar.NavigationBarHeight.swift in Sources */,
 				15DC216227819C56000B187A /* _VSideBar.swift in Sources */,
 				15DC208A27819C56000B187A /* VLazyScrollViewVertical.swift in Sources */,
@@ -2899,6 +2968,7 @@
 				15DC20E627819C56000B187A /* VAccordionModel.swift in Sources */,
 				15DC21C427819C56000B187A /* LayoutGroup_LT.swift in Sources */,
 				15DC21A627819C56000B187A /* VBaseTextField.swift in Sources */,
+				15B1F6262785B1DA00847BB5 /* NavigateDetail.swift in Sources */,
 				15DC210627819C56000B187A /* VSliderState.swift in Sources */,
 				15DC215A27819C56000B187A /* VMenuButtonType.swift in Sources */,
 				15DC217E27819C56000B187A /* VActionSheetRow.swift in Sources */,
@@ -3022,6 +3092,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		15B1F63B2786B89800847BB5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15B1F63A2786B89800847BB5 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		154B8926276A1EEB00780E93 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3044,6 +3125,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3056,7 +3138,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lilico/App/Lilico-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -3078,6 +3160,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3090,7 +3173,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lilico/App/Lilico-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -3151,6 +3234,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -3205,6 +3289,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3226,6 +3311,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3238,7 +3324,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lilico/App/Lilico-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -3258,6 +3344,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3270,7 +3357,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lilico/App/Lilico-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

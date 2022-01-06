@@ -39,7 +39,7 @@ public enum VTextFieldType: Int, CaseIterable {
     }
 
     var isSearch: Bool {
-        self == .secure
+        self == .search
     }
 
     var isUserName: Bool {

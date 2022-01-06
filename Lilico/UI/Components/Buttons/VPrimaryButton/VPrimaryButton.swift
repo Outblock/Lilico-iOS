@@ -86,7 +86,8 @@ public struct VPrimaryButton<Content>: View where Content: View {
             isEnabled: internalState.isEnabled,
             gesture: gestureHandler,
             content: { buttonView }
-        )
+        ).scaleEffect(internalStateRaw == .pressed ? 0.95 : 1)
+            .animation(.linear(duration: 0.2), value: internalStateRaw)
     }
 
     private var buttonView: some View {
@@ -154,7 +155,11 @@ public struct VPrimaryButton<Content>: View where Content: View {
 
     private func gestureHandler(gestureState: VBaseButtonGestureState) {
         internalStateRaw = .init(state: state, isPressed: gestureState.isPressed)
-        if gestureState.isClicked { action() }
+        if gestureState.isClicked {
+            let impact = UIImpactFeedbackGenerator(style: .light)
+            impact.impactOccurred()
+            action()
+        }
     }
 }
 

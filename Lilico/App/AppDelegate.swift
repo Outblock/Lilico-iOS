@@ -17,6 +17,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         Resolver.registerAllServices()
 //        IQKeyboardManager.shared.enable = true
+
+        UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "arrow.backward")
+
         return true
     }
 

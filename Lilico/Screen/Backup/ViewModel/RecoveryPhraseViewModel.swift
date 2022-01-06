@@ -7,6 +7,7 @@
 
 import Foundation
 import SPIndicator
+import Stinsen
 
 class RecoveryPhraseViewModel: ViewModel {
     @Published
@@ -26,6 +27,9 @@ class RecoveryPhraseViewModel: ViewModel {
         WordListView.WordItem(id: 11, word: "---"),
         WordListView.WordItem(id: 12, word: "---"),
     ]
+
+    @RouterObject
+    var router: BackupCorrdinator.Router?
 
     init() {
         if let mnemonic = WalletManager.shared.getMnemoic() {
@@ -59,6 +63,8 @@ class RecoveryPhraseViewModel: ViewModel {
                     }
                 }
             }
+        case .manualBackup:
+            router?.route(to: \.manualBackup)
         default:
             break
         }

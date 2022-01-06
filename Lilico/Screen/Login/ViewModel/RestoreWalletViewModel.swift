@@ -15,7 +15,7 @@ class RestoreWalletViewModel {
     func getKeyFromiCloud() {
         do {
             let nameList = try BackupManager.shared.getBackupNameList()
-            try BackupManager.shared.loadAccountDataFromiCloud(userName: nameList.first!)
+            try BackupManager.shared.loadAccountDataFromiCloud(username: nameList.first!)
         } catch {
             HUD.present(title: "Restore Failed")
         }
@@ -37,9 +37,10 @@ class RestoreWalletViewModel {
 
     func signInButtonTapped() {
         // 1
+        guard let topVC = UIApplication.shared.topMostViewController else {
+            return
+        }
         let signInConfig = GIDConfiguration(clientID: "246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com")
-
-        let topVC = UIApplication.shared.topMostViewController!
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: topVC) { [weak self] user, error in
 
             guard let self = self else { return }
@@ -86,7 +87,7 @@ class RestoreWalletViewModel {
 
     func createGoogleDriveService(user: GIDGoogleUser) {
         let metadata = GTLRDrive_File()
-        metadata.name = "[DO_NOT_DELETE]_Lilico_app_backup_v1_lmcmz"
+        metadata.name = "Lilico_app_backup_v1"
 
         // 1. set service type to GoogleDrive
         let service = GTLRDriveService()

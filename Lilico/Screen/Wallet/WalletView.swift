@@ -5,12 +5,10 @@
 //  Created by Hao Fu on 31/12/21.
 //
 
+import FirebaseAuth
 import SwiftUI
 
 struct WalletView: View {
-    @StateObject
-    var viewModel: AnyViewModel<EmptyWalletState, EmptyWalletAction>
-
     @State
     var viewState: CGSize = .zero
 
@@ -54,7 +52,7 @@ struct WalletView: View {
         }
         .padding()
         .background {
-            Image(componentAsset: "Card-circle")
+            Image("Card-circle")
                 .aspectRatio(contentMode: .fill)
                 .frame(maxWidth: .infinity, alignment: .bottomTrailing)
 //                .background(Color(hex: "2F2F2F"))
@@ -67,7 +65,8 @@ struct WalletView: View {
         .cornerRadius(20)
         .frame(maxWidth: .infinity, alignment: .leading)
         .overlay {
-            Image(componentAsset: "BlowFish")
+            Image("BlowFish")
+//                .renderingMode(.original)
                 .frame(maxWidth: .infinity, alignment: .topTrailing)
                 .offset(x: 20, y: -90)
                 .offset(x: viewState.width / 10,
@@ -81,15 +80,27 @@ struct WalletView: View {
                    value: viewState)
         .rotation3DEffect(Angle(degrees: 5), axis: (x: viewState.width, y: viewState.height, z: 0))
         .gesture(
-            DragGesture().onChanged { value in
-                self.viewState = value.translation
-                self.isDragging = true
+            DragGesture()
+                .onChanged { value in
+                    self.viewState = value.translation
+                    self.isDragging = true
+                }
+                .onEnded { _ in
+                    self.viewState = .zero
+                    self.isDragging = false
+                }
+        )
+    }
+
+    var drag: some Gesture {
+        DragGesture()
+            .onChanged { _ in
+                print("changing")
             }
             .onEnded { _ in
-                self.viewState = .zero
-                self.isDragging = false
+                print("ended")
+                isDragging = false
             }
-        )
     }
 
     var body: some View {
@@ -99,8 +110,13 @@ struct WalletView: View {
                     .font(.title)
                     .bold()
                 Spacer()
-                Image(systemName: "qrcode.viewfinder")
-                    .font(.title2)
+
+                Button {
+                    UserManager.shared.logOut()
+                } label: {
+                    Image(systemName: "qrcode.viewfinder")
+                        .font(.title2)
+                }
             }.padding(.horizontal, 20)
                 .padding(.vertical, 8)
 
@@ -111,9 +127,11 @@ struct WalletView: View {
 
                 ActionView()
 
-                HStack(spacing: 8) {
-                    Image(componentAsset: "Flow")
-                        .aspectRatio(contentMode: .fit)
+                HStack(spacing: 12) {
+                    Image("Flow")
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                        .frame(width: 50, height: 50)
 
                     VStack {
                         Text("Flow")
@@ -127,6 +145,7 @@ struct WalletView: View {
                         Text("$ 8.9")
                     }
                 }
+                .padding()
                 .background(.clear)
             }
 
@@ -140,7 +159,7 @@ struct WalletView: View {
 
 struct WalletView_Previews: PreviewProvider {
     static var previews: some View {
-        WalletView(viewModel: EmptyWalletViewModel().toAnyViewModel())
+        WalletView()
     }
 }
 

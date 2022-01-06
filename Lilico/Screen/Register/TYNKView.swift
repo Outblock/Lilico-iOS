@@ -102,7 +102,7 @@ struct TYNKView: View {
 
 struct TYNKView_Previews: PreviewProvider {
     static var previews: some View {
-        TYNKView(viewModel: TYNKViewModel(userName: "123").toAnyViewModel())
+        TYNKView(viewModel: TYNKViewModel(username: "123").toAnyViewModel())
             .previewDevice("iPhone 13 Pro")
     }
 }

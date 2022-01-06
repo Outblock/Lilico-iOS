@@ -48,7 +48,7 @@ struct ChooseAccountView: View {
                 Spacer()
 
                 Button {
-                    router.route(to: \.userName)
+                    router.route(to: \.username)
                 } label: {
                     HStack {
                         Text("Username")

@@ -58,7 +58,7 @@ public struct VSegmentedPicker<Data, RowContent>: View
         isPressed: pressedIndex == index
     ) }
 
-    @Binding private var selectedIndex: Int
+    @Binding private var selectedIndex: Int?
     @State private var animatableSelectedIndex: Int?
 
     private let headerTitle: String?
@@ -76,7 +76,7 @@ public struct VSegmentedPicker<Data, RowContent>: View
     public init(
         model: VSegmentedPickerModel = .init(),
         state: VSegmentedPickerState = .enabled,
-        selectedIndex: Binding<Int>,
+        selectedIndex: Binding<Int?>,
         headerTitle: String? = nil,
         footerTitle: String? = nil,
         disabledIndexes: Set<Int> = .init(),
@@ -99,7 +99,7 @@ public struct VSegmentedPicker<Data, RowContent>: View
     public init(
         model: VSegmentedPickerModel = .init(),
         state: VSegmentedPickerState = .enabled,
-        selectedIndex: Binding<Int>,
+        selectedIndex: Binding<Int?>,
         headerTitle: String? = nil,
         footerTitle: String? = nil,
         disabledIndexes: Set<Int> = .init(),
@@ -134,7 +134,7 @@ public struct VSegmentedPicker<Data, RowContent>: View
     public init<Item>(
         model: VSegmentedPickerModel = .init(),
         state: VSegmentedPickerState = .enabled,
-        selection: Binding<Item>,
+        selection: Binding<Item?>,
         headerTitle: String? = nil,
         footerTitle: String? = nil,
         disabledItems: Set<Item> = .init(),
@@ -148,8 +148,8 @@ public struct VSegmentedPicker<Data, RowContent>: View
             model: model,
             state: state,
             selectedIndex: .init(
-                get: { selection.wrappedValue.rawValue },
-                set: { selection.wrappedValue = Item(rawValue: $0)! }
+                get: { selection.wrappedValue?.rawValue },
+                set: { selection.wrappedValue = Item(rawValue: $0 ?? 0)! }
             ),
             headerTitle: headerTitle,
             footerTitle: footerTitle,
@@ -180,7 +180,7 @@ public struct VSegmentedPicker<Data, RowContent>: View
             state: state,
             selectedIndex: .init(
                 get: { selection.wrappedValue.rawValue },
-                set: { selection.wrappedValue = Item(rawValue: $0)! }
+                set: { selection.wrappedValue = Item(rawValue: $0 ?? 0)! }
             ),
             headerTitle: headerTitle,
             footerTitle: footerTitle,
@@ -255,7 +255,8 @@ public struct VSegmentedPicker<Data, RowContent>: View
             .padding(model.layout.indicatorMargin)
             .frame(width: rowWidth)
             .scaleEffect(indicatorScale)
-            .offset(x: rowWidth * .init(animatableSelectedIndex ?? selectedIndex))
+            .opacity(selectedIndex == nil ? 0 : 1)
+            .offset(x: rowWidth * .init(animatableSelectedIndex ?? selectedIndex ?? (data.count / 2)))
             .foregroundColor(model.colors.indicator.for(state))
             .shadow(
                 color: model.colors.indicatorShadow.for(state),
@@ -333,8 +334,10 @@ public struct VSegmentedPicker<Data, RowContent>: View
     }
 
     private func dividerOpacity(for index: Int) -> Double {
+        guard let selectedIndex = selectedIndex else {
+            return 1
+        }
         let isBeforeIndicator: Bool = index < selectedIndex
-
         switch isBeforeIndicator {
         case false: return index - selectedIndex < 1 ? 0 : 1
         case true: return selectedIndex - index <= 1 ? 0 : 1

@@ -16,5 +16,5 @@ import Foundation
 
 struct CheckUserNameModel: Codable {
     let unique: Bool
-    let userName: String
+    let username: String
 }

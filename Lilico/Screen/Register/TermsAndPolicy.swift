@@ -75,21 +75,11 @@ struct TermsAndPolicy: View {
                     )
                     .padding(.bottom)
 
-                Button {
-                    router.route(to: \.userName)
-                } label: {
-                    Text("I Accept")
-                        .font(.headline)
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.vertical, 18)
-                        .foregroundColor(Color.LL.background)
-                        .background {
-                            RoundedRectangle(cornerRadius: 16)
-                                .foregroundColor(Color.LL.rebackground)
-                        }
-                }
-                .padding(.bottom)
+                VPrimaryButton(model: ButtonStyle.primary,
+                               action: {
+                                   router.route(to: \.username)
+                               }, title: "I Accept")
+                    .padding(.bottom)
             }
             .padding(.horizontal, 30)
             .navigationBarBackButtonHidden(true)
