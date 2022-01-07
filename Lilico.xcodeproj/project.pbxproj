@@ -67,6 +67,14 @@
 		154B892F276A1FD700780E93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154B892E276A1FD700780E93 /* GoogleService-Info.plist */; };
 		154B8931276A23ED00780E93 /* InnerCircleTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B8930276A23ED00780E93 /* InnerCircleTabBar.swift */; };
 		154B8932276A23F000780E93 /* InnerCircleTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B8930276A23ED00780E93 /* InnerCircleTabBar.swift */; };
+		1552DC5E2786EBA100EAA7D5 /* RequestSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC5D2786EBA100EAA7D5 /* RequestSecureView.swift */; };
+		1552DC5F2786EBA100EAA7D5 /* RequestSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC5D2786EBA100EAA7D5 /* RequestSecureView.swift */; };
+		1552DC612786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */; };
+		1552DC622786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */; };
+		1552DC642787063100EAA7D5 /* PinStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC632787063100EAA7D5 /* PinStackView.swift */; };
+		1552DC652787063100EAA7D5 /* PinStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC632787063100EAA7D5 /* PinStackView.swift */; };
+		1552DC68278708AB00EAA7D5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 1552DC67278708AB00EAA7D5 /* Introspect */; };
+		1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 1552DC692787090D00EAA7D5 /* Introspect */; };
 		156AC7A727802F4F00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7A627802F4F00ED5E3E /* GoogleAPIClientForRESTCore */; };
 		156AC7A927802F4F00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7A827802F4F00ED5E3E /* GoogleAPIClientForREST_Drive */; };
 		156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7AA27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive */; };
@@ -74,6 +82,21 @@
 		156AC7B1278042DE00ED5E3E /* GTMSessionFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7B0278042DE00ED5E3E /* GTMSessionFetcher */; };
 		156AC7B327804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
 		156AC7B427804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
+		158C9C9F27871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
+		158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
+		158C9CA32787F6EA0062E0C6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
+		158C9CA42787F6EA0062E0C6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
+		158C9CA82787F7490062E0C6 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
+		158C9CA92787F7490062E0C6 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
+		158C9CAA2787F7490062E0C6 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA62787F7490062E0C6 /* Montserrat-Italic.ttf */; };
+		158C9CAB2787F7490062E0C6 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA62787F7490062E0C6 /* Montserrat-Italic.ttf */; };
+		158C9CAC2787F7490062E0C6 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA72787F7490062E0C6 /* Montserrat-Regular.ttf */; };
+		158C9CAD2787F7490062E0C6 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA72787F7490062E0C6 /* Montserrat-Regular.ttf */; };
+		158C9CAF2787F7650062E0C6 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CAE2787F7610062E0C6 /* Montserrat-SemiBold.ttf */; };
+		158C9CB02787F7660062E0C6 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CAE2787F7610062E0C6 /* Montserrat-SemiBold.ttf */; };
+		158C9CB22787F9520062E0C6 /* FontBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9CB12787F9520062E0C6 /* FontBook.swift */; };
+		158C9CB32787F9520062E0C6 /* FontBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9CB12787F9520062E0C6 /* FontBook.swift */; };
+		158C9CB427880C270062E0C6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DDFB8F2750D03E008263A2 /* Info.plist */; };
 		158CE87D27829E68006A8394 /* RecoveryPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */; };
 		158CE87E27829E68006A8394 /* RecoveryPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */; };
 		158CE8802782BEAA006A8394 /* TYNKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */; };
@@ -633,8 +656,19 @@
 		154B8928276A1EEB00780E93 /* Lilico-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lilico-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		154B892E276A1FD700780E93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		154B8930276A23ED00780E93 /* InnerCircleTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCircleTabBar.swift; sourceTree = "<group>"; };
+		1552DC5D2786EBA100EAA7D5 /* RequestSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSecureView.swift; sourceTree = "<group>"; };
+		1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinCodeView.swift; sourceTree = "<group>"; };
+		1552DC632787063100EAA7D5 /* PinStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStackView.swift; sourceTree = "<group>"; };
 		156AC7AE2780427900ED5E3E /* Lilico-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lilico-Bridging-Header.h"; sourceTree = "<group>"; };
 		156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeView.swift; sourceTree = "<group>"; };
+		158C9CA22787F6EA0062E0C6 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
+		158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		158C9CA62787F7490062E0C6 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		158C9CA72787F7490062E0C6 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		158C9CAE2787F7610062E0C6 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		158C9CB12787F9520062E0C6 /* FontBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontBook.swift; sourceTree = "<group>"; };
+		158C9CB627880D030062E0C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPhraseView.swift; sourceTree = "<group>"; };
 		158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYNKViewModel.swift; sourceTree = "<group>"; };
 		158CE8842782DA87006A8394 /* RegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
@@ -976,6 +1010,7 @@
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
 				154B891F276A1EEB00780E93 /* FirebaseDynamicLinks in Frameworks */,
 				15DE22F1277F133B00B5EE03 /* SkeletonUI in Frameworks */,
+				1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */,
 				15BCFF0627758832000B7863 /* Stinsen in Frameworks */,
 				154B8920276A1EEB00780E93 /* SwiftUIX in Frameworks */,
 			);
@@ -991,6 +1026,7 @@
 				15DE22EF277F132200B5EE03 /* SkeletonUI in Frameworks */,
 				154B887E2765EBA700780E93 /* FirebaseAuth in Frameworks */,
 				15DC1D422780A44D000B187A /* IQKeyboardManagerSwift in Frameworks */,
+				1552DC68278708AB00EAA7D5 /* Introspect in Frameworks */,
 				15D57757277C238C00045E79 /* Moya in Frameworks */,
 				1507C7E52755061700890C5D /* Resolver in Frameworks */,
 				15DE22D9277DD53000B5EE03 /* KeychainAccess in Frameworks */,
@@ -1102,6 +1138,7 @@
 		154B892C276A1FBC00780E93 /* Dev */ = {
 			isa = PBXGroup;
 			children = (
+				158C9CB627880D030062E0C6 /* Info.plist */,
 				15D92827278331FE00382226 /* Lilico-dev.entitlements */,
 				15DE22FC27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist */,
 				154B88832765EBF700780E93 /* GoogleService-Info.plist */,
@@ -1112,6 +1149,7 @@
 		154B892D276A1FCB00780E93 /* Prod */ = {
 			isa = PBXGroup;
 			children = (
+				15DDFB8F2750D03E008263A2 /* Info.plist */,
 				158CE88D27830889006A8394 /* Lilico.entitlements */,
 				154B892E276A1FD700780E93 /* GoogleService-Info.plist */,
 			);
@@ -1123,6 +1161,26 @@
 			children = (
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		1552DC6B27870B7000EAA7D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1552DC632787063100EAA7D5 /* PinStackView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		158C9CA12787F6BC0062E0C6 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				158C9CAE2787F7610062E0C6 /* Montserrat-SemiBold.ttf */,
+				158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */,
+				158C9CA62787F7490062E0C6 /* Montserrat-Italic.ttf */,
+				158C9CA72787F7490062E0C6 /* Montserrat-Regular.ttf */,
+				158C9CA22787F6EA0062E0C6 /* Inter.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		158CE8822782DA6E006A8394 /* Request */ = {
@@ -1272,7 +1330,6 @@
 			isa = PBXGroup;
 			children = (
 				154B88C1276A1EA300780E93 /* Env */,
-				15DDFB8F2750D03E008263A2 /* Info.plist */,
 				15EC9DF1274FD1FD00F70CD9 /* Lilico_App.swift */,
 				154B88852765F33400780E93 /* AppDelegate.swift */,
 				15DE22D4277DCCED00B5EE03 /* AppDelegate+Resolver.swift */,
@@ -1309,6 +1366,7 @@
 		159A5437275368BF004BCACC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				158C9CA12787F6BC0062E0C6 /* fonts */,
 				15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */,
 				15B1F63B2786B89800847BB5 /* Localizable.strings */,
 			);
@@ -1353,10 +1411,14 @@
 		15B1F6282786A36900847BB5 /* Backup */ = {
 			isa = PBXGroup;
 			children = (
+				1552DC6B27870B7000EAA7D5 /* View */,
 				15B1F6292786A37F00847BB5 /* ViewModel */,
 				158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */,
 				15D9282E27843D4900382226 /* ManualBackupView.swift */,
 				15B1F62B2786ABE400847BB5 /* BackupPasswordView.swift */,
+				1552DC5D2786EBA100EAA7D5 /* RequestSecureView.swift */,
+				1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */,
+				158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */,
 			);
 			path = Backup;
 			sourceTree = "<group>";
@@ -2182,6 +2244,7 @@
 				15DC1D4827814AD1000B187A /* TextFieldStyle.swift */,
 				15DC1F7127819B74000B187A /* SpinnerStyle.swift */,
 				15B1F6312786B1BB00847BB5 /* CheckboxStyle.swift */,
+				158C9CB12787F9520062E0C6 /* FontBook.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -2300,6 +2363,7 @@
 				156AC7AC27802FAC00ED5E3E /* GoogleAPIClientForRESTCore */,
 				15DC1D432780A459000B187A /* IQKeyboardManagerSwift */,
 				15DC1D52278165DB000B187A /* Haneke */,
+				1552DC692787090D00EAA7D5 /* Introspect */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -2339,6 +2403,7 @@
 				156AC7B0278042DE00ED5E3E /* GTMSessionFetcher */,
 				15DC1D412780A44D000B187A /* IQKeyboardManagerSwift */,
 				15DC1D5027815891000B187A /* Haneke */,
+				1552DC67278708AB00EAA7D5 /* Introspect */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15EC9DEE274FD1FC00F70CD9 /* Lilico.app */;
@@ -2405,6 +2470,7 @@
 				156AC7AF278042DE00ED5E3E /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */,
 				15DC1D402780A44D000B187A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				15DC1D4F27815891000B187A /* XCRemoteSwiftPackageReference "HanekeSwift" */,
+				1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -2422,11 +2488,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				158C9CAD2787F7490062E0C6 /* Montserrat-Regular.ttf in Resources */,
 				154B8922276A1EEB00780E93 /* Preview Assets.xcassets in Resources */,
 				15B1F6392786B89800847BB5 /* Localizable.strings in Resources */,
 				154B8923276A1EEB00780E93 /* Assets.xcassets in Resources */,
+				158C9CB02787F7660062E0C6 /* Montserrat-SemiBold.ttf in Resources */,
+				158C9CAB2787F7490062E0C6 /* Montserrat-Italic.ttf in Resources */,
 				154B8929276A1F4600780E93 /* GoogleService-Info.plist in Resources */,
+				158C9CA42787F6EA0062E0C6 /* Inter.ttf in Resources */,
 				15DE22FD27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */,
+				158C9CA92787F7490062E0C6 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2434,10 +2505,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				158C9CAC2787F7490062E0C6 /* Montserrat-Regular.ttf in Resources */,
 				15EC9DF9274FD1FD00F70CD9 /* Preview Assets.xcassets in Resources */,
+				158C9CA32787F6EA0062E0C6 /* Inter.ttf in Resources */,
+				158C9CA82787F7490062E0C6 /* Montserrat-Bold.ttf in Resources */,
 				15B1F6382786B89800847BB5 /* Localizable.strings in Resources */,
 				15EC9DF6274FD1FD00F70CD9 /* Assets.xcassets in Resources */,
+				158C9CAF2787F7650062E0C6 /* Montserrat-SemiBold.ttf in Resources */,
 				154B892F276A1FD700780E93 /* GoogleService-Info.plist in Resources */,
+				158C9CB427880C270062E0C6 /* Info.plist in Resources */,
+				158C9CAA2787F7490062E0C6 /* Montserrat-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2542,6 +2619,7 @@
 				15DC21B527819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
 				15DC210327819C56000B187A /* VStepperState.swift in Sources */,
 				15D9283627849E6800382226 /* BackupCorrdinator.swift in Sources */,
+				158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */,
 				15DC20CD27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DD27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AD27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
@@ -2622,6 +2700,7 @@
 				15DC211327819C56000B187A /* VPageIndicatorInfinite.swift in Sources */,
 				15DC216927819C56000B187A /* VHalfModalNavigationViewCloseButton.swift in Sources */,
 				15DC20D727819C56000B187A /* VPlainButtonState.swift in Sources */,
+				158C9CB32787F9520062E0C6 /* FontBook.swift in Sources */,
 				15DC1D4A27814AD1000B187A /* TextFieldStyle.swift in Sources */,
 				15B1F6242785B1C200847BB5 /* NavigationDemo.swift in Sources */,
 				15D9283027843D4900382226 /* ManualBackupView.swift in Sources */,
@@ -2663,6 +2742,7 @@
 				15DC213D27819C56000B187A /* VMenuPickerRow.swift in Sources */,
 				15DE22EC277F0B0C00B5EE03 /* Shimmer.swift in Sources */,
 				15DC214127819C56000B187A /* VTabNavigationViewAppearance.swift in Sources */,
+				1552DC5F2786EBA100EAA7D5 /* RequestSecureView.swift in Sources */,
 				15DC214D27819C56000B187A /* VNavigationViewModel.swift in Sources */,
 				15DC21A527819C56000B187A /* VBaseTextFieldState.swift in Sources */,
 				15DC213127819C56000B187A /* VWheelPickerModel.swift in Sources */,
@@ -2709,6 +2789,7 @@
 				15DC216727819C56000B187A /* VHalfModal.swift in Sources */,
 				15DE22D0277DBDF800B5EE03 /* WalletManager.swift in Sources */,
 				15DC214F27819C56000B187A /* VNavigationViewNavigationBar.swift in Sources */,
+				1552DC652787063100EAA7D5 /* PinStackView.swift in Sources */,
 				15DC212D27819C56000B187A /* VWheelPicker.swift in Sources */,
 				154B890F276A1EEB00780E93 /* TabBar.swift in Sources */,
 				15DC20EB27819C56000B187A /* VAccordionLayoutType.swift in Sources */,
@@ -2754,6 +2835,7 @@
 				15DC21E527819C57000B187A /* StateColors_EFSED.swift in Sources */,
 				15DC218927819C56000B187A /* VRadioButtonState.swift in Sources */,
 				15DC215927819C56000B187A /* VMenu.swift in Sources */,
+				1552DC622786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
 				15D5775E277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
 				15DC215127819C56000B187A /* VNavigationView.swift in Sources */,
 				15DC21F02781F388000B187A /* TYNKView.swift in Sources */,
@@ -2814,6 +2896,7 @@
 				15DC21B427819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
 				15DC210227819C56000B187A /* VStepperState.swift in Sources */,
 				15D9283527849E6800382226 /* BackupCorrdinator.swift in Sources */,
+				158C9C9F27871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */,
 				15DC20CC27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DC27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AC27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
@@ -2894,6 +2977,7 @@
 				15DC211227819C56000B187A /* VPageIndicatorInfinite.swift in Sources */,
 				15DC216827819C56000B187A /* VHalfModalNavigationViewCloseButton.swift in Sources */,
 				15DC20D627819C56000B187A /* VPlainButtonState.swift in Sources */,
+				158C9CB22787F9520062E0C6 /* FontBook.swift in Sources */,
 				15DC1D4927814AD1000B187A /* TextFieldStyle.swift in Sources */,
 				15B1F6232785B1C200847BB5 /* NavigationDemo.swift in Sources */,
 				15D9282F27843D4900382226 /* ManualBackupView.swift in Sources */,
@@ -2935,6 +3019,7 @@
 				15DC213C27819C56000B187A /* VMenuPickerRow.swift in Sources */,
 				15DE22EB277F0B0C00B5EE03 /* Shimmer.swift in Sources */,
 				15DC214027819C56000B187A /* VTabNavigationViewAppearance.swift in Sources */,
+				1552DC5E2786EBA100EAA7D5 /* RequestSecureView.swift in Sources */,
 				15DC214C27819C56000B187A /* VNavigationViewModel.swift in Sources */,
 				15DC21A427819C56000B187A /* VBaseTextFieldState.swift in Sources */,
 				15DC213027819C56000B187A /* VWheelPickerModel.swift in Sources */,
@@ -2981,6 +3066,7 @@
 				15DC216627819C56000B187A /* VHalfModal.swift in Sources */,
 				15DE22CF277DBDF800B5EE03 /* WalletManager.swift in Sources */,
 				15DC214E27819C56000B187A /* VNavigationViewNavigationBar.swift in Sources */,
+				1552DC642787063100EAA7D5 /* PinStackView.swift in Sources */,
 				15DC212C27819C56000B187A /* VWheelPicker.swift in Sources */,
 				153C4409275258AF006D1E8D /* TabBar.swift in Sources */,
 				15DC20EA27819C56000B187A /* VAccordionLayoutType.swift in Sources */,
@@ -3026,6 +3112,7 @@
 				15DC21E427819C57000B187A /* StateColors_EFSED.swift in Sources */,
 				15DC218827819C56000B187A /* VRadioButtonState.swift in Sources */,
 				15DC215827819C56000B187A /* VMenu.swift in Sources */,
+				1552DC612786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
 				15D5775D277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
 				15DC215027819C56000B187A /* VNavigationView.swift in Sources */,
 				15DC21EF2781F388000B187A /* TYNKView.swift in Sources */,
@@ -3120,7 +3207,7 @@
 					"$(inherited)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Lilico copy-Info.plist";
+				INFOPLIST_FILE = Lilico/App/Env/Dev/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lilico-dev";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -3155,7 +3242,7 @@
 				ENABLE_PREVIEWS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "SWIFT_PACKAGE=1";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Lilico copy-Info.plist";
+				INFOPLIST_FILE = Lilico/App/Env/Dev/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lilico-dev";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -3307,7 +3394,7 @@
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Lilico/App/Info.plist;
+				INFOPLIST_FILE = Lilico/App/Env/Prod/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -3340,7 +3427,7 @@
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Lilico/App/Info.plist;
+				INFOPLIST_FILE = Lilico/App/Env/Prod/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -3514,6 +3601,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 		156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/google-api-objectivec-client-for-rest";
@@ -3659,6 +3754,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 154B88FA276A1EEB00780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
+		};
+		1552DC67278708AB00EAA7D5 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+		1552DC692787090D00EAA7D5 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 		156AC7A627802F4F00ED5E3E /* GoogleAPIClientForRESTCore */ = {
 			isa = XCSwiftPackageProductDependency;

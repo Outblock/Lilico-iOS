@@ -11,15 +11,17 @@ class ButtonStyle {
     public static let primary: VPrimaryButtonModel = {
         var model: VPrimaryButtonModel = .init()
 
-        model.colors.textContent = .init(enabled: Color.LL.background,
-                                         pressed: Color.LL.background.opacity(0.5),
-                                         loading: Color.LL.background,
-                                         disabled: Color.LL.background)
+        model.fonts.title = Font.LL.body.bold()
+
+        model.colors.textContent = .init(enabled: Color.LL.frontColor,
+                                         pressed: Color.LL.frontColor.opacity(0.5),
+                                         loading: Color.LL.frontColor,
+                                         disabled: Color.LL.frontColor)
 
         model.colors.background = .init(enabled: Color.LL.rebackground,
                                         pressed: Color.LL.rebackground.opacity(0.5),
                                         loading: Color.LL.rebackground,
-                                        disabled: .gray)
+                                        disabled: Color.LL.disable)
 
         model.layout.cornerRadius = 16
         return model
@@ -28,6 +30,7 @@ class ButtonStyle {
     public static let border: VPrimaryButtonModel = {
         var model: VPrimaryButtonModel = .init()
 
+        model.fonts.title = Font.LL.body.bold()
         model.layout.borderWidth = 1
         model.colors.textContent = .init(enabled: Color.LL.rebackground,
                                          pressed: Color.LL.rebackground.opacity(0.5),
@@ -48,6 +51,7 @@ class ButtonStyle {
     public static let plain: VPrimaryButtonModel = {
         var model: VPrimaryButtonModel = .init()
 
+        model.fonts.title = Font.LL.body.bold()
 //        model.layout.borderWidth = 1
         model.colors.textContent = .init(enabled: Color.LL.rebackground,
                                          pressed: Color.LL.rebackground.opacity(0.5),

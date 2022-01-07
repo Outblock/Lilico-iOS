@@ -27,9 +27,13 @@ struct RecoveryPhraseView: View {
     @StateObject
     var viewModel: AnyViewModel<ViewState, Action>
 
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
+
     var btnBack: some View {
         Button {
-            router.pop()
+//            router.pop()
+            self.presentationMode.wrappedValue.dismiss()
         } label: {
             HStack {
                 Image(systemName: "arrow.backward")

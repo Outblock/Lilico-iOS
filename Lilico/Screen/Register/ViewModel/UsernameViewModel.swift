@@ -12,18 +12,9 @@ import SwiftUI
 typealias VoidBlock = () -> Void
 typealias BoolBlock = (Bool) -> Void
 
-struct UsernameViewState {
-    var status: LL.TextField.Status = .normal
-}
-
-enum UsernameViewAction {
-    case next
-    case onEditingChanged(String)
-}
-
 class UsernameViewModel: ViewModel {
     @Published
-    private(set) var state: UsernameViewState
+    private(set) var state: UsernameView.ViewState
 
     var lastUpdateTime: Date = .init()
     var task: DispatchWorkItem?
@@ -35,7 +26,7 @@ class UsernameViewModel: ViewModel {
         state = .init()
     }
 
-    func trigger(_ input: UsernameViewAction) {
+    func trigger(_ input: UsernameView.Action) {
         switch input {
         case .next:
             UIApplication.shared.endEditing()

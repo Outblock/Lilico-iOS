@@ -19,10 +19,11 @@ class BackupPasswordViewModel: ViewModel {
 
     func trigger(_ input: BackupPasswordView.Action) {
         switch input {
-//        case .backupSuccess:
-        ////            router?.dismissCoordinator()
-//            router?
-//                .popToRoot()
+        case let .onPasswordChanged(password):
+
+            break
+        case let .onConfirmChanged(confirmPassword):
+            break
         default:
             break
         }

@@ -19,5 +19,12 @@ extension Color {
 
         static let error = Color("Error")
         static let success = Color("Success")
+        static let outline = Color("Outline")
+        static let disable = Color("Disable")
+        static let note = Color("Note")
+
+        static let frontColor = Color("FrontColor")
+
+        static let text = Color("Text")
     }
 }

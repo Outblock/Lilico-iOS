@@ -48,7 +48,7 @@ func overrideNavigationAppearance() {
     backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
     coloredAppearance.backButtonAppearance = backButtonAppearance
 
-    let backImage = UIImage(systemName: "square.and.pencil")
+    let backImage = UIImage(systemName: "arrow.backward")
     coloredAppearance.setBackIndicatorImage(backImage,
                                             transitionMaskImage: backImage)
     UINavigationBar.appearance().compactAppearance = coloredAppearance

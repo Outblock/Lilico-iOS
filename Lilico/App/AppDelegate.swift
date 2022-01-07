@@ -20,6 +20,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "arrow.backward")
 
+        for family in UIFont.familyNames {
+            print(family)
+
+            for names in UIFont.fontNames(forFamilyName: family) {
+                print("== \(names)")
+            }
+        }
+
         return true
     }
 

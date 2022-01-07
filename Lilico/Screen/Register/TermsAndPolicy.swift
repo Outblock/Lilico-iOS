@@ -12,9 +12,12 @@ struct TermsAndPolicy: View {
     @EnvironmentObject
     var router: RegisterCoordinator.Router
 
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
+
     var btnBack: some View {
         Button {
-            router.dismissCoordinator()
+            self.presentationMode.wrappedValue.dismiss()
         } label: {
             HStack {
                 Image(systemName: "arrow.backward")
@@ -30,16 +33,18 @@ struct TermsAndPolicy: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Legal")
-                        .font(.largeTitle)
+                        .font(.LL.largeTitle)
+//                        .fontWeight(.bold)
                         .bold()
                         .foregroundColor(Color.LL.orange)
                     Text("Information")
-                        .font(.largeTitle)
+                        .font(.LL.largeTitle)
                         .bold()
                         .foregroundColor(Color.LL.rebackground)
                     Text("Please review the Privacy Policy and Terms of Service of Lilico.")
-                        .font(.body)
-                        .bold()
+                        .lineSpacing(5)
+                        .font(.LL.body)
+//                        .bold()
                         .foregroundColor(.secondary)
                         .padding(.top, 1)
                 }
@@ -49,31 +54,34 @@ struct TermsAndPolicy: View {
                 VStack(alignment: .leading) {
                     Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
                         Text("Terms of Service")
-                            .font(.callout)
+                            .fontWeight(.semibold)
+                            .font(.LL.body)
                         Spacer()
                         Image(systemName: "chevron.right")
                             .font(Font.caption2.weight(.bold))
                     }.padding()
 
 //                    Rectangle().frame(width: .infinity, height: 1)
-                    Divider().foregroundColor(Color.LL.rebackground.opacity(0.5))
+//                        .foregroundColor(Color.LL.outline)
+                    Divider().foregroundColor(Color.LL.outline)
 
                     Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
                         Text("Privacy Policy")
-                            .font(.callout)
+                            .font(.LL.body)
+                            .fontWeight(.semibold)
                         Spacer()
                         Image(systemName: "chevron.right")
                             .font(Font.caption2.weight(.bold))
                     }.padding()
+                }
+                .foregroundColor(Color.LL.text)
 
-                }.foregroundColor(Color.LL.rebackground)
-
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.LL.rebackground.opacity(0.5),
-                                    lineWidth: 0.5)
-                    )
-                    .padding(.bottom)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.LL.outline,
+                                lineWidth: 1)
+                )
+                .padding(.bottom, 40)
 
                 VPrimaryButton(model: ButtonStyle.primary,
                                action: {
@@ -81,7 +89,7 @@ struct TermsAndPolicy: View {
                                }, title: "I Accept")
                     .padding(.bottom)
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 28)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: btnBack)
             .background(Color.LL.background, ignoresSafeAreaEdges: .all)
@@ -92,5 +100,6 @@ struct TermsAndPolicy: View {
 struct TermsAndPolicy_Previews: PreviewProvider {
     static var previews: some View {
         TermsAndPolicy()
+        TermsAndPolicy().colorScheme(.dark)
     }
 }

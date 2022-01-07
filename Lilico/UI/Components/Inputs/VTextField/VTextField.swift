@@ -282,9 +282,7 @@ public struct VTextField: View {
                 VText(
                     type: .multiLine(limit: nil, alignment: .leading),
                     font: model.fonts.footer,
-                    color:
-//                        model.colors.footer.enabled,
-                    model.colors.footer.for(state.wrappedValue, highlight: highlight),
+                    color: model.colors.footer.for(state.wrappedValue, highlight: highlight),
                     title: footerTitle
                 )
             }

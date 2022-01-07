@@ -19,8 +19,8 @@ extension TYNKView {
 }
 
 struct TYNKView: View {
-    @EnvironmentObject
-    var router: RegisterCoordinator.Router
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
 
     @StateObject
     var viewModel: AnyViewModel<ViewState, Action>
@@ -30,7 +30,7 @@ struct TYNKView: View {
 
     var btnBack: some View {
         Button {
-            router.pop()
+            self.presentationMode.wrappedValue.dismiss()
         } label: {
             HStack {
                 Image(systemName: "arrow.backward")
@@ -75,24 +75,24 @@ struct TYNKView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
 
-                VStack {
+                VStack(spacing: 12) {
                     ConditionView(isOn: $stateList[0],
                                   text: "If I lose my secret phrases, I cannot access my account forever.")
                     ConditionView(isOn: $stateList[1],
                                   text: "If I lose my secret phrases, I cannot access my account forever.")
                     ConditionView(isOn: $stateList[2],
                                   text: "If I lose my secret phrases, I cannot access my account forever.")
-                }.padding(.bottom)
+                }
+                .padding(.bottom, 40)
 
                 VPrimaryButton(model: ButtonStyle.primary,
                                state: buttonState,
-
                                action: {
                                    viewModel.trigger(.createWallet)
                                }, title: "Next")
                     .padding(.bottom)
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 28)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: btnBack)
             .background(Color.LL.background, ignoresSafeAreaEdges: .all)
@@ -142,12 +142,11 @@ struct ConditionView: View {
                   title: text)
             .padding(.vertical, 15)
             .frame(maxWidth: .infinity)
-            .padding(.horizontal, 5)
+            .padding(.horizontal, 1)
             .overlay {
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(lineWidth: 1)
                     .foregroundColor(isOn ? Color.LL.orange : .separator)
             }
-            .padding(.bottom)
     }
 }

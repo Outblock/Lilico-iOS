@@ -8,12 +8,23 @@
 import SwiftUI
 import SwiftUIX
 
+extension UsernameView {
+    struct ViewState {
+        var status: LL.TextField.Status = .normal
+    }
+
+    enum Action {
+        case next
+        case onEditingChanged(String)
+    }
+}
+
 struct UsernameView: View {
-    @EnvironmentObject
-    var router: RegisterCoordinator.Router
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
 
     @StateObject
-    var viewModel: AnyViewModel<UsernameViewState, UsernameViewAction>
+    var viewModel: AnyViewModel<ViewState, Action>
 
     @State
     var text: String = ""
@@ -46,7 +57,7 @@ struct UsernameView: View {
 
     var btnBack: some View {
         Button {
-            router.pop()
+            self.presentationMode.wrappedValue.dismiss()
         } label: {
             HStack {
                 Image(systemName: "arrow.backward")
@@ -91,6 +102,7 @@ struct UsernameView: View {
                            }, onClear: .clearAndCustom {
                                viewModel.trigger(.onEditingChanged(text))
                            })
+                           .padding(.bottom, 10)
 
                 VPrimaryButton(model: ButtonStyle.primary,
                                state: highlight == .success ? .enabled : .disabled,
@@ -100,7 +112,7 @@ struct UsernameView: View {
                     .padding(.bottom)
             }
             .dismissKeyboardOnDrag()
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 28)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: btnBack)
             .background(Color.LL.background, ignoresSafeAreaEdges: .all)

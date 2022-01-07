@@ -15,19 +15,21 @@ extension BackupPasswordView {
 
     enum Action {
         case backupSuccess
+        case onPasswordChanged(String)
+        case onConfirmChanged(String)
     }
 }
 
 struct BackupPasswordView: View {
-    @EnvironmentObject
-    var router: BackupCorrdinator.Router
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
 
     @StateObject
     var viewModel: AnyViewModel<ViewState, Action>
 
     var btnBack: some View {
         Button {
-            router.pop()
+            self.presentationMode.wrappedValue.dismiss()
         } label: {
             HStack {
                 Image(systemName: "arrow.backward")
@@ -48,10 +50,13 @@ struct BackupPasswordView: View {
     @State
     var text: String = ""
 
+    @State
+    var confrimText: String = ""
+
     var body: some View {
         NavigationView {
             VStack {
-//                ScrollView {
+                Spacer()
                 VStack(alignment: .leading) {
                     Text("Create Backup")
                         .bold()
@@ -80,8 +85,9 @@ struct BackupPasswordView: View {
                                placeholder: "Backup Password",
                                footerTitle: "",
                                text: $text,
-                               onChange: {},
-                               onReturn: .returnAndCustom {}, onClear: .clearAndCustom {})
+                               onChange: {
+                                   viewModel.trigger(.onPasswordChanged(text))
+                               })
 
                     VTextField(model: TextFieldStyle.primary,
                                type: .secure,
@@ -90,7 +96,7 @@ struct BackupPasswordView: View {
                                footerTitle: "",
                                text: $text,
                                onChange: {},
-                               onReturn: .returnAndCustom {}, onClear: .clearAndCustom {})
+                               onReturn: .returnAndCustom {})
                 }
 
                 VCheckBox(model: CheckBoxStyle.secondary,
@@ -107,21 +113,13 @@ struct BackupPasswordView: View {
                                state: .disabled,
                                action: {
                                    viewModel.trigger(.backupSuccess)
-                               }, title: "Next")
+                               }, title: "Confirm Backup")
                     .padding(.bottom)
             }
             .padding(.horizontal, 30)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: btnBack)
-            //            .toolbar {
-            //                ToolbarItem(placement: .principal) {
-            //                    HStack {
-            //                        Image(systemName: "sun.min.fill")
-            //                        Text("Title").font(.headline)
-            //                    }
-            //                }
-            //            }
             .background(Color.LL.background, ignoresSafeAreaEdges: .all)
         }
     }

@@ -63,6 +63,8 @@ class RecoveryPhraseViewModel: ViewModel {
                     }
                 }
             }
+        case .googleBackup:
+            router?.route(to: \.createPin)
         case .manualBackup:
             router?.route(to: \.manualBackup)
         default:

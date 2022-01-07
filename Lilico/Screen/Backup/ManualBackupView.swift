@@ -22,8 +22,8 @@ extension ManualBackupView {
 }
 
 struct ManualBackupView: View {
-    @EnvironmentObject
-    var router: BackupCorrdinator.Router
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
 
     @StateObject
     var viewModel: AnyViewModel<ViewState, Action>
@@ -44,7 +44,7 @@ struct ManualBackupView: View {
 
     var btnBack: some View {
         Button {
-            router.pop()
+            self.presentationMode.wrappedValue.dismiss()
         } label: {
             HStack {
                 Image(systemName: "arrow.backward")
