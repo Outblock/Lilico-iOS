@@ -49,17 +49,17 @@ class UsernameViewModel: ViewModel {
 
     func localCheckUserName(_ username: String) -> Bool {
         if username.count < 3 {
-            state.status = .error("At least 3 character length")
+            state.status = .error("Too short")
             return false
         }
 
         if username.count > 15 {
-            state.status = .error("Can't import more than 15 character length")
+            state.status = .error("Too long ")
             return false
         }
 
         guard let _ = username.range(of: "^[A-Za-z0-9_]{3,15}$", options: .regularExpression) else {
-            state.status = .error("Can't contain specific character")
+            state.status = .error("Your username can only contain letters, numbers and '_'")
             return false
         }
 
@@ -69,7 +69,7 @@ class UsernameViewModel: ViewModel {
     func checkUsername(_ username: String) {
         Task {
             do {
-                let model: CheckUserNameModel = try await Network.request(LilicoEndpoint.checkUsername(username))
+                let model: CheckUserNameModel = try await Network.request(LilicoEndpoint.checkUsername(username.lowercased()))
                 await MainActor.run {
                     if model.username == currentText {
                         self.state.status = model.unique ? .success() : .error("It's taken")

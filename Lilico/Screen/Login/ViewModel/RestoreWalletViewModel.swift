@@ -10,14 +10,18 @@ import GoogleAPIClientForREST_Drive
 import GoogleAPIClientForRESTCore
 import GoogleSignIn
 import GTMSessionFetcherCore
+import Stinsen
 
 class RestoreWalletViewModel {
+    
+    @RouterObject
+    var router: LoginCoordinator.Router?
+    
     func getKeyFromiCloud() {
-        do {
-            let nameList = try BackupManager.shared.getBackupNameList()
-            try BackupManager.shared.loadAccountDataFromiCloud(username: nameList.first!)
-        } catch {
-            HUD.present(title: "Restore Failed")
+        if let accountList = BackupManager.shared.loadAccountDataFromiCloud(), accountList.count > 0 {
+            router?.route(to: \.chooseAccount, accountList)
+        } else {
+            HUD.error(title: "No backup found in icloud")
         }
     }
 

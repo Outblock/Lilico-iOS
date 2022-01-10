@@ -19,6 +19,10 @@ final class HomeCoordinator: NavigationCoordinatable {
     @Route(.push) var register = makeRegister
     @Route(.push) var login = makeLogin
 
+    @Route(.push) var recoveryPhrase = makeRecoveryPhrase
+
+    @Route(.push) var createSecure = makeCreateSecure
+    
     var isFristTime: Bool = true
 
     init() {
@@ -64,5 +68,13 @@ final class HomeCoordinator: NavigationCoordinatable {
 
     func routeToAuthenticated() {
         route(to: \.register)
+    }
+
+    func makeRecoveryPhrase() -> BackupCoordinator {
+        BackupCoordinator()
+    }
+    
+    func makeCreateSecure() -> SecureCoordinator {
+        SecureCoordinator()
     }
 }

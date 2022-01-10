@@ -16,11 +16,13 @@ class TYNKViewModel: ViewModel {
     @Injected
     var walletManager: WalletManager
 
-    @Injected
-    var userManager: UserManager
+    var userManager = UserManager.shared
 
     var username: String
     var router: RegisterCoordinator.Router? = RouterStore.shared.retrieve()
+
+    @RouterObject
+    var homeRouter: HomeCoordinator.Router?
 
     init(username: String) {
         self.username = username
@@ -29,22 +31,17 @@ class TYNKViewModel: ViewModel {
     func trigger(_ input: TYNKView.Action) {
         switch input {
         case .createWallet:
-            guard let key = walletManager.wallet?.flowAccountKey else {
-                HUD.error(title: "Create User Failed")
-                return
-            }
             Task {
                 await MainActor.run {
                     state.isLoading = true
                 }
-                let request = RegisterReuqest(username: username, accountKey: key.toCodableModel())
                 do {
-                    let model: RegisterResponse = try await Network.request(LilicoEndpoint.register(request))
-                    try await userManager.loginWithCustomToken(model.customToken)
-                    let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoEndpoint.userAddress)
-
+                    try await UserManager.shared.register(username)
                     await MainActor.run {
-                        router?.route(to: \.recoveryPhrase)
+                        // TODO: - Fix the pop back animation
+                        homeRouter?
+                            .popToRoot()
+                            .route(to: \.recoveryPhrase)
                         HUD.success(title: "Create User Success!")
                         state.isLoading = false
                     }

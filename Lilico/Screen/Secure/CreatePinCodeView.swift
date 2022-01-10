@@ -10,21 +10,23 @@ import SwiftUI
 import SwiftUIX
 
 extension CreatePinCodeView {
-    enum ViewState {
-        //        var isLoading = false
-//        var dataSource: [BackupModel]
-        case initScreen
+    struct ViewState {
     }
 
-    enum Action {}
+    enum Action {
+        case input(String)
+    }
 }
 
 struct CreatePinCodeView: View {
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
 
-//    @StateObject
-//    var viewModel: AnyViewModel<ViewState, Action>
+    @EnvironmentObject
+    var rounter: SecureCoordinator.Router
+    
+    @StateObject
+    var viewModel: AnyViewModel<ViewState, Action>
 
 //    @FocusState
 //    var focusState: Bool
@@ -42,7 +44,10 @@ struct CreatePinCodeView: View {
     }
 
     @State
-    var text: String
+    var text: String = ""
+    
+    @State
+    var focuse: Bool = false
 
     var body: some View {
         NavigationView {
@@ -52,17 +57,17 @@ struct CreatePinCodeView: View {
                     HStack {
                         Text("Create a")
                             .bold()
-                            .foregroundColor(Color.LL.rebackground)
+                            .foregroundColor(Color.LL.text)
 
-                        Text("Pin")
+                        Text("PIN")
                             .bold()
                             .foregroundColor(Color.LL.orange)
                     }
-                    .font(.largeTitle)
+                    .font(.LL.largeTitle)
 
                     Text("So no one else but you can unlock your wallet.")
-                        .font(.callout)
-                        .foregroundColor(.secondary)
+                        .font(.LL.body)
+                        .foregroundColor(.LL.note)
                         .padding(.top, 1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -70,14 +75,19 @@ struct CreatePinCodeView: View {
 
                 PinStackView(maxDigits: 6,
                              emptyColor: .gray.opacity(0.2),
-                             highlightColor: Color.LL.orange) { _, _ in
+                             highlightColor: Color.LL.orange,
+                             pin: $text) { text, isComplete in
+                    viewModel.trigger(.input(text))
                 }
 
                 Spacer()
             }
-//            .onAppear{
-//                focusState = true
-//            }
+            .onAppear{
+                
+//                delay(.milliseconds(500)) {
+//                    self.focuse = true
+//                }
+            }
             .padding(.horizontal, 30)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
@@ -89,7 +99,7 @@ struct CreatePinCodeView: View {
 
 struct CreatePinCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePinCodeView(text: "")
+        CreatePinCodeView(viewModel: CreatePinCodeViewModel().toAnyViewModel())
 //            .colorScheme(.dark)
     }
 }

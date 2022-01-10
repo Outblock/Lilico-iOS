@@ -10,8 +10,8 @@ import Stinsen
 import SwiftUI
 import SwiftUIX
 
-final class BackupCorrdinator: NavigationCoordinatable {
-    var stack = NavigationStack(initial: \BackupCorrdinator.recoveryPhrase)
+final class BackupCoordinator: NavigationCoordinatable {
+    var stack = NavigationStack(initial: \BackupCoordinator.recoveryPhrase)
 
     @Root var recoveryPhrase = createRecoveryPhrase
     @Route(.push) var manualBackup = makeManualBackup
@@ -21,7 +21,7 @@ final class BackupCorrdinator: NavigationCoordinatable {
     @Route(.push) var createPin = makeCreatePin
 }
 
-extension BackupCorrdinator {
+extension BackupCoordinator {
     @ViewBuilder func createRecoveryPhrase() -> some View {
         RecoveryPhraseView(viewModel: RecoveryPhraseViewModel().toAnyViewModel())
             .hideNavigationBar()
@@ -32,13 +32,14 @@ extension BackupCorrdinator {
             .hideNavigationBar()
     }
 
-    @ViewBuilder func makeRequestSecure() -> some View {
-        RequestSecureView()
-            .hideNavigationBar()
+    func makeRequestSecure() -> SecureCoordinator {
+//        RequestSecureView(viewModel: RequestSecureViewModel().toAnyViewModel())
+//            .hideNavigationBar()
+        SecureCoordinator()
     }
 
     @ViewBuilder func makeCreatePin() -> some View {
-        CreatePinCodeView(text: "")
+        CreatePinCodeView(viewModel: CreatePinCodeViewModel().toAnyViewModel())
             .hideNavigationBar()
     }
 

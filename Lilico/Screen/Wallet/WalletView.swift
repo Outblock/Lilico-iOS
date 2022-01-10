@@ -7,6 +7,7 @@
 
 import FirebaseAuth
 import SwiftUI
+import SPConfetti
 
 struct WalletView: View {
     @State
@@ -14,6 +15,9 @@ struct WalletView: View {
 
     @State
     var isDragging: Bool = false
+    
+    @State
+    var isPresenting: Bool = false
 
     fileprivate func cardView() -> some View {
         return VStack(spacing: 50) {
@@ -151,9 +155,23 @@ struct WalletView: View {
 
         }.onAppear {
 //            isDraggingArray
+            isPresenting = true
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))
+        .confetti(isPresented: $isPresenting,
+                  animation: .fullWidthToDown,
+                  particles: [.triangle, .arc, .polygon, .heart, .star],
+                  duration: 1.5)
+        .confettiParticle(\.velocity, 400)
+        .confettiParticle(\.velocityRange, 200)
+        .confettiParticle(\.birthRate, 200)
+        .confettiParticle(\.spin, 4)
+        .confettiParticle(\.colors, [
+            Color.LL.orange.toUIColor()!,
+            Color.LL.yellow.toUIColor()!,
+            Color.LL.blue.toUIColor()!,
+        ])
     }
 }
 

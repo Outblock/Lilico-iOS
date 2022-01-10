@@ -34,7 +34,6 @@ struct TermsAndPolicy: View {
                 VStack(alignment: .leading) {
                     Text("Legal")
                         .font(.LL.largeTitle)
-//                        .fontWeight(.bold)
                         .bold()
                         .foregroundColor(Color.LL.orange)
                     Text("Information")
@@ -44,8 +43,7 @@ struct TermsAndPolicy: View {
                     Text("Please review the Privacy Policy and Terms of Service of Lilico.")
                         .lineSpacing(5)
                         .font(.LL.body)
-//                        .bold()
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Color.LL.note)
                         .padding(.top, 1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -61,8 +59,6 @@ struct TermsAndPolicy: View {
                             .font(Font.caption2.weight(.bold))
                     }.padding()
 
-//                    Rectangle().frame(width: .infinity, height: 1)
-//                        .foregroundColor(Color.LL.outline)
                     Divider().foregroundColor(Color.LL.outline)
 
                     Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {

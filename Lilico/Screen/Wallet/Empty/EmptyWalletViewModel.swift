@@ -47,7 +47,8 @@ class EmptyWalletViewModel: ViewModel {
 //            router?
 //            router.route(to: )
 //            router.coordinator.routeToAuthenticated()
-            router?.route(to: \.register)
+//            router?.route(to: \.register)
+            router?.route(to: \.createSecure)
         case .signIn:
             router?.route(to: \.login)
         }

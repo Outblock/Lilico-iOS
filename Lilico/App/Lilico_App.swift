@@ -12,7 +12,7 @@ import SwiftUI
 struct Lilico_App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    var umanager: UserManager = Resolver.resolve()
+//    var umanager: UserManager = Resolver.resolve()
 
     var body: some Scene {
         WindowGroup {
@@ -23,8 +23,8 @@ struct Lilico_App: App {
 //                }
 //                .hideNavigationBar()
                 .task {
-                    umanager.listenAuthenticationState()
-                    await umanager.login()
+//                    umanager.listenAuthenticationState()
+//                    await umanager.login()
                 }
         }
     }

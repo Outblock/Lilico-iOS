@@ -37,8 +37,8 @@ final class RegisterCoordinator: NavigationCoordinatable {
         }
     }
 
-    func makeRecoveryPhrase() -> BackupCorrdinator {
-        BackupCorrdinator()
+    func makeRecoveryPhrase() -> BackupCoordinator {
+        BackupCoordinator()
     }
 }
 

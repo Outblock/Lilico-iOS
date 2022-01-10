@@ -8,19 +8,23 @@
 import SwiftUI
 
 extension ConfirmPinCodeView {
-    enum ViewState {
-        //        var isLoading = false
-//        var dataSource: [BackupModel]
-        case initScreen
+    struct ViewState {
+        let lastPin: String
+        var mismatch: Bool = false
     }
 
-    enum Action {}
+    enum Action {
+        case match(String)
+    }
 }
 
 struct ConfirmPinCodeView: View {
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
 
+    @StateObject
+    var viewModel: AnyViewModel<ViewState, Action>
+    
     var btnBack: some View {
         Button {
             self.presentationMode.wrappedValue.dismiss()
@@ -34,9 +38,18 @@ struct ConfirmPinCodeView: View {
     }
 
     @State
-    var text: String
+    var text: String = ""
 
-    @State var wrongAttempt: Bool = false
+    @State
+    var focuse: Bool = false
+    
+    var wrongAttempt: Bool {
+        if viewModel.mismatch {
+            text = ""
+            return true
+        }
+        return false
+    }
 
     var body: some View {
         NavigationView {
@@ -45,24 +58,22 @@ struct ConfirmPinCodeView: View {
                 VStack(alignment: .leading) {
                     Text("Please Confirm")
                         .bold()
-                        .foregroundColor(Color.LL.rebackground)
-                        .font(.largeTitle)
+                        .foregroundColor(Color.LL.text)
+                        .font(.LL.largeTitle)
                     HStack {
                         Text("your")
                             .bold()
-                            .foregroundColor(Color.LL.rebackground)
-                            .font(.largeTitle)
+                            .foregroundColor(Color.LL.text)
 
-                        Text("Pin")
+                        Text("PIN")
                             .bold()
                             .foregroundColor(Color.LL.orange)
-                            .font(.largeTitle)
                     }
-                    .font(.largeTitle)
+                    .font(.LL.largeTitle)
 
                     Text("There’s no Restore PIN button. Please make sure you can remember your PIN.")
-                        .font(.callout)
-                        .foregroundColor(.secondary)
+                        .font(.LL.body)
+                        .foregroundColor(.LL.note)
                         .padding(.top, 1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -71,15 +82,23 @@ struct ConfirmPinCodeView: View {
                 PinStackView(maxDigits: 6,
                              emptyColor: .gray.opacity(0.2),
                              highlightColor: Color.LL.orange,
-                             needClear: wrongAttempt) { _, complete in
+                             needClear: wrongAttempt,
+                             pin: $text)
+                { text, complete in
                     if complete {
-                        self.wrongAttempt = true
+//                        self.wrongAttempt = true
+                        viewModel.trigger(.match(text))
                     }
                 }
                 .offset(x: wrongAttempt ? -10 : 0)
                 .animation(.easeInOut(duration: 0.08).repeatCount(5), value: wrongAttempt)
 
                 Spacer()
+            }
+            .onAppear{
+//                delay(.milliseconds(500)) {
+//                    self.focuse = true
+//                }
             }
             .padding(.horizontal, 30)
             .navigationBarBackButtonHidden(true)
@@ -92,7 +111,7 @@ struct ConfirmPinCodeView: View {
 
 struct ConfirmPinCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmPinCodeView(text: "")
+        ConfirmPinCodeView(viewModel: ConfirmPinCodeViewModel(pin: "111111").toAnyViewModel())
 //            .colorScheme(.dark)
     }
 }

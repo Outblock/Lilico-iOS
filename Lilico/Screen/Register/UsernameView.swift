@@ -73,7 +73,7 @@ struct UsernameView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Pick Your")
-                        .font(.largeTitle)
+                        .font(.LL.largeTitle)
                         .bold()
                         .foregroundColor(Color.LL.rebackground)
                     Text("Username")
@@ -81,8 +81,8 @@ struct UsernameView: View {
                         .bold()
                         .foregroundColor(Color.LL.orange)
                     Text("Other Lilico users can find you and send you payments via your unique username.")
-                        .font(.callout)
-                        .foregroundColor(.secondary)
+                        .font(.LL.body)
+                        .foregroundColor(.LL.note)
                         .padding(.top, 1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

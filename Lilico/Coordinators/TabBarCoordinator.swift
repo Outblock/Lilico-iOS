@@ -46,8 +46,8 @@ extension TabBarCoordinator {
 //        Text("Testbed")
 //    }
 
-    func makeHome() -> HomeCoordinator {
-        return HomeCoordinator()
+    func makeHome() -> NavigationViewCoordinator<HomeCoordinator> {
+        return NavigationViewCoordinator(HomeCoordinator())
     }
 
     @ViewBuilder func makeHomeTab(isActive: Bool) -> some View {

@@ -16,8 +16,11 @@ enum LLError: Error {
     case aesEncryptionFailed
     case missingUserInfoWhilBackup
     case emptyiCloudBackup
+    case alreadyHaveWallet
+    case emptyWallet
     case decryptBackupFailed
     case incorrectPhrase
+    case emptyEncryptKey
 }
 
 class WalletManager: ObservableObject {
@@ -26,6 +29,7 @@ class WalletManager: ObservableObject {
     static let shared = WalletManager()
 
     private let storeKey = "lilico.mnemonic"
+    private let passwordKey = "lilico.mnemonic.password"
     static let encryptionKey = "4047b6b927bcff0c"
 
     var hasWallet: Bool {
@@ -35,19 +39,47 @@ class WalletManager: ObservableObject {
     var wallet: HDWallet?
 
     let mnemonicStrength: Int32 = 128
-    var defaultBundleID = "io.outblock.lilico"
+    let mnemonicStringStrength: Int32 = 256
+
+    enum MnemonicStrength: Int {
+        case length12 = 128
+        case length24 = 256
+    }
+
+    private var accessGroup = "Wallet"
+    private var defaultBundleID = "io.outblock.lilico"
     let keychain = Keychain(service: Bundle.main.bundleIdentifier ?? "defaultBundleID")
         .label("Lilico app backup")
         .synchronizable(true)
         .accessibility(.whenUnlocked)
 
+    let backupKeychain = Keychain(server: "https://lilico.app", protocolType: .https)
+
+    let passwordKeychain = Keychain(service: Bundle.main.bundleIdentifier ?? "defaultBundleID")
+        .label("Lilico password")
+        .accessibility(.whenPasscodeSetThisDeviceOnly, authenticationPolicy: [.biometryAny])
+
     init() {
-        if !restoreWalletFromKeychain() {
-            do {
-                try createNewWallet()
-            } catch {
-                print("error -> \(error)")
+        let password = try? keychain.get(passwordKey)
+        if password == nil {
+            // First time, if passwordKey is empty, generate one
+            try? keychain.set(UUID().uuidString, key: passwordKey)
+        }
+
+        if !UserManager.shared.isAnonymous,
+           let username = UserManager.shared.userInfo?.username
+        {
+            if !restoreWalletFromKeychain(username: username) {
+                HUD.error(title: "Private key is missing !!")
             }
+
+//            if !restoreWalletFromKeychain() {
+//                do {
+//                    try createNewWallet()
+//                } catch {
+//                    print("error -> \(error)")
+//                }
+//            }
         }
     }
 
@@ -63,18 +95,43 @@ class WalletManager: ObservableObject {
     }
 
     @discardableResult
-    func restoreWalletFromKeychain() -> Bool {
-        if let mnemonic = try? keychain.get(storeKey) {
-            wallet = HDWallet(mnemonic: mnemonic, passphrase: "")
+    func restoreWalletFromKeychain(username: String) -> Bool {
+        if var mnemonicData: Data = try? keychain.getData("\(storeKey).\(username)"),
+           var key = try? keychain.get(passwordKey)
+        {
+            if var data = try? WalletManager.decryptionAES(key: key, data: mnemonicData),
+               var mnemonic = String(data: data, encoding: .utf8)
+            {
+                defer {
+                    mnemonicData = Data()
+                    data = Data()
+                    key = ""
+                    mnemonic = ""
+                }
+
+                wallet = HDWallet(mnemonic: mnemonic, passphrase: "")
+            }
             return true
         }
         return false
     }
+    
+//    func importNewWallet(mnemonic: String? = nil, passphrase: String = "") throws -> Bool {
+//        if let phrase = mnemonic {
+//            wallet = HDWallet(mnemonic: phrase, passphrase: passphrase)
+//        } else {
+//            wallet = HDWallet(strength: mnemonicStrength, passphrase: passphrase)
+//        }
+//        
+//        return true
+//    }
 
-    func createNewWallet(mnemonic: String? = nil, passphrase: String = "", forceCreate: Bool = false) throws {
+    func createNewWallet(mnemonic: String? = nil, passphrase: String = "", forceCreate: Bool = false) throws -> Bool {
         // If there is already a wallet, we don't create a new wallet to replace current one
         if hasWallet, !forceCreate {
-            return
+            HUD.debugError(title: "Already have a wallet !")
+//            throw LLError.alreadyHaveWallet
+            return false
         }
 
         if let phrase = mnemonic {
@@ -82,20 +139,30 @@ class WalletManager: ObservableObject {
         } else {
             wallet = HDWallet(strength: mnemonicStrength, passphrase: passphrase)
         }
+        return true
+    }
 
-        guard var mnemonic = wallet?.mnemonic else {
+    func storeMnemonicToKeychain(username: String) throws {
+        guard let password = try? keychain.get(passwordKey) else {
+            throw LLError.emptyEncryptKey
+        }
+
+        guard var mnemonic = wallet?.mnemonic,
+              var data = mnemonic.data(using: .utf8)
+        else {
             throw LLError.createWalletFailed
         }
 
         defer {
             mnemonic = ""
+            data = Data()
         }
 
-        try keychain
-            .comment("Lilico")
-            .set(mnemonic, key: storeKey)
+        let encodedData = try WalletManager.encryptionAES(key: password, data: data)
 
-//        let pk = wallet?.getCurveKey(curve: .nist256p1, derivationPath: flowPath)
+        try keychain
+            .comment("Lilico user: \(username)")
+            .set(encodedData, key: "\(storeKey).\(username)")
     }
 
     static func encryptionAES(key: String, iv: String = "0102030405060708", data: Data) throws -> Data {

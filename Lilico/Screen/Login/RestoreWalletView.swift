@@ -35,15 +35,14 @@ struct RestoreWalletView: View {
                             .foregroundColor(Color.LL.orange)
                             .bold()
                         Text(" Wallet")
-                            .foregroundColor(Color.LL.rebackground)
+                            .foregroundColor(Color.LL.text)
                             .bold()
                     }
-                    .font(.largeTitle)
+                    .font(.LL.largeTitle)
 
                     Text("Restore your wallet with the 12 word \n recovery phrase that you have written down.")
-                        .font(.body)
-                        .bold()
-                        .foregroundColor(.secondary)
+                        .font(.LL.body)
+                        .foregroundColor(.LL.note)
                         .padding(.top, 1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -82,7 +81,7 @@ struct RestoreWalletView: View {
                 }
 
                 Button {
-//                    router.route(to: \.userName)
+                    router.route(to: \.inputMnemonic)
                 } label: {
                     Text("Restore with Recovery Phrase")
                         .font(.headline)
@@ -101,6 +100,7 @@ struct RestoreWalletView: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: btnBack)
+            .background(Color.LL.background, ignoresSafeAreaEdges: .all)
         }.task {
             viewModel.restoreSignIn()
         }

@@ -8,10 +8,24 @@
 import SwiftUI
 import SwiftUIX
 
+extension EnterPasswordView {
+    struct ViewState {
+//        var accountData: BackupManager.AccountData
+    }
+
+    enum Action {
+        case signIn(String)
+    }
+}
+
+
 struct EnterPasswordView: View {
     @EnvironmentObject
     var router: RegisterCoordinator.Router
-
+    
+    @StateObject
+    var viewModel: AnyViewModel<ViewState, Action>
+    
     var btnBack: some View {
         Button {
             router.dismissCoordinator()
@@ -30,8 +44,18 @@ struct EnterPasswordView: View {
     @State
     var textStatus: LL.TextField.Status = .normal
 
+    var buttonState: VPrimaryButtonState {
+        text.count >= 8 ? .enabled : .disabled
+    }
+
     @State
-    var buttonState: VPrimaryButtonState = .disabled
+    var state: VTextFieldState = .focused
+
+    var model: VTextFieldModel = {
+        var model = TextFieldStyle.primary
+        model.misc.textContentType = .password
+        return model
+    }()
 
     var body: some View {
         NavigationView {
@@ -39,26 +63,28 @@ struct EnterPasswordView: View {
                 VStack(alignment: .leading, spacing: 18) {
                     HStack {
                         Text("Enter")
-                            .foregroundColor(Color.LL.rebackground)
+                            .foregroundColor(Color.LL.text)
                             .bold()
                         Text("Password")
                             .foregroundColor(Color.LL.orange)
                             .bold()
                     }
-                    .font(.largeTitle)
+                    .font(.LL.largeTitle)
+                    .minimumScaleFactor(0.5)
 
                     Text("The password you created when you backup the wallet.")
-                        .font(.body)
-                        .foregroundColor(.secondary)
+                        .font(.LL.body)
+                        .foregroundColor(.LL.note)
                         .padding(.top, 1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                VTextField(model: TextFieldStyle.primary,
+                VTextField(model: model,
                            type: .secure,
+                           state: $state,
 //                           highlight: .error,
                            placeholder: "Enter your password",
-                           footerTitle: "Enter 8 characters, with at least 1 number",
+                           footerTitle: "Minimum 8 characters",
                            text: $text) {}
                     .padding(.top, 50)
 
@@ -66,7 +92,9 @@ struct EnterPasswordView: View {
 
                 VPrimaryButton(model: ButtonStyle.primary,
                                state: buttonState,
-                               action: {}, title: "Continue")
+                               action: {
+                    viewModel.trigger(.signIn(text))
+                }, title: "Restore account")
 
 //                Button {
 //                    router.route(to: \.userName)
@@ -94,6 +122,7 @@ struct EnterPasswordView: View {
 
 struct EnterPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterPasswordView()
+        let viewModel = EnterPasswordViewModel(account: .init(data: "", username: "AAA"))
+        EnterPasswordView(viewModel: viewModel.toAnyViewModel())
     }
 }

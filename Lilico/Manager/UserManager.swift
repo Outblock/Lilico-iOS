@@ -37,7 +37,11 @@ class UserManager: ObservableObject {
 //        listenAuthenticationState()
 //    }
 
-    init() {}
+    init() {
+        if let name = Auth.auth().currentUser?.displayName {
+            userInfo = UserInfo(avatar: "", username: name)
+        }
+    }
 
     func listenAuthenticationState() {
         handle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
@@ -73,9 +77,33 @@ class UserManager: ObservableObject {
 //        do {
 //            let _ = try await Auth.auth().currentUser?.delete()
         let result = try await Auth.auth().signIn(withCustomToken: token)
+
         print("Logged in -> \(result.user.uid)")
         await fetchUserInfo()
         await fetchWalletInfo()
+    }
+
+    func updateUserName(username: String) async throws {
+        guard let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() else {
+            return
+        }
+
+        changeRequest.displayName = username
+        try await changeRequest.commitChanges()
+    }
+
+    func register(_ username: String) async throws {
+        let isSuccess = try WalletManager.shared.createNewWallet(forceCreate: true)
+        guard let key = WalletManager.shared.wallet?.flowAccountKey, isSuccess else {
+            HUD.error(title: "Empty Wallet Key")
+            throw LLError.emptyWallet
+        }
+        let request = RegisterReuqest(username: username, accountKey: key.toCodableModel())
+        let model: RegisterResponse = try await Network.request(LilicoEndpoint.register(request))
+        try await loginWithCustomToken(model.customToken)
+        try await updateUserName(username: username)
+        try WalletManager.shared.storeMnemonicToKeychain(username: username)
+        let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoEndpoint.userAddress)
     }
 
     func getIdToken() async -> String? {
@@ -106,7 +134,7 @@ class UserManager: ObservableObject {
     func fetchUserInfo() async {
         do {
             let response: UserInfoResponse = try await Network.request(LilicoEndpoint.userInfo)
-            userInfo = UserInfo(avatar: response.avatar, username: response.nickName)
+            userInfo = UserInfo(avatar: response.avatar, username: response.username)
 
 //            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
 //            changeRequest?.displayName = userInfo?.userName

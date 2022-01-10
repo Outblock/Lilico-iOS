@@ -11,6 +11,7 @@ import UIKit
 
 extension UIView {
     static let topSafeAreaHeight: CGFloat =
+
         UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.safeAreaInsets.top ?? 0
 
     static let bottomSafeAreaHeight: CGFloat =

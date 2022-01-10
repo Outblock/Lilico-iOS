@@ -5,7 +5,10 @@
 //  Created by Hao Fu on 25/12/21.
 //
 
+import SPConfetti
 import SwiftUI
+import SwiftUIX
+import SceneKit
 
 struct EnumeratedForEach<ItemType, ContentView: View>: View {
     let data: [ItemType]
@@ -32,6 +35,9 @@ struct EmptyWalletView: View {
 
     @State
     var isDraggingArray: [Bool] = [false, false]
+
+    @State
+    var isPresenting: Bool = false
 
     fileprivate func cardView(_ dataSource: CardDataSource, index: Int) -> some View {
         return VStack(spacing: 50) {
@@ -97,6 +103,19 @@ struct EmptyWalletView: View {
             viewModel.trigger(dataSource.action)
         }
     }
+    
+    var scene: SCNScene? = {
+        var scene = SCNScene(named: "Bitcoin_metal_coin.obj")
+        scene?.background.contents = UIColor.clear
+        return scene
+    }()
+
+    var cameraNode: SCNNode? {
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        cameraNode.position = SCNVector3(x: 0, y: 10, z: 50)
+        return cameraNode
+    }
 
     var body: some View {
         VStack {
@@ -112,14 +131,24 @@ struct EmptyWalletView: View {
                     .font(.title2)
             }.padding(.horizontal, 20)
                 .padding(.vertical, 8)
-
+            
+            ScenekitView()
+            // for user action...
+            // setting custom frame...
+//                .frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height / 2)
+            
             EnumeratedForEach(viewModel.dataSource) { index, dataSource in
                 cardView(dataSource, index: index)
             }
-        }.onAppear {
-//            isDraggingArray
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+//        .onAppear {
+//            isDraggingArray
+//            isPresenting = true
+//        }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background {
+            NewEmptyWalletBackgroundView()
+        }
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))
     }
 }

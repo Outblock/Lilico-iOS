@@ -17,12 +17,13 @@ extension RecoveryPhraseView {
         case icloudBackup
         case googleBackup
         case manualBackup
+        case back
     }
 }
 
 struct RecoveryPhraseView: View {
-    @EnvironmentObject
-    var router: RegisterCoordinator.Router
+//    @EnvironmentObject
+//    var router: HomeCoordinator.Router
 
     @StateObject
     var viewModel: AnyViewModel<ViewState, Action>
@@ -32,8 +33,9 @@ struct RecoveryPhraseView: View {
 
     var btnBack: some View {
         Button {
-//            router.pop()
-            self.presentationMode.wrappedValue.dismiss()
+            viewModel.trigger(.back)
+//            router.popToRoot()
+//            self.presentationMode.wrappedValue.dismiss()
         } label: {
             HStack {
                 Image(systemName: "arrow.backward")
@@ -43,6 +45,9 @@ struct RecoveryPhraseView: View {
         }
     }
 
+    @State
+    var isBlur: Bool = true
+
     var body: some View {
         NavigationView {
             VStack {
@@ -51,47 +56,90 @@ struct RecoveryPhraseView: View {
                         HStack {
                             Text("Recovery")
                                 .bold()
-                                .foregroundColor(Color.LL.rebackground)
+                                .foregroundColor(Color.LL.text)
 
                             Text("Phrase")
                                 .bold()
                                 .foregroundColor(Color.LL.orange)
                         }
-                        .font(.largeTitle)
+                        .font(.LL.largeTitle)
 
                         Text("Write down or copy these words in the right order and save them somewhere safe.")
-                            .font(.callout)
-                            .foregroundColor(.secondary)
+                            .font(.LL.body)
+                            .foregroundColor(.LL.note)
                             .padding(.top, 1)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
 
-                    HStack {
-                        WordListView(data: Array(viewModel.dataSource.prefix(6)))
-                        WordListView(data: Array(viewModel.dataSource.suffix(from: 6)))
+                    VStack {
+                        HStack {
+                            Spacer()
+                            WordListView(data: Array(viewModel.dataSource.prefix(6)))
+                            Spacer()
+                            WordListView(data: Array(viewModel.dataSource.suffix(from: 6)))
+                            Spacer()
+                        }
+
+                        Text("Hide")
+                            .padding(5)
+                            .padding(.horizontal, 5)
+                            .foregroundColor(.LL.background)
+                            .font(.LL.body)
+                            .background(.LL.note)
+                            .cornerRadius(12)
+                            .onTapGesture {
+                                isBlur = true
+                            }
                     }
+                    .onTapGesture {
+                        isBlur.toggle()
+                    }
+                    .blur(radius: isBlur ? 10 : 0)
                     .padding(.vertical, 20)
                     .padding(.horizontal, 20)
                     .overlay {
-                        RoundedRectangle(cornerRadius: 16)
-                            .strokeBorder(lineWidth: 0.5)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 16)
+                                .strokeBorder(lineWidth: 0.5)
+                            VStack(spacing: 10) {
+                                Image(systemName: "eyes")
+                                    .font(.largeTitle)
+                                Text("Make sure you are in a private place !")
+                                    .foregroundColor(.LL.note)
+                                    .font(.LL.body)
+                                    .fontWeight(.semibold)
+                                Text("Reveal")
+                                    .padding(5)
+                                    .padding(.horizontal, 2)
+                                    .foregroundColor(.LL.background)
+                                    .font(.LL.body)
+                                    .background(.LL.note)
+                                    .cornerRadius(12)
+                                    .padding(.top, 10)
+                            }
+                            .opacity(isBlur ? 1 : 0)
+                            .foregroundColor(.LL.note)
+                        }
+                        .allowsHitTesting(false)
                     }
+                    .animation(.linear(duration: 0.2), value: isBlur)
                     .padding(.vertical, 20)
 
                     VStack(spacing: 10) {
                         Text("Do not share your secret phrase!")
-                            .font(.caption)
+                            .font(.LL.caption)
                             .bold()
                         Text("If someone has your secret phrase, they will have full control of your wallet.")
-                            .font(.footnote)
+                            .font(.LL.footnote)
                             .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity, alignment: .center)
                     }
                     .padding()
-                    .foregroundColor(.red)
+                    .foregroundColor(.LL.warning2)
                     .background {
                         RoundedRectangle(cornerRadius: 12)
-                            .foregroundColor(.red.opacity(0.1))
+                            .foregroundColor(.LL.warning6)
                     }
                     .padding(.bottom)
 
@@ -142,7 +190,7 @@ struct WordListView: View {
     var data: [WordItem]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 18) {
+        VStack(alignment: .leading, spacing: 12) {
             ForEach(data) { item in
                 HStack(spacing: 18) {
                     Circle()

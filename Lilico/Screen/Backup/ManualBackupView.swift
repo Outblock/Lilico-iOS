@@ -9,8 +9,6 @@ import SwiftUI
 
 extension ManualBackupView {
     enum ViewState {
-        //        var isLoading = false
-//        var dataSource: [BackupModel]
         case initScreen
         case render(dataSource: [BackupModel])
     }
@@ -34,13 +32,6 @@ struct ManualBackupView: View {
         let correct: Int
         let list: [String]
     }
-
-    var mockData: [BackupModel] = [
-        .init(position: 2, correct: 1, list: ["Abstract", "Apple", "Alience"]),
-        .init(position: 4, correct: 0, list: ["Food", "First", "Fire"]),
-        .init(position: 8, correct: 2, list: ["Loop", "Lilico", "Libra"]),
-        .init(position: 10, correct: 0, list: ["Zip", "Zion", "Zoo"]),
-    ]
 
     var btnBack: some View {
         Button {
@@ -66,6 +57,10 @@ struct ManualBackupView: View {
 
     var model: VSegmentedPickerModel = {
         var model = VSegmentedPickerModel()
+        model.colors.background = .init(enabled: .LL.bgForIcon,
+                                        disabled: .LL.bgForIcon)
+
+        model.fonts.rows = .LL.body.weight(.semibold)
         model.layout.height = 64
         model.layout.cornerRadius = 16
         model.layout.indicatorCornerRadius = 16
@@ -81,11 +76,11 @@ struct ManualBackupView: View {
                   correct: Int) -> Color
     {
         guard let selectIndex = selectIndex else {
-            return .gray
+            return .LL.text
         }
 
         guard let index = list.firstIndex(of: item), selectIndex == index else {
-            return .gray
+            return .LL.text
         }
 
         return selectIndex == correct ? Color.LL.success : Color.LL.error
@@ -94,22 +89,22 @@ struct ManualBackupView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
                         HStack {
                             Text("Double")
                                 .bold()
-                                .foregroundColor(Color.LL.rebackground)
+                                .foregroundColor(Color.LL.text)
 
                             Text("Secure")
                                 .bold()
                                 .foregroundColor(Color.LL.orange)
                         }
-                        .font(.largeTitle)
+                        .font(.LL.largeTitle)
 
                         Text("Please select the word one by one refering to its order.")
-                            .font(.callout)
-                            .foregroundColor(.secondary)
+                            .font(.LL.body)
+                            .foregroundColor(.LL.note)
                             .padding(.top, 1)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -117,33 +112,48 @@ struct ManualBackupView: View {
 
                     if case let .render(dataSource) = viewModel.state {
                         EnumeratedForEach(dataSource) { index, element in
-                            VSegmentedPicker(model: model,
-                                             state: selectArray[index] == element.correct ? .disabled : .enabled,
-                                             selectedIndex: $selectArray[index],
-                                             headerTitle: "Select the word #\(element.position)",
-                                             data: element.list) { item in
-                                VText(type: .oneLine,
-                                      font: model.fonts.rows,
-                                      color: getColor(selectIndex: selectArray[index],
-                                                      item: item,
-                                                      list: element.list,
-                                                      currentListIndex: index,
-                                                      correct: element.correct),
-                                      title: item)
+
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text("Select the word")
+                                    Text("#\(element.position)")
+                                        .fontWeight(.semibold)
+                                }
+                                .font(.LL.body)
+
+                                VSegmentedPicker(model: model,
+                                                 //                                             state: selectArray[index] == element.correct ? .disabled : .enabled,
+                                                 selectedIndex: $selectArray[index],
+//                                                 headerTitle: "Select the word #\(element.position)",
+                                                 data: element.list) { item in
+                                    VText(type: .oneLine,
+                                          font: model.fonts.rows,
+                                          color: getColor(selectIndex: selectArray[index],
+                                                          item: item,
+                                                          list: element.list,
+                                                          currentListIndex: index,
+                                                          correct: element.correct),
+                                          title: item)
+                                }
                             }
                             .padding(.bottom)
                         }
                     }
-                }
 
-                VPrimaryButton(model: ButtonStyle.primary,
-                               state: isAllPass ? .enabled : .disabled,
-                               action: {
-                                   viewModel.trigger(.backupSuccess)
-                               }, title: "Next")
-                    .padding(.bottom)
+                    VPrimaryButton(model: ButtonStyle.primary,
+                                   state: isAllPass ? .enabled : .disabled,
+                                   action: {
+                                       viewModel.trigger(.backupSuccess)
+                                   }, title: "Next")
+                        .padding(.top, 20)
+                        .padding(.bottom)
+                }
+            }
+            .onAppear {
+                overrideNavigationAppearance()
             }
             .padding(.horizontal, 30)
+            .navigationTitle("Double Secure")
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: btnBack)
@@ -165,6 +175,8 @@ struct ManualBackupView: View {
 
 struct ManualBackupView_Previews: PreviewProvider {
     static var previews: some View {
+        ManualBackupView(viewModel: ManualBackupViewModel().toAnyViewModel())
+            .previewDevice("iPhone 12 mini")
         ManualBackupView(viewModel: ManualBackupViewModel().toAnyViewModel())
             .colorScheme(.dark)
     }

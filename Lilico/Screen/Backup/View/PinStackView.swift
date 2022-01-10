@@ -14,25 +14,28 @@ struct PinStackView: View {
     var emptyColor: Color
     var highlightColor: Color
 
-    @State
+//    @State
     var needClear: Bool = false {
         didSet {
             if needClear {
-                pin = ""
+                self.$pin.wrappedValue = ""
             }
         }
     }
 
-    @State
-    var pin = ""
+    @Binding
+    var pin: String
 
+    @State
+    var focuse: VBaseTextFieldState = .focused
+    
     // String is the pin code, bool is completed or not
     var handler: (String, Bool) -> Void
 
     func getPinColor(_ index: Int) -> Color {
         let pin = Array(self.pin)
 
-        if pin.indices.contains(index), !String(pin[index]).isEmpty {
+        if pin.indices.contains(index) && !String(pin[index]).isEmpty {
             return highlightColor
         }
 
@@ -41,16 +44,31 @@ struct PinStackView: View {
 
     var body: some View {
         ZStack {
-            TextField("", text: $pin)
-                .onReceive(pin.publisher.collect()) {
-                    self.pin = String($0.prefix(maxDigits))
-                    self.handler(self.pin, $0.count == maxDigits)
-                }
-                .introspectTextField { textField in
-                    textField.becomeFirstResponder()
-                    textField.isHidden = true
-                }
-                .keyboardType(.numberPad)
+            
+            VBaseTextField(state: $focuse,
+                           text: $pin) {
+                handler(pin, pin.count == maxDigits)
+            }
+            .onReceive(pin.publisher.collect()) {
+                self.pin = String($0.prefix(maxDigits))
+            }
+            .keyboardType(.numberPad)
+            .hidden()
+            
+//            CocoaTextField("", text: $pin) { _ in
+//                handler(pin, pin.count == maxDigits)
+//            } onCommit: {}
+//                .isFirstResponder(focuse)
+//                .introspectTextField { textField in
+////                    delay(.milliseconds(500)) {
+//                        textField.becomeFirstResponder()
+////                    }
+//                    textField.isHidden = true
+//                }
+//                .keyboardType(.numberPad)
+//                .onReceive(pin.publisher.collect()) {
+//                    self.pin = String($0.prefix(maxDigits))
+//                }
 
             HStack(spacing: 24) {
                 ForEach(0 ..< maxDigits) { digit in
@@ -61,6 +79,9 @@ struct PinStackView: View {
                 }
             }
         }
+        .onTapGesture {
+            
+        }
     }
 
     private func closeKeyboard() {
@@ -69,12 +90,27 @@ struct PinStackView: View {
 }
 
 struct PinStackView_Previews: PreviewProvider {
+    @State
+    static var test: Bool = false
     static var previews: some View {
+        
         PinStackView(maxDigits: 6,
                      emptyColor: .gray,
                      highlightColor: Color.LL.orange,
-                     needClear: false) { pin, _ in
+                     needClear: false,
+                     pin: .constant("")) { pin, complete in
             print(pin)
+            if (complete) {
+                test = true
+            }
+            
         }
+    }
+}
+
+
+func delay(_ time: DispatchTimeInterval, completion: @escaping () -> ()) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+        completion()
     }
 }

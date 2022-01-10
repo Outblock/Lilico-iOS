@@ -15,18 +15,10 @@ import UIKit
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
-        Resolver.registerAllServices()
 //        IQKeyboardManager.shared.enable = true
 
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "arrow.backward")
-
-        for family in UIFont.familyNames {
-            print(family)
-
-            for names in UIFont.fontNames(forFamilyName: family) {
-                print("== \(names)")
-            }
-        }
+        Resolver.registerAllServices()
 
         return true
     }

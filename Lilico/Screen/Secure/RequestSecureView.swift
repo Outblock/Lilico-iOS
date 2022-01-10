@@ -8,21 +8,29 @@
 import SwiftUI
 
 extension RequestSecureView {
-    enum ViewState {
-        //        var isLoading = false
-//        var dataSource: [BackupModel]
-        case initScreen
+    struct ViewState {
+        var biometric: Biometric = .none
     }
 
-    enum Action {}
+    enum Action {
+        case faceID
+        case pin
+    }
 }
 
 struct RequestSecureView: View {
+    
+    enum Biometric {
+        case none
+        case faceId
+        case touchId
+    }
+    
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
 
-//    @StateObject
-//    var viewModel: AnyViewModel<ViewState, Action>
+    @StateObject
+    var viewModel: AnyViewModel<ViewState, Action>
 
     var btnBack: some View {
         Button {
@@ -38,10 +46,10 @@ struct RequestSecureView: View {
 
     var model: VPrimaryButtonModel = {
         var model = ButtonStyle.border
-//        model.colors.border = .init(enabled: Color.LL.rebackground.opacity(0.5),
-//                                    pressed: Color.LL.rebackground.opacity(0.2),
-//                                    loading: Color.LL.rebackground.opacity(0.5),
-//                                    disabled: Color.LL.rebackground.opacity(0.5))
+        model.colors.border = .init(enabled: Color.LL.outline,
+                                    pressed: Color.LL.outline,
+                                    loading: Color.LL.outline,
+                                    disabled: Color.LL.outline)
         model.layout.height = 64
         return model
     }()
@@ -63,7 +71,7 @@ struct RequestSecureView: View {
                 VStack(alignment: .leading) {
                     Text("Add Extra")
                         .bold()
-                        .font(.largeTitle)
+                        .font(.LL.largeTitle)
 
                     HStack {
                         Text("Protection")
@@ -72,17 +80,17 @@ struct RequestSecureView: View {
 
                         Text("to")
                             .bold()
-                            .foregroundColor(Color.LL.rebackground)
+                            .foregroundColor(Color.LL.text)
                     }
-                    .font(.largeTitle)
+                    .font(.LL.largeTitle)
 
                     Text("Your Wallet")
                         .bold()
-                        .font(.largeTitle)
+                        .font(.LL.largeTitle)
 
                     Text("Please select the word one by one refering to its order.")
-                        .font(.callout)
-                        .foregroundColor(.secondary)
+                        .font(.LL.body)
+                        .foregroundColor(.LL.note)
                         .padding(.top, 1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -90,41 +98,51 @@ struct RequestSecureView: View {
 
                 Spacer()
 
-                VPrimaryButton(model: pinModel) {} content: {
-                    HStack(spacing: 15) {
-                        Image(systemName: "faceid")
-                            .font(.title2)
-                            .aspectRatio(1, contentMode: .fill)
-                            .frame(width: 30, alignment: .leading)
-//                            .foregroundColor(Color.LL.orange)
-                        VStack(alignment: .leading) {
-                            Text("Face ID")
-                            Text("Recommend")
+                if viewModel.biometric != .none {
+                    VPrimaryButton(model: model) {
+                        viewModel.trigger(.faceID)
+                    } content: {
+                        HStack(spacing: 15) {
+                            Image(systemName: viewModel.biometric == .faceId ? "faceid" : "touchid")
+                                .font(.title2)
+                                .aspectRatio(1, contentMode: .fill)
+                                .frame(width: 30, alignment: .leading)
                                 .foregroundColor(Color.LL.orange)
-                                .font(.footnote)
+                            VStack(alignment: .leading) {
+                                Text(viewModel.biometric == .faceId ? "Face ID" : "Touch ID")
+                                    .font(.LL.body)
+                                    .fontWeight(.semibold)
+                                Text("Recommend")
+                                    .foregroundColor(Color.LL.orange)
+                                    .font(.LL.footnote)
+                            }
+                            Spacer()
+                            Image(systemName: "arrow.forward.circle.fill")
+                                .foregroundColor(.gray)
                         }
-                        Spacer()
-                        Image(systemName: "arrow.forward.circle.fill")
-                            .foregroundColor(.gray)
+                        .padding(.horizontal, 18)
+                        .foregroundColor(Color.LL.text)
                     }
-                    .padding(.horizontal, 18)
-                    .foregroundColor(Color.LL.background)
                 }
 
-                VPrimaryButton(model: model) {} content: {
+                VPrimaryButton(model: model) {
+                    viewModel.trigger(.pin)
+                } content: {
                     HStack(spacing: 15) {
                         Image(systemName: "rectangle.and.pencil.and.ellipsis")
 //                            .font(.title2)
-//                            .foregroundColor(Color.LL.orange)
+                            .foregroundColor(Color.LL.orange)
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 30, alignment: .leading)
-                        Text("Pincode ID")
+                        Text("PIN Code")
+                            .font(.LL.body)
+                            .fontWeight(.semibold)
                         Spacer()
                         Image(systemName: "arrow.forward.circle.fill")
                             .foregroundColor(.gray)
                     }
                     .padding(.horizontal, 18)
-                    .foregroundColor(Color.LL.rebackground)
+                    .foregroundColor(Color.LL.text)
                 }
                 .padding(.bottom)
             }
@@ -148,7 +166,7 @@ struct RequestSecureView: View {
 
 struct RequestSecureView_Previews: PreviewProvider {
     static var previews: some View {
-        RequestSecureView()
+        RequestSecureView(viewModel: RequestSecureViewModel().toAnyViewModel())
 //            .colorScheme(.dark)
     }
 }

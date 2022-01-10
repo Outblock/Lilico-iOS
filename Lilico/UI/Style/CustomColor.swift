@@ -26,5 +26,10 @@ extension Color {
         static let frontColor = Color("FrontColor")
 
         static let text = Color("Text")
+
+        static let warning2 = Color("Warning2")
+        static let warning6 = Color("Warning6")
+
+        static let bgForIcon = Color("BgForIcon")
     }
 }

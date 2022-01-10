@@ -21,7 +21,8 @@ struct RegisterResponse: Codable {
 
 struct UserInfoResponse: Codable {
     let avatar: String
-    let nickName: String
+    let nickname: String
+    let username: String
 }
 
 struct UserWalletResponse: Codable {

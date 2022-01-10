@@ -27,4 +27,16 @@ class HUD {
     static func error(title: String, message: String? = nil, preset: SPIndicatorIconPreset = .error, haptic: SPIndicatorHaptic = .error) {
         HUD.present(title: title, message: message, preset: preset, haptic: haptic)
     }
+
+    static func debugSuccess(title: String, message: String? = nil, preset: SPIndicatorIconPreset = .done, haptic: SPIndicatorHaptic = .success) {
+        #if DEBUG
+            HUD.present(title: title, message: message, preset: preset, haptic: haptic)
+        #endif
+    }
+
+    static func debugError(title: String, message: String? = nil, preset: SPIndicatorIconPreset = .error, haptic: SPIndicatorHaptic = .error) {
+        #if DEBUG
+            HUD.present(title: title, message: message, preset: preset, haptic: haptic)
+        #endif
+    }
 }

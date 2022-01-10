@@ -7,10 +7,24 @@
 
 import SwiftUI
 
+extension ChooseAccountView {
+    struct ViewState {
+        var dataSource: [BackupManager.AccountData]
+    }
+
+    enum Action {
+        case selectAccount(Int)
+    }
+}
+
+
 struct ChooseAccountView: View {
     @EnvironmentObject
     var router: RegisterCoordinator.Router
 
+    @StateObject
+    var viewModel: AnyViewModel<ViewState, Action>
+    
     var btnBack: some View {
         Button {
             router.dismissCoordinator()
@@ -23,62 +37,82 @@ struct ChooseAccountView: View {
         }
     }
 
+    var model: VPrimaryButtonModel = {
+        var model = ButtonStyle.primary
+        model.colors.background = .init(enabled: .LL.outline,
+                                        pressed: .LL.outline,
+                                        loading: .LL.outline,
+                                        disabled: .LL.outline)
+        return model
+    }()
+
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
-                VStack(alignment: .leading, spacing: 18) {
-                    HStack {
-                        Text("Choose")
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text("Choose")
+                                .foregroundColor(Color.LL.text)
+                                .bold()
+                            Text("Account")
+                                .foregroundColor(Color.LL.orange)
+                                .bold()
+                        }
+                        .font(.LL.largeTitle)
+
+                        Text("Multiple Accounts found.")
+                            .font(.LL.body)
+                            .bold()
+                            .foregroundColor(.LL.note)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.bottom, 20)
+
+                    Spacer()
+
+                    EnumeratedForEach(viewModel.dataSource) { index, account in
+                        
+                        VPrimaryButton(model: model,
+                                       state: .enabled) {
+                            viewModel.trigger(.selectAccount(index))
+                        } content: {
+                            HStack {
+                                Text(account.username)
+                                    .font(.LL.body)
+                                    .bold()
+                                    .frame(maxWidth: .infinity, alignment: .center)
+
+                                Image(systemName: "chevron.right")
+                                    .padding(.trailing)
+                            }
+                            .padding(.vertical, 18)
                             .foregroundColor(Color.LL.rebackground)
-                            .bold()
-                        Text("Account")
-                            .foregroundColor(Color.LL.orange)
-                            .bold()
-                    }
-                    .font(.largeTitle)
-
-                    Text("Multiple accouns found.")
-                        .font(.body)
-                        .bold()
-                        .foregroundColor(.secondary)
-                        .padding(.top, 1)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-                Spacer()
-
-                Button {
-                    router.route(to: \.username)
-                } label: {
-                    HStack {
-                        Text("Username")
-                            .font(.headline)
-                            .bold()
-                            .frame(maxWidth: .infinity, alignment: .center)
-
-                        Image(systemName: "chevron.right")
-                            .padding(.trailing)
-                    }
-                    .padding(.vertical, 18)
-                    .foregroundColor(Color.LL.rebackground)
-                    .background {
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundColor(.separator)
+                        }
+                        
                     }
                 }
-
-                Spacer()
             }
-            .padding(.horizontal, 30)
-            .navigationBarTitle("", displayMode: .inline)
+            .onAppear {
+                overrideNavigationAppearance()
+            }
+            .padding(.horizontal, 28)
+            .navigationBarTitle("Choose Account", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: btnBack)
+            .background(Color.LL.background, ignoresSafeAreaEdges: .all)
         }
     }
 }
 
 struct ChooseAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        ChooseAccountView()
+        let mockAccountList: [BackupManager.AccountData] = [
+            .init(data: "", username: "AAAA"),
+            .init(data: "", username: "BBBB"),
+            .init(data: "", username: "CCCC"),
+        ]
+        let viewModel = ChooseAccountViewModel(accountList: mockAccountList)
+        ChooseAccountView(viewModel: viewModel.toAnyViewModel())
     }
 }
