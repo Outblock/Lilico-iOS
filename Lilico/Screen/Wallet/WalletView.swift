@@ -55,27 +55,30 @@ struct WalletView: View {
                         y: viewState.height / 20)
         }
         .padding()
+//        .background {
+//            Image("Card-circle")
+//                .aspectRatio(contentMode: .fill)
+//                .frame(maxWidth: .infinity, alignment: .bottomTrailing)
+////                .background(Color(hex: "2F2F2F"))
+////                .cornerRadius(20)
+//                .offset(x: 0, y: 30)
+//                .offset(x: viewState.width / 25,
+//                        y: viewState.height / 25)
+//        }
         .background {
-            Image("Card-circle")
-                .aspectRatio(contentMode: .fill)
-                .frame(maxWidth: .infinity, alignment: .bottomTrailing)
-//                .background(Color(hex: "2F2F2F"))
-//                .cornerRadius(20)
-                .offset(x: 0, y: 30)
-                .offset(x: viewState.width / 25,
-                        y: viewState.height / 25)
+            NewEmptyWalletBackgroundView()
         }
         .background(Color(hex: "2F2F2F"))
         .cornerRadius(20)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .overlay {
-            Image("BlowFish")
-//                .renderingMode(.original)
-                .frame(maxWidth: .infinity, alignment: .topTrailing)
-                .offset(x: 20, y: -90)
-                .offset(x: viewState.width / 10,
-                        y: viewState.height / 10)
-        }
+//        .overlay {
+//            Image("BlowFish")
+////                .renderingMode(.original)
+//                .frame(maxWidth: .infinity, alignment: .topTrailing)
+//                .offset(x: 20, y: -90)
+//                .offset(x: viewState.width / 10,
+//                        y: viewState.height / 10)
+//        }
         .shadow(color: Color(hex: "2F2F2F").opacity(0.3),
                 radius: 10, x: 0, y: 0)
         .padding()
@@ -94,6 +97,7 @@ struct WalletView: View {
                     self.isDragging = false
                 }
         )
+        .clipped()
     }
 
     var drag: some Gesture {

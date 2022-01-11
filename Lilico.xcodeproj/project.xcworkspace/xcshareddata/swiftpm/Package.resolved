@@ -137,6 +137,15 @@
         }
       },
       {
+        "package": "GTMSessionFetcher",
+        "repositoryURL": "https://github.com/google/gtm-session-fetcher",
+        "state": {
+          "branch": null,
+          "revision": "bc6a19702ac76ac4e488b68148710eb815f9bc56",
+          "version": "1.7.0"
+        }
+      },
+      {
         "package": "GTMAppAuth",
         "repositoryURL": "https://github.com/google/GTMAppAuth.git",
         "state": {
@@ -152,15 +161,6 @@
           "branch": "master",
           "revision": "a2e8e5b9a91eef90138a4f43c9a0044c4e90a6ef",
           "version": null
-        }
-      },
-      {
-        "package": "IQKeyboardManagerSwift",
-        "repositoryURL": "https://github.com/hackiftekhar/IQKeyboardManager",
-        "state": {
-          "branch": null,
-          "revision": "474f849accae40fe61b5302d9b057dd48ee073ba",
-          "version": "6.5.9"
         }
       },
       {

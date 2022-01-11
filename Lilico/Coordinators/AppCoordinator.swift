@@ -26,7 +26,7 @@ extension MainCoordinator {
         return NavigationViewCoordinator(OnBoradingCoordinator())
     }
 
-    func makeHome() -> NavigationViewCoordinator<HomeCoordinator> {
-        return NavigationViewCoordinator(HomeCoordinator())
+    func makeHome() -> NavigationViewCoordinator<NewTabBarCoordinator> {
+        return NavigationViewCoordinator(NewTabBarCoordinator())
     }
 }

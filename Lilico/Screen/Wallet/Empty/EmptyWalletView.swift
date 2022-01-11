@@ -104,18 +104,18 @@ struct EmptyWalletView: View {
         }
     }
     
-    var scene: SCNScene? = {
-        var scene = SCNScene(named: "Bitcoin_metal_coin.obj")
-        scene?.background.contents = UIColor.clear
-        return scene
-    }()
-
-    var cameraNode: SCNNode? {
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3(x: 0, y: 10, z: 50)
-        return cameraNode
-    }
+//    var scene: SCNScene? = {
+//        var scene = SCNScene(named: "Bitcoin_metal_coin.obj")
+//        scene?.background.contents = UIColor.clear
+//        return scene
+//    }()
+//
+//    var cameraNode: SCNNode? {
+//        let cameraNode = SCNNode()
+//        cameraNode.camera = SCNCamera()
+//        cameraNode.position = SCNVector3(x: 0, y: 10, z: 50)
+//        return cameraNode
+//    }
 
     var body: some View {
         VStack {
@@ -132,7 +132,7 @@ struct EmptyWalletView: View {
             }.padding(.horizontal, 20)
                 .padding(.vertical, 8)
             
-            ScenekitView()
+//            ScenekitView()
             // for user action...
             // setting custom frame...
 //                .frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height / 2)
@@ -145,7 +145,7 @@ struct EmptyWalletView: View {
 //            isDraggingArray
 //            isPresenting = true
 //        }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background {
             NewEmptyWalletBackgroundView()
         }

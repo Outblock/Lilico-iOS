@@ -11,6 +11,7 @@ import GoogleAPIClientForREST_Drive
 import GoogleAPIClientForRESTCore
 import GoogleSignIn
 import GTMSessionFetcherCore
+import WalletCore
 
 // protocol BackupDelegate {
 // }
@@ -58,13 +59,15 @@ class BackupManager: ObservableObject {
         guard let user = Auth.auth().currentUser,
               !user.isAnonymous,
               let userInfo = UserManager.shared.userInfo,
+              let userData = userInfo.username.data(using: .utf8),
               let wallet = WalletManager.shared.wallet,
               let data = wallet.mnemonic.data(using: .utf8)
         else {
             throw LLError.missingUserInfoWhilBackup
         }
-
-        let encryptData = try WalletManager.encryptionAES(key: password, data: data)
+        
+        let iv = Hash.sha256(data: userData).hexValue
+        let encryptData = try WalletManager.encryptionAES(key: password, iv: String(iv.prefix(16)), data: data)
         let accountData = AccountData(data: encryptData.base64EncodedString(), username: userInfo.username)
         
         var storedData = loadAccountDataFromiCloud() ?? []
@@ -101,11 +104,13 @@ class BackupManager: ObservableObject {
     }
     
     func decryptAccountData(password: String, account: AccountData) throws -> String {
-        guard let data = Data(base64Encoded: account.data) else {
+        guard let data = Data(base64Encoded: account.data),
+              let userData = account.username.data(using: .utf8) else {
             throw LLError.decryptBackupFailed
         }
         
-        var keyData = try WalletManager.decryptionAES(key: password, data: data)
+        let iv = Hash.sha256(data: userData).hexValue
+        var keyData = try WalletManager.decryptionAES(key: password, iv: String(iv.prefix(16)), data: data)
         guard var key = String(data: keyData, encoding: .utf8) else {
             throw LLError.decryptBackupFailed
         }

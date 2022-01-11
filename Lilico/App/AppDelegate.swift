@@ -8,7 +8,6 @@
 import Firebase
 import Foundation
 import GoogleSignIn
-import IQKeyboardManagerSwift
 import Resolver
 import UIKit
 

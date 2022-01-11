@@ -12,6 +12,9 @@ struct OnboardingView: View {
     @State var offset: CGFloat = 0
     @State var gotoWallet: String? = ""
 
+    @State
+    var scrollTo: CGFloat = -1
+    
     @StateObject
     var viewModel: AnyViewModel<OnboardingState, OnboardingAction>
 
@@ -41,10 +44,9 @@ struct OnboardingView: View {
     var body: some View {
         ZStack {
             VStack {
-                OffsetPageTabView(offset: $offset) {
+                OffsetPageTabView(offset: $offset, scrollTo: $scrollTo) {
                     HStack(spacing: 0) {
                         ForEach(viewModel.intros) { intro in
-
                             VStack {
                                 Image(intro.image)
                                     .resizable()

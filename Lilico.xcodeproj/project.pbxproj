@@ -124,6 +124,8 @@
 		159A569427539A2C004BCACC /* WalletSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A569327539A2C004BCACC /* WalletSetupViewModel.swift */; };
 		159CFF2B27887ED3006421FB /* InputMnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CFF2A27887ED3006421FB /* InputMnemonicView.swift */; };
 		159CFF2C27887ED3006421FB /* InputMnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CFF2A27887ED3006421FB /* InputMnemonicView.swift */; };
+		159E43F3278D6F5700D566B0 /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 159E43F2278D6F5700D566B0 /* Stinsen */; };
+		159E43F5278D6F6400D566B0 /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 159E43F4278D6F6400D566B0 /* Stinsen */; };
 		15B1A686276B53F70006B621 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1A685276B53F70006B621 /* GetStartedView.swift */; };
 		15B1A687276B53F70006B621 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1A685276B53F70006B621 /* GetStartedView.swift */; };
 		15B1F6232785B1C200847BB5 /* NavigationDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6222785B1C200847BB5 /* NavigationDemo.swift */; };
@@ -140,8 +142,6 @@
 		15B1F6392786B89800847BB5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B1F63B2786B89800847BB5 /* Localizable.strings */; };
 		15BCFEFB277565F0000B7863 /* TermsAndPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */; };
 		15BCFEFC277565F0000B7863 /* TermsAndPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */; };
-		15BCFF04277587C1000B7863 /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 15BCFF03277587C1000B7863 /* Stinsen */; };
-		15BCFF0627758832000B7863 /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 15BCFF0527758832000B7863 /* Stinsen */; };
 		15BCFF0827758B30000B7863 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF0727758B30000B7863 /* TabBarCoordinator.swift */; };
 		15BCFF0927758B30000B7863 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF0727758B30000B7863 /* TabBarCoordinator.swift */; };
 		15BCFF102775986E000B7863 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 15BCFF0F2775986E000B7863 /* SPIndicator */; };
@@ -180,8 +180,6 @@
 		15D9283627849E6800382226 /* BackupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9283427849E6800382226 /* BackupCoordinator.swift */; };
 		15DC1D3E27809F83000B187A /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D3D27809F83000B187A /* BackupManager.swift */; };
 		15DC1D3F27809F83000B187A /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D3D27809F83000B187A /* BackupManager.swift */; };
-		15DC1D422780A44D000B187A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 15DC1D412780A44D000B187A /* IQKeyboardManagerSwift */; };
-		15DC1D442780A459000B187A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 15DC1D432780A459000B187A /* IQKeyboardManagerSwift */; };
 		15DC1D4627814A68000B187A /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4527814A68000B187A /* ButtonStyle.swift */; };
 		15DC1D4727814A68000B187A /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4527814A68000B187A /* ButtonStyle.swift */; };
 		15DC1D4927814AD1000B187A /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4827814AD1000B187A /* TextFieldStyle.swift */; };
@@ -636,6 +634,8 @@
 		15F22F2D278BDB7300FCF772 /* Bitcoin_metal_coin.obj in Resources */ = {isa = PBXBuildFile; fileRef = 15F22F2B278BD9CE00FCF772 /* Bitcoin_metal_coin.obj */; };
 		15F22F2F278BDD7400FCF772 /* ScenekitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F2E278BDD7400FCF772 /* ScenekitView.swift */; };
 		15F22F30278BDD7400FCF772 /* ScenekitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F2E278BDD7400FCF772 /* ScenekitView.swift */; };
+		15F22F33278C348A00FCF772 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F32278C348A00FCF772 /* MainTabView.swift */; };
+		15F22F34278C348A00FCF772 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F32278C348A00FCF772 /* MainTabView.swift */; };
 		15F43D102753A678004F6F49 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F43D0F2753A678004F6F49 /* OnboardingViewModel.swift */; };
 		15F43D122753B4F6004F6F49 /* PageIndictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F43D112753B4F6004F6F49 /* PageIndictor.swift */; };
 		15F50B742760EE2F00208A81 /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 15F50B732760EE2F00208A81 /* Flow */; };
@@ -1027,6 +1027,7 @@
 		15F22F27278BB88100FCF772 /* NewEmptyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEmptyWalletView.swift; sourceTree = "<group>"; };
 		15F22F2B278BD9CE00FCF772 /* Bitcoin_metal_coin.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Bitcoin_metal_coin.obj; sourceTree = "<group>"; };
 		15F22F2E278BDD7400FCF772 /* ScenekitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenekitView.swift; sourceTree = "<group>"; };
+		15F22F32278C348A00FCF772 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		15F43D0F2753A678004F6F49 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		15F43D112753B4F6004F6F49 /* PageIndictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndictor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1037,13 +1038,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */,
+				159E43F5278D6F6400D566B0 /* Stinsen in Frameworks */,
 				154B891A276A1EEB00780E93 /* Flow in Frameworks */,
 				15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */,
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
 				15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */,
 				15185ED8278A73A3006B74A9 /* SPConfetti in Frameworks */,
 				158CEFBF277DB419004EF2C7 /* SwiftProtobuf.xcframework in Frameworks */,
-				15DC1D442780A459000B187A /* IQKeyboardManagerSwift in Frameworks */,
 				15D5775B277C23BF00045E79 /* Moya in Frameworks */,
 				15F22F1A278B21B600FCF772 /* BiometricAuthentication in Frameworks */,
 				154B891C276A1EEB00780E93 /* Resolver in Frameworks */,
@@ -1057,7 +1058,6 @@
 				154B891F276A1EEB00780E93 /* FirebaseDynamicLinks in Frameworks */,
 				15DE22F1277F133B00B5EE03 /* SkeletonUI in Frameworks */,
 				1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */,
-				15BCFF0627758832000B7863 /* Stinsen in Frameworks */,
 				154B8920276A1EEB00780E93 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1071,11 +1071,11 @@
 				15DC1D5127815891000B187A /* Haneke in Frameworks */,
 				15DE22EF277F132200B5EE03 /* SkeletonUI in Frameworks */,
 				154B887E2765EBA700780E93 /* FirebaseAuth in Frameworks */,
-				15DC1D422780A44D000B187A /* IQKeyboardManagerSwift in Frameworks */,
 				1552DC68278708AB00EAA7D5 /* Introspect in Frameworks */,
 				15F22F18278B20A800FCF772 /* BiometricAuthentication in Frameworks */,
 				15D57757277C238C00045E79 /* Moya in Frameworks */,
 				1507C7E52755061700890C5D /* Resolver in Frameworks */,
+				159E43F3278D6F5700D566B0 /* Stinsen in Frameworks */,
 				1599F7772789734B0094B196 /* SPConfetti in Frameworks */,
 				15DE22D9277DD53000B5EE03 /* KeychainAccess in Frameworks */,
 				15367EBE276DFCEF00913268 /* SPIndicator in Frameworks */,
@@ -1085,7 +1085,6 @@
 				15C6F4BA278A8965003CADF2 /* AuthenticationServices.framework in Frameworks */,
 				154B88822765EBA800780E93 /* FirebaseDynamicLinks in Frameworks */,
 				15DDFB8E2750D039008263A2 /* SwiftUIX in Frameworks */,
-				15BCFF04277587C1000B7863 /* Stinsen in Frameworks */,
 				156AC7B1278042DE00ED5E3E /* GTMSessionFetcher in Frameworks */,
 				15DE22F9277FF55C00B5EE03 /* GoogleSignIn in Frameworks */,
 			);
@@ -1155,6 +1154,7 @@
 		153C440427520811006D1E8D /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				15F22F31278C347800FCF772 /* Tab */,
 				15F22F11278B1E7300FCF772 /* Secure */,
 				15B1F6282786A36900847BB5 /* Backup */,
 				15BCFEF9277560C2000B7863 /* Register */,
@@ -2404,6 +2404,14 @@
 			path = 3DModel;
 			sourceTree = "<group>";
 		};
+		15F22F31278C347800FCF772 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				15F22F32278C348A00FCF772 /* MainTabView.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2430,7 +2438,6 @@
 				154B88F9276A1EEB00780E93 /* FirebaseAuth */,
 				154B88FB276A1EEB00780E93 /* FirebaseCrashlytics */,
 				154B88FC276A1EEB00780E93 /* FirebaseDynamicLinks */,
-				15BCFF0527758832000B7863 /* Stinsen */,
 				15BCFF0F2775986E000B7863 /* SPIndicator */,
 				15D57758277C23BF00045E79 /* CombineMoya */,
 				15D5775A277C23BF00045E79 /* Moya */,
@@ -2439,11 +2446,11 @@
 				15DE22FA277FF56F00B5EE03 /* GoogleSignIn */,
 				156AC7AA27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive */,
 				156AC7AC27802FAC00ED5E3E /* GoogleAPIClientForRESTCore */,
-				15DC1D432780A459000B187A /* IQKeyboardManagerSwift */,
 				15DC1D52278165DB000B187A /* Haneke */,
 				1552DC692787090D00EAA7D5 /* Introspect */,
 				15185ED7278A73A3006B74A9 /* SPConfetti */,
 				15F22F19278B21B600FCF772 /* BiometricAuthentication */,
+				159E43F4278D6F6400D566B0 /* Stinsen */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -2472,7 +2479,6 @@
 				154B887F2765EBA700780E93 /* FirebaseCrashlytics */,
 				154B88812765EBA800780E93 /* FirebaseDynamicLinks */,
 				15367EBD276DFCEF00913268 /* SPIndicator */,
-				15BCFF03277587C1000B7863 /* Stinsen */,
 				15D57754277C238C00045E79 /* CombineMoya */,
 				15D57756277C238C00045E79 /* Moya */,
 				15DE22D8277DD53000B5EE03 /* KeychainAccess */,
@@ -2481,11 +2487,11 @@
 				156AC7A627802F4F00ED5E3E /* GoogleAPIClientForRESTCore */,
 				156AC7A827802F4F00ED5E3E /* GoogleAPIClientForREST_Drive */,
 				156AC7B0278042DE00ED5E3E /* GTMSessionFetcher */,
-				15DC1D412780A44D000B187A /* IQKeyboardManagerSwift */,
 				15DC1D5027815891000B187A /* Haneke */,
 				1552DC67278708AB00EAA7D5 /* Introspect */,
 				1599F7762789734B0094B196 /* SPConfetti */,
 				15F22F17278B20A800FCF772 /* BiometricAuthentication */,
+				159E43F2278D6F5700D566B0 /* Stinsen */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15EC9DEE274FD1FC00F70CD9 /* Lilico.app */;
@@ -2543,18 +2549,17 @@
 				15F50B722760EE2F00208A81 /* XCRemoteSwiftPackageReference "flow-swift" */,
 				154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				15367EBC276DFCEF00913268 /* XCRemoteSwiftPackageReference "SPIndicator" */,
-				15BCFF02277587C1000B7863 /* XCRemoteSwiftPackageReference "stinsen" */,
 				15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */,
 				15DE22D7277DD53000B5EE03 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				15DE22ED277F132200B5EE03 /* XCRemoteSwiftPackageReference "SkeletonUI" */,
 				15DE22F7277FF55C00B5EE03 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */,
 				156AC7AF278042DE00ED5E3E /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */,
-				15DC1D402780A44D000B187A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				15DC1D4F27815891000B187A /* XCRemoteSwiftPackageReference "HanekeSwift" */,
 				1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				1599F7752789734B0094B196 /* XCRemoteSwiftPackageReference "SPConfetti" */,
 				15F22F16278B20A800FCF772 /* XCRemoteSwiftPackageReference "BiometricAuthentication" */,
+				159E43F1278D6F5700D566B0 /* XCRemoteSwiftPackageReference "stinsen" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -2852,6 +2857,7 @@
 				15DC20F527819C56000B187A /* VBaseListModel.swift in Sources */,
 				15B1F62D2786ABE400847BB5 /* BackupPasswordView.swift in Sources */,
 				15DC21AF27819C56000B187A /* UINavigationBar.NavigationBarHeight.swift in Sources */,
+				15F22F34278C348A00FCF772 /* MainTabView.swift in Sources */,
 				15DC216327819C56000B187A /* _VSideBar.swift in Sources */,
 				15DC208B27819C56000B187A /* VLazyScrollViewVertical.swift in Sources */,
 				15DC211B27819C56000B187A /* VPageIndicatorModel.swift in Sources */,
@@ -3140,6 +3146,7 @@
 				15DC20F427819C56000B187A /* VBaseListModel.swift in Sources */,
 				15B1F62C2786ABE400847BB5 /* BackupPasswordView.swift in Sources */,
 				15DC21AE27819C56000B187A /* UINavigationBar.NavigationBarHeight.swift in Sources */,
+				15F22F33278C348A00FCF772 /* MainTabView.swift in Sources */,
 				15DC216227819C56000B187A /* _VSideBar.swift in Sources */,
 				15DC208A27819C56000B187A /* VLazyScrollViewVertical.swift in Sources */,
 				15DC211A27819C56000B187A /* VPageIndicatorModel.swift in Sources */,
@@ -3743,7 +3750,7 @@
 				minimumVersion = 1.4.0;
 			};
 		};
-		15BCFF02277587C1000B7863 /* XCRemoteSwiftPackageReference "stinsen" */ = {
+		159E43F1278D6F5700D566B0 /* XCRemoteSwiftPackageReference "stinsen" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rundfunk47/stinsen";
 			requirement = {
@@ -3757,14 +3764,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 15.0.0;
-			};
-		};
-		15DC1D402780A44D000B187A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.5.0;
 			};
 		};
 		15DC1D4F27815891000B187A /* XCRemoteSwiftPackageReference "HanekeSwift" */ = {
@@ -3926,14 +3925,14 @@
 			package = 1599F7752789734B0094B196 /* XCRemoteSwiftPackageReference "SPConfetti" */;
 			productName = SPConfetti;
 		};
-		15BCFF03277587C1000B7863 /* Stinsen */ = {
+		159E43F2278D6F5700D566B0 /* Stinsen */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15BCFF02277587C1000B7863 /* XCRemoteSwiftPackageReference "stinsen" */;
+			package = 159E43F1278D6F5700D566B0 /* XCRemoteSwiftPackageReference "stinsen" */;
 			productName = Stinsen;
 		};
-		15BCFF0527758832000B7863 /* Stinsen */ = {
+		159E43F4278D6F6400D566B0 /* Stinsen */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15BCFF02277587C1000B7863 /* XCRemoteSwiftPackageReference "stinsen" */;
+			package = 159E43F1278D6F5700D566B0 /* XCRemoteSwiftPackageReference "stinsen" */;
 			productName = Stinsen;
 		};
 		15BCFF0F2775986E000B7863 /* SPIndicator */ = {
@@ -3960,16 +3959,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
-		};
-		15DC1D412780A44D000B187A /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15DC1D402780A44D000B187A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
-		};
-		15DC1D432780A459000B187A /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15DC1D402780A44D000B187A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
 		};
 		15DC1D5027815891000B187A /* Haneke */ = {
 			isa = XCSwiftPackageProductDependency;
