@@ -24,7 +24,7 @@ struct ConfirmPinCodeView: View {
 
     @StateObject
     var viewModel: AnyViewModel<ViewState, Action>
-    
+
     var btnBack: some View {
         Button {
             self.presentationMode.wrappedValue.dismiss()
@@ -42,7 +42,7 @@ struct ConfirmPinCodeView: View {
 
     @State
     var focuse: Bool = false
-    
+
     var wrongAttempt: Bool {
         if viewModel.mismatch {
             text = ""
@@ -83,8 +83,7 @@ struct ConfirmPinCodeView: View {
                              emptyColor: .gray.opacity(0.2),
                              highlightColor: Color.LL.orange,
                              needClear: wrongAttempt,
-                             pin: $text)
-                { text, complete in
+                             pin: $text) { text, complete in
                     if complete {
 //                        self.wrongAttempt = true
                         viewModel.trigger(.match(text))
@@ -95,7 +94,7 @@ struct ConfirmPinCodeView: View {
 
                 Spacer()
             }
-            .onAppear{
+            .onAppear {
 //                delay(.milliseconds(500)) {
 //                    self.focuse = true
 //                }

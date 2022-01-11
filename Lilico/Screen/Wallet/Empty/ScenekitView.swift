@@ -5,14 +5,14 @@
 //  Created by Hao Fu on 10/1/22.
 //
 
-import SwiftUI
 import SceneKit
+import SwiftUI
 import UIKit
 
-struct ScenekitView : UIViewRepresentable {
+struct ScenekitView: UIViewRepresentable {
     let scene = SCNScene(named: "Bitcoin_metal_coin.obj")!
 
-    func makeUIView(context: Context) -> SCNView {
+    func makeUIView(context _: Context) -> SCNView {
         // create and add a camera to the scene
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
@@ -27,7 +27,7 @@ struct ScenekitView : UIViewRepresentable {
         lightNode.light!.type = .omni
         lightNode.position = SCNVector3(x: 0, y: 10, z: 20)
         scene.rootNode.addChildNode(lightNode)
-        
+
         // create and add an ambient light to the scene
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
@@ -47,7 +47,7 @@ struct ScenekitView : UIViewRepresentable {
         return scnView
     }
 
-    func updateUIView(_ scnView: SCNView, context: Context) {
+    func updateUIView(_ scnView: SCNView, context _: Context) {
         scnView.scene = scene
 
         // allows the user to manipulate the camera
@@ -61,7 +61,7 @@ struct ScenekitView : UIViewRepresentable {
     }
 }
 
-struct ScenekitView_Previews : PreviewProvider {
+struct ScenekitView_Previews: PreviewProvider {
     static var previews: some View {
         ScenekitView()
             .background(Color.LL.rebackground)

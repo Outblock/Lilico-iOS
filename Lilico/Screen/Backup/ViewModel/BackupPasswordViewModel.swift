@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Stinsen
 
 class BackupPasswordViewModel: ViewModel {
     @Published
@@ -17,7 +16,7 @@ class BackupPasswordViewModel: ViewModel {
 
     @RouterObject
     var homeRouter: HomeCoordinator.Router?
-    
+
     init() {
         state = .init(username: UserManager.shared.userInfo?.username ?? "user")
     }
@@ -32,15 +31,14 @@ class BackupPasswordViewModel: ViewModel {
             do {
                 try WalletManager.shared.backupKeychain.set(password, key: state.username)
                 try BackupManager.shared.setAccountDatatoiCloud(password: password)
-                
+
                 homeRouter?
                     .popToRoot()
                     .route(to: \.createSecure)
-            } catch let error {
+            } catch {
                 HUD.error(title: "Backup failed")
                 debugPrint(error)
             }
-            break
         default:
             break
         }

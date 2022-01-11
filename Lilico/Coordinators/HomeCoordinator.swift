@@ -6,7 +6,6 @@
 //
 
 import Combine
-import Stinsen
 import SwiftUI
 
 final class HomeCoordinator: NavigationCoordinatable {
@@ -22,7 +21,7 @@ final class HomeCoordinator: NavigationCoordinatable {
     @Route(.push) var recoveryPhrase = makeRecoveryPhrase
 
     @Route(.push) var createSecure = makeCreateSecure
-    
+
     var isFristTime: Bool = true
 
     init() {
@@ -73,7 +72,7 @@ final class HomeCoordinator: NavigationCoordinatable {
     func makeRecoveryPhrase() -> BackupCoordinator {
         BackupCoordinator()
     }
-    
+
     func makeCreateSecure() -> SecureCoordinator {
         SecureCoordinator()
     }

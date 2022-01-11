@@ -10,13 +10,11 @@ import GoogleAPIClientForREST_Drive
 import GoogleAPIClientForRESTCore
 import GoogleSignIn
 import GTMSessionFetcherCore
-import Stinsen
 
 class RestoreWalletViewModel {
-    
     @RouterObject
     var router: LoginCoordinator.Router?
-    
+
     func getKeyFromiCloud() {
         if let accountList = BackupManager.shared.loadAccountDataFromiCloud(), accountList.count > 0 {
             router?.route(to: \.chooseAccount, accountList)

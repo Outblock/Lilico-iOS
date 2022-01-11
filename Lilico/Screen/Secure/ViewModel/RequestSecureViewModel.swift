@@ -5,9 +5,8 @@
 //  Created by Hao Fu on 10/1/22.
 //
 
-import Foundation
-import Stinsen
 import BiometricAuthentication
+import Foundation
 
 class RequestSecureViewModel: ViewModel {
     @Published
@@ -15,7 +14,7 @@ class RequestSecureViewModel: ViewModel {
 
     @RouterObject
     var router: SecureCoordinator.Router?
-    
+
     @RouterObject
     var homeRouter: HomeCoordinator.Router?
 
@@ -24,12 +23,12 @@ class RequestSecureViewModel: ViewModel {
             // device supports face id recognition.
             state = .init(biometric: .faceId)
         }
-        
+
         if BioMetricAuthenticator.shared.touchIDAvailable() {
             // device supports touch id authentication
             state = .init(biometric: .touchId)
         }
-        
+
         if !BioMetricAuthenticator.canAuthenticate() {
             state = .init(biometric: .none)
         }
@@ -38,11 +37,11 @@ class RequestSecureViewModel: ViewModel {
     func trigger(_ input: RequestSecureView.Action) {
         switch input {
         case .faceID:
-            BioMetricAuthenticator.authenticateWithBioMetrics(reason: "Need your permission") { (result) in
+            BioMetricAuthenticator.authenticateWithBioMetrics(reason: "Need your permission") { result in
                 switch result {
-                case .success(_):
+                case .success:
                     self.homeRouter?.popToRoot()
-                case .failure(let error):
+                case let .failure(error):
                     print("Authentication Failed")
                     print(error)
                 }

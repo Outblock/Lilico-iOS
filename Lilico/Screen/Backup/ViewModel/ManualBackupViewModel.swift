@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Stinsen
 import WalletCore
 
 class ManualBackupViewModel: ViewModel {

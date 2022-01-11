@@ -19,13 +19,12 @@ extension RequestSecureView {
 }
 
 struct RequestSecureView: View {
-    
     enum Biometric {
         case none
         case faceId
         case touchId
     }
-    
+
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
 

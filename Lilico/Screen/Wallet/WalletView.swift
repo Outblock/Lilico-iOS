@@ -6,8 +6,8 @@
 //
 
 import FirebaseAuth
-import SwiftUI
 import SPConfetti
+import SwiftUI
 
 struct WalletView: View {
     @State
@@ -15,7 +15,7 @@ struct WalletView: View {
 
     @State
     var isDragging: Bool = false
-    
+
     @State
     var isPresenting: Bool = false
 
@@ -59,8 +59,8 @@ struct WalletView: View {
 //            Image("Card-circle")
 //                .aspectRatio(contentMode: .fill)
 //                .frame(maxWidth: .infinity, alignment: .bottomTrailing)
-////                .background(Color(hex: "2F2F2F"))
-////                .cornerRadius(20)
+        ////                .background(Color(hex: "2F2F2F"))
+        ////                .cornerRadius(20)
 //                .offset(x: 0, y: 30)
 //                .offset(x: viewState.width / 25,
 //                        y: viewState.height / 25)
@@ -73,7 +73,7 @@ struct WalletView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
 //        .overlay {
 //            Image("BlowFish")
-////                .renderingMode(.original)
+        ////                .renderingMode(.original)
 //                .frame(maxWidth: .infinity, alignment: .topTrailing)
 //                .offset(x: 20, y: -90)
 //                .offset(x: viewState.width / 10,
@@ -86,30 +86,30 @@ struct WalletView: View {
         .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8),
                    value: viewState)
         .rotation3DEffect(Angle(degrees: 5), axis: (x: viewState.width, y: viewState.height, z: 0))
-        .gesture(
-            DragGesture()
-                .onChanged { value in
-                    self.viewState = value.translation
-                    self.isDragging = true
-                }
-                .onEnded { _ in
-                    self.viewState = .zero
-                    self.isDragging = false
-                }
-        )
         .clipped()
+//        .gesture(
+//            DragGesture()
+//                .onChanged { value in
+//                    self.viewState = value.translation
+//                    self.isDragging = true
+//                }
+//                .onEnded { _ in
+//                    self.viewState = .zero
+//                    self.isDragging = false
+//                }
+//        )
     }
 
-    var drag: some Gesture {
-        DragGesture()
-            .onChanged { _ in
-                print("changing")
-            }
-            .onEnded { _ in
-                print("ended")
-                isDragging = false
-            }
-    }
+//    var drag: some Gesture {
+//        DragGesture()
+//            .onChanged { _ in
+//                print("changing")
+//            }
+//            .onEnded { _ in
+//                print("ended")
+//                isDragging = false
+//            }
+//    }
 
     var body: some View {
         VStack {
@@ -117,6 +117,9 @@ struct WalletView: View {
                 Text("Wallet")
                     .font(.title)
                     .bold()
+                    .onTapGesture {
+                        isPresenting.toggle()
+                    }
                 Spacer()
 
                 Button {
@@ -159,7 +162,7 @@ struct WalletView: View {
 
         }.onAppear {
 //            isDraggingArray
-            isPresenting = true
+//            isPresenting = true
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))

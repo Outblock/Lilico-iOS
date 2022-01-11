@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Stinsen
 
 class ConfirmPinCodeViewModel: ViewModel {
     @Published
@@ -14,7 +13,7 @@ class ConfirmPinCodeViewModel: ViewModel {
 
     @RouterObject
     var router: SecureCoordinator.Router?
-    
+
     @RouterObject
     var homeRouter: HomeCoordinator.Router?
 

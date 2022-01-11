@@ -6,22 +6,20 @@
 //
 
 import Foundation
-import Stinsen
 
 class EnterPasswordViewModel: ViewModel {
-    
     @Published
     private(set) var state: EnterPasswordView.ViewState = .init()
-    
+
     @RouterObject
     var router: LoginCoordinator.Router?
-    
+
     let account: BackupManager.AccountData
-    
+
     init(account: BackupManager.AccountData) {
         self.account = account
     }
-    
+
     func trigger(_ input: EnterPasswordView.Action) {
         switch input {
         case let .signIn(password):

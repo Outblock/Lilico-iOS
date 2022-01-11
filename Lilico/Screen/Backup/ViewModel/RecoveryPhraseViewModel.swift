@@ -7,7 +7,6 @@
 
 import Foundation
 import SPIndicator
-import Stinsen
 
 class RecoveryPhraseViewModel: ViewModel {
     @Published

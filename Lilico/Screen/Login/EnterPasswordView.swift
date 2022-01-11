@@ -18,14 +18,13 @@ extension EnterPasswordView {
     }
 }
 
-
 struct EnterPasswordView: View {
     @EnvironmentObject
     var router: RegisterCoordinator.Router
-    
+
     @StateObject
     var viewModel: AnyViewModel<ViewState, Action>
-    
+
     var btnBack: some View {
         Button {
             router.dismissCoordinator()
@@ -93,8 +92,8 @@ struct EnterPasswordView: View {
                 VPrimaryButton(model: ButtonStyle.primary,
                                state: buttonState,
                                action: {
-                    viewModel.trigger(.signIn(text))
-                }, title: "Restore account")
+                                   viewModel.trigger(.signIn(text))
+                               }, title: "Restore account")
 
 //                Button {
 //                    router.route(to: \.userName)

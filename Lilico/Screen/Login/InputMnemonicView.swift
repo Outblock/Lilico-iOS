@@ -5,7 +5,6 @@
 //  Created by Hao Fu on 8/1/22.
 //
 
-import Stinsen
 import SwiftUI
 import SwiftUIX
 

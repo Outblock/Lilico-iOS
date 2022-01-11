@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Stinsen
 import SwiftUI
 
 class OnboardingViewModel: ViewModel {

@@ -18,7 +18,7 @@ struct PinStackView: View {
     var needClear: Bool = false {
         didSet {
             if needClear {
-                self.$pin.wrappedValue = ""
+                $pin.wrappedValue = ""
             }
         }
     }
@@ -28,7 +28,7 @@ struct PinStackView: View {
 
     @State
     var focuse: VBaseTextFieldState = .focused
-    
+
     // String is the pin code, bool is completed or not
     var handler: (String, Bool) -> Void
 
@@ -44,7 +44,6 @@ struct PinStackView: View {
 
     var body: some View {
         ZStack {
-            
             VBaseTextField(state: $focuse,
                            text: $pin) {
                 handler(pin, pin.count == maxDigits)
@@ -54,15 +53,15 @@ struct PinStackView: View {
             }
             .keyboardType(.numberPad)
             .hidden()
-            
+
 //            CocoaTextField("", text: $pin) { _ in
 //                handler(pin, pin.count == maxDigits)
 //            } onCommit: {}
 //                .isFirstResponder(focuse)
 //                .introspectTextField { textField in
-////                    delay(.milliseconds(500)) {
+            ////                    delay(.milliseconds(500)) {
 //                        textField.becomeFirstResponder()
-////                    }
+            ////                    }
 //                    textField.isHidden = true
 //                }
 //                .keyboardType(.numberPad)
@@ -79,9 +78,7 @@ struct PinStackView: View {
                 }
             }
         }
-        .onTapGesture {
-            
-        }
+        .onTapGesture {}
     }
 
     private func closeKeyboard() {
@@ -93,23 +90,20 @@ struct PinStackView_Previews: PreviewProvider {
     @State
     static var test: Bool = false
     static var previews: some View {
-        
         PinStackView(maxDigits: 6,
                      emptyColor: .gray,
                      highlightColor: Color.LL.orange,
                      needClear: false,
                      pin: .constant("")) { pin, complete in
             print(pin)
-            if (complete) {
+            if complete {
                 test = true
             }
-            
         }
     }
 }
 
-
-func delay(_ time: DispatchTimeInterval, completion: @escaping () -> ()) {
+func delay(_ time: DispatchTimeInterval, completion: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + time) {
         completion()
     }

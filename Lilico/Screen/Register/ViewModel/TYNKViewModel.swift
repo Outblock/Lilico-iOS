@@ -7,7 +7,6 @@
 
 import Foundation
 import Resolver
-import Stinsen
 
 class TYNKViewModel: ViewModel {
     @Published

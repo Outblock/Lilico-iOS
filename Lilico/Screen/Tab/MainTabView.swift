@@ -8,44 +8,43 @@
 import SwiftUI
 
 struct MainTabView: View {
-    
     @State
     var offset: CGFloat = 0
-    
+
     @State
     var scrollTo: CGFloat = -1
-    
+
     var indicatorOffset: CGFloat {
         let progress = offset / screenWidth
         let maxWidth: CGFloat = (screenWidth - 40) / 4
         let value = progress * maxWidth + 20
 //        + 10
 //        + (progress * 2)
-        
+
         print("offset -> \(offset), value -> \(value)")
         return value
     }
-    
+
     var currentIndex: Int {
         let progress = round(offset / screenWidth)
         // For Saftey...
         let index = min(Int(progress), 4 - 1)
         return index
     }
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
             OffsetPageTabView(offset: $offset, scrollTo: $scrollTo) {
                 HStack(spacing: 0) {
                     EmptyWalletView(viewModel: EmptyWalletViewModel().toAnyViewModel())
                         .frame(width: screenWidth)
-                    
+
                     WalletView()
                         .frame(width: screenWidth)
-                    
+
                     ProfileView()
                         .frame(width: screenWidth)
-                    
+
                     ProfileView()
                         .frame(width: screenWidth)
                 }
@@ -61,15 +60,14 @@ struct MainTabView: View {
 //                    .foregroundColor(.red)
 //                    .cornerRadius([.bottomLeft, .bottomRight], 20)
             }
-            
+
             HStack(spacing: 0) {
-                
-                ForEach(0..<4) { index in
+                ForEach(0 ..< 4) { index in
                     Button {
                         withAnimation(.tabSelection) {
                             scrollTo = screenWidth * CGFloat(index)
                         }
-                        
+
                     } label: {
                         Image(systemName: currentIndex == index ? "die.face.1.fill" : "die.face.1")
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -89,7 +87,7 @@ struct MainTabView: View {
                     .frame(width: 28, height: 4)
                     .cornerRadius(3)
 //                    .frame(width: 88)
-                
+
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .offset(x: indicatorOffset)
 //                    .foregroundColor(color)

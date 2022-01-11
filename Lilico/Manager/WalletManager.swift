@@ -115,14 +115,14 @@ class WalletManager: ObservableObject {
         }
         return false
     }
-    
+
 //    func importNewWallet(mnemonic: String? = nil, passphrase: String = "") throws -> Bool {
 //        if let phrase = mnemonic {
 //            wallet = HDWallet(mnemonic: phrase, passphrase: passphrase)
 //        } else {
 //            wallet = HDWallet(strength: mnemonicStrength, passphrase: passphrase)
 //        }
-//        
+//
 //        return true
 //    }
 

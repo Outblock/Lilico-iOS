@@ -73,12 +73,12 @@ struct BackupPasswordView: View {
 
         return confrimText == text && isTick
     }
-    
+
     var buttonState: VPrimaryButtonState {
         if viewModel.isLoading {
             return .loading
         }
-        return canGoNext ?  .enabled : .disabled
+        return canGoNext ? .enabled : .disabled
     }
 
     var body: some View {
@@ -133,8 +133,8 @@ struct BackupPasswordView: View {
                                footerTitle: "",
                                text: $confrimText,
                                onChange: {
-                        viewModel.trigger(.onConfirmChanged(confrimText))
-                    },
+                                   viewModel.trigger(.onConfirmChanged(confrimText))
+                               },
                                onReturn: .returnAndCustom {})
                 }.padding(.bottom, 30)
 
@@ -153,8 +153,7 @@ struct BackupPasswordView: View {
                                action: {
                                    viewModel.trigger(.secureBackup(confrimText))
                                },
-                               title: "Secure Backup"
-                )
+                               title: "Secure Backup")
                     .padding(.bottom)
             }
             .padding(.horizontal, 30)

@@ -31,7 +31,7 @@ extension Color {
         static let warning6 = Color("Warning6")
 
         static let bgForIcon = Color("BgForIcon")
-        
+
         static let deepBg = Color("DeepBackground")
     }
 }

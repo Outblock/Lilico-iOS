@@ -29,7 +29,7 @@ class BackupManager: ObservableObject {
         let data: String
         let username: String
     }
-    
+
 //    struct StoreData: Codable {
 //        let users: [String]
 //        let data: [String]
@@ -65,14 +65,14 @@ class BackupManager: ObservableObject {
         else {
             throw LLError.missingUserInfoWhilBackup
         }
-        
+
         let iv = Hash.sha256(data: userData).hexValue
         let encryptData = try WalletManager.encryptionAES(key: password, iv: String(iv.prefix(16)), data: data)
         let accountData = AccountData(data: encryptData.base64EncodedString(), username: userInfo.username)
-        
+
         var storedData = loadAccountDataFromiCloud() ?? []
         storedData.append(accountData)
-        
+
 //        let accountData = AccountData(data: encryptData.hexValue, address: [userInfo.address ?? ""], name: userInfo.username)
         let jsonData = try JSONEncoder().encode(storedData)
 //        let storeData = try WalletManager.encryptionAES(key: WalletManager.encryptionKey, data: jsonData)
@@ -81,55 +81,56 @@ class BackupManager: ObservableObject {
         icloudStore.set(jsonData, forKey: BackupManager.backupName)
         icloudStore.synchronize()
     }
-    
+
     func loadAccountDataFromiCloud() -> [AccountData]? {
         guard let data = icloudStore.data(forKey: BackupManager.backupName) else {
 //            throw LLError.emptyiCloudBackup
             return nil
         }
-        
+
 //        guard let data = dataString.data(using: .utf8) else {
-////            throw LLError.decryptBackupFailed
+        ////            throw LLError.decryptBackupFailed
 //            return nil
 //        }
-        
+
         do {
             let model = try JSONDecoder().decode([AccountData].self, from: data)
             return model
-        } catch let error {
+        } catch {
             print(error)
         }
-        
+
         return nil
     }
-    
+
     func decryptAccountData(password: String, account: AccountData) throws -> String {
         guard let data = Data(base64Encoded: account.data),
-              let userData = account.username.data(using: .utf8) else {
+              let userData = account.username.data(using: .utf8)
+        else {
             throw LLError.decryptBackupFailed
         }
-        
+
         let iv = Hash.sha256(data: userData).hexValue
         var keyData = try WalletManager.decryptionAES(key: password, iv: String(iv.prefix(16)), data: data)
         guard var key = String(data: keyData, encoding: .utf8) else {
             throw LLError.decryptBackupFailed
         }
-        
+
         defer {
             key = ""
             keyData = Data()
         }
-        
+
         return key
     }
 
     func getBackupNameList() -> [String] {
         if let storedData = loadAccountDataFromiCloud() {
-            return storedData.map{ $0.username }
+            return storedData.map { $0.username }
         }
         return []
     }
-    
+
 //    func loadAccountDataFromiCloud(username: String) throws {
 //        guard let dataString = icloudStore.string(forKey: BackupManager.backupName) else {
 //            throw LLError.emptyiCloudBackup
@@ -156,5 +157,3 @@ class BackupManager: ObservableObject {
 //        try WalletManager.shared.createNewWallet(mnemonic: mnemonic, forceCreate: true)
 //    }
 }
-
-

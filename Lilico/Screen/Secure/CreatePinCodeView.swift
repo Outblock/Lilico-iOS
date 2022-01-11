@@ -10,8 +10,7 @@ import SwiftUI
 import SwiftUIX
 
 extension CreatePinCodeView {
-    struct ViewState {
-    }
+    struct ViewState {}
 
     enum Action {
         case input(String)
@@ -24,7 +23,7 @@ struct CreatePinCodeView: View {
 
     @EnvironmentObject
     var rounter: SecureCoordinator.Router
-    
+
     @StateObject
     var viewModel: AnyViewModel<ViewState, Action>
 
@@ -45,7 +44,7 @@ struct CreatePinCodeView: View {
 
     @State
     var text: String = ""
-    
+
     @State
     var focuse: Bool = false
 
@@ -76,14 +75,13 @@ struct CreatePinCodeView: View {
                 PinStackView(maxDigits: 6,
                              emptyColor: .gray.opacity(0.2),
                              highlightColor: Color.LL.orange,
-                             pin: $text) { text, isComplete in
+                             pin: $text) { text, _ in
                     viewModel.trigger(.input(text))
                 }
 
                 Spacer()
             }
-            .onAppear{
-                
+            .onAppear {
 //                delay(.milliseconds(500)) {
 //                    self.focuse = true
 //                }

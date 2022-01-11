@@ -9,17 +9,16 @@ import SwiftUI
 import SwiftUIX
 
 struct NewEmptyWalletBackgroundView: View {
-    
     var itemPerRow = 8
     @State
     var isAnimating = false
-    
+
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
-                ForEach(0..<getNumberOfRows(geometry)) { _ in
+                ForEach(0 ..< getNumberOfRows(geometry)) { _ in
                     HStack(spacing: 0) {
-                        ForEach(0..<itemPerRow + 7) { _ in
+                        ForEach(0 ..< itemPerRow + 7) { _ in
                             Image("flow-line")
                                 .renderingMode(.template)
 //                                .resizable()
@@ -30,9 +29,9 @@ struct NewEmptyWalletBackgroundView: View {
                                 .opacity(self.isAnimating ? 1 : 0)
                                 .animation(
                                     Animation
-                                        .linear(duration: .random(in: 1.0...2.0))
+                                        .linear(duration: .random(in: 1.0 ... 2.0))
                                         .repeatForever(autoreverses: true)
-                                        .delay(Double.random(in: 0...1.5)),
+                                        .delay(Double.random(in: 0 ... 1.5)),
                                     value: isAnimating
                                 )
                                 .padding(.horizontal, 4)
@@ -42,7 +41,7 @@ struct NewEmptyWalletBackgroundView: View {
                     }
                     .rotationEffect(Angle(degrees: 20))
                 }
-            }.onAppear{
+            }.onAppear {
                 isAnimating = true
             }
             .rotationEffect(Angle(degrees: 20))
@@ -50,13 +49,12 @@ struct NewEmptyWalletBackgroundView: View {
 //        .background(Color.LL.background)
 //        .ignoresSafeArea()
     }
-    
-    func getNumberOfRows(_ size: GeometryProxy) -> Int {
-        
+
+    func getNumberOfRows(_: GeometryProxy) -> Int {
         let width = UIScreen.screenWidth
         let height = UIScreen.screenHeight
-        
-        let heightPerItem = width/CGFloat(itemPerRow)
+
+        let heightPerItem = width / CGFloat(itemPerRow)
         return Int(height / heightPerItem) + 2
     }
 }
@@ -64,7 +62,7 @@ struct NewEmptyWalletBackgroundView: View {
 struct NewEmptyWalletBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
         NewEmptyWalletBackgroundView()
-        
+
 //        NewEmptyWalletBackgroundView().colorScheme(.dark)
     }
 }

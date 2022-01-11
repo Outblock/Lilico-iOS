@@ -17,14 +17,13 @@ extension ChooseAccountView {
     }
 }
 
-
 struct ChooseAccountView: View {
     @EnvironmentObject
     var router: RegisterCoordinator.Router
 
     @StateObject
     var viewModel: AnyViewModel<ViewState, Action>
-    
+
     var btnBack: some View {
         Button {
             router.dismissCoordinator()
@@ -72,7 +71,7 @@ struct ChooseAccountView: View {
                     Spacer()
 
                     EnumeratedForEach(viewModel.dataSource) { index, account in
-                        
+
                         VPrimaryButton(model: model,
                                        state: .enabled) {
                             viewModel.trigger(.selectAccount(index))
@@ -89,7 +88,6 @@ struct ChooseAccountView: View {
                             .padding(.vertical, 18)
                             .foregroundColor(Color.LL.rebackground)
                         }
-                        
                     }
                 }
             }

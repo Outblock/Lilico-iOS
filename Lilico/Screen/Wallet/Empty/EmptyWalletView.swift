@@ -5,10 +5,10 @@
 //  Created by Hao Fu on 25/12/21.
 //
 
+import SceneKit
 import SPConfetti
 import SwiftUI
 import SwiftUIX
-import SceneKit
 
 struct EnumeratedForEach<ItemType, ContentView: View>: View {
     let data: [ItemType]
@@ -103,7 +103,7 @@ struct EmptyWalletView: View {
             viewModel.trigger(dataSource.action)
         }
     }
-    
+
 //    var scene: SCNScene? = {
 //        var scene = SCNScene(named: "Bitcoin_metal_coin.obj")
 //        scene?.background.contents = UIColor.clear
@@ -131,12 +131,12 @@ struct EmptyWalletView: View {
                     .font(.title2)
             }.padding(.horizontal, 20)
                 .padding(.vertical, 8)
-            
+
 //            ScenekitView()
             // for user action...
             // setting custom frame...
 //                .frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height / 2)
-            
+
             EnumeratedForEach(viewModel.dataSource) { index, dataSource in
                 cardView(dataSource, index: index)
             }

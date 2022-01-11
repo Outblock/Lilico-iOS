@@ -5,7 +5,6 @@
 //  Created by Hao Fu on 29/12/21.
 //
 
-import Stinsen
 import SwiftUI
 
 final class OnBoradingCoordinator: NavigationCoordinatable {

@@ -14,7 +14,7 @@ struct OnboardingView: View {
 
     @State
     var scrollTo: CGFloat = -1
-    
+
     @StateObject
     var viewModel: AnyViewModel<OnboardingState, OnboardingAction>
 
