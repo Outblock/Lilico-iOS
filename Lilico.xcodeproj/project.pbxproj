@@ -13,6 +13,8 @@
 		1507C7EC2755FCBF00890C5D /* OldWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507C7EB2755FCBF00890C5D /* OldWalletView.swift */; };
 		1507C7EF275634C900890C5D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507C7EE275634C900890C5D /* ProfileView.swift */; };
 		15185ED8278A73A3006B74A9 /* SPConfetti in Frameworks */ = {isa = PBXBuildFile; productRef = 15185ED7278A73A3006B74A9 /* SPConfetti */; };
+		1523FADF278FF84F00ADFEA9 /* CardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1523FADE278FF84F00ADFEA9 /* CardTest.swift */; };
+		1523FAE0278FF84F00ADFEA9 /* CardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1523FADE278FF84F00ADFEA9 /* CardTest.swift */; };
 		152F985A275CD2DB001C5855 /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9859275CD2DB001C5855 /* OnboardingModel.swift */; };
 		152F985C275CDED0001C5855 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F985B275CDED0001C5855 /* AppCoordinator.swift */; };
 		15367EBE276DFCEF00913268 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 15367EBD276DFCEF00913268 /* SPIndicator */; };
@@ -83,6 +85,9 @@
 		156AC7B1278042DE00ED5E3E /* GTMSessionFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7B0278042DE00ED5E3E /* GTMSessionFetcher */; };
 		156AC7B327804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
 		156AC7B427804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
+		1570466427906F7F00D1747B /* CollectionViewPagingLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 1570466327906F7F00D1747B /* CollectionViewPagingLayout */; };
+		157046662790723400D1747B /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046652790723400D1747B /* HeartButton.swift */; };
+		157046672790723400D1747B /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046652790723400D1747B /* HeartButton.swift */; };
 		158C9C9F27871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
 		158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
 		158C9CA32787F6EA0062E0C6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
@@ -721,6 +726,7 @@
 		1507C7DE275502AF00890C5D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1507C7EB2755FCBF00890C5D /* OldWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldWalletView.swift; sourceTree = "<group>"; };
 		1507C7EE275634C900890C5D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		1523FADE278FF84F00ADFEA9 /* CardTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTest.swift; sourceTree = "<group>"; };
 		152F9859275CD2DB001C5855 /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
 		152F985B275CDED0001C5855 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		15368139276F4DD400913268 /* EmptyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAccountView.swift; sourceTree = "<group>"; };
@@ -741,6 +747,7 @@
 		1552DC632787063100EAA7D5 /* PinStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStackView.swift; sourceTree = "<group>"; };
 		156AC7AE2780427900ED5E3E /* Lilico-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lilico-Bridging-Header.h"; sourceTree = "<group>"; };
 		156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		157046652790723400D1747B /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeView.swift; sourceTree = "<group>"; };
 		158C9CA22787F6EA0062E0C6 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -1146,6 +1153,7 @@
 				15DC1D5127815891000B187A /* Haneke in Frameworks */,
 				15DE22EF277F132200B5EE03 /* SkeletonUI in Frameworks */,
 				154B887E2765EBA700780E93 /* FirebaseAuth in Frameworks */,
+				1570466427906F7F00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				1552DC68278708AB00EAA7D5 /* Introspect in Frameworks */,
 				15F22F18278B20A800FCF772 /* BiometricAuthentication in Frameworks */,
 				15D57757277C238C00045E79 /* Moya in Frameworks */,
@@ -1463,6 +1471,8 @@
 				156AC7AE2780427900ED5E3E /* Lilico-Bridging-Header.h */,
 				15B1F6222785B1C200847BB5 /* NavigationDemo.swift */,
 				15B1F6252785B1DA00847BB5 /* NavigateDetail.swift */,
+				1523FADE278FF84F00ADFEA9 /* CardTest.swift */,
+				157046652790723400D1747B /* HeartButton.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -2670,6 +2680,7 @@
 				1552DC67278708AB00EAA7D5 /* Introspect */,
 				1599F7762789734B0094B196 /* SPConfetti */,
 				15F22F17278B20A800FCF772 /* BiometricAuthentication */,
+				1570466327906F7F00D1747B /* CollectionViewPagingLayout */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15EC9DEE274FD1FC00F70CD9 /* Lilico.app */;
@@ -2737,6 +2748,7 @@
 				1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				1599F7752789734B0094B196 /* XCRemoteSwiftPackageReference "SPConfetti" */,
 				15F22F16278B20A800FCF772 /* XCRemoteSwiftPackageReference "BiometricAuthentication" */,
+				1570466227906F7F00D1747B /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -2929,6 +2941,7 @@
 				15DC207927819C56000B187A /* VBaseViewModel.swift in Sources */,
 				15F22F0A278B009200FCF772 /* ChooseAccountViewModel.swift in Sources */,
 				15DC218327819C56000B187A /* VToggleState.swift in Sources */,
+				157046672790723400D1747B /* HeartButton.swift in Sources */,
 				15DE23012780208300B5EE03 /* RestoreWalletViewModel.swift in Sources */,
 				159E441B278D709500D566B0 /* ViewWrapperCoordinatorView.swift in Sources */,
 				15DC216527819C56000B187A /* _VHalfModal.swift in Sources */,
@@ -3081,6 +3094,7 @@
 				15DC216F27819C56000B187A /* VDialog.swift in Sources */,
 				15DC210127819C56000B187A /* VStepper.swift in Sources */,
 				15DC216727819C56000B187A /* VHalfModal.swift in Sources */,
+				1523FAE0278FF84F00ADFEA9 /* CardTest.swift in Sources */,
 				15DE22D0277DBDF800B5EE03 /* WalletManager.swift in Sources */,
 				15DC214F27819C56000B187A /* VNavigationViewNavigationBar.swift in Sources */,
 				1552DC652787063100EAA7D5 /* PinStackView.swift in Sources */,
@@ -3244,6 +3258,7 @@
 				15DC207827819C56000B187A /* VBaseViewModel.swift in Sources */,
 				15F22F09278B009200FCF772 /* ChooseAccountViewModel.swift in Sources */,
 				15DC218227819C56000B187A /* VToggleState.swift in Sources */,
+				157046662790723400D1747B /* HeartButton.swift in Sources */,
 				15DE23002780208300B5EE03 /* RestoreWalletViewModel.swift in Sources */,
 				159E441A278D709500D566B0 /* ViewWrapperCoordinatorView.swift in Sources */,
 				15DC216427819C56000B187A /* _VHalfModal.swift in Sources */,
@@ -3396,6 +3411,7 @@
 				15DC216E27819C56000B187A /* VDialog.swift in Sources */,
 				15DC210027819C56000B187A /* VStepper.swift in Sources */,
 				15DC216627819C56000B187A /* VHalfModal.swift in Sources */,
+				1523FADF278FF84F00ADFEA9 /* CardTest.swift in Sources */,
 				15DE22CF277DBDF800B5EE03 /* WalletManager.swift in Sources */,
 				15DC214E27819C56000B187A /* VNavigationViewNavigationBar.swift in Sources */,
 				1552DC642787063100EAA7D5 /* PinStackView.swift in Sources */,
@@ -3542,7 +3558,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -3553,7 +3569,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lilico/App/Env/Dev/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lilico-dev";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "$(PRODUCT_NAME) use Face ID to secure your assests";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -3581,7 +3597,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -3589,7 +3605,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lilico/App/Env/Dev/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lilico-dev";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "$(PRODUCT_NAME) use Face ID to secure your assests";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -3735,7 +3751,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -3768,7 +3784,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -3971,6 +3987,14 @@
 				minimumVersion = 1.7.0;
 			};
 		};
+		1570466227906F7F00D1747B /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amirdew/CollectionViewPagingLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 		1599F7752789734B0094B196 /* XCRemoteSwiftPackageReference "SPConfetti" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanvorobei/SPConfetti";
@@ -4140,6 +4164,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 156AC7AF278042DE00ED5E3E /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
 			productName = GTMSessionFetcher;
+		};
+		1570466327906F7F00D1747B /* CollectionViewPagingLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1570466227906F7F00D1747B /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */;
+			productName = CollectionViewPagingLayout;
 		};
 		1599F7762789734B0094B196 /* SPConfetti */ = {
 			isa = XCSwiftPackageProductDependency;

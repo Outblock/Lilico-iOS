@@ -147,7 +147,7 @@ struct EmptyWalletView: View {
 //        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background {
-            NewEmptyWalletBackgroundView()
+//            NewEmptyWalletBackgroundView()
         }
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))
     }

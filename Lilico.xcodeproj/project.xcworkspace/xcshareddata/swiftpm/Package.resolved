@@ -56,6 +56,15 @@
         }
       },
       {
+        "package": "CollectionViewPagingLayout",
+        "repositoryURL": "https://github.com/amirdew/CollectionViewPagingLayout",
+        "state": {
+          "branch": null,
+          "revision": "1b2fc00ddb46de9937276b943093c215748627c4",
+          "version": "1.0.3"
+        }
+      },
+      {
         "package": "Firebase",
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk",
         "state": {

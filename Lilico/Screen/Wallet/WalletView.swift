@@ -66,7 +66,8 @@ struct WalletView: View {
 //                        y: viewState.height / 25)
 //        }
         .background {
-            NewEmptyWalletBackgroundView()
+            NewEmptyWalletBackgroundView(image: Image("flow-line"),
+                                         color: Color(hex: "#00EF8B"))
         }
         .background(Color(hex: "2F2F2F"))
         .cornerRadius(20)
@@ -234,7 +235,7 @@ struct ActionView: View {
         .foregroundColor(.gray)
         .padding()
         .frame(maxWidth: .infinity, alignment: .center)
-        .background(Color(hex: "FCFCFC"))
+        .background(.LL.frontColor)
         .cornerRadius(16)
         .padding(.horizontal)
         .shadow(color: Color(hex: "2F2F2F").opacity(0.1),

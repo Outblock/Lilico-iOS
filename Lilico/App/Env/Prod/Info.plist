@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Inter.ttf</string>
-		<string>Montserrat-Bold.ttf</string>
-		<string>Montserrat-Italic.ttf</string>
-		<string>Montserrat-Regular.ttf</string>
-		<string>Montserrat-Italic.ttf</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -20,6 +12,14 @@
 				<string>com.googleusercontent.apps.246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb</string>
 			</array>
 		</dict>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Inter.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Italic.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-Italic.ttf</string>
 	</array>
 </dict>
 </plist>

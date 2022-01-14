@@ -12,6 +12,10 @@ struct NewEmptyWalletBackgroundView: View {
     var itemPerRow = 8
     @State
     var isAnimating = false
+    
+    var image: Image
+    
+    var color: Color
 
     var body: some View {
         GeometryReader { geometry in
@@ -19,7 +23,7 @@ struct NewEmptyWalletBackgroundView: View {
                 ForEach(0 ..< getNumberOfRows(geometry)) { _ in
                     HStack(spacing: 0) {
                         ForEach(0 ..< itemPerRow + 7) { _ in
-                            Image("flow-line")
+                            image
                                 .renderingMode(.template)
 //                                .resizable()
                                 .aspectRatio(1, contentMode: .fit)
@@ -36,7 +40,7 @@ struct NewEmptyWalletBackgroundView: View {
                                 )
                                 .padding(.horizontal, 4)
                                 .offset(x: -270, y: -30)
-                                .foregroundColor(Color(hex: "#00EF8B"))
+                                .foregroundColor(color)
                         }
                     }
                     .rotationEffect(Angle(degrees: 20))
@@ -44,7 +48,7 @@ struct NewEmptyWalletBackgroundView: View {
             }.onAppear {
                 isAnimating = true
             }
-            .rotationEffect(Angle(degrees: 20))
+//            .rotationEffect(Angle(degrees: 20))
         }
 //        .background(Color.LL.background)
 //        .ignoresSafeArea()
@@ -61,7 +65,8 @@ struct NewEmptyWalletBackgroundView: View {
 
 struct NewEmptyWalletBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        NewEmptyWalletBackgroundView()
+        NewEmptyWalletBackgroundView(image: Image("flow-line"),
+                                     color:Color(hex: "#00EF8B"))
 
 //        NewEmptyWalletBackgroundView().colorScheme(.dark)
     }
