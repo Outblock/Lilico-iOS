@@ -8,90 +8,90 @@
 import Foundation
 
 
+//struct NFTListResponse: Codable {
+//    let ownerAddress: String
+//    let nfts: [NFTResponse]
+//    let nftcount: Int
+//    let chain: String
+//    let network: String
+//    let offset: Int
+//}
+//
+//
+//struct NFTResponse: Codable {
+//    let id: String
+//    let contract:
+//    let title: String
+//    let description: String
+//    let media: URL
+//    let metadata: [NFTMetadataResponse]
+//}
+//
+//struct NFTContract: Codable {
+//    let name: String
+//    let address: String
+//    let externalDomain: String
+//}
+//
+//struct NFTMetadataResponse: Codable {
+//    let name: String
+//    let value: String
+//}
+
+//// MARK: - NFTListResponse
 struct NFTListResponse: Codable {
     let ownerAddress: String
     let nfts: [NFTResponse]
-    let nftcount: Int
-    let chain: String
-    let network: String
-    let offset: Int
+    let chain, network: String
+    let nftCount, offset: Int
 }
 
-
+// MARK: - Nft
 struct NFTResponse: Codable {
-    let id:String
-    let contract:
-    let title: String
-    let description: String
-    let media: URL
-    let metadata: [NFTMetadataResponse]
+    let contract: NFTContract
+    let id: NFTID
+    let media: NFTMedia
+    let metadata: NFTMetadata
 }
 
+// MARK: - Contract
 struct NFTContract: Codable {
-    let name: String
-    let address: String
-    let externalDomain: String
+    let name, address, externalDomain: String
+    let contractMetadata: NFTContractMetadata
 }
 
-struct NFTMetadataResponse: Codable {
-    let name: String
-    let value: String
+// MARK: - ContractMetadata
+struct NFTContractMetadata: Codable {
+    let storagePath, publicPath, publicCollectionName: String
 }
 
-//// MARK: - NFTListResponse
-//struct NFTListResponse: Codable {
-//    let ownerAddress: String
-//    let nfts: [Nft]
-//    let chain, network: String
-//    let nftCount, offset: Int
-//}
-//
-//// MARK: - Nft
-//struct Nft: Codable {
-//    let contract: Contract
-//    let id: ID
-//    let media: Media
-//    let metadata: Metadata
-//}
-//
-//// MARK: - Contract
-//struct Contract: Codable {
-//    let name, address, externalDomain: String
-//    let contractMetadata: ContractMetadata
-//}
-//
-//// MARK: - ContractMetadata
-//struct ContractMetadata: Codable {
-//    let storagePath, publicPath, publicCollectionName: String
-//}
-//
-//// MARK: - ID
-//struct ID: Codable {
-//    let tokenID: String
-//    let tokenMetadata: TokenMetadata
-//
-//    enum CodingKeys: String, CodingKey {
-//        case tokenID = "tokenId"
-//        case tokenMetadata
-//    }
-//}
-//
-//// MARK: - TokenMetadata
-//struct TokenMetadata: Codable {
-//    let uuid: String
-//}
-//
-//// MARK: - Media
-//struct Media: Codable {
-//    let uri, mimeType: String
-//}
-//
-//// MARK: - Metadata
-//struct Metadata: Codable {
-//    let metadata: [Metadatum]
-//}
-//
-//// MARK: - Metadatum
-//struct Metadatum: Codable {
-//    let name, value: String
-//}
+// MARK: - ID
+struct NFTID: Codable {
+    let tokenID: String
+    let tokenMetadata: NFTTokenMetadata
+
+    enum CodingKeys: String, CodingKey {
+        case tokenID = "tokenId"
+        case tokenMetadata
+    }
+}
+
+// MARK: - TokenMetadata
+struct NFTTokenMetadata: Codable {
+    let uuid: String
+}
+
+// MARK: - Media
+struct NFTMedia: Codable {
+    let uri, mimeType: String
+}
+
+// MARK: - Metadata
+struct NFTMetadata: Codable {
+    let metadata: [NFTMetadatum]
+}
+
+// MARK: - Metadatum
+struct NFTMetadatum: Codable {
+    let name, value: String
+}

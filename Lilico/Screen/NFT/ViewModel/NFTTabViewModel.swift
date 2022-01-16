@@ -42,9 +42,10 @@ class NFTTabViewModel: ViewModel {
     
     func fetchNFTs() {
         Task {
-            try {
+            do {
                 let request = NFTListRequest(owner: "0x2b06c41f44a05656", offset: 0, limit: 100)
-                let response = await Network.request(AlchemyEndpoint.nftList(request), needToken: false)
+                let response: NFTListResponse = try await Network.request(AlchemyEndpoint.nftList(request), needToken: false)
+                
             } catch {
                 HUD.debugError(title: "Fetch NFT Error")
             }
