@@ -30,18 +30,19 @@ final class NewTabBarCoordinator: TabCoordinatable {
     }
 
     @ViewBuilder func makeDiscover() -> some View {
-        VStack {
-            ScenekitView()
-            Text("")
-                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.5, alignment: .bottom)
-        }
-        .background{
-            NewEmptyWalletBackgroundView(image: Image("Asset2"), color: Color(hex: "#00EF8B"))
-//
-        }
-        .clipped()
-        .edgesIgnoringSafeArea(.top)
-        .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+//        VStack {
+//            ScenekitView()
+//            Text("")
+//                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.5, alignment: .bottom)
+//        }
+//        .background{
+//            NewEmptyWalletBackgroundView(image: Image("Asset2"), color: Color(hex: "#00EF8B"))
+//        }
+//        .clipped()
+//        .edgesIgnoringSafeArea(.top)
+//        .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+        
+        NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
     }
 
     @ViewBuilder func makeProfile() -> some View {
@@ -58,9 +59,6 @@ final class NewTabBarCoordinator: TabCoordinatable {
         Image(systemName: "house" + (isActive ? ".fill" : ""))
         Text("Home")
     }
-
-//    @Route
-//    var tab = makeHomeTab
 
     func makeHomeTab() -> NavigationViewCoordinator<HomeCoordinator> {
         NavigationViewCoordinator(HomeCoordinator())

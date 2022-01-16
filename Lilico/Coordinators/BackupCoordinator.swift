@@ -32,8 +32,6 @@ extension BackupCoordinator {
     }
 
     func makeRequestSecure() -> SecureCoordinator {
-//        RequestSecureView(viewModel: RequestSecureViewModel().toAnyViewModel())
-//            .hideNavigationBar()
         SecureCoordinator()
     }
 

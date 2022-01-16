@@ -157,6 +157,7 @@ struct InputMnemonicView: View {
                                     let last = text.split(separator: " ").last ?? ""
                                     text.removeLast(last.count)
                                     text.append(word)
+                                    text.append(" ")
 
                                 } label: {
                                     Text(word)

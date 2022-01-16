@@ -33,5 +33,7 @@ extension Color {
         static let bgForIcon = Color("BgForIcon")
 
         static let deepBg = Color("DeepBackground")
+        
+        static let neutrals1 = Color("Neutrals1")
     }
 }

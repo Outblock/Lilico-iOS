@@ -53,10 +53,10 @@ enum Network {
         return try await result.user.getIDToken()
     }
 
-    static func request<T: Decodable, U: TargetType>(_ target: U) async throws -> T {
+    static func request<T: Decodable, U: TargetType>(_ target: U, needToken: Bool = true) async throws -> T {
         let token = try await fetchIDToken()
         let authPlugin = AccessTokenPlugin { _ in token }
-        let provider = MoyaProvider<U>(plugins: [NetworkLoggerPlugin(), authPlugin])
+        let provider = MoyaProvider<U>(plugins: needToken ? [NetworkLoggerPlugin(), authPlugin] : [NetworkLoggerPlugin() ])
         let result = await provider.asyncRequest(target)
         switch result {
         case let .success(response):

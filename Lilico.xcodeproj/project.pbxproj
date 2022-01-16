@@ -88,6 +88,17 @@
 		1570466427906F7F00D1747B /* CollectionViewPagingLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 1570466327906F7F00D1747B /* CollectionViewPagingLayout */; };
 		157046662790723400D1747B /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046652790723400D1747B /* HeartButton.swift */; };
 		157046672790723400D1747B /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046652790723400D1747B /* HeartButton.swift */; };
+		1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 1570466827930E6A00D1747B /* CollectionViewPagingLayout */; };
+		1570466C27930EB200D1747B /* NFTTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570466B27930EB200D1747B /* NFTTabScreen.swift */; };
+		1570466D27930EB200D1747B /* NFTTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570466B27930EB200D1747B /* NFTTabScreen.swift */; };
+		1570466F27931F5100D1747B /* AlchemyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570466E27931F5100D1747B /* AlchemyEndpoint.swift */; };
+		1570467027931F5100D1747B /* AlchemyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570466E27931F5100D1747B /* AlchemyEndpoint.swift */; };
+		157046732793237300D1747B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 157046722793237300D1747B /* Kingfisher */; };
+		157046752793241A00D1747B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 157046742793241A00D1747B /* Kingfisher */; };
+		157046782793243400D1747B /* NFTTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046772793243400D1747B /* NFTTabViewModel.swift */; };
+		157046792793243400D1747B /* NFTTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046772793243400D1747B /* NFTTabViewModel.swift */; };
+		1570467B2793D60000D1747B /* NFTListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467A2793D60000D1747B /* NFTListResponse.swift */; };
+		1570467C2793D60000D1747B /* NFTListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467A2793D60000D1747B /* NFTListResponse.swift */; };
 		158C9C9F27871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
 		158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
 		158C9CA32787F6EA0062E0C6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
@@ -748,6 +759,10 @@
 		156AC7AE2780427900ED5E3E /* Lilico-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lilico-Bridging-Header.h"; sourceTree = "<group>"; };
 		156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		157046652790723400D1747B /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
+		1570466B27930EB200D1747B /* NFTTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTabScreen.swift; sourceTree = "<group>"; };
+		1570466E27931F5100D1747B /* AlchemyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlchemyEndpoint.swift; sourceTree = "<group>"; };
+		157046772793243400D1747B /* NFTTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTabViewModel.swift; sourceTree = "<group>"; };
+		1570467A2793D60000D1747B /* NFTListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListResponse.swift; sourceTree = "<group>"; };
 		158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeView.swift; sourceTree = "<group>"; };
 		158C9CA22787F6EA0062E0C6 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -1133,11 +1148,13 @@
 				15DE22DB277DF2F600B5EE03 /* KeychainAccess in Frameworks */,
 				15DC1D53278165DB000B187A /* Haneke in Frameworks */,
 				156AC7AD27802FAC00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */,
+				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
 				158CEFBC277DB3FF004EF2C7 /* WalletCore.xcframework in Frameworks */,
 				15BCFF102775986E000B7863 /* SPIndicator in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
 				154B891F276A1EEB00780E93 /* FirebaseDynamicLinks in Frameworks */,
+				157046752793241A00D1747B /* Kingfisher in Frameworks */,
 				15DE22F1277F133B00B5EE03 /* SkeletonUI in Frameworks */,
 				1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */,
 				154B8920276A1EEB00780E93 /* SwiftUIX in Frameworks */,
@@ -1156,6 +1173,7 @@
 				1570466427906F7F00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				1552DC68278708AB00EAA7D5 /* Introspect in Frameworks */,
 				15F22F18278B20A800FCF772 /* BiometricAuthentication in Frameworks */,
+				157046732793237300D1747B /* Kingfisher in Frameworks */,
 				15D57757277C238C00045E79 /* Moya in Frameworks */,
 				1507C7E52755061700890C5D /* Resolver in Frameworks */,
 				1599F7772789734B0094B196 /* SPConfetti in Frameworks */,
@@ -1236,6 +1254,7 @@
 		153C440427520811006D1E8D /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				1570466A27930EA500D1747B /* NFT */,
 				15F22F31278C347800FCF772 /* Tab */,
 				15F22F11278B1E7300FCF772 /* Secure */,
 				15B1F6282786A36900847BB5 /* Backup */,
@@ -1306,6 +1325,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1570466A27930EA500D1747B /* NFT */ = {
+			isa = PBXGroup;
+			children = (
+				157046762793242100D1747B /* ViewModel */,
+				1570466B27930EB200D1747B /* NFTTabScreen.swift */,
+			);
+			path = NFT;
+			sourceTree = "<group>";
+		};
+		157046762793242100D1747B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				157046772793243400D1747B /* NFTTabViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		158C9CA12787F6BC0062E0C6 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1331,6 +1367,7 @@
 			children = (
 				15DC1D4C27814F46000B187A /* CheckUserNameModel.swift */,
 				158CE8872782DAD7006A8394 /* RegisterResponse.swift */,
+				1570467A2793D60000D1747B /* NFTListResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1518,6 +1555,7 @@
 				15DC1D4B27814F38000B187A /* Model */,
 				159A560127536E4E004BCACC /* Endpoint.swift */,
 				15D57750277C224300045E79 /* LilicoEndpoint.swift */,
+				1570466E27931F5100D1747B /* AlchemyEndpoint.swift */,
 				15DC1D5727816660000B187A /* Network.swift */,
 			);
 			path = Network;
@@ -2640,6 +2678,8 @@
 				1552DC692787090D00EAA7D5 /* Introspect */,
 				15185ED7278A73A3006B74A9 /* SPConfetti */,
 				15F22F19278B21B600FCF772 /* BiometricAuthentication */,
+				1570466827930E6A00D1747B /* CollectionViewPagingLayout */,
+				157046742793241A00D1747B /* Kingfisher */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -2681,6 +2721,7 @@
 				1599F7762789734B0094B196 /* SPConfetti */,
 				15F22F17278B20A800FCF772 /* BiometricAuthentication */,
 				1570466327906F7F00D1747B /* CollectionViewPagingLayout */,
+				157046722793237300D1747B /* Kingfisher */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15EC9DEE274FD1FC00F70CD9 /* Lilico.app */;
@@ -2749,6 +2790,7 @@
 				1599F7752789734B0094B196 /* XCRemoteSwiftPackageReference "SPConfetti" */,
 				15F22F16278B20A800FCF772 /* XCRemoteSwiftPackageReference "BiometricAuthentication" */,
 				1570466227906F7F00D1747B /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */,
+				157046712793237300D1747B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -2911,6 +2953,7 @@
 				15DC21DB27819C56000B187A /* StateColorsAndOpacities_EP_D.swift in Sources */,
 				15DC21ED27819C57000B187A /* StateColors_OOID.swift in Sources */,
 				15DC217D27819C56000B187A /* _VModal.swift in Sources */,
+				1570467027931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
 				15DC20EF27819C56000B187A /* VSectionListSection.swift in Sources */,
 				15DC20C727819C56000B187A /* VCloseButtonState.swift in Sources */,
 				154B8902276A1EEB00780E93 /* CustomColor.swift in Sources */,
@@ -3039,6 +3082,7 @@
 				15DC212B27819C56000B187A /* VProgressBarModel.swift in Sources */,
 				15DC213D27819C56000B187A /* VMenuPickerRow.swift in Sources */,
 				15DE22EC277F0B0C00B5EE03 /* Shimmer.swift in Sources */,
+				157046792793243400D1747B /* NFTTabViewModel.swift in Sources */,
 				15F22F0D278B13EB00FCF772 /* EnterPasswordViewModel.swift in Sources */,
 				15DC214127819C56000B187A /* VTabNavigationViewAppearance.swift in Sources */,
 				15F22F29278BB88100FCF772 /* NewEmptyWalletView.swift in Sources */,
@@ -3109,6 +3153,7 @@
 				159E4433278D709500D566B0 /* TabChild.swift in Sources */,
 				15DC21D327819C56000B187A /* StateColors_EFSEPD.swift in Sources */,
 				159E4429278D709500D566B0 /* NavigationViewCoordinator.swift in Sources */,
+				1570466D27930EB200D1747B /* NFTTabScreen.swift in Sources */,
 				15DC217B27819C56000B187A /* VModalModel.swift in Sources */,
 				15D57752277C224300045E79 /* LilicoEndpoint.swift in Sources */,
 				15DC218B27819C56000B187A /* VRadioButtonModel.swift in Sources */,
@@ -3139,6 +3184,7 @@
 				15DC1D5D27816F46000B187A /* MoyaAsync.swift in Sources */,
 				15DC20F727819C56000B187A /* VBaseListLayoutType.swift in Sources */,
 				15DC20FB27819C56000B187A /* VBaseListElement.swift in Sources */,
+				1570467C2793D60000D1747B /* NFTListResponse.swift in Sources */,
 				159E4447278D709500D566B0 /* NavigationRoute.swift in Sources */,
 				159E4431278D709500D566B0 /* TabRouter.swift in Sources */,
 				15DC219727819C56000B187A /* VTextFieldType.swift in Sources */,
@@ -3228,6 +3274,7 @@
 				15DC21DA27819C56000B187A /* StateColorsAndOpacities_EP_D.swift in Sources */,
 				15DC21EC27819C57000B187A /* StateColors_OOID.swift in Sources */,
 				15DC217C27819C56000B187A /* _VModal.swift in Sources */,
+				1570466F27931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
 				15DC20EE27819C56000B187A /* VSectionListSection.swift in Sources */,
 				15DC20C627819C56000B187A /* VCloseButtonState.swift in Sources */,
 				15DDFB962751139A008263A2 /* CustomColor.swift in Sources */,
@@ -3356,6 +3403,7 @@
 				15DC212A27819C56000B187A /* VProgressBarModel.swift in Sources */,
 				15DC213C27819C56000B187A /* VMenuPickerRow.swift in Sources */,
 				15DE22EB277F0B0C00B5EE03 /* Shimmer.swift in Sources */,
+				157046782793243400D1747B /* NFTTabViewModel.swift in Sources */,
 				15F22F0C278B13EB00FCF772 /* EnterPasswordViewModel.swift in Sources */,
 				15DC214027819C56000B187A /* VTabNavigationViewAppearance.swift in Sources */,
 				15F22F28278BB88100FCF772 /* NewEmptyWalletView.swift in Sources */,
@@ -3426,6 +3474,7 @@
 				159E4432278D709500D566B0 /* TabChild.swift in Sources */,
 				15DC21D227819C56000B187A /* StateColors_EFSEPD.swift in Sources */,
 				159E4428278D709500D566B0 /* NavigationViewCoordinator.swift in Sources */,
+				1570466C27930EB200D1747B /* NFTTabScreen.swift in Sources */,
 				15DC217A27819C56000B187A /* VModalModel.swift in Sources */,
 				15D57751277C224300045E79 /* LilicoEndpoint.swift in Sources */,
 				15DC218A27819C56000B187A /* VRadioButtonModel.swift in Sources */,
@@ -3456,6 +3505,7 @@
 				15DC1D5C27816F46000B187A /* MoyaAsync.swift in Sources */,
 				15DC20F627819C56000B187A /* VBaseListLayoutType.swift in Sources */,
 				15DC20FA27819C56000B187A /* VBaseListElement.swift in Sources */,
+				1570467B2793D60000D1747B /* NFTListResponse.swift in Sources */,
 				159E4446278D709500D566B0 /* NavigationRoute.swift in Sources */,
 				159E4430278D709500D566B0 /* TabRouter.swift in Sources */,
 				15DC219627819C56000B187A /* VTextFieldType.swift in Sources */,
@@ -3995,6 +4045,14 @@
 				minimumVersion = 1.0.3;
 			};
 		};
+		157046712793237300D1747B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.2;
+			};
+		};
 		1599F7752789734B0094B196 /* XCRemoteSwiftPackageReference "SPConfetti" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanvorobei/SPConfetti";
@@ -4169,6 +4227,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1570466227906F7F00D1747B /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */;
 			productName = CollectionViewPagingLayout;
+		};
+		1570466827930E6A00D1747B /* CollectionViewPagingLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1570466227906F7F00D1747B /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */;
+			productName = CollectionViewPagingLayout;
+		};
+		157046722793237300D1747B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 157046712793237300D1747B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		157046742793241A00D1747B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 157046712793237300D1747B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		1599F7762789734B0094B196 /* SPConfetti */ = {
 			isa = XCSwiftPackageProductDependency;

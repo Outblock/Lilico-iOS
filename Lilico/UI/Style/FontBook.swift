@@ -22,6 +22,8 @@ extension Font {
 //        case caption2
 
         static let largeTitle = Font.custom("Montserrat", size: 36, relativeTo: .largeTitle)
+        static let largeTitle2 = Font.custom("Montserrat", size: 22, relativeTo: .largeTitle)
+        
         static let title = Font.custom("Inter", relativeTo: .title)
         static let title2 = Font.custom("Inter", relativeTo: .title2)
         static let title3 = Font.custom("Inter", relativeTo: .title3)
