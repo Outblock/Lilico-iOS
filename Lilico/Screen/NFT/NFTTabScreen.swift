@@ -11,18 +11,6 @@ import SwiftUI
 import CollectionViewPagingLayout
 import Kingfisher
 
-
-struct NFTCollection: Hashable {
-    let logo: URL
-    let name: String
-}
-
-struct NFTModel: Hashable {
-    let image: URL
-    let name: String
-    let collections: String
-}
-
 extension NFTTabScreen {
     
     struct ViewState {
@@ -161,18 +149,18 @@ struct NFTTabScreen: View {
                         .padding(.top)
                         .foregroundColor(.white)
                         
-                        StackPageView(items) { item in
+                        StackPageView(viewModel.nfts) { nft in
                             // Build your view here
                             ZStack {
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(Color.LL.background)
-                                Text("\(item.number)")
                                 
                                 KFImage
-                                    .url(mockNFT)
+                                    .url(nft.image)
                                     .fade(duration: 0.25)
                                     .resizable()
                                     .aspectRatio(1, contentMode: .fill)
+                                    .cornerRadius(8)
                                     .padding()
                                 
                             }
@@ -207,6 +195,8 @@ struct NFTTabScreen: View {
                                         .url(nft.image)
                                         .resizable()
                                         .aspectRatio(1, contentMode: .fill)
+                                        .cornerRadius(8)
+                                    
                                     Text(nft.name)
                                         .font(.LL.body)
                                         .semibold()
@@ -251,7 +241,7 @@ struct CollectionHeader: View {
         VStack {
             HStack() {
                 Image(systemName: "square.stack.3d.up.fill")
-                Text("Collections")
+                Text("\(collections.count) Collections")
                     .font(.LL.largeTitle2)
                     .semibold()
                 
@@ -274,7 +264,7 @@ struct CollectionHeader: View {
                                 KFImage
                                     .url(collection.logo)
                                     .resizable()
-                                    .aspectRatio(1, contentMode: .fit)
+                                    .aspectRatio(1, contentMode: .fill)
                                     .background(.LL.outline)
                                     .cornerRadius(12)
                                 

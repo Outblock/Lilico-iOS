@@ -7,6 +7,23 @@
 
 import Foundation
 
+struct NFTCollection: Decodable, Hashable {
+    let logo: URL
+    let name: String
+    let address: String
+    var banner: URL? = nil
+    var officialWebsite: URL? = nil
+    var marketplace: URL? = nil
+}
+
+struct NFTModel: Decodable, Hashable, Identifiable {
+    let id = UUID()
+    let image: URL
+    let name: String
+    let collections: String
+}
+
+
 class NFTTabViewModel: ViewModel {
     @Published
     private(set) var state: NFTTabScreen.ViewState = .init()
@@ -14,9 +31,11 @@ class NFTTabViewModel: ViewModel {
     init() {
         let list: [NFTCollection] = [
             .init(logo: URL(string: "https://img.rarible.com/prod/image/upload/t_avatar_big/prod-collections/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/avatar/QmfNrXe67J4t1EvXLxPhxTavQCLryurWFj1DDRKkjNQqit")!,
-                  name: "BoredApeYachtClub"),
+                  name: "BoredApeYachtClub",
+                  address: ""),
             .init(logo: URL(string: "https://img.rarible.com/prod/image/upload/t_avatar_big/prod-collections/0xc1caf0c19a8ac28c41fe59ba6c754e4b9bd54de9/avatar/Qmb56xhzBZkJvG3UD78XBbRkkQ2yKwMPpP56GP5bL1LbBR")!,
-                  name: "CryptoSkulls")
+                  name: "CryptoSkulls",
+                  address: "")
         ]
         
         let nfts: [NFTModel] = [
@@ -38,15 +57,50 @@ class NFTTabViewModel: ViewModel {
 
         ]
         state = .init(collections: list, nfts: nfts)
+        
+        fetchNFTs()
     }
     
     func fetchNFTs() {
         Task {
             do {
                 let request = NFTListRequest(owner: "0x2b06c41f44a05656", offset: 0, limit: 100)
-                let response: NFTListResponse = try await Network.request(AlchemyEndpoint.nftList(request), needToken: false)
+                let response: NFTListResponse = try await Network.requestWithRawModel(AlchemyEndpoint.nftList(request),
+                                                                                      decoder: JSONDecoder(),
+                                                                                      needToken: false)
                 
-            } catch {
+                let collections: [NFTCollection] =  try await Network.requestWithRawModel(GithubEndpoint.collections,
+                                                      needToken: false)
+                
+                let groups = Dictionary(grouping: response.nfts) { nft in
+                    return nft.contract
+                }
+                
+                let haveCollections = collections.filter{ groups.keys.compactMap{ $0.address }.contains($0.address) }
+                
+                await MainActor.run {
+                    state.collections = haveCollections
+                    state.nfts = response.nfts.compactMap({ NFTResponse in
+                        
+                        var url = NFTResponse.media?.uri
+                        
+                        if url != nil  {
+                            url = url!.replacingOccurrences(of: "ipfs://", with: "https://ipfs.io/ipfs/")
+                        }
+                        
+                        if url == "" {
+                            url = "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
+                        }
+                        
+                        return NFTModel(image: URL(string: url ?? "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png" )!,
+                                        name: NFTResponse.contract.name + " #" + NFTResponse.id.tokenID,
+                                        collections: NFTResponse.contract.name)
+                    })
+                }
+                print(groups)
+                
+            } catch let error {
+                print(error)
                 HUD.debugError(title: "Fetch NFT Error")
             }
         }

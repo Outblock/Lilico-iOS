@@ -85,6 +85,58 @@
 		156AC7B1278042DE00ED5E3E /* GTMSessionFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7B0278042DE00ED5E3E /* GTMSessionFetcher */; };
 		156AC7B327804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
 		156AC7B427804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
+		156ADC4D2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2B2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift */; };
+		156ADC4E2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2B2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift */; };
+		156ADC4F2797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2C2797B42D00CD4B02 /* ViewWrapperCoordinator.swift */; };
+		156ADC502797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2C2797B42D00CD4B02 /* ViewWrapperCoordinator.swift */; };
+		156ADC512797B42D00CD4B02 /* StringIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2E2797B42D00CD4B02 /* StringIdentifiable.swift */; };
+		156ADC522797B42D00CD4B02 /* StringIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2E2797B42D00CD4B02 /* StringIdentifiable.swift */; };
+		156ADC532797B42D00CD4B02 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2F2797B42D00CD4B02 /* Presentable.swift */; };
+		156ADC542797B42D00CD4B02 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2F2797B42D00CD4B02 /* Presentable.swift */; };
+		156ADC552797B42D00CD4B02 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC302797B42D00CD4B02 /* Coordinatable.swift */; };
+		156ADC562797B42D00CD4B02 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC302797B42D00CD4B02 /* Coordinatable.swift */; };
+		156ADC572797B42D00CD4B02 /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC312797B42D00CD4B02 /* AnyCoordinator.swift */; };
+		156ADC582797B42D00CD4B02 /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC312797B42D00CD4B02 /* AnyCoordinator.swift */; };
+		156ADC592797B42D00CD4B02 /* ChildDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC322797B42D00CD4B02 /* ChildDismissable.swift */; };
+		156ADC5A2797B42D00CD4B02 /* ChildDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC322797B42D00CD4B02 /* ChildDismissable.swift */; };
+		156ADC5B2797B42D00CD4B02 /* NavigationViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC342797B42D00CD4B02 /* NavigationViewCoordinator.swift */; };
+		156ADC5C2797B42D00CD4B02 /* NavigationViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC342797B42D00CD4B02 /* NavigationViewCoordinator.swift */; };
+		156ADC5D2797B42D00CD4B02 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC362797B42D00CD4B02 /* WeakRef.swift */; };
+		156ADC5E2797B42D00CD4B02 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC362797B42D00CD4B02 /* WeakRef.swift */; };
+		156ADC5F2797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC372797B42D00CD4B02 /* Array+SafeIndex.swift */; };
+		156ADC602797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC372797B42D00CD4B02 /* Array+SafeIndex.swift */; };
+		156ADC612797B42D00CD4B02 /* RouterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC392797B42D00CD4B02 /* RouterStore.swift */; };
+		156ADC622797B42D00CD4B02 /* RouterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC392797B42D00CD4B02 /* RouterStore.swift */; };
+		156ADC632797B42D00CD4B02 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3B2797B42D00CD4B02 /* TabRouter.swift */; };
+		156ADC642797B42D00CD4B02 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3B2797B42D00CD4B02 /* TabRouter.swift */; };
+		156ADC652797B42D00CD4B02 /* TabChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3C2797B42D00CD4B02 /* TabChild.swift */; };
+		156ADC662797B42D00CD4B02 /* TabChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3C2797B42D00CD4B02 /* TabChild.swift */; };
+		156ADC672797B42D00CD4B02 /* TabCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3D2797B42D00CD4B02 /* TabCoordinatable.swift */; };
+		156ADC682797B42D00CD4B02 /* TabCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3D2797B42D00CD4B02 /* TabCoordinatable.swift */; };
+		156ADC692797B42D00CD4B02 /* TabRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3E2797B42D00CD4B02 /* TabRoute.swift */; };
+		156ADC6A2797B42D00CD4B02 /* TabRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3E2797B42D00CD4B02 /* TabRoute.swift */; };
+		156ADC6B2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3F2797B42D00CD4B02 /* TabCoordinatableView.swift */; };
+		156ADC6C2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3F2797B42D00CD4B02 /* TabCoordinatableView.swift */; };
+		156ADC6D2797B42D00CD4B02 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC412797B42D00CD4B02 /* Routable.swift */; };
+		156ADC6E2797B42D00CD4B02 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC412797B42D00CD4B02 /* Routable.swift */; };
+		156ADC6F2797B42D00CD4B02 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC432797B42D00CD4B02 /* NavigationRouter.swift */; };
+		156ADC702797B42D00CD4B02 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC432797B42D00CD4B02 /* NavigationRouter.swift */; };
+		156ADC712797B42D00CD4B02 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC442797B42D00CD4B02 /* NavigationStack.swift */; };
+		156ADC722797B42D00CD4B02 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC442797B42D00CD4B02 /* NavigationStack.swift */; };
+		156ADC732797B42D00CD4B02 /* Presented.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC452797B42D00CD4B02 /* Presented.swift */; };
+		156ADC742797B42D00CD4B02 /* Presented.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC452797B42D00CD4B02 /* Presented.swift */; };
+		156ADC752797B42D00CD4B02 /* NavigationCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC462797B42D00CD4B02 /* NavigationCoordinatable.swift */; };
+		156ADC762797B42D00CD4B02 /* NavigationCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC462797B42D00CD4B02 /* NavigationCoordinatable.swift */; };
+		156ADC772797B42D00CD4B02 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC472797B42D00CD4B02 /* PresentationType.swift */; };
+		156ADC782797B42D00CD4B02 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC472797B42D00CD4B02 /* PresentationType.swift */; };
+		156ADC792797B42D00CD4B02 /* NavigationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC482797B42D00CD4B02 /* NavigationRoute.swift */; };
+		156ADC7A2797B42D00CD4B02 /* NavigationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC482797B42D00CD4B02 /* NavigationRoute.swift */; };
+		156ADC7B2797B42D00CD4B02 /* PresentationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC492797B42D00CD4B02 /* PresentationHelper.swift */; };
+		156ADC7C2797B42D00CD4B02 /* PresentationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC492797B42D00CD4B02 /* PresentationHelper.swift */; };
+		156ADC7D2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */; };
+		156ADC7E2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */; };
+		156ADC7F2797B42D00CD4B02 /* FocusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4C2797B42D00CD4B02 /* FocusError.swift */; };
+		156ADC802797B42D00CD4B02 /* FocusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4C2797B42D00CD4B02 /* FocusError.swift */; };
 		1570466427906F7F00D1747B /* CollectionViewPagingLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 1570466327906F7F00D1747B /* CollectionViewPagingLayout */; };
 		157046662790723400D1747B /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046652790723400D1747B /* HeartButton.swift */; };
 		157046672790723400D1747B /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046652790723400D1747B /* HeartButton.swift */; };
@@ -99,6 +151,8 @@
 		157046792793243400D1747B /* NFTTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046772793243400D1747B /* NFTTabViewModel.swift */; };
 		1570467B2793D60000D1747B /* NFTListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467A2793D60000D1747B /* NFTListResponse.swift */; };
 		1570467C2793D60000D1747B /* NFTListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467A2793D60000D1747B /* NFTListResponse.swift */; };
+		1570467E2793EBA100D1747B /* GithubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467D2793EBA100D1747B /* GithubEndpoint.swift */; };
+		1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467D2793EBA100D1747B /* GithubEndpoint.swift */; };
 		158C9C9F27871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
 		158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
 		158C9CA32787F6EA0062E0C6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
@@ -140,58 +194,6 @@
 		159A569427539A2C004BCACC /* WalletSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A569327539A2C004BCACC /* WalletSetupViewModel.swift */; };
 		159CFF2B27887ED3006421FB /* InputMnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CFF2A27887ED3006421FB /* InputMnemonicView.swift */; };
 		159CFF2C27887ED3006421FB /* InputMnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CFF2A27887ED3006421FB /* InputMnemonicView.swift */; };
-		159E441A278D709500D566B0 /* ViewWrapperCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43F8278D709500D566B0 /* ViewWrapperCoordinatorView.swift */; };
-		159E441B278D709500D566B0 /* ViewWrapperCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43F8278D709500D566B0 /* ViewWrapperCoordinatorView.swift */; };
-		159E441C278D709500D566B0 /* ViewWrapperCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43F9278D709500D566B0 /* ViewWrapperCoordinator.swift */; };
-		159E441D278D709500D566B0 /* ViewWrapperCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43F9278D709500D566B0 /* ViewWrapperCoordinator.swift */; };
-		159E441E278D709500D566B0 /* StringIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FB278D709500D566B0 /* StringIdentifiable.swift */; };
-		159E441F278D709500D566B0 /* StringIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FB278D709500D566B0 /* StringIdentifiable.swift */; };
-		159E4420278D709500D566B0 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FC278D709500D566B0 /* Presentable.swift */; };
-		159E4421278D709500D566B0 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FC278D709500D566B0 /* Presentable.swift */; };
-		159E4422278D709500D566B0 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FD278D709500D566B0 /* Coordinatable.swift */; };
-		159E4423278D709500D566B0 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FD278D709500D566B0 /* Coordinatable.swift */; };
-		159E4424278D709500D566B0 /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FE278D709500D566B0 /* AnyCoordinator.swift */; };
-		159E4425278D709500D566B0 /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FE278D709500D566B0 /* AnyCoordinator.swift */; };
-		159E4426278D709500D566B0 /* ChildDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FF278D709500D566B0 /* ChildDismissable.swift */; };
-		159E4427278D709500D566B0 /* ChildDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E43FF278D709500D566B0 /* ChildDismissable.swift */; };
-		159E4428278D709500D566B0 /* NavigationViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4401278D709500D566B0 /* NavigationViewCoordinator.swift */; };
-		159E4429278D709500D566B0 /* NavigationViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4401278D709500D566B0 /* NavigationViewCoordinator.swift */; };
-		159E442A278D709500D566B0 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4403278D709500D566B0 /* WeakRef.swift */; };
-		159E442B278D709500D566B0 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4403278D709500D566B0 /* WeakRef.swift */; };
-		159E442C278D709500D566B0 /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4404278D709500D566B0 /* Array+SafeIndex.swift */; };
-		159E442D278D709500D566B0 /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4404278D709500D566B0 /* Array+SafeIndex.swift */; };
-		159E442E278D709500D566B0 /* RouterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4406278D709500D566B0 /* RouterStore.swift */; };
-		159E442F278D709500D566B0 /* RouterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4406278D709500D566B0 /* RouterStore.swift */; };
-		159E4430278D709500D566B0 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4408278D709500D566B0 /* TabRouter.swift */; };
-		159E4431278D709500D566B0 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4408278D709500D566B0 /* TabRouter.swift */; };
-		159E4432278D709500D566B0 /* TabChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4409278D709500D566B0 /* TabChild.swift */; };
-		159E4433278D709500D566B0 /* TabChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4409278D709500D566B0 /* TabChild.swift */; };
-		159E4434278D709500D566B0 /* TabCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E440A278D709500D566B0 /* TabCoordinatable.swift */; };
-		159E4435278D709500D566B0 /* TabCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E440A278D709500D566B0 /* TabCoordinatable.swift */; };
-		159E4436278D709500D566B0 /* TabRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E440B278D709500D566B0 /* TabRoute.swift */; };
-		159E4437278D709500D566B0 /* TabRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E440B278D709500D566B0 /* TabRoute.swift */; };
-		159E4438278D709500D566B0 /* TabCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E440C278D709500D566B0 /* TabCoordinatableView.swift */; };
-		159E4439278D709500D566B0 /* TabCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E440C278D709500D566B0 /* TabCoordinatableView.swift */; };
-		159E443A278D709500D566B0 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E440E278D709500D566B0 /* Routable.swift */; };
-		159E443B278D709500D566B0 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E440E278D709500D566B0 /* Routable.swift */; };
-		159E443C278D709500D566B0 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4410278D709500D566B0 /* NavigationRouter.swift */; };
-		159E443D278D709500D566B0 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4410278D709500D566B0 /* NavigationRouter.swift */; };
-		159E443E278D709500D566B0 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4411278D709500D566B0 /* NavigationStack.swift */; };
-		159E443F278D709500D566B0 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4411278D709500D566B0 /* NavigationStack.swift */; };
-		159E4440278D709500D566B0 /* Presented.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4412278D709500D566B0 /* Presented.swift */; };
-		159E4441278D709500D566B0 /* Presented.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4412278D709500D566B0 /* Presented.swift */; };
-		159E4442278D709500D566B0 /* NavigationCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4413278D709500D566B0 /* NavigationCoordinatable.swift */; };
-		159E4443278D709500D566B0 /* NavigationCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4413278D709500D566B0 /* NavigationCoordinatable.swift */; };
-		159E4444278D709500D566B0 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4414278D709500D566B0 /* PresentationType.swift */; };
-		159E4445278D709500D566B0 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4414278D709500D566B0 /* PresentationType.swift */; };
-		159E4446278D709500D566B0 /* NavigationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4415278D709500D566B0 /* NavigationRoute.swift */; };
-		159E4447278D709500D566B0 /* NavigationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4415278D709500D566B0 /* NavigationRoute.swift */; };
-		159E4448278D709500D566B0 /* PresentationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4416278D709500D566B0 /* PresentationHelper.swift */; };
-		159E4449278D709500D566B0 /* PresentationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4416278D709500D566B0 /* PresentationHelper.swift */; };
-		159E444A278D709500D566B0 /* NavigationCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4417278D709500D566B0 /* NavigationCoordinatableView.swift */; };
-		159E444B278D709500D566B0 /* NavigationCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4417278D709500D566B0 /* NavigationCoordinatableView.swift */; };
-		159E444C278D709500D566B0 /* FocusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4419278D709500D566B0 /* FocusError.swift */; };
-		159E444D278D709500D566B0 /* FocusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E4419278D709500D566B0 /* FocusError.swift */; };
 		15B1A686276B53F70006B621 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1A685276B53F70006B621 /* GetStartedView.swift */; };
 		15B1A687276B53F70006B621 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1A685276B53F70006B621 /* GetStartedView.swift */; };
 		15B1F6232785B1C200847BB5 /* NavigationDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6222785B1C200847BB5 /* NavigationDemo.swift */; };
@@ -758,11 +760,38 @@
 		1552DC632787063100EAA7D5 /* PinStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStackView.swift; sourceTree = "<group>"; };
 		156AC7AE2780427900ED5E3E /* Lilico-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lilico-Bridging-Header.h"; sourceTree = "<group>"; };
 		156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		156ADC2B2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWrapperCoordinatorView.swift; sourceTree = "<group>"; };
+		156ADC2C2797B42D00CD4B02 /* ViewWrapperCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWrapperCoordinator.swift; sourceTree = "<group>"; };
+		156ADC2E2797B42D00CD4B02 /* StringIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIdentifiable.swift; sourceTree = "<group>"; };
+		156ADC2F2797B42D00CD4B02 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		156ADC302797B42D00CD4B02 /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		156ADC312797B42D00CD4B02 /* AnyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCoordinator.swift; sourceTree = "<group>"; };
+		156ADC322797B42D00CD4B02 /* ChildDismissable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildDismissable.swift; sourceTree = "<group>"; };
+		156ADC342797B42D00CD4B02 /* NavigationViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewCoordinator.swift; sourceTree = "<group>"; };
+		156ADC362797B42D00CD4B02 /* WeakRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
+		156ADC372797B42D00CD4B02 /* Array+SafeIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndex.swift"; sourceTree = "<group>"; };
+		156ADC392797B42D00CD4B02 /* RouterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterStore.swift; sourceTree = "<group>"; };
+		156ADC3B2797B42D00CD4B02 /* TabRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
+		156ADC3C2797B42D00CD4B02 /* TabChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabChild.swift; sourceTree = "<group>"; };
+		156ADC3D2797B42D00CD4B02 /* TabCoordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabCoordinatable.swift; sourceTree = "<group>"; };
+		156ADC3E2797B42D00CD4B02 /* TabRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabRoute.swift; sourceTree = "<group>"; };
+		156ADC3F2797B42D00CD4B02 /* TabCoordinatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabCoordinatableView.swift; sourceTree = "<group>"; };
+		156ADC412797B42D00CD4B02 /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		156ADC432797B42D00CD4B02 /* NavigationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		156ADC442797B42D00CD4B02 /* NavigationStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
+		156ADC452797B42D00CD4B02 /* Presented.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presented.swift; sourceTree = "<group>"; };
+		156ADC462797B42D00CD4B02 /* NavigationCoordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatable.swift; sourceTree = "<group>"; };
+		156ADC472797B42D00CD4B02 /* PresentationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationType.swift; sourceTree = "<group>"; };
+		156ADC482797B42D00CD4B02 /* NavigationRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRoute.swift; sourceTree = "<group>"; };
+		156ADC492797B42D00CD4B02 /* PresentationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationHelper.swift; sourceTree = "<group>"; };
+		156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatableView.swift; sourceTree = "<group>"; };
+		156ADC4C2797B42D00CD4B02 /* FocusError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusError.swift; sourceTree = "<group>"; };
 		157046652790723400D1747B /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		1570466B27930EB200D1747B /* NFTTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTabScreen.swift; sourceTree = "<group>"; };
 		1570466E27931F5100D1747B /* AlchemyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlchemyEndpoint.swift; sourceTree = "<group>"; };
 		157046772793243400D1747B /* NFTTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTabViewModel.swift; sourceTree = "<group>"; };
 		1570467A2793D60000D1747B /* NFTListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListResponse.swift; sourceTree = "<group>"; };
+		1570467D2793EBA100D1747B /* GithubEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubEndpoint.swift; sourceTree = "<group>"; };
 		158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeView.swift; sourceTree = "<group>"; };
 		158C9CA22787F6EA0062E0C6 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -844,32 +873,6 @@
 		159A560127536E4E004BCACC /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		159A569327539A2C004BCACC /* WalletSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSetupViewModel.swift; sourceTree = "<group>"; };
 		159CFF2A27887ED3006421FB /* InputMnemonicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMnemonicView.swift; sourceTree = "<group>"; };
-		159E43F8278D709500D566B0 /* ViewWrapperCoordinatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWrapperCoordinatorView.swift; sourceTree = "<group>"; };
-		159E43F9278D709500D566B0 /* ViewWrapperCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWrapperCoordinator.swift; sourceTree = "<group>"; };
-		159E43FB278D709500D566B0 /* StringIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIdentifiable.swift; sourceTree = "<group>"; };
-		159E43FC278D709500D566B0 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
-		159E43FD278D709500D566B0 /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
-		159E43FE278D709500D566B0 /* AnyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCoordinator.swift; sourceTree = "<group>"; };
-		159E43FF278D709500D566B0 /* ChildDismissable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildDismissable.swift; sourceTree = "<group>"; };
-		159E4401278D709500D566B0 /* NavigationViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewCoordinator.swift; sourceTree = "<group>"; };
-		159E4403278D709500D566B0 /* WeakRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
-		159E4404278D709500D566B0 /* Array+SafeIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndex.swift"; sourceTree = "<group>"; };
-		159E4406278D709500D566B0 /* RouterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterStore.swift; sourceTree = "<group>"; };
-		159E4408278D709500D566B0 /* TabRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
-		159E4409278D709500D566B0 /* TabChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabChild.swift; sourceTree = "<group>"; };
-		159E440A278D709500D566B0 /* TabCoordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabCoordinatable.swift; sourceTree = "<group>"; };
-		159E440B278D709500D566B0 /* TabRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabRoute.swift; sourceTree = "<group>"; };
-		159E440C278D709500D566B0 /* TabCoordinatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabCoordinatableView.swift; sourceTree = "<group>"; };
-		159E440E278D709500D566B0 /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
-		159E4410278D709500D566B0 /* NavigationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
-		159E4411278D709500D566B0 /* NavigationStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
-		159E4412278D709500D566B0 /* Presented.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presented.swift; sourceTree = "<group>"; };
-		159E4413278D709500D566B0 /* NavigationCoordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatable.swift; sourceTree = "<group>"; };
-		159E4414278D709500D566B0 /* PresentationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationType.swift; sourceTree = "<group>"; };
-		159E4415278D709500D566B0 /* NavigationRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRoute.swift; sourceTree = "<group>"; };
-		159E4416278D709500D566B0 /* PresentationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationHelper.swift; sourceTree = "<group>"; };
-		159E4417278D709500D566B0 /* NavigationCoordinatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatableView.swift; sourceTree = "<group>"; };
-		159E4419278D709500D566B0 /* FocusError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusError.swift; sourceTree = "<group>"; };
 		15B1A685276B53F70006B621 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		15B1F6222785B1C200847BB5 /* NavigationDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDemo.swift; sourceTree = "<group>"; };
 		15B1F6252785B1DA00847BB5 /* NavigateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateDetail.swift; sourceTree = "<group>"; };
@@ -1239,6 +1242,7 @@
 		152F9858275CB8FA001C5855 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				156ADC292797B42D00CD4B02 /* Stinsen */,
 				152F985B275CDED0001C5855 /* AppCoordinator.swift */,
 				15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */,
 				15F22F0E278B1DF400FCF772 /* SecureCoordinator.swift */,
@@ -1312,7 +1316,6 @@
 		154B8933276A242000780E93 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				159E43F6278D709500D566B0 /* Stinsen */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -1323,6 +1326,111 @@
 				1552DC632787063100EAA7D5 /* PinStackView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		156ADC292797B42D00CD4B02 /* Stinsen */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC2A2797B42D00CD4B02 /* ViewWrapperCoordinator */,
+				156ADC2D2797B42D00CD4B02 /* Coordinatable */,
+				156ADC332797B42D00CD4B02 /* NavigationViewCoordinator */,
+				156ADC352797B42D00CD4B02 /* Utilities */,
+				156ADC382797B42D00CD4B02 /* RouterStore */,
+				156ADC3A2797B42D00CD4B02 /* TabCoordinatable */,
+				156ADC402797B42D00CD4B02 /* Protocols */,
+				156ADC422797B42D00CD4B02 /* NavigationCoordinatable */,
+				156ADC4B2797B42D00CD4B02 /* Entities */,
+			);
+			path = Stinsen;
+			sourceTree = "<group>";
+		};
+		156ADC2A2797B42D00CD4B02 /* ViewWrapperCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC2B2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift */,
+				156ADC2C2797B42D00CD4B02 /* ViewWrapperCoordinator.swift */,
+			);
+			path = ViewWrapperCoordinator;
+			sourceTree = "<group>";
+		};
+		156ADC2D2797B42D00CD4B02 /* Coordinatable */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC2E2797B42D00CD4B02 /* StringIdentifiable.swift */,
+				156ADC2F2797B42D00CD4B02 /* Presentable.swift */,
+				156ADC302797B42D00CD4B02 /* Coordinatable.swift */,
+				156ADC312797B42D00CD4B02 /* AnyCoordinator.swift */,
+				156ADC322797B42D00CD4B02 /* ChildDismissable.swift */,
+			);
+			path = Coordinatable;
+			sourceTree = "<group>";
+		};
+		156ADC332797B42D00CD4B02 /* NavigationViewCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC342797B42D00CD4B02 /* NavigationViewCoordinator.swift */,
+			);
+			path = NavigationViewCoordinator;
+			sourceTree = "<group>";
+		};
+		156ADC352797B42D00CD4B02 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC362797B42D00CD4B02 /* WeakRef.swift */,
+				156ADC372797B42D00CD4B02 /* Array+SafeIndex.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		156ADC382797B42D00CD4B02 /* RouterStore */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC392797B42D00CD4B02 /* RouterStore.swift */,
+			);
+			path = RouterStore;
+			sourceTree = "<group>";
+		};
+		156ADC3A2797B42D00CD4B02 /* TabCoordinatable */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC3B2797B42D00CD4B02 /* TabRouter.swift */,
+				156ADC3C2797B42D00CD4B02 /* TabChild.swift */,
+				156ADC3D2797B42D00CD4B02 /* TabCoordinatable.swift */,
+				156ADC3E2797B42D00CD4B02 /* TabRoute.swift */,
+				156ADC3F2797B42D00CD4B02 /* TabCoordinatableView.swift */,
+			);
+			path = TabCoordinatable;
+			sourceTree = "<group>";
+		};
+		156ADC402797B42D00CD4B02 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC412797B42D00CD4B02 /* Routable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		156ADC422797B42D00CD4B02 /* NavigationCoordinatable */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC432797B42D00CD4B02 /* NavigationRouter.swift */,
+				156ADC442797B42D00CD4B02 /* NavigationStack.swift */,
+				156ADC452797B42D00CD4B02 /* Presented.swift */,
+				156ADC462797B42D00CD4B02 /* NavigationCoordinatable.swift */,
+				156ADC472797B42D00CD4B02 /* PresentationType.swift */,
+				156ADC482797B42D00CD4B02 /* NavigationRoute.swift */,
+				156ADC492797B42D00CD4B02 /* PresentationHelper.swift */,
+				156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */,
+			);
+			path = NavigationCoordinatable;
+			sourceTree = "<group>";
+		};
+		156ADC4B2797B42D00CD4B02 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				156ADC4C2797B42D00CD4B02 /* FocusError.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		1570466A27930EA500D1747B /* NFT */ = {
@@ -1556,6 +1664,7 @@
 				159A560127536E4E004BCACC /* Endpoint.swift */,
 				15D57750277C224300045E79 /* LilicoEndpoint.swift */,
 				1570466E27931F5100D1747B /* AlchemyEndpoint.swift */,
+				1570467D2793EBA100D1747B /* GithubEndpoint.swift */,
 				15DC1D5727816660000B187A /* Network.swift */,
 			);
 			path = Network;
@@ -1567,111 +1676,6 @@
 				159A54302753680C004BCACC /* Base */,
 			);
 			path = Foundation;
-			sourceTree = "<group>";
-		};
-		159E43F6278D709500D566B0 /* Stinsen */ = {
-			isa = PBXGroup;
-			children = (
-				159E43F7278D709500D566B0 /* ViewWrapperCoordinator */,
-				159E43FA278D709500D566B0 /* Coordinatable */,
-				159E4400278D709500D566B0 /* NavigationViewCoordinator */,
-				159E4402278D709500D566B0 /* Utilities */,
-				159E4405278D709500D566B0 /* RouterStore */,
-				159E4407278D709500D566B0 /* TabCoordinatable */,
-				159E440D278D709500D566B0 /* Protocols */,
-				159E440F278D709500D566B0 /* NavigationCoordinatable */,
-				159E4418278D709500D566B0 /* Entities */,
-			);
-			path = Stinsen;
-			sourceTree = "<group>";
-		};
-		159E43F7278D709500D566B0 /* ViewWrapperCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				159E43F8278D709500D566B0 /* ViewWrapperCoordinatorView.swift */,
-				159E43F9278D709500D566B0 /* ViewWrapperCoordinator.swift */,
-			);
-			path = ViewWrapperCoordinator;
-			sourceTree = "<group>";
-		};
-		159E43FA278D709500D566B0 /* Coordinatable */ = {
-			isa = PBXGroup;
-			children = (
-				159E43FB278D709500D566B0 /* StringIdentifiable.swift */,
-				159E43FC278D709500D566B0 /* Presentable.swift */,
-				159E43FD278D709500D566B0 /* Coordinatable.swift */,
-				159E43FE278D709500D566B0 /* AnyCoordinator.swift */,
-				159E43FF278D709500D566B0 /* ChildDismissable.swift */,
-			);
-			path = Coordinatable;
-			sourceTree = "<group>";
-		};
-		159E4400278D709500D566B0 /* NavigationViewCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				159E4401278D709500D566B0 /* NavigationViewCoordinator.swift */,
-			);
-			path = NavigationViewCoordinator;
-			sourceTree = "<group>";
-		};
-		159E4402278D709500D566B0 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				159E4403278D709500D566B0 /* WeakRef.swift */,
-				159E4404278D709500D566B0 /* Array+SafeIndex.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		159E4405278D709500D566B0 /* RouterStore */ = {
-			isa = PBXGroup;
-			children = (
-				159E4406278D709500D566B0 /* RouterStore.swift */,
-			);
-			path = RouterStore;
-			sourceTree = "<group>";
-		};
-		159E4407278D709500D566B0 /* TabCoordinatable */ = {
-			isa = PBXGroup;
-			children = (
-				159E4408278D709500D566B0 /* TabRouter.swift */,
-				159E4409278D709500D566B0 /* TabChild.swift */,
-				159E440A278D709500D566B0 /* TabCoordinatable.swift */,
-				159E440B278D709500D566B0 /* TabRoute.swift */,
-				159E440C278D709500D566B0 /* TabCoordinatableView.swift */,
-			);
-			path = TabCoordinatable;
-			sourceTree = "<group>";
-		};
-		159E440D278D709500D566B0 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				159E440E278D709500D566B0 /* Routable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		159E440F278D709500D566B0 /* NavigationCoordinatable */ = {
-			isa = PBXGroup;
-			children = (
-				159E4410278D709500D566B0 /* NavigationRouter.swift */,
-				159E4411278D709500D566B0 /* NavigationStack.swift */,
-				159E4412278D709500D566B0 /* Presented.swift */,
-				159E4413278D709500D566B0 /* NavigationCoordinatable.swift */,
-				159E4414278D709500D566B0 /* PresentationType.swift */,
-				159E4415278D709500D566B0 /* NavigationRoute.swift */,
-				159E4416278D709500D566B0 /* PresentationHelper.swift */,
-				159E4417278D709500D566B0 /* NavigationCoordinatableView.swift */,
-			);
-			path = NavigationCoordinatable;
-			sourceTree = "<group>";
-		};
-		159E4418278D709500D566B0 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				159E4419278D709500D566B0 /* FocusError.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		15B1A67A276A2D670006B621 /* Frameworks */ = {
@@ -2939,14 +2943,13 @@
 				154B8901276A1EEB00780E93 /* LightDarkSwitcher.swift in Sources */,
 				15DC209F27819C56000B187A /* VSecondaryButtonModel.swift in Sources */,
 				15DC21B527819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
-				159E4423278D709500D566B0 /* Coordinatable.swift in Sources */,
 				15DC210327819C56000B187A /* VStepperState.swift in Sources */,
+				156ADC7A2797B42D00CD4B02 /* NavigationRoute.swift in Sources */,
 				15D9283627849E6800382226 /* BackupCoordinator.swift in Sources */,
 				158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */,
 				15DC20CD27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DD27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AD27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
-				159E442D278D709500D566B0 /* Array+SafeIndex.swift in Sources */,
 				15DC214327819C56000B187A /* VTabNavigationView.swift in Sources */,
 				1537B3DB277C8DC8008ECD05 /* HomeCoordinator.swift in Sources */,
 				15DC20E527819C56000B187A /* VAccordion.swift in Sources */,
@@ -2954,16 +2957,15 @@
 				15DC21ED27819C57000B187A /* StateColors_OOID.swift in Sources */,
 				15DC217D27819C56000B187A /* _VModal.swift in Sources */,
 				1570467027931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
+				156ADC7C2797B42D00CD4B02 /* PresentationHelper.swift in Sources */,
 				15DC20EF27819C56000B187A /* VSectionListSection.swift in Sources */,
 				15DC20C727819C56000B187A /* VCloseButtonState.swift in Sources */,
 				154B8902276A1EEB00780E93 /* CustomColor.swift in Sources */,
 				15DC214927819C56000B187A /* VTabNavigationViewModel.swift in Sources */,
+				156ADC782797B42D00CD4B02 /* PresentationType.swift in Sources */,
 				15DC20FF27819C56000B187A /* VStepperModel.swift in Sources */,
-				159E441D278D709500D566B0 /* ViewWrapperCoordinator.swift in Sources */,
 				154B8903276A1EEB00780E93 /* ProfileView.swift in Sources */,
 				15DC21BD27819C56000B187A /* View.CustomViewFrames.swift in Sources */,
-				159E4425278D709500D566B0 /* AnyCoordinator.swift in Sources */,
-				159E444B278D709500D566B0 /* NavigationCoordinatableView.swift in Sources */,
 				15DC213F27819C56000B187A /* VMenuPickerButtonType.swift in Sources */,
 				15DC20BF27819C56000B187A /* VSquareButtonState.swift in Sources */,
 				15DC217527819C56000B187A /* VDialogButtonModel.swift in Sources */,
@@ -2975,6 +2977,8 @@
 				15DC21C327819C56000B187A /* LayoutGroup_TB.swift in Sources */,
 				15DC21C727819C56000B187A /* LayoutGroup_HV.swift in Sources */,
 				15DC21B327819C56000B187A /* Optional.LetBlockTransformation.swift in Sources */,
+				156ADC742797B42D00CD4B02 /* Presented.swift in Sources */,
+				156ADC5A2797B42D00CD4B02 /* ChildDismissable.swift in Sources */,
 				158CE8862782DA87006A8394 /* RegisterRequest.swift in Sources */,
 				15DC1F7327819B74000B187A /* SpinnerStyle.swift in Sources */,
 				15DC20A927819C56000B187A /* VWebLink.swift in Sources */,
@@ -2986,11 +2990,12 @@
 				15DC218327819C56000B187A /* VToggleState.swift in Sources */,
 				157046672790723400D1747B /* HeartButton.swift in Sources */,
 				15DE23012780208300B5EE03 /* RestoreWalletViewModel.swift in Sources */,
-				159E441B278D709500D566B0 /* ViewWrapperCoordinatorView.swift in Sources */,
 				15DC216527819C56000B187A /* _VHalfModal.swift in Sources */,
 				154B8904276A1EEB00780E93 /* OffsetPageTabView.swift in Sources */,
 				158CE8812782BEAA006A8394 /* TYNKViewModel.swift in Sources */,
 				15DC21E727819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
+				156ADC702797B42D00CD4B02 /* NavigationRouter.swift in Sources */,
+				1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
 				15DC20B727819C56000B187A /* VChevronButton.swift in Sources */,
 				15DC20E127819C56000B187A /* VListModel.swift in Sources */,
 				15DC213527819C56000B187A /* VSegmentedPicker.swift in Sources */,
@@ -2999,13 +3004,13 @@
 				15DC21D127819C56000B187A /* VPickableItems.swift in Sources */,
 				15DC211D27819C56000B187A /* VSpinner.swift in Sources */,
 				15DC20E327819C56000B187A /* VList.swift in Sources */,
-				159E4435278D709500D566B0 /* TabCoordinatable.swift in Sources */,
 				1536813B276F4DD400913268 /* EmptyAccountView.swift in Sources */,
 				15DC212327819C56000B187A /* VSpinnerDashed.swift in Sources */,
 				15DC21A327819C56000B187A /* VBaseTextFieldActions.swift in Sources */,
 				15DC21A927819C56000B187A /* UIKitTextFieldCoordinator.swift in Sources */,
 				159CFF2C27887ED3006421FB /* InputMnemonicView.swift in Sources */,
 				15DC213927819C56000B187A /* VMenuPickerState.swift in Sources */,
+				156ADC5C2797B42D00CD4B02 /* NavigationViewCoordinator.swift in Sources */,
 				154B8905276A1EEB00780E93 /* ImportWalletView.swift in Sources */,
 				15DC20E927819C56000B187A /* VAccordionState.swift in Sources */,
 				15DC20B527819C56000B187A /* VChevronButtonDirection.swift in Sources */,
@@ -3013,22 +3018,24 @@
 				15DC212727819C56000B187A /* VSpinnerModelContinous.swift in Sources */,
 				15DC215D27819C56000B187A /* VMenuRow.swift in Sources */,
 				15F22F20278B33EE00FCF772 /* CreatePinCodeViewModel.swift in Sources */,
+				156ADC502797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */,
 				15DC210527819C56000B187A /* VSliderModel.swift in Sources */,
 				15D574CA277816F200045E79 /* UsernameView.swift in Sources */,
-				159E4445278D709500D566B0 /* PresentationType.swift in Sources */,
-				159E442F278D709500D566B0 /* RouterStore.swift in Sources */,
-				159E4421278D709500D566B0 /* Presentable.swift in Sources */,
+				156ADC6E2797B42D00CD4B02 /* Routable.swift in Sources */,
 				15DC218127819C56000B187A /* VActionSheet.swift in Sources */,
 				15DC20D327819C56000B187A /* VPlainButton.swift in Sources */,
 				15DC20ED27819C56000B187A /* VSectionListModel.swift in Sources */,
 				15DC218D27819C56000B187A /* VRadioButton.swift in Sources */,
 				15F22F15278B1F3D00FCF772 /* RequestSecureViewModel.swift in Sources */,
+				156ADC522797B42D00CD4B02 /* StringIdentifiable.swift in Sources */,
 				15DC21BF27819C56000B187A /* WindowOverlayView.swift in Sources */,
 				15DC20FD27819C56000B187A /* VStepperButton.swift in Sources */,
 				15DC21F32781F7D9000B187A /* Keyboard.swift in Sources */,
 				15DC208127819C56000B187A /* VBaseViewNavigationBarCenter.swift in Sources */,
+				156ADC642797B42D00CD4B02 /* TabRouter.swift in Sources */,
 				15DC213B27819C56000B187A /* VMenuPicker.swift in Sources */,
 				15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
+				156ADC662797B42D00CD4B02 /* TabChild.swift in Sources */,
 				1537B3DE277C8E2A008ECD05 /* OnBoradingCoordinator.swift in Sources */,
 				15DC218727819C56000B187A /* VToggle.swift in Sources */,
 				15DC20A727819C56000B187A /* VWebLinkState.swift in Sources */,
@@ -3040,14 +3047,15 @@
 				15DC20D727819C56000B187A /* VPlainButtonState.swift in Sources */,
 				158C9CB32787F9520062E0C6 /* FontBook.swift in Sources */,
 				15DC1D4A27814AD1000B187A /* TextFieldStyle.swift in Sources */,
+				156ADC622797B42D00CD4B02 /* RouterStore.swift in Sources */,
 				15B1F6242785B1C200847BB5 /* NavigationDemo.swift in Sources */,
 				15D9283027843D4900382226 /* ManualBackupView.swift in Sources */,
 				15DC21D927819C56000B187A /* StateColors_EPLD.swift in Sources */,
 				15BCFEFC277565F0000B7863 /* TermsAndPolicy.swift in Sources */,
 				15DC209927819C56000B187A /* VToastModel.swift in Sources */,
 				15DC20F327819C56000B187A /* VSectionList.swift in Sources */,
+				156ADC6A2797B42D00CD4B02 /* TabRoute.swift in Sources */,
 				15DC20AD27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
-				159E4449278D709500D566B0 /* PresentationHelper.swift in Sources */,
 				158CE88C2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */,
 				154B8906276A1EEB00780E93 /* Lilico_App.swift in Sources */,
 				15DC20BB27819C56000B187A /* VChevronButtonState.swift in Sources */,
@@ -3057,21 +3065,21 @@
 				15DC211F27819C56000B187A /* VSpinnerType.swift in Sources */,
 				15DC207F27819C56000B187A /* VBaseViewNavigationBarLeading.swift in Sources */,
 				15DC207B27819C56000B187A /* VBaseView.swift in Sources */,
-				159E443B278D709500D566B0 /* Routable.swift in Sources */,
 				15D9283327843DAD00382226 /* ManualBackupViewModel.swift in Sources */,
 				15DC208927819C56000B187A /* VLazyScrollView.swift in Sources */,
 				15DC214727819C56000B187A /* VTabNavigationViewPage.swift in Sources */,
-				159E4439278D709500D566B0 /* TabCoordinatableView.swift in Sources */,
 				15DC20F927819C56000B187A /* VBaseList.swift in Sources */,
 				15DC21C127819C56000B187A /* DerivedButtonType.swift in Sources */,
 				15DC217927819C56000B187A /* VModal.swift in Sources */,
 				15DC21A127819C56000B187A /* UIKitTextFieldRepresentable.swift in Sources */,
 				15DC20BD27819C56000B187A /* VSquareButtonModel.swift in Sources */,
 				15DC21AB27819C56000B187A /* FocusableTextField.swift in Sources */,
+				156ADC562797B42D00CD4B02 /* Coordinatable.swift in Sources */,
 				15DC219B27819C56000B187A /* VTextFieldActions.swift in Sources */,
 				154B8908276A1EEB00780E93 /* ColorBook.swift in Sources */,
 				15DC212127819C56000B187A /* VSpinnerModelDashed.swift in Sources */,
 				15DC20DB27819C56000B187A /* VPrimaryButtonState.swift in Sources */,
+				156ADC7E2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */,
 				15B1F6332786B1BB00847BB5 /* CheckboxStyle.swift in Sources */,
 				154B8909276A1EEB00780E93 /* Color.swift in Sources */,
 				154B890A276A1EEB00780E93 /* OnboardingView.swift in Sources */,
@@ -3088,21 +3096,21 @@
 				15F22F29278BB88100FCF772 /* NewEmptyWalletView.swift in Sources */,
 				1552DC5F2786EBA100EAA7D5 /* RequestSecureView.swift in Sources */,
 				15DC214D27819C56000B187A /* VNavigationViewModel.swift in Sources */,
+				156ADC722797B42D00CD4B02 /* NavigationStack.swift in Sources */,
 				15DC21A527819C56000B187A /* VBaseTextFieldState.swift in Sources */,
 				15F22F1D278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift in Sources */,
 				15DC213127819C56000B187A /* VWheelPickerModel.swift in Sources */,
 				15DC20B127819C56000B187A /* VBaseButtonState.swift in Sources */,
 				15D9282D2783395F00382226 /* HUDManager.swift in Sources */,
+				156ADC5E2797B42D00CD4B02 /* WeakRef.swift in Sources */,
 				15B1F6302786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				15D9282A278338DB00382226 /* UIApplication.swift in Sources */,
-				159E4441278D709500D566B0 /* Presented.swift in Sources */,
 				15DC20B927819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209127819C56000B187A /* VSheet.swift in Sources */,
 				154B890B276A1EEB00780E93 /* OnboardingViewModel.swift in Sources */,
 				15DC208727819C56000B187A /* VLazyScrollViewType.swift in Sources */,
 				1599F774278894E00094B196 /* String.swift in Sources */,
 				154B890C276A1EEB00780E93 /* WalletSetupView.swift in Sources */,
-				159E4437278D709500D566B0 /* TabRoute.swift in Sources */,
 				15DC20F527819C56000B187A /* VBaseListModel.swift in Sources */,
 				15B1F62D2786ABE400847BB5 /* BackupPasswordView.swift in Sources */,
 				15DC21AF27819C56000B187A /* UINavigationBar.NavigationBarHeight.swift in Sources */,
@@ -3112,6 +3120,7 @@
 				15DC211B27819C56000B187A /* VPageIndicatorModel.swift in Sources */,
 				154B890D276A1EEB00780E93 /* AppDelegate.swift in Sources */,
 				15DC215727819C56000B187A /* VMenuSubMenu.swift in Sources */,
+				156ADC762797B42D00CD4B02 /* NavigationCoordinatable.swift in Sources */,
 				15DC215527819C56000B187A /* VMenuState.swift in Sources */,
 				15DC210B27819C56000B187A /* VRangeSlider.swift in Sources */,
 				15DC1D5627816605000B187A /* CacheManager.swift in Sources */,
@@ -3122,15 +3131,14 @@
 				15DC209B27819C56000B187A /* VBaseHeaderFooterView.swift in Sources */,
 				15DC213327819C56000B187A /* VSegmentedPickerModel.swift in Sources */,
 				15DC21E327819C56000B187A /* StateColors_EFD.swift in Sources */,
-				159E443F278D709500D566B0 /* NavigationStack.swift in Sources */,
 				15DC20E727819C56000B187A /* VAccordionModel.swift in Sources */,
+				156ADC4E2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */,
 				15DC21C527819C56000B187A /* LayoutGroup_LT.swift in Sources */,
 				15DC21A727819C56000B187A /* VBaseTextField.swift in Sources */,
 				15B1F6272785B1DA00847BB5 /* NavigateDetail.swift in Sources */,
 				15DC210727819C56000B187A /* VSliderState.swift in Sources */,
 				15DC215B27819C56000B187A /* VMenuButtonType.swift in Sources */,
 				15DC217F27819C56000B187A /* VActionSheetRow.swift in Sources */,
-				159E441F278D709500D566B0 /* StringIdentifiable.swift in Sources */,
 				15DC20A127819C56000B187A /* VSecondaryButton.swift in Sources */,
 				15DC1D5927816660000B187A /* Network.swift in Sources */,
 				15DC214527819C56000B187A /* VTabNavigationPageItem.swift in Sources */,
@@ -3148,17 +3156,15 @@
 				15DC218527819C56000B187A /* VToggleModel.swift in Sources */,
 				154B8910276A1EEB00780E93 /* HomeView.swift in Sources */,
 				15DC216D27819C56000B187A /* VDialogButton.swift in Sources */,
+				156ADC682797B42D00CD4B02 /* TabCoordinatable.swift in Sources */,
 				15DC21EB27819C57000B187A /* StateOpacities_P.swift in Sources */,
 				15DC21D727819C56000B187A /* StateColors_ED.swift in Sources */,
-				159E4433278D709500D566B0 /* TabChild.swift in Sources */,
 				15DC21D327819C56000B187A /* StateColors_EFSEPD.swift in Sources */,
-				159E4429278D709500D566B0 /* NavigationViewCoordinator.swift in Sources */,
 				1570466D27930EB200D1747B /* NFTTabScreen.swift in Sources */,
 				15DC217B27819C56000B187A /* VModalModel.swift in Sources */,
 				15D57752277C224300045E79 /* LilicoEndpoint.swift in Sources */,
 				15DC218B27819C56000B187A /* VRadioButtonModel.swift in Sources */,
 				15BCFF1527770D76000B7863 /* EmptyWalletView.swift in Sources */,
-				159E4427278D709500D566B0 /* ChildDismissable.swift in Sources */,
 				15DC215327819C56000B187A /* VNavigationViewAppearance.swift in Sources */,
 				15DC1D4727814A68000B187A /* ButtonStyle.swift in Sources */,
 				15DC219527819C56000B187A /* VTextField.swift in Sources */,
@@ -3166,6 +3172,7 @@
 				15DC21E927819C57000B187A /* StateColors_OOD.swift in Sources */,
 				15DC1D3F27809F83000B187A /* BackupManager.swift in Sources */,
 				154B8911276A1EEB00780E93 /* AppCoordinator.swift in Sources */,
+				156ADC582797B42D00CD4B02 /* AnyCoordinator.swift in Sources */,
 				15DC21E127819C56000B187A /* StateOpacities_D.swift in Sources */,
 				154B8912276A1EEB00780E93 /* WalletSetupViewModel.swift in Sources */,
 				15F22F10278B1DF400FCF772 /* SecureCoordinator.swift in Sources */,
@@ -3185,16 +3192,16 @@
 				15DC20F727819C56000B187A /* VBaseListLayoutType.swift in Sources */,
 				15DC20FB27819C56000B187A /* VBaseListElement.swift in Sources */,
 				1570467C2793D60000D1747B /* NFTListResponse.swift in Sources */,
-				159E4447278D709500D566B0 /* NavigationRoute.swift in Sources */,
-				159E4431278D709500D566B0 /* TabRouter.swift in Sources */,
+				156ADC802797B42D00CD4B02 /* FocusError.swift in Sources */,
 				15DC219727819C56000B187A /* VTextFieldType.swift in Sources */,
 				15B1A687276B53F70006B621 /* GetStartedView.swift in Sources */,
 				15DC210F27819C56000B187A /* VRangeSliderState.swift in Sources */,
 				154B8915276A1EEB00780E93 /* OnboardingModel.swift in Sources */,
 				15D5774B277C0FFB00045E79 /* UsernameViewModel.swift in Sources */,
 				15DC21E527819C57000B187A /* StateColors_EFSED.swift in Sources */,
-				159E4443278D709500D566B0 /* NavigationCoordinatable.swift in Sources */,
+				156ADC602797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */,
 				15DC218927819C56000B187A /* VRadioButtonState.swift in Sources */,
+				156ADC542797B42D00CD4B02 /* Presentable.swift in Sources */,
 				15DC215927819C56000B187A /* VMenu.swift in Sources */,
 				1552DC622786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
 				15D5775E277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
@@ -3208,7 +3215,6 @@
 				15DE22E0277DF37D00B5EE03 /* RestoreWalletView.swift in Sources */,
 				15DC21BB27819C56000B187A /* View.CornerRadius.swift in Sources */,
 				158CE87E27829E68006A8394 /* RecoveryPhraseView.swift in Sources */,
-				159E444D278D709500D566B0 /* FocusError.swift in Sources */,
 				15DC217727819C56000B187A /* _VDialog.swift in Sources */,
 				15DC20DF27819C56000B187A /* VListLayoutType.swift in Sources */,
 				154B8916276A1EEB00780E93 /* BackgroundModifer.swift in Sources */,
@@ -3225,7 +3231,6 @@
 				15DC21B727819C56000B187A /* View.ReadSize.swift in Sources */,
 				15DC209327819C56000B187A /* VToast.swift in Sources */,
 				15DC21CD27819C56000B187A /* SliderHelpers.swift in Sources */,
-				159E443D278D709500D566B0 /* NavigationRouter.swift in Sources */,
 				15DC20AB27819C56000B187A /* VBaseButton.swift in Sources */,
 				15DC219D27819C56000B187A /* VTextFieldState.swift in Sources */,
 				156AC7B427804C2100ED5E3E /* LoginCoordinator.swift in Sources */,
@@ -3237,7 +3242,6 @@
 				15DC210D27819C56000B187A /* VRangeSliderModel.swift in Sources */,
 				15DC20B327819C56000B187A /* VBaseButtonTapGestureRecognizer.swift in Sources */,
 				15DC20A327819C56000B187A /* VSecondaryButtonState.swift in Sources */,
-				159E442B278D709500D566B0 /* WeakRef.swift in Sources */,
 				15DC219127819C56000B187A /* VCheckBoxState.swift in Sources */,
 				15DC211527819C56000B187A /* VPageIndicator.swift in Sources */,
 				15DC20D527819C56000B187A /* VPlainButtonModel.swift in Sources */,
@@ -3246,6 +3250,7 @@
 				15DC219327819C56000B187A /* VCheckBoxModel.swift in Sources */,
 				15DC20D927819C56000B187A /* VPrimaryButtonModel.swift in Sources */,
 				15DC208327819C56000B187A /* VLazyScrollViewModelHorizontal.swift in Sources */,
+				156ADC6C2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */,
 				15DC20CB27819C56000B187A /* VNavigationLinkState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3260,14 +3265,13 @@
 				15EC9E1E274FD78600F70CD9 /* LightDarkSwitcher.swift in Sources */,
 				15DC209E27819C56000B187A /* VSecondaryButtonModel.swift in Sources */,
 				15DC21B427819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
-				159E4422278D709500D566B0 /* Coordinatable.swift in Sources */,
 				15DC210227819C56000B187A /* VStepperState.swift in Sources */,
+				156ADC792797B42D00CD4B02 /* NavigationRoute.swift in Sources */,
 				15D9283527849E6800382226 /* BackupCoordinator.swift in Sources */,
 				158C9C9F27871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */,
 				15DC20CC27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DC27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AC27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
-				159E442C278D709500D566B0 /* Array+SafeIndex.swift in Sources */,
 				15DC214227819C56000B187A /* VTabNavigationView.swift in Sources */,
 				1537B3DA277C8DC8008ECD05 /* HomeCoordinator.swift in Sources */,
 				15DC20E427819C56000B187A /* VAccordion.swift in Sources */,
@@ -3275,16 +3279,15 @@
 				15DC21EC27819C57000B187A /* StateColors_OOID.swift in Sources */,
 				15DC217C27819C56000B187A /* _VModal.swift in Sources */,
 				1570466F27931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
+				156ADC7B2797B42D00CD4B02 /* PresentationHelper.swift in Sources */,
 				15DC20EE27819C56000B187A /* VSectionListSection.swift in Sources */,
 				15DC20C627819C56000B187A /* VCloseButtonState.swift in Sources */,
 				15DDFB962751139A008263A2 /* CustomColor.swift in Sources */,
 				15DC214827819C56000B187A /* VTabNavigationViewModel.swift in Sources */,
+				156ADC772797B42D00CD4B02 /* PresentationType.swift in Sources */,
 				15DC20FE27819C56000B187A /* VStepperModel.swift in Sources */,
-				159E441C278D709500D566B0 /* ViewWrapperCoordinator.swift in Sources */,
 				1507C7EF275634C900890C5D /* ProfileView.swift in Sources */,
 				15DC21BC27819C56000B187A /* View.CustomViewFrames.swift in Sources */,
-				159E4424278D709500D566B0 /* AnyCoordinator.swift in Sources */,
-				159E444A278D709500D566B0 /* NavigationCoordinatableView.swift in Sources */,
 				15DC213E27819C56000B187A /* VMenuPickerButtonType.swift in Sources */,
 				15DC20BE27819C56000B187A /* VSquareButtonState.swift in Sources */,
 				15DC217427819C56000B187A /* VDialogButtonModel.swift in Sources */,
@@ -3296,6 +3299,8 @@
 				15DC21C227819C56000B187A /* LayoutGroup_TB.swift in Sources */,
 				15DC21C627819C56000B187A /* LayoutGroup_HV.swift in Sources */,
 				15DC21B227819C56000B187A /* Optional.LetBlockTransformation.swift in Sources */,
+				156ADC732797B42D00CD4B02 /* Presented.swift in Sources */,
+				156ADC592797B42D00CD4B02 /* ChildDismissable.swift in Sources */,
 				158CE8852782DA87006A8394 /* RegisterRequest.swift in Sources */,
 				15DC1F7227819B74000B187A /* SpinnerStyle.swift in Sources */,
 				15DC20A827819C56000B187A /* VWebLink.swift in Sources */,
@@ -3307,11 +3312,12 @@
 				15DC218227819C56000B187A /* VToggleState.swift in Sources */,
 				157046662790723400D1747B /* HeartButton.swift in Sources */,
 				15DE23002780208300B5EE03 /* RestoreWalletViewModel.swift in Sources */,
-				159E441A278D709500D566B0 /* ViewWrapperCoordinatorView.swift in Sources */,
 				15DC216427819C56000B187A /* _VHalfModal.swift in Sources */,
 				153C43FF2751CF74006D1E8D /* OffsetPageTabView.swift in Sources */,
 				158CE8802782BEAA006A8394 /* TYNKViewModel.swift in Sources */,
 				15DC21E627819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
+				156ADC6F2797B42D00CD4B02 /* NavigationRouter.swift in Sources */,
+				1570467E2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
 				15DC20B627819C56000B187A /* VChevronButton.swift in Sources */,
 				15DC20E027819C56000B187A /* VListModel.swift in Sources */,
 				15DC213427819C56000B187A /* VSegmentedPicker.swift in Sources */,
@@ -3320,13 +3326,13 @@
 				15DC21D027819C56000B187A /* VPickableItems.swift in Sources */,
 				15DC211C27819C56000B187A /* VSpinner.swift in Sources */,
 				15DC20E227819C56000B187A /* VList.swift in Sources */,
-				159E4434278D709500D566B0 /* TabCoordinatable.swift in Sources */,
 				1536813A276F4DD400913268 /* EmptyAccountView.swift in Sources */,
 				15DC212227819C56000B187A /* VSpinnerDashed.swift in Sources */,
 				15DC21A227819C56000B187A /* VBaseTextFieldActions.swift in Sources */,
 				15DC21A827819C56000B187A /* UIKitTextFieldCoordinator.swift in Sources */,
 				159CFF2B27887ED3006421FB /* InputMnemonicView.swift in Sources */,
 				15DC213827819C56000B187A /* VMenuPickerState.swift in Sources */,
+				156ADC5B2797B42D00CD4B02 /* NavigationViewCoordinator.swift in Sources */,
 				1507C7DB2754F4E000890C5D /* ImportWalletView.swift in Sources */,
 				15DC20E827819C56000B187A /* VAccordionState.swift in Sources */,
 				15DC20B427819C56000B187A /* VChevronButtonDirection.swift in Sources */,
@@ -3334,22 +3340,24 @@
 				15DC212627819C56000B187A /* VSpinnerModelContinous.swift in Sources */,
 				15DC215C27819C56000B187A /* VMenuRow.swift in Sources */,
 				15F22F1F278B33EE00FCF772 /* CreatePinCodeViewModel.swift in Sources */,
+				156ADC4F2797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */,
 				15DC210427819C56000B187A /* VSliderModel.swift in Sources */,
 				15D574C9277816F200045E79 /* UsernameView.swift in Sources */,
-				159E4444278D709500D566B0 /* PresentationType.swift in Sources */,
-				159E442E278D709500D566B0 /* RouterStore.swift in Sources */,
-				159E4420278D709500D566B0 /* Presentable.swift in Sources */,
+				156ADC6D2797B42D00CD4B02 /* Routable.swift in Sources */,
 				15DC218027819C56000B187A /* VActionSheet.swift in Sources */,
 				15DC20D227819C56000B187A /* VPlainButton.swift in Sources */,
 				15DC20EC27819C56000B187A /* VSectionListModel.swift in Sources */,
 				15DC218C27819C56000B187A /* VRadioButton.swift in Sources */,
 				15F22F14278B1F3D00FCF772 /* RequestSecureViewModel.swift in Sources */,
+				156ADC512797B42D00CD4B02 /* StringIdentifiable.swift in Sources */,
 				15DC21BE27819C56000B187A /* WindowOverlayView.swift in Sources */,
 				15DC20FC27819C56000B187A /* VStepperButton.swift in Sources */,
 				15DC21F22781F7D9000B187A /* Keyboard.swift in Sources */,
 				15DC208027819C56000B187A /* VBaseViewNavigationBarCenter.swift in Sources */,
+				156ADC632797B42D00CD4B02 /* TabRouter.swift in Sources */,
 				15DC213A27819C56000B187A /* VMenuPicker.swift in Sources */,
 				15BCFF1B277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
+				156ADC652797B42D00CD4B02 /* TabChild.swift in Sources */,
 				1537B3DD277C8E2A008ECD05 /* OnBoradingCoordinator.swift in Sources */,
 				15DC218627819C56000B187A /* VToggle.swift in Sources */,
 				15DC20A627819C56000B187A /* VWebLinkState.swift in Sources */,
@@ -3361,14 +3369,15 @@
 				15DC20D627819C56000B187A /* VPlainButtonState.swift in Sources */,
 				158C9CB22787F9520062E0C6 /* FontBook.swift in Sources */,
 				15DC1D4927814AD1000B187A /* TextFieldStyle.swift in Sources */,
+				156ADC612797B42D00CD4B02 /* RouterStore.swift in Sources */,
 				15B1F6232785B1C200847BB5 /* NavigationDemo.swift in Sources */,
 				15D9282F27843D4900382226 /* ManualBackupView.swift in Sources */,
 				15DC21D827819C56000B187A /* StateColors_EPLD.swift in Sources */,
 				15BCFEFB277565F0000B7863 /* TermsAndPolicy.swift in Sources */,
 				15DC209827819C56000B187A /* VToastModel.swift in Sources */,
 				15DC20F227819C56000B187A /* VSectionList.swift in Sources */,
+				156ADC692797B42D00CD4B02 /* TabRoute.swift in Sources */,
 				15DC20AC27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
-				159E4448278D709500D566B0 /* PresentationHelper.swift in Sources */,
 				158CE88B2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */,
 				15EC9DF2274FD1FD00F70CD9 /* Lilico_App.swift in Sources */,
 				15DC20BA27819C56000B187A /* VChevronButtonState.swift in Sources */,
@@ -3378,21 +3387,21 @@
 				15DC211E27819C56000B187A /* VSpinnerType.swift in Sources */,
 				15DC207E27819C56000B187A /* VBaseViewNavigationBarLeading.swift in Sources */,
 				15DC207A27819C56000B187A /* VBaseView.swift in Sources */,
-				159E443A278D709500D566B0 /* Routable.swift in Sources */,
 				15D9283227843DAD00382226 /* ManualBackupViewModel.swift in Sources */,
 				15DC208827819C56000B187A /* VLazyScrollView.swift in Sources */,
 				15DC214627819C56000B187A /* VTabNavigationViewPage.swift in Sources */,
-				159E4438278D709500D566B0 /* TabCoordinatableView.swift in Sources */,
 				15DC20F827819C56000B187A /* VBaseList.swift in Sources */,
 				15DC21C027819C56000B187A /* DerivedButtonType.swift in Sources */,
 				15DC217827819C56000B187A /* VModal.swift in Sources */,
 				15DC21A027819C56000B187A /* UIKitTextFieldRepresentable.swift in Sources */,
 				15DC20BC27819C56000B187A /* VSquareButtonModel.swift in Sources */,
 				15DC21AA27819C56000B187A /* FocusableTextField.swift in Sources */,
+				156ADC552797B42D00CD4B02 /* Coordinatable.swift in Sources */,
 				15DC219A27819C56000B187A /* VTextFieldActions.swift in Sources */,
 				159A55FF27536CD9004BCACC /* ColorBook.swift in Sources */,
 				15DC212027819C56000B187A /* VSpinnerModelDashed.swift in Sources */,
 				15DC20DA27819C56000B187A /* VPrimaryButtonState.swift in Sources */,
+				156ADC7D2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */,
 				15B1F6322786B1BB00847BB5 /* CheckboxStyle.swift in Sources */,
 				153C44012751CFA4006D1E8D /* Color.swift in Sources */,
 				15DDFB9127510C96008263A2 /* OnboardingView.swift in Sources */,
@@ -3409,21 +3418,21 @@
 				15F22F28278BB88100FCF772 /* NewEmptyWalletView.swift in Sources */,
 				1552DC5E2786EBA100EAA7D5 /* RequestSecureView.swift in Sources */,
 				15DC214C27819C56000B187A /* VNavigationViewModel.swift in Sources */,
+				156ADC712797B42D00CD4B02 /* NavigationStack.swift in Sources */,
 				15DC21A427819C56000B187A /* VBaseTextFieldState.swift in Sources */,
 				15F22F1C278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift in Sources */,
 				15DC213027819C56000B187A /* VWheelPickerModel.swift in Sources */,
 				15DC20B027819C56000B187A /* VBaseButtonState.swift in Sources */,
 				15D9282C2783395F00382226 /* HUDManager.swift in Sources */,
+				156ADC5D2797B42D00CD4B02 /* WeakRef.swift in Sources */,
 				15B1F62F2786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				15D92829278338DB00382226 /* UIApplication.swift in Sources */,
-				159E4440278D709500D566B0 /* Presented.swift in Sources */,
 				15DC20B827819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209027819C56000B187A /* VSheet.swift in Sources */,
 				15F43D102753A678004F6F49 /* OnboardingViewModel.swift in Sources */,
 				15DC208627819C56000B187A /* VLazyScrollViewType.swift in Sources */,
 				1599F773278894E00094B196 /* String.swift in Sources */,
 				15EC9E1C274FD6C000F70CD9 /* WalletSetupView.swift in Sources */,
-				159E4436278D709500D566B0 /* TabRoute.swift in Sources */,
 				15DC20F427819C56000B187A /* VBaseListModel.swift in Sources */,
 				15B1F62C2786ABE400847BB5 /* BackupPasswordView.swift in Sources */,
 				15DC21AE27819C56000B187A /* UINavigationBar.NavigationBarHeight.swift in Sources */,
@@ -3433,6 +3442,7 @@
 				15DC211A27819C56000B187A /* VPageIndicatorModel.swift in Sources */,
 				154B88862765F33400780E93 /* AppDelegate.swift in Sources */,
 				15DC215627819C56000B187A /* VMenuSubMenu.swift in Sources */,
+				156ADC752797B42D00CD4B02 /* NavigationCoordinatable.swift in Sources */,
 				15DC215427819C56000B187A /* VMenuState.swift in Sources */,
 				15DC210A27819C56000B187A /* VRangeSlider.swift in Sources */,
 				15DC1D5527816605000B187A /* CacheManager.swift in Sources */,
@@ -3443,15 +3453,14 @@
 				15DC209A27819C56000B187A /* VBaseHeaderFooterView.swift in Sources */,
 				15DC213227819C56000B187A /* VSegmentedPickerModel.swift in Sources */,
 				15DC21E227819C56000B187A /* StateColors_EFD.swift in Sources */,
-				159E443E278D709500D566B0 /* NavigationStack.swift in Sources */,
 				15DC20E627819C56000B187A /* VAccordionModel.swift in Sources */,
+				156ADC4D2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */,
 				15DC21C427819C56000B187A /* LayoutGroup_LT.swift in Sources */,
 				15DC21A627819C56000B187A /* VBaseTextField.swift in Sources */,
 				15B1F6262785B1DA00847BB5 /* NavigateDetail.swift in Sources */,
 				15DC210627819C56000B187A /* VSliderState.swift in Sources */,
 				15DC215A27819C56000B187A /* VMenuButtonType.swift in Sources */,
 				15DC217E27819C56000B187A /* VActionSheetRow.swift in Sources */,
-				159E441E278D709500D566B0 /* StringIdentifiable.swift in Sources */,
 				15DC20A027819C56000B187A /* VSecondaryButton.swift in Sources */,
 				15DC1D5827816660000B187A /* Network.swift in Sources */,
 				15DC214427819C56000B187A /* VTabNavigationPageItem.swift in Sources */,
@@ -3469,17 +3478,15 @@
 				15DC218427819C56000B187A /* VToggleModel.swift in Sources */,
 				1507C7DF275502AF00890C5D /* HomeView.swift in Sources */,
 				15DC216C27819C56000B187A /* VDialogButton.swift in Sources */,
+				156ADC672797B42D00CD4B02 /* TabCoordinatable.swift in Sources */,
 				15DC21EA27819C57000B187A /* StateOpacities_P.swift in Sources */,
 				15DC21D627819C56000B187A /* StateColors_ED.swift in Sources */,
-				159E4432278D709500D566B0 /* TabChild.swift in Sources */,
 				15DC21D227819C56000B187A /* StateColors_EFSEPD.swift in Sources */,
-				159E4428278D709500D566B0 /* NavigationViewCoordinator.swift in Sources */,
 				1570466C27930EB200D1747B /* NFTTabScreen.swift in Sources */,
 				15DC217A27819C56000B187A /* VModalModel.swift in Sources */,
 				15D57751277C224300045E79 /* LilicoEndpoint.swift in Sources */,
 				15DC218A27819C56000B187A /* VRadioButtonModel.swift in Sources */,
 				15BCFF1427770D76000B7863 /* EmptyWalletView.swift in Sources */,
-				159E4426278D709500D566B0 /* ChildDismissable.swift in Sources */,
 				15DC215227819C56000B187A /* VNavigationViewAppearance.swift in Sources */,
 				15DC1D4627814A68000B187A /* ButtonStyle.swift in Sources */,
 				15DC219427819C56000B187A /* VTextField.swift in Sources */,
@@ -3487,6 +3494,7 @@
 				15DC21E827819C57000B187A /* StateColors_OOD.swift in Sources */,
 				15DC1D3E27809F83000B187A /* BackupManager.swift in Sources */,
 				152F985C275CDED0001C5855 /* AppCoordinator.swift in Sources */,
+				156ADC572797B42D00CD4B02 /* AnyCoordinator.swift in Sources */,
 				15DC21E027819C56000B187A /* StateOpacities_D.swift in Sources */,
 				159A569427539A2C004BCACC /* WalletSetupViewModel.swift in Sources */,
 				15F22F0F278B1DF400FCF772 /* SecureCoordinator.swift in Sources */,
@@ -3506,16 +3514,16 @@
 				15DC20F627819C56000B187A /* VBaseListLayoutType.swift in Sources */,
 				15DC20FA27819C56000B187A /* VBaseListElement.swift in Sources */,
 				1570467B2793D60000D1747B /* NFTListResponse.swift in Sources */,
-				159E4446278D709500D566B0 /* NavigationRoute.swift in Sources */,
-				159E4430278D709500D566B0 /* TabRouter.swift in Sources */,
+				156ADC7F2797B42D00CD4B02 /* FocusError.swift in Sources */,
 				15DC219627819C56000B187A /* VTextFieldType.swift in Sources */,
 				15B1A686276B53F70006B621 /* GetStartedView.swift in Sources */,
 				15DC210E27819C56000B187A /* VRangeSliderState.swift in Sources */,
 				152F985A275CD2DB001C5855 /* OnboardingModel.swift in Sources */,
 				15D5774A277C0FFB00045E79 /* UsernameViewModel.swift in Sources */,
 				15DC21E427819C57000B187A /* StateColors_EFSED.swift in Sources */,
-				159E4442278D709500D566B0 /* NavigationCoordinatable.swift in Sources */,
+				156ADC5F2797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */,
 				15DC218827819C56000B187A /* VRadioButtonState.swift in Sources */,
+				156ADC532797B42D00CD4B02 /* Presentable.swift in Sources */,
 				15DC215827819C56000B187A /* VMenu.swift in Sources */,
 				1552DC612786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
 				15D5775D277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
@@ -3529,7 +3537,6 @@
 				15DE22DF277DF37D00B5EE03 /* RestoreWalletView.swift in Sources */,
 				15DC21BA27819C56000B187A /* View.CornerRadius.swift in Sources */,
 				158CE87D27829E68006A8394 /* RecoveryPhraseView.swift in Sources */,
-				159E444C278D709500D566B0 /* FocusError.swift in Sources */,
 				15DC217627819C56000B187A /* _VDialog.swift in Sources */,
 				15DC20DE27819C56000B187A /* VListLayoutType.swift in Sources */,
 				153C440C27525D04006D1E8D /* BackgroundModifer.swift in Sources */,
@@ -3546,7 +3553,6 @@
 				15DC21B627819C56000B187A /* View.ReadSize.swift in Sources */,
 				15DC209227819C56000B187A /* VToast.swift in Sources */,
 				15DC21CC27819C56000B187A /* SliderHelpers.swift in Sources */,
-				159E443C278D709500D566B0 /* NavigationRouter.swift in Sources */,
 				15DC20AA27819C56000B187A /* VBaseButton.swift in Sources */,
 				15DC219C27819C56000B187A /* VTextFieldState.swift in Sources */,
 				156AC7B327804C2100ED5E3E /* LoginCoordinator.swift in Sources */,
@@ -3558,7 +3564,6 @@
 				15DC210C27819C56000B187A /* VRangeSliderModel.swift in Sources */,
 				15DC20B227819C56000B187A /* VBaseButtonTapGestureRecognizer.swift in Sources */,
 				15DC20A227819C56000B187A /* VSecondaryButtonState.swift in Sources */,
-				159E442A278D709500D566B0 /* WeakRef.swift in Sources */,
 				15DC219027819C56000B187A /* VCheckBoxState.swift in Sources */,
 				15DC211427819C56000B187A /* VPageIndicator.swift in Sources */,
 				15DC20D427819C56000B187A /* VPlainButtonModel.swift in Sources */,
@@ -3567,6 +3572,7 @@
 				15DC219227819C56000B187A /* VCheckBoxModel.swift in Sources */,
 				15DC20D827819C56000B187A /* VPrimaryButtonModel.swift in Sources */,
 				15DC208227819C56000B187A /* VLazyScrollViewModelHorizontal.swift in Sources */,
+				156ADC6B2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */,
 				15DC20CA27819C56000B187A /* VNavigationLinkState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
