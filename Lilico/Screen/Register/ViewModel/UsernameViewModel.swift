@@ -53,7 +53,7 @@ class UsernameViewModel: ViewModel {
         }
 
         if username.count > 15 {
-            state.status = .error("Too long ")
+            state.status = .error("Too long")
             return false
         }
 

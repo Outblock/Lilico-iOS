@@ -50,13 +50,14 @@ struct NFTListResponse: Codable {
 struct NFTResponse: Codable {
     let contract: NFTContract
     let id: NFTID
-    let media: NFTMedia?
+    let media: [NFTMedia]?
     let metadata: NFTMetadata
 }
 
 // MARK: - Contract
 struct NFTContract: Codable, Hashable {
-    let name, address, externalDomain: String
+    let name: String?
+    let address, externalDomain: String
     let contractMetadata: NFTContractMetadata
 }
 
@@ -93,5 +94,6 @@ struct NFTMetadata: Codable {
 
 // MARK: - Metadatum
 struct NFTMetadatum: Codable {
-    let name, value: String
+    let name: String?
+    let value: String
 }

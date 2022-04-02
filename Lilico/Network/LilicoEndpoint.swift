@@ -34,13 +34,13 @@ extension LilicoEndpoint: TargetType, AccessTokenAuthorizable {
     }
 
     var baseURL: URL {
-        .init(string: "https://dev.lilico.app")!
+        .init(string: "https://dev.lilico.app/v1")!
     }
 
     var path: String {
         switch self {
-        case let .checkUsername(name):
-            return "/user/check/\(name)"
+        case .checkUsername:
+            return "/user/check"
         case .register:
             return "/register"
         case .userAddress:
@@ -63,8 +63,10 @@ extension LilicoEndpoint: TargetType, AccessTokenAuthorizable {
 
     var task: Task {
         switch self {
-        case .checkUsername, .userAddress, .userInfo, .userWallet:
+        case .userAddress, .userInfo, .userWallet:
             return .requestPlain
+        case .checkUsername(let username):
+            return .requestParameters(parameters: ["username": username], encoding: URLEncoding.queryString)
         case let .register(request):
             return .requestCustomJSONEncodable(request, encoder: LilicoEndpoint.jsonEncoder)
         }

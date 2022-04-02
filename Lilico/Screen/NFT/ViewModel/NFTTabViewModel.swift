@@ -13,7 +13,7 @@ struct NFTCollection: Decodable, Hashable {
     let address: String
     var banner: URL? = nil
     var officialWebsite: URL? = nil
-    var marketplace: URL? = nil
+    var marketplace: URL?
 }
 
 struct NFTModel: Decodable, Hashable, Identifiable {
@@ -82,7 +82,7 @@ class NFTTabViewModel: ViewModel {
                     state.collections = haveCollections
                     state.nfts = response.nfts.compactMap({ NFTResponse in
                         
-                        var url = NFTResponse.media?.uri
+                        var url = NFTResponse.media?.first?.uri
                         
                         if url != nil  {
                             url = url!.replacingOccurrences(of: "ipfs://", with: "https://ipfs.io/ipfs/")
@@ -93,8 +93,8 @@ class NFTTabViewModel: ViewModel {
                         }
                         
                         return NFTModel(image: URL(string: url ?? "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png" )!,
-                                        name: NFTResponse.contract.name + " #" + NFTResponse.id.tokenID,
-                                        collections: NFTResponse.contract.name)
+                                        name: NFTResponse.contract.name ?? "" + " #" + NFTResponse.id.tokenID,
+                                        collections: NFTResponse.contract.name ?? "")
                     })
                 }
                 print(groups)
@@ -107,4 +107,21 @@ class NFTTabViewModel: ViewModel {
     }
 
     func trigger(_: NFTTabScreen.Action) {}
+}
+
+@propertyWrapper
+struct NullEncodable<T>: Encodable where T: Encodable {
+    var wrappedValue: T?
+
+    init(wrappedValue: T?) {
+        self.wrappedValue = wrappedValue
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch wrappedValue {
+        case let .some(value): try container.encode(value)
+        case .none: try container.encodeNil()
+        }
+    }
 }

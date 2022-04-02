@@ -20,13 +20,13 @@ enum AlchemyEndpoint {
 
 extension AlchemyEndpoint: TargetType {
     var baseURL: URL {
-        return URL(string: "https://flow-mainnet.g.alchemy.com/demo/v1/")!
+        return URL(string: "https://flow-mainnet.g.alchemy.com/v2/twx0ea5rbnqjbg7ev8jb058pqg50wklj/")!
     }
     
     var path: String {
         switch self {
         case .nftList:
-            return "getNFTs"
+            return "getNFTs/"
         }
     }
     
