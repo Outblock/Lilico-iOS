@@ -20,7 +20,7 @@ extension GithubEndpoint: TargetType {
     var path: String {
         switch self {
         case .collections:
-            return "/Outblock/Assets/main/nft.json"
+            return "/Outblock/Assets/main/nft/nft.json"
         }
     }
     

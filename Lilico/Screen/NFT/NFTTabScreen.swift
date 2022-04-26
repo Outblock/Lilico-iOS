@@ -159,7 +159,9 @@ struct NFTTabScreen: View {
                                     .url(nft.image)
                                     .fade(duration: 0.25)
                                     .resizable()
+//                                    .aspectRatio(contentMode: .fill)
                                     .aspectRatio(1, contentMode: .fill)
+//                                    .scaledToFill()
                                     .cornerRadius(8)
                                     .padding()
                                 
@@ -195,7 +197,10 @@ struct NFTTabScreen: View {
                                         .url(nft.image)
                                         .resizable()
                                         .aspectRatio(1, contentMode: .fill)
+//                                        .scaledToFill()
+//                                        .aspectRatio(contentMode: .fill)
                                         .cornerRadius(8)
+                                        .clipped()
                                     
                                     Text(nft.name)
                                         .font(.LL.body)

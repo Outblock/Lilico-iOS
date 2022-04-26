@@ -94,6 +94,6 @@ struct NFTMetadata: Codable {
 
 // MARK: - Metadatum
 struct NFTMetadatum: Codable {
-    let name: String?
+    let name: String
     let value: String
 }
