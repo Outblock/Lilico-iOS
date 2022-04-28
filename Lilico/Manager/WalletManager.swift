@@ -201,6 +201,20 @@ class WalletManager: ObservableObject {
 
 extension HDWallet {
     var flowAccountKey: Flow.AccountKey {
+        let p256PublicKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+            .getPublicKeySecp256k1(compressed: false)
+            .uncompressed
+            .data
+            .hexValue
+            .dropPrefix("04")
+        let key = Flow.PublicKey(hex: String(p256PublicKey))
+        return Flow.AccountKey(publicKey: key,
+                               signAlgo: .ECDSA_SECP256k1,
+                               hashAlgo: .SHA2_256,
+                               weight: 1000)
+    }
+    
+    var flowAccountP256Key: Flow.AccountKey {
         let p256PublicKey = getCurveKey(curve: .nist256p1, derivationPath: WalletManager.flowPath)
             .getPublicKeyNist256p1()
             .uncompressed

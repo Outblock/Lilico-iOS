@@ -103,7 +103,11 @@ class UserManager: ObservableObject {
         try await loginWithCustomToken(model.customToken)
         try await updateUserName(username: username)
         try WalletManager.shared.storeMnemonicToKeychain(username: username)
-        let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoEndpoint.userAddress)
+        
+        // No need wait for the create address request
+        Task {
+            let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoEndpoint.userAddress)
+        }
     }
 
     func getIdToken() async -> String? {
