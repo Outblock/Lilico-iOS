@@ -184,10 +184,6 @@
 		158CE8892782DAD7006A8394 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE8872782DAD7006A8394 /* RegisterResponse.swift */; };
 		158CE88B2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */; };
 		158CE88C2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */; };
-		158CEFBC277DB3FF004EF2C7 /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF99277DB3D7004EF2C7 /* WalletCore.xcframework */; };
-		158CEFBD277DB3FF004EF2C7 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF99277DB3D7004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		158CEFBF277DB419004EF2C7 /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEFA5277DB3D7004EF2C7 /* SwiftProtobuf.xcframework */; };
-		158CEFC0277DB419004EF2C7 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEFA5277DB3D7004EF2C7 /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1599F770278892680094B196 /* InputMnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F76F278892680094B196 /* InputMnemonicViewModel.swift */; };
 		1599F771278892680094B196 /* InputMnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F76F278892680094B196 /* InputMnemonicViewModel.swift */; };
 		1599F773278894E00094B196 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F772278894E00094B196 /* String.swift */; };
@@ -713,6 +709,10 @@
 		15F43D102753A678004F6F49 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F43D0F2753A678004F6F49 /* OnboardingViewModel.swift */; };
 		15F43D122753B4F6004F6F49 /* PageIndictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F43D112753B4F6004F6F49 /* PageIndictor.swift */; };
 		15F50B742760EE2F00208A81 /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 15F50B732760EE2F00208A81 /* Flow */; };
+		4E17466C281AF840002A029C /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
+		4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4E17466F281AF841002A029C /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
+		4E174670281AF841002A029C /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -732,8 +732,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				158CEFC0277DB419004EF2C7 /* SwiftProtobuf.xcframework in Embed Frameworks */,
-				158CEFBD277DB3FF004EF2C7 /* WalletCore.xcframework in Embed Frameworks */,
+				4E174670281AF841002A029C /* SwiftProtobuf.xcframework in Embed Frameworks */,
+				4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -815,65 +815,7 @@
 		158CE8872782DAD7006A8394 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPhraseViewModel.swift; sourceTree = "<group>"; };
 		158CE88D27830889006A8394 /* Lilico.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lilico.entitlements; sourceTree = "<group>"; };
-		158CEF0E277D4493004EF2C7 /* WalletCore.framework.ios-arm64.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "WalletCore.framework.ios-arm64.dSYM"; sourceTree = "<group>"; };
-		158CEF0F277D4493004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-simulator.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "WalletCore.framework.ios-arm64_x86_64-simulator.dSYM"; sourceTree = "<group>"; };
-		158CEF10277D4493004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-maccatalyst.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "WalletCore.framework.ios-arm64_x86_64-maccatalyst.dSYM"; sourceTree = "<group>"; };
-		158CEF12277D4493004EF2C7 /* 6B8F56F5-7450-3815-8F8B-1FB6E1F5207D.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "6B8F56F5-7450-3815-8F8B-1FB6E1F5207D.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF13277D4493004EF2C7 /* 49585989-F47E-3C30-90B5-870DA78E25E3.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "49585989-F47E-3C30-90B5-870DA78E25E3.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF14277D4493004EF2C7 /* B154B9AD-C709-3D02-B36B-AA3C2F7977CE.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "B154B9AD-C709-3D02-B36B-AA3C2F7977CE.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF15277D4493004EF2C7 /* D0B46D98-DF06-38DA-8006-C885F921D6D8.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "D0B46D98-DF06-38DA-8006-C885F921D6D8.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF16277D4493004EF2C7 /* 71F16FE3-B5B9-3D25-AA0E-4A111E2A0733.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "71F16FE3-B5B9-3D25-AA0E-4A111E2A0733.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF17277D4493004EF2C7 /* E701127C-7FDC-3A31-81D8-BB4C9EA317C9.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "E701127C-7FDC-3A31-81D8-BB4C9EA317C9.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF18277D4493004EF2C7 /* 22FF3CE7-0A9C-32BB-AA2C-08B19C1F423C.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "22FF3CE7-0A9C-32BB-AA2C-08B19C1F423C.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF19277D4493004EF2C7 /* 238B678E-1C2A-36C0-A96B-49173132DDA8.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "238B678E-1C2A-36C0-A96B-49173132DDA8.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF1A277D4493004EF2C7 /* 2AC38CD4-9821-398A-94C2-C96B5A3BB1CA.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "2AC38CD4-9821-398A-94C2-C96B5A3BB1CA.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF1B277D4493004EF2C7 /* 845F1B57-A31D-3C49-9F65-9AC87DB71C0F.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "845F1B57-A31D-3C49-9F65-9AC87DB71C0F.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF1C277D4493004EF2C7 /* E7D75013-503F-317B-8C24-5E581B189890.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "E7D75013-503F-317B-8C24-5E581B189890.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF1D277D4493004EF2C7 /* 0003C548-4CB6-393C-B0E6-C152BB25B51C.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "0003C548-4CB6-393C-B0E6-C152BB25B51C.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF1E277D4493004EF2C7 /* 92755BEE-A193-3A2A-9D1B-7C4E940DEAE3.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "92755BEE-A193-3A2A-9D1B-7C4E940DEAE3.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF1F277D4493004EF2C7 /* 276AACDA-79EC-30DB-9B53-4630E5CBEF99.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "276AACDA-79EC-30DB-9B53-4630E5CBEF99.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF20277D4493004EF2C7 /* 3522A119-988E-353C-8480-2C56706D4C48.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "3522A119-988E-353C-8480-2C56706D4C48.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF21277D4493004EF2C7 /* A0F17438-2C5C-3784-9A61-F5E383351E43.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "A0F17438-2C5C-3784-9A61-F5E383351E43.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF22277D4493004EF2C7 /* 78707AF5-5234-39C8-8A5C-C3C20B847CE2.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "78707AF5-5234-39C8-8A5C-C3C20B847CE2.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF23277D4493004EF2C7 /* 22A8516B-4792-3EBC-B567-D940D34732BD.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "22A8516B-4792-3EBC-B567-D940D34732BD.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF24277D4493004EF2C7 /* EA11C68C-B5D1-39AB-9D5A-254E7D88331B.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "EA11C68C-B5D1-39AB-9D5A-254E7D88331B.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF25277D4493004EF2C7 /* 07F27E5D-85D4-340C-B5EF-DC71A219E0F0.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "07F27E5D-85D4-340C-B5EF-DC71A219E0F0.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEF26277D4493004EF2C7 /* 42108CAC-3958-3C22-A2D3-AAC3B2E753CB.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "42108CAC-3958-3C22-A2D3-AAC3B2E753CB.bcsymbolmap"; sourceTree = "<group>"; };
 		158CEF27277D4493004EF2C7 /* WalletCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = WalletCore.xcframework; path = Lilico/Library/WalletCore.xcframework; sourceTree = "<group>"; };
-		158CEF97277DB3D7004EF2C7 /* SwiftProtobuf.framework.ios-arm64.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "SwiftProtobuf.framework.ios-arm64.dSYM"; sourceTree = "<group>"; };
-		158CEF98277DB3D7004EF2C7 /* SwiftProtobuf.framework.ios-arm64_x86_64-maccatalyst.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "SwiftProtobuf.framework.ios-arm64_x86_64-maccatalyst.dSYM"; sourceTree = "<group>"; };
-		158CEF99277DB3D7004EF2C7 /* WalletCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = WalletCore.xcframework; path = "../wallet-core/swift/build/WalletCore.xcframework"; sourceTree = "<group>"; };
-		158CEF9B277DB3D7004EF2C7 /* WalletCore.framework.ios-arm64.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "WalletCore.framework.ios-arm64.dSYM"; sourceTree = "<group>"; };
-		158CEF9C277DB3D7004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-simulator.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "WalletCore.framework.ios-arm64_x86_64-simulator.dSYM"; sourceTree = "<group>"; };
-		158CEF9D277DB3D7004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-maccatalyst.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = "WalletCore.framework.ios-arm64_x86_64-maccatalyst.dSYM"; sourceTree = "<group>"; };
-		158CEF9F277DB3D7004EF2C7 /* 49585989-F47E-3C30-90B5-870DA78E25E3.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "49585989-F47E-3C30-90B5-870DA78E25E3.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFA0277DB3D7004EF2C7 /* 9FA4DD74-A74B-3905-B0FE-7CBF420AEA3E.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "9FA4DD74-A74B-3905-B0FE-7CBF420AEA3E.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFA1277DB3D7004EF2C7 /* 0FAA0F23-234F-34FB-81A4-07A91AE72235.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "0FAA0F23-234F-34FB-81A4-07A91AE72235.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFA2277DB3D7004EF2C7 /* 82F781BA-8ADF-394B-80AC-16EC581ECD18.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "82F781BA-8ADF-394B-80AC-16EC581ECD18.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFA3277DB3D7004EF2C7 /* E7D75013-503F-317B-8C24-5E581B189890.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "E7D75013-503F-317B-8C24-5E581B189890.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFA4277DB3D7004EF2C7 /* 3522A119-988E-353C-8480-2C56706D4C48.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "3522A119-988E-353C-8480-2C56706D4C48.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFA5277DB3D7004EF2C7 /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = "../wallet-core/swift/build/SwiftProtobuf.xcframework"; sourceTree = "<group>"; };
-		158CEFA7277DB3D7004EF2C7 /* 6B8F56F5-7450-3815-8F8B-1FB6E1F5207D.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "6B8F56F5-7450-3815-8F8B-1FB6E1F5207D.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFA8277DB3D7004EF2C7 /* 49585989-F47E-3C30-90B5-870DA78E25E3.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "49585989-F47E-3C30-90B5-870DA78E25E3.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFA9277DB3D7004EF2C7 /* B154B9AD-C709-3D02-B36B-AA3C2F7977CE.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "B154B9AD-C709-3D02-B36B-AA3C2F7977CE.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFAA277DB3D7004EF2C7 /* D0B46D98-DF06-38DA-8006-C885F921D6D8.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "D0B46D98-DF06-38DA-8006-C885F921D6D8.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFAB277DB3D7004EF2C7 /* 71F16FE3-B5B9-3D25-AA0E-4A111E2A0733.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "71F16FE3-B5B9-3D25-AA0E-4A111E2A0733.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFAC277DB3D7004EF2C7 /* E701127C-7FDC-3A31-81D8-BB4C9EA317C9.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "E701127C-7FDC-3A31-81D8-BB4C9EA317C9.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFAD277DB3D7004EF2C7 /* 22FF3CE7-0A9C-32BB-AA2C-08B19C1F423C.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "22FF3CE7-0A9C-32BB-AA2C-08B19C1F423C.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFAE277DB3D7004EF2C7 /* 238B678E-1C2A-36C0-A96B-49173132DDA8.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "238B678E-1C2A-36C0-A96B-49173132DDA8.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFAF277DB3D7004EF2C7 /* 2AC38CD4-9821-398A-94C2-C96B5A3BB1CA.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "2AC38CD4-9821-398A-94C2-C96B5A3BB1CA.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB0277DB3D7004EF2C7 /* 845F1B57-A31D-3C49-9F65-9AC87DB71C0F.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "845F1B57-A31D-3C49-9F65-9AC87DB71C0F.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB1277DB3D7004EF2C7 /* E7D75013-503F-317B-8C24-5E581B189890.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "E7D75013-503F-317B-8C24-5E581B189890.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB2277DB3D7004EF2C7 /* 0003C548-4CB6-393C-B0E6-C152BB25B51C.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "0003C548-4CB6-393C-B0E6-C152BB25B51C.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB3277DB3D7004EF2C7 /* 92755BEE-A193-3A2A-9D1B-7C4E940DEAE3.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "92755BEE-A193-3A2A-9D1B-7C4E940DEAE3.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB4277DB3D7004EF2C7 /* 276AACDA-79EC-30DB-9B53-4630E5CBEF99.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "276AACDA-79EC-30DB-9B53-4630E5CBEF99.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB5277DB3D7004EF2C7 /* 3522A119-988E-353C-8480-2C56706D4C48.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "3522A119-988E-353C-8480-2C56706D4C48.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB6277DB3D7004EF2C7 /* A0F17438-2C5C-3784-9A61-F5E383351E43.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "A0F17438-2C5C-3784-9A61-F5E383351E43.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB7277DB3D7004EF2C7 /* 78707AF5-5234-39C8-8A5C-C3C20B847CE2.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "78707AF5-5234-39C8-8A5C-C3C20B847CE2.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB8277DB3D7004EF2C7 /* 22A8516B-4792-3EBC-B567-D940D34732BD.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "22A8516B-4792-3EBC-B567-D940D34732BD.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFB9277DB3D7004EF2C7 /* EA11C68C-B5D1-39AB-9D5A-254E7D88331B.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "EA11C68C-B5D1-39AB-9D5A-254E7D88331B.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFBA277DB3D7004EF2C7 /* 07F27E5D-85D4-340C-B5EF-DC71A219E0F0.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "07F27E5D-85D4-340C-B5EF-DC71A219E0F0.bcsymbolmap"; sourceTree = "<group>"; };
-		158CEFBB277DB3D7004EF2C7 /* 42108CAC-3958-3C22-A2D3-AAC3B2E753CB.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = "42108CAC-3958-3C22-A2D3-AAC3B2E753CB.bcsymbolmap"; sourceTree = "<group>"; };
 		1599F76F278892680094B196 /* InputMnemonicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMnemonicViewModel.swift; sourceTree = "<group>"; };
 		1599F772278894E00094B196 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		159A54312753681F004BCACC /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -1140,6 +1082,7 @@
 		15F22F32278C348A00FCF772 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		15F43D0F2753A678004F6F49 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		15F43D112753B4F6004F6F49 /* PageIndictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndictor.swift; sourceTree = "<group>"; };
+		4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = Lilico/Library/SwiftProtobuf.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1152,8 +1095,8 @@
 				15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */,
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
 				15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */,
+				4E17466C281AF840002A029C /* WalletCore.xcframework in Frameworks */,
 				15185ED8278A73A3006B74A9 /* SPConfetti in Frameworks */,
-				158CEFBF277DB419004EF2C7 /* SwiftProtobuf.xcframework in Frameworks */,
 				15D5775B277C23BF00045E79 /* Moya in Frameworks */,
 				15F22F1A278B21B600FCF772 /* BiometricAuthentication in Frameworks */,
 				154B891C276A1EEB00780E93 /* Resolver in Frameworks */,
@@ -1162,7 +1105,6 @@
 				156AC7AD27802FAC00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */,
 				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
-				158CEFBC277DB3FF004EF2C7 /* WalletCore.xcframework in Frameworks */,
 				15BCFF102775986E000B7863 /* SPIndicator in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
 				154B891F276A1EEB00780E93 /* FirebaseDynamicLinks in Frameworks */,
@@ -1170,6 +1112,7 @@
 				15DE22F1277F133B00B5EE03 /* SkeletonUI in Frameworks */,
 				1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */,
 				154B8920276A1EEB00780E93 /* SwiftUIX in Frameworks */,
+				4E17466F281AF841002A029C /* SwiftProtobuf.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,110 +1448,6 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
-		158CEF0D277D4493004EF2C7 /* WalletCore.dSYMs */ = {
-			isa = PBXGroup;
-			children = (
-				158CEF0E277D4493004EF2C7 /* WalletCore.framework.ios-arm64.dSYM */,
-				158CEF0F277D4493004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-simulator.dSYM */,
-				158CEF10277D4493004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-maccatalyst.dSYM */,
-			);
-			name = WalletCore.dSYMs;
-			path = Lilico/Library/WalletCore.dSYMs;
-			sourceTree = "<group>";
-		};
-		158CEF11277D4493004EF2C7 /* WalletCore.BCSymbolMaps */ = {
-			isa = PBXGroup;
-			children = (
-				158CEF12277D4493004EF2C7 /* 6B8F56F5-7450-3815-8F8B-1FB6E1F5207D.bcsymbolmap */,
-				158CEF13277D4493004EF2C7 /* 49585989-F47E-3C30-90B5-870DA78E25E3.bcsymbolmap */,
-				158CEF14277D4493004EF2C7 /* B154B9AD-C709-3D02-B36B-AA3C2F7977CE.bcsymbolmap */,
-				158CEF15277D4493004EF2C7 /* D0B46D98-DF06-38DA-8006-C885F921D6D8.bcsymbolmap */,
-				158CEF16277D4493004EF2C7 /* 71F16FE3-B5B9-3D25-AA0E-4A111E2A0733.bcsymbolmap */,
-				158CEF17277D4493004EF2C7 /* E701127C-7FDC-3A31-81D8-BB4C9EA317C9.bcsymbolmap */,
-				158CEF18277D4493004EF2C7 /* 22FF3CE7-0A9C-32BB-AA2C-08B19C1F423C.bcsymbolmap */,
-				158CEF19277D4493004EF2C7 /* 238B678E-1C2A-36C0-A96B-49173132DDA8.bcsymbolmap */,
-				158CEF1A277D4493004EF2C7 /* 2AC38CD4-9821-398A-94C2-C96B5A3BB1CA.bcsymbolmap */,
-				158CEF1B277D4493004EF2C7 /* 845F1B57-A31D-3C49-9F65-9AC87DB71C0F.bcsymbolmap */,
-				158CEF1C277D4493004EF2C7 /* E7D75013-503F-317B-8C24-5E581B189890.bcsymbolmap */,
-				158CEF1D277D4493004EF2C7 /* 0003C548-4CB6-393C-B0E6-C152BB25B51C.bcsymbolmap */,
-				158CEF1E277D4493004EF2C7 /* 92755BEE-A193-3A2A-9D1B-7C4E940DEAE3.bcsymbolmap */,
-				158CEF1F277D4493004EF2C7 /* 276AACDA-79EC-30DB-9B53-4630E5CBEF99.bcsymbolmap */,
-				158CEF20277D4493004EF2C7 /* 3522A119-988E-353C-8480-2C56706D4C48.bcsymbolmap */,
-				158CEF21277D4493004EF2C7 /* A0F17438-2C5C-3784-9A61-F5E383351E43.bcsymbolmap */,
-				158CEF22277D4493004EF2C7 /* 78707AF5-5234-39C8-8A5C-C3C20B847CE2.bcsymbolmap */,
-				158CEF23277D4493004EF2C7 /* 22A8516B-4792-3EBC-B567-D940D34732BD.bcsymbolmap */,
-				158CEF24277D4493004EF2C7 /* EA11C68C-B5D1-39AB-9D5A-254E7D88331B.bcsymbolmap */,
-				158CEF25277D4493004EF2C7 /* 07F27E5D-85D4-340C-B5EF-DC71A219E0F0.bcsymbolmap */,
-				158CEF26277D4493004EF2C7 /* 42108CAC-3958-3C22-A2D3-AAC3B2E753CB.bcsymbolmap */,
-			);
-			name = WalletCore.BCSymbolMaps;
-			path = Lilico/Library/WalletCore.BCSymbolMaps;
-			sourceTree = "<group>";
-		};
-		158CEF96277DB3D7004EF2C7 /* SwiftProtobuf.dSYMs */ = {
-			isa = PBXGroup;
-			children = (
-				158CEF97277DB3D7004EF2C7 /* SwiftProtobuf.framework.ios-arm64.dSYM */,
-				158CEF98277DB3D7004EF2C7 /* SwiftProtobuf.framework.ios-arm64_x86_64-maccatalyst.dSYM */,
-			);
-			name = SwiftProtobuf.dSYMs;
-			path = "../wallet-core/swift/build/SwiftProtobuf.dSYMs";
-			sourceTree = "<group>";
-		};
-		158CEF9A277DB3D7004EF2C7 /* WalletCore.dSYMs */ = {
-			isa = PBXGroup;
-			children = (
-				158CEF9B277DB3D7004EF2C7 /* WalletCore.framework.ios-arm64.dSYM */,
-				158CEF9C277DB3D7004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-simulator.dSYM */,
-				158CEF9D277DB3D7004EF2C7 /* WalletCore.framework.ios-arm64_x86_64-maccatalyst.dSYM */,
-			);
-			name = WalletCore.dSYMs;
-			path = "../wallet-core/swift/build/WalletCore.dSYMs";
-			sourceTree = "<group>";
-		};
-		158CEF9E277DB3D7004EF2C7 /* SwiftProtobuf.BCSymbolMaps */ = {
-			isa = PBXGroup;
-			children = (
-				158CEF9F277DB3D7004EF2C7 /* 49585989-F47E-3C30-90B5-870DA78E25E3.bcsymbolmap */,
-				158CEFA0277DB3D7004EF2C7 /* 9FA4DD74-A74B-3905-B0FE-7CBF420AEA3E.bcsymbolmap */,
-				158CEFA1277DB3D7004EF2C7 /* 0FAA0F23-234F-34FB-81A4-07A91AE72235.bcsymbolmap */,
-				158CEFA2277DB3D7004EF2C7 /* 82F781BA-8ADF-394B-80AC-16EC581ECD18.bcsymbolmap */,
-				158CEFA3277DB3D7004EF2C7 /* E7D75013-503F-317B-8C24-5E581B189890.bcsymbolmap */,
-				158CEFA4277DB3D7004EF2C7 /* 3522A119-988E-353C-8480-2C56706D4C48.bcsymbolmap */,
-			);
-			name = SwiftProtobuf.BCSymbolMaps;
-			path = "../wallet-core/swift/build/SwiftProtobuf.BCSymbolMaps";
-			sourceTree = "<group>";
-		};
-		158CEFA6277DB3D7004EF2C7 /* WalletCore.BCSymbolMaps */ = {
-			isa = PBXGroup;
-			children = (
-				158CEFA7277DB3D7004EF2C7 /* 6B8F56F5-7450-3815-8F8B-1FB6E1F5207D.bcsymbolmap */,
-				158CEFA8277DB3D7004EF2C7 /* 49585989-F47E-3C30-90B5-870DA78E25E3.bcsymbolmap */,
-				158CEFA9277DB3D7004EF2C7 /* B154B9AD-C709-3D02-B36B-AA3C2F7977CE.bcsymbolmap */,
-				158CEFAA277DB3D7004EF2C7 /* D0B46D98-DF06-38DA-8006-C885F921D6D8.bcsymbolmap */,
-				158CEFAB277DB3D7004EF2C7 /* 71F16FE3-B5B9-3D25-AA0E-4A111E2A0733.bcsymbolmap */,
-				158CEFAC277DB3D7004EF2C7 /* E701127C-7FDC-3A31-81D8-BB4C9EA317C9.bcsymbolmap */,
-				158CEFAD277DB3D7004EF2C7 /* 22FF3CE7-0A9C-32BB-AA2C-08B19C1F423C.bcsymbolmap */,
-				158CEFAE277DB3D7004EF2C7 /* 238B678E-1C2A-36C0-A96B-49173132DDA8.bcsymbolmap */,
-				158CEFAF277DB3D7004EF2C7 /* 2AC38CD4-9821-398A-94C2-C96B5A3BB1CA.bcsymbolmap */,
-				158CEFB0277DB3D7004EF2C7 /* 845F1B57-A31D-3C49-9F65-9AC87DB71C0F.bcsymbolmap */,
-				158CEFB1277DB3D7004EF2C7 /* E7D75013-503F-317B-8C24-5E581B189890.bcsymbolmap */,
-				158CEFB2277DB3D7004EF2C7 /* 0003C548-4CB6-393C-B0E6-C152BB25B51C.bcsymbolmap */,
-				158CEFB3277DB3D7004EF2C7 /* 92755BEE-A193-3A2A-9D1B-7C4E940DEAE3.bcsymbolmap */,
-				158CEFB4277DB3D7004EF2C7 /* 276AACDA-79EC-30DB-9B53-4630E5CBEF99.bcsymbolmap */,
-				158CEFB5277DB3D7004EF2C7 /* 3522A119-988E-353C-8480-2C56706D4C48.bcsymbolmap */,
-				158CEFB6277DB3D7004EF2C7 /* A0F17438-2C5C-3784-9A61-F5E383351E43.bcsymbolmap */,
-				158CEFB7277DB3D7004EF2C7 /* 78707AF5-5234-39C8-8A5C-C3C20B847CE2.bcsymbolmap */,
-				158CEFB8277DB3D7004EF2C7 /* 22A8516B-4792-3EBC-B567-D940D34732BD.bcsymbolmap */,
-				158CEFB9277DB3D7004EF2C7 /* EA11C68C-B5D1-39AB-9D5A-254E7D88331B.bcsymbolmap */,
-				158CEFBA277DB3D7004EF2C7 /* 07F27E5D-85D4-340C-B5EF-DC71A219E0F0.bcsymbolmap */,
-				158CEFBB277DB3D7004EF2C7 /* 42108CAC-3958-3C22-A2D3-AAC3B2E753CB.bcsymbolmap */,
-			);
-			name = WalletCore.BCSymbolMaps;
-			path = "../wallet-core/swift/build/WalletCore.BCSymbolMaps";
-			sourceTree = "<group>";
-		};
 		159A54302753680C004BCACC /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1707,15 +1546,8 @@
 		15B1A67A276A2D670006B621 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */,
 				15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */,
-				158CEF9E277DB3D7004EF2C7 /* SwiftProtobuf.BCSymbolMaps */,
-				158CEF96277DB3D7004EF2C7 /* SwiftProtobuf.dSYMs */,
-				158CEFA5277DB3D7004EF2C7 /* SwiftProtobuf.xcframework */,
-				158CEFA6277DB3D7004EF2C7 /* WalletCore.BCSymbolMaps */,
-				158CEF9A277DB3D7004EF2C7 /* WalletCore.dSYMs */,
-				158CEF99277DB3D7004EF2C7 /* WalletCore.xcframework */,
-				158CEF11277D4493004EF2C7 /* WalletCore.BCSymbolMaps */,
-				158CEF0D277D4493004EF2C7 /* WalletCore.dSYMs */,
 				158CEF27277D4493004EF2C7 /* WalletCore.xcframework */,
 			);
 			name = Frameworks;
