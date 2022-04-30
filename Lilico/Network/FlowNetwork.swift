@@ -10,25 +10,11 @@ import Flow
 import Combine
 
 class FlowNetwork {
-    var network: Flow.ChainID
-    var accessAPI: Flow.AccessAPI
     
-    init() {
-        // TODO: Replace me, need change chainID by config
-        network = .testnet
-        accessAPI = flow.createAccessAPI(chainID: network)
-    }
-    
-    func changeNetwork(network: Flow.ChainID) {
-        if network == self.network {
-            return
-        }
+    static func isTokenListEnabled(address: Flow.Address, tokens: [TokenModel]) -> Future<[Bool], Error> {
         
-        self.network = network
-        accessAPI = flow.createAccessAPI(chainID: network)
-    }
-    
-    func isTokenListEnabled(address: Flow.Address, tokens: [TokenModel]) -> Future<[Bool], Error> {
+        let network = flow.chainID
+        
         let tokenImports = tokens.map { token in
             """
             import <Token> from <TokenAddress>
@@ -72,7 +58,7 @@ class FlowNetwork {
         
         
         
-        let call = accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
+        let call = flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
                                                         arguments: [.init(value: .address(address))])
         
 //        return Future { promise in
