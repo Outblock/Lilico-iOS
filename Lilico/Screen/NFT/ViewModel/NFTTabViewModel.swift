@@ -8,12 +8,11 @@
 import Foundation
 
 struct NFTCollection: Decodable, Hashable {
-    
     let logo: URL?
     let name: String
     let address: ContractAddress
     var banner: URL? = nil
-    var officialWebsite: URL? = nil
+    var officialWebsite: String?
     var marketplace: URL?
     var description: String?
     var path: ContractPath
@@ -86,7 +85,7 @@ class NFTTabViewModel: ViewModel {
                                                                                       decoder: JSONDecoder(),
                                                                                       needToken: false)
                 
-                let collections: [NFTCollection] =  try await Network.requestWithRawModel(GithubEndpoint.collections,
+                let collections: [NFTCollection] = try await Network.requestWithRawModel(GithubEndpoint.collections,
                                                       needToken: false)
                 
                 let groups = Dictionary(grouping: response.nfts) { nft in
