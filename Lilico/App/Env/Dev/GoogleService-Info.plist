@@ -32,5 +32,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:246247206636:ios:4b515750808ffb15f23fc9</string>
+	<key>DATABASE_URL</key>
+	<string>https://lilico-dev-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>
