@@ -137,6 +137,12 @@
 		156ADC7E2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */; };
 		156ADC7F2797B42D00CD4B02 /* FocusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4C2797B42D00CD4B02 /* FocusError.swift */; };
 		156ADC802797B42D00CD4B02 /* FocusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4C2797B42D00CD4B02 /* FocusError.swift */; };
+		156E84A9281CDE7500415896 /* FlowNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84A8281CDE7500415896 /* FlowNetwork.swift */; };
+		156E84AA281CDE7500415896 /* FlowNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84A8281CDE7500415896 /* FlowNetwork.swift */; };
+		156E84AD281CDF4F00415896 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84AC281CDF4F00415896 /* TokenModel.swift */; };
+		156E84AE281CDF4F00415896 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84AC281CDF4F00415896 /* TokenModel.swift */; };
+		156E84B1281CF01000415896 /* EventLoop+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84B0281CF01000415896 /* EventLoop+Future.swift */; };
+		156E84B2281CF01000415896 /* EventLoop+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84B0281CF01000415896 /* EventLoop+Future.swift */; };
 		1570466427906F7F00D1747B /* CollectionViewPagingLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 1570466327906F7F00D1747B /* CollectionViewPagingLayout */; };
 		157046662790723400D1747B /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046652790723400D1747B /* HeartButton.swift */; };
 		157046672790723400D1747B /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046652790723400D1747B /* HeartButton.swift */; };
@@ -786,6 +792,9 @@
 		156ADC492797B42D00CD4B02 /* PresentationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationHelper.swift; sourceTree = "<group>"; };
 		156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatableView.swift; sourceTree = "<group>"; };
 		156ADC4C2797B42D00CD4B02 /* FocusError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusError.swift; sourceTree = "<group>"; };
+		156E84A8281CDE7500415896 /* FlowNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowNetwork.swift; sourceTree = "<group>"; };
+		156E84AC281CDF4F00415896 /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
+		156E84B0281CF01000415896 /* EventLoop+Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventLoop+Future.swift"; sourceTree = "<group>"; };
 		157046652790723400D1747B /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		1570466B27930EB200D1747B /* NFTTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTabScreen.swift; sourceTree = "<group>"; };
 		1570466E27931F5100D1747B /* AlchemyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlchemyEndpoint.swift; sourceTree = "<group>"; };
@@ -1433,6 +1442,22 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		156E84AB281CDF3E00415896 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				156E84AC281CDF4F00415896 /* TokenModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		156E84AF281CEFFB00415896 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				156E84B0281CF01000415896 /* EventLoop+Future.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		1570466A27930EA500D1747B /* NFT */ = {
 			isa = PBXGroup;
 			children = (
@@ -1666,6 +1691,7 @@
 				1570466E27931F5100D1747B /* AlchemyEndpoint.swift */,
 				1570467D2793EBA100D1747B /* GithubEndpoint.swift */,
 				15DC1D5727816660000B187A /* Network.swift */,
+				156E84A8281CDE7500415896 /* FlowNetwork.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2574,6 +2600,8 @@
 		15EC9DF0274FD1FC00F70CD9 /* Lilico */ = {
 			isa = PBXGroup;
 			children = (
+				156E84AF281CEFFB00415896 /* Extension */,
+				156E84AB281CDF3E00415896 /* Model */,
 				15DE22CC277DBDC300B5EE03 /* Manager */,
 				154B8933276A242000780E93 /* Library */,
 				152F9858275CB8FA001C5855 /* Coordinators */,
@@ -2970,6 +2998,7 @@
 				15DC20BF27819C56000B187A /* VSquareButtonState.swift in Sources */,
 				15DC217527819C56000B187A /* VDialogButtonModel.swift in Sources */,
 				15DC1D4E27814F46000B187A /* CheckUserNameModel.swift in Sources */,
+				156E84AE281CDF4F00415896 /* TokenModel.swift in Sources */,
 				15DC20C527819C56000B187A /* VCloseButton.swift in Sources */,
 				15DE22D6277DCCED00B5EE03 /* AppDelegate+Resolver.swift in Sources */,
 				15DC207527819C56000B187A /* VTextType.swift in Sources */,
@@ -3055,6 +3084,7 @@
 				15DC209927819C56000B187A /* VToastModel.swift in Sources */,
 				15DC20F327819C56000B187A /* VSectionList.swift in Sources */,
 				156ADC6A2797B42D00CD4B02 /* TabRoute.swift in Sources */,
+				156E84AA281CDE7500415896 /* FlowNetwork.swift in Sources */,
 				15DC20AD27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
 				158CE88C2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */,
 				154B8906276A1EEB00780E93 /* Lilico_App.swift in Sources */,
@@ -3248,6 +3278,7 @@
 				15DC219F27819C56000B187A /* VTextFieldHighlight.swift in Sources */,
 				15DC217327819C56000B187A /* VDialogModel.swift in Sources */,
 				15DC219327819C56000B187A /* VCheckBoxModel.swift in Sources */,
+				156E84B2281CF01000415896 /* EventLoop+Future.swift in Sources */,
 				15DC20D927819C56000B187A /* VPrimaryButtonModel.swift in Sources */,
 				15DC208327819C56000B187A /* VLazyScrollViewModelHorizontal.swift in Sources */,
 				156ADC6C2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */,
@@ -3292,6 +3323,7 @@
 				15DC20BE27819C56000B187A /* VSquareButtonState.swift in Sources */,
 				15DC217427819C56000B187A /* VDialogButtonModel.swift in Sources */,
 				15DC1D4D27814F46000B187A /* CheckUserNameModel.swift in Sources */,
+				156E84AD281CDF4F00415896 /* TokenModel.swift in Sources */,
 				15DC20C427819C56000B187A /* VCloseButton.swift in Sources */,
 				15DE22D5277DCCED00B5EE03 /* AppDelegate+Resolver.swift in Sources */,
 				15DC207427819C56000B187A /* VTextType.swift in Sources */,
@@ -3377,6 +3409,7 @@
 				15DC209827819C56000B187A /* VToastModel.swift in Sources */,
 				15DC20F227819C56000B187A /* VSectionList.swift in Sources */,
 				156ADC692797B42D00CD4B02 /* TabRoute.swift in Sources */,
+				156E84A9281CDE7500415896 /* FlowNetwork.swift in Sources */,
 				15DC20AC27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
 				158CE88B2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */,
 				15EC9DF2274FD1FD00F70CD9 /* Lilico_App.swift in Sources */,
@@ -3570,6 +3603,7 @@
 				15DC219E27819C56000B187A /* VTextFieldHighlight.swift in Sources */,
 				15DC217227819C56000B187A /* VDialogModel.swift in Sources */,
 				15DC219227819C56000B187A /* VCheckBoxModel.swift in Sources */,
+				156E84B1281CF01000415896 /* EventLoop+Future.swift in Sources */,
 				15DC20D827819C56000B187A /* VPrimaryButtonModel.swift in Sources */,
 				15DC208227819C56000B187A /* VLazyScrollViewModelHorizontal.swift in Sources */,
 				156ADC6B2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */,

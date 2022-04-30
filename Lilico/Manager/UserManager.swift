@@ -77,7 +77,6 @@ class UserManager: ObservableObject {
 //        do {
 //            let _ = try await Auth.auth().currentUser?.delete()
         let result = try await Auth.auth().signIn(withCustomToken: token)
-
         print("Logged in -> \(result.user.uid)")
         await fetchUserInfo()
         await fetchWalletInfo()
@@ -153,7 +152,6 @@ class UserManager: ObservableObject {
         do {
             let response: UserWalletResponse = try await Network.request(LilicoEndpoint.userWallet)
             print(response)
-//            userInfo =
         } catch {
             debugPrint(error)
         }

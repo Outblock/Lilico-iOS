@@ -66,7 +66,6 @@ enum Network {
         let result = await provider.asyncRequest(target)
         switch result {
         case let .success(response):
-            
             guard let model = try? decoder.decode(Response<T>.self, from: response.data) else {
                 throw NetworkError.decodeFailed
             }
