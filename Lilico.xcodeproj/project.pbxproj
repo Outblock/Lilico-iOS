@@ -716,8 +716,8 @@
 		4EC56B2A281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
 		4EC56B2B281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
 		4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */; };
-		4EC56B30281FC57900246878 /* FlowScriptArgument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowScriptArgument.swift */; };
-		4EC56B31281FC57900246878 /* FlowScriptArgument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowScriptArgument.swift */; };
+		4EC56B30281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
+		4EC56B31281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1089,7 +1089,7 @@
 		15F43D112753B4F6004F6F49 /* PageIndictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndictor.swift; sourceTree = "<group>"; };
 		4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = Lilico/Library/SwiftProtobuf.xcframework; sourceTree = "<group>"; };
 		4EC56B29281D385D00246878 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigs.swift; sourceTree = "<group>"; };
-		4EC56B2F281FC57900246878 /* FlowScriptArgument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowScriptArgument.swift; sourceTree = "<group>"; };
+		4EC56B2F281FC57900246878 /* FlowQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2525,7 +2525,7 @@
 		4EC56B2E281FC55400246878 /* FlowCoin */ = {
 			isa = PBXGroup;
 			children = (
-				4EC56B2F281FC57900246878 /* FlowScriptArgument.swift */,
+				4EC56B2F281FC57900246878 /* FlowQuery.swift */,
 			);
 			path = FlowCoin;
 			sourceTree = "<group>";
@@ -3113,7 +3113,7 @@
 				15DC216B27819C56000B187A /* VHalfModalModel.swift in Sources */,
 				4EC56B2B281D385D00246878 /* AppConfigs.swift in Sources */,
 				15DC216127819C56000B187A /* VSideBar.swift in Sources */,
-				4EC56B31281FC57900246878 /* FlowScriptArgument.swift in Sources */,
+				4EC56B31281FC57900246878 /* FlowQuery.swift in Sources */,
 				15DC21DD27819C56000B187A /* StateOpacities_PD.swift in Sources */,
 				154B8918276A1EEB00780E93 /* Endpoint.swift in Sources */,
 				15DE22E3277EACF200B5EE03 /* ChooseAccountView.swift in Sources */,
@@ -3440,7 +3440,7 @@
 				15DC216A27819C56000B187A /* VHalfModalModel.swift in Sources */,
 				4EC56B2A281D385D00246878 /* AppConfigs.swift in Sources */,
 				15DC216027819C56000B187A /* VSideBar.swift in Sources */,
-				4EC56B30281FC57900246878 /* FlowScriptArgument.swift in Sources */,
+				4EC56B30281FC57900246878 /* FlowQuery.swift in Sources */,
 				15DC21DC27819C56000B187A /* StateOpacities_PD.swift in Sources */,
 				159A560227536E4E004BCACC /* Endpoint.swift in Sources */,
 				15DE22E2277EACF200B5EE03 /* ChooseAccountView.swift in Sources */,
