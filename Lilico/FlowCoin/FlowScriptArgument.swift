@@ -1,0 +1,95 @@
+//
+//  FlowAction.swift
+//  Lilico
+//
+//  Created by cat on 2022/5/2.
+//
+
+import Foundation
+import Flow
+import Combine
+
+enum FlowScriptArgument {
+    case checkEnable
+}
+
+
+extension FlowScriptArgument {
+    //MARK: Check Token vault is enabled
+    func tokenEnable(with tokens: [TokenModel], at address: Flow.ChainID) -> String {
+        if(self != .checkEnable) {
+            print("Error: the case(\(self) is not call the func \(#function)")
+            return ""
+        }
+        let cadence =
+            """
+            
+            import FungibleToken from 0xFungibleToken \n
+            \(tokenImports(with: tokens, at: address))
+            \(tokenFunc(with: tokens, at: address))
+            pub fun main(address: Address) : [Bool] { \n
+              return [\(tokenCalls(with: tokens, at: address))] \
+            } \n
+            
+            """
+        return cadence
+    }
+    
+    
+}
+
+//MARK: 拼接参数
+extension FlowScriptArgument {
+    
+    private func tokenImports(with tokens: [TokenModel], at address: Flow.ChainID) -> String {
+        let tokenImports = tokens.map { token in
+            """
+            import <Token> from <TokenAddress>
+            
+            """
+                .buildTokenInfo(token, chainId: address)
+        }.joined(separator: "\n")
+        return tokenImports
+    }
+    
+    private func tokenFunc(with tokens: [TokenModel], at address: Flow.ChainID) -> String {
+        let tokenFunctions = tokens.map { token in
+            """
+              pub fun check<Token>Vault(address: Address) : Bool {
+                let receiver: Bool = getAccount(address) \
+                .getCapability<&<Token>.Vault{FungibleToken.Receiver}>(<TokenReceiverPath>) \
+                .check()
+                let balance: Bool = getAccount(address) \
+                 .getCapability<&<Token>.Vault{FungibleToken.Balance}>(<TokenBalancePath>) \
+                 .check()
+                 return receiver && balance
+              }
+            
+            """
+                .buildTokenInfo(token, chainId: address)
+        }.joined(separator: "\n")
+        return tokenFunctions
+    }
+    
+    private func tokenCalls(with tokens: [TokenModel], at address: Flow.ChainID) -> String {
+        let tokenCalls =  tokens.map { token in
+            """
+            check<Token>Vault(address: address)
+            """
+                .buildTokenInfo(token, chainId: address)
+        }.joined(separator: ",")
+        return tokenCalls
+    }
+}
+
+
+extension String {
+    func buildTokenInfo(_ token: TokenModel, chainId: Flow.ChainID) -> String {
+        return self
+            .replacingOccurrences(of: "<Token>", with: token.contractName)
+            .replacingOccurrences(of: "<TokenAddress>", with: token.address.addressByNetwork(chainId) ?? "0x")
+            .replacingOccurrences(of: "<TokenBalancePath>", with: token.storagePath.balance)
+            .replacingOccurrences(of: "<TokenReceiverPath>", with: token.storagePath.receiver)
+            .replacingOccurrences(of: "<TokenStoragePath>", with: token.storagePath.vault)
+    }
+}

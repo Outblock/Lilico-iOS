@@ -8,6 +8,7 @@
 import FirebaseAuth
 import SPConfetti
 import SwiftUI
+import Flow
 
 struct WalletView: View {
     @State
@@ -161,7 +162,38 @@ struct WalletView: View {
                 .background(.clear)
             }
 
-        }.onAppear {
+        }
+        .onAppear {
+            Task {
+                do {
+                    let list = try await AppConfig.flowCoins.fetch()
+                    
+                    print("配置参数=============")
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let tokens = try decoder.decode([TokenModel].self, from: list)
+                    print("配置结果：\(tokens)")
+                    if(!tokens.isEmpty) {
+                        let flowNetWork = FlowNetwork()
+                        Task{
+                            let address = Flow.Address(hex: tokens.first!.address.testnet ?? "")
+                            _ = flowNetWork.isTokenListEnabled(address: address, tokens: tokens).sink { error in
+                                print("获取结果： \(error)")
+                            } receiveValue: { res in
+                                print("获取结果： \(res)")
+                            }
+
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }catch {
+                    print("获取参数失败\(error)")
+                }
+                
+            }
 //            isDraggingArray
 //            isPresenting = true
         }

@@ -713,6 +713,11 @@
 		4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E17466F281AF841002A029C /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
 		4E174670281AF841002A029C /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4EC56B2A281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
+		4EC56B2B281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
+		4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */; };
+		4EC56B30281FC57900246878 /* FlowScriptArgument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowScriptArgument.swift */; };
+		4EC56B31281FC57900246878 /* FlowScriptArgument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowScriptArgument.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1083,6 +1088,8 @@
 		15F43D0F2753A678004F6F49 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		15F43D112753B4F6004F6F49 /* PageIndictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndictor.swift; sourceTree = "<group>"; };
 		4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = Lilico/Library/SwiftProtobuf.xcframework; sourceTree = "<group>"; };
+		4EC56B29281D385D00246878 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigs.swift; sourceTree = "<group>"; };
+		4EC56B2F281FC57900246878 /* FlowScriptArgument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowScriptArgument.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1105,6 +1112,7 @@
 				156AC7AD27802FAC00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */,
 				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
+				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				15BCFF102775986E000B7863 /* SPIndicator in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
 				154B891F276A1EEB00780E93 /* FirebaseDynamicLinks in Frameworks */,
@@ -2432,6 +2440,8 @@
 		15EC9DF0274FD1FC00F70CD9 /* Lilico */ = {
 			isa = PBXGroup;
 			children = (
+				4EC56B2E281FC55400246878 /* FlowCoin */,
+				4EC56B28281D381400246878 /* Firebase */,
 				156E84AF281CEFFB00415896 /* Extension */,
 				156E84AB281CDF3E00415896 /* Model */,
 				15DE22CC277DBDC300B5EE03 /* Manager */,
@@ -2504,6 +2514,22 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
+		4EC56B28281D381400246878 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				4EC56B29281D385D00246878 /* AppConfigs.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		4EC56B2E281FC55400246878 /* FlowCoin */ = {
+			isa = PBXGroup;
+			children = (
+				4EC56B2F281FC57900246878 /* FlowScriptArgument.swift */,
+			);
+			path = FlowCoin;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2544,6 +2570,7 @@
 				15F22F19278B21B600FCF772 /* BiometricAuthentication */,
 				1570466827930E6A00D1747B /* CollectionViewPagingLayout */,
 				157046742793241A00D1747B /* Kingfisher */,
+				4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -3084,7 +3111,9 @@
 				15DC214B27819C56000B187A /* VBaseNaviationViewNavigationBar.swift in Sources */,
 				154B8917276A1EEB00780E93 /* PageIndictor.swift in Sources */,
 				15DC216B27819C56000B187A /* VHalfModalModel.swift in Sources */,
+				4EC56B2B281D385D00246878 /* AppConfigs.swift in Sources */,
 				15DC216127819C56000B187A /* VSideBar.swift in Sources */,
+				4EC56B31281FC57900246878 /* FlowScriptArgument.swift in Sources */,
 				15DC21DD27819C56000B187A /* StateOpacities_PD.swift in Sources */,
 				154B8918276A1EEB00780E93 /* Endpoint.swift in Sources */,
 				15DE22E3277EACF200B5EE03 /* ChooseAccountView.swift in Sources */,
@@ -3409,7 +3438,9 @@
 				15DC214A27819C56000B187A /* VBaseNaviationViewNavigationBar.swift in Sources */,
 				15F43D122753B4F6004F6F49 /* PageIndictor.swift in Sources */,
 				15DC216A27819C56000B187A /* VHalfModalModel.swift in Sources */,
+				4EC56B2A281D385D00246878 /* AppConfigs.swift in Sources */,
 				15DC216027819C56000B187A /* VSideBar.swift in Sources */,
+				4EC56B30281FC57900246878 /* FlowScriptArgument.swift in Sources */,
 				15DC21DC27819C56000B187A /* StateOpacities_PD.swift in Sources */,
 				159A560227536E4E004BCACC /* Endpoint.swift in Sources */,
 				15DE22E2277EACF200B5EE03 /* ChooseAccountView.swift in Sources */,
@@ -4204,6 +4235,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15F50B722760EE2F00208A81 /* XCRemoteSwiftPackageReference "flow-swift" */;
 			productName = Flow;
+		};
+		4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
