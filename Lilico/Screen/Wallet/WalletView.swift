@@ -174,10 +174,9 @@ struct WalletView: View {
                     let tokens = try decoder.decode([TokenModel].self, from: list)
                     print("配置结果：\(tokens)")
                     if(!tokens.isEmpty) {
-                        let flowNetWork = FlowNetwork()
                         Task{
                             let address = Flow.Address(hex: tokens.first!.address.testnet ?? "")
-                            _ = flowNetWork.isTokenListEnabled(address: address, tokens: tokens).sink { error in
+                            _ = FlowNetwork.isTokenListEnabled(address: address, tokens: tokens).sink { error in
                                 print("获取结果： \(error)")
                             } receiveValue: { res in
                                 print("获取结果： \(res)")

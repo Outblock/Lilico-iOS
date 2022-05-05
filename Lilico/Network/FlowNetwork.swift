@@ -11,12 +11,12 @@ import Combine
 
 class FlowNetwork {
     
-    func isTokenListEnabled(address: Flow.Address, tokens: [TokenModel]) -> Future<[Bool], Error> {
+    static func isTokenListEnabled(address: Flow.Address, tokens: [TokenModel]) -> Future<[Bool], Error> {
+        flow.configure(chainID: .testnet)
         let network = flow.chainID
-            
-        let cadence =  FlowScriptArgument.checkEnable.tokenEnable(with: tokens, at: network)
+        let cadence =  FlowQuery.checkEnable.tokenEnable(with: tokens, at: network)
         let call = flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
-                                                        arguments: [.init(value: .address(address))])
+                                                             arguments: [.init(value: .address(address))])
         return call
             .toFuture()
             .tryMap { response in
