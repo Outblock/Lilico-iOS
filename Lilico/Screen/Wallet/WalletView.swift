@@ -19,10 +19,13 @@ struct WalletView: View {
 
     @State
     var isPresenting: Bool = false
+    
+    @ObservedObject
+    var walletViewModel = WalletViewModel()
 
     fileprivate func cardView() -> some View {
         return VStack(spacing: 50) {
-            Text("Blowfish Wallet")
+            Text(walletViewModel.walletName)
                 .font(.headline)
                 .bold()
                 .foregroundColor(Color.white)
@@ -30,7 +33,7 @@ struct WalletView: View {
                 .offset(x: viewState.width / 30,
                         y: viewState.height / 30)
 
-            Text("$ 1290.00")
+            Text(walletViewModel.balance)
                 .font(.largeTitle)
                 .bold()
                 .foregroundColor(Color.white)
@@ -39,16 +42,20 @@ struct WalletView: View {
                         y: viewState.height / 25)
 
             HStack {
-                Button {} label: {
+                Button {
+                    walletViewModel.copyAddress()
+                } label: {
                     HStack {
-                        Text("0x123123123")
+                        Text(walletViewModel.address)
                         Image(componentAsset: "Copy")
                     }
                 }
 
                 Spacer()
 
-                Button {} label: {
+                Button {
+                    walletViewModel.toggleAddress()
+                } label: {
                     Image(systemName: "eye.fill")
                 }
             }.foregroundColor(.white)
@@ -164,35 +171,7 @@ struct WalletView: View {
 
         }
         .onAppear {
-            Task {
-                do {
-                    let list = try await AppConfig.flowCoins.fetch()
-                    
-                    print("配置参数=============")
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let tokens = try decoder.decode([TokenModel].self, from: list)
-                    print("配置结果：\(tokens)")
-                    if(!tokens.isEmpty) {
-                        Task{
-                            let address = Flow.Address(hex: tokens.first!.address.testnet ?? "")
-                            _ = FlowNetwork.isTokenListEnabled(address: address, tokens: tokens).sink { error in
-                                print("获取结果： \(error)")
-                            } receiveValue: { res in
-                                print("获取结果： \(res)")
-                            }
-
-                        }
-                        
-                        
-                    }
-                    
-                    
-                }catch {
-                    print("获取参数失败\(error)")
-                }
-                
-            }
+            
 //            isDraggingArray
 //            isPresenting = true
         }
@@ -223,7 +202,9 @@ struct WalletView_Previews: PreviewProvider {
 struct ActionView: View {
     var body: some View {
         HStack(spacing: 0) {
-            Button {} label: {
+            Button {
+                
+            } label: {
                 VStack(spacing: 5) {
                     Image(systemName: "arrow.up.left.circle.fill")
                         .font(.title)

@@ -713,6 +713,10 @@
 		4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E17466F281AF841002A029C /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
 		4E174670281AF841002A029C /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4E9E21B2282644B200E1BACD /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21B1282644B100E1BACD /* WalletViewModel.swift */; };
+		4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21B1282644B100E1BACD /* WalletViewModel.swift */; };
+		4E9E21D52828E52D00E1BACD /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21D42828E52D00E1BACD /* WalletService.swift */; };
+		4E9E21D62828E52D00E1BACD /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21D42828E52D00E1BACD /* WalletService.swift */; };
 		4EC56B2A281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
 		4EC56B2B281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
 		4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */; };
@@ -1088,6 +1092,8 @@
 		15F43D0F2753A678004F6F49 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		15F43D112753B4F6004F6F49 /* PageIndictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndictor.swift; sourceTree = "<group>"; };
 		4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = Lilico/Library/SwiftProtobuf.xcframework; sourceTree = "<group>"; };
+		4E9E21B1282644B100E1BACD /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		4E9E21D42828E52D00E1BACD /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		4EC56B29281D385D00246878 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigs.swift; sourceTree = "<group>"; };
 		4EC56B2F281FC57900246878 /* FlowQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1183,6 +1189,8 @@
 		1507C7EA2755FCB100890C5D /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				4E9E21D02828C5A200E1BACD /* Service */,
+				4E9E21B02826449600E1BACD /* ViewModel */,
 				15BCFF1627772994000B7863 /* Empty */,
 				1507C7EB2755FCBF00890C5D /* OldWalletView.swift */,
 				15DE22E7277EDC4700B5EE03 /* WalletView.swift */,
@@ -2514,6 +2522,22 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
+		4E9E21B02826449600E1BACD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4E9E21B1282644B100E1BACD /* WalletViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4E9E21D02828C5A200E1BACD /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4E9E21D42828E52D00E1BACD /* WalletService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		4EC56B28281D381400246878 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -2929,6 +2953,7 @@
 				15DC20A727819C56000B187A /* VWebLinkState.swift in Sources */,
 				15DC218F27819C56000B187A /* VCheckBox.swift in Sources */,
 				15DC20D127819C56000B187A /* VNavigationLinkType.swift in Sources */,
+				4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */,
 				15DC208527819C56000B187A /* VLazyScrollViewHorizontal.swift in Sources */,
 				15DC211327819C56000B187A /* VPageIndicatorInfinite.swift in Sources */,
 				15DC216927819C56000B187A /* VHalfModalNavigationViewCloseButton.swift in Sources */,
@@ -2975,6 +3000,7 @@
 				15DC211127819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
 				15DC20C927819C56000B187A /* VNavigationViewBackButtonHidden.swift in Sources */,
 				15BCFF1F27772E86000B7863 /* EmptyViewModel.swift in Sources */,
+				4E9E21D62828E52D00E1BACD /* WalletService.swift in Sources */,
 				15DC219927819C56000B187A /* VTextFieldModel.swift in Sources */,
 				15DC212B27819C56000B187A /* VProgressBarModel.swift in Sources */,
 				15DC213D27819C56000B187A /* VMenuPickerRow.swift in Sources */,
@@ -3256,6 +3282,7 @@
 				15DC20A627819C56000B187A /* VWebLinkState.swift in Sources */,
 				15DC218E27819C56000B187A /* VCheckBox.swift in Sources */,
 				15DC20D027819C56000B187A /* VNavigationLinkType.swift in Sources */,
+				4E9E21B2282644B200E1BACD /* WalletViewModel.swift in Sources */,
 				15DC208427819C56000B187A /* VLazyScrollViewHorizontal.swift in Sources */,
 				15DC211227819C56000B187A /* VPageIndicatorInfinite.swift in Sources */,
 				15DC216827819C56000B187A /* VHalfModalNavigationViewCloseButton.swift in Sources */,
@@ -3302,6 +3329,7 @@
 				15DC211027819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
 				15DC20C827819C56000B187A /* VNavigationViewBackButtonHidden.swift in Sources */,
 				15BCFF1E27772E86000B7863 /* EmptyViewModel.swift in Sources */,
+				4E9E21D52828E52D00E1BACD /* WalletService.swift in Sources */,
 				15DC219827819C56000B187A /* VTextFieldModel.swift in Sources */,
 				15DC212A27819C56000B187A /* VProgressBarModel.swift in Sources */,
 				15DC213C27819C56000B187A /* VMenuPickerRow.swift in Sources */,
