@@ -35,8 +35,12 @@ extension BackupCoordinator {
         SecureCoordinator()
     }
 
-    @ViewBuilder func makeCreatePin() -> some View {
-        CreatePinCodeView(viewModel: CreatePinCodeViewModel().toAnyViewModel())
+    func makeCreatePin() -> PinCodeCoordinator {
+        PinCodeCoordinator()
+    }
+
+    @ViewBuilder func makeConfirmPinCode(lastPin: String) -> some View {
+        ConfirmPinCodeView(viewModel: ConfirmPinCodeViewModel(pin: lastPin).toAnyViewModel())
             .hideNavigationBar()
     }
 

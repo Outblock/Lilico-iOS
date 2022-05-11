@@ -12,7 +12,7 @@ class CreatePinCodeViewModel: ViewModel {
     private(set) var state: CreatePinCodeView.ViewState = .init()
 
     @RouterObject
-    var router: SecureCoordinator.Router?
+    var router: PinCodeCoordinator.Router?
 
     @RouterObject
     var homeRouter: HomeCoordinator.Router?

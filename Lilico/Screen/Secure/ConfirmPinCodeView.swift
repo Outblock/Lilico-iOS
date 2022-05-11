@@ -82,9 +82,12 @@ struct ConfirmPinCodeView: View {
                 SecureView(text: $text) { text, complete in
                     if complete {
                         viewModel.trigger(.match(text))
+                        if viewModel.state.mismatch {
+                            self.text = ""
+                        }
                     }
                 }
-                .offset(x: wrongAttempt ? -10 : 0)
+                .offset(x: viewModel.state.mismatch ? -10 : 0)
                 .animation(.easeInOut(duration: 0.08).repeatCount(5), value: viewModel.state.mismatch)
 
                 Spacer()
@@ -109,3 +112,4 @@ struct ConfirmPinCodeView_Previews: PreviewProvider {
 //            .colorScheme(.dark)
     }
 }
+
