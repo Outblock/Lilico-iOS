@@ -30,11 +30,7 @@ struct WalletService {
         return enableTokens.first?.address.addressByNetwork(flow.chainID) ?? ""
     }
     
-    //TODO: 环境判断, 地址为空怎么处理
-    var flowAddress: Flow.Address {
-        let addr = enableTokens.first?.address.testnet ?? ""
-        return Flow.Address(hex: addr)
-    }
+    var flowAddress: Flow.Address!
     
     //MARK: fetch data
     mutating func fetchWallet() async throws {
@@ -42,6 +38,8 @@ struct WalletService {
         if(allToken.isEmpty) {
             throw WalletError.none
         }
+        let address = allToken.first?.address.testnet ?? ""
+        flowAddress = Flow.Address(hex: address)
         await checkTokenEnableState(with: allToken)
         await refreshBalance()
         print("------********** \(enableTokens)")
