@@ -72,10 +72,7 @@ struct CreatePinCodeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 30)
 
-                PinStackView(maxDigits: 6,
-                             emptyColor: .gray.opacity(0.2),
-                             highlightColor: Color.LL.orange,
-                             pin: $text) { text, _ in
+                SecureView(text: $text, maxCount: 6) { text, res in
                     viewModel.trigger(.input(text))
                 }
 
@@ -97,7 +94,11 @@ struct CreatePinCodeView: View {
 
 struct CreatePinCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePinCodeView(viewModel: CreatePinCodeViewModel().toAnyViewModel())
+        Group {
+            CreatePinCodeView(viewModel: CreatePinCodeViewModel().toAnyViewModel())
+            CreatePinCodeView(viewModel: CreatePinCodeViewModel().toAnyViewModel())
+                .preferredColorScheme(.dark)
+        }
 //            .colorScheme(.dark)
     }
 }

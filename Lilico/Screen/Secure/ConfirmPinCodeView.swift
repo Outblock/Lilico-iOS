@@ -79,18 +79,13 @@ struct ConfirmPinCodeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 30)
 
-                PinStackView(maxDigits: 6,
-                             emptyColor: .gray.opacity(0.2),
-                             highlightColor: Color.LL.orange,
-                             needClear: wrongAttempt,
-                             pin: $text) { text, complete in
+                SecureView(text: $text) { text, complete in
                     if complete {
-//                        self.wrongAttempt = true
                         viewModel.trigger(.match(text))
                     }
                 }
                 .offset(x: wrongAttempt ? -10 : 0)
-                .animation(.easeInOut(duration: 0.08).repeatCount(5), value: wrongAttempt)
+                .animation(.easeInOut(duration: 0.08).repeatCount(5), value: viewModel.state.mismatch)
 
                 Spacer()
             }

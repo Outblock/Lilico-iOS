@@ -36,4 +36,11 @@ extension Color {
         
         static let neutrals1 = Color("Neutrals1")
     }
+    
+    enum Register {
+        static let dotHighlight = Color("Secure.highlight")
+        static let dotDefault = Color("Secure.default")
+    }
+    
+    
 }
