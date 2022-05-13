@@ -10,8 +10,8 @@ import SwiftUI
 struct SecureView: View {
     @Binding var text: String
     var maxCount: Int = 6
-    var emptyColor: Color = Color.Register.dotDefault
-    var highlightColor: Color = Color.Register.dotHighlight
+    var emptyColor: Color = .LL.Neutrals.outline
+    var highlightColor: Color = .LL.Primary.salmonPrimary
     var handler: (String, Bool) -> Void
     
     private let spacing = 24.0
