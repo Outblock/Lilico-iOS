@@ -16,6 +16,9 @@ extension NFTTabScreen {
     struct ViewState {
         var collections: [NFTCollection] = []
         var nfts: [NFTModel] = []
+        
+        var items: [CollectionItem] = []
+        
     }
     
     enum Action {
@@ -27,23 +30,32 @@ extension NFTTabScreen {
 
 struct NFTTabScreen: View {
     
-    // Replace with your data
-    struct Item: Identifiable {
-        let id: UUID = .init()
-        let number: Int
+    private enum TabStyle {
+        case list
+        case grid
     }
     
-    let items = Array(0..<10).map {
-        Item(number: $0)
+    private enum CollectionBarStyle {
+        case horizontal
+        case vertical
+        
+        internal mutating func toggle() {
+            switch self {
+            case .horizontal:
+                self = .vertical
+            case .vertical:
+                self = .horizontal
+            }
+        }
     }
     
     @StateObject
     var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    @State var selectedIndex = 0
     
-    // Use the options to customize the layout
-    //    var options: StackTransformViewOptions {
-    //         .layout(.perspective)
-    //     }
+    @JSONStorage(key: "favorite")
+    var favoriteList: [NFTModel]?
+    @State var favoriteId: UUID?
     
     var options = StackTransformViewOptions(
         scaleFactor: 0.10,
@@ -71,9 +83,29 @@ struct NFTTabScreen: View {
         blurEffectStyle: .light
     )
     
-    @State private var favoriteColor = 0
+    @State private var tabStyle = TabStyle.list
+    @State private var collectionBarStyle: CollectionBarStyle = .horizontal
     
-    let mockNFT = URL(string: "https://img.rarible.com/prod/image/upload/t_image_big/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:3550/dc184ae9")!
+    /// show the collection by vertical layout
+    var onlyShowCollection: Bool {
+        return collectionBarStyle == .vertical
+    }
+    
+    var currentLikeNFT: URL?  {
+        guard let nft = favoriteList?.first(where: { $0.id == favoriteId
+        }) else {
+            return nil
+        }
+        return nft.image
+    }
+    
+    var currentNFTs: [NFTModel] {
+        if(tabStyle == .list) {
+            return viewModel.state.items[selectedIndex].nfts
+        }else {
+            return viewModel.state.nfts
+        }
+    }
     
     let modifier = AnyModifier { request in
         var r = request
@@ -81,151 +113,252 @@ struct NFTTabScreen: View {
         return r
     }
     
-    var nfts: [GridItem] = [
-        GridItem(.adaptive(minimum: 100), spacing: 18),
-        GridItem(.adaptive(minimum: 100), spacing: 18)
+    var nftLayout: [GridItem] = [
+        GridItem(.adaptive(minimum: 180), spacing: 0),
+        GridItem(.adaptive(minimum: 180), spacing: 0)
     ]
     
     
     var body: some View {
         
         ZStack {
-            
-            VStack {
-                KFImage
-                    .url(mockNFT)
-                    .fade(duration: 0.25)
-                    .resizable()
-                    .aspectRatio(1, contentMode: .fill)
-                    .frame(width: screenWidth,
-                           height: screenHeight * 0.6,
-                           alignment: .topLeading)
-                
-                Spacer()
+            if(currentLikeNFT != nil && tabStyle == .list) {
+                VStack {
+                    KFImage
+                        .url(currentLikeNFT)
+                        .fade(duration: 0.25)
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fill)
+                        .frame(width: screenWidth,
+                               height: screenHeight * 0.6,
+                               alignment: .topLeading)
+                    
+                    Spacer()
+                }
+                .blur(radius: 30, opaque: true)
+                .mask(
+                    LinearGradient(gradient: Gradient(colors:
+                                                        [Color.black, Color.clear]), startPoint: .top, endPoint: .center)
+                )
+                .edgesIgnoringSafeArea(.top)
             }
-            .blur(radius: 30, opaque: true)
-            .mask(
-                LinearGradient(gradient: Gradient(colors:
-                                                    [Color.black, Color.clear]), startPoint: .top, endPoint: .center)
-            )
-            .edgesIgnoringSafeArea(.top)
-            
             
             ScrollView {
                 LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                     
                     VStack(spacing: 0) {
-                        HStack {
-                            Picker("", selection: $favoriteColor) {
-                                Text("List").tag(0)
-                                Text("Grid").tag(1)
-                            }
-                            .pickerStyle(.segmented)
-                            .frame(width: 112, height: 32, alignment: .leading)
-                            
-                            Spacer()
-                            
-                            Button {} label: {
-                                Image(systemName: "magnifyingglass")
-                                    .foregroundColor(.white)
-                                    .padding(8)
-                                    .background {
-                                        Circle()
-                                            .foregroundColor(.LL.outline.opacity(0.8))
-                                    }
-                            }
-                        }
-                        .padding(.horizontal, 18)
-                        
-                        HStack() {
-                            Image(systemName: "star.fill")
-                            Text("Top Selection")
-                                .font(.LL.largeTitle2)
-                                .semibold()
-                            
-                            Spacer()
-                        }
-                        .padding(.horizontal, 18)
-                        .padding(.top)
-                        .foregroundColor(.white)
-                        
-                        StackPageView(viewModel.nfts) { nft in
-                            // Build your view here
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(Color.LL.background)
-                                
-                                KFImage
-                                    .url(nft.image)
-                                    .fade(duration: 0.25)
-                                    .resizable()
-//                                    .aspectRatio(contentMode: .fill)
-                                    .aspectRatio(1, contentMode: .fill)
-//                                    .scaledToFill()
-                                    .cornerRadius(8)
-                                    .padding()
-                                
-                            }
-                        }
-                        //                .numberOfVisibleItems(4)
-                        .options(options)
-                        // The padding around each page
-                        // you can use `.fractionalWidth` and
-                        // `.fractionalHeight` too
-                        .pagePadding(
-                            top: .absolute(18),
-                            left: .absolute(18),
-                            bottom: .absolute(18),
-                            right: .fractionalWidth(0.22)
-                        )
-                        
-                        .frame(width: screenWidth,
-                               height: screenHeight * 0.4, alignment: .center)
-                        
+                        topBar
+                        favoriteSection
                     }
                     .background(LinearGradient(colors: [.clear, .LL.background],
                                                startPoint: .top, endPoint: .bottom))
                     
-
-                    Section(header: CollectionHeader(collections: viewModel.collections)) {
-                        LazyVGrid(columns: nfts, spacing: 18) {
-                            ForEach(viewModel.nfts, id: \.self) { nft in
-                                VStack(alignment: .leading) {
-                                    
-                                    
-                                    KFImage
-                                        .url(nft.image)
-                                        .resizable()
-                                        .aspectRatio(1, contentMode: .fill)
-//                                        .scaledToFill()
-//                                        .aspectRatio(contentMode: .fill)
-                                        .cornerRadius(8)
-                                        .clipped()
-                                    
-                                    Text(nft.name)
-                                        .font(.LL.body)
-                                        .semibold()
-                                    
-                                    Text(nft.collections)
-                                        .font(.LL.body)
-                                        .foregroundColor(.LL.note)
-                                }
-                            }
+                    // Collection
+                    collectionBar
+                    
+                    if (viewModel.items.count > 0) {
+                        Section(header: collectionHBody) {
+                            if(collectionBarStyle == .horizontal) {
+                            nftGrid }
                         }
-                        .padding(18)
-                        .background(LinearGradient(colors: [.LL.frontColor, .LL.background], startPoint: .top, endPoint: .bottom))
-                        .cornerRadius(16)
-                        .padding(.bottom, 30)
                     }
-                    .background(Color.LL.background, ignoresSafeAreaEdges: .all)
                     
                     Spacer()
                 }
                 .padding(.vertical, 10)
             }
-//            .frame(width: screenWidth, height: screenHeight, alignment: .top)
         }
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+    }
+    
+    var topBar: some View {
+        HStack {
+            Picker("", selection: $tabStyle) {
+                Text("List").tag(TabStyle.list)
+                Text("Grid").tag(TabStyle.grid)
+            }
+            .pickerStyle(.segmented)
+            .frame(width: 112, height: 32, alignment: .leading)
+            
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.white)
+                    .padding(8)
+                    .background {
+                        Circle()
+                            .foregroundColor(.LL.outline.opacity(0.8))
+                    }
+            }
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "plus")
+                    .foregroundColor(.white)
+                    .padding(8)
+                    .background {
+                        Circle()
+                            .foregroundColor(.LL.outline.opacity(0.8))
+                    }
+            }
+        }
+        .padding(.horizontal, 18)
+    }
+    
+    var favoriteSection: some View {
+        VStack {
+            if((favoriteList?.count ?? 0) > 0) {
+                HStack() {
+                    Image(systemName: "star.fill")
+                    Text("Top Selection")
+                        .font(.LL.largeTitle2)
+                        .semibold()
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 18)
+                .padding(.top)
+                .foregroundColor(.white)
+                
+                StackPageView(viewModel.nfts, selection:$favoriteId) { nft in
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.LL.background)
+                        
+                        KFImage
+                            .url(nft.image)
+                            .fade(duration: 0.25)
+                            .resizable()
+                            .aspectRatio(1, contentMode: .fill)
+                            .cornerRadius(8)
+                            .padding()
+                        
+                    }
+                }
+                .options(options)
+                .pagePadding(
+                    top: .absolute(18),
+                    left: .absolute(18),
+                    bottom: .absolute(18),
+                    right: .fractionalWidth(0.22)
+                )
+                .frame(width: screenWidth,
+                       height: screenHeight * 0.4, alignment: .center)
+            }
+            
+        }
+    }
+    
+    
+    
+    var collectionBar: some View {
+        VStack {
+            if(tabStyle == .list) {
+                HStack() {
+                    Image(systemName: "square.stack.3d.up.fill")
+                    Text("\(viewModel.state.items.count) Collections")
+                        .font(.LL.largeTitle2)
+                        .semibold()
+                    
+                    Spacer()
+                    Button {
+                        collectionBarStyle.toggle()
+                    } label: {
+                        //TODO: add the icon
+                        Image(systemName:(onlyShowCollection ? "circle.grid.2x1.left.filled" : "rectangle.grid.1x2"))
+                    }
+                    
+                }
+                .foregroundColor(.LL.text)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 16)
+            }
+        }
+        .animation(.easeInOut, value: tabStyle)
+        
+    }
+    
+    var collectionHBody: some View {
+        VStack {
+            if(tabStyle == .list) {
+                Group {
+                    if( collectionBarStyle == .horizontal) {
+                        ScrollView(.horizontal,
+                                   showsIndicators: false,
+                                   content: {
+                            
+                            LazyHStack(alignment: .center, spacing: 12, content: {
+                                
+                                ForEach(viewModel.state.items, id: \.self) { item in
+                                    NFTCollectionCard(index: viewModel.state.items.firstIndex(of: item)!, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
+                                }
+                            })
+                            .padding(.leading, 18)
+                            
+                        })
+                        .frame(width: screenWidth,
+                               height: 56,
+                               alignment: .leading)
+                    }else {
+                        ScrollView(.vertical,
+                                   showsIndicators: false,
+                                   content: {
+                            
+                            LazyVStack(alignment: .center, spacing: 12, content: {
+                                
+                                ForEach(viewModel.state.items, id: \.self) { item in
+                                    NFTCollectionCard(index: viewModel.state.items.firstIndex(of: item)!, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
+                                }
+                            })
+                            .padding(.horizontal, 18)
+                            
+                        })
+                    }
+                }
+            }
+        }
+        .animation(.easeInOut, value: tabStyle)
+        
+    }
+    
+    
+    var nftGrid: some View {
+        VStack {
+            LazyVGrid(columns: nftLayout, spacing: 4) {
+                ForEach(currentNFTs, id: \.self) { nft in
+                    VStack(alignment: .leading) {
+                        
+                        KFImage
+                            .url(nft.image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .cornerRadius(8)
+                            .frame(width: 160, height: 160, alignment: .center )
+                            .clipped()
+                        
+                        Text(nft.name)
+                            .font(.LL.body)
+                            .semibold()
+                        
+                        Text(nft.collections)
+                            .font(.LL.body)
+                            .foregroundColor(.LL.note)
+                    }
+                    .padding(8)
+                    .frame(width: 180,alignment: .center)
+                }
+            }
+            .padding(18)
+            .background(LinearGradient(colors: [.LL.frontColor, .LL.background], startPoint: .top, endPoint: .bottom))
+            .cornerRadius(16)
+            .padding(.bottom, 30)
+        }
+        
     }
 }
 
@@ -240,34 +373,27 @@ struct NFTTabScreen_Previews: PreviewProvider {
 
 struct CollectionHeader: View {
     
-    var collections: [NFTCollection]
+    @Binding var index: Int
+    var list: [CollectionItem]
+    
     
     var body: some View {
         VStack {
-            HStack() {
-                Image(systemName: "square.stack.3d.up.fill")
-                Text("\(collections.count) Collections")
-                    .font(.LL.largeTitle2)
-                    .semibold()
-                
-                Spacer()
-            }
-            .foregroundColor(.LL.text)
-            .padding(.horizontal, 18)
+            
             
             
             ScrollView(.horizontal, showsIndicators: false, content: {
                 LazyHStack(alignment: .center, spacing: 10, content: {
                     Text("  ")
-                    ForEach(collections, id: \.self) { collection in
+                    ForEach(list, id: \.self) { item in
                         
                         Button {
-                            
+                            index = list.firstIndex(of: item) ?? 0
                         } label: {
                             
                             HStack {
                                 KFImage
-                                    .url(collection.logo)
+                                    .url(item.collection.logo)
                                     .resizable()
                                     .aspectRatio(1, contentMode: .fill)
                                     .background(.LL.outline)
@@ -275,7 +401,7 @@ struct CollectionHeader: View {
                                 
                                 VStack(alignment: .leading, spacing: 3) {
                                     HStack {
-                                        Text(collection.name)
+                                        Text(item.collection.name)
                                             .font(.LL.body)
                                             .bold()
                                             .foregroundColor(.LL.neutrals1)
@@ -285,7 +411,7 @@ struct CollectionHeader: View {
                                             .frame(width: 12, height: 12)
                                     }
                                     
-                                    Text("0 Collections")
+                                    Text("\(item.count) Collections")
                                         .font(.LL.body)
                                         .foregroundColor(.LL.note)
                                 }
@@ -297,7 +423,7 @@ struct CollectionHeader: View {
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Color.LL.text,
                                             lineWidth:
-                                                collection.name == "BoredApeYachtClub" ? 1 : 0)
+                                                item.collection.name == "BoredApeYachtClub" ? 1 : 0)
                             )
                             .shadow(color: .LL.rebackground.opacity(0.05),
                                     radius: 8, x: 0, y: 0)

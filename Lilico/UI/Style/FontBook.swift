@@ -23,6 +23,7 @@ extension Font {
 
         static let largeTitle = Font.custom("Montserrat", size: 36, relativeTo: .largeTitle)
         static let largeTitle2 = Font.custom("Montserrat", size: 22, relativeTo: .largeTitle)
+        static let mindTitle = Font.custom("Montserrat", size: 16, relativeTo: .largeTitle)
         
         static let title = Font.custom("Inter", relativeTo: .title)
         static let title2 = Font.custom("Inter", relativeTo: .title2)
