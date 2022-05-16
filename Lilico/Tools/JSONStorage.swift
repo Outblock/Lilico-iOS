@@ -11,7 +11,7 @@ import Foundation
 struct JSONStorage<T: Codable> {
     var value: T?
     let key: String
-    
+    //TODO: fileName: {userId_filename}, Haneke
     init(key: String) {
         self.key = key
         if let jsonData = UserDefaults.standard.data(forKey: key){

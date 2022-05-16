@@ -51,7 +51,6 @@ class NFTTabViewModel: ViewModel {
     private(set) var state: NFTTabScreen.ViewState = .init()
 
     init() {
-        
         fetchNFTs()
     }
     

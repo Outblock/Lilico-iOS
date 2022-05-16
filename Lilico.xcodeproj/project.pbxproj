@@ -715,6 +715,10 @@
 		4E174670281AF841002A029C /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E34447F282EC1C40040E5A4 /* NFTCollectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */; };
 		4E344480282EC1C40040E5A4 /* NFTCollectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */; };
+		4E4F794B2831FCB700ED027C /* ImageMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F794A2831FCB700ED027C /* ImageMap.swift */; };
+		4E4F794C2831FCB700ED027C /* ImageMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F794A2831FCB700ED027C /* ImageMap.swift */; };
+		4E4F794E2831FF0F00ED027C /* NFTSquareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F794D2831FF0F00ED027C /* NFTSquareCard.swift */; };
+		4E4F794F2831FF0F00ED027C /* NFTSquareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F794D2831FF0F00ED027C /* NFTSquareCard.swift */; };
 		4E8DD9F8282E2FBB0016A931 /* EmptyNFTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DD9F7282E2FBB0016A931 /* EmptyNFTView.swift */; };
 		4E8DD9F9282E2FBB0016A931 /* EmptyNFTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DD9F7282E2FBB0016A931 /* EmptyNFTView.swift */; };
 		4E8DD9FC282E52110016A931 /* JSONStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DD9FB282E52110016A931 /* JSONStorage.swift */; };
@@ -1105,6 +1109,8 @@
 		15F43D112753B4F6004F6F49 /* PageIndictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndictor.swift; sourceTree = "<group>"; };
 		4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = Lilico/Library/SwiftProtobuf.xcframework; sourceTree = "<group>"; };
 		4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionCard.swift; sourceTree = "<group>"; };
+		4E4F794A2831FCB700ED027C /* ImageMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMap.swift; sourceTree = "<group>"; };
+		4E4F794D2831FF0F00ED027C /* NFTSquareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTSquareCard.swift; sourceTree = "<group>"; };
 		4E8DD9F7282E2FBB0016A931 /* EmptyNFTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyNFTView.swift; sourceTree = "<group>"; };
 		4E8DD9FB282E52110016A931 /* JSONStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStorage.swift; sourceTree = "<group>"; };
 		4E9E21B1282644B100E1BACD /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
@@ -1442,6 +1448,7 @@
 			children = (
 				157046762793242100D1747B /* ViewModel */,
 				1570466B27930EB200D1747B /* NFTTabScreen.swift */,
+				4E4F794D2831FF0F00ED027C /* NFTSquareCard.swift */,
 				4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */,
 				4E8DD9F7282E2FBB0016A931 /* EmptyNFTView.swift */,
 			);
@@ -1551,6 +1558,7 @@
 		159A5437275368BF004BCACC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4E4F79492831FC5500ED027C /* MaterialMap */,
 				15F22F2A278BD9B900FCF772 /* 3DModel */,
 				158C9CA12787F6BC0062E0C6 /* fonts */,
 				15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */,
@@ -2546,6 +2554,14 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
+		4E4F79492831FC5500ED027C /* MaterialMap */ = {
+			isa = PBXGroup;
+			children = (
+				4E4F794A2831FCB700ED027C /* ImageMap.swift */,
+			);
+			path = MaterialMap;
+			sourceTree = "<group>";
+		};
 		4E8DD9FA282E505B0016A931 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -2922,6 +2938,7 @@
 				15DC207527819C56000B187A /* VTextType.swift in Sources */,
 				15DC21CB27819C56000B187A /* ComponentStateManager.swift in Sources */,
 				15DC21C327819C56000B187A /* LayoutGroup_TB.swift in Sources */,
+				4E4F794F2831FF0F00ED027C /* NFTSquareCard.swift in Sources */,
 				15DC21C727819C56000B187A /* LayoutGroup_HV.swift in Sources */,
 				15DC21B327819C56000B187A /* Optional.LetBlockTransformation.swift in Sources */,
 				156ADC742797B42D00CD4B02 /* Presented.swift in Sources */,
@@ -3052,6 +3069,7 @@
 				15DC213127819C56000B187A /* VWheelPickerModel.swift in Sources */,
 				15DC20B127819C56000B187A /* VBaseButtonState.swift in Sources */,
 				15D9282D2783395F00382226 /* HUDManager.swift in Sources */,
+				4E4F794C2831FCB700ED027C /* ImageMap.swift in Sources */,
 				156ADC5E2797B42D00CD4B02 /* WeakRef.swift in Sources */,
 				15B1F6302786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				15D9282A278338DB00382226 /* UIApplication.swift in Sources */,
@@ -3256,6 +3274,7 @@
 				15DC207427819C56000B187A /* VTextType.swift in Sources */,
 				15DC21CA27819C56000B187A /* ComponentStateManager.swift in Sources */,
 				15DC21C227819C56000B187A /* LayoutGroup_TB.swift in Sources */,
+				4E4F794E2831FF0F00ED027C /* NFTSquareCard.swift in Sources */,
 				15DC21C627819C56000B187A /* LayoutGroup_HV.swift in Sources */,
 				15DC21B227819C56000B187A /* Optional.LetBlockTransformation.swift in Sources */,
 				156ADC732797B42D00CD4B02 /* Presented.swift in Sources */,
@@ -3386,6 +3405,7 @@
 				15DC213027819C56000B187A /* VWheelPickerModel.swift in Sources */,
 				15DC20B027819C56000B187A /* VBaseButtonState.swift in Sources */,
 				15D9282C2783395F00382226 /* HUDManager.swift in Sources */,
+				4E4F794B2831FCB700ED027C /* ImageMap.swift in Sources */,
 				156ADC5D2797B42D00CD4B02 /* WeakRef.swift in Sources */,
 				15B1F62F2786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				15D92829278338DB00382226 /* UIApplication.swift in Sources */,

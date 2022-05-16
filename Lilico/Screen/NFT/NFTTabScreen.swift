@@ -114,8 +114,8 @@ struct NFTTabScreen: View {
     }
     
     var nftLayout: [GridItem] = [
-        GridItem(.adaptive(minimum: 180), spacing: 0),
-        GridItem(.adaptive(minimum: 180), spacing: 0)
+        GridItem(.adaptive(minimum: 160)),
+        GridItem(.adaptive(minimum: 160))
     ]
     
     
@@ -159,14 +159,15 @@ struct NFTTabScreen: View {
                     if (viewModel.items.count > 0) {
                         Section(header: collectionHBody) {
                             if(collectionBarStyle == .horizontal) {
-                            nftGrid }
+                                nftGrid
+                            }
                         }
+                        
                     }
-                    
                     Spacer()
                 }
-                .padding(.vertical, 10)
             }
+            .padding(0)
         }
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)
     }
@@ -179,6 +180,9 @@ struct NFTTabScreen: View {
             }
             .pickerStyle(.segmented)
             .frame(width: 112, height: 32, alignment: .leading)
+            .onChange(of: tabStyle) { tag in
+                print("Switch to \($tabStyle)")
+            }
             
             
             Spacer()
@@ -254,14 +258,12 @@ struct NFTTabScreen: View {
         }
     }
     
-    
-    
     var collectionBar: some View {
         VStack {
             if(tabStyle == .list) {
                 HStack() {
-                    Image(systemName: "square.stack.3d.up.fill")
-                    Text("\(viewModel.state.items.count) Collections")
+                    Image.LL.Logo.collection3D
+                    Text("Collections")
                         .font(.LL.largeTitle2)
                         .semibold()
                     
@@ -270,7 +272,7 @@ struct NFTTabScreen: View {
                         collectionBarStyle.toggle()
                     } label: {
                         //TODO: add the icon
-                        Image(systemName:(onlyShowCollection ? "circle.grid.2x1.left.filled" : "rectangle.grid.1x2"))
+                        onlyShowCollection ? Image.LL.Logo.gridHLayout : Image.LL.Logo.gridHLayout;
                     }
                     
                 }
@@ -328,45 +330,19 @@ struct NFTTabScreen: View {
     
     
     var nftGrid: some View {
-        VStack {
-            LazyVGrid(columns: nftLayout, spacing: 4) {
+        GeometryReader { geo in
+            
+            LazyVGrid(columns: nftLayout, alignment: .center) {
                 ForEach(currentNFTs, id: \.self) { nft in
-                    VStack(alignment: .leading) {
-                        
-                        KFImage
-                            .url(nft.image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .cornerRadius(8)
-                            .frame(width: 160, height: 160, alignment: .center )
-                            .clipped()
-                        
-                        Text(nft.name)
-                            .font(.LL.body)
-                            .semibold()
-                        
-                        Text(nft.collections)
-                            .font(.LL.body)
-                            .foregroundColor(.LL.note)
-                    }
-                    .padding(8)
-                    .frame(width: 180,alignment: .center)
+                    NFTSquareCard(nft: nft)
+                        .frame(height: ceil((geo.size.width-18*3)/2+50))
                 }
             }
-            .padding(18)
-            .background(LinearGradient(colors: [.LL.frontColor, .LL.background], startPoint: .top, endPoint: .bottom))
+            .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
+            .background(Color.white)
             .cornerRadius(16)
-            .padding(.bottom, 30)
         }
-        
-    }
-}
-
-
-struct NFTTabScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
-            .colorScheme(.light)
+        .padding(.top,12)
     }
 }
 
@@ -379,8 +355,6 @@ struct CollectionHeader: View {
     
     var body: some View {
         VStack {
-            
-            
             
             ScrollView(.horizontal, showsIndicators: false, content: {
                 LazyHStack(alignment: .center, spacing: 10, content: {
@@ -439,5 +413,14 @@ struct CollectionHeader: View {
                        alignment: .leading)
         }
         .background(.LL.background)
+    }
+}
+
+
+
+struct NFTTabScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        NFTTabScreen(viewModel: NFTTabViewModel.testData().toAnyViewModel())
+            .colorScheme(.light)
     }
 }
