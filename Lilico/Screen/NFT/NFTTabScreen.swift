@@ -29,10 +29,15 @@ extension NFTTabScreen {
 }
 
 struct NFTTabScreen: View {
+
+    private enum PageStyle:String, CaseIterable, Identifiable {
+        case list, grid
+        var id: Self { self }
+    }
     
-    private enum TabStyle {
-        case list
-        case grid
+    @State private var pageStyle: PageStyle = .list
+    var isListStyle: Bool {
+        return pageStyle == .list
     }
     
     private enum CollectionBarStyle {
@@ -83,7 +88,7 @@ struct NFTTabScreen: View {
         blurEffectStyle: .light
     )
     
-    @State private var tabStyle = TabStyle.list
+    
     @State private var collectionBarStyle: CollectionBarStyle = .horizontal
     
     /// show the collection by vertical layout
@@ -100,10 +105,10 @@ struct NFTTabScreen: View {
     }
     
     var currentNFTs: [NFTModel] {
-        if(tabStyle == .list) {
+        if(isListStyle) {
             return viewModel.state.items[selectedIndex].nfts
         }else {
-            return viewModel.state.nfts
+            return viewModel.state.items.flatMap{$0.nfts}
         }
     }
     
@@ -122,7 +127,7 @@ struct NFTTabScreen: View {
     var body: some View {
         
         ZStack {
-            if(currentLikeNFT != nil && tabStyle == .list) {
+            if(currentLikeNFT != nil && isListStyle) {
                 VStack {
                     KFImage
                         .url(currentLikeNFT)
@@ -174,15 +179,13 @@ struct NFTTabScreen: View {
     
     var topBar: some View {
         HStack {
-            Picker("", selection: $tabStyle) {
-                Text("List").tag(TabStyle.list)
-                Text("Grid").tag(TabStyle.grid)
+            Picker("", selection: $pageStyle) {
+                Text("List")
+                    .tag(PageStyle.list)
+                Text("Grid").tag(PageStyle.grid)
             }
             .pickerStyle(.segmented)
             .frame(width: 112, height: 32, alignment: .leading)
-            .onChange(of: tabStyle) { tag in
-                print("Switch to \($tabStyle)")
-            }
             
             
             Spacer()
@@ -260,7 +263,7 @@ struct NFTTabScreen: View {
     
     var collectionBar: some View {
         VStack {
-            if(tabStyle == .list) {
+            if(isListStyle) {
                 HStack() {
                     Image.LL.Logo.collection3D
                     Text("Collections")
@@ -281,13 +284,14 @@ struct NFTTabScreen: View {
                 .padding(.vertical, 16)
             }
         }
-        .animation(.easeInOut, value: tabStyle)
+        .frame(height: isListStyle ? Double.infinity : 0)
+        .animation(.easeIn, value: pageStyle)
         
     }
     
     var collectionHBody: some View {
         VStack {
-            if(tabStyle == .list) {
+            if(isListStyle) {
                 Group {
                     if( collectionBarStyle == .horizontal) {
                         ScrollView(.horizontal,
@@ -324,7 +328,7 @@ struct NFTTabScreen: View {
                 }
             }
         }
-        .animation(.easeInOut, value: tabStyle)
+        .animation(.easeOut, value: pageStyle)
         
     }
     
@@ -343,6 +347,7 @@ struct NFTTabScreen: View {
             .cornerRadius(16)
         }
         .padding(.top,12)
+        .animation(.easeOut, value: pageStyle)
     }
 }
 

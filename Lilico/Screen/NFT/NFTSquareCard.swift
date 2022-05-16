@@ -19,7 +19,7 @@ struct NFTSquareCard: View {
                     .url(nft.image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: geo.size.width, height: geo.size.width, alignment: .leading)
+                    .frame(width: geo.size.width, height: geo.size.width, alignment: .center)
                     .cornerRadius(8)
                     .clipped()
                 Text(nft.name)
