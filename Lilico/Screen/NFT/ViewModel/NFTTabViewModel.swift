@@ -198,4 +198,26 @@ extension NFTTabViewModel {
                        CollectionItem(name: "A", count: 6, collection: list.last!, nfts: nfts),]
         return model
     }
+    
+    static func testNFTs() -> [NFTModel]{
+        let nfts: [NFTModel] = [
+            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:6302/dd4f5347")!,
+                  name: "BoredApeYachtClub #6302",
+                  collections: "BoredApeYachtClub"),
+            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:4284/1421a7b3")!,
+                  name: "BoredApeYachtClub #6302",
+                  collections: "BoredApeYachtClub"),
+            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:4494/e3c66f42")!,
+                  name: "BoredApeYachtClub #6302",
+                  collections: "BoredApeYachtClub"),
+            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:2282/fcf85b9d")!,
+                  name: "BoredApeYachtClub #6302",
+                  collections: "BoredApeYachtClub"),
+            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:7504/8c1ec72a")!,
+                  name: "BoredApeYachtClub #6302",
+                  collections: "BoredApeYachtClub"),
+            
+        ]
+        return nfts
+    }
 }
