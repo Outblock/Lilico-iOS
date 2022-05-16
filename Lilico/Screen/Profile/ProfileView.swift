@@ -7,162 +7,236 @@
 
 import SwiftUI
 
-struct Address: Identifiable, Decodable {
-    var id: Int
-    var country: String
-}
-
 struct ProfileView: View {
-    @State var isPinned = false
-    @State var isDeleted = false
-
-    @Environment(\.presentationMode) var presentationMode
-    @AppStorage("isLogged") var isLogged = false
-    @AppStorage("isLiteMode") var isLiteMode = true
-    @State var address = Address(id: 1, country: "Canada")
-
+    init() {
+//        UITableView.appearance().sectionFooterHeight = .leastNormalMagnitude
+//        UITableView.appearance().sectionHeaderHeight = .leastNormalMagnitude
+        UITableView.appearance().backgroundColor = .clear
+    }
+    
     var body: some View {
-        NavigationView {
-            List {
-                Section {
-                    profile
-                }
-
-                Section {
-                    NavigationLink {} label: {
-//                        Label("Keys", systemImage: "key")
-                        Label("Keys") {
-                            Image("key")
-                                .resizable()
-                                .sizeToFit()
-                        }
-                    }
-
-                    NavigationLink {} label: {
-                        Label("Network") {
-                            Image("network")
-                                .resizable()
-                                .sizeToFit()
-                        }
-                    }
-
-                    NavigationLink {} label: {
-                        Label("Cloud") {
-                            Image("cloud-security")
-                                .resizable()
-                                .sizeToFit()
-                        }
-                    }
-                }
-                .listRowSeparator(.automatic)
-
-                Section {
-                    Toggle(isOn: $isLiteMode) {
-                        Label("Face ID", systemImage: "faceid")
-                    }
-                }
-
-                linksSection
-
-//                updatesSection
-//                Button {} label: {
-//                    Text("Sign out")
-//                        .frame(maxWidth: .infinity)
-//                }
-//                .tint(.red)
-//                .onTapGesture {
-//                    isLogged = false
-//                    presentationMode.wrappedValue.dismiss()
-//                }
-            }
-            .listStyle(.insetGrouped)
-            .navigationTitle("Account")
-            .background(Color.LL.background.edgesIgnoringSafeArea(.all))
-//            .task {
-//                await fetchAddress()
-//                await updates.fetchUpdates()
-//            }
-//            .refreshable {
-//                await fetchAddress()
-//                await updates.fetchUpdates()
-//            }
+        List {
+            NoLoginTipsView()
+            GeneralSectionView()
+            AboutSectionView()
         }
-    }
-
-    var linksSection: some View {
-        Section {
-            if !isDeleted {
-                Link(destination: URL(string: "https://outblock.io")!) {
-                    HStack {
-                        Label("Website", systemImage: "house")
-                            .tint(.primary)
-                        Spacer()
-                        Image(systemName: "link")
-                            .tint(.secondary)
-                    }
-                }
-                .swipeActions(edge: .leading) {
-                    Button {
-                        withAnimation {
-                            isPinned.toggle()
-                        }
-                    } label: {
-                        if isPinned {
-                            Label("Unpin", systemImage: "pin.slash")
-                        } else {
-                            Label("Pin", systemImage: "pin")
-                        }
-                    }
-                    .tint(isPinned ? .gray : .yellow)
-                }
-                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                    Button {
-                        withAnimation {
-                            isDeleted.toggle()
-                        }
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
-                    .tint(.red)
-                }
-            }
-
-//            Link(destination: URL(string: "https://designcode.io")!) {
-//                HStack {
-//                    Label("YouTube", systemImage: "tv")
-//                        .tint(.primary)
-//                    Spacer()
-//                    Image(systemName: "link")
-//                        .tint(.secondary)
-//                }
-//            }
-        }
-        .listRowSeparator(.automatic)
-    }
-
-    var profile: some View {
-        VStack {
-            Image("safe-box")
-                .symbolVariant(.circle.fill)
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(.blue, .blue.opacity(0.3), .red)
-                .font(.system(size: 32))
-                .padding()
-                .background(Circle().fill(.ultraThinMaterial))
-//                .background(AnimatedBlobView().frame(width: 400, height: 414).offset(x: 200, y: 0).scaleEffect(0.5))
-//                .background(HexagonView().offset(x: -50, y: -100))
-            Text("Lilico")
-                .font(.title.weight(.semibold))
-            Text(address.country)
-                .foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding()
+        .background(.bg)
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
+//        ProfileView.NoLoginTipsView()
+//        ProfileView.GeneralSectionView()
         ProfileView()
+            
+    }
+}
+
+// MARK: - Section login tips
+
+extension ProfileView {
+    struct NoLoginTipsView: View {
+        private let title = "Welcome to Lilico!"
+        private let desc = "Join us and unlock all brilliant & new experiences!"
+        
+        var body: some View {
+            Section {
+                HStack {
+                    VStack {
+                        Image("icon-cool-cat")
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text(title).font(.inter(size: 16, weight: .bold))
+                        Text(desc).font(.inter(size: 16))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Image("icon-orange-right-arrow")
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 16)
+                .background(RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundColor(.salmon))
+            }
+            .listRowInsets(.zero)
+            .background(.clear)
+        }
+    }
+}
+
+// MARK: - Section general setting
+
+extension ProfileView {
+    struct GeneralSectionView: View {
+        enum Row: CaseIterable {
+            case currency
+            case theme
+            case notification
+        }
+        
+        var body: some View {
+            Section {
+                ForEach(Row.allCases, id: \.self) {
+                    ProfileView.SettingItemCell(iconName: $0.iconName, title: $0.title, style: $0.style, desc: $0.desc, toggle: $0.toggle)
+                }
+            }
+            .listRowInsets(.zero)
+        }
+    }
+}
+
+extension ProfileView.GeneralSectionView.Row {
+    var iconName: String {
+        switch self {
+        case .currency:
+            return "icon-currency"
+        case .theme:
+            return "icon-theme"
+        case .notification:
+            return "icon-notification"
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .currency:
+            return "Currency"
+        case .theme:
+            return "Theme"
+        case .notification:
+            return "Notifications"
+        }
+    }
+    
+    var style: ProfileView.SettingItemCell.Style {
+        switch self {
+        case .currency:
+            return .desc
+        case .theme:
+            return .desc
+        case .notification:
+            return .toggle
+        }
+    }
+    
+    var desc: String {
+        switch self {
+        case .currency:
+            return "USD"
+        case .theme:
+            return "Light"
+        case .notification:
+            return ""
+        }
+    }
+    
+    var toggle: Bool {
+        switch self {
+        case .currency:
+            return false
+        case .theme:
+            return false
+        case .notification:
+            return false
+        }
+    }
+}
+
+// MARK: - About setting
+
+extension ProfileView {
+    struct AboutSectionView: View {
+        enum Row: CaseIterable {
+            case about
+        }
+        
+        var body: some View {
+            Section {
+                ForEach(Row.allCases, id: \.self) {
+                    ProfileView.SettingItemCell(iconName: $0.iconName, title: $0.title, style: $0.style, desc: $0.desc, toggle: $0.toggle)
+                }
+            }
+            .listRowInsets(.zero)
+        }
+    }
+}
+
+extension ProfileView.AboutSectionView.Row {
+    var iconName: String {
+        switch self {
+        case .about:
+            return "icon-about"
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .about:
+            return "About"
+        }
+    }
+    
+    var style: ProfileView.SettingItemCell.Style {
+        switch self {
+        case .about:
+            return .arrow
+        }
+    }
+    
+    var desc: String {
+        switch self {
+        case .about:
+            return "About"
+        }
+    }
+    
+    var toggle: Bool {
+        switch self {
+        case .about:
+            return false
+        }
+    }
+}
+
+// MARK: - Component
+
+extension ProfileView {
+    struct SettingItemCell: View {
+        enum Style {
+            case desc
+            case arrow
+            case toggle
+            case image
+        }
+        
+        let iconName: String
+        let title: String
+        let style: Style
+        
+        var desc: String? = ""
+        @State var toggle: Bool = false
+        var imageName: String? = ""
+        
+        var body: some View {
+            HStack {
+                Image(iconName)
+                Text(title).font(.inter()).frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text(desc ?? "").font(.inter()).foregroundColor(.note).visibility(style == .desc ? .visible : .gone)
+                Image("icon-black-right-arrow").visibility(style == .arrow ? .visible : .gone)
+                Toggle(isOn: $toggle) {
+                    
+                }
+                .tint(.salmon)
+                .visibility(style == .toggle ? .visible : .gone)
+                
+                if let imageName = imageName, style == .image {
+                    Image(imageName)
+                }
+            }
+            .frame(height: 64)
+            .padding(.horizontal, 16)
+        }
     }
 }

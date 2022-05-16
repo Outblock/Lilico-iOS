@@ -264,7 +264,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ivanvorobei/SPConfetti",
       "state" : {
-        "revision" : "fd172fe3cc07572e546942cb175b16e549fc3e1a",
+        "revision" : "ebbb3f98c373d7a9981552ae31a7ac9b78680d76",
         "version" : "1.4.0"
       }
     },
@@ -273,7 +273,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ivanvorobei/SPIndicator",
       "state" : {
-        "revision" : "2f67eeace945680865ba2baeb38fb0654fa4d537",
+        "revision" : "5dbca64719cfa44a76a3f83c0dfde7a6897fccec",
         "version" : "1.6.3"
       }
     },

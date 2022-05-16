@@ -37,3 +37,9 @@ extension Font {
         static let caption2 = Font.custom("Inter", relativeTo: .caption2)
     }
 }
+
+extension Font {
+    static func inter(size: CGFloat = 16, weight: Weight = .regular) -> Font {
+        return Font.custom("Inter", size: size).weight(weight)
+    }
+}

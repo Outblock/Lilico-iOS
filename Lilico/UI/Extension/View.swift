@@ -119,3 +119,23 @@ extension View {
             }
     }
 }
+
+// MARK: - Common
+
+enum ViewVisibility: CaseIterable {
+    case visible
+    case invisible
+    case gone
+}
+
+extension View {
+    @ViewBuilder func visibility(_ visibility: ViewVisibility) -> some View {
+        if visibility != .gone {
+            if visibility == .visible {
+                self
+            } else {
+                hidden()
+            }
+        }
+    }
+}
