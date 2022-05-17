@@ -740,6 +740,8 @@
 		4EC56B31281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
 		4EF5129928329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129A28329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
+		4EF5129C28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
+		4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1123,6 +1125,7 @@
 		4EC56B29281D385D00246878 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigs.swift; sourceTree = "<group>"; };
 		4EC56B2F281FC57900246878 /* FlowQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowQuery.swift; sourceTree = "<group>"; };
 		4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTDetailPage.swift; sourceTree = "<group>"; };
+		4EF5129B28333A230014F4EC /* NFTTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTagsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1455,6 +1458,7 @@
 				4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */,
 				4E8DD9F7282E2FBB0016A931 /* EmptyNFTView.swift */,
 				4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */,
+				4EF5129B28333A230014F4EC /* NFTTagsView.swift */,
 			);
 			path = NFT;
 			sourceTree = "<group>";
@@ -3179,6 +3183,7 @@
 				156ADC602797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */,
 				15DC218927819C56000B187A /* VRadioButtonState.swift in Sources */,
 				156ADC542797B42D00CD4B02 /* Presentable.swift in Sources */,
+				4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */,
 				15DC215927819C56000B187A /* VMenu.swift in Sources */,
 				1552DC622786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
 				15D5775E277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
@@ -3516,6 +3521,7 @@
 				156ADC5F2797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */,
 				15DC218827819C56000B187A /* VRadioButtonState.swift in Sources */,
 				156ADC532797B42D00CD4B02 /* Presentable.swift in Sources */,
+				4EF5129C28333A230014F4EC /* NFTTagsView.swift in Sources */,
 				15DC215827819C56000B187A /* VMenu.swift in Sources */,
 				1552DC612786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
 				15D5775D277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
