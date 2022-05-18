@@ -12,12 +12,13 @@ import SwiftUI
 struct Lilico_App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
+    @ObservedObject var themeManager = ThemeManager.shared
 //    var umanager: UserManager = Resolver.resolve()
 
     var body: some Scene {
         WindowGroup {
             MainCoordinator()
-                .view()
+                .view().preferredColorScheme(themeManager.style)
 //                .onAppear {
 //                    overrideNavigationAppearance()
 //                }

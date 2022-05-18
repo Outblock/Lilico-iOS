@@ -45,9 +45,13 @@ final class NewTabBarCoordinator: TabCoordinatable {
         NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
     }
 
-    @ViewBuilder func makeProfile() -> some View {
-        ProfileView()
-            .hideNavigationBar()
+    func makeProfile() -> ProfileCoordinator {
+        return ProfileCoordinator()
+        
+//        let model = ProfileViewModel()
+//
+//        ProfileView()
+//            .hideNavigationBar().environmentObject(model)
     }
 
     @ViewBuilder func makeHomeTab(isActive: Bool) -> some View {
@@ -58,9 +62,5 @@ final class NewTabBarCoordinator: TabCoordinatable {
     @ViewBuilder func makeTestIcon(isActive: Bool) -> some View {
         Image(systemName: "house" + (isActive ? ".fill" : ""))
         Text("Home")
-    }
-
-    func makeHomeTab() -> NavigationViewCoordinator<HomeCoordinator> {
-        NavigationViewCoordinator(HomeCoordinator())
     }
 }

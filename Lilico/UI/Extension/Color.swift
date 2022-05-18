@@ -33,4 +33,5 @@ extension Color {
     static let note = Color("Note")
     static let salmon = Color("Salmon")
     static let bg = Color("Background")
+    static let text = Color("Text")
 }
