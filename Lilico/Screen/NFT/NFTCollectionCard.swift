@@ -22,7 +22,7 @@ struct NFTCollectionCard: View {
     var body: some View {
         HStack {
             KFImage
-                .url(item.collection.logo)
+                .url(item.iconURL)
                 .resizable()
                 .aspectRatio(1, contentMode: .fill)
                 .frame(width: iconSize, height: iconSize)
@@ -31,7 +31,7 @@ struct NFTCollectionCard: View {
             
             VStack(alignment: .leading, spacing: 3) {
                 HStack(spacing: 3) {
-                    Text(item.collection.name)
+                    Text(item.showName)
                         .font(.LL.body)
                         .bold()
                         .foregroundColor(.LL.neutrals1)

@@ -8,137 +8,102 @@
 import Foundation
 import SwiftUIX
 
-struct NFTCollection: Decodable, Hashable {
-    let logo: URL?
-    let name: String
-    let address: ContractAddress
-    var banner: URL? = nil
-    var officialWebsite: String?
-    var marketplace: URL?
-    var description: String?
-    var path: ContractPath
-}
-
-struct ContractAddress: Decodable, Hashable {
-    let mainnet: String
-    let testnet: String?
-}
-
-struct ContractPath: Decodable, Hashable {
-    let storagePath: String
-    let publicPath: String
-    let publicCollectionName: String
-}
-
-
-struct NFTModel: Codable, Hashable, Identifiable {
-    var id = UUID()
-    let image: URL
-    let name: String
-    let collections: String
-}
-
-struct CollectionItem: Hashable {
-    var name: String
-    var count: Int
-    var collection: NFTCollection
-    var nfts: [NFTModel] = []
-    
-}
 
 class NFTTabViewModel: ViewModel {
     @Published
     private(set) var state: NFTTabScreen.ViewState = .init()
 
+    private var owner: String = "0x2b06c41f44a05656"
+    
+    
     init() {
-        fetchNFTs()
+        Task {
+            await refresh()
+        }
     }
     
-    func fetchNFTs() {
+    /*
+     1. fetch all nft,
+     2. fetch collection
+     3. group
+     */
+    func refresh() async{
         Task {
             do {
-                let request = NFTListRequest(owner: "0x2b06c41f44a05656", offset: 0, limit: 100)
-                let response: NFTListResponse = try await Network.requestWithRawModel(AlchemyEndpoint.nftList(request),
-                                                                                      decoder: JSONDecoder(),
-                                                                                      needToken: false)
-                
-                let collections: [NFTCollection] = try await Network.requestWithRawModel(GithubEndpoint.collections,
-                                                      needToken: false)
-                
-                //TODO: nft.contract  NFTCollection.name
-                let groups = Dictionary(grouping: response.nfts) { nft in
-                    return nft.contract.address + (nft.contract.name ?? "")
+                let crudeNFTList = try await handleNFTList()
+                let collectionList = try await fetchCollections()
+                let nftGroup = Dictionary(grouping: crudeNFTList){ $0.contract.address }
+                let allCollectionKeys = collectionList.map { $0.address.mainnet }
+                let result = nftGroup.filter{ nft in
+                    allCollectionKeys.contains(nft.key)
                 }
-                
-                let groupAllKey = groups.keys.compactMap{ $0}
-                print(groupAllKey)
-                let haveCollections = collections.filter{ item in
-                    let key = item.address.mainnet+item.name
-                    print(key)
-                    return groupAllKey.contains(key)
+                .map { group -> CollectionItem in
+                        let nft = group.value.first
+                        let col = collectionList.first{ col in col.address.mainnet == group.key }
+                        let nfts = group.value.map { NFTModel(nft: $0) }
+                        return CollectionItem(name: nft!.contract.name ?? "", count: group.value.count, collection: col, nfts: nfts)
                 }
-                print("====")
+                .sorted{ $0.count > $1.count }
                 await MainActor.run {
-                    state.collections = haveCollections
-                    state.nfts = response.nfts.compactMap({ NFTResponse in
-                        
-                        var url = NFTResponse.media?.first?.uri
-                        if url == nil , let data = NFTResponse.metadata.metadata.first(where: { $0.name.contains("image")}) {
-                            url = data.value
-                        }
-                        
-                        if url != nil  {
-                            url = url!.replacingOccurrences(of: "ipfs://", with: "https://ipfs.io/ipfs/")
-                        }
-
-                        if url == "" {
-                            url = "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
-                        }
-                        
-                        return NFTModel(image: URL(string: url ?? "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png" )!,
-                                        name: NFTResponse.contract.name ?? "" + " #" + NFTResponse.id.tokenID,
-                                        collections: NFTResponse.contract.name ?? "")
-                    })
-                    
-                    state.items = haveCollections.map{ collection -> CollectionItem in
-                        
-                        let theNFT = groups[collection.address.mainnet+collection.name]?.filter{ nft in
-                            let res = collection.address.mainnet == nft.contract.address
-                            return res
-                        } ?? []
-                        
-                        let nft = theNFT.first
-                        let nfts:[NFTModel] = theNFT.compactMap({ NFTResponse in
-                            
-                            var url = NFTResponse.media?.first?.uri
-                            if url == nil , let data = NFTResponse.metadata.metadata.first(where: { $0.name.contains("image")}) {
-                                url = data.value
-                            }
-                            
-                            if url != nil  {
-                                url = url!.replacingOccurrences(of: "ipfs://", with: "https://ipfs.io/ipfs/")
-                            }
-                            
-                            if url == "" {
-                                url = "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
-                            }
-                            
-                            return NFTModel(image: URL(string: url ?? "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png" )!,
-                                            name: NFTResponse.contract.name ?? "" + " #" + NFTResponse.id.tokenID,
-                                            collections: NFTResponse.contract.name ?? "")
-                        })
-                        let bag = CollectionItem(name:nft?.contract.name ?? "" , count: theNFT.count, collection: collection, nfts: nfts)
-                        return bag
-                    }.sorted{$0.count > $1.count}
+                    state.items = result
                 }
-                print(groups)
-                
-            } catch let error {
+            }catch {
                 print(error)
                 HUD.debugError(title: "Fetch NFT Error")
             }
         }
+        
     }
+    
+    /// fetch all nft first.
+    private func handleNFTList() async throws -> [NFTResponse]{
+        var totalCount = 0
+        var currentCount = 0
+        var offset = 0
+        let limit = 30
+        var allCrudeNFTs: [NFTResponse] = []
+        //TODO: 测试
+        repeat {
+            do {
+                let result = try await fetchNFTList(from: offset, limit: limit)
+                allCrudeNFTs.append(contentsOf: result.1)
+                totalCount = result.0
+                currentCount = allCrudeNFTs.count
+                offset += limit
+            }catch {
+                print(error)
+                HUD.debugError(title: "Fetch NFT Error")
+            }
+            print("获取的NFT数量：\(totalCount) | \(currentCount)")
+        }
+        while (totalCount > currentCount)
+        return allCrudeNFTs
+    }
+    
+    private func fetchNFTList(from offset: Int = 0, limit: Int = 30 ) async throws -> (Int, [NFTResponse]) {
+        do {
+            let request = NFTListRequest(owner: owner, offset: offset, limit: limit)
+            let response: NFTListResponse = try await Network.requestWithRawModel(AlchemyEndpoint.nftList(request),
+                                                                                  decoder: JSONDecoder(),
+                                                                                  needToken: false)
+            return (response.nftCount, response.nfts)
+        }
+        catch {
+            throw error
+        }
+    }
+    
+    private func fetchCollections() async throws -> [NFTCollection] {
+        do {
+            let collections: [NFTCollection] = try await Network.requestWithRawModel(GithubEndpoint.collections,
+                                                                                     needToken: false)
+            return collections
+        }
+        catch {
+            throw error
+        }
+    }
+    
     
     func trigger(_: NFTTabScreen.Action) {}
 }
@@ -175,47 +140,12 @@ extension NFTTabViewModel {
                   path: .init(storagePath: "", publicPath: "", publicCollectionName: ""))
         ]
         
-        let nfts: [NFTModel] = [
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:6302/dd4f5347")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:4284/1421a7b3")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:4494/e3c66f42")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:2282/fcf85b9d")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:7504/8c1ec72a")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
-            
-        ]
-        model.state = .init(collections: list, nfts: nfts)
-        model.state.items = [CollectionItem(name: "A", count: 3, collection: list.first!, nfts: nfts),
-                       CollectionItem(name: "A", count: 6, collection: list.last!, nfts: nfts),]
+        
         return model
     }
     
     static func testNFTs() -> [NFTModel]{
         let nfts: [NFTModel] = [
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:6302/dd4f5347")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:4284/1421a7b3")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:4494/e3c66f42")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:2282/fcf85b9d")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
-            .init(image: .init(string: "https://img.rarible.com/prod/image/upload/t_image_preview/prod-itemImages/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d:7504/8c1ec72a")!,
-                  name: "BoredApeYachtClub #6302",
-                  collections: "BoredApeYachtClub"),
             
         ]
         return nfts

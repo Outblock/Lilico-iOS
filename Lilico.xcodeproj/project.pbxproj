@@ -738,6 +738,8 @@
 		4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */; };
 		4EC56B30281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
 		4EC56B31281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
+		4EE8E4952834DC7100DFEF59 /* NFTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E4942834DC7100DFEF59 /* NFTModel.swift */; };
+		4EE8E4962834DC7100DFEF59 /* NFTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E4942834DC7100DFEF59 /* NFTModel.swift */; };
 		4EF5129928329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129A28329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129C28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
@@ -1124,6 +1126,7 @@
 		4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeCoordinator.swift; sourceTree = "<group>"; };
 		4EC56B29281D385D00246878 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigs.swift; sourceTree = "<group>"; };
 		4EC56B2F281FC57900246878 /* FlowQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowQuery.swift; sourceTree = "<group>"; };
+		4EE8E4942834DC7100DFEF59 /* NFTModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTModel.swift; sourceTree = "<group>"; };
 		4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTDetailPage.swift; sourceTree = "<group>"; };
 		4EF5129B28333A230014F4EC /* NFTTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTagsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1452,6 +1455,8 @@
 		1570466A27930EA500D1747B /* NFT */ = {
 			isa = PBXGroup;
 			children = (
+				4EE8E4932834DC5C00DFEF59 /* NFTModel */,
+				4E3DEF1B28338422007E0984 /* Network */,
 				157046762793242100D1747B /* ViewModel */,
 				1570466B27930EB200D1747B /* NFTTabScreen.swift */,
 				4E4F794D2831FF0F00ED027C /* NFTSquareCard.swift */,
@@ -2562,6 +2567,13 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
+		4E3DEF1B28338422007E0984 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		4E4F79492831FC5500ED027C /* MaterialMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -2608,6 +2620,14 @@
 				4EC56B2F281FC57900246878 /* FlowQuery.swift */,
 			);
 			path = FlowCoin;
+			sourceTree = "<group>";
+		};
+		4EE8E4932834DC5C00DFEF59 /* NFTModel */ = {
+			isa = PBXGroup;
+			children = (
+				4EE8E4942834DC7100DFEF59 /* NFTModel.swift */,
+			);
+			path = NFTModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3124,6 +3144,7 @@
 				15DC20C127819C56000B187A /* VSquareButton.swift in Sources */,
 				15DC216F27819C56000B187A /* VDialog.swift in Sources */,
 				15DC210127819C56000B187A /* VStepper.swift in Sources */,
+				4EE8E4962834DC7100DFEF59 /* NFTModel.swift in Sources */,
 				15DC216727819C56000B187A /* VHalfModal.swift in Sources */,
 				4E9E21DB282A5B9400E1BACD /* SecureView.swift in Sources */,
 				1523FAE0278FF84F00ADFEA9 /* CardTest.swift in Sources */,
@@ -3462,6 +3483,7 @@
 				15DC20C027819C56000B187A /* VSquareButton.swift in Sources */,
 				15DC216E27819C56000B187A /* VDialog.swift in Sources */,
 				15DC210027819C56000B187A /* VStepper.swift in Sources */,
+				4EE8E4952834DC7100DFEF59 /* NFTModel.swift in Sources */,
 				15DC216627819C56000B187A /* VHalfModal.swift in Sources */,
 				4E9E21DA282A586500E1BACD /* SecureView.swift in Sources */,
 				1523FADF278FF84F00ADFEA9 /* CardTest.swift in Sources */,

@@ -8,36 +8,6 @@
 import Foundation
 
 
-//struct NFTListResponse: Codable {
-//    let ownerAddress: String
-//    let nfts: [NFTResponse]
-//    let nftcount: Int
-//    let chain: String
-//    let network: String
-//    let offset: Int
-//}
-//
-//
-//struct NFTResponse: Codable {
-//    let id: String
-//    let contract:
-//    let title: String
-//    let description: String
-//    let media: URL
-//    let metadata: [NFTMetadataResponse]
-//}
-//
-//struct NFTContract: Codable {
-//    let name: String
-//    let address: String
-//    let externalDomain: String
-//}
-//
-//struct NFTMetadataResponse: Codable {
-//    let name: String
-//    let value: String
-//}
-
 //// MARK: - NFTListResponse
 struct NFTListResponse: Codable {
     let ownerAddress: String
@@ -47,9 +17,11 @@ struct NFTListResponse: Codable {
 }
 
 // MARK: - Nft
-struct NFTResponse: Codable {
+struct NFTResponse: Codable, Hashable {
     let contract: NFTContract
     let id: NFTID
+    let title: String?
+    let description: String?
     let media: [NFTMedia]?
     let metadata: NFTMetadata
 }
@@ -67,7 +39,7 @@ struct NFTContractMetadata: Codable, Hashable {
 }
 
 // MARK: - ID
-struct NFTID: Codable {
+struct NFTID: Codable, Hashable {
     let tokenID: String
     let tokenMetadata: NFTTokenMetadata
 
@@ -78,22 +50,22 @@ struct NFTID: Codable {
 }
 
 // MARK: - TokenMetadata
-struct NFTTokenMetadata: Codable {
+struct NFTTokenMetadata: Codable, Hashable {
     let uuid: String
 }
 
 // MARK: - Media
-struct NFTMedia: Codable {
+struct NFTMedia: Codable, Hashable {
     let uri, mimeType: String
 }
 
 // MARK: - Metadata
-struct NFTMetadata: Codable {
+struct NFTMetadata: Codable , Hashable{
     let metadata: [NFTMetadatum]
 }
 
 // MARK: - Metadatum
-struct NFTMetadatum: Codable {
+struct NFTMetadatum: Codable, Hashable {
     let name: String
     let value: String
 }

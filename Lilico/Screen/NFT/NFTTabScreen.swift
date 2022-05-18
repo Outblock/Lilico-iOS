@@ -10,21 +10,23 @@ import SwiftUI
 // More info at https://bit.ly/CVPagingLayout
 import CollectionViewPagingLayout
 import Kingfisher
+import WebKit
 
 extension NFTTabScreen {
     
     struct ViewState {
-        var collections: [NFTCollection] = []
-        var nfts: [NFTModel] = []
         
         var items: [CollectionItem] = []
+        var favoriteNFTs: [NFTModel]  {
+            //TODO: replace
+            return items.first?.nfts ?? []
+        }
         
     }
     
     enum Action {
         case search
         case tapNFT
-        
     }
 }
 
@@ -152,6 +154,7 @@ struct NFTTabScreen: View {
                 LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                     
                     VStack(spacing: 0) {
+                        //TODO: 悬浮
                         topBar
                         favoriteSection
                     }
@@ -232,7 +235,7 @@ struct NFTTabScreen: View {
                 .padding(.top)
                 .foregroundColor(.white)
                 
-                StackPageView(viewModel.nfts, selection:$favoriteId) { nft in
+                StackPageView(viewModel.favoriteNFTs, selection:$favoriteId) { nft in
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .fill(Color.LL.background)
@@ -355,6 +358,7 @@ struct NFTTabScreen: View {
 struct CollectionHeader: View {
     
     @Binding var index: Int
+    
     var list: [CollectionItem]
     
     
@@ -372,7 +376,7 @@ struct CollectionHeader: View {
                             
                             HStack {
                                 KFImage
-                                    .url(item.collection.logo)
+                                    .url(item.iconURL)
                                     .resizable()
                                     .aspectRatio(1, contentMode: .fill)
                                     .background(.LL.outline)
@@ -380,7 +384,7 @@ struct CollectionHeader: View {
                                 
                                 VStack(alignment: .leading, spacing: 3) {
                                     HStack {
-                                        Text(item.collection.name)
+                                        Text(item.showName)
                                             .font(.LL.body)
                                             .bold()
                                             .foregroundColor(.LL.neutrals1)
@@ -402,7 +406,7 @@ struct CollectionHeader: View {
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Color.LL.text,
                                             lineWidth:
-                                                item.collection.name == "BoredApeYachtClub" ? 1 : 0)
+                                                item.showName == "BoredApeYachtClub" ? 1 : 0)
                             )
                             .shadow(color: .LL.rebackground.opacity(0.05),
                                     radius: 8, x: 0, y: 0)

@@ -38,7 +38,7 @@ struct NFTSquareCard: View {
 
 struct NFTSquareCard_Previews: PreviewProvider {
     static var previews: some View {
-        NFTSquareCard(nft: NFTTabViewModel.testData().state.nfts.first!)
+        NFTSquareCard(nft: NFTTabViewModel.testData().state.items.first!.nfts.first!)
             .frame(width: 160)
     }
 }
