@@ -13,45 +13,22 @@ struct Lilico_App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     @ObservedObject var themeManager = ThemeManager.shared
-//    var umanager: UserManager = Resolver.resolve()
 
     var body: some Scene {
         WindowGroup {
             MainCoordinator()
                 .view().preferredColorScheme(themeManager.style)
-//                .onAppear {
-//                    overrideNavigationAppearance()
-//                }
-//                .hideNavigationBar()
-                .task {
-//                    umanager.listenAuthenticationState()
-//                    await umanager.login()
-                }
         }
+    }
+    
+    init() {
+        setupNavigationBar()
     }
 }
 
 extension Lilico_App {
-    func overrideNavigationAppearance() {
-        // 设置样式 iOS 15生效
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.configureWithOpaqueBackground()
-//        coloredAppearance.backgroundColor = UIColor.purple
-        coloredAppearance.shadowColor = .clear
-        let titleAttributed: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.clear,
-        ]
-
-        coloredAppearance.titleTextAttributes = titleAttributed
-
-        let backButtonAppearance = UIBarButtonItemAppearance()
-        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
-        coloredAppearance.backButtonAppearance = backButtonAppearance
-
-        let backImage = UIImage(systemName: "square.and.pencil")
-        coloredAppearance.setBackIndicatorImage(backImage,
-                                                transitionMaskImage: backImage)
-        UINavigationBar.appearance().compactAppearance = coloredAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+    func setupNavigationBar() {
+        let font = UIFont(name: "Inter", size: 18)?.semibold
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.LL.Neutrals.text), .font: font!]
     }
 }

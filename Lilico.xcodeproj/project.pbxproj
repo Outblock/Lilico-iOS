@@ -732,6 +732,8 @@
 		4EF5129A28329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129C28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
 		4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
+		6A4A235028365B31001F1FDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
+		6A4A235128365B31001F1FDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
 		6A9D7C3E2833AC9700078F63 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */; };
 		6A9D7C472833B45500078F63 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */; };
 		6A9D7C492834D64800078F63 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */; };
@@ -742,6 +744,12 @@
 		6ABAE52B2836288400C97AE2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE5292836288400C97AE2 /* Font.swift */; };
 		6ABAE52F28362D1100C97AE2 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
 		6ABAE53028362D1100C97AE2 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
+		6AF2ED8E2836424400F06AD3 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED8D2836424400F06AD3 /* UINavigationController.swift */; };
+		6AF2ED8F2836424400F06AD3 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED8D2836424400F06AD3 /* UINavigationController.swift */; };
+		6AF2ED9128364BC200F06AD3 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED9028364BC100F06AD3 /* UIFont.swift */; };
+		6AF2ED9228364BC200F06AD3 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED9028364BC100F06AD3 /* UIFont.swift */; };
+		6AF2ED952836539E00F06AD3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED942836539E00F06AD3 /* BaseView.swift */; };
+		6AF2ED962836539E00F06AD3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED942836539E00F06AD3 /* BaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1121,11 +1129,15 @@
 		4EE8E49A283626D000DFEF59 /* NFTLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTLoading.swift; sourceTree = "<group>"; };
 		4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTDetailPage.swift; sourceTree = "<group>"; };
 		4EF5129B28333A230014F4EC /* NFTTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTagsView.swift; sourceTree = "<group>"; };
+		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeView.swift; sourceTree = "<group>"; };
 		6ABAE5292836288400C97AE2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		6ABAE52E28362D1100C97AE2 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
+		6AF2ED8D2836424400F06AD3 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		6AF2ED9028364BC100F06AD3 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		6AF2ED942836539E00F06AD3 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2395,6 +2407,9 @@
 				6ABAE5292836288400C97AE2 /* Font.swift */,
 				15DC1D5B27816F46000B187A /* MoyaAsync.swift */,
 				6ABAE52E28362D1100C97AE2 /* Others.swift */,
+				6AF2ED8D2836424400F06AD3 /* UINavigationController.swift */,
+				6AF2ED9028364BC100F06AD3 /* UIFont.swift */,
+				6A4A234F28365B31001F1FDE /* Image.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2402,6 +2417,7 @@
 		15DDFB932751137E008263A2 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				6AF2ED932836537800F06AD3 /* Base */,
 				153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */,
 				153C4408275258AF006D1E8D /* TabBar.swift */,
 				15F43D112753B4F6004F6F49 /* PageIndictor.swift */,
@@ -2632,6 +2648,14 @@
 				6ABAE50C2836243300C97AE2 /* VComponents */,
 			);
 			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		6AF2ED932836537800F06AD3 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				6AF2ED942836539E00F06AD3 /* BaseView.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2945,6 +2969,7 @@
 				15DC20E527819C56000B187A /* VAccordion.swift in Sources */,
 				15DC21DB27819C56000B187A /* StateColorsAndOpacities_EP_D.swift in Sources */,
 				15DC21ED27819C57000B187A /* StateColors_OOID.swift in Sources */,
+				6AF2ED9228364BC200F06AD3 /* UIFont.swift in Sources */,
 				15DC217D27819C56000B187A /* _VModal.swift in Sources */,
 				1570467027931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
 				156ADC7C2797B42D00CD4B02 /* PresentationHelper.swift in Sources */,
@@ -2987,6 +3012,7 @@
 				154B8904276A1EEB00780E93 /* OffsetPageTabView.swift in Sources */,
 				158CE8812782BEAA006A8394 /* TYNKViewModel.swift in Sources */,
 				15DC21E727819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
+				6A4A235128365B31001F1FDE /* Image.swift in Sources */,
 				156ADC702797B42D00CD4B02 /* NavigationRouter.swift in Sources */,
 				1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
 				15DC20B727819C56000B187A /* VChevronButton.swift in Sources */,
@@ -2996,6 +3022,7 @@
 				15DC210927819C56000B187A /* VSlider.swift in Sources */,
 				15DC21D127819C56000B187A /* VPickableItems.swift in Sources */,
 				15DC211D27819C56000B187A /* VSpinner.swift in Sources */,
+				6AF2ED962836539E00F06AD3 /* BaseView.swift in Sources */,
 				15DC20E327819C56000B187A /* VList.swift in Sources */,
 				1536813B276F4DD400913268 /* EmptyAccountView.swift in Sources */,
 				15DC212327819C56000B187A /* VSpinnerDashed.swift in Sources */,
@@ -3106,6 +3133,7 @@
 				15DC20B927819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209127819C56000B187A /* VSheet.swift in Sources */,
 				154B890B276A1EEB00780E93 /* OnboardingViewModel.swift in Sources */,
+				6AF2ED8F2836424400F06AD3 /* UINavigationController.swift in Sources */,
 				15DC208727819C56000B187A /* VLazyScrollViewType.swift in Sources */,
 				1599F774278894E00094B196 /* String.swift in Sources */,
 				154B890C276A1EEB00780E93 /* WalletSetupView.swift in Sources */,
@@ -3284,6 +3312,7 @@
 				15DC20E427819C56000B187A /* VAccordion.swift in Sources */,
 				15DC21DA27819C56000B187A /* StateColorsAndOpacities_EP_D.swift in Sources */,
 				15DC21EC27819C57000B187A /* StateColors_OOID.swift in Sources */,
+				6AF2ED9128364BC200F06AD3 /* UIFont.swift in Sources */,
 				15DC217C27819C56000B187A /* _VModal.swift in Sources */,
 				1570466F27931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
 				156ADC7B2797B42D00CD4B02 /* PresentationHelper.swift in Sources */,
@@ -3326,6 +3355,7 @@
 				153C43FF2751CF74006D1E8D /* OffsetPageTabView.swift in Sources */,
 				158CE8802782BEAA006A8394 /* TYNKViewModel.swift in Sources */,
 				15DC21E627819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
+				6A4A235028365B31001F1FDE /* Image.swift in Sources */,
 				156ADC6F2797B42D00CD4B02 /* NavigationRouter.swift in Sources */,
 				1570467E2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
 				15DC20B627819C56000B187A /* VChevronButton.swift in Sources */,
@@ -3335,6 +3365,7 @@
 				15DC210827819C56000B187A /* VSlider.swift in Sources */,
 				15DC21D027819C56000B187A /* VPickableItems.swift in Sources */,
 				15DC211C27819C56000B187A /* VSpinner.swift in Sources */,
+				6AF2ED952836539E00F06AD3 /* BaseView.swift in Sources */,
 				15DC20E227819C56000B187A /* VList.swift in Sources */,
 				1536813A276F4DD400913268 /* EmptyAccountView.swift in Sources */,
 				15DC212227819C56000B187A /* VSpinnerDashed.swift in Sources */,
@@ -3445,6 +3476,7 @@
 				15DC209027819C56000B187A /* VSheet.swift in Sources */,
 				15F43D102753A678004F6F49 /* OnboardingViewModel.swift in Sources */,
 				15DC208627819C56000B187A /* VLazyScrollViewType.swift in Sources */,
+				6AF2ED8E2836424400F06AD3 /* UINavigationController.swift in Sources */,
 				1599F773278894E00094B196 /* String.swift in Sources */,
 				15EC9E1C274FD6C000F70CD9 /* WalletSetupView.swift in Sources */,
 				15DC20F427819C56000B187A /* VBaseListModel.swift in Sources */,

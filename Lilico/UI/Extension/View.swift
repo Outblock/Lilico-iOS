@@ -139,3 +139,22 @@ extension View {
         }
     }
 }
+
+// MARK: - NavigationBar back button
+
+extension View {
+    func backBtn(action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            VStack {
+                Image(systemName: "arrow.backward")
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.LL.Neutrals.neutrals1)
+            }
+        }
+    }
+    
+    @ViewBuilder func addBackBtn(action: @escaping () -> Void) -> some View {
+        self.navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: backBtn(action: action))
+    }
+}
