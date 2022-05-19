@@ -29,6 +29,7 @@ class NFTTabViewModel: ViewModel {
      */
     func refresh() async{
         Task {
+            print("============== refresh NFT")
             do {
                 let crudeNFTList = try await handleNFTList()
                 let collectionList = try await fetchCollections()
@@ -46,6 +47,8 @@ class NFTTabViewModel: ViewModel {
                 .sorted{ $0.count > $1.count }
                 await MainActor.run {
                     state.items = result
+                    //TODO: fetch from cache
+                    state.favoriteNFTs = result.first?.nfts ?? []
                 }
             }catch {
                 print(error)

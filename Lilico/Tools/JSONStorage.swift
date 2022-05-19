@@ -43,7 +43,7 @@ struct JSONTestReader<T: Codable> {
         self.fileName = fileName
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             do {
-                let url = try URL(fileURLWithPath: path)
+                let url = URL(fileURLWithPath: path)
                 let jsonData = try Data.init(contentsOf: url)
                 let decoder = JSONDecoder()
                 value = try? decoder.decode(T.self, from: jsonData)

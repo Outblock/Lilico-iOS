@@ -17,11 +17,7 @@ extension NFTTabScreen {
     struct ViewState {
         
         var items: [CollectionItem] = []
-        var favoriteNFTs: [NFTModel]  {
-            //TODO: replace
-            return items.first?.nfts ?? []
-        }
-        
+        var favoriteNFTs: [NFTModel] = []
     }
     
     enum Action {
@@ -58,52 +54,23 @@ struct NFTTabScreen: View {
     
     @StateObject
     var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
-    @State var selectedIndex = 0
     
-    @JSONStorage(key: "favorite")
-    var favoriteList: [NFTModel]?
-    @State var favoriteId: UUID?
+    @State
+    var selectedIndex = 0
     
-    var options = StackTransformViewOptions(
-        scaleFactor: 0.10,
-        minScale: 0.20,
-        maxScale: 0.95,
-        maxStackSize: 6,
-        spacingFactor: 0.1,
-        maxSpacing: nil,
-        alphaFactor: 0.00,
-        bottomStackAlphaSpeedFactor: 0.90,
-        topStackAlphaSpeedFactor: 0.30,
-        perspectiveRatio: 0.30,
-        shadowEnabled: true,
-        shadowColor: Color.LL.rebackground.toUIColor()!,
-        shadowOpacity: 0.10,
-        shadowOffset: .zero,
-        shadowRadius: 5.00,
-        stackRotateAngel: 0.00,
-        popAngle: 0.31,
-        popOffsetRatio: .init(width: -1.45, height: 0.30),
-        stackPosition: .init(x: 1.00, y: 0.00),
-        reverse: false,
-        blurEffectEnabled: false,
-        maxBlurEffectRadius: 0.00,
-        blurEffectStyle: .light
-    )
-    
+    @State
+    var currentNFTImage: URL?
     
     @State private var collectionBarStyle: CollectionBarStyle = .horizontal
     
     /// show the collection by vertical layout
+    
     var onlyShowCollection: Bool {
         return collectionBarStyle == .vertical
     }
     
-    var currentLikeNFT: URL?  {
-        guard let nft = favoriteList?.first(where: { $0.id == favoriteId
-        }) else {
-            return nil
-        }
-        return nft.image
+    var canShowFavorite: Bool {
+        return viewModel.favoriteNFTs.count > 0 && isListStyle
     }
     
     var currentNFTs: [NFTModel] {
@@ -128,11 +95,11 @@ struct NFTTabScreen: View {
     
     var body: some View {
         
-        ZStack {
-            if(currentLikeNFT != nil && isListStyle) {
+        ZStack() {
+            if( canShowFavorite ) {
                 VStack {
                     KFImage
-                        .url(currentLikeNFT)
+                        .url(currentNFTImage)
                         .fade(duration: 0.25)
                         .resizable()
                         .aspectRatio(1, contentMode: .fill)
@@ -151,17 +118,12 @@ struct NFTTabScreen: View {
             }
             
             ScrollView {
+                topBar
                 LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                    
-                    VStack(spacing: 0) {
-                        //TODO: 悬浮
-                        topBar
-                        favoriteSection
+                    if(canShowFavorite) {
+                        //                            NFTFavoriteView(favoriteNFTs: viewModel.favoriteNFTs, currentNFTImage: $currentNFTImage)
                     }
-                    .background(LinearGradient(colors: [.clear, .LL.background],
-                                               startPoint: .top, endPoint: .bottom))
                     
-                    // Collection
                     collectionBar
                     
                     if (viewModel.items.count > 0) {
@@ -175,7 +137,6 @@ struct NFTTabScreen: View {
                     Spacer()
                 }
             }
-            .padding(0)
         }
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)
     }
@@ -218,51 +179,9 @@ struct NFTTabScreen: View {
             }
         }
         .padding(.horizontal, 18)
+        .background(Color.clear)
     }
     
-    var favoriteSection: some View {
-        VStack {
-            if((favoriteList?.count ?? 0) > 0) {
-                HStack() {
-                    Image(systemName: "star.fill")
-                    Text("Top Selection")
-                        .font(.LL.largeTitle2)
-                        .semibold()
-                    
-                    Spacer()
-                }
-                .padding(.horizontal, 18)
-                .padding(.top)
-                .foregroundColor(.white)
-                
-                StackPageView(viewModel.favoriteNFTs, selection:$favoriteId) { nft in
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.LL.background)
-                        
-                        KFImage
-                            .url(nft.image)
-                            .fade(duration: 0.25)
-                            .resizable()
-                            .aspectRatio(1, contentMode: .fill)
-                            .cornerRadius(8)
-                            .padding()
-                        
-                    }
-                }
-                .options(options)
-                .pagePadding(
-                    top: .absolute(18),
-                    left: .absolute(18),
-                    bottom: .absolute(18),
-                    right: .fractionalWidth(0.22)
-                )
-                .frame(width: screenWidth,
-                       height: screenHeight * 0.4, alignment: .center)
-            }
-            
-        }
-    }
     
     var collectionBar: some View {
         VStack {
@@ -287,7 +206,6 @@ struct NFTTabScreen: View {
                 .padding(.vertical, 16)
             }
         }
-        .frame(height: isListStyle ? Double.infinity : 0)
         .animation(.easeIn, value: pageStyle)
         
     }
@@ -351,6 +269,12 @@ struct NFTTabScreen: View {
         }
         .padding(.top,12)
         .animation(.easeOut, value: pageStyle)
+    }
+}
+
+extension NFTTabScreen {
+    private enum Layout {
+        static let menuHeight = 32.0
     }
 }
 
