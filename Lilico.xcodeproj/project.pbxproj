@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1505E5FB28363578007B98D8 /* LilicoAPI+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */; };
+		1505E5FC28363578007B98D8 /* LilicoAPI+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */; };
+		1505E5FE2836365C007B98D8 /* LilicoAPI+AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */; };
+		1505E5FF2836365C007B98D8 /* LilicoAPI+AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */; };
 		1507C7DB2754F4E000890C5D /* ImportWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507C7DA2754F4E000890C5D /* ImportWalletView.swift */; };
 		1507C7DF275502AF00890C5D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507C7DE275502AF00890C5D /* HomeView.swift */; };
 		1507C7E52755061700890C5D /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 1507C7E42755061700890C5D /* Resolver */; };
@@ -230,8 +234,8 @@
 		15D5774B277C0FFB00045E79 /* UsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57749277C0FFB00045E79 /* UsernameViewModel.swift */; };
 		15D5774E277C119400045E79 /* NavigateBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5774D277C119400045E79 /* NavigateBackButton.swift */; };
 		15D5774F277C119400045E79 /* NavigateBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5774D277C119400045E79 /* NavigateBackButton.swift */; };
-		15D57751277C224300045E79 /* LilicoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57750277C224300045E79 /* LilicoEndpoint.swift */; };
-		15D57752277C224300045E79 /* LilicoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57750277C224300045E79 /* LilicoEndpoint.swift */; };
+		15D57751277C224300045E79 /* LilicoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57750277C224300045E79 /* LilicoAPI.swift */; };
+		15D57752277C224300045E79 /* LilicoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57750277C224300045E79 /* LilicoAPI.swift */; };
 		15D57755277C238C00045E79 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 15D57754277C238C00045E79 /* CombineMoya */; };
 		15D57757277C238C00045E79 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 15D57756277C238C00045E79 /* Moya */; };
 		15D57759277C23BF00045E79 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 15D57758277C23BF00045E79 /* CombineMoya */; };
@@ -780,6 +784,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+User.swift"; sourceTree = "<group>"; };
+		1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+AddressBook.swift"; sourceTree = "<group>"; };
 		1507C7DA2754F4E000890C5D /* ImportWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletView.swift; sourceTree = "<group>"; };
 		1507C7DE275502AF00890C5D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1507C7EB2755FCBF00890C5D /* OldWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldWalletView.swift; sourceTree = "<group>"; };
@@ -880,7 +886,7 @@
 		15D574CB27781D2000045E79 /* LLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLTextField.swift; sourceTree = "<group>"; };
 		15D57749277C0FFB00045E79 /* UsernameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameViewModel.swift; sourceTree = "<group>"; };
 		15D5774D277C119400045E79 /* NavigateBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateBackButton.swift; sourceTree = "<group>"; };
-		15D57750277C224300045E79 /* LilicoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilicoEndpoint.swift; sourceTree = "<group>"; };
+		15D57750277C224300045E79 /* LilicoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilicoAPI.swift; sourceTree = "<group>"; };
 		15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
 		15D92827278331FE00382226 /* Lilico-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lilico-dev.entitlements"; sourceTree = "<group>"; };
 		15D92828278338DB00382226 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
@@ -1214,6 +1220,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1505E5F928363554007B98D8 /* Lilico */ = {
+			isa = PBXGroup;
+			children = (
+				15D57750277C224300045E79 /* LilicoAPI.swift */,
+				1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */,
+				1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */,
+			);
+			path = Lilico;
+			sourceTree = "<group>";
+		};
 		1507C7D92754F4C300890C5D /* ImportWallet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1599,9 +1615,9 @@
 		159A5438275368DA004BCACC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				1505E5F928363554007B98D8 /* Lilico */,
 				15DC1D4B27814F38000B187A /* Model */,
 				159A560127536E4E004BCACC /* Endpoint.swift */,
-				15D57750277C224300045E79 /* LilicoEndpoint.swift */,
 				1570466E27931F5100D1747B /* AlchemyEndpoint.swift */,
 				1570467D2793EBA100D1747B /* GithubEndpoint.swift */,
 				15DC1D5727816660000B187A /* Network.swift */,
@@ -3182,7 +3198,7 @@
 				15DC21D327819C56000B187A /* StateColors_EFSEPD.swift in Sources */,
 				1570466D27930EB200D1747B /* NFTTabScreen.swift in Sources */,
 				15DC217B27819C56000B187A /* VModalModel.swift in Sources */,
-				15D57752277C224300045E79 /* LilicoEndpoint.swift in Sources */,
+				15D57752277C224300045E79 /* LilicoAPI.swift in Sources */,
 				15DC218B27819C56000B187A /* VRadioButtonModel.swift in Sources */,
 				15BCFF1527770D76000B7863 /* EmptyWalletView.swift in Sources */,
 				15DC215327819C56000B187A /* VNavigationViewAppearance.swift in Sources */,
@@ -3230,6 +3246,7 @@
 				15D5775E277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
 				15DC215127819C56000B187A /* VNavigationView.swift in Sources */,
 				15DC21F02781F388000B187A /* TYNKView.swift in Sources */,
+				1505E5FF2836365C007B98D8 /* LilicoAPI+AddressBook.swift in Sources */,
 				15DC211927819C56000B187A /* VPageIndicatorType.swift in Sources */,
 				15DC20AF27819C56000B187A /* VBaseButtonGestureState.swift in Sources */,
 				15DE22E9277EDC4700B5EE03 /* WalletView.swift in Sources */,
@@ -3259,6 +3276,7 @@
 				15DC20AB27819C56000B187A /* VBaseButton.swift in Sources */,
 				15DC219D27819C56000B187A /* VTextFieldState.swift in Sources */,
 				156AC7B427804C2100ED5E3E /* LoginCoordinator.swift in Sources */,
+				1505E5FC28363578007B98D8 /* LilicoAPI+User.swift in Sources */,
 				15DE22E6277EAFF300B5EE03 /* EnterPasswordView.swift in Sources */,
 				15DC21C927819C56000B187A /* LayoutGroup_LTTB.swift in Sources */,
 				15F22F30278BDD7400FCF772 /* ScenekitView.swift in Sources */,
@@ -3524,7 +3542,7 @@
 				15DC21D227819C56000B187A /* StateColors_EFSEPD.swift in Sources */,
 				1570466C27930EB200D1747B /* NFTTabScreen.swift in Sources */,
 				15DC217A27819C56000B187A /* VModalModel.swift in Sources */,
-				15D57751277C224300045E79 /* LilicoEndpoint.swift in Sources */,
+				15D57751277C224300045E79 /* LilicoAPI.swift in Sources */,
 				15DC218A27819C56000B187A /* VRadioButtonModel.swift in Sources */,
 				15BCFF1427770D76000B7863 /* EmptyWalletView.swift in Sources */,
 				15DC215227819C56000B187A /* VNavigationViewAppearance.swift in Sources */,
@@ -3573,6 +3591,7 @@
 				15DC215027819C56000B187A /* VNavigationView.swift in Sources */,
 				15DC21EF2781F388000B187A /* TYNKView.swift in Sources */,
 				15DC211827819C56000B187A /* VPageIndicatorType.swift in Sources */,
+				1505E5FE2836365C007B98D8 /* LilicoAPI+AddressBook.swift in Sources */,
 				15DC20AE27819C56000B187A /* VBaseButtonGestureState.swift in Sources */,
 				15DE22E8277EDC4700B5EE03 /* WalletView.swift in Sources */,
 				15DC215E27819C56000B187A /* VSideBarModel.swift in Sources */,
@@ -3602,6 +3621,7 @@
 				15DC20AA27819C56000B187A /* VBaseButton.swift in Sources */,
 				15DC219C27819C56000B187A /* VTextFieldState.swift in Sources */,
 				156AC7B327804C2100ED5E3E /* LoginCoordinator.swift in Sources */,
+				1505E5FB28363578007B98D8 /* LilicoAPI+User.swift in Sources */,
 				15DE22E5277EAFF300B5EE03 /* EnterPasswordView.swift in Sources */,
 				15DC21C827819C56000B187A /* LayoutGroup_LTTB.swift in Sources */,
 				15F22F2F278BDD7400FCF772 /* ScenekitView.swift in Sources */,

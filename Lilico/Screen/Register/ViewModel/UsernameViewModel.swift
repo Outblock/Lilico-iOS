@@ -68,7 +68,7 @@ class UsernameViewModel: ViewModel {
     func checkUsername(_ username: String) {
         Task {
             do {
-                let model: CheckUserNameModel = try await Network.request(LilicoEndpoint.checkUsername(username.lowercased()))
+                let model: CheckUserNameModel = try await Network.request(LilicoAPI.User.checkUsername(username.lowercased()))
                 await MainActor.run {
                     if model.username == currentText {
                         self.state.status = model.unique ? .success() : .error("It's taken")

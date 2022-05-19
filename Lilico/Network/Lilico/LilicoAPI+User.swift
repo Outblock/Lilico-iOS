@@ -1,34 +1,24 @@
 //
-//  LilicoEndpoint.swift
+//  LilicoAPI+Account.swift
 //  Lilico
 //
-//  Created by Hao Fu on 29/12/21.
+//  Created by Hao Fu on 19/5/2022.
 //
 
-import FirebaseAuth
 import Foundation
-import Haneke
 import Moya
-import Resolver
 
-enum LilicoEndpoint {
-    case register(RegisterReuqest)
-    case checkUsername(String)
-    case userAddress
-    case userInfo
-    case userWallet
-
-    static var jsonEncoder: JSONEncoder {
-        switch self {
-        default:
-            let coder = JSONEncoder()
-            coder.keyEncodingStrategy = .convertToSnakeCase
-            return coder
-        }
+extension LilicoAPI {
+    enum User {
+        case register(RegisterReuqest)
+        case checkUsername(String)
+        case userAddress
+        case userInfo
+        case userWallet
     }
 }
 
-extension LilicoEndpoint: TargetType, AccessTokenAuthorizable {
+extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
     var authorizationType: AuthorizationType? {
         return .bearer
     }
@@ -68,7 +58,7 @@ extension LilicoEndpoint: TargetType, AccessTokenAuthorizable {
         case .checkUsername(let username):
             return .requestParameters(parameters: ["username": username], encoding: URLEncoding.queryString)
         case let .register(request):
-            return .requestCustomJSONEncodable(request, encoder: LilicoEndpoint.jsonEncoder)
+            return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
         }
     }
 

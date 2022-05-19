@@ -98,14 +98,14 @@ class UserManager: ObservableObject {
             throw LLError.emptyWallet
         }
         let request = RegisterReuqest(username: username, accountKey: key.toCodableModel())
-        let model: RegisterResponse = try await Network.request(LilicoEndpoint.register(request))
+        let model: RegisterResponse = try await Network.request(LilicoAPI.User.register(request))
         try await loginWithCustomToken(model.customToken)
         try await updateUserName(username: username)
         try WalletManager.shared.storeMnemonicToKeychain(username: username)
         
         // No need wait for the create address request
         Task {
-            let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoEndpoint.userAddress)
+            let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.userAddress)
         }
     }
 
@@ -136,7 +136,7 @@ class UserManager: ObservableObject {
 
     func fetchUserInfo() async {
         do {
-            let response: UserInfoResponse = try await Network.request(LilicoEndpoint.userInfo)
+            let response: UserInfoResponse = try await Network.request(LilicoAPI.User.userInfo)
             userInfo = UserInfo(avatar: response.avatar, username: response.username)
 
 //            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -150,7 +150,7 @@ class UserManager: ObservableObject {
 
     func fetchWalletInfo() async {
         do {
-            let response: UserWalletResponse = try await Network.request(LilicoEndpoint.userWallet)
+            let response: UserWalletResponse = try await Network.request(LilicoAPI.User.userWallet)
             print(response)
         } catch {
             debugPrint(error)
