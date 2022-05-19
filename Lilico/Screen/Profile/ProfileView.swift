@@ -33,9 +33,9 @@ struct ProfileView: View {
                     MoreSectionView()
                 }
             }
-            .background(.bg)
+            .background(.LL.Neutrals.background)
         }
-        .backgroundFill(.bg)
+        .backgroundFill(.LL.Neutrals.background)
     }
 }
 
@@ -82,7 +82,7 @@ extension ProfileView {
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 16)
-                .background(RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundColor(.salmon))
+                .background(RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundColor(.LL.Primary.salmonPrimary))
             }
             .listRowInsets(.zero)
             .background(.clear)
@@ -102,18 +102,18 @@ extension ProfileView {
                 }
             }
             .listRowInsets(.zero)
-            .background(.bg)
+            .background(.LL.Neutrals.background)
         }
     }
     
     struct InfoView: View {
         var body: some View {
             HStack(spacing: 16) {
-                Image("").frame(width: 82, height: 82).background(.salmon).clipShape(Circle())
+                Image("").frame(width: 82, height: 82).background(.LL.Primary.salmonPrimary).clipShape(Circle())
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("user name").foregroundColor(.text).font(.inter(weight: .semibold))
-                    Text("@test").foregroundColor(.text).font(.inter(size: 14, weight: .medium))
+                    Text("user name").foregroundColor(.LL.Neutrals.text).font(.inter(weight: .semibold))
+                    Text("@test").foregroundColor(.LL.Neutrals.text).font(.inter(size: 14, weight: .medium))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -155,7 +155,7 @@ extension ProfileView {
             Button(action: action) {
                 VStack {
                     Image(iconName)
-                    Text(title).foregroundColor(.note).font(.inter(size: 12, weight: .medium))
+                    Text(title).foregroundColor(.LL.Neutrals.note).font(.inter(size: 12, weight: .medium))
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -458,12 +458,12 @@ extension ProfileView {
                 Image(iconName)
                 Text(title).font(.inter()).frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(desc ?? "").font(.inter()).foregroundColor(.note).visibility(style == .desc ? .visible : .gone)
+                Text(desc ?? "").font(.inter()).foregroundColor(.LL.Neutrals.note).visibility(style == .desc ? .visible : .gone)
                 Image("icon-black-right-arrow").visibility(style == .arrow ? .visible : .gone)
                 Toggle(isOn: $toggle) {
                     
                 }
-                .tint(.salmon)
+                .tint(.LL.Primary.salmonPrimary)
                 .visibility(style == .toggle ? .visible : .gone)
                 .onChange(of: toggle) { value in
                     if let action = toggleAction {
