@@ -49,9 +49,13 @@ class NFTTabViewModel: ViewModel {
                     state.items = result
                     //TODO: fetch from cache
                     state.favoriteNFTs = result.first?.nfts ?? []
+                    state.loading = false
                 }
             }catch {
                 print(error)
+                await MainActor.run {
+                    state.loading = false
+                }
                 HUD.debugError(title: "Fetch NFT Error")
             }
         }

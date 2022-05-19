@@ -15,9 +15,13 @@ import WebKit
 extension NFTTabScreen {
     
     struct ViewState {
-        
+        var loading: Bool = true
         var items: [CollectionItem] = []
         var favoriteNFTs: [NFTModel] = []
+        
+        var isEmpty: Bool {
+            return !loading && items.count == 0
+        }
     }
     
     enum Action {
@@ -102,49 +106,57 @@ struct NFTTabScreen: View {
     
     var body: some View {
         
-        ZStack() {
-            if( canShowFavorite ) {
-                VStack {
-                    KFImage
-                        .url(currentNFTImage)
-                        .fade(duration: 0.25)
-                        .resizable()
-                        .aspectRatio(1, contentMode: .fill)
-                        .frame(width: screenWidth,
-                               height: screenHeight * 0.6,
-                               alignment: .topLeading)
-                    
-                    Spacer()
+        ZStack(alignment: .topLeading) {
+            if(viewModel.state.loading) {
+                NFTLoading()
+            }else if(viewModel.state.isEmpty) {
+                EmptyNFTView()
+            }else {
+                if( canShowFavorite ) {
+                    VStack {
+                        KFImage
+                            .url(currentNFTImage)
+                            .fade(duration: 0.25)
+                            .resizable()
+                            .aspectRatio(1, contentMode: .fill)
+                            .frame(width: screenWidth,
+                                   height: screenHeight * 0.6,
+                                   alignment: .topLeading)
+                        
+                        Spacer()
+                    }
+                    .blur(radius: 30, opaque: true)
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors:
+                                                            [Color.black, Color.clear]), startPoint: .top, endPoint: .center)
+                    )
+                    .edgesIgnoringSafeArea(.top)
                 }
-                .blur(radius: 30, opaque: true)
-                .mask(
-                    LinearGradient(gradient: Gradient(colors:
-                                                        [Color.black, Color.clear]), startPoint: .top, endPoint: .center)
-                )
-                .edgesIgnoringSafeArea(.top)
-            }
-            VStack {
-                topBar
-                ScrollView(showsIndicators: false) {
-                    LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                
+                VStack {
+                    topBar
+                    ScrollView(showsIndicators: false) {
                         
-                        if(canShowFavorite) {
-                            NFTFavoriteView(favoriteNFTs: viewModel.favoriteNFTs, favoriteId: $favoriteId)
-                        }
-                        collectionBar
-                        
-                        if (viewModel.items.count > 0) {
-                            Section(header: collectionHBody) {
-                                if(collectionBarStyle == .horizontal || !isListStyle) {
-                                    nftGrid
-                                }
-                            }
+                        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                             
+                            if(canShowFavorite) {
+                                NFTFavoriteView(favoriteNFTs: viewModel.favoriteNFTs, favoriteId: $favoriteId)
+                            }
+                            collectionBar
+                            
+                            if (viewModel.items.count > 0) {
+                                Section(header: collectionHBody) {
+                                    if(collectionBarStyle == .horizontal || !isListStyle) {
+                                        nftGrid
+                                    }
+                                }
+                                
+                            }
                         }
                     }
                 }
-                .ignoresSafeArea()
             }
+            
         }
         .padding(.bottom, 44)
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)
@@ -152,28 +164,31 @@ struct NFTTabScreen: View {
     
     var topBar: some View {
         HStack {
-            Picker("", selection: $pageStyle) {
-                Text("List")
-                    .tag(PageStyle.list)
-                Text("Grid").tag(PageStyle.grid)
+            if(!viewModel.state.isEmpty) {
+                Picker("", selection: $pageStyle) {
+                    Text("List")
+                        .tag(PageStyle.list)
+                    Text("Grid").tag(PageStyle.grid)
+                }
+                .pickerStyle(.segmented)
+                .frame(width: 112, height: 32, alignment: .leading)
             }
-            .pickerStyle(.segmented)
-            .frame(width: 112, height: 32, alignment: .leading)
-            
             
             Spacer()
-            
-            Button {
-                
-            } label: {
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background {
-                        Circle()
-                            .foregroundColor(.LL.outline.opacity(0.8))
-                    }
+            if(!viewModel.state.isEmpty) {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.white)
+                        .padding(8)
+                        .background {
+                            Circle()
+                                .foregroundColor(.LL.outline.opacity(0.8))
+                        }
+                }
             }
+            
             
             Button {
                 
