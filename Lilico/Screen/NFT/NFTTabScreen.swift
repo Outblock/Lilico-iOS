@@ -58,13 +58,20 @@ struct NFTTabScreen: View {
     @State
     var selectedIndex = 0
     
-    @State
-    var currentNFTImage: URL?
+    @State var favoriteId: UUID?
+    var currentNFTImage: URL? {
+        guard let nft = viewModel.favoriteNFTs.first(where: { $0.id == favoriteId
+        }) else {
+            let model = viewModel.favoriteNFTs.first
+            return model?.image
+            
+        }
+        return nft.image
+    }
     
     @State private var collectionBarStyle: CollectionBarStyle = .horizontal
     
     /// show the collection by vertical layout
-    
     var onlyShowCollection: Bool {
         return collectionBarStyle == .vertical
     }
@@ -116,28 +123,30 @@ struct NFTTabScreen: View {
                 )
                 .edgesIgnoringSafeArea(.top)
             }
-            
-            ScrollView {
+            VStack {
                 topBar
-                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                    if(canShowFavorite) {
-                        //                            NFTFavoriteView(favoriteNFTs: viewModel.favoriteNFTs, currentNFTImage: $currentNFTImage)
-                    }
-                    
-                    collectionBar
-                    
-                    if (viewModel.items.count > 0) {
-                        Section(header: collectionHBody) {
-                            if(collectionBarStyle == .horizontal) {
-                                nftGrid
-                            }
-                        }
+                ScrollView(showsIndicators: false) {
+                    LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                         
+                        if(canShowFavorite) {
+                            NFTFavoriteView(favoriteNFTs: viewModel.favoriteNFTs, favoriteId: $favoriteId)
+                        }
+                        collectionBar
+                        
+                        if (viewModel.items.count > 0) {
+                            Section(header: collectionHBody) {
+                                if(collectionBarStyle == .horizontal || !isListStyle) {
+                                    nftGrid
+                                }
+                            }
+                            
+                        }
                     }
-                    Spacer()
                 }
+                .ignoresSafeArea()
             }
         }
+        .padding(.bottom, 44)
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)
     }
     
@@ -225,12 +234,11 @@ struct NFTTabScreen: View {
                                     NFTCollectionCard(index: viewModel.state.items.firstIndex(of: item)!, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
                                 }
                             })
+                            .frame(height: 56)
                             .padding(.leading, 18)
+                            .padding(.bottom, 12)
                             
                         })
-                        .frame(width: screenWidth,
-                               height: 56,
-                               alignment: .leading)
                     }else {
                         ScrollView(.vertical,
                                    showsIndicators: false,
@@ -255,19 +263,15 @@ struct NFTTabScreen: View {
     
     
     var nftGrid: some View {
-        GeometryReader { geo in
-            
-            LazyVGrid(columns: nftLayout, alignment: .center) {
-                ForEach(currentNFTs, id: \.self) { nft in
-                    NFTSquareCard(nft: nft)
-                        .frame(height: ceil((geo.size.width-18*3)/2+50))
-                }
+        LazyVGrid(columns: nftLayout, alignment: .center) {
+            ForEach(currentNFTs, id: \.self) { nft in
+                NFTSquareCard(nft: nft)
+                    .frame(height: ceil((screenWidth-18*3)/2+50))
             }
-            .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
-            .background(Color.white)
-            .cornerRadius(16)
         }
-        .padding(.top,12)
+        .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
+        .cornerRadius(16)
+        .background(Color.white)
         .animation(.easeOut, value: pageStyle)
     }
 }

@@ -12,18 +12,7 @@ import Kingfisher
 struct NFTFavoriteView: View {
     
     var favoriteNFTs: [NFTModel]
-    @Binding var currentNFTImage: URL?
-    @State private var favoriteId: UUID? {
-        didSet {
-            guard let nft = favoriteNFTs.first(where: { $0.id == favoriteId
-            }) else {
-                let model = favoriteNFTs.first
-                currentNFTImage = model?.image
-                return
-            }
-            currentNFTImage = nft.image
-        }
-    }
+    @Binding var favoriteId: UUID?
     
     
     var body: some View {
@@ -103,8 +92,8 @@ struct NFTFavoriteView: View {
 
 struct NFTFavoriteView_Previews: PreviewProvider {
     @State static var list: [NFTModel] = []
-    @State static var url: URL?
+    @State static var favoriteId: UUID?
     static var previews: some View {
-        NFTFavoriteView(favoriteNFTs: list, currentNFTImage: $url)
+        NFTFavoriteView(favoriteNFTs: list, favoriteId: $favoriteId)
     }
 }
