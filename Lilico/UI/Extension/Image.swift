@@ -10,4 +10,6 @@ import SwiftUI
 extension String {
     static let checkmarkSelected = "checkmark.circle.fill"
     static let checkmarkUnselected = "circle"
+    static let sun = "sun.max.fill"
 }
+

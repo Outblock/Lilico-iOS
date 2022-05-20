@@ -21,3 +21,9 @@ struct BaseView<Content>: View where Content: View {
         .backgroundFill(.LL.Neutrals.background)
     }
 }
+
+struct BaseDivider: View {
+    var body: some View {
+        Divider().foregroundColor(.LL.Neutrals.background).padding(.horizontal, 8)
+    }
+}

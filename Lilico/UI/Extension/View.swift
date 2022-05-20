@@ -138,6 +138,20 @@ extension View {
             }
         }
     }
+    
+    @ViewBuilder func roundedBg(cornerRadius: CGFloat = 16, fillColor: Color = .LL.deepBg, strokeColor: Color? = nil, strokeLineWidth: CGFloat? = nil) -> some View {
+        let fillBg = RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).fill(fillColor)
+        
+        if let strokeColor = strokeColor, let lineWidth = strokeLineWidth {
+            let strokeAndFillBg = RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                .strokeBorder(strokeColor, lineWidth: lineWidth)
+                .background(fillBg)
+            
+            self.background(strokeAndFillBg)
+        } else {
+            self.background(fillBg)
+        }
+    }
 }
 
 // MARK: - NavigationBar back button

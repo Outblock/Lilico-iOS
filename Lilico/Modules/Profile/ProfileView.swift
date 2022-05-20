@@ -49,10 +49,7 @@ struct ProfileView_Previews: PreviewProvider {
 //        ProfileView.NoLoginTipsView()
 //        ProfileView.GeneralSectionView()
         let model = ProfileViewModel()
-        Group {
-            ProfileView().environmentObject(model)
-            ProfileView().environmentObject(model)
-        }
+        ProfileView().environmentObject(model)
 //        ProfileView.InfoView()
 //        ProfileView.InfoActionView()
     }
@@ -82,7 +79,7 @@ extension ProfileView {
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 16)
-                .background(RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundColor(.LL.Primary.salmonPrimary))
+                .roundedBg(cornerRadius: 12, strokeColor: .LL.Primary.salmonPrimary, strokeLineWidth: 1)
             }
             .listRowInsets(.zero)
             .background(.clear)
