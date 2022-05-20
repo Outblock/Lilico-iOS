@@ -11,6 +11,7 @@ import Kingfisher
 struct NFTSquareCard: View {
     
     var nft: NFTModel
+    var onClick: (NFTModel) -> Void
     
     var body: some View {
         GeometryReader { geo in
@@ -22,23 +23,28 @@ struct NFTSquareCard: View {
                     .frame(width: geo.size.width, height: geo.size.width, alignment: .center)
                     .cornerRadius(8)
                     .clipped()
-                Text(nft.name)
+                Text(nft.collections)
                     .font(.LL.body)
                     .semibold()
                     .lineLimit(1)
                 
-                Text(nft.collections)
+                Text(nft.name)
                     .font(.LL.body)
                     .foregroundColor(.LL.note)
                     .lineLimit(1)
             }
+        }
+        .onTapGesture {
+            onClick(nft)
         }
     }
 }
 
 struct NFTSquareCard_Previews: PreviewProvider {
     static var previews: some View {
-        NFTSquareCard(nft: NFTTabViewModel.testData().state.items.first!.nfts.first!)
+        NFTSquareCard(nft: NFTTabViewModel.testNFT(), onClick: { _ in
+            
+        })
             .frame(width: 160)
     }
 }

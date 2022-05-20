@@ -10,12 +10,13 @@ import SwiftUI
 final class NewTabBarCoordinator: TabCoordinatable {
     var child = TabChild(startingItems: [
         \NewTabBarCoordinator.home,
+        \NewTabBarCoordinator.wallet,
         \NewTabBarCoordinator.nft,
-        \NewTabBarCoordinator.discover,
         \NewTabBarCoordinator.profile,
     ])
 
     @Route(tabItem: makeHomeTab) var home = makeHome
+    @Route(tabItem: makeTestIcon) var wallet = makeWallet
     @Route(tabItem: makeTestIcon) var nft = makeNFT
     @Route(tabItem: makeTestIcon) var discover = makeDiscover
     @Route(tabItem: makeTestIcon) var profile = makeProfile
@@ -24,25 +25,17 @@ final class NewTabBarCoordinator: TabCoordinatable {
         return HomeCoordinator()
     }
 
-    @ViewBuilder func makeNFT() -> some View {
+    @ViewBuilder func makeWallet() -> some View {
         WalletView()
             .hideNavigationBar()
     }
+    
+    func makeNFT() -> NFTCoordinator {
+        return NFTCoordinator()
+    }
 
-    @ViewBuilder func makeDiscover() -> some View {
-//        VStack {
-//            ScenekitView()
-//            Text("")
-//                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.5, alignment: .bottom)
-//        }
-//        .background{
-//            NewEmptyWalletBackgroundView(image: Image("Asset2"), color: Color(hex: "#00EF8B"))
-//        }
-//        .clipped()
-//        .edgesIgnoringSafeArea(.top)
-//        .background(Color.LL.background, ignoresSafeAreaEdges: .all)
-        
-        NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
+    func makeDiscover() -> NFTCoordinator {
+        return NFTCoordinator()
     }
 
     func makeProfile() -> ProfileCoordinator {

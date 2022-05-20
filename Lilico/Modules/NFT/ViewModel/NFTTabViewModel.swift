@@ -10,11 +10,14 @@ import SwiftUIX
 
 
 class NFTTabViewModel: ViewModel {
+    
     @Published
     private(set) var state: NFTTabScreen.ViewState = .init()
 
     private var owner: String = "0x2b06c41f44a05656"
     
+    @RouterObject
+    var router: NFTCoordinator.Router?
     
     init() {
         Task {
@@ -41,7 +44,7 @@ class NFTTabViewModel: ViewModel {
                 .map { group -> CollectionItem in
                         let nft = group.value.first
                         let col = collectionList.first{ col in col.address.mainnet == group.key }
-                        let nfts = group.value.map { NFTModel(nft: $0) }
+                    let nfts = group.value.map { NFTModel($0, in: col) }
                         return CollectionItem(name: nft!.contract.name ?? "", count: group.value.count, collection: col, nfts: nfts)
                 }
                 .sorted{ $0.count > $1.count }
@@ -112,7 +115,15 @@ class NFTTabViewModel: ViewModel {
     }
     
     
-    func trigger(_: NFTTabScreen.Action) {}
+    func trigger(_ input: NFTTabScreen.Action) {
+        switch input {
+        case let .info(model):
+            router?.route(to: \.detail, model)
+            break
+        case .search:
+            break
+        }
+    }
 }
 
 @propertyWrapper
@@ -157,4 +168,95 @@ extension NFTTabViewModel {
         ]
         return nfts
     }
+    
+    static func testNFT() -> NFTModel {
+        let nftJsonData = """
+        {
+            "contract": {
+                "name": "NyatheesOVO",
+                "address": "0x75e0b6de94eb05d0",
+                "externalDomain": "",
+                "contractMetadata": {
+                    "storagePath": "NyatheesOVO.CollectionStoragePath",
+                    "publicPath": "NyatheesOVO.CollectionPublicPath",
+                    "publicCollectionName": "NyatheesOVO.NFTCollectionPublic"
+                }
+            },
+            "id": {
+                "tokenId": "2850",
+                "tokenMetadata": {
+                    "uuid": "61769425"
+                }
+            },
+            "media": [],
+            "metadata": {
+                "metadata": [
+                    {
+                        "name": "metadataUrl",
+                        "value": "https://www.ovo.space/api/v1/metadata/get-metadata?tokenId="
+                    },
+                    {
+                        "name": "level",
+                        "value": "1"
+                    },
+                    {
+                        "name": "image",
+                        "value": "https://ovowebpics.s3.ap-northeast-1.amazonaws.com/flowMysertybox10.png"
+                    },
+                    {
+                        "name": "sign",
+                        "value": "1"
+                    },
+                    {
+                        "name": "hash",
+                        "value": "10"
+                    },
+                    {
+                        "name": "uri",
+                        "value": "https://www.ovo.space/#/profile"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Big-eating cat,  This pose is the hardest to pull off."
+                    },
+                    {
+                        "name": "title",
+                        "value": "Yellow Ranger"
+                    }
+                ]
+            }
+        }
+        """.data(using: .utf8)!
+        
+        let collJsonData = """
+        {
+        "name": "OVO",
+        "address": {
+        "mainnet": "0x75e0b6de94eb05d0",
+        "testnet": "0xacf3dfa413e00f9f"
+        },
+        "path": {
+        "storage_path": "NyatheesOVO.CollectionStoragePath",
+        "public_path": "NyatheesOVO.CollectionPublicPath",
+        "public_collection_name": "NyatheesOVO.NFTCollectionPublic"
+        },
+        "contract_name": "NyatheesOVO",
+        "logo": "https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovologo.jpeg",
+        "banner": "https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovobanner.png",
+        "official_website": "https://www.ovo.space/#/",
+        "marketplace": "https://www.ovo.space/#/Market",
+        "description": "ovo (ovo space) is the industry's frst platform to issue holographic AR-NFT assets and is currently deployed on the BSC and FLOW. The NFT issued by ovo will be delivered as Super Avatars to various Metaverses and GameFi platforms."
+        }
+        """.data(using: .utf8)!
+        
+        let jsonDecoder = JSONDecoder()
+        let response = try! jsonDecoder.decode(NFTResponse.self, from: nftJsonData)
+        
+        let collModel = try! jsonDecoder.decode(NFTCollection.self, from: collJsonData)
+        
+        return NFTModel(response, in: collModel)
+        
+    }
+    
+    
 }

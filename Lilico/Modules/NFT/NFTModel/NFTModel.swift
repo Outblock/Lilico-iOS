@@ -9,7 +9,7 @@ import Foundation
 
 let placeholder: String = "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
 
-struct NFTCollection: Decodable, Hashable {
+struct NFTCollection: Codable, Hashable {
     let logo: URL?
     let name: String
     let address: ContractAddress
@@ -20,12 +20,12 @@ struct NFTCollection: Decodable, Hashable {
     var path: ContractPath
 }
 
-struct ContractAddress: Decodable, Hashable {
+struct ContractAddress: Codable, Hashable {
     let mainnet: String
     let testnet: String?
 }
 
-struct ContractPath: Decodable, Hashable {
+struct ContractPath: Codable, Hashable {
     let storagePath: String
     let publicPath: String
     let publicCollectionName: String
@@ -37,11 +37,13 @@ struct NFTModel: Codable, Hashable, Identifiable {
     let image: URL
     let name: String
     let collections: String
-    let nft: NFTResponse?
+
+    let response: NFTResponse?
+    let collection: NFTCollection?
     
-    init(nft: NFTResponse) {
-        var url = nft.media?.first?.uri
-        if url == nil , let data = nft.metadata.metadata.first(where: { $0.name.contains("image")}) {
+    init(_ response: NFTResponse, in collection: NFTCollection?) {
+        var url = response.media?.first?.uri
+        if url == nil , let data = response.metadata.metadata.first(where: { $0.name.contains("image")}) {
             url = data.value
         }
         
@@ -53,9 +55,21 @@ struct NFTModel: Codable, Hashable, Identifiable {
         }
         
         image = URL(string: url!)!
-        name = nft.contract.name ?? "" + " #" + nft.id.tokenID
-        collections = nft.contract.name ?? ""
-        self.nft = nft
+        collections = (response.contract.name ?? "") + " #" + response.id.tokenID
+        name = response.contract.name ?? ""
+        self.collection = collection
+        self.response = response
+    }
+    
+    var declare: String {
+        if let dec = response?.description {
+            return dec
+        }
+        return ""
+    }
+    
+    var logoUrl: URL {
+        return collection?.logo ?? URL(string: placeholder)!
     }
 }
 

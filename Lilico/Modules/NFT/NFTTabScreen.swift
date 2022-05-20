@@ -26,7 +26,7 @@ extension NFTTabScreen {
     
     enum Action {
         case search
-        case tapNFT
+        case info(NFTModel)
     }
 }
 
@@ -280,8 +280,10 @@ struct NFTTabScreen: View {
     var nftGrid: some View {
         LazyVGrid(columns: nftLayout, alignment: .center) {
             ForEach(currentNFTs, id: \.self) { nft in
-                NFTSquareCard(nft: nft)
-                    .frame(height: ceil((screenWidth-18*3)/2+50))
+                NFTSquareCard(nft: nft, onClick: { model in
+                    viewModel.trigger(.info(model))
+                })
+                .frame(height: ceil((screenWidth-18*3)/2+50))
             }
         }
         .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))

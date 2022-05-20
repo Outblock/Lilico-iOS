@@ -33,9 +33,8 @@ struct EmptyNFTView: View {
                 .background(Color.LL.Primary.salmonPrimary.opacity(0.08))
                 .cornerRadius(12)
                 .clipped()
-                
-
             }
+            .background(Color.clear)
         }
     }
 }
