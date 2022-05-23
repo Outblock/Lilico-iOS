@@ -1,5 +1,5 @@
 //
-//  EmptyNFTView.swift
+//  NFTEmptyView.swift
 //  Lilico
 //
 //  Created by cat on 2022/5/13.
@@ -7,12 +7,15 @@
 
 import SwiftUI
 
-struct EmptyNFTView: View {
+struct NFTEmptyView: View {
     var body: some View {
         ZStack {
-            //TODO: 这里需要一个背景图片
+            Image("nft_empty_bg")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                
             VStack {
-                Image("")
+
                 Text("We find nothing here.")
                     .font(.LL.mindTitle)
                     .foregroundColor(.LL.Neutrals.neutrals3)
@@ -23,7 +26,7 @@ struct EmptyNFTView: View {
                 Spacer()
                     .frame(height: 18)
                 Button {
-                    
+
                 } label: {
                     Text("Get new NFTs")
                         .foregroundColor(.LL.Primary.salmonPrimary)
@@ -36,11 +39,12 @@ struct EmptyNFTView: View {
             }
             .background(Color.clear)
         }
+        .ignoresSafeArea()
     }
 }
 
 struct EmptyNFTView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyNFTView()
+        NFTEmptyView()
     }
 }

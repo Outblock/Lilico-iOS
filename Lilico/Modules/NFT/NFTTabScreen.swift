@@ -105,61 +105,63 @@ struct NFTTabScreen: View {
     
     
     var body: some View {
-        
-        ZStack(alignment: .topLeading) {
+        ZStack {
             if(viewModel.state.loading) {
                 NFTLoading()
             }else if(viewModel.state.isEmpty) {
-                EmptyNFTView()
+                NFTEmptyView()
             }else {
-                if( canShowFavorite ) {
-                    VStack {
-                        KFImage
-                            .url(currentNFTImage)
-                            .fade(duration: 0.25)
-                            .resizable()
-                            .aspectRatio(1, contentMode: .fill)
-                            .frame(width: screenWidth,
-                                   height: screenHeight * 0.6,
-                                   alignment: .topLeading)
-                        
-                        Spacer()
+                ZStack(alignment: .topLeading) {
+                    
+                    if( canShowFavorite ) {
+                        VStack {
+                            KFImage
+                                .url(currentNFTImage)
+                                .fade(duration: 0.25)
+                                .resizable()
+                                .aspectRatio(1, contentMode: .fill)
+                                .frame(width: screenWidth,
+                                       height: screenHeight * 0.6,
+                                       alignment: .topLeading)
+                            
+                            Spacer()
+                        }
+                        .blur(radius: 30, opaque: true)
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors:
+                                                                [Color.black, Color.clear]), startPoint: .top, endPoint: .center)
+                        )
+                        .edgesIgnoringSafeArea(.top)
                     }
-                    .blur(radius: 30, opaque: true)
-                    .mask(
-                        LinearGradient(gradient: Gradient(colors:
-                                                            [Color.black, Color.clear]), startPoint: .top, endPoint: .center)
-                    )
-                    .edgesIgnoringSafeArea(.top)
-                }
-                
-                VStack {
-                    topBar
-                    ScrollView(showsIndicators: false) {
-                        
-                        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                    
+                    VStack {
+                        topBar
+                        ScrollView(showsIndicators: false) {
                             
-                            if(canShowFavorite) {
-                                NFTFavoriteView(favoriteNFTs: viewModel.favoriteNFTs, favoriteId: $favoriteId)
-                            }
-                            collectionBar
-                            
-                            if (viewModel.items.count > 0) {
-                                Section(header: collectionHBody) {
-                                    if(collectionBarStyle == .horizontal || !isListStyle) {
-                                        nftGrid
-                                    }
-                                }
+                            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                                 
+                                if(canShowFavorite) {
+                                    NFTFavoriteView(favoriteNFTs: viewModel.favoriteNFTs, favoriteId: $favoriteId)
+                                }
+                                collectionBar
+                                
+                                if (viewModel.items.count > 0) {
+                                    Section(header: collectionHBody) {
+                                        if(collectionBarStyle == .horizontal || !isListStyle) {
+                                            nftGrid
+                                        }
+                                    }
+                                    
+                                }
                             }
                         }
                     }
                 }
+                .padding(.bottom, 44)
+                .background(Color.LL.background, ignoresSafeAreaEdges: .all)
             }
-            
         }
-        .padding(.bottom, 44)
-        .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+        
     }
     
     var topBar: some View {
@@ -211,7 +213,7 @@ struct NFTTabScreen: View {
         VStack {
             if(isListStyle) {
                 HStack() {
-                    Image.LL.Logo.collection3D
+                    Image(.Image.Logo.collection3D)
                     Text("Collections")
                         .font(.LL.largeTitle2)
                         .semibold()
@@ -221,9 +223,8 @@ struct NFTTabScreen: View {
                         collectionBarStyle.toggle()
                     } label: {
                         //TODO: add the icon
-                        onlyShowCollection ? Image.LL.Logo.gridHLayout : Image.LL.Logo.gridHLayout;
-                    }
-                    
+                        onlyShowCollection ? Image(.Image.Logo.gridHLayout) : Image(.Image.Logo.gridHLayout);
+                                                                                       }   
                 }
                 .foregroundColor(.LL.text)
                 .padding(.horizontal, 20)

@@ -11,7 +11,6 @@ struct NFTLoading: View {
     var body: some View {
         ZStack{
             Text("Loading...")
-                .background(Color.clear)
         }
     }
 }

@@ -13,6 +13,10 @@ enum AppConfig: String {
     case flowCoins = "flow_coins"
 }
 
+enum AppConfigError: Error {
+    case fetchFailed
+}
+
 extension AppConfig {
     
     func fetch() async throws -> Data {
@@ -30,7 +34,7 @@ extension AppConfig {
             let remoteConfig = RemoteConfig.remoteConfig()
             remoteConfig.fetchAndActivate(completionHandler: { status, error in
                 if status == .error {
-                    continuation.resume(throwing: error as! Never)
+                    continuation.resume(throwing: AppConfigError.fetchFailed)
                     print("Config not fetched")
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 } else {
