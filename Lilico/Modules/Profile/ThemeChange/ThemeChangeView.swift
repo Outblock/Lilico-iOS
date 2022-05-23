@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 struct ThemeChangeView: View {
-    @EnvironmentObject var router: ProfileCoordinator.Router
-    @ObservedObject var vm: ThemeChangeViewModel = ThemeChangeViewModel()
+    @EnvironmentObject private var router: ProfileCoordinator.Router
+    @StateObject private var vm: ThemeChangeViewModel = ThemeChangeViewModel()
     
     var body: some View {
         BaseView {
@@ -36,62 +36,34 @@ struct Previews_ThemeChangeView_Previews: PreviewProvider {
     }
 }
 
-// MARK: - ViewModel
-
-extension ThemeChangeView {
-    @MainActor class ThemeChangeViewModel: ObservableObject {
-        @Published var isAuto: Bool
-        @Published var isLight: Bool
-        @Published var isDark: Bool
-        
-        func changeStyle(newStyle: ColorScheme?) {
-            ThemeManager.shared.setStyle(style: newStyle)
-            reloadStates()
-        }
-        
-        private func reloadStates() {
-            isAuto = ThemeManager.shared.style == nil
-            isLight = ThemeManager.shared.style == .light
-            isDark = ThemeManager.shared.style == .dark
-            
-        }
-        
-        init() {
-            isAuto = ThemeManager.shared.style == nil
-            isLight = ThemeManager.shared.style == .light
-            isDark = ThemeManager.shared.style == .dark
-        }
-    }
-}
-
 extension ThemeChangeView {
     var themeItemView: some View {
         HStack(spacing: 0) {
-            ThemePreviewItemView(imageName: "preview-theme-light", title: "Light", isSelected: $vm.isLight) {
-                vm.changeStyle(newStyle: .light)
+            ThemePreviewItemView(imageName: "preview-theme-light", title: "Light", isSelected: $vm.state.isLight) {
+                vm.trigger(.change(.light))
             }
             
-            ThemePreviewItemView(imageName: "preview-theme-dark", title: "Dark", isSelected: $vm.isDark) {
-                vm.changeStyle(newStyle: .dark)
+            ThemePreviewItemView(imageName: "preview-theme-dark", title: "Dark", isSelected: $vm.state.isDark) {
+                vm.trigger(.change(.dark))
             }
         }
     }
     
     var autoItemView: some View {
         VStack {
-            Toggle(isOn: $vm.isAuto) {
+            Toggle(isOn: $vm.state.isAuto) {
                 Image(systemName: .sun).font(.system(size: 25)).foregroundColor(.LL.Secondary.mango4)
                 Text("Auto").foregroundColor(.LL.Neutrals.text).font(.inter(size: 16, weight: .medium))
             }
             .tint(.LL.Primary.salmonPrimary)
-            .onChange(of: vm.isAuto) { value in
+            .onChange(of: vm.state.isAuto) { value in
                 if value == true {
-                    vm.changeStyle(newStyle: nil)
+                    vm.trigger(.change(nil))
                 } else {
                     if ThemeManager.shared.style == nil {
-                        vm.changeStyle(newStyle: .light)
+                        vm.trigger(.change(.light))
                     } else {
-                        vm.changeStyle(newStyle: ThemeManager.shared.style)
+                        vm.trigger(.change(ThemeManager.shared.style))
                     }
                 }
             }

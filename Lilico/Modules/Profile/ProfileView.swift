@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var model: ProfileViewModel
+    @StateObject private var vm: ProfileViewModel = ProfileViewModel()
     
     init() {
 //        UITableView.appearance().sectionFooterHeight = .leastNormalMagnitude
@@ -19,7 +19,7 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             List {
-                if model.isLogin {
+                if vm.state.isLogin {
                     InfoContainerView()
                     ActionSectionView()
                 } else {
@@ -29,26 +29,22 @@ struct ProfileView: View {
                 GeneralSectionView()
                 AboutSectionView()
                 
-                if model.isLogin {
+                if vm.state.isLogin {
                     MoreSectionView()
                 }
             }
             .background(.LL.Neutrals.background)
         }
         .backgroundFill(.LL.Neutrals.background)
+        .environmentObject(vm)
     }
-}
-
-class ProfileViewModel: ObservableObject {
-    @Published var isLogin: Bool = false
-    @Published var currency: String = "USD"
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
 //        ProfileView.NoLoginTipsView()
 //        ProfileView.GeneralSectionView()
-        let model = ProfileViewModel()
+        let model = ProfileView.ProfileViewModel()
         ProfileView().environmentObject(model)
 //        ProfileView.InfoView()
 //        ProfileView.InfoActionView()
@@ -231,7 +227,7 @@ extension ProfileView.ActionSectionView.Row {
 
 extension ProfileView {
     struct GeneralSectionView: View {
-        @EnvironmentObject var model: ProfileViewModel
+        @EnvironmentObject private var vm: ProfileViewModel
         @EnvironmentObject var router: ProfileCoordinator.Router
         
         enum Row: CaseIterable {
@@ -243,7 +239,7 @@ extension ProfileView {
         var body: some View {
             Section {
                 ForEach(Row.allCases, id: \.self) { row in
-                    ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc, toggle: row.toggle)
+                    ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc(with: vm), toggle: row.toggle)
                         .onTapGestureOnBackground {
                             if row == .theme {
                                 router.route(to: \.themeChange)
@@ -290,17 +286,6 @@ extension ProfileView.GeneralSectionView.Row {
         }
     }
     
-    var desc: String {
-        switch self {
-        case .currency:
-            return "USD"
-        case .theme:
-            return ThemeManager.shared.style?.desc ?? "Auto"
-        case .notification:
-            return ""
-        }
-    }
-    
     var toggle: Bool {
         switch self {
         case .currency:
@@ -309,6 +294,17 @@ extension ProfileView.GeneralSectionView.Row {
             return false
         case .notification:
             return false
+        }
+    }
+    
+    func desc(with vm: ProfileView.ProfileViewModel) -> String {
+        switch self {
+        case .currency:
+            return "USD"
+        case .theme:
+            return vm.state.colorScheme?.desc ?? "Auto"
+        case .notification:
+            return ""
         }
     }
 }

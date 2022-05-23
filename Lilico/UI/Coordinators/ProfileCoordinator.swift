@@ -21,7 +21,7 @@ final class ProfileCoordinator: NavigationCoordinatable {
 
 extension ProfileCoordinator {
     @ViewBuilder func makeProfileView() -> some View {
-        ProfileView().environmentObject(ProfileViewModel())
+        ProfileView()
     }
     
     @ViewBuilder func makeThemeChangeView() -> some View {

@@ -734,6 +734,10 @@
 		4EF5129A28329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129C28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
 		4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
+		6A2D35B9283B6AD6008293D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */; };
+		6A2D35BA283B6AD7008293D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */; };
+		6A2D35BD283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */; };
+		6A2D35BE283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */; };
 		6A4A235028365B31001F1FDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
 		6A4A235128365B31001F1FDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
 		6A9D7C3E2833AC9700078F63 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */; };
@@ -1132,6 +1136,8 @@
 		4EE8E49A283626D000DFEF59 /* NFTLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTLoading.swift; sourceTree = "<group>"; };
 		4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTDetailPage.swift; sourceTree = "<group>"; };
 		4EF5129B28333A230014F4EC /* NFTTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTagsView.swift; sourceTree = "<group>"; };
+		6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeViewModel.swift; sourceTree = "<group>"; };
 		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -1257,8 +1263,9 @@
 		1507C7ED275634BC00890C5D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				6A2D35BB283B6B21008293D9 /* ThemeChange */,
 				1507C7EE275634C900890C5D /* ProfileView.swift */,
-				6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */,
+				6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2614,6 +2621,15 @@
 			path = NFTModel;
 			sourceTree = "<group>";
 		};
+		6A2D35BB283B6B21008293D9 /* ThemeChange */ = {
+			isa = PBXGroup;
+			children = (
+				6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */,
+				6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */,
+			);
+			path = ThemeChange;
+			sourceTree = "<group>";
+		};
 		6ABAE50C2836243300C97AE2 /* VComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -2977,6 +2993,7 @@
 				15DC20DD27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AD27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
 				15DC214327819C56000B187A /* VTabNavigationView.swift in Sources */,
+				6A2D35BE283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */,
 				1537B3DB277C8DC8008ECD05 /* HomeCoordinator.swift in Sources */,
 				15DC20E527819C56000B187A /* VAccordion.swift in Sources */,
 				15DC21DB27819C56000B187A /* StateColorsAndOpacities_EP_D.swift in Sources */,
@@ -3000,6 +3017,7 @@
 				15DC20C527819C56000B187A /* VCloseButton.swift in Sources */,
 				4E8DD9FD282E52110016A931 /* JSONStorage.swift in Sources */,
 				15DE22D6277DCCED00B5EE03 /* AppDelegate+Resolver.swift in Sources */,
+				6A2D35BA283B6AD7008293D9 /* ProfileViewModel.swift in Sources */,
 				15DC207527819C56000B187A /* VTextType.swift in Sources */,
 				15DC21CB27819C56000B187A /* ComponentStateManager.swift in Sources */,
 				15DC21C327819C56000B187A /* LayoutGroup_TB.swift in Sources */,
@@ -3321,6 +3339,7 @@
 				15DC20DC27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AC27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
 				15DC214227819C56000B187A /* VTabNavigationView.swift in Sources */,
+				6A2D35BD283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */,
 				1537B3DA277C8DC8008ECD05 /* HomeCoordinator.swift in Sources */,
 				15DC20E427819C56000B187A /* VAccordion.swift in Sources */,
 				15DC21DA27819C56000B187A /* StateColorsAndOpacities_EP_D.swift in Sources */,
@@ -3344,6 +3363,7 @@
 				15DC20C427819C56000B187A /* VCloseButton.swift in Sources */,
 				4E8DD9FC282E52110016A931 /* JSONStorage.swift in Sources */,
 				15DE22D5277DCCED00B5EE03 /* AppDelegate+Resolver.swift in Sources */,
+				6A2D35B9283B6AD6008293D9 /* ProfileViewModel.swift in Sources */,
 				15DC207427819C56000B187A /* VTextType.swift in Sources */,
 				15DC21CA27819C56000B187A /* ComponentStateManager.swift in Sources */,
 				15DC21C227819C56000B187A /* LayoutGroup_TB.swift in Sources */,
