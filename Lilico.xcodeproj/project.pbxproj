@@ -740,6 +740,14 @@
 		6A2D35BE283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */; };
 		6A4A235028365B31001F1FDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
 		6A4A235128365B31001F1FDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
+		6A8D2A37283C7C790041100E /* AddressBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A36283C7C790041100E /* AddressBookView.swift */; };
+		6A8D2A38283C7C790041100E /* AddressBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A36283C7C790041100E /* AddressBookView.swift */; };
+		6A8D2A3A283C7C880041100E /* AddressBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */; };
+		6A8D2A3B283C7C880041100E /* AddressBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */; };
+		6A8D2A3D283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */; };
+		6A8D2A3E283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */; };
+		6A8D2A40283C865F0041100E /* AddressBookInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3F283C865F0041100E /* AddressBookInfoModel.swift */; };
+		6A8D2A41283C865F0041100E /* AddressBookInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3F283C865F0041100E /* AddressBookInfoModel.swift */; };
 		6A9D7C3E2833AC9700078F63 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */; };
 		6A9D7C472833B45500078F63 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */; };
 		6A9D7C492834D64800078F63 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */; };
@@ -1139,6 +1147,10 @@
 		6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeViewModel.swift; sourceTree = "<group>"; };
 		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		6A8D2A36283C7C790041100E /* AddressBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookView.swift; sourceTree = "<group>"; };
+		6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookViewModel.swift; sourceTree = "<group>"; };
+		6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookCoordinator.swift; sourceTree = "<group>"; };
+		6A8D2A3F283C865F0041100E /* AddressBookInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookInfoModel.swift; sourceTree = "<group>"; };
 		6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeView.swift; sourceTree = "<group>"; };
@@ -1263,6 +1275,7 @@
 		1507C7ED275634BC00890C5D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				6A8D2A35283C7C600041100E /* AddressBook */,
 				6A2D35BB283B6B21008293D9 /* ThemeChange */,
 				1507C7EE275634C900890C5D /* ProfileView.swift */,
 				6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */,
@@ -1283,6 +1296,7 @@
 				1537B3DC277C8E2A008ECD05 /* OnBoradingCoordinator.swift */,
 				15D9283427849E6800382226 /* BackupCoordinator.swift */,
 				4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */,
+				6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -2630,6 +2644,15 @@
 			path = ThemeChange;
 			sourceTree = "<group>";
 		};
+		6A8D2A35283C7C600041100E /* AddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				6A8D2A36283C7C790041100E /* AddressBookView.swift */,
+				6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */,
+			);
+			path = AddressBook;
+			sourceTree = "<group>";
+		};
 		6ABAE50C2836243300C97AE2 /* VComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -2665,6 +2688,7 @@
 			isa = PBXGroup;
 			children = (
 				156E84AC281CDF4F00415896 /* TokenModel.swift */,
+				6A8D2A3F283C865F0041100E /* AddressBookInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2992,6 +3016,7 @@
 				15DC20CD27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DD27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AD27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
+				6A8D2A38283C7C790041100E /* AddressBookView.swift in Sources */,
 				15DC214327819C56000B187A /* VTabNavigationView.swift in Sources */,
 				6A2D35BE283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */,
 				1537B3DB277C8DC8008ECD05 /* HomeCoordinator.swift in Sources */,
@@ -3165,6 +3190,7 @@
 				154B890B276A1EEB00780E93 /* OnboardingViewModel.swift in Sources */,
 				6AF2ED8F2836424400F06AD3 /* UINavigationController.swift in Sources */,
 				15DC208727819C56000B187A /* VLazyScrollViewType.swift in Sources */,
+				6A8D2A41283C865F0041100E /* AddressBookInfoModel.swift in Sources */,
 				1599F774278894E00094B196 /* String.swift in Sources */,
 				154B890C276A1EEB00780E93 /* WalletSetupView.swift in Sources */,
 				15DC20F527819C56000B187A /* VBaseListModel.swift in Sources */,
@@ -3255,6 +3281,7 @@
 				156ADC802797B42D00CD4B02 /* FocusError.swift in Sources */,
 				15DC219727819C56000B187A /* VTextFieldType.swift in Sources */,
 				15B1A687276B53F70006B621 /* GetStartedView.swift in Sources */,
+				6A8D2A3E283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */,
 				15DC210F27819C56000B187A /* VRangeSliderState.swift in Sources */,
 				154B8915276A1EEB00780E93 /* OnboardingModel.swift in Sources */,
 				15D5774B277C0FFB00045E79 /* UsernameViewModel.swift in Sources */,
@@ -3277,6 +3304,7 @@
 				15DC217127819C56000B187A /* VDialogButtons.swift in Sources */,
 				15DE22E0277DF37D00B5EE03 /* RestoreWalletView.swift in Sources */,
 				4E37571A28376B0D005D924B /* NFTCoordinator.swift in Sources */,
+				6A8D2A3B283C7C880041100E /* AddressBookViewModel.swift in Sources */,
 				15DC21BB27819C56000B187A /* View.CornerRadius.swift in Sources */,
 				158CE87E27829E68006A8394 /* RecoveryPhraseView.swift in Sources */,
 				15DC217727819C56000B187A /* _VDialog.swift in Sources */,
@@ -3338,6 +3366,7 @@
 				15DC20CC27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DC27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AC27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
+				6A8D2A37283C7C790041100E /* AddressBookView.swift in Sources */,
 				15DC214227819C56000B187A /* VTabNavigationView.swift in Sources */,
 				6A2D35BD283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */,
 				1537B3DA277C8DC8008ECD05 /* HomeCoordinator.swift in Sources */,
@@ -3511,6 +3540,7 @@
 				15DC208627819C56000B187A /* VLazyScrollViewType.swift in Sources */,
 				6AF2ED8E2836424400F06AD3 /* UINavigationController.swift in Sources */,
 				1599F773278894E00094B196 /* String.swift in Sources */,
+				6A8D2A40283C865F0041100E /* AddressBookInfoModel.swift in Sources */,
 				15EC9E1C274FD6C000F70CD9 /* WalletSetupView.swift in Sources */,
 				15DC20F427819C56000B187A /* VBaseListModel.swift in Sources */,
 				15B1F62C2786ABE400847BB5 /* BackupPasswordView.swift in Sources */,
@@ -3601,6 +3631,7 @@
 				15DC219627819C56000B187A /* VTextFieldType.swift in Sources */,
 				15B1A686276B53F70006B621 /* GetStartedView.swift in Sources */,
 				15DC210E27819C56000B187A /* VRangeSliderState.swift in Sources */,
+				6A8D2A3D283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */,
 				152F985A275CD2DB001C5855 /* OnboardingModel.swift in Sources */,
 				15D5774A277C0FFB00045E79 /* UsernameViewModel.swift in Sources */,
 				15DC21E427819C57000B187A /* StateColors_EFSED.swift in Sources */,
@@ -3623,6 +3654,7 @@
 				6A9D7C3E2833AC9700078F63 /* ThemeManager.swift in Sources */,
 				15DE22DF277DF37D00B5EE03 /* RestoreWalletView.swift in Sources */,
 				4E37571928376B0D005D924B /* NFTCoordinator.swift in Sources */,
+				6A8D2A3A283C7C880041100E /* AddressBookViewModel.swift in Sources */,
 				15DC21BA27819C56000B187A /* View.CornerRadius.swift in Sources */,
 				158CE87D27829E68006A8394 /* RecoveryPhraseView.swift in Sources */,
 				15DC217627819C56000B187A /* _VDialog.swift in Sources */,

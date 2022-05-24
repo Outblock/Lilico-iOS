@@ -24,6 +24,7 @@ struct ThemeChangeView: View {
             .frame(maxHeight: .infinity, alignment: .top)
         }
         .addBackBtn {
+            print("thread: \(Thread.isMainThread)")
             router.popLast()
         }
         .navigationTitle("Theme")

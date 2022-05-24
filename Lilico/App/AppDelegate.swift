@@ -16,11 +16,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         Resolver.registerAllServices()
+        commonConfig()
 
         return true
     }
 
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return GIDSignIn.sharedInstance.handle(url)
+    }
+}
+
+// MARK: - Config
+
+extension AppDelegate {
+    private func commonConfig() {
+        UITableView.appearance().sectionHeaderTopPadding = 0
     }
 }

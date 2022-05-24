@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject private var vm: ProfileViewModel = ProfileViewModel()
+    @EnvironmentObject private var router: ProfileCoordinator.Router
     
     init() {
 //        UITableView.appearance().sectionFooterHeight = .leastNormalMagnitude
@@ -19,7 +20,8 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             List {
-                if vm.state.isLogin {
+                #warning("Test")
+                if vm.state.isLogin || true {
                     InfoContainerView()
                     ActionSectionView()
                 } else {
@@ -34,9 +36,11 @@ struct ProfileView: View {
                 }
             }
             .background(.LL.Neutrals.background)
+            .buttonStyle(.plain)
         }
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
+        .padding(.bottom, 30)
     }
 }
 
@@ -120,18 +124,20 @@ extension ProfileView {
     }
     
     struct InfoActionView: View {
+        @EnvironmentObject private var router: ProfileCoordinator.Router
+        
         var body: some View {
             HStack(alignment: .center, spacing: 0) {
                 ProfileView.InfoActionButton(iconName: "icon-address", title: "Addresses") {
-                    
+                    router.route(to: \.addressBook)
                 }
-                
+
                 ProfileView.InfoActionButton(iconName: "icon-wallet", title: "Wallets") {
-                    
+                    print("wallets click")
                 }
-                
+
                 ProfileView.InfoActionButton(iconName: "icon-device", title: "Device") {
-                    
+                    print("device click")
                 }
             }
             .padding(.vertical, 20)
@@ -150,8 +156,10 @@ extension ProfileView {
                     Image(iconName)
                     Text(title).foregroundColor(.LL.Neutrals.note).font(.inter(size: 12, weight: .medium))
                 }
-                .frame(maxWidth: .infinity)
             }
+            .background(.white)
+            .buttonStyle(.plain)
+            .frame(maxWidth: .infinity)
         }
     }
 }
@@ -323,8 +331,7 @@ extension ProfileView {
                     ProfileView.SettingItemCell(iconName: $0.iconName, title: $0.title, style: $0.style, desc: $0.desc, toggle: $0.toggle)
                 }
                 .onTapGestureOnBackground {
-                    let style = ThemeManager.shared.style ?? .light
-                    ThemeManager.shared.setStyle(style: style == .light ? .dark : .light)
+                    
                 }
             }
             .listRowInsets(.zero)
