@@ -37,7 +37,6 @@ struct AddressBookView: View {
         .navigationTitle("Address Book")
         .navigationBarTitleDisplayMode(.inline)
         .addBackBtn {
-            print("thread: \(Thread.isMainThread)")
             router.dismissCoordinator()
         }
     }

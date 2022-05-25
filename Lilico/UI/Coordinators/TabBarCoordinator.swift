@@ -40,11 +40,6 @@ final class NewTabBarCoordinator: TabCoordinatable {
 
     func makeProfile() -> ProfileCoordinator {
         return ProfileCoordinator()
-        
-//        let model = ProfileViewModel()
-//
-//        ProfileView()
-//            .hideNavigationBar().environmentObject(model)
     }
 
     @ViewBuilder func makeHomeTab(isActive: Bool) -> some View {

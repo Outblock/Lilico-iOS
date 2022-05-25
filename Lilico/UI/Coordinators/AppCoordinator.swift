@@ -12,7 +12,6 @@ import SwiftUIX
 final class MainCoordinator: NavigationCoordinatable {
     var stack: NavigationStack<MainCoordinator>
 
-    @Root var onboarding = makeOnboarding
     @Root var home = makeHome
 
     init() {
@@ -21,10 +20,6 @@ final class MainCoordinator: NavigationCoordinatable {
 }
 
 extension MainCoordinator {
-    func makeOnboarding() -> NavigationViewCoordinator<OnBoradingCoordinator> {
-        return NavigationViewCoordinator(OnBoradingCoordinator())
-    }
-
     func makeHome() -> NavigationViewCoordinator<NewTabBarCoordinator> {
         return NavigationViewCoordinator(NewTabBarCoordinator())
     }

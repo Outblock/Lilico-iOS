@@ -24,10 +24,10 @@ struct ThemeChangeView: View {
             .frame(maxHeight: .infinity, alignment: .top)
         }
         .addBackBtn {
-            print("thread: \(Thread.isMainThread)")
-            router.popLast()
+            router.pop()
         }
         .navigationTitle("Theme")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

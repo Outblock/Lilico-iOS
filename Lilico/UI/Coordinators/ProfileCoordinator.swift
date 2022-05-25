@@ -22,7 +22,7 @@ final class ProfileCoordinator: NavigationCoordinatable {
 
 extension ProfileCoordinator {
     @ViewBuilder func makeProfileView() -> some View {
-        ProfileView()
+        ProfileView().hideNavigationBar()
     }
     
     @ViewBuilder func makeThemeChangeView() -> some View {
@@ -30,6 +30,6 @@ extension ProfileCoordinator {
     }
     
     func makeAddressBook() -> AddressBookCoordinator {
-        AddressBookCoordinator()
+        return AddressBookCoordinator()
     }
 }
