@@ -66,8 +66,10 @@ struct NFTDetailPage: View {
                     .padding(.top, 16)
                     .padding(.horizontal,8)
                     
+                    if(!nft.tags.isEmpty) {
+                        NFTTagsView(tags: nft.tags, color: theColor)
+                    }
                     
-                    NFTTagsView(tags: ["School","Main color","Year"], color: theColor)
                     Spacer()
                         .frame(height: 16)
                     Text(nft.declare)

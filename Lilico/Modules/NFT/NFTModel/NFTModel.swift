@@ -8,6 +8,8 @@
 import Foundation
 
 let placeholder: String = "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
+//TODO: which filter?
+let filterMetadata = ["uri", "img", "description"]
 
 struct NFTCollection: Codable, Hashable {
     let logo: URL?
@@ -70,6 +72,12 @@ struct NFTModel: Codable, Hashable, Identifiable {
     
     var logoUrl: URL {
         return collection?.logo ?? URL(string: placeholder)!
+    }
+    
+    var tags:[NFTMetadatum] {
+        return response?.metadata.metadata.filter{ meta in
+            !filterMetadata.contains(meta.name.lowercased()) && !meta.value.isEmpty && !meta.value.hasPrefix("https://")
+        } ?? []
     }
 }
 

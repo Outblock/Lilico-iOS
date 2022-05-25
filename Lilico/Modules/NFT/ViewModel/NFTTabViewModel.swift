@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUIX
+import Haneke
 
 
 class NFTTabViewModel: ViewModel {
@@ -250,11 +251,13 @@ extension NFTTabViewModel {
         """.data(using: .utf8)!
         
         let jsonDecoder = JSONDecoder()
-        let response = try! jsonDecoder.decode(NFTResponse.self, from: nftJsonData)
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        if let response = try? jsonDecoder.decode(NFTResponse.self, from: nftJsonData), let collModel = try? jsonDecoder.decode(NFTCollection.self, from: collJsonData) {
+            return NFTModel(response, in: collModel)
+        }
         
-        let collModel = try! jsonDecoder.decode(NFTCollection.self, from: collJsonData)
+        return NFTModel(NFTResponse(contract: NFTContract(name: "", address: "", externalDomain: "", contractMetadata: NFTContractMetadata(storagePath: "", publicPath: "", publicCollectionName: "")), id: NFTID(tokenID: "", tokenMetadata: NFTTokenMetadata(uuid: "")), title: "", description: "", media: [], metadata: NFTMetadata(metadata: [])), in: NFTCollection(logo: nil, name: "", address: ContractAddress(mainnet: "", testnet: ""), path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")))
         
-        return NFTModel(response, in: collModel)
         
     }
     

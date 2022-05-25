@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NFTTagsView: View {
     
-    @State var tags: [String]
+    @State var tags: [NFTMetadatum]
     @State private var totalHeight = CGFloat.zero
     var color: Color
     
@@ -55,13 +55,13 @@ struct NFTTagsView: View {
         .background(viewHeightReader($totalHeight))
     }
     
-    func item(for text: String) -> some View {
-        VStack(spacing: 0) {
-            Text(text.uppercased())
+    func item(for tag: NFTMetadatum) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(tag.name.uppercased())
                 .font(Font.inter(size: 11, weight: .semibold))
                 .foregroundColor(Color(hex: 0x6D9987))
                 .frame(height: 14)
-            Text(text.uppercased())
+            Text(tag.value)
                 .font(Font.inter(size: 11, weight: .semibold))
                 .foregroundColor(.LL.Neutrals.neutrals3)
                 .frame(height: 16)
@@ -89,6 +89,6 @@ struct NFTTagsView: View {
 
 struct NFTTagsView_Previews: PreviewProvider {
     static var previews: some View {
-        NFTTagsView(tags: ["School","Main color","Year"], color: Color(hex: 0x6D9987))
+        NFTTagsView(tags: [NFTMetadatum(name: "School", value: "Impression")], color: Color(hex: 0x6D9987))
     }
 }
