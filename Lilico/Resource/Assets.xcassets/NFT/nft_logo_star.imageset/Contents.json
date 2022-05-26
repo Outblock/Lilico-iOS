@@ -1,17 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "nft_button_share.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "nft_button_share@2x.png",
+      "filename" : "nft_logo_star@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "nft_button_share@3x.png",
+      "filename" : "nft_logo_star@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

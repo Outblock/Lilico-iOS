@@ -1,17 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "nft_button_star_0.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "nft_button_star_0@2x.png",
+      "filename" : "nft_logo_circle_fill@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "nft_button_star_0@3x.png",
+      "filename" : "nft_logo_circle_fill@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -19,5 +18,8 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }

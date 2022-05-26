@@ -10,8 +10,11 @@ import Kingfisher
 
 struct NFTDetailPage: View {
     
+    @EnvironmentObject var store: NFTFavoriteStore
+    
     var nft: NFTModel
-    var theColor = Color(hex: 0x6D9987)
+    var theColor = Color.LL.Primary.salmon3
+    
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -30,6 +33,7 @@ struct NFTDetailPage: View {
                         VStack(alignment: .leading, spacing: 0) {
                             Text(nft.collections)
                                 .font(.LL.largeTitle3)
+                                .fontWeight(.w700)
                                 .foregroundColor(.LL.Neutrals.text)
                                 .frame(height: 28)
                             HStack(alignment: .center,spacing: 6) {
@@ -42,6 +46,7 @@ struct NFTDetailPage: View {
                                     .clipped()
                                 Text(nft.name)
                                     .font(.LL.body)
+                                    .fontWeight(.w400)
                                     .foregroundColor(.LL.Neutrals.neutrals4)
                             }
                         }
@@ -51,14 +56,25 @@ struct NFTDetailPage: View {
                         } label: {
                             Image("nft_button_share")
                                 .frame(width: 44,height: 44)
+                                .foregroundColor(theColor)
                         }
                         .padding(.horizontal,6)
                         
                         Button {
                             
                         } label: {
-                            Image("nft_button_star_0")
-                                .frame(width: 44,height: 44)
+                            ZStack{
+                                if(store.isFavorite(with: nft)) {
+                                    Image("nft_logo_circle_fill")
+                                    Image("nft_logo_star_fill")
+                                }else {
+                                    Image("nft_logo_circle")
+                                    Image("nft_logo_star")
+                                }
+                            }
+                            .frame(width: 44, height: 44)
+                            .foregroundColor(theColor)
+                            
                         }
                         .padding(.horizontal,6)
                         
@@ -73,7 +89,7 @@ struct NFTDetailPage: View {
                     Spacer()
                         .frame(height: 16)
                     Text(nft.declare)
-                        .font(Font.inter(size: 14, weight: .light))
+                        .font(Font.inter(size: 14, weight: .w400))
                         .foregroundColor(.LL.Neutrals.neutrals6)
                     
                     Spacer()
@@ -183,6 +199,7 @@ struct NFTDetailPage_Previews: PreviewProvider {
     static var nft = NFTTabViewModel.testNFT()
     static var previews: some View {
         NFTDetailPage(nft: nft)
+            .environmentObject(NFTTabViewModel().state.favoriteStore)
     }
 }
 

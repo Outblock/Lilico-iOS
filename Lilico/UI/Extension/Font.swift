@@ -42,6 +42,18 @@ extension Font {
     }
 }
 
+/*
+ 100 - Thin
+ 200 - Extra Light (Ultra Light)
+ 300 - Light
+ 400 - Regular (Normal、Book、Roman)
+ 500 - Medium
+ 600 - Semi Bold (Demi Bold)
+ 700 - Bold
+ 800 - Extra Bold (Ultra Bold)
+ 900 - Black (Heavy)
+ */
+
 extension Font {
     static func inter(size: CGFloat = 16, weight: Weight = .regular) -> Font {
         return Font.custom("Inter", size: size).weight(weight)
@@ -51,3 +63,18 @@ extension Font {
         return Font.inter(size: size, weight: .bold)
     }
 }
+
+extension Font.Weight {
+    static let w100 = Font.Weight.thin
+    static let w200 = Font.Weight.ultraLight
+    static let w300 = Font.Weight.light
+    static let w400 = Font.Weight.regular
+    
+    static let w500 = Font.Weight.medium
+    static let w600 = Font.Weight.semibold
+    static let w700 = Font.Weight.bold
+    static let w800 = Font.Weight.heavy
+    static let w900 = Font.Weight.black
+}
+
+

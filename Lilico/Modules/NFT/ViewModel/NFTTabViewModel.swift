@@ -51,8 +51,6 @@ class NFTTabViewModel: ViewModel {
                 .sorted{ $0.count > $1.count }
                 await MainActor.run {
                     state.items = result
-                    //TODO: fetch from cache
-                    state.favoriteNFTs = result.first?.nfts ?? []
                     state.loading = false
                 }
             }catch {
@@ -126,6 +124,8 @@ class NFTTabViewModel: ViewModel {
         }
     }
 }
+
+
 
 @propertyWrapper
 struct NullEncodable<T>: Encodable where T: Encodable {

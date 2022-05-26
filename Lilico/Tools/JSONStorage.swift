@@ -7,31 +7,38 @@
 
 import Foundation
 import SwiftUIX
+import Haneke
+
+
 
 @propertyWrapper
 struct JSONStorage<T: Codable> {
     var value: T?
     let key: String
-    //TODO: fileName: {userId_filename}, Haneke
+    
     init(key: String) {
         self.key = key
-        if let jsonData = UserDefaults.standard.data(forKey: key){
+        if let jsonData = UserDefaults.standard.data(forKey: theKey){
             let decoder = JSONDecoder()
             value = try? decoder.decode(T.self, from: jsonData)
         }
+    }
+    
+    private var theKey: String {
+        //TODO: fileName: {userId_filename}
+        return key
     }
     
     var wrappedValue: T? {
         set {
             value = newValue
             if let json = try? JSONEncoder().encode(value) {
-                UserDefaults.standard.set(json, forKey: key)
+                UserDefaults.standard.set(json, forKey: theKey)
             }
         }
         get {
             value
         }
-        
     }
 }
 

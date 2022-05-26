@@ -58,11 +58,11 @@ struct NFTTagsView: View {
     func item(for tag: NFTMetadatum) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(tag.name.uppercased())
-                .font(Font.inter(size: 11, weight: .semibold))
-                .foregroundColor(Color(hex: 0x6D9987))
+                .font(Font.inter(size: 11, weight: .w600))
+                .foregroundColor(color)
                 .frame(height: 14)
             Text(tag.value)
-                .font(Font.inter(size: 11, weight: .semibold))
+                .font(Font.inter(size: 14, weight: .w500))
                 .foregroundColor(.LL.Neutrals.neutrals3)
                 .frame(height: 16)
         }
