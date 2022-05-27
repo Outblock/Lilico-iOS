@@ -11,9 +11,10 @@ import Kingfisher
 
 struct NFTFavoriteView: View {
     
-    var favoriteNFTs: [NFTModel]
-    @Binding var favoriteId: UUID?
+    @Binding var favoriteId: String?
     
+    var favoriteNFTs: [NFTModel]
+    var onClick: () -> Void
     
     var body: some View {
         VStack {
@@ -45,6 +46,9 @@ struct NFTFavoriteView: View {
                                 .cornerRadius(8)
                                 .padding()
                             
+                        }
+                        .onTapGesture {
+                            onTapNFT()
                         }
                     }
                     .options(options)
@@ -88,12 +92,16 @@ struct NFTFavoriteView: View {
         maxBlurEffectRadius: 0.00,
         blurEffectStyle: .light
     )
+    
+    func onTapNFT() {
+        onClick()
+    }
 }
 
 struct NFTFavoriteView_Previews: PreviewProvider {
     @State static var list: [NFTModel] = []
-    @State static var favoriteId: UUID?
+    @State static var favoriteId: String?
     static var previews: some View {
-        NFTFavoriteView(favoriteNFTs: list, favoriteId: $favoriteId)
+        NFTFavoriteView(favoriteId: $favoriteId, favoriteNFTs: list){}
     }
 }

@@ -13,6 +13,7 @@ struct NFTSquareCard: View {
     var nft: NFTModel
     var onClick: (NFTModel) -> Void
     
+    
     var body: some View {
         GeometryReader { geo in
             VStack(alignment: .leading) {

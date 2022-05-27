@@ -17,7 +17,7 @@ extension NFTTabScreen {
     struct ViewState {
         var loading: Bool = true
         var items: [CollectionItem] = []
-        var favoriteStore: NFTFavoriteStore = NFTFavoriteStore()
+        
         
         var isEmpty: Bool {
             return !loading && items.count == 0
@@ -26,7 +26,7 @@ extension NFTTabScreen {
     
     enum Action {
         case search
-        case info(NFTModel)
+        case info(NFTModel, NFTFavoriteStore)
     }
 }
 
@@ -41,6 +41,9 @@ struct NFTTabScreen: View {
     var isListStyle: Bool {
         return pageStyle == .list
     }
+    
+    @StateObject
+    var favoriteStore: NFTFavoriteStore = NFTFavoriteStore()
     
     private enum CollectionBarStyle {
         case horizontal
@@ -62,10 +65,10 @@ struct NFTTabScreen: View {
     @State
     var selectedIndex = 0
     
-    @State var favoriteId: UUID?
+    @State var favoriteId: String?
     var currentNFTImage: URL? {
-        guard let favoriteId = favoriteId, let nft = viewModel.favoriteStore.find(with: favoriteId) else {
-            let model = viewModel.favoriteStore.favorites.first
+        guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
+            let model = favoriteStore.favorites.first
             return model?.image
         }
         return nft.image
@@ -79,7 +82,7 @@ struct NFTTabScreen: View {
     }
     
     var canShowFavorite: Bool {
-        return viewModel.favoriteStore.isNotEmpty && isListStyle
+        return favoriteStore.isNotEmpty && isListStyle
     }
     
     var currentNFTs: [NFTModel] {
@@ -139,7 +142,10 @@ struct NFTTabScreen: View {
                             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                                 
                                 if(canShowFavorite) {
-                                    NFTFavoriteView(favoriteNFTs: viewModel.favoriteStore.favorites, favoriteId: $favoriteId)
+                                    NFTFavoriteView(favoriteId: $favoriteId, favoriteNFTs: favoriteStore.favorites) {
+                                        let nft = favoriteStore.find(with: favoriteId!)!
+                                        viewModel.trigger(.info(nft, favoriteStore))
+                                    }
                                 }
                                 collectionBar
                                 
@@ -159,7 +165,7 @@ struct NFTTabScreen: View {
                 .background(Color.LL.background, ignoresSafeAreaEdges: .all)
             }
         }
-        .environmentObject(viewModel.favoriteStore)
+        .environmentObject(NFTFavoriteStore())
     }
     
     var topBar: some View {
@@ -280,7 +286,7 @@ struct NFTTabScreen: View {
         LazyVGrid(columns: nftLayout, alignment: .center) {
             ForEach(currentNFTs, id: \.self) { nft in
                 NFTSquareCard(nft: nft, onClick: { model in
-                    viewModel.trigger(.info(model))
+                    viewModel.trigger(.info(model, favoriteStore))
                 })
                 .frame(height: ceil((screenWidth-18*3)/2+50))
             }

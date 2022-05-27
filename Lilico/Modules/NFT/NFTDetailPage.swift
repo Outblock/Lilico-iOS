@@ -10,9 +10,12 @@ import Kingfisher
 
 struct NFTDetailPage: View {
     
+    
     @EnvironmentObject var store: NFTFavoriteStore
     
     var nft: NFTModel
+    
+    @State
     var theColor = Color.LL.Primary.salmon3
     
     
@@ -23,6 +26,13 @@ struct NFTDetailPage: View {
                 VStack(alignment:.leading) {
                     KFImage
                         .url(nft.image)
+                        .onSuccess({ result in
+                            result.image.getColors { color in
+                                if let mainColor = color?.primary {
+                                    theColor = Color(uiColor: mainColor)
+                                }
+                            }
+                        })
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(alignment: .center)
@@ -61,15 +71,22 @@ struct NFTDetailPage: View {
                         .padding(.horizontal,6)
                         
                         Button {
-                            
+                            if(store.isFavorite(with: nft)) {
+                                store.removeFavorite(nft)
+                            }else {
+                                store.addFavorite(nft)
+                            }
                         } label: {
-                            ZStack{
+                            ZStack(alignment: .center){
                                 if(store.isFavorite(with: nft)) {
                                     Image("nft_logo_circle_fill")
                                     Image("nft_logo_star_fill")
+                                        .frame(width: 20, height:20)
+                                        .foregroundColor(Color.white)
                                 }else {
                                     Image("nft_logo_circle")
                                     Image("nft_logo_star")
+                                        .frame(width: 20, height:20)
                                 }
                             }
                             .frame(width: 44, height: 44)
@@ -199,7 +216,7 @@ struct NFTDetailPage_Previews: PreviewProvider {
     static var nft = NFTTabViewModel.testNFT()
     static var previews: some View {
         NFTDetailPage(nft: nft)
-            .environmentObject(NFTTabViewModel().state.favoriteStore)
+            .environmentObject(NFTFavoriteStore())
     }
 }
 

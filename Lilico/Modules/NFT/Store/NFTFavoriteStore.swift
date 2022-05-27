@@ -76,8 +76,7 @@ extension NFTFavoriteStore {
     }
     
     
-    
-    func find(with id: UUID) -> NFTModel? {
+    func find(with id: String) -> NFTModel? {
         return favorites.first { $0.id == id }
     }
     

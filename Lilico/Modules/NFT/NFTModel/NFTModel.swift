@@ -35,7 +35,9 @@ struct ContractPath: Codable, Hashable {
 
 
 struct NFTModel: Codable, Hashable, Identifiable {
-    var id = UUID()
+    var id: String {
+        return collections
+    }
     let image: URL
     let name: String
     let collections: String
