@@ -40,7 +40,6 @@ struct ProfileView: View {
         }
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
-        .padding(.bottom, 30)
     }
 }
 

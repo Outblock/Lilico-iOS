@@ -44,4 +44,10 @@ public extension RouterStore {
 
         return nil
     }
+    
+    func printAll() {
+        for router in routers {
+            debugPrint("router = \(router.value))")
+        }
+    }
 }

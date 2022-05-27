@@ -12,7 +12,7 @@ import SwiftUIX
 final class MainCoordinator: NavigationCoordinatable {
     var stack: NavigationStack<MainCoordinator>
 
-    @Root var home = makeHome
+    @Root var home = makeOld
 
     init() {
         stack = NavigationStack(initial: \MainCoordinator.home)
@@ -20,7 +20,11 @@ final class MainCoordinator: NavigationCoordinatable {
 }
 
 extension MainCoordinator {
-    func makeHome() -> NavigationViewCoordinator<NewTabBarCoordinator> {
+    func makeHome() -> NavigationViewCoordinator<TabBarCoor> {
+        return NavigationViewCoordinator(TabBarCoor())
+    }
+    
+    func makeOld() -> NavigationViewCoordinator<NewTabBarCoordinator> {
         return NavigationViewCoordinator(NewTabBarCoordinator())
     }
 }

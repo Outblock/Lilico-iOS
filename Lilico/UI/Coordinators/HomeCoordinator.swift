@@ -8,7 +8,19 @@
 import Combine
 import SwiftUI
 
-final class HomeCoordinator: NavigationCoordinatable {
+final class HomeCoordinator: NavigationCoordinatable, AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType {
+        return .home
+    }
+    
+    static func iconName() -> String {
+        return "house.fill"
+    }
+    
+    static func color() -> Color {
+        return .LL.orange
+    }
+    
     let stack: NavigationStack<HomeCoordinator>
 
     private var cancellables = Set<AnyCancellable>()

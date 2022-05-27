@@ -710,6 +710,16 @@
 		4EF5129A28329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129C28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
 		4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
+		6A164F412840A1380026B31E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3D2840A1380026B31E /* TabBar.swift */; };
+		6A164F422840A1380026B31E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3D2840A1380026B31E /* TabBar.swift */; };
+		6A164F432840A1380026B31E /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3E2840A1380026B31E /* TabBarItemView.swift */; };
+		6A164F442840A1380026B31E /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3E2840A1380026B31E /* TabBarItemView.swift */; };
+		6A164F452840A1380026B31E /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3F2840A1380026B31E /* TabBarView.swift */; };
+		6A164F462840A1380026B31E /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3F2840A1380026B31E /* TabBarView.swift */; };
+		6A164F472840A1380026B31E /* TabBarPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F402840A1380026B31E /* TabBarPageModel.swift */; };
+		6A164F482840A1380026B31E /* TabBarPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F402840A1380026B31E /* TabBarPageModel.swift */; };
+		6A164F4A2840B2B50026B31E /* NewTabCoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F492840B2B50026B31E /* NewTabCoor.swift */; };
+		6A164F4B2840B2B50026B31E /* NewTabCoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F492840B2B50026B31E /* NewTabCoor.swift */; };
 		6A2D35B9283B6AD6008293D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */; };
 		6A2D35BA283B6AD7008293D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */; };
 		6A2D35BD283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */; };
@@ -1108,6 +1118,11 @@
 		4EE8E49A283626D000DFEF59 /* NFTLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTLoading.swift; sourceTree = "<group>"; };
 		4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTDetailPage.swift; sourceTree = "<group>"; };
 		4EF5129B28333A230014F4EC /* NFTTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTagsView.swift; sourceTree = "<group>"; };
+		6A164F3D2840A1380026B31E /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		6A164F3E2840A1380026B31E /* TabBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
+		6A164F3F2840A1380026B31E /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		6A164F402840A1380026B31E /* TabBarPageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarPageModel.swift; sourceTree = "<group>"; };
+		6A164F492840B2B50026B31E /* NewTabCoor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTabCoor.swift; sourceTree = "<group>"; };
 		6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeViewModel.swift; sourceTree = "<group>"; };
 		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -1250,6 +1265,7 @@
 				15D9283427849E6800382226 /* BackupCoordinator.swift */,
 				4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */,
 				6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */,
+				6A164F492840B2B50026B31E /* NewTabCoor.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -2380,6 +2396,7 @@
 		15DDFB932751137E008263A2 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				6A164F3C2840A1380026B31E /* TabBarView */,
 				6AF2ED932836537800F06AD3 /* Base */,
 				153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */,
 				15F43D112753B4F6004F6F49 /* PageIndictor.swift */,
@@ -2561,6 +2578,17 @@
 				4EE8E4942834DC7100DFEF59 /* NFTModel.swift */,
 			);
 			path = NFTModel;
+			sourceTree = "<group>";
+		};
+		6A164F3C2840A1380026B31E /* TabBarView */ = {
+			isa = PBXGroup;
+			children = (
+				6A164F3D2840A1380026B31E /* TabBar.swift */,
+				6A164F3E2840A1380026B31E /* TabBarItemView.swift */,
+				6A164F3F2840A1380026B31E /* TabBarView.swift */,
+				6A164F402840A1380026B31E /* TabBarPageModel.swift */,
+			);
+			path = TabBarView;
 			sourceTree = "<group>";
 		};
 		6A2D35BB283B6B21008293D9 /* ThemeChange */ = {
@@ -2960,6 +2988,7 @@
 				15DC214927819C56000B187A /* VTabNavigationViewModel.swift in Sources */,
 				156ADC782797B42D00CD4B02 /* PresentationType.swift in Sources */,
 				15DC20FF27819C56000B187A /* VStepperModel.swift in Sources */,
+				6A164F462840A1380026B31E /* TabBarView.swift in Sources */,
 				154B8903276A1EEB00780E93 /* ProfileView.swift in Sources */,
 				15DC21BD27819C56000B187A /* View.CustomViewFrames.swift in Sources */,
 				15DC213F27819C56000B187A /* VMenuPickerButtonType.swift in Sources */,
@@ -3114,6 +3143,7 @@
 				6AF2ED8F2836424400F06AD3 /* UINavigationController.swift in Sources */,
 				15DC208727819C56000B187A /* VLazyScrollViewType.swift in Sources */,
 				6A8D2A41283C865F0041100E /* AddressBookInfoModel.swift in Sources */,
+				6A164F482840A1380026B31E /* TabBarPageModel.swift in Sources */,
 				1599F774278894E00094B196 /* String.swift in Sources */,
 				15DC20F527819C56000B187A /* VBaseListModel.swift in Sources */,
 				15B1F62D2786ABE400847BB5 /* BackupPasswordView.swift in Sources */,
@@ -3147,6 +3177,7 @@
 				15DC214527819C56000B187A /* VTabNavigationPageItem.swift in Sources */,
 				15DC20C127819C56000B187A /* VSquareButton.swift in Sources */,
 				15DC216F27819C56000B187A /* VDialog.swift in Sources */,
+				6A164F422840A1380026B31E /* TabBar.swift in Sources */,
 				15DC210127819C56000B187A /* VStepper.swift in Sources */,
 				4EE8E4962834DC7100DFEF59 /* NFTModel.swift in Sources */,
 				15DC216727819C56000B187A /* VHalfModal.swift in Sources */,
@@ -3197,6 +3228,7 @@
 				15DC20FB27819C56000B187A /* VBaseListElement.swift in Sources */,
 				1570467C2793D60000D1747B /* NFTListResponse.swift in Sources */,
 				156ADC802797B42D00CD4B02 /* FocusError.swift in Sources */,
+				6A164F442840A1380026B31E /* TabBarItemView.swift in Sources */,
 				15DC219727819C56000B187A /* VTextFieldType.swift in Sources */,
 				6A8D2A3E283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */,
 				15DC210F27819C56000B187A /* VRangeSliderState.swift in Sources */,
@@ -3263,6 +3295,7 @@
 				15DC208327819C56000B187A /* VLazyScrollViewModelHorizontal.swift in Sources */,
 				156ADC6C2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */,
 				15DC20CB27819C56000B187A /* VNavigationLinkState.swift in Sources */,
+				6A164F4B2840B2B50026B31E /* NewTabCoor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3298,6 +3331,7 @@
 				15DC214827819C56000B187A /* VTabNavigationViewModel.swift in Sources */,
 				156ADC772797B42D00CD4B02 /* PresentationType.swift in Sources */,
 				15DC20FE27819C56000B187A /* VStepperModel.swift in Sources */,
+				6A164F452840A1380026B31E /* TabBarView.swift in Sources */,
 				1507C7EF275634C900890C5D /* ProfileView.swift in Sources */,
 				15DC21BC27819C56000B187A /* View.CustomViewFrames.swift in Sources */,
 				15DC213E27819C56000B187A /* VMenuPickerButtonType.swift in Sources */,
@@ -3452,6 +3486,7 @@
 				6AF2ED8E2836424400F06AD3 /* UINavigationController.swift in Sources */,
 				1599F773278894E00094B196 /* String.swift in Sources */,
 				6A8D2A40283C865F0041100E /* AddressBookInfoModel.swift in Sources */,
+				6A164F472840A1380026B31E /* TabBarPageModel.swift in Sources */,
 				15DC20F427819C56000B187A /* VBaseListModel.swift in Sources */,
 				15B1F62C2786ABE400847BB5 /* BackupPasswordView.swift in Sources */,
 				15DC21AE27819C56000B187A /* UINavigationBar.NavigationBarHeight.swift in Sources */,
@@ -3485,6 +3520,7 @@
 				15DC20C027819C56000B187A /* VSquareButton.swift in Sources */,
 				15DC216E27819C56000B187A /* VDialog.swift in Sources */,
 				15DC210027819C56000B187A /* VStepper.swift in Sources */,
+				6A164F412840A1380026B31E /* TabBar.swift in Sources */,
 				4EE8E4952834DC7100DFEF59 /* NFTModel.swift in Sources */,
 				15DC216627819C56000B187A /* VHalfModal.swift in Sources */,
 				4E9E21DA282A586500E1BACD /* SecureView.swift in Sources */,
@@ -3535,6 +3571,7 @@
 				1570467B2793D60000D1747B /* NFTListResponse.swift in Sources */,
 				156ADC7F2797B42D00CD4B02 /* FocusError.swift in Sources */,
 				15DC219627819C56000B187A /* VTextFieldType.swift in Sources */,
+				6A164F432840A1380026B31E /* TabBarItemView.swift in Sources */,
 				15DC210E27819C56000B187A /* VRangeSliderState.swift in Sources */,
 				6A8D2A3D283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */,
 				15D5774A277C0FFB00045E79 /* UsernameViewModel.swift in Sources */,
@@ -3601,6 +3638,7 @@
 				15DC208227819C56000B187A /* VLazyScrollViewModelHorizontal.swift in Sources */,
 				156ADC6B2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */,
 				15DC20CA27819C56000B187A /* VNavigationLinkState.swift in Sources */,
+				6A164F4A2840B2B50026B31E /* NewTabCoor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
