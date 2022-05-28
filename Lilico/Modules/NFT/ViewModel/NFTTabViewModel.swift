@@ -121,6 +121,8 @@ class NFTTabViewModel: ViewModel {
             break
         case .search:
             break
+        case .add:
+            break
         }
     }
 }

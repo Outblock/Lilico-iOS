@@ -23,19 +23,25 @@ final class NFTCoordinator: NavigationCoordinatable, AppTabBarPageProtocol {
     }
     
     var stack = NavigationStack(initial: \NFTCoordinator.start)
+
     
-    @Root(.push) var start = makeStart
+    @Root() var start = makeStart
     @Root(.push) var detail = makeDetail
 
+    init() {
+        stack = NavigationStack(initial: \NFTCoordinator.start)
+    }
 }
 
 extension NFTCoordinator {
     @ViewBuilder func makeStart() -> some View {
         NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
+            .hideNavigationBar()
     }
     
     @ViewBuilder func makeDetail(info: (NFTModel, NFTFavoriteStore)) -> some View {
         NFTDetailPage(nft: info.0)
+            .hideNavigationBar()
             .environmentObject(info.1)
     }
     
