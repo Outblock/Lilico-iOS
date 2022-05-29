@@ -43,7 +43,7 @@ struct NFTTabScreen: View {
     var favoriteStore: NFTFavoriteStore = NFTFavoriteStore()
     
     @StateObject
-    var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action> = NFTTabViewModel().toAnyViewModel()
     
     @State var selectedIndex = 0
     
@@ -67,7 +67,9 @@ struct NFTTabScreen: View {
         return r
     }
     
+    
     var body: some View {
+
         ZStack(alignment: .topLeading) {
             if(viewModel.state.loading) {
                 NFTLoading()
@@ -76,47 +78,57 @@ struct NFTTabScreen: View {
                 NFTEmptyView()
             }
             else {
-                ZStack() {
-
-                    if(canShowFavorite) {
-                        NFTTabScreen.FavoriteBlurView(url: $currentNFTImage)
-                            .edgesIgnoringSafeArea(.top)
-                    }
-                    VStack(spacing: 0) {
-                        NFTTabScreen.TopBar(listStyle: $listStyle)
-                            .zIndex(100)
-                        if(!viewModel.isEmpty) {
-                            ScrollView(showsIndicators: false) {
-
-                                LazyVStack(pinnedViews: [.sectionHeaders]) {
-                                    if(listStyle == .list) {
-
-                                        if(canShowFavorite) {
-                                            NFTTabScreen.FavoriteView(currentNFTImage: $currentNFTImage)
-                                        }
-                                        NFTTabScreen.CollectionBar(barStyle: $collectionBarStyle, listStyle: $listStyle)
-                                        Section {
-                                            if(collectionBarStyle == .horizontal) {
-                                                NFTTabScreen.NFTGrid(listStyle: $listStyle, selectedIndex: $selectedIndex)
-                                            }
-                                        } header: {
-                                            NFTTabScreen.CollectionBody(barStyle: $collectionBarStyle, selectedIndex: $selectedIndex)
-                                        }
-                                    }else {
-                                        NFTTabScreen.NFTGrid(listStyle: $listStyle, selectedIndex: $selectedIndex)
-                                    }
-                                }
-                                
-                            }
-                            .background(Color.LL.background)
-                            .environmentObject(favoriteStore)
-                        }
-                    }
-                }
+                content
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .environmentObject(viewModel)
+        .environmentObject(favoriteStore)
+    }
+    
+    var content: some View {
+        GeometryReader { geo in
+            ZStack() {
+                if(canShowFavorite) {
+                    NFTTabScreen.FavoriteBlurView(url: $currentNFTImage)
+                }
+                
+                if(!viewModel.isEmpty) {
+                    ScrollView(showsIndicators: false) {
+                        LazyVStack(pinnedViews: [.sectionHeaders]) {
+                            
+                            if(listStyle == .list) {
+                                if(canShowFavorite) {
+                                    NFTTabScreen.FavoriteView(currentNFTImage: $currentNFTImage)
+                                }
+                                NFTTabScreen.CollectionBar(barStyle: $collectionBarStyle, listStyle: $listStyle)
+                                Section {
+                                    if(collectionBarStyle == .horizontal) {
+                                        NFTTabScreen.NFTGrid(listStyle: $listStyle, selectedIndex: $selectedIndex)
+                                    }
+                                } header: {
+                                    NFTTabScreen.CollectionBody(barStyle: $collectionBarStyle, selectedIndex: $selectedIndex)
+                                }
+                            }else {
+                                NFTTabScreen.NFTGrid(listStyle: $listStyle, selectedIndex: $selectedIndex)
+                            }
+                        }
+                    }
+                    .background(Color.LL.background)
+                    .safeAreaInset(edge: .top) {
+                        NFTTabScreen.TopBar(listStyle: $listStyle)
+                    }
+                    .padding(.top, statusHeight)
+                }
+            }
+            .ignoresSafeArea()
+        }
+    }
+    
+    var statusHeight: CGFloat {
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        lazy var statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        return statusBarHeight
     }
 }
 
@@ -180,25 +192,25 @@ extension NFTTabScreen {
         var body: some View {
             VStack {
                 if(favoriteStore.favorites.count > 0) {
-                    
+
                     VStack(alignment: .center,spacing: 0) {
                         HStack() {
                             Image(systemName: "star.fill")
                             Text("Top Selection")
                                 .font(.LL.largeTitle2)
                                 .semibold()
-                            
+
                             Spacer()
                         }
                         .padding(.horizontal, 18)
                         .padding(.top)
                         .foregroundColor(.white)
-                        
+
                         StackPageView(favoriteStore.favorites, selection:$favoriteId) { nft in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(Color.LL.background)
-                                
+
                                 KFImage
                                     .url(nft.image)
                                     .fade(duration: 0.25)
@@ -206,7 +218,7 @@ extension NFTTabScreen {
                                     .aspectRatio(1, contentMode: .fill)
                                     .cornerRadius(8)
                                     .padding()
-                                
+
                             }
                             .onTapGesture {
                                 onTapNFT()
@@ -227,9 +239,9 @@ extension NFTTabScreen {
                 }
             }
             .onAppear {
-                if(favoriteId == nil) {
-                    favoriteId = favoriteStore.favorites.first?.id
-                }
+//                if(favoriteId == nil) {
+//                    favoriteId = favoriteStore.favorites.first?.id
+//                }
             }
         }
         var options = StackTransformViewOptions(
@@ -460,7 +472,7 @@ extension NFTTabScreen {
 //MARK: Preview
 struct NFTTabScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
-            .colorScheme(.light)
+        NFTTabScreen()
+            
     }
 }

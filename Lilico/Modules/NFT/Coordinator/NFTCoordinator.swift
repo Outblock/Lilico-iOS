@@ -35,7 +35,7 @@ final class NFTCoordinator: NavigationCoordinatable, AppTabBarPageProtocol {
 
 extension NFTCoordinator {
     @ViewBuilder func makeStart() -> some View {
-        NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
+        NFTTabScreen()
             .hideNavigationBar()
     }
     
