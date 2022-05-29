@@ -116,10 +116,10 @@ struct NFTTabScreen: View {
                             }
                         }
                     }
-                    .background(Color.LL.background)
                     .safeAreaInset(edge: .top) {
                         NFTTabScreen.TopBar(listStyle: $listStyle)
                     }
+                    
                     .padding(.top, statusHeight)
                 }
             }
@@ -180,16 +180,7 @@ extension NFTTabScreen {
         @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
         @EnvironmentObject private var favoriteStore: NFTFavoriteStore
         
-        @State var favoriteId: String?  {
-            didSet {
-                guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
-                    let model = favoriteStore.favorites.first
-                    currentNFTImage = model?.image
-                    return
-                }
-                currentNFTImage = nft.image
-            }
-        }
+        @State var favoriteId: String?
         
         var body: some View {
             VStack {
@@ -236,14 +227,22 @@ extension NFTTabScreen {
                         .frame(width: screenWidth,
                                height: screenHeight * 0.4, alignment: .center)
                     }
-                    .background(LinearGradient(colors: [.clear, .LL.background],
-                                               startPoint: .top, endPoint: .bottom))
+//                    .background(LinearGradient(colors: [.LL.background, .clear],
+//                                                                   startPoint: .top, endPoint: .bottom))
+                    .onChange(of: favoriteId) { id in
+                        guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
+                            let model = favoriteStore.favorites.first
+                            currentNFTImage = model?.image
+                            return
+                        }
+                        currentNFTImage = nft.image
+                    }
                 }
             }
             .onAppear {
-//                if(favoriteId == nil) {
-//                    favoriteId = favoriteStore.favorites.first?.id
-//                }
+                if(favoriteId == nil) {
+                    favoriteId = favoriteStore.favorites.first?.id
+                }
             }
         }
         var options = StackTransformViewOptions(
