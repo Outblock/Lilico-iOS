@@ -700,6 +700,8 @@
 		4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */; };
 		4EC56B30281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
 		4EC56B31281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
+		4ECA7E65284371CA0039A210 /* NFTBlurImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA7E64284371CA0039A210 /* NFTBlurImageView.swift */; };
+		4ECA7E66284371CA0039A210 /* NFTBlurImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA7E64284371CA0039A210 /* NFTBlurImageView.swift */; };
 		4EE8E4952834DC7100DFEF59 /* NFTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E4942834DC7100DFEF59 /* NFTModel.swift */; };
 		4EE8E4962834DC7100DFEF59 /* NFTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E4942834DC7100DFEF59 /* NFTModel.swift */; };
 		4EE8E4982835EAF100DFEF59 /* NFTFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E4972835EAF100DFEF59 /* NFTFavoriteView.swift */; };
@@ -1115,6 +1117,7 @@
 		4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeCoordinator.swift; sourceTree = "<group>"; };
 		4EC56B29281D385D00246878 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigs.swift; sourceTree = "<group>"; };
 		4EC56B2F281FC57900246878 /* FlowQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowQuery.swift; sourceTree = "<group>"; };
+		4ECA7E64284371CA0039A210 /* NFTBlurImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTBlurImageView.swift; sourceTree = "<group>"; };
 		4EE8E4942834DC7100DFEF59 /* NFTModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTModel.swift; sourceTree = "<group>"; };
 		4EE8E4972835EAF100DFEF59 /* NFTFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTFavoriteView.swift; sourceTree = "<group>"; };
 		4EE8E49A283626D000DFEF59 /* NFTLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTLoading.swift; sourceTree = "<group>"; };
@@ -1451,6 +1454,7 @@
 		1570466A27930EA500D1747B /* NFT */ = {
 			isa = PBXGroup;
 			children = (
+				4ECA7E632843719F0039A210 /* Views */,
 				4E1E9BC2283E045E0028CBBD /* Store */,
 				4E37571728376AEC005D924B /* Coordinator */,
 				4EE8E4932834DC5C00DFEF59 /* NFTModel */,
@@ -2584,6 +2588,14 @@
 			path = FlowCoin;
 			sourceTree = "<group>";
 		};
+		4ECA7E632843719F0039A210 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4ECA7E64284371CA0039A210 /* NFTBlurImageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4EE8E4932834DC5C00DFEF59 /* NFTModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -3292,6 +3304,7 @@
 				1505E5FC28363578007B98D8 /* LilicoAPI+User.swift in Sources */,
 				15DE22E6277EAFF300B5EE03 /* EnterPasswordView.swift in Sources */,
 				15DC21C927819C56000B187A /* LayoutGroup_LTTB.swift in Sources */,
+				4ECA7E66284371CA0039A210 /* NFTBlurImageView.swift in Sources */,
 				15DC20F127819C56000B187A /* VSectionListLayoutType.swift in Sources */,
 				15DC20C327819C56000B187A /* VCloseButtonModel.swift in Sources */,
 				15DC210D27819C56000B187A /* VRangeSliderModel.swift in Sources */,
@@ -3636,6 +3649,7 @@
 				1505E5FB28363578007B98D8 /* LilicoAPI+User.swift in Sources */,
 				15DE22E5277EAFF300B5EE03 /* EnterPasswordView.swift in Sources */,
 				15DC21C827819C56000B187A /* LayoutGroup_LTTB.swift in Sources */,
+				4ECA7E65284371CA0039A210 /* NFTBlurImageView.swift in Sources */,
 				15DC20F027819C56000B187A /* VSectionListLayoutType.swift in Sources */,
 				15DC20C227819C56000B187A /* VCloseButtonModel.swift in Sources */,
 				15DC210C27819C56000B187A /* VRangeSliderModel.swift in Sources */,

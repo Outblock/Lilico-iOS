@@ -116,13 +116,15 @@ class NFTTabViewModel: ViewModel {
     
     func trigger(_ input: NFTTabScreen.Action) {
         switch input {
-        case let .info(model, store):
-            router?.route(to: \.detail, (model,store))
+        case let .info(model):
+            router?.route(to: \.detail, model)
             break
         case .search:
             break
         case .add:
             break
+        case .back:
+            router?.pop()
         }
     }
 }

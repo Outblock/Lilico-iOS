@@ -11,7 +11,8 @@ import Kingfisher
 struct NFTDetailPage: View {
     
     
-    @EnvironmentObject var store: NFTFavoriteStore
+    @StateObject
+    var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
     
     var nft: NFTModel
     
@@ -71,14 +72,14 @@ struct NFTDetailPage: View {
                         .padding(.horizontal,6)
                         
                         Button {
-                            if(store.isFavorite(with: nft)) {
-                                store.removeFavorite(nft)
+                            if(viewModel.favoriteStore.isFavorite(with: nft)) {
+                                viewModel.favoriteStore.removeFavorite(nft)
                             }else {
-                                store.addFavorite(nft)
+                                viewModel.favoriteStore.addFavorite(nft)
                             }
                         } label: {
                             ZStack(alignment: .center){
-                                if(store.isFavorite(with: nft)) {
+                                if(viewModel.favoriteStore.isFavorite(with: nft)) {
                                     Image("nft_logo_circle_fill")
                                     Image("nft_logo_star_fill")
                                         .frame(width: 20, height:20)
@@ -168,6 +169,10 @@ struct NFTDetailPage: View {
             .padding(.trailing, 18)
 
         }
+        .navigationTitle(nft.name)
+        .addBackBtn {
+            viewModel.trigger(.back)
+        }
         
         
     }
@@ -215,8 +220,7 @@ struct NFTDetailPage: View {
 struct NFTDetailPage_Previews: PreviewProvider {
     static var nft = NFTTabViewModel.testNFT()
     static var previews: some View {
-        NFTDetailPage(nft: nft)
-            .environmentObject(NFTFavoriteStore())
+        NFTDetailPage(viewModel: NFTTabViewModel().toAnyViewModel(), nft: nft)
     }
 }
 

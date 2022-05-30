@@ -17,7 +17,7 @@ extension NFTTabScreen {
     struct ViewState {
         var loading: Bool = true
         var items: [CollectionItem] = []
-        
+        var favoriteStore: NFTFavoriteStore = NFTFavoriteStore()
         
         var isEmpty: Bool {
             return !loading && items.count == 0
@@ -27,7 +27,8 @@ extension NFTTabScreen {
     enum Action {
         case search
         case add
-        case info(NFTModel, NFTFavoriteStore)
+        case info(NFTModel)
+        case back
     }
 }
 
@@ -41,10 +42,7 @@ struct NFTTabScreen: View {
     }
     
     @StateObject
-    var favoriteStore: NFTFavoriteStore = NFTFavoriteStore()
-    
-    @StateObject
-    var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action> = NFTTabViewModel().toAnyViewModel()
+    var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action> 
     
     @State var selectedIndex = 0
     
@@ -52,7 +50,7 @@ struct NFTTabScreen: View {
     @State var currentNFTImage: URL?
     
     var canShowFavorite: Bool {
-        return  (favoriteStore.isNotEmpty && isListStyle)
+        return  (viewModel.favoriteStore.isNotEmpty && isListStyle)
     }
     
     @State private var collectionBarStyle: NFTTabScreen.CollectionBar.BarStyle = .horizontal
@@ -85,14 +83,13 @@ struct NFTTabScreen: View {
         .preferredColorScheme(themeManager.style)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .environmentObject(viewModel)
-        .environmentObject(favoriteStore)
     }
     
     var content: some View {
         GeometryReader { geo in
             ZStack() {
                 if(canShowFavorite) {
-                    NFTTabScreen.FavoriteBlurView(url: $currentNFTImage)
+                    NFTBlurImageView(url: $currentNFTImage)
                 }
                 
                 if(!viewModel.isEmpty) {
@@ -140,35 +137,6 @@ extension NFTTabScreen {
     }
 }
 
-
-extension NFTTabScreen {
-    struct FavoriteBlurView: View {
-        @Binding var url: URL?
-        
-        var body: some View {
-            VStack {
-                VStack {
-                    KFImage
-                        .url(url)
-                        .fade(duration: 0.25)
-                        .resizable()
-                        .aspectRatio(1, contentMode: .fill)
-                        .frame(width: screenWidth,
-                               height: screenHeight * 0.6,
-                               alignment: .topLeading)
-                    
-                    Spacer()
-                }
-                .blur(radius: 30, opaque: true)
-                .mask(
-                    LinearGradient(gradient: Gradient(colors:
-                                                        [Color.black, Color.clear]), startPoint: .top, endPoint: .center)
-                )
-            }
-        }
-    }
-}
-
 //MARK: FavoriteView
 extension NFTTabScreen {
     
@@ -178,13 +146,12 @@ extension NFTTabScreen {
         var currentNFTImage: URL?
         
         @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
-        @EnvironmentObject private var favoriteStore: NFTFavoriteStore
         
         @State var favoriteId: String?
         
         var body: some View {
             VStack {
-                if(favoriteStore.favorites.count > 0) {
+                if(viewModel.favoriteStore.favorites.count > 0) {
 
                     VStack(alignment: .center,spacing: 0) {
                         HStack() {
@@ -199,7 +166,7 @@ extension NFTTabScreen {
                         .padding(.top)
                         .foregroundColor(.white)
 
-                        StackPageView(favoriteStore.favorites, selection:$favoriteId) { nft in
+                        StackPageView(viewModel.favoriteStore.favorites, selection:$favoriteId) { nft in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(Color.LL.background)
@@ -230,8 +197,8 @@ extension NFTTabScreen {
 //                    .background(LinearGradient(colors: [.LL.background, .clear],
 //                                                                   startPoint: .top, endPoint: .bottom))
                     .onChange(of: favoriteId) { id in
-                        guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
-                            let model = favoriteStore.favorites.first
+                        guard let favoriteId = favoriteId, let nft = viewModel.favoriteStore.find(with: favoriteId) else {
+                            let model = viewModel.favoriteStore.favorites.first
                             currentNFTImage = model?.image
                             return
                         }
@@ -241,7 +208,7 @@ extension NFTTabScreen {
             }
             .onAppear {
                 if(favoriteId == nil) {
-                    favoriteId = favoriteStore.favorites.first?.id
+                    favoriteId = viewModel.favoriteStore.favorites.first?.id
                 }
             }
         }
@@ -272,10 +239,10 @@ extension NFTTabScreen {
         )
         
         func onTapNFT() {
-            guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
+            guard let favoriteId = favoriteId, let nft = viewModel.favoriteStore.find(with: favoriteId) else {
                 return
             }
-            viewModel.trigger(.info(nft, favoriteStore))
+            viewModel.trigger(.info(nft))
         }
     }
 }
@@ -434,8 +401,9 @@ extension NFTTabScreen {
         
         @Binding var listStyle: ListStyle
         @Binding var selectedIndex: Int
-        @EnvironmentObject var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
-        @EnvironmentObject var favoriteStore: NFTFavoriteStore
+        
+        @EnvironmentObject
+        var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
         
         var nftLayout: [GridItem] = [
             GridItem(.adaptive(minimum: 160)),
@@ -457,7 +425,7 @@ extension NFTTabScreen {
             LazyVGrid(columns: nftLayout, alignment: .center) {
                 ForEach(currentNFTs, id: \.self) { nft in
                     NFTSquareCard(nft: nft, onClick: { model in
-                        viewModel.trigger(.info(model, favoriteStore))
+                        viewModel.trigger(.info(model))
                     })
                     .frame(height: ceil((screenWidth-18*3)/2+50))
                 }
@@ -473,7 +441,7 @@ extension NFTTabScreen {
 //MARK: Preview
 struct NFTTabScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NFTTabScreen()
+        NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
             
     }
 }
