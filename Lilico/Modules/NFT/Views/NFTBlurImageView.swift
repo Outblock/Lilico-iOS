@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct NFTBlurImageView: View {
-    @Binding var url: URL?
+    var url: URL?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -35,8 +35,8 @@ struct NFTBlurImageView: View {
 }
 
 struct NFTBlurImageView_Previews: PreviewProvider {
-    @State static var url: URL? = URL(string: "https://ovowebpics.s3.ap-northeast-1.amazonaws.com/flowMysertybox10.png")
+    static var url: URL? = URL(string: "https://ovowebpics.s3.ap-northeast-1.amazonaws.com/flowMysertybox10.png")
     static var previews: some View {
-        NFTBlurImageView(url: $url)
+        NFTBlurImageView(url: url)
     }
 }

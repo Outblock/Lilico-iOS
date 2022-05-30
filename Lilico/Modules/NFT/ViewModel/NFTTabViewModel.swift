@@ -123,8 +123,11 @@ class NFTTabViewModel: ViewModel {
             break
         case .add:
             break
+        case let .collection(item):
+            router?.route(to: \.collection, item)
         case .back:
             router?.pop()
+            
         }
     }
 }

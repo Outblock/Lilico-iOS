@@ -15,6 +15,8 @@ struct NFTCollectionCard: View {
     let isHorizontal: Bool
     @Binding var selectedIndex: Int
     
+    @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    
     private var iconSize: Double {
         return isHorizontal ? 40 : 48
     }
@@ -63,7 +65,12 @@ struct NFTCollectionCard: View {
         .shadow(color: .LL.rebackground.opacity(0.05),
                 radius: 8, x: 0, y: 0)
         .onTapGesture {
-            selectedIndex = index
+            if(isHorizontal) {
+                selectedIndex = index
+            }else {
+                viewModel.trigger(.collection(item))
+            }
+            
         }
         .frame(height: isHorizontal ? 56 : 64)
     }

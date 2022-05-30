@@ -28,6 +28,7 @@ extension NFTTabScreen {
         case search
         case add
         case info(NFTModel)
+        case collection(CollectionItem)
         case back
     }
 }
@@ -48,6 +49,17 @@ struct NFTTabScreen: View {
     
     @State var favoriteId: String?
     @State var currentNFTImage: URL?
+    
+    var currentNFTs: [NFTModel] {
+        if(listStyle == .list) {
+            if(viewModel.state.items.isEmpty) {
+                return []
+            }
+            return viewModel.state.items[selectedIndex].nfts
+        }else {
+            return viewModel.state.items.flatMap{$0.nfts}
+        }
+    }
     
     var canShowFavorite: Bool {
         return  (viewModel.favoriteStore.isNotEmpty && isListStyle)
@@ -89,7 +101,7 @@ struct NFTTabScreen: View {
         GeometryReader { geo in
             ZStack() {
                 if(canShowFavorite) {
-                    NFTBlurImageView(url: $currentNFTImage)
+                    NFTBlurImageView(url: currentNFTImage)
                 }
                 
                 if(!viewModel.isEmpty) {
@@ -103,13 +115,14 @@ struct NFTTabScreen: View {
                                 NFTTabScreen.CollectionBar(barStyle: $collectionBarStyle, listStyle: $listStyle)
                                 Section {
                                     if(collectionBarStyle == .horizontal) {
-                                        NFTTabScreen.NFTGrid(listStyle: $listStyle, selectedIndex: $selectedIndex)
+                                        NFTListView(list: currentNFTs)
+
                                     }
                                 } header: {
                                     NFTTabScreen.CollectionBody(barStyle: $collectionBarStyle, selectedIndex: $selectedIndex)
                                 }
                             }else {
-                                NFTTabScreen.NFTGrid(listStyle: $listStyle, selectedIndex: $selectedIndex)
+                                NFTListView(list: currentNFTs)
                             }
                         }
                     }
@@ -358,6 +371,7 @@ extension NFTTabScreen {
 //MARK: Collection Section
 extension NFTTabScreen {
     struct CollectionBody: View {
+        
         @Binding var barStyle: NFTTabScreen.CollectionBar.BarStyle
         @Binding var selectedIndex: Int
         @EnvironmentObject var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
@@ -395,48 +409,6 @@ extension NFTTabScreen {
     }
 }
 
-//MARK:
-extension NFTTabScreen {
-    struct NFTGrid: View {
-        
-        @Binding var listStyle: ListStyle
-        @Binding var selectedIndex: Int
-        
-        @EnvironmentObject
-        var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
-        
-        var nftLayout: [GridItem] = [
-            GridItem(.adaptive(minimum: 160)),
-            GridItem(.adaptive(minimum: 160))
-        ]
-        
-        var currentNFTs: [NFTModel] {
-            if(listStyle == .list) {
-                if(viewModel.state.items.isEmpty) {
-                    return []
-                }
-                return viewModel.state.items[selectedIndex].nfts
-            }else {
-                return viewModel.state.items.flatMap{$0.nfts}
-            }
-        }
-        
-        var body: some View {
-            LazyVGrid(columns: nftLayout, alignment: .center) {
-                ForEach(currentNFTs, id: \.self) { nft in
-                    NFTSquareCard(nft: nft, onClick: { model in
-                        viewModel.trigger(.info(model))
-                    })
-                    .frame(height: ceil((screenWidth-18*3)/2+50))
-                }
-            }
-            .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
-            .cornerRadius(16)
-            .background(Color.white)
-            
-        }
-    }
-}
 
 //MARK: Preview
 struct NFTTabScreen_Previews: PreviewProvider {
