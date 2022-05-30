@@ -48,8 +48,8 @@ extension BackupCoordinator {
         ManualBackupView(viewModel: ManualBackupViewModel().toAnyViewModel())
             .hideNavigationBar()
     }
-
-    func makeHome() -> HomeCoordinator {
-        HomeCoordinator()
+    
+    func makeHome() -> WalletCoordinator {
+        WalletCoordinator()
     }
 }

@@ -16,7 +16,7 @@ class RequestSecureViewModel: ViewModel {
     var router: SecureCoordinator.Router?
 
     @RouterObject
-    var homeRouter: HomeCoordinator.Router?
+    var homeRouter: WalletCoordinator.Router?
 
     init() {
         if BioMetricAuthenticator.shared.faceIDAvailable() {

@@ -16,7 +16,7 @@ class EmptyWalletViewModel: ViewModel {
 //    @RouterObject
 //    var router: NavigationRouter<HomeCoordinator>!
 
-    var router: HomeCoordinator.Router? = RouterStore.shared.retrieve()
+    var router: WalletCoordinator.Router? = RouterStore.shared.retrieve()
 
     init() {
         let dataSource = [
@@ -46,7 +46,6 @@ class EmptyWalletViewModel: ViewModel {
 //            router?
 //            router.route(to: )
 //            router.coordinator.routeToAuthenticated()
-            RouterStore.shared.printAll()
             router?.route(to: \.register)
 //            router?.route(to: \.createSecure)
         case .signIn:

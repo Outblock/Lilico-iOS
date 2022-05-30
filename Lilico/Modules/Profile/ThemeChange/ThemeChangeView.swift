@@ -11,6 +11,7 @@ import SwiftUI
 struct ThemeChangeView: View {
     @EnvironmentObject private var router: ProfileCoordinator.Router
     @StateObject private var vm: ThemeChangeViewModel = ThemeChangeViewModel()
+    @StateObject var themeManager = ThemeManager.shared
     
     var body: some View {
         BaseView {

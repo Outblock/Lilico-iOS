@@ -12,6 +12,7 @@ struct NFTLoading: View {
         ZStack{
             Text("Loading...")
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

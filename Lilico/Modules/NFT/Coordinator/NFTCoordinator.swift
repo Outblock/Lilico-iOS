@@ -9,19 +9,7 @@ import Foundation
 import SwiftUI
 import SwiftUIX
 
-final class NFTCoordinator: NavigationCoordinatable, AppTabBarPageProtocol {
-    static func tabTag() -> AppTabType {
-        return .nft
-    }
-    
-    static func iconName() -> String {
-        return "house.fill"
-    }
-    
-    static func color() -> Color {
-        return .LL.blue
-    }
-    
+final class NFTCoordinator: NavigationCoordinatable {
     var stack = NavigationStack(initial: \NFTCoordinator.start)
 
     
@@ -44,5 +32,18 @@ extension NFTCoordinator {
             .hideNavigationBar()
             .environmentObject(info.1)
     }
+}
+
+extension NFTCoordinator: AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType {
+        return .nft
+    }
     
+    static func iconName() -> String {
+        return "house.fill"
+    }
+    
+    static func color() -> Color {
+        return .LL.blue
+    }
 }

@@ -28,7 +28,7 @@ class RecoveryPhraseViewModel: ViewModel {
     ]
 
     @RouterObject
-    var homeRouter: HomeCoordinator.Router?
+    var homeRouter: WalletCoordinator.Router?
 
     @RouterObject
     var router: BackupCoordinator.Router?

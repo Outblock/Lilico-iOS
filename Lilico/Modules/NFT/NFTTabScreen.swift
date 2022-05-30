@@ -32,6 +32,7 @@ extension NFTTabScreen {
 }
 
 struct NFTTabScreen: View {
+    @StateObject var themeManager = ThemeManager.shared
 
     @State var listStyle: NFTTabScreen.ListStyle = .list
     

@@ -30,12 +30,20 @@ public class RouterStore {
 }
 
 public extension RouterStore {
+    private func trim() {
+        routers.removeAll {
+            $0.value == nil
+        }
+    }
+    
     func store<T: Routable>(router: T) {
+        trim()
         let ref = WeakRef<AnyObject>(value: router)
         routers.insert(ref, at: 0)
     }
 
     func retrieve<T: Routable>() -> T? {
+        trim()
         for router in routers {
             if let router = router.value as? T {
                 return router
@@ -46,8 +54,11 @@ public extension RouterStore {
     }
     
     func printAll() {
+        trim()
         for router in routers {
-            debugPrint("router = \(router.value))")
+            if let value = router.value {
+                debugPrint("router = \(value), address: \(String.pointer(value))")
+            }
         }
     }
 }

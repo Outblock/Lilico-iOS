@@ -8,19 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class ProfileCoordinator: NavigationCoordinatable, AppTabBarPageProtocol {
-    static func tabTag() -> AppTabType {
-        return .profile
-    }
-    
-    static func iconName() -> String {
-        return "house.fill"
-    }
-    
-    static func color() -> Color {
-        return .purple
-    }
-    
+final class ProfileCoordinator: NavigationCoordinatable {
     let stack: NavigationStack<ProfileCoordinator>
     
     @Root var start = makeProfileView
@@ -43,5 +31,19 @@ extension ProfileCoordinator {
     
     func makeAddressBook() -> AddressBookCoordinator {
         return AddressBookCoordinator()
+    }
+}
+
+extension ProfileCoordinator: AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType {
+        return .profile
+    }
+    
+    static func iconName() -> String {
+        return "house.fill"
+    }
+    
+    static func color() -> Color {
+        return .purple
     }
 }

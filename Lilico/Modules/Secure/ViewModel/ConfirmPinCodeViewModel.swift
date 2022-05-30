@@ -15,7 +15,7 @@ class ConfirmPinCodeViewModel: ViewModel {
     var router: SecureCoordinator.Router?
 
     @RouterObject
-    var homeRouter: HomeCoordinator.Router?
+    var homeRouter: WalletCoordinator.Router?
 
     init(pin: String) {
         state = .init(lastPin: pin)

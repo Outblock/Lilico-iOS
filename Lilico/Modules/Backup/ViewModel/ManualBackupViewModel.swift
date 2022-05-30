@@ -13,7 +13,7 @@ class ManualBackupViewModel: ViewModel {
     private(set) var state: ManualBackupView.ViewState = .initScreen
 
     @RouterObject
-    var router: HomeCoordinator.Router?
+    var router: WalletCoordinator.Router?
 
     func loadScreen() {
 //        state = .init(

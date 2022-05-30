@@ -12,12 +12,9 @@ import SwiftUI
 struct Lilico_App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    @ObservedObject var themeManager = ThemeManager.shared
-
     var body: some Scene {
         WindowGroup {
-            MainCoordinator()
-                .view().preferredColorScheme(themeManager.style)
+            MainCoordinator().view()
         }
     }
     

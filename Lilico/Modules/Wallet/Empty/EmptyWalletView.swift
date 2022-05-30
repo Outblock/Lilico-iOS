@@ -29,6 +29,8 @@ struct EnumeratedForEach<ItemType, ContentView: View>: View {
 struct EmptyWalletView: View {
     @StateObject
     var viewModel: AnyViewModel<EmptyWalletState, EmptyWalletAction>
+    
+    @StateObject var themeManager = ThemeManager.shared
 
     @State
     var viewStateArray: [CGSize] = [.zero, .zero]
@@ -141,6 +143,7 @@ struct EmptyWalletView: View {
                 cardView(dataSource, index: index)
             }
         }
+        .preferredColorScheme(themeManager.style)
 //        .onAppear {
 //            isDraggingArray
 //            isPresenting = true

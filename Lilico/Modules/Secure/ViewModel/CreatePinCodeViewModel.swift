@@ -15,7 +15,7 @@ class CreatePinCodeViewModel: ViewModel {
     var router: PinCodeCoordinator.Router?
 
     @RouterObject
-    var homeRouter: HomeCoordinator.Router?
+    var homeRouter: WalletCoordinator.Router?
 
     func trigger(_ input: CreatePinCodeView.Action) {
         switch input {

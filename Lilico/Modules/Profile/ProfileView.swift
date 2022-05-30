@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @StateObject var themeManager = ThemeManager.shared
     @StateObject private var vm: ProfileViewModel = ProfileViewModel()
     @EnvironmentObject private var router: ProfileCoordinator.Router
     
@@ -38,6 +39,7 @@ struct ProfileView: View {
             .background(.LL.Neutrals.background)
             .buttonStyle(.plain)
         }
+        .preferredColorScheme(themeManager.style)
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
     }
@@ -140,7 +142,7 @@ extension ProfileView {
                 }
             }
             .padding(.vertical, 20)
-            .background(RoundedRectangle(cornerRadius: 16).fill(.white))
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
         }
     }
     
@@ -156,7 +158,6 @@ extension ProfileView {
                     Text(title).foregroundColor(.LL.Neutrals.note).font(.inter(size: 12, weight: .medium))
                 }
             }
-            .background(.white)
             .buttonStyle(.plain)
             .frame(maxWidth: .infinity)
         }

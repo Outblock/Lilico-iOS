@@ -15,7 +15,7 @@ class BackupPasswordViewModel: ViewModel {
     var router: BackupCoordinator.Router?
 
     @RouterObject
-    var homeRouter: HomeCoordinator.Router?
+    var homeRouter: WalletCoordinator.Router?
 
     init() {
         state = .init(username: UserManager.shared.userInfo?.username ?? "user")

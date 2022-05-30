@@ -8,20 +8,8 @@
 import Combine
 import SwiftUI
 
-final class HomeCoordinator: NavigationCoordinatable, AppTabBarPageProtocol {
-    static func tabTag() -> AppTabType {
-        return .home
-    }
-    
-    static func iconName() -> String {
-        return "house.fill"
-    }
-    
-    static func color() -> Color {
-        return .LL.orange
-    }
-    
-    let stack: NavigationStack<HomeCoordinator>
+final class WalletCoordinator: NavigationCoordinatable {
+    let stack: NavigationStack<WalletCoordinator>
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -37,28 +25,11 @@ final class HomeCoordinator: NavigationCoordinatable, AppTabBarPageProtocol {
     var isFristTime: Bool = true
 
     init() {
-//        if UserManager.shared.isLoggedIn {
-//            stack = NavigationStack(initial: \HomeCoordinator.start)
-//        } else {
-//            stack = NavigationStack(initial: \HomeCoordinator.empty)
-//        }
-        stack = NavigationStack(initial: \HomeCoordinator.empty)
+        stack = NavigationStack(initial: \WalletCoordinator.empty)
     }
+}
 
-//    func customize(_ view: AnyView) -> some View {
-//        sharedView(view)
-//    }
-//
-//    @ViewBuilder func sharedView(_ view: AnyView) -> some View {
-//        view.onReceive(UserManager.shared.$isAnonymous) { isAnonymous in
-//            if isAnonymous {
-//                self.root(\.empty)
-//            } else {
-//                self.root(\.start)
-//            }
-//        }
-//    }
-
+extension WalletCoordinator {
     @ViewBuilder func makeEmptyWallet() -> some View {
         EmptyWalletView(viewModel: EmptyWalletViewModel().toAnyViewModel())
             .hideNavigationBar()
@@ -87,5 +58,19 @@ final class HomeCoordinator: NavigationCoordinatable, AppTabBarPageProtocol {
 
     func makeCreateSecure() -> SecureCoordinator {
         SecureCoordinator()
+    }
+}
+
+extension WalletCoordinator: AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType {
+        return .wallet
+    }
+    
+    static func iconName() -> String {
+        return "house.fill"
+    }
+    
+    static func color() -> Color {
+        return .LL.orange
     }
 }

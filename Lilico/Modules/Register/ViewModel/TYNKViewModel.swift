@@ -21,7 +21,7 @@ class TYNKViewModel: ViewModel {
     var router: RegisterCoordinator.Router? = RouterStore.shared.retrieve()
 
     @RouterObject
-    var homeRouter: HomeCoordinator.Router?
+    var homeRouter: WalletCoordinator.Router?
 
     init(username: String) {
         self.username = username

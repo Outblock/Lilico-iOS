@@ -28,7 +28,7 @@ extension TabBarView {
                         }
                     }
                     .frame(height: 46)
-                    .background(.white)
+                    .background(.LL.deepBg)
                     
                     indicator(proxy.size.width).animation(.spring(), value: offsetX)
                 }
