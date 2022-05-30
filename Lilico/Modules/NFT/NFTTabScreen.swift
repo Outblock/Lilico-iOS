@@ -82,6 +82,7 @@ struct NFTTabScreen: View {
                 content
             }
         }
+        .preferredColorScheme(themeManager.style)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .environmentObject(viewModel)
         .environmentObject(favoriteStore)
