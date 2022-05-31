@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AddressBookView_Previews: PreviewProvider {
     static var previews: some View {
-//        ProfileView.NoLoginTipsView()
-//        ProfileView.GeneralSectionView()
+        //        ProfileView.NoLoginTipsView()
+        //        ProfileView.GeneralSectionView()
         AddressBookView()
-//        ProfileView.InfoView()
-//        ProfileView.InfoActionView()
+        //        ProfileView.InfoView()
+        //        ProfileView.InfoActionView()
         let contacts = [
             Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 0, username: "angel"),
             Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 1, username: "angel"),
@@ -68,17 +68,17 @@ extension AddressBookView {
     }
     
     var listView: some View {
-        List {
-            ForEach(0..<vm.state.sections.count, id: \.self) { index in
-                let sectionVM = vm.state.sections[index]
-                Section(header: sectionHeader(sectionVM)) {
-                    ForEach(sectionVM.state.list) { row in
-                        ContactCell(contact: row)
-                            .listRowSeparator(.hidden)
-                            .listRowInsets(.zero)
-                            .background(.LL.Neutrals.background)
-                    }
+        IndexedList(vm.state.sections) { sectionVM in
+            Section {
+                ForEach(sectionVM.state.list) { row in
+                    ContactCell(contact: row)
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(.zero)
+                        .background(.LL.Neutrals.background)
                 }
+            } header: {
+                sectionHeader(sectionVM)
+                    .id(sectionVM.id)
             }
         }
         .frame(maxHeight: .infinity)

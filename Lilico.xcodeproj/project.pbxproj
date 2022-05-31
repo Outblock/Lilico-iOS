@@ -730,6 +730,32 @@
 		6A164F482840A1380026B31E /* TabBarPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F402840A1380026B31E /* TabBarPageModel.swift */; };
 		6A164F4A2840B2B50026B31E /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F492840B2B50026B31E /* TabBarCoordinator.swift */; };
 		6A164F4B2840B2B50026B31E /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F492840B2B50026B31E /* TabBarCoordinator.swift */; };
+		6A164F5F2845F1CB0026B31E /* IndexBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F512845F1CB0026B31E /* IndexBarBackground.swift */; };
+		6A164F602845F1CB0026B31E /* IndexBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F512845F1CB0026B31E /* IndexBarBackground.swift */; };
+		6A164F612845F1CB0026B31E /* EnvironmentValues+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F522845F1CB0026B31E /* EnvironmentValues+Extensions.swift */; };
+		6A164F622845F1CB0026B31E /* EnvironmentValues+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F522845F1CB0026B31E /* EnvironmentValues+Extensions.swift */; };
+		6A164F632845F1CB0026B31E /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F532845F1CB0026B31E /* UIView+Extensions.swift */; };
+		6A164F642845F1CB0026B31E /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F532845F1CB0026B31E /* UIView+Extensions.swift */; };
+		6A164F652845F1CB0026B31E /* ScrollAccessory+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F542845F1CB0026B31E /* ScrollAccessory+Extensions.swift */; };
+		6A164F662845F1CB0026B31E /* ScrollAccessory+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F542845F1CB0026B31E /* ScrollAccessory+Extensions.swift */; };
+		6A164F672845F1CB0026B31E /* UITableViewCustomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F552845F1CB0026B31E /* UITableViewCustomizer.swift */; };
+		6A164F682845F1CB0026B31E /* UITableViewCustomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F552845F1CB0026B31E /* UITableViewCustomizer.swift */; };
+		6A164F692845F1CB0026B31E /* IndexBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F562845F1CB0026B31E /* IndexBar.swift */; };
+		6A164F6A2845F1CB0026B31E /* IndexBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F562845F1CB0026B31E /* IndexBar.swift */; };
+		6A164F6B2845F1CB0026B31E /* Indexable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F582845F1CB0026B31E /* Indexable.swift */; };
+		6A164F6C2845F1CB0026B31E /* Indexable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F582845F1CB0026B31E /* Indexable.swift */; };
+		6A164F6D2845F1CB0026B31E /* View+IndexBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F592845F1CB0026B31E /* View+IndexBarBackground.swift */; };
+		6A164F6E2845F1CB0026B31E /* View+IndexBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F592845F1CB0026B31E /* View+IndexBarBackground.swift */; };
+		6A164F6F2845F1CB0026B31E /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5A2845F1CB0026B31E /* Index.swift */; };
+		6A164F702845F1CB0026B31E /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5A2845F1CB0026B31E /* Index.swift */; };
+		6A164F712845F1CB0026B31E /* IndexedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5B2845F1CB0026B31E /* IndexedList.swift */; };
+		6A164F722845F1CB0026B31E /* IndexedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5B2845F1CB0026B31E /* IndexedList.swift */; };
+		6A164F732845F1CB0026B31E /* EnvironmentValues+IndexBarInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5C2845F1CB0026B31E /* EnvironmentValues+IndexBarInsets.swift */; };
+		6A164F742845F1CB0026B31E /* EnvironmentValues+IndexBarInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5C2845F1CB0026B31E /* EnvironmentValues+IndexBarInsets.swift */; };
+		6A164F752845F1CB0026B31E /* IndexedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5D2845F1CB0026B31E /* IndexedScrollView.swift */; };
+		6A164F762845F1CB0026B31E /* IndexedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5D2845F1CB0026B31E /* IndexedScrollView.swift */; };
+		6A164F772845F1CB0026B31E /* ScrollAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5E2845F1CB0026B31E /* ScrollAccessory.swift */; };
+		6A164F782845F1CB0026B31E /* ScrollAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5E2845F1CB0026B31E /* ScrollAccessory.swift */; };
 		6A2D35B9283B6AD6008293D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */; };
 		6A2D35BA283B6AD7008293D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */; };
 		6A2D35BD283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */; };
@@ -1138,6 +1164,19 @@
 		6A164F3F2840A1380026B31E /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		6A164F402840A1380026B31E /* TabBarPageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarPageModel.swift; sourceTree = "<group>"; };
 		6A164F492840B2B50026B31E /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		6A164F512845F1CB0026B31E /* IndexBarBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexBarBackground.swift; sourceTree = "<group>"; };
+		6A164F522845F1CB0026B31E /* EnvironmentValues+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Extensions.swift"; sourceTree = "<group>"; };
+		6A164F532845F1CB0026B31E /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		6A164F542845F1CB0026B31E /* ScrollAccessory+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScrollAccessory+Extensions.swift"; sourceTree = "<group>"; };
+		6A164F552845F1CB0026B31E /* UITableViewCustomizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCustomizer.swift; sourceTree = "<group>"; };
+		6A164F562845F1CB0026B31E /* IndexBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexBar.swift; sourceTree = "<group>"; };
+		6A164F582845F1CB0026B31E /* Indexable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indexable.swift; sourceTree = "<group>"; };
+		6A164F592845F1CB0026B31E /* View+IndexBarBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+IndexBarBackground.swift"; sourceTree = "<group>"; };
+		6A164F5A2845F1CB0026B31E /* Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
+		6A164F5B2845F1CB0026B31E /* IndexedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedList.swift; sourceTree = "<group>"; };
+		6A164F5C2845F1CB0026B31E /* EnvironmentValues+IndexBarInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+IndexBarInsets.swift"; sourceTree = "<group>"; };
+		6A164F5D2845F1CB0026B31E /* IndexedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedScrollView.swift; sourceTree = "<group>"; };
+		6A164F5E2845F1CB0026B31E /* ScrollAccessory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollAccessory.swift; sourceTree = "<group>"; };
 		6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeViewModel.swift; sourceTree = "<group>"; };
 		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -2627,6 +2666,42 @@
 			path = TabBarView;
 			sourceTree = "<group>";
 		};
+		6A164F4F2845F1CA0026B31E /* SwiftUIIndexedList */ = {
+			isa = PBXGroup;
+			children = (
+				6A164F502845F1CB0026B31E /* Internal */,
+				6A164F572845F1CB0026B31E /* API */,
+			);
+			path = SwiftUIIndexedList;
+			sourceTree = "<group>";
+		};
+		6A164F502845F1CB0026B31E /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				6A164F512845F1CB0026B31E /* IndexBarBackground.swift */,
+				6A164F522845F1CB0026B31E /* EnvironmentValues+Extensions.swift */,
+				6A164F532845F1CB0026B31E /* UIView+Extensions.swift */,
+				6A164F542845F1CB0026B31E /* ScrollAccessory+Extensions.swift */,
+				6A164F552845F1CB0026B31E /* UITableViewCustomizer.swift */,
+				6A164F562845F1CB0026B31E /* IndexBar.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		6A164F572845F1CB0026B31E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				6A164F582845F1CB0026B31E /* Indexable.swift */,
+				6A164F592845F1CB0026B31E /* View+IndexBarBackground.swift */,
+				6A164F5A2845F1CB0026B31E /* Index.swift */,
+				6A164F5B2845F1CB0026B31E /* IndexedList.swift */,
+				6A164F5C2845F1CB0026B31E /* EnvironmentValues+IndexBarInsets.swift */,
+				6A164F5D2845F1CB0026B31E /* IndexedScrollView.swift */,
+				6A164F5E2845F1CB0026B31E /* ScrollAccessory.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		6A2D35BB283B6B21008293D9 /* ThemeChange */ = {
 			isa = PBXGroup;
 			children = (
@@ -2688,6 +2763,7 @@
 		6ABAE52D2836297C00C97AE2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				6A164F4F2845F1CA0026B31E /* SwiftUIIndexedList */,
 				156ADC292797B42D00CD4B02 /* Stinsen */,
 				6ABAE50C2836243300C97AE2 /* VComponents */,
 			);
@@ -3005,6 +3081,7 @@
 				15D9283627849E6800382226 /* BackupCoordinator.swift in Sources */,
 				158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */,
 				4EE8E4992835EAF500DFEF59 /* NFTFavoriteView.swift in Sources */,
+				6A164F742845F1CB0026B31E /* EnvironmentValues+IndexBarInsets.swift in Sources */,
 				15DC20CD27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DD27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AD27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
@@ -3069,6 +3146,7 @@
 				15DC21D527819C56000B187A /* StateColorsAndOpacities_EPD_PD.swift in Sources */,
 				15DC210927819C56000B187A /* VSlider.swift in Sources */,
 				15DC21D127819C56000B187A /* VPickableItems.swift in Sources */,
+				6A164F622845F1CB0026B31E /* EnvironmentValues+Extensions.swift in Sources */,
 				15DC211D27819C56000B187A /* VSpinner.swift in Sources */,
 				6AF2ED962836539E00F06AD3 /* BaseView.swift in Sources */,
 				15DC20E327819C56000B187A /* VList.swift in Sources */,
@@ -3101,6 +3179,7 @@
 				15DC21F32781F7D9000B187A /* Keyboard.swift in Sources */,
 				15DC208127819C56000B187A /* VBaseViewNavigationBarCenter.swift in Sources */,
 				156ADC642797B42D00CD4B02 /* TabRouter.swift in Sources */,
+				6A164F682845F1CB0026B31E /* UITableViewCustomizer.swift in Sources */,
 				15DC213B27819C56000B187A /* VMenuPicker.swift in Sources */,
 				15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
 				156ADC662797B42D00CD4B02 /* TabChild.swift in Sources */,
@@ -3151,6 +3230,7 @@
 				156ADC7E2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */,
 				6A9D7C472833B45500078F63 /* ThemeManager.swift in Sources */,
 				15B1F6332786B1BB00847BB5 /* CheckboxStyle.swift in Sources */,
+				6A164F762845F1CB0026B31E /* IndexedScrollView.swift in Sources */,
 				154B8909276A1EEB00780E93 /* Color.swift in Sources */,
 				15DC211127819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
 				15DC20C927819C56000B187A /* VNavigationViewBackButtonHidden.swift in Sources */,
@@ -3158,6 +3238,7 @@
 				4E9E21D62828E52D00E1BACD /* WalletService.swift in Sources */,
 				15DC219927819C56000B187A /* VTextFieldModel.swift in Sources */,
 				15DC212B27819C56000B187A /* VProgressBarModel.swift in Sources */,
+				6A164F6E2845F1CB0026B31E /* View+IndexBarBackground.swift in Sources */,
 				15DC213D27819C56000B187A /* VMenuPickerRow.swift in Sources */,
 				15DE22EC277F0B0C00B5EE03 /* Shimmer.swift in Sources */,
 				157046792793243400D1747B /* NFTTabViewModel.swift in Sources */,
@@ -3176,6 +3257,7 @@
 				4E4F794C2831FCB700ED027C /* ImageName.swift in Sources */,
 				156ADC5E2797B42D00CD4B02 /* WeakRef.swift in Sources */,
 				15B1F6302786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
+				6A164F782845F1CB0026B31E /* ScrollAccessory.swift in Sources */,
 				15D9282A278338DB00382226 /* UIApplication.swift in Sources */,
 				15DC20B927819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209127819C56000B187A /* VSheet.swift in Sources */,
@@ -3223,10 +3305,12 @@
 				4E9E21DB282A5B9400E1BACD /* SecureView.swift in Sources */,
 				15DE22D0277DBDF800B5EE03 /* WalletManager.swift in Sources */,
 				15DC214F27819C56000B187A /* VNavigationViewNavigationBar.swift in Sources */,
+				6A164F602845F1CB0026B31E /* IndexBarBackground.swift in Sources */,
 				1552DC652787063100EAA7D5 /* PinStackView.swift in Sources */,
 				15DC212D27819C56000B187A /* VWheelPicker.swift in Sources */,
 				15DC20EB27819C56000B187A /* VAccordionLayoutType.swift in Sources */,
 				15DC218527819C56000B187A /* VToggleModel.swift in Sources */,
+				6A164F6C2845F1CB0026B31E /* Indexable.swift in Sources */,
 				15DC216D27819C56000B187A /* VDialogButton.swift in Sources */,
 				156ADC682797B42D00CD4B02 /* TabCoordinatable.swift in Sources */,
 				15DC21EB27819C57000B187A /* StateOpacities_P.swift in Sources */,
@@ -3237,6 +3321,7 @@
 				15D57752277C224300045E79 /* LilicoAPI.swift in Sources */,
 				15DC218B27819C56000B187A /* VRadioButtonModel.swift in Sources */,
 				15BCFF1527770D76000B7863 /* EmptyWalletView.swift in Sources */,
+				6A164F702845F1CB0026B31E /* Index.swift in Sources */,
 				15DC215327819C56000B187A /* VNavigationViewAppearance.swift in Sources */,
 				15DC1D4727814A68000B187A /* ButtonStyle.swift in Sources */,
 				15DC219527819C56000B187A /* VTextField.swift in Sources */,
@@ -3260,7 +3345,9 @@
 				4EC31180284503C600F711F5 /* NFTCollectionListView.swift in Sources */,
 				4E8DD9F9282E2FBB0016A931 /* NFTEmptyView.swift in Sources */,
 				154B8914276A1EEB00780E93 /* ViewModel.swift in Sources */,
+				6A164F722845F1CB0026B31E /* IndexedList.swift in Sources */,
 				15DC207727819C56000B187A /* VText.swift in Sources */,
+				6A164F642845F1CB0026B31E /* UIView+Extensions.swift in Sources */,
 				15D5774F277C119400045E79 /* NavigateBackButton.swift in Sources */,
 				15DC1D5D27816F46000B187A /* MoyaAsync.swift in Sources */,
 				15DC20F727819C56000B187A /* VBaseListLayoutType.swift in Sources */,
@@ -3276,6 +3363,7 @@
 				156ADC602797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */,
 				15DC218927819C56000B187A /* VRadioButtonState.swift in Sources */,
 				156ADC542797B42D00CD4B02 /* Presentable.swift in Sources */,
+				6A164F662845F1CB0026B31E /* ScrollAccessory+Extensions.swift in Sources */,
 				4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */,
 				15DC215927819C56000B187A /* VMenu.swift in Sources */,
 				1552DC622786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
@@ -3300,6 +3388,7 @@
 				158CE8892782DAD7006A8394 /* RegisterResponse.swift in Sources */,
 				15DC214B27819C56000B187A /* VBaseNaviationViewNavigationBar.swift in Sources */,
 				154B8917276A1EEB00780E93 /* PageIndictor.swift in Sources */,
+				6A164F6A2845F1CB0026B31E /* IndexBar.swift in Sources */,
 				15DC216B27819C56000B187A /* VHalfModalModel.swift in Sources */,
 				4EC56B2B281D385D00246878 /* AppConfigs.swift in Sources */,
 				15DC216127819C56000B187A /* VSideBar.swift in Sources */,
@@ -3353,6 +3442,7 @@
 				15D9283527849E6800382226 /* BackupCoordinator.swift in Sources */,
 				158C9C9F27871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */,
 				4EE8E4982835EAF100DFEF59 /* NFTFavoriteView.swift in Sources */,
+				6A164F732845F1CB0026B31E /* EnvironmentValues+IndexBarInsets.swift in Sources */,
 				15DC20CC27819C56000B187A /* VNavigationLink.swift in Sources */,
 				15DC20DC27819C56000B187A /* VPrimaryButton.swift in Sources */,
 				15DC21AC27819C56000B187A /* VBaseTextFieldModel.swift in Sources */,
@@ -3417,6 +3507,7 @@
 				15DC21D427819C56000B187A /* StateColorsAndOpacities_EPD_PD.swift in Sources */,
 				15DC210827819C56000B187A /* VSlider.swift in Sources */,
 				15DC21D027819C56000B187A /* VPickableItems.swift in Sources */,
+				6A164F612845F1CB0026B31E /* EnvironmentValues+Extensions.swift in Sources */,
 				15DC211C27819C56000B187A /* VSpinner.swift in Sources */,
 				6AF2ED952836539E00F06AD3 /* BaseView.swift in Sources */,
 				15DC20E227819C56000B187A /* VList.swift in Sources */,
@@ -3449,6 +3540,7 @@
 				15DC21F22781F7D9000B187A /* Keyboard.swift in Sources */,
 				15DC208027819C56000B187A /* VBaseViewNavigationBarCenter.swift in Sources */,
 				156ADC632797B42D00CD4B02 /* TabRouter.swift in Sources */,
+				6A164F672845F1CB0026B31E /* UITableViewCustomizer.swift in Sources */,
 				15DC213A27819C56000B187A /* VMenuPicker.swift in Sources */,
 				15BCFF1B277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
 				156ADC652797B42D00CD4B02 /* TabChild.swift in Sources */,
@@ -3499,6 +3591,7 @@
 				156ADC7D2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */,
 				15B1F6322786B1BB00847BB5 /* CheckboxStyle.swift in Sources */,
 				153C44012751CFA4006D1E8D /* Color.swift in Sources */,
+				6A164F752845F1CB0026B31E /* IndexedScrollView.swift in Sources */,
 				15DC211027819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
 				15DC20C827819C56000B187A /* VNavigationViewBackButtonHidden.swift in Sources */,
 				15BCFF1E27772E86000B7863 /* EmptyViewModel.swift in Sources */,
@@ -3506,6 +3599,7 @@
 				15DC219827819C56000B187A /* VTextFieldModel.swift in Sources */,
 				15DC212A27819C56000B187A /* VProgressBarModel.swift in Sources */,
 				15DC213C27819C56000B187A /* VMenuPickerRow.swift in Sources */,
+				6A164F6D2845F1CB0026B31E /* View+IndexBarBackground.swift in Sources */,
 				15DE22EB277F0B0C00B5EE03 /* Shimmer.swift in Sources */,
 				157046782793243400D1747B /* NFTTabViewModel.swift in Sources */,
 				15F22F0C278B13EB00FCF772 /* EnterPasswordViewModel.swift in Sources */,
@@ -3524,6 +3618,7 @@
 				156ADC5D2797B42D00CD4B02 /* WeakRef.swift in Sources */,
 				15B1F62F2786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				15D92829278338DB00382226 /* UIApplication.swift in Sources */,
+				6A164F772845F1CB0026B31E /* ScrollAccessory.swift in Sources */,
 				15DC20B827819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209027819C56000B187A /* VSheet.swift in Sources */,
 				15DC208627819C56000B187A /* VLazyScrollViewType.swift in Sources */,
@@ -3571,10 +3666,12 @@
 				15DE22CF277DBDF800B5EE03 /* WalletManager.swift in Sources */,
 				15DC214E27819C56000B187A /* VNavigationViewNavigationBar.swift in Sources */,
 				1552DC642787063100EAA7D5 /* PinStackView.swift in Sources */,
+				6A164F5F2845F1CB0026B31E /* IndexBarBackground.swift in Sources */,
 				15DC212C27819C56000B187A /* VWheelPicker.swift in Sources */,
 				15DC20EA27819C56000B187A /* VAccordionLayoutType.swift in Sources */,
 				15DC218427819C56000B187A /* VToggleModel.swift in Sources */,
 				15DC216C27819C56000B187A /* VDialogButton.swift in Sources */,
+				6A164F6B2845F1CB0026B31E /* Indexable.swift in Sources */,
 				156ADC672797B42D00CD4B02 /* TabCoordinatable.swift in Sources */,
 				15DC21EA27819C57000B187A /* StateOpacities_P.swift in Sources */,
 				15DC21D627819C56000B187A /* StateColors_ED.swift in Sources */,
@@ -3585,6 +3682,7 @@
 				15DC218A27819C56000B187A /* VRadioButtonModel.swift in Sources */,
 				15BCFF1427770D76000B7863 /* EmptyWalletView.swift in Sources */,
 				15DC215227819C56000B187A /* VNavigationViewAppearance.swift in Sources */,
+				6A164F6F2845F1CB0026B31E /* Index.swift in Sources */,
 				15DC1D4627814A68000B187A /* ButtonStyle.swift in Sources */,
 				15DC219427819C56000B187A /* VTextField.swift in Sources */,
 				15DC20A427819C56000B187A /* VWebLinkType.swift in Sources */,
@@ -3608,7 +3706,9 @@
 				4EC3117F284503C600F711F5 /* NFTCollectionListView.swift in Sources */,
 				159A54322753681F004BCACC /* ViewModel.swift in Sources */,
 				15DC207627819C56000B187A /* VText.swift in Sources */,
+				6A164F712845F1CB0026B31E /* IndexedList.swift in Sources */,
 				15D5774E277C119400045E79 /* NavigateBackButton.swift in Sources */,
+				6A164F632845F1CB0026B31E /* UIView+Extensions.swift in Sources */,
 				15DC1D5C27816F46000B187A /* MoyaAsync.swift in Sources */,
 				15DC20F627819C56000B187A /* VBaseListLayoutType.swift in Sources */,
 				15DC20FA27819C56000B187A /* VBaseListElement.swift in Sources */,
@@ -3624,6 +3724,7 @@
 				15DC218827819C56000B187A /* VRadioButtonState.swift in Sources */,
 				156ADC532797B42D00CD4B02 /* Presentable.swift in Sources */,
 				4EF5129C28333A230014F4EC /* NFTTagsView.swift in Sources */,
+				6A164F652845F1CB0026B31E /* ScrollAccessory+Extensions.swift in Sources */,
 				15DC215827819C56000B187A /* VMenu.swift in Sources */,
 				1552DC612786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
 				15D5775D277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
@@ -3648,6 +3749,7 @@
 				158CE8882782DAD7006A8394 /* RegisterResponse.swift in Sources */,
 				15DC214A27819C56000B187A /* VBaseNaviationViewNavigationBar.swift in Sources */,
 				15F43D122753B4F6004F6F49 /* PageIndictor.swift in Sources */,
+				6A164F692845F1CB0026B31E /* IndexBar.swift in Sources */,
 				15DC216A27819C56000B187A /* VHalfModalModel.swift in Sources */,
 				4EC56B2A281D385D00246878 /* AppConfigs.swift in Sources */,
 				15DC216027819C56000B187A /* VSideBar.swift in Sources */,
