@@ -116,10 +116,12 @@ extension ProfileView {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Button {
-                    
+                    debugPrint("edit btn click")
                 } label: {
                     Image("icon-profile-edit")
                 }
+                .frame(size: CGSize(width: 36, height: 36))
+                .roundedButtonStyle()
             }
         }
     }

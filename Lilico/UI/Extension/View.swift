@@ -156,6 +156,10 @@ extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
     }
+    
+    func roundedButtonStyle(bgColor: Color = .LL.Secondary.violet5) -> some View {
+        self.background(bgColor).clipShape(Circle())
+    }
 }
 
 struct CornerRadiusStyle: ViewModifier {

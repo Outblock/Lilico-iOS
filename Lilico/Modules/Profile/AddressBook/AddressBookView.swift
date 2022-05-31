@@ -50,18 +50,24 @@ extension AddressBookView {
             } label: {
                 Image("btn-search")
             }
+            .frame(size: CGSize(width: 36, height: 36))
+            .roundedButtonStyle()
             
             Button {
                 print("click add")
             } label: {
                 Image("btn-add")
             }
+            .frame(size: CGSize(width: 36, height: 36))
+            .roundedButtonStyle()
             
             Button {
                 print("click scan")
             } label: {
                 Image("btn-scan")
             }
+            .frame(size: CGSize(width: 36, height: 36))
+            .roundedButtonStyle()
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
         .padding(.trailing, 10)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BaseView<Content>: View where Content: View {
+struct BaseView<Content: View>: View {
     private let content: Content
     
     init(@ViewBuilder content: () -> Content) {
