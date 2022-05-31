@@ -11,6 +11,7 @@ import GoogleSignIn
 import Resolver
 import UIKit
 import WalletCore
+import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -31,5 +32,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 extension AppDelegate {
     private func commonConfig() {
         UITableView.appearance().sectionHeaderTopPadding = 0
+        UISearchBar.appearance().tintColor = UIColor(Color.LL.Secondary.violetDiscover)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .orange
     }
 }

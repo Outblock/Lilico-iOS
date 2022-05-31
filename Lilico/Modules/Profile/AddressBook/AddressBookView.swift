@@ -29,10 +29,7 @@ struct AddressBookView: View {
     
     var body: some View {
         BaseView {
-            VStack {
-                actionView
-                listView
-            }
+            listView
         }
         .navigationTitle("Address Book")
         .navigationBarTitleDisplayMode(.inline)
@@ -43,38 +40,8 @@ struct AddressBookView: View {
 }
 
 extension AddressBookView {
-    var actionView: some View {
-        HStack(spacing: 18) {
-            Button {
-                print("click search")
-            } label: {
-                Image("btn-search")
-            }
-            .frame(size: CGSize(width: 36, height: 36))
-            .roundedButtonStyle()
-            
-            Button {
-                print("click add")
-            } label: {
-                Image("btn-add")
-            }
-            .frame(size: CGSize(width: 36, height: 36))
-            .roundedButtonStyle()
-            
-            Button {
-                print("click scan")
-            } label: {
-                Image("btn-scan")
-            }
-            .frame(size: CGSize(width: 36, height: 36))
-            .roundedButtonStyle()
-        }
-        .frame(maxWidth: .infinity, alignment: .trailing)
-        .padding(.trailing, 10)
-    }
-    
     var listView: some View {
-        IndexedList(vm.state.sections) { sectionVM in
+        IndexedList(vm.searchResults) { sectionVM in
             Section {
                 ForEach(sectionVM.state.list) { row in
                     ContactCell(contact: row)
@@ -90,6 +57,7 @@ extension AddressBookView {
         .frame(maxHeight: .infinity)
         .listStyle(.plain)
         .background(.LL.Neutrals.background)
+        .searchable(text: $vm.searchText)
     }
     
     private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {

@@ -14,6 +14,7 @@ extension AddressBookView {
     
     class AddressBookViewModel: ViewModel {
         @Published var state: ListState
+        @Published var searchText: String = ""
         
         init() {
             let contacts = [
@@ -59,7 +60,7 @@ extension AddressBookView {
                 Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 4, username: "angel"),
                 Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 5, username: "angel"),
                 Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 6, username: "angel"),
-                Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 7, username: "angel"),
+                Contact(address: "0x55ad22f01ef59999", avatar: nil, contactName: "Lilin", contactType: nil, domain: nil, id: 7, username: "angel"),
             ]
             
             let contacts5 = [
@@ -68,9 +69,9 @@ extension AddressBookView {
                 Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 2, username: "angel"),
                 Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 3, username: "angel"),
                 Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 4, username: "angel"),
-                Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 5, username: "angel"),
-                Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 6, username: "angel"),
-                Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 7, username: "angel"),
+                Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "李刚", contactType: nil, domain: nil, id: 5, username: "angel"),
+                Contact(address: "0x55ad22f01ef58888", avatar: nil, contactName: "Luka", contactType: nil, domain: nil, id: 6, username: "angel"),
+                Contact(address: "0x55ad22f01ef56888", avatar: nil, contactName: "Jack", contactType: nil, domain: nil, id: 7, username: "angel"),
             ]
             
             let sections = [
@@ -86,6 +87,42 @@ extension AddressBookView {
         
         func trigger(_ input: Never) {
             
+        }
+        
+        var searchResults: [SectionViewModel] {
+            if searchText.isEmpty {
+                return state.sections
+            }
+            
+            var searchSections: [SectionViewModel] = []
+            
+            for section in state.sections {
+                var contacts = [Contact]()
+                
+                for contact in section.state.list {
+                    if let address = contact.address, address.localizedCaseInsensitiveContains(searchText) {
+                        contacts.append(contact)
+                        continue
+                    }
+
+                    if let contactName = contact.contactName, contactName.localizedCaseInsensitiveContains(searchText) {
+                        contacts.append(contact)
+                        continue
+                    }
+
+                    if let userName = contact.username, userName.localizedCaseInsensitiveContains(searchText) {
+                        contacts.append(contact)
+                        continue
+                    }
+                }
+                
+                if contacts.count > 0 {
+                    let newSection = SectionViewModel(sectionName: section.state.sectionName, list: contacts)
+                    searchSections.append(newSection)
+                }
+            }
+            
+            return searchSections
         }
     }
 }
