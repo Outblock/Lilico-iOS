@@ -30,9 +30,20 @@ struct NFTListView: View {
             }
             .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
             .cornerRadius(16)
-            .background(Color.white)
+            .background(.LL.Neutrals.background)
+            
+            VStack{}
+                .frame(height: repairHeight() )
+                .background(Color.orange)
         }
         
+    }
+    
+    func repairHeight() -> CGFloat {
+        if(list.count < 4) {
+            return 200.0
+        }
+        return 0.0
     }
 }
 

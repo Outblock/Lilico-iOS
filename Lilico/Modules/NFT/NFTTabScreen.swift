@@ -36,10 +36,10 @@ extension NFTTabScreen {
 struct NFTTabScreen: View {
     @StateObject var themeManager = ThemeManager.shared
 
-    @State var listStyle: NFTTabScreen.ListStyle = .list
+    @State var listStyle: String = "List"
     
     var isListStyle: Bool {
-        return listStyle == .list
+        return listStyle == "List"
     }
     
     @StateObject
@@ -51,7 +51,7 @@ struct NFTTabScreen: View {
     @State var currentNFTImage: URL?
     
     var currentNFTs: [NFTModel] {
-        if(listStyle == .list) {
+        if(isListStyle) {
             if(viewModel.state.items.isEmpty) {
                 return []
             }
@@ -108,7 +108,7 @@ struct NFTTabScreen: View {
                     ScrollView(showsIndicators: false) {
                         LazyVStack(pinnedViews: [.sectionHeaders]) {
                             
-                            if(listStyle == .list) {
+                            if(isListStyle) {
                                 if(canShowFavorite) {
                                     NFTTabScreen.FavoriteView(currentNFTImage: $currentNFTImage)
                                 }
@@ -269,12 +269,15 @@ extension NFTTabScreen {
     }
     
     struct TopBar: View {
-        @Binding var listStyle: NFTTabScreen.ListStyle
+        @Binding var listStyle: String
         @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
         
         var body: some View {
             HStack(alignment: .center) {
                 if(!viewModel.state.isEmpty) {
+                    
+                    NFTSegmentControl(currentTab: $listStyle, titles: ["List","Grid"])
+                    
                     Picker("", selection: $listStyle) {
                         Text("List")
                             .tag(NFTTabScreen.ListStyle.list)
@@ -336,11 +339,11 @@ extension NFTTabScreen {
         }
         
         @Binding var barStyle: NFTTabScreen.CollectionBar.BarStyle
-        @Binding var listStyle: NFTTabScreen.ListStyle
+        @Binding var listStyle: String
         
         var body: some View {
             VStack {
-                if(listStyle == .list) {
+                if(listStyle == "List") {
                     HStack() {
                         Image(.Image.Logo.collection3D)
                         Text("Collections")

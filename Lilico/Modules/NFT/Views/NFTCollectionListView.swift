@@ -15,15 +15,18 @@ struct NFTCollectionListView: View {
     @EnvironmentObject private var viewModel:AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             NFTBlurImageView(url: collection.iconURL)
-                .edgesIgnoringSafeArea(.top)
             ScrollView {
                 InfoView(collection: collection)
                     .padding(.bottom, 24)
                 NFTListView(list: collection.nfts)
+                Spacer()
+                    .background(Color.white)
             }
+            .padding(.top, 34)
         }
+        .ignoresSafeArea()
     }
 }
 
@@ -44,7 +47,7 @@ extension NFTCollectionListView {
                     .padding(.leading, 18)
                     .padding(.trailing, 20)
                 
-                VStack(alignment: .trailing, spacing: 9) {
+                VStack(alignment: .leading, spacing: 9) {
                     HStack(alignment: .center) {
                         Text(collection.name)
                             .font(.LL.largeTitle3)

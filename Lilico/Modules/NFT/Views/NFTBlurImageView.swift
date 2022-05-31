@@ -12,25 +12,22 @@ struct NFTBlurImageView: View {
     var url: URL?
     
     var body: some View {
-        VStack(alignment: .leading) {
-            if(url != nil) {
-                KFImage
-                    .url(url)
-                    .fade(duration: 0.25)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: screenWidth, height: screenHeight * 0.6)
-                    .aspectRatio(1, contentMode: .fit)
-            }
+        VStack(alignment: .center, spacing: 0) {
+            KFImage
+                .url(url)
+                .fade(duration: 0.25)
+                .resizable()
+//                .scaledToFit()
+                .frame(width: screenWidth, height: screenHeight * 0.6)
+                .aspectRatio(1, contentMode: .fill)
+                .background(LinearGradient(colors: [.LL.Neutrals.background.opacity(0.4), .LL.Neutrals.background.opacity(0.8)], startPoint: .top, endPoint: .bottom))
             Spacer()
         }
-        
+        .background(Color.white)
         .blur(radius: 30, opaque: true)
-        .background(LinearGradient(colors: [.LL.Neutrals.background.opacity(0.4), .LL.Neutrals.background.opacity(0.8)], startPoint: .top, endPoint: .bottom))
-//        .mask(
-//            LinearGradient(gradient: Gradient(colors:
-//                                                [Color.black, Color.clear]), startPoint: .top, endPoint: .center)
-//        )
+        .mask(
+            LinearGradient(colors: [.LL.Neutrals.background.opacity(0.4), .LL.Neutrals.background.opacity(0.8)], startPoint: .top, endPoint: .bottom)
+        )
     }
 }
 
