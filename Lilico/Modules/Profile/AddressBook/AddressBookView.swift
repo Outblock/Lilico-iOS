@@ -33,6 +33,19 @@ struct AddressBookView: View {
         }
         .navigationTitle("Address Book")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(trailing: HStack(spacing: 20) {
+            Button {
+                router.route(to: \.add)
+            } label: {
+                Image("btn-add")
+            }
+
+            Button {
+                debugPrint("scan btn click")
+            } label: {
+                Image("btn-scan")
+            }
+        })
         .addBackBtn {
             router.dismissCoordinator()
         }

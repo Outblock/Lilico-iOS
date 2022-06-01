@@ -18,6 +18,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         Resolver.registerAllServices()
         commonConfig()
+        flowConfig()
 
         return true
     }
@@ -36,5 +37,9 @@ extension AppDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .orange
+    }
+    
+    private func flowConfig() {
+        FlowNetwork.setup()
     }
 }

@@ -12,6 +12,7 @@ final class AddressBookCoordinator: NavigationCoordinatable {
     let stack: NavigationStack<AddressBookCoordinator>
     
     @Root var start = makeAddressBookView
+    @Route(.push) var add = makeAddView
     
     init() {
         stack = NavigationStack(initial: \AddressBookCoordinator.start)
@@ -21,5 +22,9 @@ final class AddressBookCoordinator: NavigationCoordinatable {
 extension AddressBookCoordinator {
     @ViewBuilder func makeAddressBookView() -> some View {
         AddressBookView()
+    }
+    
+    @ViewBuilder func makeAddView() -> some View {
+        AddAddressView()
     }
 }

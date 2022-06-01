@@ -11,10 +11,13 @@ import Combine
 
 class FlowNetwork {
     
+    static func setup() {
+        flow.configure(chainID: .testnet)
+    }
+    
     //TODO: auto be canceled,why?
     
     static func isTokenListEnabled(address: Flow.Address, tokens: [TokenModel]) -> Future<[Bool], Error> {
-        flow.configure(chainID: .testnet)
         let network = flow.chainID
         let cadence =  FlowQuery.checkEnable.tokenEnableQuery(with: tokens, at: network)
         let call = flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
@@ -34,8 +37,6 @@ class FlowNetwork {
     }
     
     static func checkTokensEnable(address: Flow.Address, tokens: [TokenModel]) async throws -> [Bool] {
-        //TODO: 他不应该在这里
-        flow.configure(chainID: .testnet)
         let cadence =  FlowQuery.checkEnable.tokenEnableQuery(with: tokens, at:flow.chainID)
         do {
             let list = try await fetch(at: address, with: tokens, by: cadence)
@@ -46,8 +47,6 @@ class FlowNetwork {
     }
     
     static func fetchBalance(at address: Flow.Address, with tokens: [TokenModel]) async throws -> [Double] {
-        //TODO: 他不应该在这里
-        flow.configure(chainID: .testnet)
         let cadence = FlowQuery.balance.balanceQuery(with: tokens, at: flow.chainID)
         do {
             let list = try await fetch(at: address, with: tokens, by: cadence)
@@ -57,6 +56,25 @@ class FlowNetwork {
         }
     }
     
+    static func addressVerify(address: String, completion: @escaping (Bool, Error?) -> Void) {
+        // testnet test address: 0x912d5440f7e3769e
+        
+        if !address.hasPrefix("0x") {
+            completion(false, nil)
+            return
+        }
+        
+        let fAddress = Flow.Address(hex: address)
+        let call = flow.accessAPI.getAccountAtLatestBlock(address: fAddress)
+        call.whenComplete { result in
+            switch result {
+            case .success(_):
+                completion(true, nil)
+            case let .failure(error):
+                completion(false, error)
+            }
+        }
+    }
     
     private static func fetch(at address: Flow.Address, with tokens: [TokenModel], by cadence: String) async throws -> [Flow.Argument] {
         try await withCheckedThrowingContinuation { continuation in

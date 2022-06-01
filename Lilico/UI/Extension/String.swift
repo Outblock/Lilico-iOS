@@ -12,6 +12,20 @@ extension String {
         let components = self.components(separatedBy: .whitespacesAndNewlines)
         return components.filter { !$0.isEmpty }.joined(separator: " ")
     }
+    
+    func trim() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    func matchRegex(_ regex: String) -> Bool {
+        do {
+            let regex = try NSRegularExpression.init(pattern: regex, options: [])
+            let matches = regex.matches(in: self, options: [], range: NSMakeRange(0, self.count))
+            return matches.count > 0
+        } catch {
+            return false
+        }
+    }
 }
 
 extension String {
