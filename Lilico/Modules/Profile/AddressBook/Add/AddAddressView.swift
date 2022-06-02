@@ -28,14 +28,17 @@ struct AddAddressView: View {
         }
         .navigationBarItems(trailing: HStack {
             Button {
-                debugPrint("save btn click")
+                vm.trigger(.save)
             } label: {
                 Text("Save")
             }
             .buttonStyle(.plain)
-            .foregroundColor(.LL.Primary.salmon1)
+            .foregroundColor(.LL.Primary.salmonPrimary)
             .disabled(!vm.state.isReadyForSave)
         })
+        .toast(isPresented: $vm.state.needShowLoadingHud) {
+            ToastView("Saving...").toastViewStyle(.indeterminate)
+        }
     }
     
     var nameField: some View {

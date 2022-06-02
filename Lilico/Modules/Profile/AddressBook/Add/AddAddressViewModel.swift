@@ -42,7 +42,8 @@ extension AddAddressView {
             }
         }
         
-        var isReadyForSave: Bool = false
+        var isReadyForSave = false
+        var needShowLoadingHud = false
         
         private mutating func refreshReadyFlag() {
             if name.trim().isEmpty {
@@ -61,10 +62,12 @@ extension AddAddressView {
     
     enum AddAddressInput {
         case checkAddress
+        case save
     }
     
     class AddAddressViewModel: ViewModel {
         @Published var state: AddAddressState
+        @RouterObject var router: AddressBookCoordinator.Router?
         
         private var addressCheckTask: DispatchWorkItem?
         
@@ -75,27 +78,70 @@ extension AddAddressView {
         func trigger(_ input: AddAddressInput) {
             switch input {
             case .checkAddress:
-                cancelCurrentAddressCheckTask()
-                
-                if state.address.isEmpty {
-                    state.addressStateType = .idle
-                    return
-                }
-                
-                var formatedAddress = state.address.trim()
-                if !formatedAddress.hasPrefix("0x") {
-                    formatedAddress = "0x" + formatedAddress
-                }
-                
-                if !checkAddressFormat(formatedAddress) {
-                    state.addressStateType = .invalidFormat
-                    return
-                } else {
-                    state.addressStateType = .idle
-                }
-                
-                delayCheckAddressIsExist(formatedAddress)
+                checkAddressAction()
+            case .save:
+                saveAction()
             }
+        }
+        
+        private func saveAction() {
+            state.needShowLoadingHud = true
+            let contactName = state.name.trim()
+            let address = state.address.trim().lowercased()
+            
+            let errorAction = {
+                DispatchQueue.main.async {
+                    self.state.needShowLoadingHud = false
+                    HUD.error(title: "request failed")
+                }
+            }
+            
+            let successAction = {
+                DispatchQueue.main.async {
+                    self.state.needShowLoadingHud = false
+                    self.router?.pop()
+                    HUD.success(title: "contact added")
+                }
+            }
+            
+            Task {
+                do {
+                    let request = AddressBookAddRequest(contactName: contactName, address: address, domain: "", domainType: 0, username: nil)
+                    let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.AddressBook.addExternal(request))
+                    
+                    if response.httpCode != 200 {
+                        errorAction()
+                        return
+                    }
+                    
+                    successAction()
+                } catch {
+                    errorAction()
+                }
+            }
+        }
+        
+        private func checkAddressAction() {
+            cancelCurrentAddressCheckTask()
+            
+            if state.address.isEmpty {
+                state.addressStateType = .idle
+                return
+            }
+            
+            var formatedAddress = state.address.trim().lowercased()
+            if !formatedAddress.hasPrefix("0x") {
+                formatedAddress = "0x" + formatedAddress
+            }
+            
+            if !checkAddressFormat(formatedAddress) {
+                state.addressStateType = .invalidFormat
+                return
+            } else {
+                state.addressStateType = .idle
+            }
+            
+            delayCheckAddressIsExist(formatedAddress)
         }
     }
 }
