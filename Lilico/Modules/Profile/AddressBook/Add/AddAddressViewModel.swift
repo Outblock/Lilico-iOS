@@ -99,6 +99,7 @@ extension AddAddressView {
             let successAction = {
                 DispatchQueue.main.async {
                     self.state.needShowLoadingHud = false
+                    self.router?.coordinator.addressBookVM?.trigger(.load)
                     self.router?.pop()
                     HUD.success(title: "contact added")
                 }

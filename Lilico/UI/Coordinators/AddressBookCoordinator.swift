@@ -14,6 +14,8 @@ final class AddressBookCoordinator: NavigationCoordinatable {
     @Root var start = makeAddressBookView
     @Route(.push) var add = makeAddView
     
+    var addressBookVM: AddressBookView.AddressBookViewModel?
+    
     init() {
         stack = NavigationStack(initial: \AddressBookCoordinator.start)
     }

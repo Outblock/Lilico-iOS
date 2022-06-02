@@ -29,7 +29,11 @@ struct AddressBookView: View {
     
     var body: some View {
         BaseView {
-            listView
+            ZStack {
+                listView
+                loadingView
+                errorView
+            }
         }
         .navigationTitle("Address Book")
         .navigationBarTitleDisplayMode(.inline)
@@ -49,10 +53,31 @@ struct AddressBookView: View {
         .addBackBtn {
             router.dismissCoordinator()
         }
+        .onAppear {
+            router.coordinator.addressBookVM = vm
+        }
     }
 }
 
 extension AddressBookView {
+    var loadingView: some View {
+        VStack {
+            Text("Loading...")
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.LL.Neutrals.background)
+        .visibility(vm.state.stateType == .loading ? .visible : .gone)
+    }
+    
+    var errorView: some View {
+        VStack {
+            Text("Request failed, please try again later")
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.LL.Neutrals.background)
+        .visibility(vm.state.stateType == .error ? .visible : .gone)
+    }
+    
     var listView: some View {
         IndexedList(vm.searchResults) { sectionVM in
             Section {
@@ -71,6 +96,7 @@ extension AddressBookView {
         .listStyle(.plain)
         .background(.LL.Neutrals.background)
         .searchable(text: $vm.searchText)
+        .visibility(vm.state.stateType == .idle ? .visible : .gone)
     }
     
     private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {
@@ -105,9 +131,11 @@ extension AddressBookView {
                         .foregroundColor(.LL.Neutrals.text)
                         .font(.inter(size: 14, weight: .bold))
                     
-                    Text("@\(contact.username ?? "no username")")
-                        .foregroundColor(.LL.Neutrals.note)
-                        .font(.inter(size: 14, weight: .medium))
+                    if let userName = contact.username, !userName.isEmpty {
+                        Text("@\(userName)")
+                            .foregroundColor(.LL.Neutrals.note)
+                            .font(.inter(size: 14, weight: .medium))
+                    }
                     
                     Text(contact.address ?? "no address")
                         .foregroundColor(.LL.Neutrals.note)

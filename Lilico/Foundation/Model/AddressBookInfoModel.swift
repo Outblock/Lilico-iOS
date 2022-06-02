@@ -12,22 +12,10 @@ struct Contact: Codable, Identifiable {
     let domain: Domain?
     let id: Int
     let username: String?
-
-    enum CodingKeys: String, CodingKey {
-        case address, avatar
-        case contactName = "contact_name"
-        case contactType = "contact_type"
-        case domain, id, username
-    }
 }
 
 // MARK: - Domain
 struct Domain: Codable {
     let domainType: Int?
     let value: String?
-
-    enum CodingKeys: String, CodingKey {
-        case domainType = "domain_type"
-        case value
-    }
 }
