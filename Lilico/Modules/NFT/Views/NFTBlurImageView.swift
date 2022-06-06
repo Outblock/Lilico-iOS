@@ -23,10 +23,12 @@ struct NFTBlurImageView: View {
                 .background(LinearGradient(colors: [.LL.Neutrals.background.opacity(0.4), .LL.Neutrals.background.opacity(0.8)], startPoint: .top, endPoint: .bottom))
             Spacer()
         }
-        .background(Color.white)
+        .background(.LL.Neutrals.background)
         .blur(radius: 30, opaque: true)
         .mask(
-            LinearGradient(colors: [.LL.Neutrals.background.opacity(0.4), .LL.Neutrals.background.opacity(0.8)], startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors:
+                                                                    [Color.black, Color.clear]), startPoint: .top, endPoint: .center)
+//            LinearGradient(colors: [.LL.Neutrals.background.opacity(0.4), .LL.Neutrals.background.opacity(0.8)], startPoint: .top, endPoint: .bottom)
         )
     }
 }

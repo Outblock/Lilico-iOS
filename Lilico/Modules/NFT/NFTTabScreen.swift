@@ -50,6 +50,7 @@ struct NFTTabScreen: View {
     @State var favoriteId: String?
     @State var currentNFTImage: URL?
     
+    
     var currentNFTs: [NFTModel] {
         if(isListStyle) {
             if(viewModel.state.items.isEmpty) {
@@ -133,6 +134,8 @@ struct NFTTabScreen: View {
                     .padding(.top, statusHeight)
                 }
             }
+            .background(LinearGradient(colors: [.LL.background, .clear],
+                                                           startPoint: .top, endPoint: .bottom))
             .ignoresSafeArea()
         }
     }
@@ -207,8 +210,7 @@ extension NFTTabScreen {
                         .frame(width: screenWidth,
                                height: screenHeight * 0.4, alignment: .center)
                     }
-//                    .background(LinearGradient(colors: [.LL.background, .clear],
-//                                                                   startPoint: .top, endPoint: .bottom))
+                    
                     .onChange(of: favoriteId) { id in
                         guard let favoriteId = favoriteId, let nft = viewModel.favoriteStore.find(with: favoriteId) else {
                             let model = viewModel.favoriteStore.favorites.first
@@ -278,14 +280,7 @@ extension NFTTabScreen {
                     
                     NFTSegmentControl(currentTab: $listStyle, titles: ["List","Grid"])
                     
-                    Picker("", selection: $listStyle) {
-                        Text("List")
-                            .tag(NFTTabScreen.ListStyle.list)
-                        Text("Grid")
-                            .tag(NFTTabScreen.ListStyle.grid)
-                    }
-                    .pickerStyle(.segmented)
-                    .frame(width: 112,  alignment: .leading)
+
                 }
                 Spacer()
                 

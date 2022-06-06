@@ -56,6 +56,7 @@ struct NFTSegmentItem: View {
                     current = title
                 }
             }
+            
     }
 }
 

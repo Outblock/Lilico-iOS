@@ -28,11 +28,7 @@ struct NFTDetailPage: View {
                     KFImage
                         .url(nft.image)
                         .onSuccess({ result in
-                            result.image.getColors { color in
-                                if let mainColor = color?.primary {
-                                    theColor = Color(uiColor: mainColor)
-                                }
-                            }
+                            color(from: result.image)
                         })
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -215,6 +211,18 @@ struct NFTDetailPage: View {
         .padding(.vertical, 8)
         .padding(.horizontal,8)
     }
+    
+    func color(from image: UIImage) {
+        guard let colors = ColorThief.getPalette(from: image, colorCount: 10, quality: 1, ignoreWhite: true) else {
+            return
+        }
+        guard let dominantColor = ColorThief.getColor(from: image, ignoreWhite: true) else {
+            return
+        }
+        
+        theColor = Color(uiColor: colors[2].makeUIColor())
+    }
+    
 }
 
 struct NFTDetailPage_Previews: PreviewProvider {

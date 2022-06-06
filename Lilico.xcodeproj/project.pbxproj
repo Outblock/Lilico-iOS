@@ -697,10 +697,16 @@
 		4E9E21E5282C091700E1BACD /* PinCodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */; };
 		4EAF31B92845E501002AF489 /* NFTSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF31B82845E501002AF489 /* NFTSegmentControl.swift */; };
 		4EAF31BA2845E501002AF489 /* NFTSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF31B82845E501002AF489 /* NFTSegmentControl.swift */; };
+		4EAF31BE28464ACE002AF489 /* NFTNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF31BD28464ACE002AF489 /* NFTNavigationBar.swift */; };
+		4EAF31BF28464ACE002AF489 /* NFTNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF31BD28464ACE002AF489 /* NFTNavigationBar.swift */; };
 		4EC3117F284503C600F711F5 /* NFTCollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC3117E284503C600F711F5 /* NFTCollectionListView.swift */; };
 		4EC31180284503C600F711F5 /* NFTCollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC3117E284503C600F711F5 /* NFTCollectionListView.swift */; };
 		4EC31182284508F200F711F5 /* NFTListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC31181284508F200F711F5 /* NFTListView.swift */; };
 		4EC31183284508F200F711F5 /* NFTListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC31181284508F200F711F5 /* NFTListView.swift */; };
+		4EC482D0284A3D75000A7E1B /* ColorThief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC482CE284A3D75000A7E1B /* ColorThief.swift */; };
+		4EC482D1284A3D75000A7E1B /* ColorThief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC482CE284A3D75000A7E1B /* ColorThief.swift */; };
+		4EC482D2284A3D75000A7E1B /* MMCQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC482CF284A3D75000A7E1B /* MMCQ.swift */; };
+		4EC482D3284A3D75000A7E1B /* MMCQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC482CF284A3D75000A7E1B /* MMCQ.swift */; };
 		4EC56B2A281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
 		4EC56B2B281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
 		4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */; };
@@ -714,8 +720,6 @@
 		4EE8E4992835EAF500DFEF59 /* NFTFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E4972835EAF100DFEF59 /* NFTFavoriteView.swift */; };
 		4EE8E49B283626D000DFEF59 /* NFTLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E49A283626D000DFEF59 /* NFTLoading.swift */; };
 		4EE8E49C283626D000DFEF59 /* NFTLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E49A283626D000DFEF59 /* NFTLoading.swift */; };
-		4EF0FC3F283F1DF00011A97A /* ImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0FC3E283F1DF00011A97A /* ImageColor.swift */; };
-		4EF0FC40283F1DF00011A97A /* ImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0FC3E283F1DF00011A97A /* ImageColor.swift */; };
 		4EF5129928329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129A28329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129C28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
@@ -1178,15 +1182,17 @@
 		4E9E21DC282A68CB00E1BACD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeCoordinator.swift; sourceTree = "<group>"; };
 		4EAF31B82845E501002AF489 /* NFTSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTSegmentControl.swift; sourceTree = "<group>"; };
+		4EAF31BD28464ACE002AF489 /* NFTNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTNavigationBar.swift; sourceTree = "<group>"; };
 		4EC3117E284503C600F711F5 /* NFTCollectionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionListView.swift; sourceTree = "<group>"; };
 		4EC31181284508F200F711F5 /* NFTListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListView.swift; sourceTree = "<group>"; };
+		4EC482CE284A3D75000A7E1B /* ColorThief.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorThief.swift; sourceTree = "<group>"; };
+		4EC482CF284A3D75000A7E1B /* MMCQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMCQ.swift; sourceTree = "<group>"; };
 		4EC56B29281D385D00246878 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigs.swift; sourceTree = "<group>"; };
 		4EC56B2F281FC57900246878 /* FlowQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowQuery.swift; sourceTree = "<group>"; };
 		4ECA7E64284371CA0039A210 /* NFTBlurImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTBlurImageView.swift; sourceTree = "<group>"; };
 		4EE8E4942834DC7100DFEF59 /* NFTModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTModel.swift; sourceTree = "<group>"; };
 		4EE8E4972835EAF100DFEF59 /* NFTFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTFavoriteView.swift; sourceTree = "<group>"; };
 		4EE8E49A283626D000DFEF59 /* NFTLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTLoading.swift; sourceTree = "<group>"; };
-		4EF0FC3E283F1DF00011A97A /* ImageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageColor.swift; sourceTree = "<group>"; };
 		4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTDetailPage.swift; sourceTree = "<group>"; };
 		4EF5129B28333A230014F4EC /* NFTTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTagsView.swift; sourceTree = "<group>"; };
 		6A164F3D2840A1380026B31E /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -2433,6 +2439,7 @@
 		15DC205927819C56000B187A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4EC482CD284A3D75000A7E1B /* ColorThief */,
 				15DC205A27819C56000B187A /* WindowOverlayView.swift */,
 				15DC205B27819C56000B187A /* DerivedButtonType.swift */,
 				15DC205C27819C56000B187A /* Edge Insets */,
@@ -2644,7 +2651,6 @@
 		4E8DD9FA282E505B0016A931 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				4EF0FC3E283F1DF00011A97A /* ImageColor.swift */,
 				6ABAE52D2836297C00C97AE2 /* ThirdParty */,
 				4E8DD9FB282E52110016A931 /* JSONStorage.swift */,
 			);
@@ -2665,6 +2671,15 @@
 				4E9E21D42828E52D00E1BACD /* WalletService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		4EC482CD284A3D75000A7E1B /* ColorThief */ = {
+			isa = PBXGroup;
+			children = (
+				4EC482CE284A3D75000A7E1B /* ColorThief.swift */,
+				4EC482CF284A3D75000A7E1B /* MMCQ.swift */,
+			);
+			path = ColorThief;
 			sourceTree = "<group>";
 		};
 		4EC56B28281D381400246878 /* Firebase */ = {
@@ -2690,6 +2705,7 @@
 				4EC3117E284503C600F711F5 /* NFTCollectionListView.swift */,
 				4EC31181284508F200F711F5 /* NFTListView.swift */,
 				4EAF31B82845E501002AF489 /* NFTSegmentControl.swift */,
+				4EAF31BD28464ACE002AF489 /* NFTNavigationBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3260,6 +3276,7 @@
 				15DC20D327819C56000B187A /* VPlainButton.swift in Sources */,
 				15DC20ED27819C56000B187A /* VSectionListModel.swift in Sources */,
 				15DC218D27819C56000B187A /* VRadioButton.swift in Sources */,
+				4EAF31BF28464ACE002AF489 /* NFTNavigationBar.swift in Sources */,
 				15F22F15278B1F3D00FCF772 /* RequestSecureViewModel.swift in Sources */,
 				6AAA45F1284862D100A9AC96 /* ToastViewModifier.swift in Sources */,
 				156ADC522797B42D00CD4B02 /* StringIdentifiable.swift in Sources */,
@@ -3274,7 +3291,6 @@
 				156ADC662797B42D00CD4B02 /* TabChild.swift in Sources */,
 				15DC218727819C56000B187A /* VToggle.swift in Sources */,
 				15DC20A727819C56000B187A /* VWebLinkState.swift in Sources */,
-				4EF0FC40283F1DF00011A97A /* ImageColor.swift in Sources */,
 				15DC218F27819C56000B187A /* VCheckBox.swift in Sources */,
 				6AD900652847175100B65CE6 /* AddAddressView.swift in Sources */,
 				15DC20D127819C56000B187A /* VNavigationLinkType.swift in Sources */,
@@ -3311,6 +3327,7 @@
 				15DC217927819C56000B187A /* VModal.swift in Sources */,
 				15DC21A127819C56000B187A /* UIKitTextFieldRepresentable.swift in Sources */,
 				15DC20BD27819C56000B187A /* VSquareButtonModel.swift in Sources */,
+				4EC482D3284A3D75000A7E1B /* MMCQ.swift in Sources */,
 				15DC21AB27819C56000B187A /* FocusableTextField.swift in Sources */,
 				156ADC562797B42D00CD4B02 /* Coordinatable.swift in Sources */,
 				15DC219B27819C56000B187A /* VTextFieldActions.swift in Sources */,
@@ -3478,6 +3495,7 @@
 				6A8D2A3B283C7C880041100E /* AddressBookViewModel.swift in Sources */,
 				15DC21BB27819C56000B187A /* View.CornerRadius.swift in Sources */,
 				158CE87E27829E68006A8394 /* RecoveryPhraseView.swift in Sources */,
+				4EC482D1284A3D75000A7E1B /* ColorThief.swift in Sources */,
 				15DC217727819C56000B187A /* _VDialog.swift in Sources */,
 				15DC20DF27819C56000B187A /* VListLayoutType.swift in Sources */,
 				6AAA45E9284862D100A9AC96 /* EnvironmentValues.swift in Sources */,
@@ -3636,6 +3654,7 @@
 				15DC20D227819C56000B187A /* VPlainButton.swift in Sources */,
 				15DC20EC27819C56000B187A /* VSectionListModel.swift in Sources */,
 				15DC218C27819C56000B187A /* VRadioButton.swift in Sources */,
+				4EAF31BE28464ACE002AF489 /* NFTNavigationBar.swift in Sources */,
 				15F22F14278B1F3D00FCF772 /* RequestSecureViewModel.swift in Sources */,
 				6AAA45F0284862D100A9AC96 /* ToastViewModifier.swift in Sources */,
 				156ADC512797B42D00CD4B02 /* StringIdentifiable.swift in Sources */,
@@ -3650,7 +3669,6 @@
 				156ADC652797B42D00CD4B02 /* TabChild.swift in Sources */,
 				15DC218627819C56000B187A /* VToggle.swift in Sources */,
 				15DC20A627819C56000B187A /* VWebLinkState.swift in Sources */,
-				4EF0FC3F283F1DF00011A97A /* ImageColor.swift in Sources */,
 				15DC218E27819C56000B187A /* VCheckBox.swift in Sources */,
 				6AD900642847175100B65CE6 /* AddAddressView.swift in Sources */,
 				15DC20D027819C56000B187A /* VNavigationLinkType.swift in Sources */,
@@ -3687,6 +3705,7 @@
 				15DC217827819C56000B187A /* VModal.swift in Sources */,
 				15DC21A027819C56000B187A /* UIKitTextFieldRepresentable.swift in Sources */,
 				15DC20BC27819C56000B187A /* VSquareButtonModel.swift in Sources */,
+				4EC482D2284A3D75000A7E1B /* MMCQ.swift in Sources */,
 				15DC21AA27819C56000B187A /* FocusableTextField.swift in Sources */,
 				156ADC552797B42D00CD4B02 /* Coordinatable.swift in Sources */,
 				15DC219A27819C56000B187A /* VTextFieldActions.swift in Sources */,
@@ -3854,6 +3873,7 @@
 				6A8D2A3A283C7C880041100E /* AddressBookViewModel.swift in Sources */,
 				15DC21BA27819C56000B187A /* View.CornerRadius.swift in Sources */,
 				158CE87D27829E68006A8394 /* RecoveryPhraseView.swift in Sources */,
+				4EC482D0284A3D75000A7E1B /* ColorThief.swift in Sources */,
 				15DC217627819C56000B187A /* _VDialog.swift in Sources */,
 				15DC20DE27819C56000B187A /* VListLayoutType.swift in Sources */,
 				6AAA45E8284862D100A9AC96 /* EnvironmentValues.swift in Sources */,
