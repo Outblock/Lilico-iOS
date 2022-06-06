@@ -12,6 +12,7 @@ extension LilicoAPI {
     enum AddressBook {
         case addExternal(AddressBookAddRequest)
         case fetchList
+        case delete(Int)
     }
 }
 
@@ -28,7 +29,7 @@ extension LilicoAPI.AddressBook: TargetType, AccessTokenAuthorizable {
         switch self {
         case .addExternal:
             return "/addressbook/external"
-        case .fetchList:
+        case .fetchList, .delete:
             return "/addressbook/contact"
         }
     }
@@ -39,6 +40,8 @@ extension LilicoAPI.AddressBook: TargetType, AccessTokenAuthorizable {
             return .put
         case .fetchList:
             return .get
+        case .delete:
+            return .delete
         }
     }
     
@@ -48,6 +51,8 @@ extension LilicoAPI.AddressBook: TargetType, AccessTokenAuthorizable {
             return .requestPlain
         case let .addExternal(request):
             return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
+        case let .delete(contactId):
+            return .requestParameters(parameters: ["id": contactId], encoding: URLEncoding.queryString)
         }
     }
     

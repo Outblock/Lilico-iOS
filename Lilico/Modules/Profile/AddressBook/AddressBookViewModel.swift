@@ -50,10 +50,12 @@ extension AddressBookView {
     struct ListState {
         var sections: [SectionViewModel]
         var stateType: AddressBookViewStateType = .loading
+        var hudStatus: Bool = false
     }
     
     enum AddressBookInput {
         case load
+        case delete(SectionViewModel, Contact)
     }
 }
 
@@ -73,6 +75,55 @@ extension AddressBookView {
             switch input {
             case .load:
                 load()
+            case .delete(let sectionVM, let contact):
+                delete(sectionVM: sectionVM, contact: contact)
+            }
+        }
+        
+        private func trimListModels() {
+            state.sections = state.sections.filter { svm in
+                svm.state.list.isEmpty == false
+            }
+        }
+        
+        private func delete(sectionVM: SectionViewModel, contact: Contact) {
+            guard let index = sectionVM.state.list.firstIndex(where: { c in
+                c.id == contact.id
+            }) else {
+                return
+            }
+            
+            state.hudStatus = true
+            
+            let successAction = {
+                DispatchQueue.main.async {
+                    self.state.hudStatus = false
+                    sectionVM.state.list.remove(at: index)
+                    self.trimListModels()
+                    HUD.success(title: "Contact deleted")
+                }
+            }
+            
+            let failedAction = {
+                DispatchQueue.main.async {
+                    self.state.hudStatus = false
+                    HUD.error(title: "Delete failed")
+                }
+            }
+            
+            Task {
+                do {
+                    let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.AddressBook.delete(contact.id))
+                    
+                    if response.httpCode != 200 {
+                        failedAction()
+                        return
+                    }
+                    
+                    successAction()
+                } catch {
+                    failedAction()
+                }
             }
         }
         

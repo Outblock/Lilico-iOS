@@ -27,6 +27,9 @@ struct AddressBookView: View {
     @EnvironmentObject private var router: AddressBookCoordinator.Router
     @StateObject private var vm = AddressBookViewModel()
     
+    @StateObject private var pendingDeleteModel: PendingDeleteModel = PendingDeleteModel()
+    @State private var showAlert = false
+    
     var body: some View {
         BaseView {
             ZStack {
@@ -55,6 +58,16 @@ struct AddressBookView: View {
         }
         .onAppear {
             router.coordinator.addressBookVM = vm
+        }
+        .toast(isPresented: $vm.state.hudStatus) {
+            ToastView("Deleting...").toastViewStyle(.indeterminate)
+        }
+        .alert("Are you sure you want to delete the contact?", isPresented: $showAlert) {
+            Button("Delete", role: .destructive) {
+                if let sectionVM = self.pendingDeleteModel.sectionVM, let contact = self.pendingDeleteModel.contact {
+                    self.vm.trigger(.delete(sectionVM, contact))
+                }
+            }
         }
     }
 }
@@ -86,6 +99,22 @@ extension AddressBookView {
                         .listRowSeparator(.hidden)
                         .listRowInsets(.zero)
                         .background(.LL.Neutrals.background)
+                        .swipeActions(allowsFullSwipe: false) {
+                            Button(action: {
+                                self.pendingDeleteModel.sectionVM = sectionVM
+                                self.pendingDeleteModel.contact = row
+                                self.showAlert = true
+                            }, label: {
+                                Text("Delete")
+                            })
+                            .tint(Color.systemRed)
+                            
+                            Button(action: {
+                                
+                            }, label: {
+                                Text("Edit")
+                            })
+                        }
                 }
             } header: {
                 sectionHeader(sectionVM)
@@ -145,5 +174,12 @@ extension AddressBookView {
             }
             .padding(EdgeInsets(top: 10, leading: 34, bottom: 10, trailing: 34))
         }
+    }
+}
+
+extension AddressBookView {
+    class PendingDeleteModel: ObservableObject {
+        var sectionVM: SectionViewModel?
+        var contact: Contact?
     }
 }
