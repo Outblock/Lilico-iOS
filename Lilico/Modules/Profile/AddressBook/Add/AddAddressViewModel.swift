@@ -45,8 +45,14 @@ extension AddAddressView {
         var isReadyForSave = false
         var needShowLoadingHud = false
         
+        var isEditingMode = false
+        var editingContact: Contact?
+        
         private mutating func refreshReadyFlag() {
-            if name.trim().isEmpty {
+            let finalName = name.trim()
+            let finalAddress = address.trim().lowercased()
+            
+            if finalName.isEmpty {
                 isReadyForSave = false
                 return
             }
@@ -54,6 +60,13 @@ extension AddAddressView {
             if addressStateType != .passed {
                 isReadyForSave = false
                 return
+            }
+            
+            if isEditingMode {
+                if finalName == editingContact?.contactName, finalAddress == editingContact?.address {
+                    isReadyForSave = false
+                    return
+                }
             }
             
             isReadyForSave = true
@@ -75,6 +88,16 @@ extension AddAddressView {
             state = AddAddressState()
         }
         
+        init(contact: Contact) {
+            state = AddAddressState()
+            state.isEditingMode = true
+            state.editingContact = contact
+            state.name = contact.contactName ?? ""
+            state.address = contact.address ?? ""
+            
+            trigger(.checkAddress)
+        }
+        
         func trigger(_ input: AddAddressInput) {
             switch input {
             case .checkAddress:
@@ -85,6 +108,20 @@ extension AddAddressView {
         }
         
         private func saveAction() {
+            if checkContactExists() == true {
+                HUD.error(title: "Contact already exists")
+                return
+            }
+            
+            if state.isEditingMode {
+                editContactAction()
+                return
+            }
+            
+            addContactAction()
+        }
+        
+        private func addContactAction() {
             state.needShowLoadingHud = true
             let contactName = state.name.trim()
             let address = state.address.trim().lowercased()
@@ -107,7 +144,7 @@ extension AddAddressView {
             
             Task {
                 do {
-                    let request = AddressBookAddRequest(contactName: contactName, address: address, domain: "", domainType: 0, username: nil)
+                    let request = AddressBookAddRequest(contactName: contactName, address: address, domain: "", domainType: .unknown, username: "")
                     let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.AddressBook.addExternal(request))
                     
                     if response.httpCode != 200 {
@@ -120,6 +157,58 @@ extension AddAddressView {
                     errorAction()
                 }
             }
+        }
+        
+        private func editContactAction() {
+            state.needShowLoadingHud = true
+            let contactName = state.name.trim()
+            let address = state.address.trim().lowercased()
+            
+            let errorAction = {
+                DispatchQueue.main.async {
+                    self.state.needShowLoadingHud = false
+                    HUD.error(title: "request failed")
+                }
+            }
+            
+            let successAction = {
+                DispatchQueue.main.async {
+                    self.state.needShowLoadingHud = false
+                    self.router?.coordinator.addressBookVM?.trigger(.load)
+                    self.router?.pop()
+                    HUD.success(title: "contact edited")
+                }
+            }
+            
+            Task {
+                do {
+                    guard let id = state.editingContact?.id, let domainType = state.editingContact?.domain?.domainType else {
+                        errorAction()
+                        return
+                    }
+                    
+                    let request = AddressBookEditRequest(id: id, contactName: contactName, address: address, domain: "", domainType: domainType, username: "")
+                    let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.AddressBook.edit(request))
+                    
+                    if response.httpCode != 200 {
+                        errorAction()
+                        return
+                    }
+                    
+                    successAction()
+                } catch {
+                    errorAction()
+                }
+            }
+        }
+        
+        private func checkContactExists() -> Bool {
+            let contactName = state.name.trim()
+            let address = state.address.trim().lowercased()
+            let domain = Contact.Domain(domainType: .unknown, value: "")
+            let contact = Contact(address: address, avatar: nil, contactName: contactName, contactType: .external, domain: domain, id: 0, username: "")
+            
+            return router?.coordinator.addressBookVM?.contactIsExists(contact) ?? false
         }
         
         private func checkAddressAction() {

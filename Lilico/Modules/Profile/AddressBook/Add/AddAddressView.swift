@@ -9,7 +9,15 @@ import SwiftUI
 
 struct AddAddressView: View {
     @EnvironmentObject private var router: AddressBookCoordinator.Router
-    @StateObject var vm: AddAddressViewModel = AddAddressViewModel()
+    @StateObject var vm: AddAddressViewModel
+    
+    init() {
+        _vm = StateObject(wrappedValue: AddAddressViewModel())
+    }
+    
+    init(editingContact: Contact) {
+        _vm = StateObject(wrappedValue: AddAddressViewModel(contact: editingContact))
+    }
     
     var body: some View {
         BaseView {
@@ -21,7 +29,7 @@ struct AddAddressView: View {
             .padding(.horizontal, 16)
             .padding(.top, 20)
         }
-        .navigationTitle("Add address")
+        .navigationTitle(vm.state.isEditingMode ? "Edit contact" : "Add contact")
         .navigationBarTitleDisplayMode(.inline)
         .addBackBtn {
             router.pop()

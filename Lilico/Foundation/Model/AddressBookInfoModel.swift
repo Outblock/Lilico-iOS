@@ -5,17 +5,30 @@
 
 import Foundation
 
+extension Contact {
+    enum ContactType: Int, Codable {
+        case external = 0
+        case user = 1
+        case domain = 2
+    }
+    
+    enum DomainType: Int, Codable {
+        case unknown = 0
+        case find = 1
+        case flowns = 2
+    }
+    
+    struct Domain: Codable {
+        let domainType: DomainType?
+        let value: String?
+    }
+}
+
 // MARK: - AddressBook
 struct Contact: Codable, Identifiable {
     let address, avatar, contactName: String?
-    let contactType: Int?
+    let contactType: ContactType?
     let domain: Domain?
     let id: Int
     let username: String?
-}
-
-// MARK: - Domain
-struct Domain: Codable {
-    let domainType: Int?
-    let value: String?
 }

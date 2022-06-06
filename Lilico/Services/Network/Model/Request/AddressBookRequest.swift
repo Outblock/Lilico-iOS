@@ -11,6 +11,15 @@ struct AddressBookAddRequest: Codable {
     let contactName: String
     let address: String
     let domain: String?
-    let domainType: Int
+    let domainType: Contact.DomainType
+    let username: String?
+}
+
+struct AddressBookEditRequest: Codable {
+    let id: Int
+    let contactName: String
+    let address: String
+    let domain: String?
+    let domainType: Contact.DomainType
     let username: String?
 }

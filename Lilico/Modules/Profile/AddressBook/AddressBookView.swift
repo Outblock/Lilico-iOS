@@ -110,7 +110,7 @@ extension AddressBookView {
                             .tint(Color.systemRed)
                             
                             Button(action: {
-                                
+                                self.vm.trigger(.edit(row))
                             }, label: {
                                 Text("Edit")
                             })
@@ -128,8 +128,9 @@ extension AddressBookView {
         .visibility(vm.state.stateType == .idle ? .visible : .gone)
     }
     
-    private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {
-        Text("#\(sectionVM.state.sectionName)").foregroundColor(.LL.Neutrals.neutrals8).font(.inter(size: 18, weight: .semibold))
+    @ViewBuilder private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {
+        let sectionName = sectionVM.state.sectionName
+        Text(sectionName == "#" ? "\(sectionName)" : "#\(sectionName)").foregroundColor(.LL.Neutrals.neutrals8).font(.inter(size: 18, weight: .semibold))
     }
 }
 
@@ -145,7 +146,7 @@ extension AddressBookView {
                     if let avatar = contact.avatar, avatar.isEmpty == false {
                         Image(avatar).aspectRatio(contentMode: .fill)
                     } else {
-                        Text(String(contact.contactName?.first ?? "A"))
+                        Text(String((contact.contactName?.first ?? "A").uppercased()))
                             .foregroundColor(.LL.Primary.salmonPrimary)
                             .font(.inter(size: 24, weight: .semibold))
                     }

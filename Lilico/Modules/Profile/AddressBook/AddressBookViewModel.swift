@@ -56,6 +56,7 @@ extension AddressBookView {
     enum AddressBookInput {
         case load
         case delete(SectionViewModel, Contact)
+        case edit(Contact)
     }
 }
 
@@ -65,6 +66,7 @@ extension AddressBookView {
     class AddressBookViewModel: ViewModel {
         @Published var state: ListState
         @Published var searchText: String = ""
+        @RouterObject var router: AddressBookCoordinator.Router?
         
         init() {
             state = ListState(sections: [SectionViewModel]())
@@ -76,8 +78,27 @@ extension AddressBookView {
             case .load:
                 load()
             case .delete(let sectionVM, let contact):
+                
                 delete(sectionVM: sectionVM, contact: contact)
+            case .edit(let contact):
+                editContact(contact)
             }
+        }
+        
+        func contactIsExists(_ contact: Contact) -> Bool {
+            for sectionVM in state.sections {
+                for tempContact in sectionVM.state.list {
+                    if tempContact.contactName == contact.contactName,
+                       tempContact.address == contact.address,
+                       tempContact.contactType == contact.contactType,
+                       tempContact.domain?.domainType == contact.domain?.domainType,
+                       tempContact.username == contact.username {
+                        return true
+                    }
+                }
+            }
+            
+            return false
         }
         
         private func trimListModels() {
@@ -86,8 +107,21 @@ extension AddressBookView {
             }
         }
         
+        private func editContact(_ contact: Contact) {
+            searchText = ""
+            router?.route(to: \.edit, contact)
+        }
+        
         private func delete(sectionVM: SectionViewModel, contact: Contact) {
-            guard let index = sectionVM.state.list.firstIndex(where: { c in
+            searchText = ""
+            
+            guard let realSectionVM = state.sections.first(where: { svm in
+                svm.id == sectionVM.id
+            }) else {
+                return
+            }
+            
+            guard let index = realSectionVM.state.list.firstIndex(where: { c in
                 c.id == contact.id
             }) else {
                 return
@@ -98,7 +132,7 @@ extension AddressBookView {
             let successAction = {
                 DispatchQueue.main.async {
                     self.state.hudStatus = false
-                    sectionVM.state.list.remove(at: index)
+                    realSectionVM.state.list.remove(at: index)
                     self.trimListModels()
                     HUD.success(title: "Contact deleted")
                 }

@@ -13,6 +13,7 @@ final class AddressBookCoordinator: NavigationCoordinatable {
     
     @Root var start = makeAddressBookView
     @Route(.push) var add = makeAddView
+    @Route(.push) var edit = makeEditView
     
     var addressBookVM: AddressBookView.AddressBookViewModel?
     
@@ -28,5 +29,9 @@ extension AddressBookCoordinator {
     
     @ViewBuilder func makeAddView() -> some View {
         AddAddressView()
+    }
+    
+    @ViewBuilder func makeEditView(contact: Contact) -> some View {
+        AddAddressView(editingContact: contact)
     }
 }
