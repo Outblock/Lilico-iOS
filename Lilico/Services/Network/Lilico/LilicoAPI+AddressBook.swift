@@ -62,6 +62,6 @@ extension LilicoAPI.AddressBook: TargetType, AccessTokenAuthorizable {
     }
     
     var headers: [String: String]? {
-        nil
+        return LilicoAPI.commonHeaders
     }
 }

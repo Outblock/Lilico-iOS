@@ -63,6 +63,6 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
     }
 
     var headers: [String: String]? {
-        nil
+        return LilicoAPI.commonHeaders
     }
 }

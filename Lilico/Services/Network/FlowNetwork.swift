@@ -12,7 +12,13 @@ import Combine
 class FlowNetwork {
     
     static func setup() {
-        flow.configure(chainID: .testnet)
+        if LocalUserDefaults.shared.flowNetwork == .testnet {
+            debugPrint("did setup flow chainID to testnet")
+            flow.configure(chainID: .testnet)
+        } else {
+            debugPrint("did setup flow chainID to mainnet")
+            flow.configure(chainID: .mainnet)
+        }
     }
     
     //TODO: auto be canceled,why?

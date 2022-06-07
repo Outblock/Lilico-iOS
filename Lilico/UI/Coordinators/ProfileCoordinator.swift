@@ -14,6 +14,7 @@ final class ProfileCoordinator: NavigationCoordinatable {
     @Root var start = makeProfileView
     @Route(.push) var themeChange = makeThemeChangeView
     @Route(.push) var addressBook = makeAddressBook
+    @Route(.push) var developerMode = makeDeveloperModeView
     
     init() {
         stack = NavigationStack(initial: \ProfileCoordinator.start)
@@ -31,6 +32,10 @@ extension ProfileCoordinator {
     
     func makeAddressBook() -> AddressBookCoordinator {
         return AddressBookCoordinator()
+    }
+    
+    func makeDeveloperModeView() -> some View {
+        DeveloperModeView()
     }
 }
 

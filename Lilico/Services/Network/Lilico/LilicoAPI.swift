@@ -16,4 +16,9 @@ enum LilicoAPI {
             return coder
         }
     }
+    
+    static var commonHeaders: [String: String] {
+        let network = LocalUserDefaults.shared.flowNetwork.rawValue
+        return ["Network": network]
+    }
 }

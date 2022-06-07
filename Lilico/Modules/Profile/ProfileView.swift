@@ -11,6 +11,7 @@ struct ProfileView: View {
     @StateObject var themeManager = ThemeManager.shared
     @StateObject private var vm: ProfileViewModel = ProfileViewModel()
     @EnvironmentObject private var router: ProfileCoordinator.Router
+    @StateObject private var lud = LocalUserDefaults.shared
     
     init() {
 //        UITableView.appearance().sectionFooterHeight = .leastNormalMagnitude
@@ -42,6 +43,7 @@ struct ProfileView: View {
         .preferredColorScheme(themeManager.style)
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
+        .environmentObject(lud)
     }
 }
 
@@ -323,18 +325,26 @@ extension ProfileView.GeneralSectionView.Row {
 
 extension ProfileView {
     struct AboutSectionView: View {
-        enum Row: CaseIterable {
+        @EnvironmentObject var router: ProfileCoordinator.Router
+        @EnvironmentObject var lud: LocalUserDefaults
+        
+        enum Row {
+            case developerMode(LocalUserDefaults)
             case about
         }
         
         var body: some View {
             Section {
-                ForEach(Row.allCases, id: \.self) {
-                    ProfileView.SettingItemCell(iconName: $0.iconName, title: $0.title, style: $0.style, desc: $0.desc, toggle: $0.toggle)
-                }
-                .onTapGestureOnBackground {
-                    
-                }
+                let dm = Row.developerMode(lud)
+                ProfileView.SettingItemCell(iconName: dm.iconName, title: dm.title, style: dm.style, desc: dm.desc, toggle: dm.toggle)
+                    .onTapGestureOnBackground {
+                        router.route(to: \.developerMode)
+                    }
+                
+                ProfileView.SettingItemCell(iconName: Row.about.iconName, title: Row.about.title, style: Row.about.style, desc: Row.about.desc, toggle: Row.about.toggle)
+                    .onTapGestureOnBackground {
+                        
+                    }
             }
             .listRowInsets(.zero)
         }
@@ -346,6 +356,8 @@ extension ProfileView.AboutSectionView.Row {
         switch self {
         case .about:
             return "icon-about"
+        case .developerMode:
+            return "icon-developer-mode"
         }
     }
     
@@ -353,6 +365,8 @@ extension ProfileView.AboutSectionView.Row {
         switch self {
         case .about:
             return "About"
+        case .developerMode:
+            return "Developer Mode"
         }
     }
     
@@ -360,6 +374,8 @@ extension ProfileView.AboutSectionView.Row {
         switch self {
         case .about:
             return .arrow
+        case .developerMode:
+            return .desc
         }
     }
     
@@ -367,12 +383,16 @@ extension ProfileView.AboutSectionView.Row {
         switch self {
         case .about:
             return "About"
+        case .developerMode(let lud):
+            return lud.flowNetwork.rawValue
         }
     }
     
     var toggle: Bool {
         switch self {
         case .about:
+            return false
+        case .developerMode:
             return false
         }
     }
