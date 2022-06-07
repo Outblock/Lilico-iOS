@@ -9,12 +9,15 @@ import Foundation
 
 enum LilicoAPI {
     static var jsonEncoder: JSONEncoder {
-        switch self {
-        default:
-            let coder = JSONEncoder()
-            coder.keyEncodingStrategy = .convertToSnakeCase
-            return coder
-        }
+        let coder = JSONEncoder()
+        coder.keyEncodingStrategy = .convertToSnakeCase
+        return coder
+    }
+    
+    static var jsonDecoder: JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
     }
     
     static var commonHeaders: [String: String] {

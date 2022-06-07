@@ -23,6 +23,7 @@ struct UserInfoResponse: Codable {
     let avatar: String
     let nickname: String
     let username: String
+    let `private`: Bool
 }
 
 struct UserWalletResponse: Codable {

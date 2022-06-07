@@ -9,88 +9,34 @@ import Firebase
 import FirebaseAuth
 import Foundation
 
-struct UserInfo {
-    let avatar: String
-    let username: String
-    let address: String? = nil
-}
-
 class UserManager: ObservableObject {
     static let shared = UserManager()
 
-    var userInfo: UserInfo?
-
-//    @Published
-//    var isLoggedIn: Bool = false
-    var isLoggedIn: Bool {
-        Auth.auth().currentUser != nil
+    @Published var userInfo: UserInfo? {
+        didSet {
+            refreshFlags()
+        }
     }
-
-//    @Published
-    var isAnonymous: Bool {
-        Auth.auth().currentUser?.isAnonymous ?? true
-    }
-
-    var handle: AuthStateDidChangeListenerHandle?
-
-//    init() {
-//        listenAuthenticationState()
-//    }
+    
+    @Published var isLoggedIn: Bool
+    @Published var isAnonymous: Bool
 
     init() {
-        if let name = Auth.auth().currentUser?.displayName {
-            userInfo = UserInfo(avatar: "", username: name)
-        }
+        let ui = LocalUserDefaults.shared.userInfo
+        userInfo = ui
+        isLoggedIn = ui != nil
+        isAnonymous = Auth.auth().currentUser?.isAnonymous ?? true
     }
-
-    func listenAuthenticationState() {
-        handle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            guard let self = self else { return }
-            if let user = user {
-                print("Sign in -> \(user.uid)")
-                print("isAnonymous -> \(user.isAnonymous)")
-                print(user)
-
-//                self.isAnonymous = user.isAnonymous
-//                self.isLoggedIn = true
-            } else {
-                print("Sign out ->")
-//                self.isLoggedIn = false
-//                self.isAnonymous = true
-            }
-        }
+    
+    private func refreshFlags() {
+        isLoggedIn = userInfo != nil
+        isAnonymous = Auth.auth().currentUser?.isAnonymous ?? true
     }
+}
 
-    func login() async {
-        do {
-            if Auth.auth().currentUser == nil {
-                let result = try await Auth.auth().signInAnonymously()
-                print("Logged in -> \(result.user.uid)")
-                print("isAnonymous -> \(result.user.isAnonymous)")
-            }
-        } catch {
-            debugPrint(error.localizedDescription)
-        }
-    }
+// MARK: - Register
 
-    func loginWithCustomToken(_ token: String) async throws {
-//        do {
-//            let _ = try await Auth.auth().currentUser?.delete()
-        let result = try await Auth.auth().signIn(withCustomToken: token)
-        print("Logged in -> \(result.user.uid)")
-        await fetchUserInfo()
-        await fetchWalletInfo()
-    }
-
-    func updateUserName(username: String) async throws {
-        guard let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() else {
-            return
-        }
-
-        changeRequest.displayName = username
-        try await changeRequest.commitChanges()
-    }
-
+extension UserManager {
     func register(_ username: String) async throws {
         let isSuccess = try WalletManager.shared.createNewWallet(forceCreate: true)
         guard let key = WalletManager.shared.wallet?.flowAccountKey, isSuccess else {
@@ -108,40 +54,24 @@ class UserManager: ObservableObject {
             let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.userAddress)
         }
     }
+}
 
-    func getIdToken() async -> String? {
-        do {
-            let result = try await Auth.auth().currentUser?.getIDTokenResult()
-            return result?.token
-        } catch {
-            debugPrint(error.localizedDescription)
-            return .none
-        }
+// MARK: - Login
+
+extension UserManager {
+    func loginWithCustomToken(_ token: String) async throws {
+        let result = try await Auth.auth().signIn(withCustomToken: token)
+        debugPrint("Logged in -> \(result.user.uid)")
+        await fetchUserInfo()
+        await fetchWalletInfo()
     }
-
-    func logOut() {
-        do {
-            try Auth.auth().signOut()
-            print("Logged out")
-        } catch {
-            debugPrint(error.localizedDescription)
-        }
-    }
-
-    func unbind() {
-        if let handle = handle {
-            Auth.auth().removeStateDidChangeListener(handle)
-        }
-    }
-
+    
     func fetchUserInfo() async {
         do {
             let response: UserInfoResponse = try await Network.request(LilicoAPI.User.userInfo)
-            userInfo = UserInfo(avatar: response.avatar, username: response.username)
-
-//            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-//            changeRequest?.displayName = userInfo?.userName
-//            await changeRequest?.commitChanges()
+            let info = UserInfo(avatar: response.avatar, nickname: response.nickname, username: response.username, private: response.private)
+            LocalUserDefaults.shared.userInfo = info
+            userInfo = info
         } catch {
             // TODO:
             debugPrint(error)
@@ -156,8 +86,26 @@ class UserManager: ObservableObject {
             debugPrint(error)
         }
     }
+    
+    func logOut() {
+        do {
+            try Auth.auth().signOut()
+            debugPrint("Logged out")
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+    }
+}
 
-    deinit {
-        print("deinit - seession store")
+// MARK: - Modify
+
+extension UserManager {
+    func updateUserName(username: String) async throws {
+        guard let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() else {
+            return
+        }
+
+        changeRequest.displayName = username
+        try await changeRequest.commitChanges()
     }
 }

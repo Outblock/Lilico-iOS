@@ -19,12 +19,6 @@ public enum NetworkError: Error {
     case emptyData
 }
 
-var SnakeJSONDecoder: JSONDecoder = {
-    let decoder = JSONDecoder()
-    decoder.keyDecodingStrategy = .convertFromSnakeCase
-    return decoder
-}()
-
 enum Network {
 //    var cancelllables: [AnyCancellable] = []
 
@@ -59,7 +53,7 @@ enum Network {
         return try await result.user.getIDToken()
     }
 
-    static func request<T: Decodable, U: TargetType>(_ target: U, decoder: JSONDecoder = SnakeJSONDecoder, needToken: Bool = true) async throws -> T {
+    static func request<T: Decodable, U: TargetType>(_ target: U, decoder: JSONDecoder = LilicoAPI.jsonDecoder, needToken: Bool = true) async throws -> T {
         let token = try await fetchIDToken()
         let authPlugin = AccessTokenPlugin { _ in token }
         let provider = MoyaProvider<U>(plugins: needToken ? [NetworkLoggerPlugin(), authPlugin] : [NetworkLoggerPlugin()])
@@ -78,7 +72,7 @@ enum Network {
         }
     }
 
-    static func requestWithRawModel<T: Decodable, U: TargetType>(_ target: U, decoder: JSONDecoder = SnakeJSONDecoder, needToken: Bool = true) async throws -> T {
+    static func requestWithRawModel<T: Decodable, U: TargetType>(_ target: U, decoder: JSONDecoder = LilicoAPI.jsonDecoder, needToken: Bool = true) async throws -> T {
         let token = try await fetchIDToken()
         let authPlugin = AccessTokenPlugin { _ in token }
         let provider = MoyaProvider<U>(plugins: needToken ? [NetworkLoggerPlugin(), authPlugin] : [NetworkLoggerPlugin()])
