@@ -19,6 +19,11 @@ struct NFTDetailPage: View {
     @State
     var theColor = Color.LL.Primary.salmon3
     
+    @State
+    private var isSharePresented: Bool = false
+
+    @State
+    private var items:[UIImage] = []
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -58,6 +63,7 @@ struct NFTDetailPage: View {
                             }
                         }
                         Spacer()
+                        
                         Button {
                             
                         } label: {
@@ -66,6 +72,13 @@ struct NFTDetailPage: View {
                                 .foregroundColor(theColor)
                         }
                         .padding(.horizontal,6)
+                        .sheet(isPresented: $isSharePresented) {
+                            
+                        } content: {
+                            ShareSheet(items: $items)
+                        }
+
+
                         
                         Button {
                             if(viewModel.favoriteStore.isFavorite(with: nft)) {
@@ -213,14 +226,15 @@ struct NFTDetailPage: View {
     }
     
     func color(from image: UIImage) {
-        guard let colors = ColorThief.getPalette(from: image, colorCount: 10, quality: 1, ignoreWhite: true) else {
-            return
-        }
-        guard let dominantColor = ColorThief.getColor(from: image, ignoreWhite: true) else {
-            return
-        }
         
-        theColor = Color(uiColor: colors[2].makeUIColor())
+        Task {
+            let colors = await image.colors()
+            if colors.count >= 1 {
+                print(colors.count)
+                theColor = colors.first!
+            }
+        }
+         
     }
     
 }
