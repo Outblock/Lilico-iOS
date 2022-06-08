@@ -12,20 +12,19 @@ import Foundation
 class UserManager: ObservableObject {
     static let shared = UserManager()
 
-    @Published var userInfo: UserInfo? {
+    @Published var userInfo: UserInfo? = LocalUserDefaults.shared.userInfo {
         didSet {
             refreshFlags()
+            uploadUserNameIfNeeded()
         }
     }
     
-    @Published var isLoggedIn: Bool
-    @Published var isAnonymous: Bool
+    @Published var isLoggedIn: Bool = false
+    @Published var isAnonymous: Bool = true
 
     init() {
-        let ui = LocalUserDefaults.shared.userInfo
-        userInfo = ui
-        isLoggedIn = ui != nil
-        isAnonymous = Auth.auth().currentUser?.isAnonymous ?? true
+        refreshFlags()
+        uploadUserNameIfNeeded()
     }
     
     private func refreshFlags() {
@@ -38,21 +37,20 @@ class UserManager: ObservableObject {
 
 extension UserManager {
     func register(_ username: String) async throws {
-        let isSuccess = try WalletManager.shared.createNewWallet(forceCreate: true)
-        guard let key = WalletManager.shared.wallet?.flowAccountKey, isSuccess else {
+        let isSuccess = try WalletManager.shared.createMnemonicModel(forceCreate: true)
+        guard let key = WalletManager.shared.getFlowAccountKey(), isSuccess else {
             HUD.error(title: "Empty Wallet Key")
             throw LLError.emptyWallet
         }
+        
         let request = RegisterReuqest(username: username, accountKey: key.toCodableModel())
         let model: RegisterResponse = try await Network.request(LilicoAPI.User.register(request))
+        
         try await loginWithCustomToken(model.customToken)
-        try await updateUserName(username: username)
+        uploadUserNameIfNeeded()
         try WalletManager.shared.storeMnemonicToKeychain(username: username)
         
-        // No need wait for the create address request
-        Task {
-            let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.userAddress)
-        }
+        WalletManager.shared.asyncCreateWalletAddressFromServer()
     }
 }
 
@@ -62,50 +60,45 @@ extension UserManager {
     func loginWithCustomToken(_ token: String) async throws {
         let result = try await Auth.auth().signIn(withCustomToken: token)
         debugPrint("Logged in -> \(result.user.uid)")
-        await fetchUserInfo()
-        await fetchWalletInfo()
+        try await fetchUserInfo()
     }
     
-    func fetchUserInfo() async {
-        do {
-            let response: UserInfoResponse = try await Network.request(LilicoAPI.User.userInfo)
-            let info = UserInfo(avatar: response.avatar, nickname: response.nickname, username: response.username, private: response.private)
-            LocalUserDefaults.shared.userInfo = info
-            userInfo = info
-        } catch {
-            // TODO:
-            debugPrint(error)
-        }
-    }
-
-    func fetchWalletInfo() async {
-        do {
-            let response: UserWalletResponse = try await Network.request(LilicoAPI.User.userWallet)
-            print(response)
-        } catch {
-            debugPrint(error)
-        }
-    }
-    
-    func logOut() {
-        do {
-            try Auth.auth().signOut()
-            debugPrint("Logged out")
-        } catch {
-            debugPrint(error.localizedDescription)
-        }
+    func fetchUserInfo() async throws {
+        let response: UserInfoResponse = try await Network.request(LilicoAPI.User.userInfo)
+        let info = UserInfo(avatar: response.avatar, nickname: response.nickname, username: response.username, private: response.private)
+        LocalUserDefaults.shared.userInfo = info
+        userInfo = info
     }
 }
 
 // MARK: - Modify
 
 extension UserManager {
-    func updateUserName(username: String) async throws {
+    private func uploadUserNameIfNeeded() {
+        if isAnonymous || !isLoggedIn {
+            return
+        }
+        
+        let username = userInfo?.username ?? ""
+        let displayName = Auth.auth().currentUser?.displayName ?? ""
+        
+        if !username.isEmpty, username != displayName {
+            Task {
+                await uploadUserName(username: username)
+            }
+        }
+    }
+    
+    func uploadUserName(username: String) async {
         guard let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() else {
             return
         }
-
+        
         changeRequest.displayName = username
-        try await changeRequest.commitChanges()
+        do {
+            try await changeRequest.commitChanges()
+        } catch {
+            debugPrint("update displayName failed")
+        }
     }
 }

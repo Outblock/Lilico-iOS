@@ -10,7 +10,7 @@ import Resolver
 
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
-//        register { UserManager.shared }
+        register { UserManager.shared }
         register { WalletManager.shared }
         register { BackupManager.shared }
     }

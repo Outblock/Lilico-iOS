@@ -60,8 +60,8 @@ class BackupManager: ObservableObject {
               !user.isAnonymous,
               let userInfo = UserManager.shared.userInfo,
               let userData = userInfo.username.data(using: .utf8),
-              let wallet = WalletManager.shared.wallet,
-              let data = wallet.mnemonic.data(using: .utf8)
+              let mnemonic = WalletManager.shared.getMnemoic(),
+              let data = mnemonic.data(using: .utf8)
         else {
             throw LLError.missingUserInfoWhilBackup
         }

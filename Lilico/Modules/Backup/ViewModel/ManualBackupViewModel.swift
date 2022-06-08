@@ -24,13 +24,13 @@ class ManualBackupViewModel: ViewModel {
 //                .init(position: 10, correct: 0, list: ["Zip", "Zion", "Zoo"])
 //            ]
 //        )
-
-        guard let wallet = WalletManager.shared.wallet else {
+        
+        guard let mnemonic = WalletManager.shared.getMnemoic(), !mnemonic.isEmpty else {
             HUD.error(title: "Load wallet Error")
             return
         }
 
-        let wordList = wallet.mnemonic.split(separator: " ")
+        let wordList = mnemonic.split(separator: " ")
 
         guard wordList.count == 12 else {
             HUD.error(title: "Inocrrect world length")

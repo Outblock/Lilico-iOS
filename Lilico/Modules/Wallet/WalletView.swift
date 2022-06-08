@@ -132,7 +132,7 @@ struct WalletView: View {
                 Spacer()
 
                 Button {
-                    UserManager.shared.logOut()
+                    
                 } label: {
                     Image(systemName: "qrcode.viewfinder")
                         .font(.title2)

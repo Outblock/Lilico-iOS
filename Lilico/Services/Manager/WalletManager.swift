@@ -10,161 +10,206 @@ import Foundation
 import KeychainAccess
 import WalletCore
 
-enum LLError: Error {
-    case createWalletFailed
-    case aesKeyEncryptionFailed
-    case aesEncryptionFailed
-    case missingUserInfoWhilBackup
-    case emptyiCloudBackup
-    case alreadyHaveWallet
-    case emptyWallet
-    case decryptBackupFailed
-    case incorrectPhrase
-    case emptyEncryptKey
+
+// MARK: - Define
+
+extension WalletManager {
+    static let flowPath = "m/44'/539'/0'/0/0"
+    static let mnemonicStrength: Int32 = 128
+    static private let defaultBundleID = "io.outblock.lilico"
+    static private let mnemonicStoreKeyPrefix = "lilico.mnemonic"
+    static private let mnemonicPwdStoreKey = "lilico.mnemonic.password"
 }
 
 class WalletManager: ObservableObject {
-    static let flowPath = "m/44'/539'/0'/0/0"
-
     static let shared = WalletManager()
 
-    private let storeKey = "lilico.mnemonic"
-    private let passwordKey = "lilico.mnemonic.password"
-    static let encryptionKey = "4047b6b927bcff0c"
+    @Published var hasWallet: Bool = false
 
-    var hasWallet: Bool {
-        return wallet != nil
+    #warning("已登录用户wallet的初始化")
+    private var wallet: HDWallet? {
+        didSet {
+            hasWallet = wallet != nil
+        }
     }
-
-    var wallet: HDWallet?
-
-    let mnemonicStrength: Int32 = 128
-    let mnemonicStringStrength: Int32 = 256
-
-    enum MnemonicStrength: Int {
-        case length12 = 128
-        case length24 = 256
-    }
-
-    private var accessGroup = "Wallet"
-    private var defaultBundleID = "io.outblock.lilico"
-    let keychain = Keychain(service: Bundle.main.bundleIdentifier ?? "defaultBundleID")
+    
+    private var mainKeychain = Keychain(service: Bundle.main.bundleIdentifier ?? defaultBundleID)
         .label("Lilico app backup")
         .synchronizable(true)
         .accessibility(.whenUnlocked)
-
-    let backupKeychain = Keychain(server: "https://lilico.app", protocolType: .https)
-
-    let passwordKeychain = Keychain(service: Bundle.main.bundleIdentifier ?? "defaultBundleID")
-        .label("Lilico password")
-        .accessibility(.whenPasscodeSetThisDeviceOnly, authenticationPolicy: [.biometryAny])
+    private let backupKeychain = Keychain(server: "https://lilico.app", protocolType: .https)
 
     init() {
-        let password = try? keychain.get(passwordKey)
-        if password == nil {
-            // First time, if passwordKey is empty, generate one
-            try? keychain.set(UUID().uuidString, key: passwordKey)
-        }
-
-        if !UserManager.shared.isAnonymous,
-           let username = UserManager.shared.userInfo?.username
-        {
-            if !restoreWalletFromKeychain(username: username) {
-                HUD.error(title: "Private key is missing !!")
-            }
-
-//            if !restoreWalletFromKeychain() {
-//                do {
-//                    try createNewWallet()
-//                } catch {
-//                    print("error -> \(error)")
-//                }
-//            }
-        }
+        generateMnemonicPwdIfNeeded()
+        restoreMnemonicForCurrentUser()
     }
+}
 
-//    func getFlowAccountKey() -> AccountKey {
-//        wallet?.
-//    }
+// MARK: - Getter
 
+extension WalletManager {
     func getMnemoic() -> String? {
-        guard let wallet = wallet else {
-            return nil
-        }
-        return wallet.mnemonic
+        return wallet?.mnemonic
     }
-
-    @discardableResult
-    func restoreWalletFromKeychain(username: String) -> Bool {
-        if var mnemonicData: Data = try? keychain.getData("\(storeKey).\(username)"),
-           var key = try? keychain.get(passwordKey)
-        {
-            if var data = try? WalletManager.decryptionAES(key: key, data: mnemonicData),
-               var mnemonic = String(data: data, encoding: .utf8)
-            {
-                defer {
-                    mnemonicData = Data()
-                    data = Data()
-                    key = ""
-                    mnemonic = ""
-                }
-
-                wallet = HDWallet(mnemonic: mnemonic, passphrase: "")
-            }
-            return true
-        }
-        return false
+    
+    func getFlowAccountKey() -> Flow.AccountKey? {
+        return wallet?.flowAccountKey
     }
+}
 
-//    func importNewWallet(mnemonic: String? = nil, passphrase: String = "") throws -> Bool {
-//        if let phrase = mnemonic {
-//            wallet = HDWallet(mnemonic: phrase, passphrase: passphrase)
-//        } else {
-//            wallet = HDWallet(strength: mnemonicStrength, passphrase: passphrase)
-//        }
-//
-//        return true
-//    }
+// MARK: - Setter
 
-    func createNewWallet(mnemonic: String? = nil, passphrase: String = "", forceCreate: Bool = false) throws -> Bool {
+extension WalletManager {
+    func setSecurePassword(_ pwd: String, username: String) throws {
+        try set(toBackupKeychain: pwd, forKey: username)
+    }
+}
+
+// MARK: - Server Wallet
+
+extension WalletManager {
+    func asyncCreateWalletAddressFromServer() {
+        Task {
+            let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.userAddress)
+        }
+    }
+    
+    func fetchWalletInfo() async {
+        #warning("ServerWalletModel的获取")
+        do {
+            let response: UserWalletResponse = try await Network.request(LilicoAPI.User.userWallet)
+            print(response)
+        } catch {
+            debugPrint(error)
+        }
+    }
+}
+
+// MARK: - Mnemonic
+
+extension WalletManager {
+    func createMnemonicModel(mnemonic: String? = nil, passphrase: String = "", forceCreate: Bool = false) throws -> Bool {
         // If there is already a wallet, we don't create a new wallet to replace current one
         if hasWallet, !forceCreate {
             HUD.debugError(title: "Already have a wallet !")
-//            throw LLError.alreadyHaveWallet
             return false
         }
 
         if let phrase = mnemonic {
             wallet = HDWallet(mnemonic: phrase, passphrase: passphrase)
         } else {
-            wallet = HDWallet(strength: mnemonicStrength, passphrase: passphrase)
+            wallet = HDWallet(strength: WalletManager.mnemonicStrength, passphrase: passphrase)
         }
         return true
     }
-
+    
     func storeMnemonicToKeychain(username: String) throws {
-        guard let password = try? keychain.get(passwordKey) else {
+        guard var password = getMnemoicPwd() else {
             throw LLError.emptyEncryptKey
         }
 
-        guard var mnemonic = wallet?.mnemonic,
-              var data = mnemonic.data(using: .utf8)
-        else {
+        guard var mnemonic = getMnemoic(), var data = mnemonic.data(using: .utf8) else {
             throw LLError.createWalletFailed
         }
 
         defer {
+            password = ""
             mnemonic = ""
             data = Data()
         }
 
-        let encodedData = try WalletManager.encryptionAES(key: password, data: data)
-
-        try keychain
-            .comment("Lilico user: \(username)")
-            .set(encodedData, key: "\(storeKey).\(username)")
+        var encodedData = try WalletManager.encryptionAES(key: password, data: data)
+        defer {
+            encodedData = Data()
+        }
+        
+        try set(toMainKeychain: encodedData, forKey: getMnemonicStoreKey(username: username), comment: "Lilico user: \(username)")
     }
+    
+    @discardableResult
+    func restoreMnemonicFromKeychain(username: String) -> Bool {
+        if var encryptedData = getEncryptedMnemonicData(username: username),
+           var pwd = getMnemoicPwd(),
+           var decryptedData = try? WalletManager.decryptionAES(key: pwd, data: encryptedData),
+           var mnemonic = String(data: decryptedData, encoding: .utf8) {
+            defer {
+                encryptedData = Data()
+                pwd = ""
+                decryptedData = Data()
+                mnemonic = ""
+            }
+            
+            wallet = HDWallet(mnemonic: mnemonic, passphrase: "")
+            return true
+        }
+        
+        return false
+    }
+    
+    private func generateMnemonicPwdIfNeeded() {
+        if getMnemoicPwd() == nil {
+            try? set(toMainKeychain: UUID().uuidString, forKey: WalletManager.mnemonicPwdStoreKey)
+        }
+    }
+    
+    private func restoreMnemonicForCurrentUser() {
+        if !UserManager.shared.isAnonymous, let username = UserManager.shared.userInfo?.username {
+            if !restoreMnemonicFromKeychain(username: username) {
+                HUD.error(title: "Private key is missing !!")
+            }
+        }
+    }
+}
 
+// MARK: - Internal Getter
+
+extension WalletManager {
+    private func getMnemonicStoreKey(username: String) -> String {
+        return "\(WalletManager.mnemonicStoreKeyPrefix).\(username)"
+    }
+    
+    private func getEncryptedMnemonicData(username: String) -> Data? {
+        return getData(fromMainKeychain: getMnemonicStoreKey(username: username))
+    }
+    
+    private func getMnemoicPwd() -> String? {
+        return getString(fromMainKeychain: WalletManager.mnemonicPwdStoreKey)
+    }
+}
+
+// MARK: - Helper
+
+extension WalletManager {
+    private func set(toBackupKeychain value: String, forKey key: String) throws {
+        try backupKeychain.set(value, key: key)
+    }
+    
+    private func getString(fromBackupKeychain key: String) -> String? {
+        return try? backupKeychain.get(key)
+    }
+    
+    // MARK: -
+    
+    private func set(toMainKeychain value: String, forKey key: String) throws {
+        try mainKeychain.set(value, key: key)
+    }
+    
+    private func set(toMainKeychain value: Data, forKey key: String, comment: String? = nil) throws {
+        if let comment = comment {
+            try mainKeychain.comment(comment).set(value, key: key)
+        } else {
+            try mainKeychain.set(value, key: key)
+        }
+    }
+    
+    private func getString(fromMainKeychain key: String) -> String? {
+        return try? mainKeychain.getString(key)
+    }
+    
+    private func getData(fromMainKeychain key: String) -> Data? {
+        return try? mainKeychain.getData(key)
+    }
+    
     static func encryptionAES(key: String, iv: String = "0102030405060708", data: Data) throws -> Data {
         guard var keyData = key.data(using: .utf8), let ivData = iv.data(using: .utf8) else {
             throw LLError.aesKeyEncryptionFailed
@@ -174,7 +219,7 @@ class WalletManager: ObservableObject {
         } else {
             keyData = keyData.paddingZeroRight(blockSize: 16)
         }
-//        let hashKey = Hash.sha256(data: keyData).prefix(16)
+
         guard let encrypted = AES.encryptCBC(key: keyData, data: data, iv: ivData, mode: .pkcs7) else {
             throw LLError.aesEncryptionFailed
         }
@@ -191,7 +236,7 @@ class WalletManager: ObservableObject {
         } else {
             keyData = keyData.paddingZeroRight(blockSize: 16)
         }
-//        let hashKey = Hash.sha256(data: keyData).prefix(16)
+
         guard let decrypted = AES.decryptCBC(key: keyData, data: data, iv: ivData, mode: .pkcs7) else {
             throw LLError.aesEncryptionFailed
         }
