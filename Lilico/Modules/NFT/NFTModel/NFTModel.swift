@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 let placeholder: String = "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
 //TODO: which filter?
@@ -35,18 +36,22 @@ struct ContractPath: Codable, Hashable {
 
 
 struct NFTModel: Codable, Hashable, Identifiable {
+    
+    
     var id: String {
         return collections
     }
     let image: URL
+    var video: URL?
     let name: String
     let collections: String
 
     let response: NFTResponse?
     let collection: NFTCollection?
     
+    
     init(_ response: NFTResponse, in collection: NFTCollection?) {
-        var url = response.media?.first?.uri
+        var url = response.imageUrl()
         if url == nil , let data = response.metadata.metadata.first(where: { $0.name.contains("image")}) {
             url = data.value
         }
@@ -57,8 +62,13 @@ struct NFTModel: Codable, Hashable, Identifiable {
         if url == nil || url!.isEmpty {
             url = placeholder
         }
-        
+        print("image-url: \(url!)")
         image = URL(string: url!)!
+        if let videoUrl = response.videoUrl() {
+            video = URL(string: videoUrl)
+        }
+        
+        
         collections = (response.contract.name ?? "") + " #" + response.id.tokenID
         name = response.contract.name ?? ""
         self.collection = collection

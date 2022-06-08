@@ -12,7 +12,7 @@ extension UIImage {
     func colors() async -> [Color] {
         return await withCheckedContinuation { continuation in
             DispatchQueue.global().async {
-                guard let colors = ColorThief.getPalette(from: self, colorCount: 7, quality: 1, ignoreWhite: true) else {
+                guard let colors = ColorThief.getPalette(from: self, colorCount: 5, quality: 1, ignoreWhite: true) else {
                     DispatchQueue.main.async {
                         continuation.resume(returning: [])
                     }

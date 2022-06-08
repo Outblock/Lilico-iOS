@@ -16,8 +16,12 @@ struct NFTDetailPage: View {
     
     var nft: NFTModel
     
-    @State
-    var theColor = Color.LL.Primary.salmon3
+    var theColor: Color {
+        if let color = viewModel.state.colorsMap[nft.image.absoluteString]?.first {
+            return color
+        }
+        return Color.LL.Primary.salmonPrimary
+    }
     
     @State
     private var isSharePresented: Bool = false
@@ -33,7 +37,7 @@ struct NFTDetailPage: View {
                     KFImage
                         .url(nft.image)
                         .onSuccess({ result in
-                            color(from: result.image)
+                            fetchColor()
                         })
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -225,16 +229,8 @@ struct NFTDetailPage: View {
         .padding(.horizontal,8)
     }
     
-    func color(from image: UIImage) {
-        
-        Task {
-            let colors = await image.colors()
-            if colors.count >= 1 {
-                print(colors.count)
-                theColor = colors.first!
-            }
-        }
-         
+    func fetchColor() {
+        viewModel.trigger(.fetchColors(nft.image.absoluteString))
     }
     
 }

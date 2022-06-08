@@ -24,6 +24,18 @@ struct NFTResponse: Codable, Hashable {
     let description: String?
     let media: [NFTMedia]?
     let metadata: NFTMetadata
+    
+    func imageUrl() -> String? {
+        media?.first(where: {
+            $0.mimeType.contains("image")
+        })?.uri
+    }
+    
+    func videoUrl() -> String? {
+        media?.first(where: {
+            $0.mimeType.contains("video")
+        })?.uri
+    }
 }
 
 // MARK: - Contract
@@ -41,7 +53,7 @@ struct NFTContractMetadata: Codable, Hashable {
 // MARK: - ID
 struct NFTID: Codable, Hashable {
     let tokenID: String
-    let tokenMetadata: NFTTokenMetadata
+    let tokenMetadata: NFTTokenMetadata?
 
     enum CodingKeys: String, CodingKey {
         case tokenID = "tokenId"

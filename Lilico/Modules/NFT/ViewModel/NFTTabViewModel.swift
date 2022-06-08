@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUIX
 import Haneke
+import Kingfisher
 
 
 class NFTTabViewModel: ViewModel {
@@ -69,7 +70,7 @@ class NFTTabViewModel: ViewModel {
         var totalCount = 0
         var currentCount = 0
         var offset = 0
-        let limit = 30
+        let limit = 25
         var allCrudeNFTs: [NFTResponse] = []
         //TODO: 测试
         repeat {
@@ -78,14 +79,16 @@ class NFTTabViewModel: ViewModel {
                 allCrudeNFTs.append(contentsOf: result.1)
                 totalCount = result.0
                 currentCount = allCrudeNFTs.count
-                offset += limit
+                offset = currentCount
             }catch {
                 print(error)
                 HUD.debugError(title: "Fetch NFT Error")
+                break;
             }
             print("获取的NFT数量：\(totalCount) | \(currentCount)")
         }
-        while (totalCount > currentCount)
+        while(false)
+//        while ( totalCount > currentCount)
         return allCrudeNFTs
     }
     
@@ -125,12 +128,50 @@ class NFTTabViewModel: ViewModel {
             break
         case let .collection(item):
             router?.route(to: \.collection, item)
+        case let .fetchColors(url):
+            fetchColors(from: url)
         case .back:
             router?.pop()
             
         }
     }
 }
+
+
+extension NFTTabViewModel {
+    func fetchColors(from url: String) {
+        if state.colorsMap[url] != nil {
+            return
+        }
+        Task {
+            await colors(from: url)
+        }
+    }
+    
+    private func colors(from url: String) async -> Void{
+       return await withCheckedContinuation { continuation in
+            ImageCache.default.retrieveImage(forKey: url) { [self] result in
+                switch result {
+                case .success( let value ):
+                        Task {
+                            let colors = await value.image!.colors()
+                            
+                            DispatchQueue.main.async {
+                                self.state.colorsMap[url] = colors
+                                continuation.resume()
+                            }
+                        }
+                    
+                case .failure(_):
+                    continuation.resume()
+                }
+            }
+        }
+        
+    }
+    
+}
+
 
 
 

@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 struct NFTListRequest: Codable {
-    var owner: String = "0x2b06c41f44a05656"
+    var owner: String = "0x050aa60ac445a061"
     var offset: Int = 0
     var limit: Int = 100
 }

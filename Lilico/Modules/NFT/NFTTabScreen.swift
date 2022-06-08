@@ -18,7 +18,7 @@ extension NFTTabScreen {
         var loading: Bool = true
         var items: [CollectionItem] = []
         var favoriteStore: NFTFavoriteStore = NFTFavoriteStore()
-        
+        var colorsMap: [String: [Color]] = [:]
         var isEmpty: Bool {
             return !loading && items.count == 0
         }
@@ -29,6 +29,7 @@ extension NFTTabScreen {
         case add
         case info(NFTModel)
         case collection(CollectionItem)
+        case fetchColors(String)
         case back
     }
 }
@@ -47,8 +48,8 @@ struct NFTTabScreen: View {
     
     @State var selectedIndex = 0
     
-    @State var favoriteId: String?
-    @State var currentNFTImage: URL?
+    @State private var favoriteId: String?
+    @State private var currentNFTImage: URL?
     
     
     var currentNFTs: [NFTModel] {
@@ -91,8 +92,10 @@ struct NFTTabScreen: View {
             }
             else {
                 content
+                    .clipped()
             }
         }
+        .ignoresSafeArea()
         .preferredColorScheme(themeManager.style)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .environmentObject(viewModel)
@@ -102,7 +105,7 @@ struct NFTTabScreen: View {
         GeometryReader { geo in
             ZStack() {
                 if(canShowFavorite) {
-                    NFTBlurImageView(url: currentNFTImage)
+                    NFTBlurImageView(colors: viewModel.state.colorsMap[currentNFTImage?.absoluteString ?? ""] ?? [])
                 }
                 
                 if(!viewModel.isEmpty) {
@@ -218,6 +221,10 @@ extension NFTTabScreen {
                             return
                         }
                         currentNFTImage = nft.image
+                        if let url = currentNFTImage?.absoluteString {
+                            viewModel.trigger(.fetchColors(url))
+                        }
+                        
                     }
                 }
             }

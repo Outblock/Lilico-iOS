@@ -16,7 +16,8 @@ struct NFTCollectionListView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            NFTBlurImageView(url: collection.iconURL)
+            //TODO: handle the image for colors
+//            NFTBlurImageView(url: collection.iconURL)
             ScrollView {
                 InfoView(collection: collection)
                     .padding(.bottom, 24)
