@@ -10,7 +10,8 @@ import Moya
 
 extension LilicoAPI {
     enum User {
-        case register(RegisterReuqest)
+        case login(LoginRequest)
+        case register(RegisterRequest)
         case checkUsername(String)
         case userAddress
         case userInfo
@@ -29,6 +30,8 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
 
     var path: String {
         switch self {
+        case .login:
+            return "/login"
         case .checkUsername:
             return "/user/check"
         case .register:
@@ -46,7 +49,7 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
         switch self {
         case .checkUsername, .userInfo, .userWallet:
             return .get
-        case .register, .userAddress:
+        case .login, .register, .userAddress:
             return .post
         }
     }
@@ -57,7 +60,9 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
             return .requestPlain
         case .checkUsername(let username):
             return .requestParameters(parameters: ["username": username], encoding: URLEncoding.queryString)
-        case let .register(request):
+        case .register(let request):
+            return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
+        case .login(let request):
             return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
         }
     }

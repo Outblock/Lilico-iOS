@@ -37,18 +37,18 @@ class UserManager: ObservableObject {
 
 extension UserManager {
     func register(_ username: String) async throws {
-        let isSuccess = try WalletManager.shared.createMnemonicModel(forceCreate: true)
-        guard let key = WalletManager.shared.getFlowAccountKey(), isSuccess else {
+        guard let mnemonicModel = WalletManager.shared.createMnemonicModel() else {
             HUD.error(title: "Empty Wallet Key")
             throw LLError.emptyWallet
         }
         
-        let request = RegisterReuqest(username: username, accountKey: key.toCodableModel())
+        let key = mnemonicModel.flowAccountKey
+        let request = RegisterRequest(username: username, accountKey: key.toCodableModel())
         let model: RegisterResponse = try await Network.request(LilicoAPI.User.register(request))
         
         try await loginWithCustomToken(model.customToken)
         uploadUserNameIfNeeded()
-        try WalletManager.shared.storeMnemonicToKeychain(username: username)
+        try WalletManager.shared.storeAndActiveMnemonicToKeychain(mnemonicModel.mnemonic, username: username)
         WalletManager.shared.asyncCreateWalletAddressFromServer()
     }
 }
@@ -68,6 +68,12 @@ extension UserManager {
         LocalUserDefaults.shared.userInfo = info
         userInfo = info
     }
+}
+
+// MARK: - Restore
+
+extension UserManager {
+    
 }
 
 // MARK: - Modify

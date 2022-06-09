@@ -25,14 +25,9 @@ extension WalletManager {
 class WalletManager: ObservableObject {
     static let shared = WalletManager()
 
-    @Published var hasWallet: Bool = false
     @Published var walletInfo: UserWalletResponse?
 
-    private var wallet: HDWallet? {
-        didSet {
-            hasWallet = wallet != nil
-        }
-    }
+    private var mnemonicModel: HDWallet?
     
     private var mainKeychain = Keychain(service: Bundle.main.bundleIdentifier ?? defaultBundleID)
         .label("Lilico app backup")
@@ -59,12 +54,12 @@ class WalletManager: ObservableObject {
 // MARK: - Getter
 
 extension WalletManager {
-    func getMnemoic() -> String? {
-        return wallet?.mnemonic
+    func getCurrentMnemoic() -> String? {
+        return mnemonicModel?.mnemonic
     }
     
-    func getFlowAccountKey() -> Flow.AccountKey? {
-        return wallet?.flowAccountKey
+    func getCurrentFlowAccountKey() -> Flow.AccountKey? {
+        return mnemonicModel?.flowAccountKey
     }
 }
 
@@ -142,36 +137,28 @@ extension WalletManager {
     }
 }
 
-// MARK: - Mnemonic
+// MARK: - Mnemonic Create & Save
 
 extension WalletManager {
-    func createMnemonicModel(mnemonic: String? = nil, passphrase: String = "", forceCreate: Bool = false) throws -> Bool {
-        // If there is already a wallet, we don't create a new wallet to replace current one
-        if hasWallet, !forceCreate {
-            HUD.debugError(title: "Already have a wallet !")
-            return false
+    func createMnemonicModel(mnemonic: String? = nil, passphrase: String = "") -> HDWallet? {
+        if let mnemonic = mnemonic {
+            return HDWallet(mnemonic: mnemonic, passphrase: passphrase)
         }
-
-        if let phrase = mnemonic {
-            wallet = HDWallet(mnemonic: phrase, passphrase: passphrase)
-        } else {
-            wallet = HDWallet(strength: WalletManager.mnemonicStrength, passphrase: passphrase)
-        }
-        return true
+        
+        return HDWallet(strength: WalletManager.mnemonicStrength, passphrase: passphrase)
     }
     
-    func storeMnemonicToKeychain(username: String) throws {
+    func storeAndActiveMnemonicToKeychain(_ mnemonic: String, username: String) throws {
         guard var password = getMnemoicPwd() else {
             throw LLError.emptyEncryptKey
         }
 
-        guard var mnemonic = getMnemoic(), var data = mnemonic.data(using: .utf8) else {
+        guard var data = mnemonic.data(using: .utf8) else {
             throw LLError.createWalletFailed
         }
 
         defer {
             password = ""
-            mnemonic = ""
             data = Data()
         }
 
@@ -181,10 +168,30 @@ extension WalletManager {
         }
         
         try set(toMainKeychain: encodedData, forKey: getMnemonicStoreKey(username: username), comment: "Lilico user: \(username)")
+        if !activeMnemonic(mnemonic) {
+            throw LLError.createWalletFailed
+        }
     }
     
-    @discardableResult
-    func restoreMnemonicFromKeychain(username: String) -> Bool {
+    private func generateMnemonicPwdIfNeeded() {
+        if getMnemoicPwd() == nil {
+            try? set(toMainKeychain: UUID().uuidString, forKey: WalletManager.mnemonicPwdStoreKey)
+        }
+    }
+}
+
+// MARK: - Mnemonic Restore
+
+extension WalletManager {
+    private func restoreMnemonicForCurrentUser() {
+        if !UserManager.shared.isAnonymous, let username = UserManager.shared.userInfo?.username {
+            if !restoreMnemonicFromKeychain(username: username) {
+                HUD.error(title: "Private key is missing !!")
+            }
+        }
+    }
+    
+    private func restoreMnemonicFromKeychain(username: String) -> Bool {
         if var encryptedData = getEncryptedMnemonicData(username: username),
            var pwd = getMnemoicPwd(),
            var decryptedData = try? WalletManager.decryptionAES(key: pwd, data: encryptedData),
@@ -196,25 +203,19 @@ extension WalletManager {
                 mnemonic = ""
             }
             
-            wallet = HDWallet(mnemonic: mnemonic, passphrase: "")
-            return true
+            return activeMnemonic(mnemonic)
         }
         
         return false
     }
     
-    private func generateMnemonicPwdIfNeeded() {
-        if getMnemoicPwd() == nil {
-            try? set(toMainKeychain: UUID().uuidString, forKey: WalletManager.mnemonicPwdStoreKey)
+    private func activeMnemonic(_ mnemonic: String) -> Bool {
+        guard let model = createMnemonicModel(mnemonic: mnemonic) else {
+            return false
         }
-    }
-    
-    private func restoreMnemonicForCurrentUser() {
-        if !UserManager.shared.isAnonymous, let username = UserManager.shared.userInfo?.username {
-            if !restoreMnemonicFromKeychain(username: username) {
-                HUD.error(title: "Private key is missing !!")
-            }
-        }
+        
+        mnemonicModel = model
+        return true
     }
 }
 

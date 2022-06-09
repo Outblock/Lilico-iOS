@@ -1,13 +1,13 @@
 //
-//  RegisterRequest.swift
+//  UserRequests.swift
 //  Lilico
 //
-//  Created by Hao Fu on 3/1/22.
+//  Created by Selina on 9/6/2022.
 //
 
 import Foundation
 
-struct RegisterReuqest: Codable {
+struct RegisterRequest: Codable {
     let username: String
     let accountKey: AccountKey
 }
@@ -17,4 +17,9 @@ struct AccountKey: Codable {
     let publicKey: String
     let sign_algo: Int
     var weight: Int = 1000
+}
+
+struct LoginRequest: Codable {
+    let publicKey: String
+    let signature: String
 }
