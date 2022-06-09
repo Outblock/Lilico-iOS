@@ -49,7 +49,6 @@ extension UserManager {
         try await loginWithCustomToken(model.customToken)
         uploadUserNameIfNeeded()
         try WalletManager.shared.storeMnemonicToKeychain(username: username)
-        
         WalletManager.shared.asyncCreateWalletAddressFromServer()
     }
 }

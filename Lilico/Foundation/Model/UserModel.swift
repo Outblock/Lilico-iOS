@@ -11,5 +11,5 @@ struct UserInfo: Codable {
     let avatar: String
     let nickname: String
     let username: String
-    let `private`: Bool
+    let `private`: Int
 }

@@ -9,7 +9,7 @@ import Flow
 import Foundation
 import KeychainAccess
 import WalletCore
-
+import Combine
 
 // MARK: - Define
 
@@ -19,14 +19,15 @@ extension WalletManager {
     static private let defaultBundleID = "io.outblock.lilico"
     static private let mnemonicStoreKeyPrefix = "lilico.mnemonic"
     static private let mnemonicPwdStoreKey = "lilico.mnemonic.password"
+    static private let walletFetchInterval: TimeInterval = 20
 }
 
 class WalletManager: ObservableObject {
     static let shared = WalletManager()
 
     @Published var hasWallet: Bool = false
+    @Published var walletInfo: UserWalletResponse?
 
-    #warning("已登录用户wallet的初始化")
     private var wallet: HDWallet? {
         didSet {
             hasWallet = wallet != nil
@@ -38,10 +39,20 @@ class WalletManager: ObservableObject {
         .synchronizable(true)
         .accessibility(.whenUnlocked)
     private let backupKeychain = Keychain(server: "https://lilico.app", protocolType: .https)
+    
+    private var walletInfoRetryTimer: Timer?
+    private var cancellableSet = Set<AnyCancellable>()
 
     init() {
         generateMnemonicPwdIfNeeded()
-        restoreMnemonicForCurrentUser()
+        
+        UserManager.shared.$isLoggedIn.sink { [weak self] _ in
+            debugPrint("WalletManager -> on $isLoggedIn changed, isMainThread: \(Thread.isMainThread)")
+            DispatchQueue.main.async {
+                self?.restoreMnemonicForCurrentUser()
+                self?.reloadWalletInfo()
+            }
+        }.store(in: &cancellableSet)
     }
 }
 
@@ -68,19 +79,65 @@ extension WalletManager {
 // MARK: - Server Wallet
 
 extension WalletManager {
+    
+    /// Request server create wallet address, DO NOT call it multiple times.
     func asyncCreateWalletAddressFromServer() {
         Task {
             let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.userAddress)
         }
     }
     
-    func fetchWalletInfo() async {
-        #warning("ServerWalletModel的获取")
-        do {
-            let response: UserWalletResponse = try await Network.request(LilicoAPI.User.userWallet)
-            print(response)
-        } catch {
-            debugPrint(error)
+    private func startWalletInfoRetryTimer() {
+        debugPrint("WalletManager -> startWalletInfoRetryTimer")
+        stopWalletInfoRetryTimer()
+        let timer = Timer.scheduledTimer(timeInterval: WalletManager.walletFetchInterval, target: self, selector: #selector(onWalletInfoRetryTimer), userInfo: nil, repeats: false)
+        walletInfoRetryTimer = timer
+        RunLoop.main.add(timer, forMode: .common)
+    }
+    
+    private func stopWalletInfoRetryTimer() {
+        if let timer = walletInfoRetryTimer {
+            timer.invalidate()
+            walletInfoRetryTimer = nil
+        }
+    }
+    
+    @objc private func onWalletInfoRetryTimer() {
+        debugPrint("WalletManager -> onWalletInfoRetryTimer")
+        reloadWalletInfo()
+    }
+    
+    func reloadWalletInfo() {
+        debugPrint("WalletManager -> reloadWalletInfo")
+        stopWalletInfoRetryTimer()
+        
+        if !UserManager.shared.isLoggedIn {
+            return
+        }
+        
+        Task {
+            do {
+                let response: UserWalletResponse = try await Network.request(LilicoAPI.User.userWallet)
+                DispatchQueue.main.async {
+                    self.walletInfo = response
+                    self.pollingWalletInfoIfNeeded()
+                    debugPrint(response)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    debugPrint(error)
+                    self.startWalletInfoRetryTimer()
+                }
+            }
+        }
+    }
+    
+    /// polling wallet info, if wallet address is not exists
+    private func pollingWalletInfoIfNeeded() {
+        debugPrint("WalletManager -> pollingWalletInfoIfNeeded, isMainThread: \(Thread.isMainThread)")
+        let isEmptyBlockChain = walletInfo?.primaryWalletModel?.isEmptyBlockChain ?? true
+        if isEmptyBlockChain {
+            startWalletInfoRetryTimer()
         }
     }
 }

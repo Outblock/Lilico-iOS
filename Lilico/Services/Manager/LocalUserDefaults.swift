@@ -26,12 +26,14 @@ class LocalUserDefaults: ObservableObject {
     @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .testnet {
         didSet {
             FlowNetwork.setup()
+            WalletManager.shared.reloadWalletInfo()
         }
     }
     #else
     @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .mainnet {
         didSet {
             FlowNetwork.setup()
+            WalletManager.shared.reloadWalletInfo()
         }
     }
     #endif

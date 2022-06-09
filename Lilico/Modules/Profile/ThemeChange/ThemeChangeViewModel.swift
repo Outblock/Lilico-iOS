@@ -36,8 +36,10 @@ extension ThemeChangeView {
         }
         
         private func changeStyle(newStyle: ColorScheme?) {
-            ThemeManager.shared.setStyle(style: newStyle)
-            reloadStates()
+            DispatchQueue.main.async {
+                ThemeManager.shared.setStyle(style: newStyle)
+                self.reloadStates()
+            }
         }
         
         private func reloadStates() {
