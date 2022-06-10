@@ -28,14 +28,17 @@ struct NFTListView: View {
                     .frame(height: ceil((screenWidth-18*3)/2+50))
                 }
             }
+            .background(Color.white)
             .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
-            .cornerRadius(16)
-            .background(.LL.Neutrals.background)
             
             VStack{}
                 .frame(height: repairHeight() )
                 .background(Color.orange)
         }
+        .background(
+            Color.white
+        )
+        .cornerRadius(16)
         
     }
     

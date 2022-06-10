@@ -16,6 +16,8 @@ struct NFTDetailPage: View {
     
     var nft: NFTModel
     
+    @State var opacity: Double = 0
+    
     var theColor: Color {
         if let color = viewModel.state.colorsMap[nft.image.absoluteString]?.first {
             return color
@@ -32,7 +34,9 @@ struct NFTDetailPage: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
+                Spacer()
+                    .frame(height: 64)
                 VStack(alignment:.leading) {
                     KFImage
                         .url(nft.image)
@@ -113,15 +117,24 @@ struct NFTDetailPage: View {
                     .padding(.top, 16)
                     .padding(.horizontal,8)
                     
-                    if(!nft.tags.isEmpty) {
-                        NFTTagsView(tags: nft.tags, color: theColor)
+                    VStack {
+                        if(!nft.tags.isEmpty) {
+                            NFTTagsView(tags: nft.tags, color: theColor)
+                        }
+                        
+                        Spacer()
+                            .frame(height: 16)
+                        Text(nft.declare)
+                            .font(Font.inter(size: 14, weight: .w400))
+                            .foregroundColor(.LL.Neutrals.neutrals6)
                     }
+                    .background(
+                        Color.LL.Shades.front
+                            .opacity(0.32)
+                    )
+                    .cornerRadius(16)
                     
-                    Spacer()
-                        .frame(height: 16)
-                    Text(nft.declare)
-                        .font(Font.inter(size: 14, weight: .w400))
-                        .foregroundColor(.LL.Neutrals.neutrals6)
+                    
                     
                     Spacer()
                         .frame(height: 50)
@@ -182,10 +195,16 @@ struct NFTDetailPage: View {
             .padding(.trailing, 18)
 
         }
-        .navigationTitle(nft.name)
-        .addBackBtn {
-            viewModel.trigger(.back)
-        }
+        .background(
+            NFTBlurImageView(colors: viewModel.state.colorsMap[nft.image.absoluteString] ?? [])
+                .ignoresSafeArea()
+                .offset(y: -4)
+        )
+        .overlay(
+            NFTNavigationBar(title: nft.name, opacity: $opacity) {
+                viewModel.trigger(.back)
+            }
+        )
         
         
     }
@@ -221,7 +240,6 @@ struct NFTDetailPage: View {
                         .foregroundColor(.LL.Neutrals.text)
                         .frame(height: 24)
                 }
-
             }
             .padding(0)
         }

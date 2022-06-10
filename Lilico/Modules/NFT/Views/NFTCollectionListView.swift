@@ -12,34 +12,53 @@ struct NFTCollectionListView: View {
     
     var collection: CollectionItem
     
-    @EnvironmentObject private var viewModel:AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    @State var opacity: Double = 0
+    
+    init(collection: CollectionItem) {
+        self.collection = collection
+    }
     
     var body: some View {
-        ZStack(alignment: .top) {
-            //TODO: handle the image for colors
-//            NFTBlurImageView(url: collection.iconURL)
-            ScrollView {
+        
+        ZStack {
+            ScrollView(showsIndicators: false) {
+                Spacer()
+                    .frame(height: 64)
+                
                 InfoView(collection: collection)
                     .padding(.bottom, 24)
                 NFTListView(list: collection.nfts)
-                Spacer()
-                    .background(Color.white)
             }
-            .padding(.top, 34)
         }
-        .ignoresSafeArea()
+        .background(
+            
+            NFTBlurImageView(colors: viewModel.state.colorsMap[collection.iconURL.absoluteString] ?? [])
+                .ignoresSafeArea()
+                .offset(y: -4)
+        )
+        .overlay(
+            NFTNavigationBar(title: collection.showName, opacity: $opacity) {
+                viewModel.trigger(.back)
+            }
+        )
     }
 }
 
 extension NFTCollectionListView {
     struct InfoView: View {
         
+        @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+
         var collection: CollectionItem
         
         var body: some View {
             HStack(spacing: 0) {
                 KFImage
                     .url(collection.iconURL)
+                    .onSuccess({ result in
+                        viewModel.trigger(.fetchColors(collection.iconURL.absoluteString))
+                    })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 108, height: 108, alignment: .center)
@@ -58,7 +77,7 @@ extension NFTCollectionListView {
                             .resizable()
                             .frame(width: 16, height: 16)
                     }
-                    .frame(height: 20)
+                    .frame(height: 28)
                     
                     Text("\(collection.count) Collections")
                         .font(.LL.body)
@@ -77,7 +96,11 @@ extension NFTCollectionListView {
                                 .fontWeight(.w600)
                                 .foregroundColor(.LL.Neutrals.neutrals3)
                         }
-                        .frame(width: 82, height: 38)
+                        .padding(.horizontal, 10)
+                        .frame(height: 38)
+                        .background(.thinMaterial)
+                        .cornerRadius(12)
+                        
 
                         Button {
                             
@@ -88,23 +111,27 @@ extension NFTCollectionListView {
                                 .fontWeight(.w600)
                                 .foregroundColor(.LL.Neutrals.neutrals3)
                         }
-                        .frame(width: 82, height: 38)
+                        .padding(.horizontal, 10)
+                        .frame(height: 38)
+                        .background(.thinMaterial)
+                        .cornerRadius(12)
                     }
                 }
+                .background(Color.clear)
                 Spacer()
             }
-            
         }
-        
-        
     }
 }
 
 
 struct NFTCollectionListView_Previews: PreviewProvider {
-    static var item  = NFTTabViewModel.testData().state.items.first!
+    
+    static var item  = NFTTabViewModel.testCollection()
+    
     static var previews: some View {
+        
         NFTCollectionListView(collection: item)
-            .environmentObject(NFTTabViewModel())
+            .environmentObject(NFTTabViewModel().toAnyViewModel())
     }
 }

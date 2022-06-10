@@ -10,7 +10,9 @@ import SwiftUI
 import SwiftUIX
 
 final class NFTCoordinator: NavigationCoordinatable {
+    
     var stack = NavigationStack(initial: \NFTCoordinator.start)
+    
     var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action> = NFTTabViewModel().toAnyViewModel()
     
     @Root() var start = makeStart

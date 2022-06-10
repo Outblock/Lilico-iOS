@@ -72,7 +72,6 @@ class NFTTabViewModel: ViewModel {
         var offset = 0
         let limit = 25
         var allCrudeNFTs: [NFTResponse] = []
-        //TODO: 测试
         repeat {
             do {
                 let result = try await fetchNFTList(from: offset, limit: limit)
@@ -87,8 +86,7 @@ class NFTTabViewModel: ViewModel {
             }
             print("获取的NFT数量：\(totalCount) | \(currentCount)")
         }
-        while(false)
-//        while ( totalCount > currentCount)
+        while ( totalCount > currentCount)
         return allCrudeNFTs
     }
     
@@ -131,8 +129,9 @@ class NFTTabViewModel: ViewModel {
         case let .fetchColors(url):
             fetchColors(from: url)
         case .back:
-            router?.pop()
-            
+            DispatchQueue.main.async {
+                self.router?.popLast()
+            }
         }
     }
 }
@@ -194,29 +193,14 @@ struct NullEncodable<T>: Encodable where T: Encodable {
 
 
 extension NFTTabViewModel {
-    static func testData() -> NFTTabViewModel{
-        let model = NFTTabViewModel()
-        let list: [NFTCollection] = [
-            .init(logo: URL(string: "https://img.rarible.com/prod/image/upload/t_avatar_big/prod-collections/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/avatar/QmfNrXe67J4t1EvXLxPhxTavQCLryurWFj1DDRKkjNQqit")!,
-                  name: "BoredApeYachtClub",
-                  address: .init(mainnet: "", testnet: ""),
-                  path: .init(storagePath: "", publicPath: "", publicCollectionName: "")),
-            .init(logo: URL(string: "https://img.rarible.com/prod/image/upload/t_avatar_big/prod-collections/0xc1caf0c19a8ac28c41fe59ba6c754e4b9bd54de9/avatar/Qmb56xhzBZkJvG3UD78XBbRkkQ2yKwMPpP56GP5bL1LbBR")!,
-                  name: "CryptoSkulls",
-                  address: .init(mainnet: "", testnet: ""),
-                  path: .init(storagePath: "", publicPath: "", publicCollectionName: ""))
-        ]
+    static func testCollection() -> CollectionItem{
         
-        
+        let nftModel = testNFT();
+        let model = CollectionItem(name: "测试", count: 10, collection: nftModel.collection, nfts: [nftModel])
         return model
     }
     
-    static func testNFTs() -> [NFTModel]{
-        let nfts: [NFTModel] = [
-            
-        ]
-        return nfts
-    }
+
     
     static func testNFT() -> NFTModel {
         let nftJsonData = """

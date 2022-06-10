@@ -12,6 +12,7 @@ struct NFTNavigationBar: View {
     var title: String = ""
     
     @Binding var opacity: Double
+    var onBack: () -> Void
     
     var body: some View {
         
@@ -23,7 +24,7 @@ struct NFTNavigationBar: View {
                 
             HStack(alignment: .center) {
                 Button {
-                    
+                    onBack()
                 } label: {
                     Image(systemName: "arrow.backward")
                         .foregroundColor(.LL.Neutrals.neutrals1)
@@ -51,6 +52,8 @@ struct NFTNavigationBar: View {
 struct NFTNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
         
-        NFTNavigationBar(title: "Feature", opacity: .constant(1))
+        NFTNavigationBar(title: "Feature", opacity: .constant(1)) {
+            
+        }
     }
 }
