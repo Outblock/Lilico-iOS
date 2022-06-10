@@ -104,9 +104,6 @@ struct NFTTabScreen: View {
     var content: some View {
         GeometryReader { geo in
             ZStack() {
-                if(canShowFavorite) {
-                    NFTBlurImageView(colors: viewModel.state.colorsMap[currentNFTImage?.absoluteString ?? ""] ?? [])
-                }
                 
                 if(!viewModel.isEmpty) {
                     ScrollView(showsIndicators: false) {
@@ -137,8 +134,13 @@ struct NFTTabScreen: View {
                     .padding(.top, statusHeight)
                 }
             }
-            .background(LinearGradient(colors: [.LL.background, .clear],
-                                                           startPoint: .top, endPoint: .bottom))
+            .background(
+                ZStack {
+                    if(canShowFavorite) {
+                        NFTBlurImageView(colors: viewModel.state.colorsMap[currentNFTImage?.absoluteString ?? ""] ?? [])
+                    }
+                }
+            )
             .ignoresSafeArea()
         }
     }
@@ -236,7 +238,7 @@ extension NFTTabScreen {
         }
         var options = StackTransformViewOptions(
             scaleFactor: 0.10,
-            minScale: 0.20,
+            minScale: 0.0,
             maxScale: 0.95,
             maxStackSize: 6,
             spacingFactor: 0.1,
