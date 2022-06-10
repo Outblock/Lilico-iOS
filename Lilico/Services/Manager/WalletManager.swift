@@ -41,10 +41,12 @@ class WalletManager: ObservableObject {
     init() {
         generateMnemonicPwdIfNeeded()
         
+        if UserManager.shared.isLoggedIn {
+            restoreMnemonicForCurrentUser()
+        }
+        
         UserManager.shared.$isLoggedIn.sink { [weak self] _ in
-            debugPrint("WalletManager -> on $isLoggedIn changed, isMainThread: \(Thread.isMainThread)")
             DispatchQueue.main.async {
-                self?.restoreMnemonicForCurrentUser()
                 self?.reloadWalletInfo()
             }
         }.store(in: &cancellableSet)
@@ -303,6 +305,36 @@ extension WalletManager {
 }
 
 extension HDWallet {
+    func getPublicKey() -> String {
+        let p256PublicKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+            .getPublicKeySecp256k1(compressed: false)
+            .uncompressed
+            .data
+            .hexValue
+            .dropPrefix("04")
+        return p256PublicKey
+    }
+    
+    func sign(_ text: String) -> String? {
+        guard let textData = text.data(using: .utf8) else {
+            return nil
+        }
+        
+        let data = Flow.DomainTag.user.normalize + textData
+        return sign(data)
+    }
+    
+    func sign(_ data: Data) -> String? {
+        let privateKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        let hashedData = Hash.sha256(data: data)
+        guard var signature = privateKey.sign(digest: hashedData, curve: .secp256k1) else {
+            return nil
+        }
+        
+        signature.removeLast()
+        return signature.hexValue
+    }
+    
     var flowAccountKey: Flow.AccountKey {
         let p256PublicKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
             .getPublicKeySecp256k1(compressed: false)

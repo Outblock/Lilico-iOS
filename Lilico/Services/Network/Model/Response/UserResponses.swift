@@ -14,6 +14,11 @@ import Foundation
  }
  */
 
+struct LoginResponse: Codable {
+    let customToken: String
+    let id: String
+}
+
 struct RegisterResponse: Codable {
     let customToken: String
     let id: String

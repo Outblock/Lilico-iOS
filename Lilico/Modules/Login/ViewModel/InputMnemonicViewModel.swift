@@ -10,10 +10,7 @@ import WalletCore
 
 class InputMnemonicViewModel: ViewModel {
     @Published
-    var text: String = ""
-
-    @Published
-    private(set) var state: InputMnemonicView.ViewState = .init()
+    var state: InputMnemonicView.ViewState = .init()
 
     func trigger(_ input: InputMnemonicView.Action) {
         switch input {
@@ -42,7 +39,23 @@ class InputMnemonicViewModel: ViewModel {
                 self.state.nextEnable = valid
             }
         case .next:
-            print("AAA")
+            restoreLogin()
+        }
+    }
+    
+    private func getRawMnemonic() -> String {
+        return state.text.condenseWhitespace()
+    }
+    
+    private func restoreLogin() {
+        let mnemonic = getRawMnemonic()
+        Task {
+            do {
+                try await UserManager.shared.restoreLogin(withMnemonic: mnemonic)
+                HUD.success(title: "Login success")
+            } catch {
+                HUD.error(title: "Login failed")
+            }
         }
     }
 }

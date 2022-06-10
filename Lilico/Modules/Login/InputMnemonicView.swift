@@ -13,6 +13,7 @@ extension InputMnemonicView {
         var nextEnable: Bool = false
         var hasError: Bool = false
         var suggestions: [String] = []
+        var text: String = ""
     }
 
     enum Action {
@@ -29,7 +30,7 @@ struct InputMnemonicView: View {
     var router: LoginCoordinator.Router
 
     @StateObject
-    var viewModel: AnyViewModel<InputMnemonicView.ViewState, InputMnemonicView.Action>
+    var viewModel: InputMnemonicViewModel
 
     var btnBack: some View {
         Button {
@@ -50,13 +51,10 @@ struct InputMnemonicView: View {
         } label: {
             HStack {
                 Text("Next")
-                    .foregroundColor(viewModel.nextEnable ? Color.LL.text : Color.LL.note)
+                    .foregroundColor(viewModel.state.nextEnable ? Color.LL.text : Color.LL.note)
             }
         }
     }
-
-    @State
-    var text: String = ""
 
     @State
     var offset: CGFloat = 10
@@ -97,7 +95,7 @@ struct InputMnemonicView: View {
                     .minimumScaleFactor(0.9)
 
                     ZStack(alignment: .topLeading) {
-                        if text.isEmpty {
+                        if viewModel.state.text.isEmpty {
                             Text("Enter your Rcovery Phrase (12 words)")
                                 .font(.LL.body)
                                 .foregroundColor(.LL.note)
@@ -105,7 +103,7 @@ struct InputMnemonicView: View {
                                 .padding(.top, 2)
                         }
 
-                        TextEditor(text: $text)
+                        TextEditor(text: $viewModel.state.text)
                             .introspectTextView { view in
                                 view.becomeFirstResponder()
                                 view.tintColor = Color.LL.orange.toUIColor()
@@ -114,7 +112,7 @@ struct InputMnemonicView: View {
                             .keyboardType(.alphabet)
                             .autocapitalization(.none)
                             .disableAutocorrection(true)
-                            .onChange(of: text, perform: { value in
+                            .onChange(of: viewModel.state.text, perform: { value in
                                 viewModel.trigger(.onEditingChanged(value))
                             })
                             .font(.LL.body)
@@ -123,7 +121,7 @@ struct InputMnemonicView: View {
                             .overlay {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(lineWidth: 1)
-                                    .foregroundColor(viewModel.hasError ? .LL.error : .LL.text)
+                                    .foregroundColor(viewModel.state.hasError ? .LL.error : .LL.text)
                             }
                     }
                     .padding(.horizontal, 28)
@@ -135,14 +133,16 @@ struct InputMnemonicView: View {
                             .font(.LL.footnote)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(viewModel.hasError ? .LL.error : .LL.text)
+                    .foregroundColor(viewModel.state.hasError ? .LL.error : .LL.text)
                     .padding(.horizontal, 28)
-                    .opacity(viewModel.hasError ? 1 : 0)
-                    .animation(.linear, value: viewModel.hasError)
+                    .opacity(viewModel.state.hasError ? 1 : 0)
+                    .animation(.linear, value: viewModel.state.hasError)
 
                     VPrimaryButton(model: ButtonStyle.primary,
-                                   state: viewModel.nextEnable ? .enabled : .disabled,
-                                   action: {}, title: "Next")
+                                   state: viewModel.state.nextEnable ? .enabled : .disabled,
+                                   action: {
+                        viewModel.trigger(.next)
+                    }, title: "Next")
                         .padding(.horizontal, 28)
 
                     Spacer()
@@ -150,14 +150,14 @@ struct InputMnemonicView: View {
                     ScrollView(.horizontal, showsIndicators: false, content: {
                         LazyHStack(alignment: .center, spacing: 10, content: {
                             Text("  ")
-                            ForEach(viewModel.suggestions, id: \.self) { word in
+                            ForEach(viewModel.state.suggestions, id: \.self) { word in
 
                                 Button {
 //                                    viewModel.trigger(.tapSuggestion(word))
-                                    let last = text.split(separator: " ").last ?? ""
-                                    text.removeLast(last.count)
-                                    text.append(word)
-                                    text.append(" ")
+                                    let last = viewModel.state.text.split(separator: " ").last ?? ""
+                                    viewModel.state.text.removeLast(last.count)
+                                    viewModel.state.text.append(word)
+                                    viewModel.state.text.append(" ")
 
                                 } label: {
                                     Text(word)
@@ -190,7 +190,7 @@ struct InputMnemonicView: View {
 
 struct InputMnemonicView_Previews: PreviewProvider {
     static var previews: some View {
-        InputMnemonicView(viewModel: InputMnemonicViewModel().toAnyViewModel())
+        InputMnemonicView(viewModel: InputMnemonicViewModel())
             .previewDevice("iPhone 13 mini")
     }
 }

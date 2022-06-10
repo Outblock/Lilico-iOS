@@ -18,4 +18,7 @@ enum LLError: Error {
     case decryptBackupFailed
     case incorrectPhrase
     case emptyEncryptKey
+    case restoreLoginFailed
+    case accountNotFound
+    case fetchUserInfoFailed
 }

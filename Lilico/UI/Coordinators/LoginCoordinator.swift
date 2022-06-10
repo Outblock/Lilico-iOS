@@ -21,7 +21,7 @@ final class LoginCoordinator: NavigationCoordinatable {
     }
 
     @ViewBuilder func makeInputMnemonic() -> some View {
-        InputMnemonicView(viewModel: InputMnemonicViewModel().toAnyViewModel())
+        InputMnemonicView(viewModel: InputMnemonicViewModel())
             .hideNavigationBar()
     }
 

@@ -19,17 +19,17 @@ class UserManager: ObservableObject {
         }
     }
     
-    @Published var isLoggedIn: Bool = false
+    @Published var isLoggedIn: Bool = false {
+        didSet {
+            debugPrint("UserManager -> isLoggedIn: \(isLoggedIn)")
+        }
+    }
     @Published var isAnonymous: Bool = true
 
     init() {
         refreshFlags()
         uploadUserNameIfNeeded()
-    }
-    
-    private func refreshFlags() {
-        isLoggedIn = userInfo != nil
-        isAnonymous = Auth.auth().currentUser?.isAnonymous ?? true
+        loginAnonymousIfNeeded()
     }
 }
 
@@ -46,34 +46,106 @@ extension UserManager {
         let request = RegisterRequest(username: username, accountKey: key.toCodableModel())
         let model: RegisterResponse = try await Network.request(LilicoAPI.User.register(request))
         
-        try await loginWithCustomToken(model.customToken)
-        uploadUserNameIfNeeded()
-        try WalletManager.shared.storeAndActiveMnemonicToKeychain(mnemonicModel.mnemonic, username: username)
+        try await finishLogin(mnemonic: mnemonicModel.mnemonic, customToken: model.customToken)
         WalletManager.shared.asyncCreateWalletAddressFromServer()
     }
 }
 
-// MARK: - Login
+// MARK: - Restore Login
 
 extension UserManager {
-    func loginWithCustomToken(_ token: String) async throws {
-        let result = try await Auth.auth().signIn(withCustomToken: token)
-        debugPrint("Logged in -> \(result.user.uid)")
+    func restoreLogin(withMnemonic mnemonic: String) async throws {
+        guard let mnemonicModel = WalletManager.shared.createMnemonicModel(mnemonic: mnemonic) else {
+            throw LLError.incorrectPhrase
+        }
+        
+        guard let uid = getUid(), !uid.isEmpty else {
+            loginAnonymousIfNeeded()
+            throw LLError.restoreLoginFailed
+        }
+        
+        let publicKey = mnemonicModel.getPublicKey()
+        guard let signature = mnemonicModel.sign(uid) else {
+            throw LLError.restoreLoginFailed
+        }
+        
+        let request = LoginRequest(publicKey: publicKey, signature: signature)
+        let response: Network.Response<LoginResponse> = try await Network.requestWithRawModel(LilicoAPI.User.login(request))
+        if response.httpCode == 404 {
+            throw LLError.accountNotFound
+        }
+        
+        guard let customToken = response.data?.customToken, !customToken.isEmpty else {
+            throw LLError.restoreLoginFailed
+        }
+        
+        try await finishLogin(mnemonic: mnemonicModel.mnemonic, customToken: customToken)
+    }
+}
+
+// MARK: - Internal Login Logic
+
+extension UserManager {
+    private func finishLogin(mnemonic: String, customToken: String) async throws {
+        try await firebaseLogin(customToken: customToken)
         try await fetchUserInfo()
+        uploadUserNameIfNeeded()
+        
+        guard let username = userInfo?.username else {
+            throw LLError.fetchUserInfoFailed
+        }
+        
+        try WalletManager.shared.storeAndActiveMnemonicToKeychain(mnemonic, username: username)
     }
     
-    func fetchUserInfo() async throws {
+    private func firebaseLogin(customToken: String) async throws {
+        let result = try await Auth.auth().signIn(withCustomToken: customToken)
+        debugPrint("Logged in -> \(result.user.uid)")
+    }
+    
+    private func fetchUserInfo() async throws {
         let response: UserInfoResponse = try await Network.request(LilicoAPI.User.userInfo)
         let info = UserInfo(avatar: response.avatar, nickname: response.nickname, username: response.username, private: response.private)
+        
+        if info.username.isEmpty {
+            throw LLError.fetchUserInfoFailed
+        }
+        
         LocalUserDefaults.shared.userInfo = info
         userInfo = info
     }
 }
 
-// MARK: - Restore
+// MARK: - Internal
 
 extension UserManager {
+    private func refreshFlags() {
+        isLoggedIn = userInfo != nil
+        isAnonymous = Auth.auth().currentUser?.isAnonymous ?? true
+    }
     
+    private func loginAnonymousIfNeeded() {
+        if isLoggedIn {
+            return
+        }
+        
+        if Auth.auth().currentUser == nil {
+            Task {
+                do {
+                    try await Auth.auth().signInAnonymously()
+                    DispatchQueue.main.async {
+                        self.refreshFlags()
+                    }
+                } catch {
+                    debugPrint("signInAnonymously failed: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+    private func getUid() -> String? {
+        return Auth.auth().currentUser?.uid
+    }
 }
 
 // MARK: - Modify
