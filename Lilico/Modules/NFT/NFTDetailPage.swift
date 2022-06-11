@@ -132,8 +132,6 @@ struct NFTDetailPage: View {
                             Text(nft.declare)
                                 .font(Font.inter(size: 14, weight: .w400))
                                 .foregroundColor(.LL.Neutrals.neutrals6)
-                            Spacer()
-                                .frame(height: 500)
                         }
                         .padding(.horizontal, 26)
                         .padding(.vertical, 18)
