@@ -76,6 +76,7 @@ struct NFTModel: Codable, Hashable, Identifiable {
     }
     
     var declare: String {
+        print("NFT Des: \(response?.description)")
         if let dec = response?.description {
             return dec
         }

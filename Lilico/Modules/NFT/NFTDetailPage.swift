@@ -38,122 +38,142 @@ struct NFTDetailPage: View {
                 Spacer()
                     .frame(height: 64)
                 VStack(alignment:.leading) {
-                    KFImage
-                        .url(nft.image)
-                        .onSuccess({ result in
-                            fetchColor()
-                        })
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(alignment: .center)
-                        .cornerRadius(8)
-                        .clipped()
-                    
-                    HStack(alignment: .center, spacing: 0) {
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text(nft.collections)
-                                .font(.LL.largeTitle3)
-                                .fontWeight(.w700)
-                                .foregroundColor(.LL.Neutrals.text)
-                                .frame(height: 28)
-                            HStack(alignment: .center,spacing: 6) {
-                                KFImage
-                                    .url(nft.logoUrl)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 20, height: 20,alignment: .center)
-                                    .cornerRadius(20)
-                                    .clipped()
-                                Text(nft.name)
-                                    .font(.LL.body)
-                                    .fontWeight(.w400)
-                                    .foregroundColor(.LL.Neutrals.neutrals4)
-                            }
-                        }
-                        Spacer()
-                        
-                        Button {
+                    VStack(spacing: 0){
+                        KFImage
+                            .url(nft.image)
+                            .onSuccess({ result in
+                                fetchColor()
+                            })
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(alignment: .center)
+                            .cornerRadius(8)
+                            .padding(.horizontal, 18)
+                            .clipped()
                             
-                        } label: {
-                            Image("nft_button_share")
-                                .frame(width: 44,height: 44)
-                                .foregroundColor(theColor)
-                        }
-                        .padding(.horizontal,6)
-                        .sheet(isPresented: $isSharePresented) {
-                            
-                        } content: {
-                            ShareSheet(items: $items)
-                        }
-
-
                         
-                        Button {
-                            if(viewModel.favoriteStore.isFavorite(with: nft)) {
-                                viewModel.favoriteStore.removeFavorite(nft)
-                            }else {
-                                viewModel.favoriteStore.addFavorite(nft)
-                            }
-                        } label: {
-                            ZStack(alignment: .center){
-                                if(viewModel.favoriteStore.isFavorite(with: nft)) {
-                                    Image("nft_logo_circle_fill")
-                                    Image("nft_logo_star_fill")
-                                        .frame(width: 20, height:20)
-                                        .foregroundColor(Color.white)
-                                }else {
-                                    Image("nft_logo_circle")
-                                    Image("nft_logo_star")
-                                        .frame(width: 20, height:20)
+                        HStack(alignment: .center, spacing: 0) {
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text(nft.collections)
+                                    .font(.LL.largeTitle3)
+                                    .fontWeight(.w700)
+                                    .foregroundColor(.LL.Neutrals.text)
+                                    .frame(height: 28)
+                                HStack(alignment: .center,spacing: 6) {
+                                    KFImage
+                                        .url(nft.logoUrl)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 20, height: 20,alignment: .center)
+                                        .cornerRadius(20)
+                                        .clipped()
+                                    Text(nft.name)
+                                        .font(.LL.body)
+                                        .fontWeight(.w400)
+                                        .foregroundColor(.LL.Neutrals.neutrals4)
                                 }
                             }
-                            .frame(width: 44, height: 44)
-                            .foregroundColor(theColor)
+                            Spacer()
+                            
+                            Button {
+                                
+                            } label: {
+                                Image("nft_button_share")
+                                    .frame(width: 44,height: 44)
+                                    .foregroundColor(theColor)
+                            }
+                            .padding(.horizontal,6)
+                            .sheet(isPresented: $isSharePresented) {
+                                
+                            } content: {
+                                ShareSheet(items: $items)
+                            }
+
+
+                            
+                            Button {
+                                if(viewModel.favoriteStore.isFavorite(with: nft)) {
+                                    viewModel.favoriteStore.removeFavorite(nft)
+                                }else {
+                                    viewModel.favoriteStore.addFavorite(nft)
+                                }
+                            } label: {
+                                ZStack(alignment: .center){
+                                    if(viewModel.favoriteStore.isFavorite(with: nft)) {
+                                        Image("nft_logo_circle_fill")
+                                        Image("nft_logo_star_fill")
+                                            .frame(width: 20, height:20)
+                                            .foregroundColor(Color.white)
+                                    }else {
+                                        Image("nft_logo_circle")
+                                        Image("nft_logo_star")
+                                            .frame(width: 20, height:20)
+                                    }
+                                }
+                                .frame(width: 44, height: 44)
+                                .foregroundColor(theColor)
+                                
+                            }
+                            .padding(.horizontal,6)
                             
                         }
-                        .padding(.horizontal,6)
-                        
+                        .padding(.top, 16)
+                        .padding(.horizontal, 26)
                     }
-                    .padding(.top, 16)
-                    .padding(.horizontal,8)
                     
-                    VStack {
-                        if(!nft.tags.isEmpty) {
-                            NFTTagsView(tags: nft.tags, color: theColor)
+                    
+                    //
+                    VStack(spacing: 0) {
+                        VStack(alignment: .trailing, spacing: 18) {
+                            if(!nft.tags.isEmpty) {
+                                NFTTagsView(tags: nft.tags, color: theColor)
+                            }
+                            
+                            Text(nft.declare)
+                                .font(Font.inter(size: 14, weight: .w400))
+                                .foregroundColor(.LL.Neutrals.neutrals6)
+                            Spacer()
+                                .frame(height: 500)
                         }
-                        
-                        Spacer()
-                            .frame(height: 16)
-                        Text(nft.declare)
-                            .font(Font.inter(size: 14, weight: .w400))
-                            .foregroundColor(.LL.Neutrals.neutrals6)
+                        .padding(.horizontal, 26)
+                        .padding(.vertical, 18)
                     }
                     .background(
                         Color.LL.Shades.front
                             .opacity(0.32)
                     )
-                    .cornerRadius(16)
+                    .shadow(color: .LL.Shades.front, radius: 16, x: 0, y: 8)
+                    .cornerRadius(16, corners: [.topLeft, .topRight])
                     
                     
                     
                     Spacer()
                         .frame(height: 50)
                 }
-                .padding(.horizontal,18)
+                
             }
             
             HStack(spacing: 8) {
                 Button {
                     
                 } label: {
-                    Image(systemName: "paperplane")
-                        .font(.system(size: 16))
-                        .foregroundColor(theColor)
-                    Text("Send")
-                        .foregroundColor(.LL.Neutrals.text)
+                    HStack {
+                        Image(systemName: "paperplane")
+                            .font(.system(size: 16))
+                            .foregroundColor(theColor)
+                        Text("Send")
+                            .foregroundColor(.LL.Neutrals.text)
+                    }
+                    
+                    
                 }
                 .frame(width: 84, height: 42)
-                .background(Color.white)
+                .background(
+                    Color.LL.Neutrals.background
+                )
+                .cornerRadius(12)
+                .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 16)
+                
                 
                 Menu {
                     Button {
@@ -188,7 +208,11 @@ struct NFTDetailPage: View {
                         .foregroundColor(.LL.Neutrals.text)
                 }
                 .frame(width: 84, height: 42)
-                .background(Color.white)
+                .background(
+                    Color.LL.Neutrals.background
+                )
+                .cornerRadius(12)
+                .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 16)
                 
                 
             }

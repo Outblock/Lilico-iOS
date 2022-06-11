@@ -16,7 +16,7 @@ class NFTTabViewModel: ViewModel {
     @Published
     private(set) var state: NFTTabScreen.ViewState = .init()
 
-    private var owner: String = "0x2b06c41f44a05656"
+    private var owner: String = "0x050aa60ac445a061"
     
     @RouterObject
     var router: NFTCoordinator.Router?
@@ -222,6 +222,7 @@ extension NFTTabViewModel {
                 }
             },
             "media": [],
+            "description": "Monet traveled more extensively than any other Impressionist artist in search of new motifs. His journeys to varied places including the rugged Normandy coast, the sunny Mediterranean, London, the Netherlands, and Norway inspired artworks that will be featured in the presentation. This exhibition uncovers Monet’s continuous dialogue with nature and its places through a thematic and chronological arrangement, from the first examples of artworks still indebted to the landscape tradition to the revolutionary compositions and series of his late years.",
             "metadata": {
                 "metadata": [
                     {
@@ -234,7 +235,7 @@ extension NFTTabViewModel {
                     },
                     {
                         "name": "image",
-                        "value": "https://ovowebpics.s3.ap-northeast-1.amazonaws.com/flowMysertybox10.png"
+                        "value": "https://ovowebpics.s3.ap-northeast-1.amazonaws.com/flowMysertybox4.png"
                     },
                     {
                         "name": "sign",
