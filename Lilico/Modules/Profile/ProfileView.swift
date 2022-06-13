@@ -12,6 +12,7 @@ struct ProfileView: View {
     @StateObject private var vm: ProfileViewModel = ProfileViewModel()
     @EnvironmentObject private var router: ProfileCoordinator.Router
     @StateObject private var lud = LocalUserDefaults.shared
+    @StateObject private var userManager = UserManager.shared
     
     init() {
 //        UITableView.appearance().sectionFooterHeight = .leastNormalMagnitude
@@ -22,8 +23,7 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             List {
-                #warning("Test")
-                if vm.state.isLogin || true {
+                if userManager.isLoggedIn {
                     InfoContainerView()
                     ActionSectionView()
                 } else {
@@ -44,6 +44,7 @@ struct ProfileView: View {
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
         .environmentObject(lud)
+        .environmentObject(userManager)
     }
 }
 
@@ -107,13 +108,15 @@ extension ProfileView {
     }
     
     struct InfoView: View {
+        @EnvironmentObject private var userManager: UserManager
+        
         var body: some View {
             HStack(spacing: 16) {
                 Image("").frame(width: 82, height: 82).background(.LL.Primary.salmonPrimary).clipShape(Circle())
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("user name").foregroundColor(.LL.Neutrals.text).font(.inter(weight: .semibold))
-                    Text("@test").foregroundColor(.LL.Neutrals.text).font(.inter(size: 14, weight: .medium))
+                    Text(userManager.userInfo?.nickname ?? "").foregroundColor(.LL.Neutrals.text).font(.inter(weight: .semibold))
+                    Text("@\(userManager.userInfo?.username ?? "")").foregroundColor(.LL.Neutrals.text).font(.inter(size: 14, weight: .medium))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
