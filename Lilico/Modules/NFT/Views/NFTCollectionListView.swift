@@ -79,7 +79,7 @@ extension NFTCollectionListView {
                     }
                     .frame(height: 28)
                     
-                    Text("\(collection.count) Collections")
+                    Text("x_collections".localized(collection.count))
                         .font(.LL.body)
                         .fontWeight(.w400)
                         .foregroundColor(.LL.Neutrals.neutrals4)
@@ -91,7 +91,7 @@ extension NFTCollectionListView {
                             
                         } label: {
                             Image("nft_button_share_inline")
-                            Text("Share")
+                            Text("share".localized)
                                 .font(.LL.body)
                                 .fontWeight(.w600)
                                 .foregroundColor(.LL.Neutrals.neutrals3)
@@ -106,7 +106,7 @@ extension NFTCollectionListView {
                             
                         } label: {
                             Image("nft_button_explore")
-                            Text("Explore")
+                            Text("explore".localized)
                                 .font(.LL.body)
                                 .fontWeight(.w600)
                                 .foregroundColor(.LL.Neutrals.neutrals3)

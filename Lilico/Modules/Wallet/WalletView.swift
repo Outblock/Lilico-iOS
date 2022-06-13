@@ -123,7 +123,7 @@ struct WalletView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Wallet")
+                Text("wallet".localized)
                     .font(.title)
                     .bold()
                     .onTapGesture {
@@ -154,14 +154,14 @@ struct WalletView: View {
                         .frame(width: 50, height: 50)
 
                     VStack {
-                        Text("Flow")
+                        Text("flow".localized)
                         Text("$ 8.9")
                     }
 
                     Spacer()
 
                     VStack {
-                        Text("Flow")
+                        Text("flow".localized)
                         Text("$ 8.9")
                     }
                 }
@@ -208,7 +208,7 @@ struct ActionView: View {
                 VStack(spacing: 5) {
                     Image(systemName: "arrow.up.left.circle.fill")
                         .font(.title)
-                    Text("Send")
+                    Text("send".localized)
                         .font(.callout)
                 }
             }
@@ -218,7 +218,7 @@ struct ActionView: View {
                 VStack(spacing: 5) {
                     Image(systemName: "arrow.down.right.circle.fill")
                         .font(.title)
-                    Text("Receive")
+                    Text("receive".localized)
                         .font(.callout)
                 }
             }
@@ -228,7 +228,7 @@ struct ActionView: View {
                 VStack(spacing: 5) {
                     Image(systemName: "creditcard.circle.fill")
                         .font(.title)
-                    Text("Send")
+                    Text("send".localized)
                         .font(.callout)
                 }
             }
@@ -238,7 +238,7 @@ struct ActionView: View {
                 VStack(spacing: 5) {
                     Image(systemName: "arrow.left.arrow.right.circle.fill")
                         .font(.title)
-                    Text("Swap")
+                    Text("swap".localized)
                         .font(.callout)
                 }
             }

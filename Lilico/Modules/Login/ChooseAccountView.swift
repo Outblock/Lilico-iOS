@@ -51,16 +51,16 @@ struct ChooseAccountView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
-                            Text("Choose")
+                            Text("choose".localized)
                                 .foregroundColor(Color.LL.text)
                                 .bold()
-                            Text("Account")
+                            Text("account".localized)
                                 .foregroundColor(Color.LL.orange)
                                 .bold()
                         }
                         .font(.LL.largeTitle)
 
-                        Text("Multiple Accounts found.")
+                        Text("multiple_accounts_found".localized)
                             .font(.LL.body)
                             .bold()
                             .foregroundColor(.LL.note)
@@ -95,7 +95,7 @@ struct ChooseAccountView: View {
                 overrideNavigationAppearance()
             }
             .padding(.horizontal, 28)
-            .navigationBarTitle("Choose Account", displayMode: .inline)
+            .navigationBarTitle("choose_account".localized, displayMode: .inline)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: btnBack)
             .background(Color.LL.background, ignoresSafeAreaEdges: .all)

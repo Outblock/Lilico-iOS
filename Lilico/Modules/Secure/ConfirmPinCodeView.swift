@@ -56,22 +56,22 @@ struct ConfirmPinCodeView: View {
             VStack(spacing: 15) {
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text("Please Confirm")
+                    Text("please_confirm".localized)
                         .bold()
                         .foregroundColor(Color.LL.text)
                         .font(.LL.largeTitle)
                     HStack {
-                        Text("your")
+                        Text("your".localized)
                             .bold()
                             .foregroundColor(Color.LL.text)
 
-                        Text("PIN")
+                        Text("pin".localized)
                             .bold()
                             .foregroundColor(Color.LL.orange)
                     }
                     .font(.LL.largeTitle)
 
-                    Text("There’s no Restore PIN button. Please make sure you can remember your PIN.")
+                    Text("no_restore_desc".localized)
                         .font(.LL.body)
                         .foregroundColor(.LL.note)
                         .padding(.top, 1)

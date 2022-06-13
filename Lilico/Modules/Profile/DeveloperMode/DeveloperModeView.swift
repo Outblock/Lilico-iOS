@@ -34,12 +34,12 @@ struct DeveloperModeView: View {
                         }
                     }
             } header: {
-                Text("Switch Network")
+                Text("switch_network".localized)
             }
             .listRowInsets(.zero)
         }
         .backgroundFill(.LL.Neutrals.background)
-        .navigationTitle("Developer Mode")
+        .navigationTitle("developer_mode".localized)
         .navigationBarTitleDisplayMode(.inline)
         .buttonStyle(.plain)
         .addBackBtn {

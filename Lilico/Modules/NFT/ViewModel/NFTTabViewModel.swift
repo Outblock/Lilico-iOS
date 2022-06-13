@@ -59,7 +59,7 @@ class NFTTabViewModel: ViewModel {
                 await MainActor.run {
                     state.loading = false
                 }
-                HUD.debugError(title: "Fetch NFT Error")
+                HUD.debugError(title: "fetch_nft_error".localized)
             }
         }
         
@@ -81,7 +81,7 @@ class NFTTabViewModel: ViewModel {
                 offset = currentCount
             }catch {
                 print(error)
-                HUD.debugError(title: "Fetch NFT Error")
+                HUD.debugError(title: "fetch_nft_error".localized)
                 break;
             }
             print("获取的NFT数量：\(totalCount) | \(currentCount)")

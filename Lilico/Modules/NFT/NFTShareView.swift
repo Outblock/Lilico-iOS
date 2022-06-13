@@ -26,7 +26,7 @@ struct NFTShareView: View {
                     .clipped()
                     .padding(.trailing, 6)
                     
-                Text("FROM \(name.uppercased())")
+                Text("from_name".localized(name.uppercased()))
                     .font(.LL.body)
                     .fontWeight(.w700)
                     .foregroundColor(.LL.Shades.front)
@@ -98,12 +98,12 @@ struct NFTShareView: View {
                         .cornerRadius(4)
                         .clipped()
                     VStack(alignment: .leading) {
-                        Text("Shared via".uppercased())
+                        Text("shared_via".localized.uppercased())
                             .font(.LL.miniTitle)
                             .fontWeight(.w600)
                             .foregroundColor(.LL.Neutrals.note)
                         HStack(spacing: 4) {
-                            Text("Lilico".uppercased())
+                            Text("lilico".localized.uppercased())
                                 .font(.LL.miniTitle)
                                 .fontWeight(Font.Weight.w600)
                                 .foregroundColor(.LL.Neutrals.note)

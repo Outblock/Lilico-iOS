@@ -38,7 +38,7 @@ class UserManager: ObservableObject {
 extension UserManager {
     func register(_ username: String) async throws {
         guard let mnemonicModel = WalletManager.shared.createMnemonicModel() else {
-            HUD.error(title: "Empty Wallet Key")
+            HUD.error(title: "empty_wallet_key".localized)
             throw LLError.emptyWallet
         }
         

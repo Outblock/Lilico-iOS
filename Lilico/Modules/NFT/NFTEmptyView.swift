@@ -16,11 +16,11 @@ struct NFTEmptyView: View {
                 
             VStack {
 
-                Text("We find nothing here.")
+                Text("nft_empty".localized)
                     .font(.LL.mindTitle)
                     .foregroundColor(.LL.Neutrals.neutrals3)
                     .padding(2)
-                Text("Looking forward to your new discovery.")
+                Text("nft_empty_discovery".localized)
                     .font(.LL.body)
                     .foregroundColor(.LL.Neutrals.neutrals8)
                 Spacer()
@@ -28,7 +28,7 @@ struct NFTEmptyView: View {
                 Button {
 
                 } label: {
-                    Text("Get new NFTs")
+                    Text("get_new_nft".localized)
                         .foregroundColor(.LL.Primary.salmonPrimary)
                 }
                 .padding(.vertical, 10)

@@ -62,8 +62,8 @@ struct ProfileView_Previews: PreviewProvider {
 
 extension ProfileView {
     struct NoLoginTipsView: View {
-        private let title = "Welcome to Lilico!"
-        private let desc = "Join us and unlock all brilliant & new experiences!"
+        private let title = "welcome_to_lilico".localized
+        private let desc = "welcome_desc".localized
         
         var body: some View {
             Section {
@@ -133,15 +133,15 @@ extension ProfileView {
         
         var body: some View {
             HStack(alignment: .center, spacing: 0) {
-                ProfileView.InfoActionButton(iconName: "icon-address", title: "Addresses") {
+                ProfileView.InfoActionButton(iconName: "icon-address", title: "addresses".localized) {
                     router.route(to: \.addressBook)
                 }
 
-                ProfileView.InfoActionButton(iconName: "icon-wallet", title: "Wallets") {
+                ProfileView.InfoActionButton(iconName: "icon-wallet", title: "wallets".localized) {
                     print("wallets click")
                 }
 
-                ProfileView.InfoActionButton(iconName: "icon-device", title: "Device") {
+                ProfileView.InfoActionButton(iconName: "icon-device", title: "device".localized) {
                     print("device click")
                 }
             }
@@ -201,9 +201,9 @@ extension ProfileView.ActionSectionView.Row {
     var title: String {
         switch self {
         case .backup:
-            return "Backup"
+            return "backup".localized
         case .security:
-            return "Security"
+            return "security".localized
         }
     }
     
@@ -219,7 +219,7 @@ extension ProfileView.ActionSectionView.Row {
     var desc: String {
         switch self {
         case .backup:
-            return "Manually"
+            return "manually".localized
         case .security:
             return ""
         }
@@ -279,11 +279,11 @@ extension ProfileView.GeneralSectionView.Row {
     var title: String {
         switch self {
         case .currency:
-            return "Currency"
+            return "currency".localized
         case .theme:
-            return "Theme"
+            return "theme".localized
         case .notification:
-            return "Notifications"
+            return "notifications".localized
         }
     }
     
@@ -314,7 +314,7 @@ extension ProfileView.GeneralSectionView.Row {
         case .currency:
             return "USD"
         case .theme:
-            return vm.state.colorScheme?.desc ?? "Auto"
+            return vm.state.colorScheme?.desc ?? "auto".localized
         case .notification:
             return ""
         }
@@ -364,9 +364,9 @@ extension ProfileView.AboutSectionView.Row {
     var title: String {
         switch self {
         case .about:
-            return "About"
+            return "about".localized
         case .developerMode:
-            return "Developer Mode"
+            return "developer_mode".localized
         }
     }
     
@@ -382,7 +382,7 @@ extension ProfileView.AboutSectionView.Row {
     var desc: String {
         switch self {
         case .about:
-            return "About"
+            return "about".localized
         case .developerMode(let lud):
             return lud.flowNetwork.rawValue
         }
@@ -428,7 +428,7 @@ extension ProfileView.MoreSectionView.Row {
     var title: String {
         switch self {
         case .switchAccount:
-            return "Switch Account"
+            return "switch_account".localized
         }
     }
     

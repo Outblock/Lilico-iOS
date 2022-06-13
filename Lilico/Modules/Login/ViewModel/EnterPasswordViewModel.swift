@@ -27,9 +27,9 @@ class EnterPasswordViewModel: ViewModel {
                 let mnemonic = try BackupManager.shared.decryptAccountData(password: password, account: account)
                 print(mnemonic)
 //                WalletManager.
-                HUD.success(title: "Success !")
+                HUD.success(title: "success_tips".localized)
             } catch {
-                HUD.error(title: "Incorrect password")
+                HUD.error(title: "incorrect_password".localized)
             }
         }
     }

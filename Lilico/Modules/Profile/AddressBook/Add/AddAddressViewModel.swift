@@ -18,9 +18,9 @@ extension AddAddressView {
         var desc: String {
             switch self {
             case .invalidFormat:
-                return "Invalid address"
+                return "invalid_address".localized
             case .notFound:
-                return "Can't find address in chain"
+                return "can_not_find_address".localized
             default:
                 return ""
             }
@@ -109,7 +109,7 @@ extension AddAddressView {
         
         private func saveAction() {
             if checkContactExists() == true {
-                HUD.error(title: "Contact already exists")
+                HUD.error(title: "contact_exists".localized)
                 return
             }
             
@@ -129,7 +129,7 @@ extension AddAddressView {
             let errorAction = {
                 DispatchQueue.main.async {
                     self.state.needShowLoadingHud = false
-                    HUD.error(title: "request failed")
+                    HUD.error(title: "request_failed".localized)
                 }
             }
             
@@ -138,7 +138,7 @@ extension AddAddressView {
                     self.state.needShowLoadingHud = false
                     self.router?.coordinator.addressBookVM?.trigger(.load)
                     self.router?.pop()
-                    HUD.success(title: "contact added")
+                    HUD.success(title: "contact_added".localized)
                 }
             }
             
@@ -167,7 +167,7 @@ extension AddAddressView {
             let errorAction = {
                 DispatchQueue.main.async {
                     self.state.needShowLoadingHud = false
-                    HUD.error(title: "request failed")
+                    HUD.error(title: "request_failed".localized)
                 }
             }
             
@@ -176,7 +176,7 @@ extension AddAddressView {
                     self.state.needShowLoadingHud = false
                     self.router?.coordinator.addressBookVM?.trigger(.load)
                     self.router?.pop()
-                    HUD.success(title: "contact edited")
+                    HUD.success(title: "contact_edited".localized)
                 }
             }
             

@@ -43,7 +43,7 @@ struct NFTCollectionCard: View {
                         .frame(width: 12, height: 12)
                 }
                 
-                Text("\(item.count) Collections")
+                Text("x_collections".localized(item.count))
                     .font(.LL.body)
                     .foregroundColor(.LL.note)
             }

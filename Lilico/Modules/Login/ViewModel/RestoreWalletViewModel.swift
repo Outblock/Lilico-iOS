@@ -19,7 +19,7 @@ class RestoreWalletViewModel {
         if let accountList = BackupManager.shared.loadAccountDataFromiCloud(), accountList.count > 0 {
             router?.route(to: \.chooseAccount, accountList)
         } else {
-            HUD.error(title: "No backup found in icloud")
+            HUD.error(title: "no_icloud_backup".localized)
         }
     }
 

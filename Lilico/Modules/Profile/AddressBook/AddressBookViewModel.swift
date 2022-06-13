@@ -134,14 +134,14 @@ extension AddressBookView {
                     self.state.hudStatus = false
                     realSectionVM.state.list.remove(at: index)
                     self.trimListModels()
-                    HUD.success(title: "Contact deleted")
+                    HUD.success(title: "contact_deleted".localized)
                 }
             }
             
             let failedAction = {
                 DispatchQueue.main.async {
                     self.state.hudStatus = false
-                    HUD.error(title: "Delete failed")
+                    HUD.error(title: "delete_failed".localized)
                 }
             }
             

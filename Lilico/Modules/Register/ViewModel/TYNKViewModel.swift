@@ -41,14 +41,14 @@ class TYNKViewModel: ViewModel {
                         homeRouter?
                             .popToRoot()
                             .route(to: \.recoveryPhrase)
-                        HUD.success(title: "Create User Success!")
+                        HUD.success(title: "create_user_success".localized)
                         state.isLoading = false
                     }
                 } catch {
                     print("error: \(error)")
                     await MainActor.run {
                         state.isLoading = false
-                        HUD.error(title: "Create User Failed")
+                        HUD.error(title: "create_user_failed".localized)
                     }
                 }
             }

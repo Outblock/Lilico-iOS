@@ -54,17 +54,17 @@ struct CreatePinCodeView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Create a")
+                        Text("create_a".localized)
                             .bold()
                             .foregroundColor(Color.LL.text)
 
-                        Text("PIN")
+                        Text("pin".localized)
                             .bold()
                             .foregroundColor(Color.LL.orange)
                     }
                     .font(.LL.largeTitle)
 
-                    Text("So no one else but you can unlock your wallet.")
+                    Text("no_one_unlock_desc".localized)
                         .font(.LL.body)
                         .foregroundColor(.LL.note)
                         .padding(.top, 1)

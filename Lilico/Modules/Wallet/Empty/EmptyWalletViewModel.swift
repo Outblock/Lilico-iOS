@@ -20,19 +20,19 @@ class EmptyWalletViewModel: ViewModel {
 
     init() {
         let dataSource = [
-            CardDataSource(title: "Don't have \nan account?",
+            CardDataSource(title: "create_btn_desc".localized,
                            bgGradient: [.red, Color.LL.orange],
                            bgImage: Image(componentAsset: "Gradient-Circle")
                                .renderingMode(.original),
-                           buttonText: "CREATE",
+                           buttonText: "create_btn_text".localized,
                            icon: Image(systemName: "plus"),
                            iconColor: .purple,
                            action: .signUp),
-            CardDataSource(title: "Already have \nan account?",
+            CardDataSource(title: "import_btn_desc".localized,
                            bgGradient: [Color(hex: "#659EAF"), Color(hex: "#88CBE1")],
                            bgImage: Image(componentAsset: "Gradient-Rect")
                                .renderingMode(.original),
-                           buttonText: "IMPORT",
+                           buttonText: "import_btn_text".localized,
                            icon: Image(systemName: "arrow.forward.to.line"),
                            iconColor: .yellow,
                            action: .signIn),

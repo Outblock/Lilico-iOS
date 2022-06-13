@@ -45,13 +45,13 @@ struct UsernameView: View {
     var footerText: String {
         switch viewModel.status {
         case .success:
-            return "Nice one"
+            return "nice_one".localized
         case let .error(message):
             return message
         case .normal:
             return " "
         case .loading:
-            return "Checking"
+            return "checking".localized
         }
     }
 
@@ -72,15 +72,15 @@ struct UsernameView: View {
             VStack {
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text("Pick Your")
+                    Text("pick_your".localized)
                         .font(.LL.largeTitle)
                         .bold()
                         .foregroundColor(Color.LL.rebackground)
-                    Text("Username")
+                    Text("username".localized)
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(Color.LL.orange)
-                    Text("Other Lilico users can find you and send you payments via your unique username.")
+                    Text("username_desc".localized)
                         .font(.LL.body)
                         .foregroundColor(.LL.note)
                         .padding(.top, 1)
@@ -91,7 +91,7 @@ struct UsernameView: View {
                 VTextField(model: TextFieldStyle.primary,
                            type: .userName,
                            highlight: highlight,
-                           placeholder: "Username",
+                           placeholder: "username".localized,
                            footerTitle: footerText,
                            text: $text,
                            onChange: {
@@ -107,8 +107,8 @@ struct UsernameView: View {
                 VPrimaryButton(model: ButtonStyle.primary,
                                state: highlight == .success ? .enabled : .disabled,
                                action: {
-                                   viewModel.trigger(.next)
-                               }, title: "Next")
+                    viewModel.trigger(.next)
+                }, title: "next".localized)
                     .padding(.bottom)
             }
             .dismissKeyboardOnDrag()

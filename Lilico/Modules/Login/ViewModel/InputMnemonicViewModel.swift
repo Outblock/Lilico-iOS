@@ -52,9 +52,9 @@ class InputMnemonicViewModel: ViewModel {
         Task {
             do {
                 try await UserManager.shared.restoreLogin(withMnemonic: mnemonic)
-                HUD.success(title: "Login success")
+                HUD.success(title: "login_success".localized)
             } catch {
-                HUD.error(title: "Login failed")
+                HUD.error(title: "login_failed".localized)
             }
         }
     }

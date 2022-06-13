@@ -92,17 +92,17 @@ struct ManualBackupView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("Double")
+                            Text("double".localized)
                                 .bold()
                                 .foregroundColor(Color.LL.text)
 
-                            Text("Secure")
+                            Text("secure".localized)
                                 .bold()
                                 .foregroundColor(Color.LL.orange)
                         }
                         .font(.LL.largeTitle)
 
-                        Text("Please select the word one by one refering to its order.")
+                        Text("select_word_by_order".localized)
                             .font(.LL.body)
                             .foregroundColor(.LL.note)
                             .padding(.top, 1)
@@ -115,7 +115,7 @@ struct ManualBackupView: View {
 
                             VStack(alignment: .leading) {
                                 HStack {
-                                    Text("Select the word")
+                                    Text("select_the_word".localized)
                                     Text("#\(element.position)")
                                         .fontWeight(.semibold)
                                 }
@@ -153,7 +153,7 @@ struct ManualBackupView: View {
                 overrideNavigationAppearance()
             }
             .padding(.horizontal, 30)
-            .navigationTitle("Double Secure")
+            .navigationTitle("double_secure".localized)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: btnBack)

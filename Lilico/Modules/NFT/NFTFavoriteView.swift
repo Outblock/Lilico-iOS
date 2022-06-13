@@ -23,7 +23,7 @@ struct NFTFavoriteView: View {
                 VStack(alignment: .center,spacing: 0) {
                     HStack() {
                         Image(systemName: "star.fill")
-                        Text("Top Selection")
+                        Text("top_selection".localized)
                             .font(.LL.largeTitle2)
                             .semibold()
                         

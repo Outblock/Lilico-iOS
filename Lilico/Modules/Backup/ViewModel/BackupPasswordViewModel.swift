@@ -36,7 +36,7 @@ class BackupPasswordViewModel: ViewModel {
                     .popToRoot()
                     .route(to: \.createSecure)
             } catch {
-                HUD.error(title: "Backup failed")
+                HUD.error(title: "backup_failed".localized)
                 debugPrint(error)
             }
         default:

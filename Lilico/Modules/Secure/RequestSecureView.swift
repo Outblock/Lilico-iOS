@@ -68,26 +68,26 @@ struct RequestSecureView: View {
             VStack(spacing: 15) {
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text("Add Extra")
+                    Text("add_extra".localized)
                         .bold()
                         .font(.LL.largeTitle)
 
                     HStack {
-                        Text("Protection")
+                        Text("protection".localized)
                             .bold()
                             .foregroundColor(Color.LL.orange)
 
-                        Text("to")
+                        Text("to".localized)
                             .bold()
                             .foregroundColor(Color.LL.text)
                     }
                     .font(.LL.largeTitle)
 
-                    Text("Your Wallet")
+                    Text("your_wallet".localized)
                         .bold()
                         .font(.LL.largeTitle)
 
-                    Text("Please select the word one by one refering to its order.")
+                    Text("select_word_by_order".localized)
                         .font(.LL.body)
                         .foregroundColor(.LL.note)
                         .padding(.top, 1)
@@ -108,10 +108,10 @@ struct RequestSecureView: View {
                                 .frame(width: 30, alignment: .leading)
                                 .foregroundColor(Color.LL.orange)
                             VStack(alignment: .leading) {
-                                Text(viewModel.biometric == .faceId ? "Face ID" : "Touch ID")
+                                Text(viewModel.biometric == .faceId ? "face_id".localized : "touch_id".localized)
                                     .font(.LL.body)
                                     .fontWeight(.semibold)
-                                Text("Recommend")
+                                Text("recommend".localized)
                                     .foregroundColor(Color.LL.orange)
                                     .font(.LL.footnote)
                             }
@@ -133,7 +133,7 @@ struct RequestSecureView: View {
                             .foregroundColor(Color.LL.orange)
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 30, alignment: .leading)
-                        Text("PIN Code")
+                        Text("pin_code".localized)
                             .font(.LL.body)
                             .fontWeight(.semibold)
                         Spacer()

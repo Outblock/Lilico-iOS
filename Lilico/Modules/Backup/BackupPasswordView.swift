@@ -94,17 +94,17 @@ struct BackupPasswordView: View {
                         .opacity(0.1)
                         .offset(y: -UIScreen.main.bounds.height)
                     VStack(alignment: .leading) {
-                        Text("Create Backup")
+                        Text("create_backup".localized)
                             .bold()
                             .foregroundColor(Color.LL.text)
                             .font(.LL.largeTitle)
 
-                        Text("Password")
+                        Text("password".localized)
                             .bold()
                             .foregroundColor(Color.LL.orange)
                             .font(.LL.largeTitle)
 
-                        Text("Lilico uses this password to secure your backup in cloud stroage.")
+                        Text("password_use_tips".localized)
                             .font(.LL.body)
                             .foregroundColor(.LL.note)
                             .padding(.top, 1)
@@ -119,8 +119,8 @@ struct BackupPasswordView: View {
                     VTextField(model: model,
                                type: .secure,
                                highlight: highlight,
-                               placeholder: "Backup Password",
-                               footerTitle: "Minimum 8 character",
+                               placeholder: "backup_password".localized,
+                               footerTitle: "minimum_8_char".localized,
                                text: $text,
                                onChange: {
                                    viewModel.trigger(.onPasswordChanged(text))
@@ -129,7 +129,7 @@ struct BackupPasswordView: View {
                     VTextField(model: model,
                                type: .secure,
                                highlight: confrimHighlight,
-                               placeholder: "Confirm Password",
+                               placeholder: "confirm_password".localized,
                                footerTitle: "",
                                text: $confrimText,
                                onChange: {
@@ -143,7 +143,7 @@ struct BackupPasswordView: View {
                     VText(type: .oneLine,
                           font: .footnote,
                           color: Color.LL.rebackground,
-                          title: "I understand Lilico can not recover this password.")
+                          title: "can_not_recover_pwd_tips".localized)
                 }
                 .padding(.vertical, 10)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -153,7 +153,7 @@ struct BackupPasswordView: View {
                                action: {
                                    viewModel.trigger(.secureBackup(confrimText))
                                },
-                               title: "Secure Backup")
+                               title: "secure_backup".localized)
                     .padding(.bottom)
             }
             .padding(.horizontal, 30)

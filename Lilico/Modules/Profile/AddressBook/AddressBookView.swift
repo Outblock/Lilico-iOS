@@ -38,7 +38,7 @@ struct AddressBookView: View {
                 errorView
             }
         }
-        .navigationTitle("Address Book")
+        .navigationTitle("address_book".localized)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing: HStack(spacing: 20) {
             Button {
@@ -60,10 +60,10 @@ struct AddressBookView: View {
             router.coordinator.addressBookVM = vm
         }
         .toast(isPresented: $vm.state.hudStatus) {
-            ToastView("Deleting...").toastViewStyle(.indeterminate)
+            ToastView("deleting".localized).toastViewStyle(.indeterminate)
         }
-        .alert("Are you sure you want to delete the contact?", isPresented: $showAlert) {
-            Button("Delete", role: .destructive) {
+        .alert("contact_delete_alert".localized, isPresented: $showAlert) {
+            Button("delete".localized, role: .destructive) {
                 if let sectionVM = self.pendingDeleteModel.sectionVM, let contact = self.pendingDeleteModel.contact {
                     self.vm.trigger(.delete(sectionVM, contact))
                 }
@@ -75,7 +75,7 @@ struct AddressBookView: View {
 extension AddressBookView {
     var loadingView: some View {
         VStack {
-            Text("Loading...")
+            Text("loading".localized)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.LL.Neutrals.background)
@@ -84,7 +84,7 @@ extension AddressBookView {
     
     var errorView: some View {
         VStack {
-            Text("Request failed, please try again later")
+            Text("address_book_request_failed".localized)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.LL.Neutrals.background)
@@ -105,14 +105,14 @@ extension AddressBookView {
                                 self.pendingDeleteModel.contact = row
                                 self.showAlert = true
                             }, label: {
-                                Text("Delete")
+                                Text("delete".localized)
                             })
                             .tint(Color.systemRed)
                             
                             Button(action: {
                                 self.vm.trigger(.edit(row))
                             }, label: {
-                                Text("Edit")
+                                Text("edit".localized)
                             })
                         }
                 }

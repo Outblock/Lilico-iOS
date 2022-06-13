@@ -53,22 +53,22 @@ struct TYNKView: View {
             VStack {
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text("Things you")
+                    Text("things_you".localized)
                         .font(.LL.largeTitle)
                         .bold()
                         .foregroundColor(Color.LL.rebackground)
                     HStack {
-                        Text("Need to")
+                        Text("need_to".localized)
                             .bold()
                             .foregroundColor(Color.LL.rebackground)
 
-                        Text("Know")
+                        Text("know".localized)
                             .bold()
                             .foregroundColor(Color.LL.orange)
                     }
                     .font(.LL.largeTitle)
 
-                    Text("In the next step, you will see a secret phrase (12 words). The secret phrase is the only key to recover your wallet.")
+                    Text("secret_phrase_tips".localized)
                         .font(.LL.body)
                         .foregroundColor(.LL.note)
                         .padding(.top, 1)
@@ -78,11 +78,11 @@ struct TYNKView: View {
 
                 VStack(spacing: 12) {
                     ConditionView(isOn: $stateList[0],
-                                  text: "If I lose my secret phrases, I cannot access my account forever.")
+                                  text: "secret_phrase_tips_1".localized)
                     ConditionView(isOn: $stateList[1],
-                                  text: "If I expose my secret phrases anywhere, my funds can be stolen.")
+                                  text: "secret_phrase_tips_2".localized)
                     ConditionView(isOn: $stateList[2],
-                                  text: "It is my full responsibility to secure my secret phrases.")
+                                  text: "secret_phrase_tips_3".localized)
                 }
                 .padding(.bottom, 40)
 
@@ -90,7 +90,7 @@ struct TYNKView: View {
                                state: buttonState,
                                action: {
                                    viewModel.trigger(.createWallet)
-                               }, title: buttonState == .loading ? "Almost there" : "Next")
+                }, title: buttonState == .loading ? "almost_there".localized : "next".localized)
                     .padding(.bottom)
             }
             .padding(.horizontal, 28)

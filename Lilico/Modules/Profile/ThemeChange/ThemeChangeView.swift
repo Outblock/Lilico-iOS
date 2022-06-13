@@ -27,7 +27,7 @@ struct ThemeChangeView: View {
         .addBackBtn {
             router.pop()
         }
-        .navigationTitle("Theme")
+        .navigationTitle("theme".localized)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -41,11 +41,11 @@ struct Previews_ThemeChangeView_Previews: PreviewProvider {
 extension ThemeChangeView {
     var themeItemView: some View {
         HStack(spacing: 0) {
-            ThemePreviewItemView(imageName: "preview-theme-light", title: "Light", isSelected: $vm.state.isLight) {
+            ThemePreviewItemView(imageName: "preview-theme-light", title: "light".localized, isSelected: $vm.state.isLight) {
                 vm.trigger(.change(.light))
             }
             
-            ThemePreviewItemView(imageName: "preview-theme-dark", title: "Dark", isSelected: $vm.state.isDark) {
+            ThemePreviewItemView(imageName: "preview-theme-dark", title: "dark".localized, isSelected: $vm.state.isDark) {
                 vm.trigger(.change(.dark))
             }
         }
@@ -55,7 +55,7 @@ extension ThemeChangeView {
         VStack {
             Toggle(isOn: $vm.state.isAuto) {
                 Image(systemName: .sun).font(.system(size: 25)).foregroundColor(.LL.Secondary.mango4)
-                Text("Auto").foregroundColor(.LL.Neutrals.text).font(.inter(size: 16, weight: .medium))
+                Text("auto".localized).foregroundColor(.LL.Neutrals.text).font(.inter(size: 16, weight: .medium))
             }
             .tint(.LL.Primary.salmonPrimary)
             .onChange(of: vm.state.isAuto) { value in

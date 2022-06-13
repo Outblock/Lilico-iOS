@@ -29,7 +29,7 @@ struct AddAddressView: View {
             .padding(.horizontal, 16)
             .padding(.top, 20)
         }
-        .navigationTitle(vm.state.isEditingMode ? "Edit contact" : "Add contact")
+        .navigationTitle(vm.state.isEditingMode ? "edit_contact".localized : "add_contact".localized)
         .navigationBarTitleDisplayMode(.inline)
         .addBackBtn {
             router.pop()
@@ -38,33 +38,33 @@ struct AddAddressView: View {
             Button {
                 vm.trigger(.save)
             } label: {
-                Text("Save")
+                Text("save".localized)
             }
             .buttonStyle(.plain)
             .foregroundColor(.LL.Primary.salmonPrimary)
             .disabled(!vm.state.isReadyForSave)
         })
         .toast(isPresented: $vm.state.needShowLoadingHud) {
-            ToastView("Saving...").toastViewStyle(.indeterminate)
+            ToastView("saving".localized).toastViewStyle(.indeterminate)
         }
     }
     
     var nameField: some View {
         VStack(alignment: .leading) {
             ZStack {
-                TextField("Name", text: $vm.state.name).frame(height: 50)
+                TextField("name".localized, text: $vm.state.name).frame(height: 50)
             }
             .padding(.horizontal, 10)
             .border(Color.LL.Neutrals.text, cornerRadius: 6)
             
-            Text("Please enter a name").foregroundColor(.LL.Neutrals.text).font(.inter(size: 14, weight: .regular))
+            Text("enter_a_name".localized).foregroundColor(.LL.Neutrals.text).font(.inter(size: 14, weight: .regular))
         }
     }
     
     var addressField: some View {
         VStack(alignment: .leading) {
             ZStack {
-                TextField("Address", text: $vm.state.address).frame(height: 50)
+                TextField("address".localized, text: $vm.state.address).frame(height: 50)
                     .onChange(of: vm.state.address) { _ in
                         vm.trigger(.checkAddress)
                     }
@@ -72,7 +72,7 @@ struct AddAddressView: View {
             .padding(.horizontal, 10)
             .border(Color.LL.Neutrals.text, cornerRadius: 6)
             
-            let addressNormalView = Text("Please enter address")
+            let addressNormalView = Text("enter_address".localized)
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 14, weight: .regular))
             

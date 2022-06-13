@@ -32,15 +32,15 @@ struct TermsAndPolicy: View {
             VStack {
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text("Legal")
+                    Text("legal".localized)
                         .font(.LL.largeTitle)
                         .bold()
                         .foregroundColor(Color.LL.orange)
-                    Text("Information")
+                    Text("information".localized)
                         .font(.LL.largeTitle)
                         .bold()
                         .foregroundColor(Color.LL.rebackground)
-                    Text("Please review the Privacy Policy and Terms of Service of Lilico.")
+                    Text("review_policy_tips".localized)
                         .lineSpacing(5)
                         .font(.LL.body)
                         .foregroundColor(Color.LL.note)
@@ -51,7 +51,7 @@ struct TermsAndPolicy: View {
 
                 VStack(alignment: .leading) {
                     Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
-                        Text("Terms of Service")
+                        Text("terms_of_service".localized)
                             .fontWeight(.semibold)
                             .font(.LL.body)
                         Spacer()
@@ -62,7 +62,7 @@ struct TermsAndPolicy: View {
                     Divider().foregroundColor(Color.LL.outline)
 
                     Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
-                        Text("Privacy Policy")
+                        Text("privacy_policy".localized)
                             .font(.LL.body)
                             .fontWeight(.semibold)
                         Spacer()
@@ -81,8 +81,8 @@ struct TermsAndPolicy: View {
 
                 VPrimaryButton(model: ButtonStyle.primary,
                                action: {
-                                   router.route(to: \.username)
-                               }, title: "I Accept")
+                    router.route(to: \.username)
+                }, title: "i_accept".localized)
                     .padding(.bottom)
             }
             .padding(.horizontal, 28)

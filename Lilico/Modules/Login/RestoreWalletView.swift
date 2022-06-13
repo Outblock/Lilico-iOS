@@ -31,16 +31,16 @@ struct RestoreWalletView: View {
                 Spacer()
                 VStack(alignment: .leading, spacing: 18) {
                     HStack {
-                        Text("Restore")
+                        Text("restore".localized)
                             .foregroundColor(Color.LL.orange)
                             .bold()
-                        Text(" Wallet")
+                        Text("wallet".localized)
                             .foregroundColor(Color.LL.text)
                             .bold()
                     }
                     .font(.LL.largeTitle)
 
-                    Text("Restore your wallet with the 12 word \n recovery phrase that you have written down.")
+                    Text("restore_with_words_desc".localized)
                         .font(.LL.body)
                         .foregroundColor(.LL.note)
                         .padding(.top, 1)
@@ -52,7 +52,7 @@ struct RestoreWalletView: View {
                 Button {
                     viewModel.getKeyFromiCloud()
                 } label: {
-                    Text("Restore with iCloud")
+                    Text("restore_with_icloud".localized)
                         .font(.headline)
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -67,7 +67,7 @@ struct RestoreWalletView: View {
                 Button {
                     viewModel.signInButtonTapped()
                 } label: {
-                    Text("Restore with Google Drive")
+                    Text("restore_with_gd".localized)
                         .font(.headline)
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -83,7 +83,7 @@ struct RestoreWalletView: View {
                 Button {
                     router.route(to: \.inputMnemonic)
                 } label: {
-                    Text("Restore with Recovery Phrase")
+                    Text("restore_with_recovery_phrase".localized)
                         .font(.headline)
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .center)

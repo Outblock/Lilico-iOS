@@ -159,7 +159,7 @@ struct NFTDetailPage: View {
                         Image(systemName: "paperplane")
                             .font(.system(size: 16))
                             .foregroundColor(theColor)
-                        Text("Send")
+                        Text("send".localized)
                             .foregroundColor(.LL.Neutrals.text)
                     }
                     
@@ -180,7 +180,7 @@ struct NFTDetailPage: View {
                         Image(systemName: "arrow.down")
                             .font(.system(size: 16))
                             .foregroundColor(theColor)
-                        Text("Download")
+                        Text("download".localized)
                             .foregroundColor(.LL.Neutrals.text)
                     }
 
@@ -188,7 +188,7 @@ struct NFTDetailPage: View {
                         
                     } label: {
                         HStack {
-                            Text("View on web")
+                            Text("view_on_web".localized)
                                 .foregroundColor(.LL.Neutrals.text)
                             Image(systemName: "globe.asia.australia")
                                 .font(.system(size: 16))
@@ -202,7 +202,7 @@ struct NFTDetailPage: View {
                     Image(systemName: "ellipsis")
                         .font(.system(size: 16))
                         .foregroundColor(theColor)
-                    Text("More")
+                    Text("more".localized)
                         .foregroundColor(.LL.Neutrals.text)
                 }
                 .frame(width: 84, height: 42)
@@ -235,7 +235,7 @@ struct NFTDetailPage: View {
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
                 VStack(alignment: .leading,spacing: 0) {
-                    Text("Purchase Price")
+                    Text("purchase_price".localized)
                         .font(.LL.body)
                         .frame(height: 22)
                         .foregroundColor(.LL.Neutrals.neutrals7)
@@ -253,7 +253,7 @@ struct NFTDetailPage: View {
                 Spacer()
 
                 VStack(alignment: .trailing, spacing: 0) {
-                    Text("Purchase Date")
+                    Text("purchase_date".localized)
                         .font(.LL.body)
                         .frame(height: 22)
                         .foregroundColor(.LL.Neutrals.neutrals7)

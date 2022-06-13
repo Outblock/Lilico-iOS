@@ -61,17 +61,17 @@ struct EnterPasswordView: View {
             VStack(spacing: 10) {
                 VStack(alignment: .leading, spacing: 18) {
                     HStack {
-                        Text("Enter")
+                        Text("enter".localized)
                             .foregroundColor(Color.LL.text)
                             .bold()
-                        Text("Password")
+                        Text("password".localized)
                             .foregroundColor(Color.LL.orange)
                             .bold()
                     }
                     .font(.LL.largeTitle)
                     .minimumScaleFactor(0.5)
 
-                    Text("The password you created when you backup the wallet.")
+                    Text("pwd_created_tips".localized)
                         .font(.LL.body)
                         .foregroundColor(.LL.note)
                         .padding(.top, 1)
@@ -82,8 +82,8 @@ struct EnterPasswordView: View {
                            type: .secure,
                            state: $state,
 //                           highlight: .error,
-                           placeholder: "Enter your password",
-                           footerTitle: "Minimum 8 characters",
+                           placeholder: "enter_your_password".localized,
+                           footerTitle: "minimum_8_char".localized,
                            text: $text) {}
                     .padding(.top, 50)
 
@@ -92,8 +92,8 @@ struct EnterPasswordView: View {
                 VPrimaryButton(model: ButtonStyle.primary,
                                state: buttonState,
                                action: {
-                                   viewModel.trigger(.signIn(text))
-                               }, title: "Restore account")
+                    viewModel.trigger(.signIn(text))
+                }, title: "restore_account".localized)
 
 //                Button {
 //                    router.route(to: \.userName)

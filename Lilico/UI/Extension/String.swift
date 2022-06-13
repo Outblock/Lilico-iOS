@@ -8,6 +8,14 @@
 import Foundation
 
 extension String {
+    var localized: String {
+        return NSLocalizedString(self, comment:"")
+    }
+    
+    func localized(_ args: CVarArg...) -> String {
+        return String.localizedStringWithFormat(self.localized, args)
+    }
+    
     func condenseWhitespace() -> String {
         let components = self.components(separatedBy: .whitespacesAndNewlines)
         return components.filter { !$0.isEmpty }.joined(separator: " ")

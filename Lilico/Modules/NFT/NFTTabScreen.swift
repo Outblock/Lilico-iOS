@@ -350,7 +350,7 @@ extension NFTTabScreen {
                 if(listStyle == "List") {
                     HStack() {
                         Image(.Image.Logo.collection3D)
-                        Text("Collections")
+                        Text("collections".localized)
                             .font(.LL.largeTitle2)
                             .semibold()
                         

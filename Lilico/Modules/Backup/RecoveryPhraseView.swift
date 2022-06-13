@@ -54,17 +54,17 @@ struct RecoveryPhraseView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("Recovery")
+                            Text("recovery".localized)
                                 .bold()
                                 .foregroundColor(Color.LL.text)
 
-                            Text("Phrase")
+                            Text("phrase".localized)
                                 .bold()
                                 .foregroundColor(Color.LL.orange)
                         }
                         .font(.LL.largeTitle)
 
-                        Text("Write down or copy these words in the right order and save them somewhere safe.")
+                        Text("words_save_tips".localized)
                             .font(.LL.body)
                             .foregroundColor(.LL.note)
                             .padding(.top, 1)
@@ -81,7 +81,7 @@ struct RecoveryPhraseView: View {
                             Spacer()
                         }
 
-                        Text("Hide")
+                        Text("hide".localized)
                             .padding(5)
                             .padding(.horizontal, 5)
                             .foregroundColor(.LL.background)
@@ -105,11 +105,11 @@ struct RecoveryPhraseView: View {
                             VStack(spacing: 10) {
                                 Image(systemName: "eyes")
                                     .font(.largeTitle)
-                                Text("Make sure you are in a private place !")
+                                Text("private_place_tips".localized)
                                     .foregroundColor(.LL.note)
                                     .font(.LL.body)
                                     .fontWeight(.semibold)
-                                Text("Reveal")
+                                Text("reveal".localized)
                                     .padding(5)
                                     .padding(.horizontal, 2)
                                     .foregroundColor(.LL.background)
@@ -127,10 +127,10 @@ struct RecoveryPhraseView: View {
                     .padding(.vertical, 20)
 
                     VStack(spacing: 10) {
-                        Text("Do not share your secret phrase!")
+                        Text("not_share_secret_tips".localized)
                             .font(.LL.caption)
                             .bold()
-                        Text("If someone has your secret phrase, they will have full control of your wallet.")
+                        Text("not_share_secret_desc".localized)
                             .font(.LL.footnote)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -146,18 +146,18 @@ struct RecoveryPhraseView: View {
                     VPrimaryButton(model: ButtonStyle.primary,
                                    state: viewModel.icloudLoading ? .loading : .enabled,
                                    action: {
-                                       viewModel.trigger(.icloudBackup)
-                                   }, title: "Backup to iCould")
+                        viewModel.trigger(.icloudBackup)
+                    }, title: "backup_to_icloud".localized)
 
                     VPrimaryButton(model: ButtonStyle.border,
                                    action: {
-                                       viewModel.trigger(.googleBackup)
-                                   }, title: "Backup to Google Drive")
+                        viewModel.trigger(.googleBackup)
+                    }, title: "backup_to_gd".localized)
 
                     VPrimaryButton(model: ButtonStyle.plain,
                                    action: {
-                                       viewModel.trigger(.manualBackup)
-                                   }, title: "Backup Manually")
+                        viewModel.trigger(.manualBackup)
+                    }, title: "backup_manually".localized)
                 }
 //                    .padding(.bottom)
             }
@@ -166,7 +166,7 @@ struct RecoveryPhraseView: View {
             }
             .padding(.horizontal, 30)
 //            .navigationBarBackButtonHidden(true)
-            .navigationTitle("Recovery Phrase")
+            .navigationTitle("recovery_phrase".localized)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: btnBack)
             .background(Color.LL.background, ignoresSafeAreaEdges: .all)

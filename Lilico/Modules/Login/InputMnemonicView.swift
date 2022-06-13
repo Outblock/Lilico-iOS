@@ -50,7 +50,7 @@ struct InputMnemonicView: View {
             viewModel.trigger(.next)
         } label: {
             HStack {
-                Text("Next")
+                Text("next".localized)
                     .foregroundColor(viewModel.state.nextEnable ? Color.LL.text : Color.LL.note)
             }
         }
@@ -71,19 +71,19 @@ struct InputMnemonicView: View {
             NavigationView {
                 VStack(spacing: 10) {
                     VStack(alignment: .leading) {
-                        Text("Sign in With")
+                        Text("sign_in_with".localized)
                             .foregroundColor(Color.LL.text)
                             .bold()
                             .font(.LL.largeTitle)
 //                            .minimumScaleFactor(0.5)
 
-                        Text("Recovery Phrase")
+                        Text("recovery_phrase".localized)
                             .foregroundColor(Color.LL.orange)
                             .bold()
                             .font(.LL.largeTitle)
 //                            .minimumScaleFactor(0.5)
 
-                        Text("This is a 12 word phrase you were given when you created your previous wallet.")
+                        Text("phrase_you_created_desc".localized)
                             .lineSpacing(5)
                             .font(.LL.body)
                             .foregroundColor(.LL.note)
@@ -96,7 +96,7 @@ struct InputMnemonicView: View {
 
                     ZStack(alignment: .topLeading) {
                         if viewModel.state.text.isEmpty {
-                            Text("Enter your Rcovery Phrase (12 words)")
+                            Text("enter_rp_placeholder".localized)
                                 .font(.LL.body)
                                 .foregroundColor(.LL.note)
                                 .padding(.all, 10)
@@ -129,7 +129,7 @@ struct InputMnemonicView: View {
                     HStack {
                         Image(systemName: "info.circle.fill")
                             .font(.LL.footnote)
-                        Text("Oops, words not found.")
+                        Text("words_not_found".localized)
                             .font(.LL.footnote)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -142,7 +142,7 @@ struct InputMnemonicView: View {
                                    state: viewModel.state.nextEnable ? .enabled : .disabled,
                                    action: {
                         viewModel.trigger(.next)
-                    }, title: "Next")
+                    }, title: "next".localized)
                         .padding(.horizontal, 28)
 
                     Spacer()

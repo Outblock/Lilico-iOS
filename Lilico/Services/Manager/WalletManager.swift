@@ -188,7 +188,7 @@ extension WalletManager {
     private func restoreMnemonicForCurrentUser() {
         if !UserManager.shared.isAnonymous, let username = UserManager.shared.userInfo?.username {
             if !restoreMnemonicFromKeychain(username: username) {
-                HUD.error(title: "Private key is missing !!")
+                HUD.error(title: "no_private_key".localized)
             }
         }
     }
