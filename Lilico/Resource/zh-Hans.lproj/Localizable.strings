@@ -1,4 +1,4 @@
-/* 
+/*
   AppString.strings
   Lilico
 
@@ -148,7 +148,7 @@
 // Address Book
 "edit_contact" = "Edit contact";
 "add_contact" = "Add contact";
-"save" = "Save"
+"save" = "Save";
 "saving" = "Saving...";
 "name" = "Name";
 "enter_a_name" = "Please enter a name";
@@ -181,3 +181,4 @@
 "restore_with_icloud" = "Restore with iCloud";
 "restore_with_gd" = "Restore with Google Drive";
 "restore_with_recovery_phrase" = "Restore with Recovery Phrase";
+

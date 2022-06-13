@@ -148,7 +148,7 @@
 // Address Book
 "edit_contact" = "Edit contact";
 "add_contact" = "Add contact";
-"save" = "Save"
+"save" = "Save";
 "saving" = "Saving...";
 "name" = "Name";
 "enter_a_name" = "Please enter a name";
