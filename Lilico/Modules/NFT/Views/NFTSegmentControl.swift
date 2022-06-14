@@ -44,7 +44,7 @@ struct NFTSegmentItem: View {
             .background(
                 ZStack{
                     if (current == title) {
-                        Color.white
+                        Color.LL.Shades.front
                             .cornerRadius(16)
                             .matchedGeometryEffect(id: "Segment", in: animation)
                     }
@@ -64,6 +64,12 @@ struct NFTSegmentControl_Previews: PreviewProvider {
     @State static var current: String = "List"
     static var previews: some View {
         NFTSegmentControl(currentTab: $current, titles: ["List", "Grid"])
+            .previewLayout(.fixed(width: 300, height: /*@START_MENU_TOKEN@*/100.0/*@END_MENU_TOKEN@*/))
+            .preferredColorScheme(.light)
+            .background(Color.black)
+        NFTSegmentControl(currentTab: $current, titles: ["List", "Grid"])
+            .previewLayout(.fixed(width: 300, height: /*@START_MENU_TOKEN@*/100.0/*@END_MENU_TOKEN@*/))
+            .preferredColorScheme(.dark)
             .background(Color.black)
     }
 }

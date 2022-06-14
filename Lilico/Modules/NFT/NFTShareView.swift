@@ -9,17 +9,20 @@ import SwiftUI
 import Kingfisher
 
 struct NFTShareView: View {
-    var nft: NFTModel
-    var name: String = "ZYANZ"
+    @State var nft: NFTModel
+    @State var colors: [Color]
+    @State var name: String = "ZYANZ"
     
-    var mainColor = Color(hex: 0x6D9987)
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            
             HStack(spacing: 0) {
                 KFImage
                     .url(nft.logoUrl)
                     .resizable()
+                    .onSuccess({ _ in
+                    })
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 20, height: 20,alignment: .center)
                     .cornerRadius(20)
@@ -38,7 +41,9 @@ struct NFTShareView: View {
             }
             .padding(.horizontal, 18)
             .padding(.vertical, 12)
-            .background(mainColor)
+            .background(
+                colors.count > 0 ? colors.first : Color.white
+            )
             .cornerRadius(12)
             .clipped()
             
@@ -86,7 +91,9 @@ struct NFTShareView: View {
             
             HDashLine().stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
                 .frame(height: 1)
-                .foregroundColor(mainColor.opacity(0.18))
+                .foregroundColor(
+                    colors.count > 0 ? colors[0].opacity(0.18) : .LL.Neutrals.background
+                )
 
             
             HStack(spacing: 0) {
@@ -123,13 +130,19 @@ struct NFTShareView: View {
             .cornerRadius(16)
             
         }
+        .background(
+            NFTBlurImageView(colors: colors)
+        )
         .padding(18)
+        
+        
     }
+    
 }
 
 struct NFTShareView_Previews: PreviewProvider {
     static var previews: some View {
-        NFTShareView(nft: NFTTabViewModel.testNFT())
+        NFTShareView(nft: NFTTabViewModel.testNFT(), colors: [])
     }
 }
 

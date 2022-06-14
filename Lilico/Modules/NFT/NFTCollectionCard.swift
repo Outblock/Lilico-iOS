@@ -51,6 +51,8 @@ struct NFTCollectionCard: View {
                 Spacer()
                 Image(systemName: "arrow.forward")
                     .foregroundColor(.LL.Primary.salmonPrimary)
+                    .padding(.trailing, 8)
+                
             }
         }
         .padding(8)

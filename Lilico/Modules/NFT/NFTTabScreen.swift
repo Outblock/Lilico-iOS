@@ -51,6 +51,7 @@ struct NFTTabScreen: View {
     @State private var favoriteId: String?
     @State private var currentNFTImage: URL?
     
+    @Namespace var NFTImageEffect
     
     var currentNFTs: [NFTModel] {
         if(isListStyle) {
@@ -107,7 +108,7 @@ struct NFTTabScreen: View {
                 
                 if(!viewModel.isEmpty) {
                     ScrollView(showsIndicators: false) {
-                        LazyVStack(pinnedViews: [.sectionHeaders]) {
+                        LazyVStack(spacing: 0,pinnedViews: [.sectionHeaders]) {
                             
                             if(isListStyle) {
                                 if(canShowFavorite) {
@@ -116,30 +117,34 @@ struct NFTTabScreen: View {
                                 NFTTabScreen.CollectionBar(barStyle: $collectionBarStyle, listStyle: $listStyle)
                                 Section {
                                     if(collectionBarStyle == .horizontal) {
-                                        NFTListView(list: currentNFTs)
+                                        NFTListView(list: currentNFTs, imageEffect: NFTImageEffect)
 
                                     }
                                 } header: {
                                     NFTTabScreen.CollectionBody(barStyle: $collectionBarStyle, selectedIndex: $selectedIndex)
                                 }
                             }else {
-                                NFTListView(list: currentNFTs)
+                                NFTListView(list: currentNFTs,imageEffect: NFTImageEffect)
                             }
                         }
                     }
                     .safeAreaInset(edge: .top) {
                         NFTTabScreen.TopBar(listStyle: $listStyle)
                     }
-                    
                     .padding(.top, statusHeight)
+                    .background(
+                        ZStack {
+                            Color.LL.Neutrals.background
+                            if(canShowFavorite) {
+                                NFTBlurImageView(colors: viewModel.state.colorsMap[currentNFTImage?.absoluteString ?? ""] ?? [])
+                            }
+                        }
+
+                    )
                 }
             }
             .background(
-                ZStack {
-                    if(canShowFavorite) {
-                        NFTBlurImageView(colors: viewModel.state.colorsMap[currentNFTImage?.absoluteString ?? ""] ?? [])
-                    }
-                }
+                
             )
             .ignoresSafeArea()
         }
@@ -189,16 +194,18 @@ extension NFTTabScreen {
 
                         StackPageView(viewModel.favoriteStore.favorites, selection:$favoriteId) { nft in
                             ZStack {
-                                RoundedRectangle(cornerRadius: 20)
+                                RoundedRectangle(cornerRadius: 16)
                                     .fill(Color.LL.background)
-
                                 KFImage
                                     .url(nft.image)
                                     .fade(duration: 0.25)
                                     .resizable()
-                                    .aspectRatio(1, contentMode: .fill)
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: (screenWidth * 0.76-18-24),
+                                           height: (screenWidth * 0.76-18-24) )
                                     .cornerRadius(8)
-                                    .padding()
+                                    .clipped()
+                                    .padding(12)
 
                             }
                             .onTapGesture {
@@ -210,7 +217,7 @@ extension NFTTabScreen {
                             top: .absolute(18),
                             left: .absolute(18),
                             bottom: .absolute(18),
-                            right: .fractionalWidth(0.22)
+                            right: .fractionalWidth(0.24)
                         )
                         .frame(width: screenWidth,
                                height: screenHeight * 0.4, alignment: .center)
@@ -288,24 +295,23 @@ extension NFTTabScreen {
                 if(!viewModel.state.isEmpty) {
                     
                     NFTSegmentControl(currentTab: $listStyle, titles: ["List","Grid"])
-                    
 
                 }
                 Spacer()
                 
-                if(!viewModel.state.isEmpty) {
-                    Button {
-                        viewModel.trigger(.search)
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.white)
-                            .padding(8)
-                            .background {
-                                Circle()
-                                    .foregroundColor(.LL.outline.opacity(0.8))
-                            }
-                    }
-                }
+//                if(!viewModel.state.isEmpty) {
+//                    Button {
+//                        viewModel.trigger(.search)
+//                    } label: {
+//                        Image(systemName: "magnifyingglass")
+//                            .foregroundColor(.white)
+//                            .padding(8)
+//                            .background {
+//                                Circle()
+//                                    .foregroundColor(.LL.outline.opacity(0.8))
+//                            }
+//                    }
+//                }
                 
                 Button {
                     viewModel.trigger(.add)
@@ -370,8 +376,12 @@ extension NFTTabScreen {
                         .frame(height: 0)
                 }
             }
+            .background(
+                Color.LL.Neutrals.background
+            )
             
         }
+            
     }
 }
 
@@ -411,7 +421,9 @@ extension NFTTabScreen {
                     .padding(.horizontal, 18)
                 }
             }
-            
+            .background(
+                Color.LL.Neutrals.background
+            )
         }
     }
 }

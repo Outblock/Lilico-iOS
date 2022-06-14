@@ -15,6 +15,8 @@ struct NFTCollectionListView: View {
     @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
     @State var opacity: Double = 0
     
+    @Namespace var imageEffect
+    
     init(collection: CollectionItem) {
         self.collection = collection
     }
@@ -28,7 +30,7 @@ struct NFTCollectionListView: View {
                 
                 InfoView(collection: collection)
                     .padding(.bottom, 24)
-                NFTListView(list: collection.nfts)
+                NFTListView(list: collection.nfts, imageEffect: imageEffect)
             }
         }
         .background(
@@ -87,19 +89,19 @@ extension NFTCollectionListView {
                         .frame(height: 20)
                     
                     HStack(spacing: 8) {
-                        Button {
-                            
-                        } label: {
-                            Image("nft_button_share_inline")
-                            Text("share".localized)
-                                .font(.LL.body)
-                                .fontWeight(.w600)
-                                .foregroundColor(.LL.Neutrals.neutrals3)
-                        }
-                        .padding(.horizontal, 10)
-                        .frame(height: 38)
-                        .background(.thinMaterial)
-                        .cornerRadius(12)
+//                        Button {
+//                            
+//                        } label: {
+//                            Image("nft_button_share_inline")
+//                            Text("share".localized)
+//                                .font(.LL.body)
+//                                .fontWeight(.w600)
+//                                .foregroundColor(.LL.Neutrals.neutrals3)
+//                        }
+//                        .padding(.horizontal, 10)
+//                        .frame(height: 38)
+//                        .background(.thinMaterial)
+//                        .cornerRadius(12)
                         
 
                         Button {

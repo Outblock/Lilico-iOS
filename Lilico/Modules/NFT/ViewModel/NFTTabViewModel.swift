@@ -86,7 +86,8 @@ class NFTTabViewModel: ViewModel {
             }
             print("获取的NFT数量：\(totalCount) | \(currentCount)")
         }
-        while ( totalCount > currentCount)
+        while(false)
+//        while ( totalCount > currentCount)
         return allCrudeNFTs
     }
     

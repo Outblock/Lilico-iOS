@@ -54,7 +54,9 @@ struct NFTBlurImageView: View {
                     
                 }
                 .ignoresSafeArea()
-                .background(.LL.Neutrals.background)
+                .background(
+                    LinearGradient(colors: [.LL.Shades.front.opacity(0), .LL.Neutrals.background], startPoint: .top, endPoint: .bottom)
+                )
                 .blur(radius: 10)
                 .mask(
                     LinearGradient(gradient: Gradient(colors:

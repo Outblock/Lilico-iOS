@@ -10,6 +10,7 @@ import Kingfisher
 
 struct NFTDetailPage: View {
     
+    static var ShareNFTView: NFTShareView? = nil
     
     @StateObject
     var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
@@ -17,6 +18,7 @@ struct NFTDetailPage: View {
     var nft: NFTModel
     
     @State var opacity: Double = 0
+    
     
     var theColor: Color {
         if let color = viewModel.state.colorsMap[nft.image.absoluteString]?.first {
@@ -31,8 +33,13 @@ struct NFTDetailPage: View {
     @State
     private var items:[UIImage] = []
     
+    @State var image: Image?
+    @State var rect: CGRect = .zero
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
+            
+            NFTDetailPage.ShareNFTView
             
             ScrollView(showsIndicators: false) {
                 Spacer()
@@ -76,7 +83,7 @@ struct NFTDetailPage: View {
                             Spacer()
                             
                             Button {
-                                
+                                share();
                             } label: {
                                 Image("nft_button_share")
                                     .frame(width: 44,height: 44)
@@ -149,9 +156,24 @@ struct NFTDetailPage: View {
                         .frame(height: 50)
                 }
                 
+                image?
+                    .resizable()
+                
+                
+                
             }
             
+            
+            
+        }
+        .background(
+            NFTBlurImageView(colors: viewModel.state.colorsMap[nft.image.absoluteString] ?? [])
+                .ignoresSafeArea()
+                .offset(y: -4)
+        )
+        .safeAreaInset(edge: .bottom, content: {
             HStack(spacing: 8) {
+                Spacer()
                 Button {
                     
                 } label: {
@@ -215,20 +237,16 @@ struct NFTDetailPage: View {
                 
             }
             .padding(.trailing, 18)
-
-        }
-        .background(
-            NFTBlurImageView(colors: viewModel.state.colorsMap[nft.image.absoluteString] ?? [])
-                .ignoresSafeArea()
-                .offset(y: -4)
-        )
+        })
         .overlay(
             NFTNavigationBar(title: nft.name, opacity: $opacity) {
                 viewModel.trigger(.back)
             }
         )
-        
-        
+        .onAppear {
+            NFTDetailPage.ShareNFTView = NFTShareView(nft: nft, colors: viewModel.state.colorsMap[nft.image.absoluteString] ?? [])
+                
+        }
     }
     
     var date: some View {
@@ -268,11 +286,33 @@ struct NFTDetailPage: View {
         .padding(.vertical, 8)
         .padding(.horizontal,8)
     }
+
     
     func fetchColor() {
         viewModel.trigger(.fetchColors(nft.image.absoluteString))
     }
     
+    static var retryCount: Int = 0
+    func share() {
+        
+        if let colors = viewModel.state.colorsMap[nft.image.absoluteString] {
+            NFTDetailPage.ShareNFTView = NFTShareView(nft: nft, colors: colors)
+            let img = NFTDetailPage.ShareNFTView.snapshot()
+            self.image = Image(uiImage: img)
+            NFTDetailPage.ShareNFTView = nil
+        }else {
+            NFTDetailPage.retryCount += 1
+            if(NFTDetailPage.retryCount < 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    share()
+                }
+            }else {
+                NFTDetailPage.retryCount = 0
+                //TODO: share error
+            }
+            
+        }
+    }
 }
 
 struct NFTDetailPage_Previews: PreviewProvider {
