@@ -129,7 +129,7 @@ struct NFTDetailPage: View {
                     
                     //
                     VStack(spacing: 0) {
-                        VStack(alignment: .trailing, spacing: 18) {
+                        VStack(alignment: .leading, spacing: 18) {
                             if(!nft.tags.isEmpty) {
                                 NFTTagsView(tags: nft.tags, color: theColor)
                             }
