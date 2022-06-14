@@ -205,9 +205,10 @@ extension NFTTabScreen {
                                            height: (screenWidth * 0.76-18-24) )
                                     .cornerRadius(8)
                                     .clipped()
-                                    .padding(12)
 
                             }
+                            .frame(width: (screenWidth * 0.76-18),
+                                   height: (screenWidth * 0.76-18) )
                             .onTapGesture {
                                 onTapNFT()
                             }

@@ -75,6 +75,7 @@ struct NFTDetailPage: View {
                                     Text(nft.subtitle)
                                         .font(.LL.body)
                                         .fontWeight(.w400)
+                                        .lineLimit(1)
                                         .foregroundColor(.LL.Neutrals.neutrals4)
                                 }
                             }
