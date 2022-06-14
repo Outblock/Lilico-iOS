@@ -39,48 +39,43 @@ struct NFTModel: Codable, Hashable, Identifiable {
     
     
     var id: String {
-        return collections
+        return (response.contract.name ?? "") + " #" + response.id.tokenID
     }
     let image: URL
     var video: URL?
-    let name: String
-    let collections: String
+    let title: String
+    let subtitle: String
 
-    let response: NFTResponse?
+    let response: NFTResponse
     let collection: NFTCollection?
     
     
     init(_ response: NFTResponse, in collection: NFTCollection?) {
-        var url = response.imageUrl()
-        if url == nil , let data = response.metadata.metadata.first(where: { $0.name.contains("image")}) {
-            url = data.value
+        
+        
+        if let imgUrl = response.postMedia.image {
+            image = URL(string: imgUrl)!
+        }else {
+            image = URL(string: placeholder)!
         }
         
-        if url != nil  {
-            url = url!.replacingOccurrences(of: "ipfs://", with: "https://ipfs.io/ipfs/")
-        }
-        if url == nil || url!.isEmpty {
-            url = placeholder
-        }
-        print("image-url: \(url!)")
-        image = URL(string: url!)!
-        if let videoUrl = response.videoUrl() {
+        
+        if let videoUrl = response.postMedia.video {
             video = URL(string: videoUrl)
         }
         
         
-        collections = (response.contract.name ?? "") + " #" + response.id.tokenID
-        name = response.contract.name ?? ""
+        subtitle = response.postMedia.description ?? ""
+        title = response.postMedia.title ?? response.contract.name ?? ""
         self.collection = collection
         self.response = response
     }
     
     var declare: String {
-        print("NFT Des: \(response?.description)")
-        if let dec = response?.description {
+        if let dec = response.postMedia.description {
             return dec
         }
-        return ""
+        return response.description ?? ""
     }
     
     var logoUrl: URL {
@@ -88,9 +83,9 @@ struct NFTModel: Codable, Hashable, Identifiable {
     }
     
     var tags:[NFTMetadatum] {
-        return response?.metadata.metadata.filter{ meta in
+        return response.metadata.metadata.filter{ meta in
             !filterMetadata.contains(meta.name.lowercased()) && !meta.value.isEmpty && !meta.value.hasPrefix("https://")
-        } ?? []
+        }
     }
 }
 

@@ -50,7 +50,7 @@ struct NFTShareView: View {
             
             VStack(alignment: .leading) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(nft.collections)
+                    Text(nft.title)
                         .font(.LL.largeTitle3)
                         .fontWeight(.w700)
                         .foregroundColor(.LL.Neutrals.text)
@@ -63,7 +63,7 @@ struct NFTShareView: View {
                             .frame(width: 20, height: 20,alignment: .center)
                             .cornerRadius(20)
                             .clipped()
-                        Text(nft.name)
+                        Text(nft.subtitle)
                             .font(.LL.body)
                             .fontWeight(.w400)
                             .foregroundColor(.LL.Neutrals.neutrals4)

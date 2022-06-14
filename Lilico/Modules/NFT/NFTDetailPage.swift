@@ -39,8 +39,6 @@ struct NFTDetailPage: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             
-            NFTDetailPage.ShareNFTView
-            
             ScrollView(showsIndicators: false) {
                 Spacer()
                     .frame(height: 64)
@@ -61,7 +59,7 @@ struct NFTDetailPage: View {
                         
                         HStack(alignment: .center, spacing: 0) {
                             VStack(alignment: .leading, spacing: 0) {
-                                Text(nft.collections)
+                                Text(nft.title)
                                     .font(.LL.largeTitle3)
                                     .fontWeight(.w700)
                                     .foregroundColor(.LL.Neutrals.text)
@@ -74,7 +72,7 @@ struct NFTDetailPage: View {
                                         .frame(width: 20, height: 20,alignment: .center)
                                         .cornerRadius(20)
                                         .clipped()
-                                    Text(nft.name)
+                                    Text(nft.subtitle)
                                         .font(.LL.body)
                                         .fontWeight(.w400)
                                         .foregroundColor(.LL.Neutrals.neutrals4)
@@ -187,13 +185,12 @@ struct NFTDetailPage: View {
                     
                     
                 }
-                .frame(width: 84, height: 42)
-                .background(
-                    Color.LL.Neutrals.background
-                )
+                .padding(.horizontal, 12)
+                .padding(.vertical,10)
                 .cornerRadius(12)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
                 .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 16)
-                
+            
                 
                 Menu {
                     Button {
@@ -227,19 +224,25 @@ struct NFTDetailPage: View {
                     Text("more".localized)
                         .foregroundColor(.LL.Neutrals.text)
                 }
-                .frame(width: 84, height: 42)
-                .background(
-                    Color.LL.Neutrals.background
-                )
+                .padding(.horizontal, 12)
+                .padding(.vertical,10)
                 .cornerRadius(12)
-                .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 16)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+                .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 20)
+//                .background(
+//                    Color.LL.Neutrals.background
+//                        .blur(radius: 12)
+//                        .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 20)
+//                )
+                
+                
                 
                 
             }
             .padding(.trailing, 18)
         })
         .overlay(
-            NFTNavigationBar(title: nft.name, opacity: $opacity) {
+            NFTNavigationBar(title: nft.title, opacity: $opacity) {
                 viewModel.trigger(.back)
             }
         )

@@ -396,21 +396,30 @@ extension NFTTabScreen {
         var body: some View {
             VStack {
                 if( barStyle == .horizontal) {
-                    ScrollView(.horizontal,
-                               showsIndicators: false,
-                               content: {
-                        
-                        LazyHStack(alignment: .center, spacing: 12, content: {
+                    ScrollViewReader { proxy in
+                        ScrollView(.horizontal,
+                                   showsIndicators: false,
+                                   content: {
                             
-                            ForEach(viewModel.state.items, id: \.self) { item in
-                                NFTCollectionCard(index: viewModel.state.items.firstIndex(of: item)!, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
-                            }
+                            LazyHStack(alignment: .center, spacing: 12, content: {
+                                
+                                ForEach(viewModel.state.items, id: \.self) { item in
+                                    let index = viewModel.state.items.firstIndex(of: item)!
+                                    NFTCollectionCard(index: index, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
+                                        .id(index)
+                                        .onChange(of: selectedIndex) { value in
+                                            withAnimation {
+                                                proxy.scrollTo(value, anchor: .center)
+                                            }
+                                        }
+                                }
+                            })
+                            .frame(height: 56)
+                            .padding(.leading, 18)
+                            .padding(.bottom, 12)
+                            
                         })
-                        .frame(height: 56)
-                        .padding(.leading, 18)
-                        .padding(.bottom, 12)
-                        
-                    })
+                    }
                 }else {
                     LazyVStack(alignment: .center, spacing: 12, content: {
                         

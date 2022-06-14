@@ -93,11 +93,9 @@ class NFTTabViewModel: ViewModel {
     
     private func fetchNFTList(from offset: Int = 0, limit: Int = 30 ) async throws -> (Int, [NFTResponse]) {
         do {
-            let request = NFTListRequest(owner: owner, offset: offset, limit: limit)
-            let response: NFTListResponse = try await Network.requestWithRawModel(AlchemyEndpoint.nftList(request),
-                                                                                  decoder: JSONDecoder(),
-                                                                                  needToken: false)
-            return (response.nftCount, response.nfts)
+            let request = NFTRequest(address: owner, offset: offset, limit: limit)
+            let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.list(request))
+            return (response.data!.nftCount, response.data!.nfts)
         }
         catch {
             throw error
@@ -206,61 +204,49 @@ extension NFTTabViewModel {
     static func testNFT() -> NFTModel {
         let nftJsonData = """
         {
-            "contract": {
-                "name": "NyatheesOVO",
-                "address": "0x75e0b6de94eb05d0",
-                "externalDomain": "",
-                "contractMetadata": {
-                    "storagePath": "NyatheesOVO.CollectionStoragePath",
-                    "publicPath": "NyatheesOVO.CollectionPublicPath",
-                    "publicCollectionName": "NyatheesOVO.NFTCollectionPublic"
-                }
-            },
-            "id": {
-                "tokenId": "2850",
-                "tokenMetadata": {
-                    "uuid": "61769425"
-                }
-            },
-            "media": [],
-            "description": "Monet traveled more extensively than any other Impressionist artist in search of new motifs. His journeys to varied places including the rugged Normandy coast, the sunny Mediterranean, London, the Netherlands, and Norway inspired artworks that will be featured in the presentation. This exhibition uncovers Monet’s continuous dialogue with nature and its places through a thematic and chronological arrangement, from the first examples of artworks still indebted to the landscape tradition to the revolutionary compositions and series of his late years.",
-            "metadata": {
-                "metadata": [
-                    {
-                        "name": "metadataUrl",
-                        "value": "https://www.ovo.space/api/v1/metadata/get-metadata?tokenId="
-                    },
-                    {
-                        "name": "level",
-                        "value": "1"
-                    },
-                    {
-                        "name": "image",
-                        "value": "https://ovowebpics.s3.ap-northeast-1.amazonaws.com/flowMysertybox4.png"
-                    },
-                    {
-                        "name": "sign",
-                        "value": "1"
-                    },
-                    {
-                        "name": "hash",
-                        "value": "10"
-                    },
-                    {
-                        "name": "uri",
-                        "value": "https://www.ovo.space/#/profile"
-                    },
-                    {
-                        "name": "description",
-                        "value": "Big-eating cat,  This pose is the hardest to pull off."
-                    },
-                    {
-                        "name": "title",
-                        "value": "Yellow Ranger"
+                        "contract": {
+                            "address": "0x2d2750f240198f91",
+                            "contractMetadata": {
+                                "publicCollectionName": "MatrixWorldFlowFestNFT.MatrixWorldFlowFestNFTCollectionPublic",
+                                "publicPath": "MatrixWorldFlowFestNFT.CollectionPublicPath",
+                                "storagePath": "MatrixWorldFlowFestNFT.CollectionStoragePath"
+                            },
+                            "externalDomain": "matrixworld.org",
+                            "name": "MatrixWorldFlowFestNFT"
+                        },
+                        "description": "a patrol code block for interacting with objects, 930/1500",
+                        "externalDomainViewUrl": "matrixworld.org",
+                        "id": {
+                            "tokenId": "929",
+                            "tokenMetadata": {
+                                "uuid": "60564528"
+                            }
+                        },
+                        "media": [
+                            {
+                                "mimeType": "image",
+                                "uri": "https://storageapi.fleek.co/124376c1-1582-4135-9fbb-f462a4f1403c-bucket/logo-10.png"
+                            }
+                        ],
+                        "metadata": {
+                            "metadata": [
+                                {
+                                    "name": "type",
+                                    "value": "common"
+                                },
+                                {
+                                    "name": "hash",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "postMedia": {
+                            "description": "a patrol code block for interacting with objects, 930/1500",
+                            "image": "https://storageapi.fleek.co/124376c1-1582-4135-9fbb-f462a4f1403c-bucket/logo-10.png",
+                            "title": "Patrol Code Block"
+                        },
+                        "title": "Patrol Code Block"
                     }
-                ]
-            }
-        }
         """.data(using: .utf8)!
         
         let collJsonData = """
@@ -286,12 +272,9 @@ extension NFTTabViewModel {
         
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        if let response = try? jsonDecoder.decode(NFTResponse.self, from: nftJsonData), let collModel = try? jsonDecoder.decode(NFTCollection.self, from: collJsonData) {
-            return NFTModel(response, in: collModel)
-        }
-        
-        return NFTModel(NFTResponse(contract: NFTContract(name: "", address: "", externalDomain: "", contractMetadata: NFTContractMetadata(storagePath: "", publicPath: "", publicCollectionName: "")), id: NFTID(tokenID: "", tokenMetadata: NFTTokenMetadata(uuid: "")), title: "", description: "", media: [], metadata: NFTMetadata(metadata: [])), in: NFTCollection(logo: nil, name: "", address: ContractAddress(mainnet: "", testnet: ""), path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")))
-        
+        let response = try! jsonDecoder.decode(NFTResponse.self, from: nftJsonData)
+        let collModel = try! jsonDecoder.decode(NFTCollection.self, from: collJsonData)
+        return NFTModel(response, in: collModel)
         
     }
     

@@ -8,6 +8,7 @@
 import Foundation
 
 
+
 //// MARK: - NFTListResponse
 struct NFTListResponse: Codable {
     let ownerAddress: String
@@ -24,18 +25,19 @@ struct NFTResponse: Codable, Hashable {
     let description: String?
     let media: [NFTMedia]?
     let metadata: NFTMetadata
+    let postMedia: NFTPostMedia
     
-    func imageUrl() -> String? {
-        media?.first(where: {
-            $0.mimeType.contains("image")
-        })?.uri
-    }
-    
-    func videoUrl() -> String? {
-        media?.first(where: {
-            $0.mimeType.contains("video")
-        })?.uri
-    }
+//    func imageUrl() -> String? {
+//        media?.first(where: {
+//            $0.mimeType.contains("image")
+//        })?.uri
+//    }
+//
+//    func videoUrl() -> String? {
+//        media?.first(where: {
+//            $0.mimeType.contains("video")
+//        })?.uri
+//    }
 }
 
 // MARK: - Contract
@@ -48,6 +50,15 @@ struct NFTContract: Codable, Hashable {
 // MARK: - ContractMetadata
 struct NFTContractMetadata: Codable, Hashable {
     let storagePath, publicPath, publicCollectionName: String
+}
+
+struct NFTPostMedia: Codable, Hashable {
+    let title: String?
+    let image: String?
+    let description: String?
+    let video: String?
+    
+    
 }
 
 // MARK: - ID

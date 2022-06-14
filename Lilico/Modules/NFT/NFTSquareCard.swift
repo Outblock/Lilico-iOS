@@ -26,23 +26,18 @@ struct NFTSquareCard: View {
                     .cornerRadius(8)
                     .matchedGeometryEffect(id: nft.id, in: imageEffect)
                     .clipped()
-                Text(nft.collections)
+                Text(nft.title)
                     .font(.LL.body)
                     .semibold()
                     .lineLimit(1)
                 
-                Text(nft.name)
+                Text(nft.subtitle)
                     .font(.LL.body)
                     .foregroundColor(.LL.note)
                     .lineLimit(1)
             }
-//            .background(
-//                Color.LL.Neutrals.background
-//            )
+
         }
-        .background(
-            Color.LL.Neutrals.background
-        )
         .onTapGesture {
             onClick(nft)
         }
