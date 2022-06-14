@@ -36,6 +36,8 @@
 "success_tips" = "Success !";
 "incorrect_password" = "Incorrect password";
 "words_not_found" = "Oops, words not found.";
+"update_nickname_failed" = "Update nickname failed";
+"update_private_failed" = "Change private status failed";
 
 // NFT
 "x_collections" = "%d Collections";
@@ -144,6 +146,16 @@
 "notifications" = "Notifications";
 "about" = "About";
 "switch_account" = "Switch Account";
+
+// Profile Edit
+"edit_account" = "Edit Account";
+"edit_avatar" = "Edit Avatar";
+"edit_nickname" = "Edit Nickname";
+"private" = "Private";
+"private_off_desc" = "You can be searched";
+"private_on_desc" = "You can not be searched";
+"visible" = "Visible";
+"unvisible" = "Unvisible";
 
 // Address Book
 "edit_contact" = "Edit contact";

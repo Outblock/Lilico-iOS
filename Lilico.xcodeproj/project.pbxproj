@@ -222,8 +222,6 @@
 		15DC1D4727814A68000B187A /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4527814A68000B187A /* ButtonStyle.swift */; };
 		15DC1D4927814AD1000B187A /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4827814AD1000B187A /* TextFieldStyle.swift */; };
 		15DC1D4A27814AD1000B187A /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4827814AD1000B187A /* TextFieldStyle.swift */; };
-		15DC1D4D27814F46000B187A /* CheckUserNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4C27814F46000B187A /* CheckUserNameModel.swift */; };
-		15DC1D4E27814F46000B187A /* CheckUserNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4C27814F46000B187A /* CheckUserNameModel.swift */; };
 		15DC1D5127815891000B187A /* Haneke in Frameworks */ = {isa = PBXBuildFile; productRef = 15DC1D5027815891000B187A /* Haneke */; };
 		15DC1D53278165DB000B187A /* Haneke in Frameworks */ = {isa = PBXBuildFile; productRef = 15DC1D52278165DB000B187A /* Haneke */; };
 		15DC1D5527816605000B187A /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D5427816605000B187A /* CacheManager.swift */; };
@@ -812,6 +810,20 @@
 		6ABAE52B2836288400C97AE2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE5292836288400C97AE2 /* Font.swift */; };
 		6ABAE52F28362D1100C97AE2 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
 		6ABAE53028362D1100C97AE2 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
+		6ACDD1692858688700F406EB /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD1682858688700F406EB /* ProfileEditView.swift */; };
+		6ACDD16A2858688700F406EB /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD1682858688700F406EB /* ProfileEditView.swift */; };
+		6ACDD16C285874DC00F406EB /* ProfileEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD16B285874DC00F406EB /* ProfileEditCoordinator.swift */; };
+		6ACDD16D285874DC00F406EB /* ProfileEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD16B285874DC00F406EB /* ProfileEditCoordinator.swift */; };
+		6ACDD16F28587A7700F406EB /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD16E28587A7700F406EB /* ProfileEditViewModel.swift */; };
+		6ACDD17028587A7700F406EB /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD16E28587A7700F406EB /* ProfileEditViewModel.swift */; };
+		6ACDD17328587E8B00F406EB /* ProfileEditNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17228587E8B00F406EB /* ProfileEditNameView.swift */; };
+		6ACDD17428587E8B00F406EB /* ProfileEditNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17228587E8B00F406EB /* ProfileEditNameView.swift */; };
+		6ACDD17628587FF800F406EB /* ProfileEditNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17528587FF800F406EB /* ProfileEditNameViewModel.swift */; };
+		6ACDD17728587FF800F406EB /* ProfileEditNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17528587FF800F406EB /* ProfileEditNameViewModel.swift */; };
+		6ACDD17928588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17828588B3F00F406EB /* LilicoAPI+Profile.swift */; };
+		6ACDD17A28588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17828588B3F00F406EB /* LilicoAPI+Profile.swift */; };
+		6ACDD17C28588B7D00F406EB /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */; };
+		6ACDD17D28588B7D00F406EB /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */; };
 		6ACF0E632851FB2E008E7FA6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */; };
 		6ACF0E642851FB2E008E7FA6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */; };
 		6AD900642847175100B65CE6 /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD900632847175100B65CE6 /* AddAddressView.swift */; };
@@ -970,7 +982,6 @@
 		15DC1D3D27809F83000B187A /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		15DC1D4527814A68000B187A /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		15DC1D4827814AD1000B187A /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
-		15DC1D4C27814F46000B187A /* CheckUserNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUserNameModel.swift; sourceTree = "<group>"; };
 		15DC1D5427816605000B187A /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		15DC1D5727816660000B187A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		15DC1D5B27816F46000B187A /* MoyaAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaAsync.swift; sourceTree = "<group>"; };
@@ -1264,6 +1275,13 @@
 		6AAA45E3284862D100A9AC96 /* ToastUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastUI.swift; sourceTree = "<group>"; };
 		6ABAE5292836288400C97AE2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		6ABAE52E28362D1100C97AE2 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
+		6ACDD1682858688700F406EB /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
+		6ACDD16B285874DC00F406EB /* ProfileEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditCoordinator.swift; sourceTree = "<group>"; };
+		6ACDD16E28587A7700F406EB /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
+		6ACDD17228587E8B00F406EB /* ProfileEditNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditNameView.swift; sourceTree = "<group>"; };
+		6ACDD17528587FF800F406EB /* ProfileEditNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditNameViewModel.swift; sourceTree = "<group>"; };
+		6ACDD17828588B3F00F406EB /* LilicoAPI+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+Profile.swift"; sourceTree = "<group>"; };
+		6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequests.swift; sourceTree = "<group>"; };
 		6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
 		6AD900632847175100B65CE6 /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
 		6AD90067284717FC00B65CE6 /* AddAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewModel.swift; sourceTree = "<group>"; };
@@ -1359,6 +1377,7 @@
 				15D57750277C224300045E79 /* LilicoAPI.swift */,
 				1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */,
 				1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */,
+				6ACDD17828588B3F00F406EB /* LilicoAPI+Profile.swift */,
 			);
 			path = Lilico;
 			sourceTree = "<group>";
@@ -1386,6 +1405,7 @@
 		1507C7ED275634BC00890C5D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				6ACDD1672858687700F406EB /* ProfileEdit */,
 				6AE08418284EFF5E003BEEF0 /* DeveloperMode */,
 				6A8D2A35283C7C600041100E /* AddressBook */,
 				6A2D35BB283B6B21008293D9 /* ThemeChange */,
@@ -1408,6 +1428,7 @@
 				4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */,
 				6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */,
 				6A164F492840B2B50026B31E /* TabBarCoordinator.swift */,
+				6ACDD16B285874DC00F406EB /* ProfileEditCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1635,6 +1656,7 @@
 			children = (
 				6AF95B3B2848686D0012C837 /* AddressBookRequest.swift */,
 				6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */,
+				6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1642,7 +1664,6 @@
 		158CE8832782DA76006A8394 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				15DC1D4C27814F46000B187A /* CheckUserNameModel.swift */,
 				158CE8872782DAD7006A8394 /* UserResponses.swift */,
 				1570467A2793D60000D1747B /* NFTListResponse.swift */,
 				6AF95B3E2848B0B40012C837 /* AddressBookListResponse.swift */,
@@ -2909,6 +2930,25 @@
 			path = ThirdParty;
 			sourceTree = "<group>";
 		};
+		6ACDD1672858687700F406EB /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				6ACDD17128587E7900F406EB /* EditName */,
+				6ACDD1682858688700F406EB /* ProfileEditView.swift */,
+				6ACDD16E28587A7700F406EB /* ProfileEditViewModel.swift */,
+			);
+			path = ProfileEdit;
+			sourceTree = "<group>";
+		};
+		6ACDD17128587E7900F406EB /* EditName */ = {
+			isa = PBXGroup;
+			children = (
+				6ACDD17228587E8B00F406EB /* ProfileEditNameView.swift */,
+				6ACDD17528587FF800F406EB /* ProfileEditNameViewModel.swift */,
+			);
+			path = EditName;
+			sourceTree = "<group>";
+		};
 		6AD900662847175600B65CE6 /* Add */ = {
 			isa = PBXGroup;
 			children = (
@@ -3242,6 +3282,7 @@
 				15DC209D27819C56000B187A /* VBaseHeaderFooterType.swift in Sources */,
 				15DC209F27819C56000B187A /* VSecondaryButtonModel.swift in Sources */,
 				15DC21B527819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
+				6ACDD17428587E8B00F406EB /* ProfileEditNameView.swift in Sources */,
 				15DC210327819C56000B187A /* VStepperState.swift in Sources */,
 				156ADC7A2797B42D00CD4B02 /* NavigationRoute.swift in Sources */,
 				15D9283627849E6800382226 /* BackupCoordinator.swift in Sources */,
@@ -3274,7 +3315,6 @@
 				15DC213F27819C56000B187A /* VMenuPickerButtonType.swift in Sources */,
 				15DC20BF27819C56000B187A /* VSquareButtonState.swift in Sources */,
 				15DC217527819C56000B187A /* VDialogButtonModel.swift in Sources */,
-				15DC1D4E27814F46000B187A /* CheckUserNameModel.swift in Sources */,
 				156E84AE281CDF4F00415896 /* TokenModel.swift in Sources */,
 				15DC20C527819C56000B187A /* VCloseButton.swift in Sources */,
 				4E8DD9FD282E52110016A931 /* JSONStorage.swift in Sources */,
@@ -3339,6 +3379,7 @@
 				156ADC502797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */,
 				15DC210527819C56000B187A /* VSliderModel.swift in Sources */,
 				15D574CA277816F200045E79 /* UsernameView.swift in Sources */,
+				6ACDD16A2858688700F406EB /* ProfileEditView.swift in Sources */,
 				156ADC6E2797B42D00CD4B02 /* Routable.swift in Sources */,
 				15DC218127819C56000B187A /* VActionSheet.swift in Sources */,
 				15DC20D327819C56000B187A /* VPlainButton.swift in Sources */,
@@ -3377,6 +3418,7 @@
 				15DC20F327819C56000B187A /* VSectionList.swift in Sources */,
 				156ADC6A2797B42D00CD4B02 /* TabRoute.swift in Sources */,
 				156E84AA281CDE7500415896 /* FlowNetwork.swift in Sources */,
+				6ACDD17028587A7700F406EB /* ProfileEditViewModel.swift in Sources */,
 				15DC20AD27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
 				158CE88C2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */,
 				154B8906276A1EEB00780E93 /* Lilico_App.swift in Sources */,
@@ -3384,6 +3426,7 @@
 				154B8907276A1EEB00780E93 /* View.swift in Sources */,
 				15DC211727819C56000B187A /* VPageIndicatorAuto.swift in Sources */,
 				15DE22D3277DBE0000B5EE03 /* UserManager.swift in Sources */,
+				6ACDD17728587FF800F406EB /* ProfileEditNameViewModel.swift in Sources */,
 				15DC211F27819C56000B187A /* VSpinnerType.swift in Sources */,
 				15DC207F27819C56000B187A /* VBaseViewNavigationBarLeading.swift in Sources */,
 				15DC207B27819C56000B187A /* VBaseView.swift in Sources */,
@@ -3462,6 +3505,7 @@
 				15DC215527819C56000B187A /* VMenuState.swift in Sources */,
 				15DC210B27819C56000B187A /* VRangeSlider.swift in Sources */,
 				15DC1D5627816605000B187A /* CacheManager.swift in Sources */,
+				6ACDD17D28588B7D00F406EB /* ProfileRequests.swift in Sources */,
 				15DC208D27819C56000B187A /* VLazyScrollViewModelVertical.swift in Sources */,
 				15DC208F27819C56000B187A /* VSheetModel.swift in Sources */,
 				15DC212927819C56000B187A /* VProgressBar.swift in Sources */,
@@ -3471,6 +3515,7 @@
 				15DC20E727819C56000B187A /* VAccordionModel.swift in Sources */,
 				156ADC4E2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */,
 				15DC21C527819C56000B187A /* LayoutGroup_LT.swift in Sources */,
+				6ACDD17A28588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */,
 				15DC21A727819C56000B187A /* VBaseTextField.swift in Sources */,
 				15DC210727819C56000B187A /* VSliderState.swift in Sources */,
 				15DC215B27819C56000B187A /* VMenuButtonType.swift in Sources */,
@@ -3480,6 +3525,7 @@
 				15DC214527819C56000B187A /* VTabNavigationPageItem.swift in Sources */,
 				15DC20C127819C56000B187A /* VSquareButton.swift in Sources */,
 				15DC216F27819C56000B187A /* VDialog.swift in Sources */,
+				6ACDD16D285874DC00F406EB /* ProfileEditCoordinator.swift in Sources */,
 				6A164F422840A1380026B31E /* TabBar.swift in Sources */,
 				6AE084242851D481003BEEF0 /* Logger.swift in Sources */,
 				15DC210127819C56000B187A /* VStepper.swift in Sources */,
@@ -3632,6 +3678,7 @@
 				15DC209C27819C56000B187A /* VBaseHeaderFooterType.swift in Sources */,
 				15DC209E27819C56000B187A /* VSecondaryButtonModel.swift in Sources */,
 				15DC21B427819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
+				6ACDD17328587E8B00F406EB /* ProfileEditNameView.swift in Sources */,
 				15DC210227819C56000B187A /* VStepperState.swift in Sources */,
 				156ADC792797B42D00CD4B02 /* NavigationRoute.swift in Sources */,
 				15D9283527849E6800382226 /* BackupCoordinator.swift in Sources */,
@@ -3664,7 +3711,6 @@
 				15DC213E27819C56000B187A /* VMenuPickerButtonType.swift in Sources */,
 				15DC20BE27819C56000B187A /* VSquareButtonState.swift in Sources */,
 				15DC217427819C56000B187A /* VDialogButtonModel.swift in Sources */,
-				15DC1D4D27814F46000B187A /* CheckUserNameModel.swift in Sources */,
 				156E84AD281CDF4F00415896 /* TokenModel.swift in Sources */,
 				15DC20C427819C56000B187A /* VCloseButton.swift in Sources */,
 				4E8DD9FC282E52110016A931 /* JSONStorage.swift in Sources */,
@@ -3729,6 +3775,7 @@
 				156ADC4F2797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */,
 				15DC210427819C56000B187A /* VSliderModel.swift in Sources */,
 				15D574C9277816F200045E79 /* UsernameView.swift in Sources */,
+				6ACDD1692858688700F406EB /* ProfileEditView.swift in Sources */,
 				156ADC6D2797B42D00CD4B02 /* Routable.swift in Sources */,
 				15DC218027819C56000B187A /* VActionSheet.swift in Sources */,
 				15DC20D227819C56000B187A /* VPlainButton.swift in Sources */,
@@ -3767,6 +3814,7 @@
 				15DC20F227819C56000B187A /* VSectionList.swift in Sources */,
 				156ADC692797B42D00CD4B02 /* TabRoute.swift in Sources */,
 				156E84A9281CDE7500415896 /* FlowNetwork.swift in Sources */,
+				6ACDD16F28587A7700F406EB /* ProfileEditViewModel.swift in Sources */,
 				15DC20AC27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
 				158CE88B2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */,
 				15EC9DF2274FD1FD00F70CD9 /* Lilico_App.swift in Sources */,
@@ -3774,6 +3822,7 @@
 				153C440327520752006D1E8D /* View.swift in Sources */,
 				15DC211627819C56000B187A /* VPageIndicatorAuto.swift in Sources */,
 				15DE22D2277DBE0000B5EE03 /* UserManager.swift in Sources */,
+				6ACDD17628587FF800F406EB /* ProfileEditNameViewModel.swift in Sources */,
 				15DC211E27819C56000B187A /* VSpinnerType.swift in Sources */,
 				15DC207E27819C56000B187A /* VBaseViewNavigationBarLeading.swift in Sources */,
 				15DC207A27819C56000B187A /* VBaseView.swift in Sources */,
@@ -3852,6 +3901,7 @@
 				15DC210A27819C56000B187A /* VRangeSlider.swift in Sources */,
 				15DC1D5527816605000B187A /* CacheManager.swift in Sources */,
 				15DC208C27819C56000B187A /* VLazyScrollViewModelVertical.swift in Sources */,
+				6ACDD17C28588B7D00F406EB /* ProfileRequests.swift in Sources */,
 				15DC208E27819C56000B187A /* VSheetModel.swift in Sources */,
 				15DC212827819C56000B187A /* VProgressBar.swift in Sources */,
 				15DC209A27819C56000B187A /* VBaseHeaderFooterView.swift in Sources */,
@@ -3861,6 +3911,7 @@
 				156ADC4D2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */,
 				15DC21C427819C56000B187A /* LayoutGroup_LT.swift in Sources */,
 				15DC21A627819C56000B187A /* VBaseTextField.swift in Sources */,
+				6ACDD17928588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */,
 				15DC210627819C56000B187A /* VSliderState.swift in Sources */,
 				15DC215A27819C56000B187A /* VMenuButtonType.swift in Sources */,
 				15DC217E27819C56000B187A /* VActionSheetRow.swift in Sources */,
@@ -3870,6 +3921,7 @@
 				15DC20C027819C56000B187A /* VSquareButton.swift in Sources */,
 				15DC216E27819C56000B187A /* VDialog.swift in Sources */,
 				15DC210027819C56000B187A /* VStepper.swift in Sources */,
+				6ACDD16C285874DC00F406EB /* ProfileEditCoordinator.swift in Sources */,
 				6A164F412840A1380026B31E /* TabBar.swift in Sources */,
 				6AE084232851D481003BEEF0 /* Logger.swift in Sources */,
 				4EE8E4952834DC7100DFEF59 /* NFTModel.swift in Sources */,

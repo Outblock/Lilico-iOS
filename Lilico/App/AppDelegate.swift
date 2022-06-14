@@ -16,6 +16,7 @@ import SwiftUI
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        appConfig()
         Resolver.registerAllServices()
         commonConfig()
         flowConfig()
@@ -31,6 +32,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 // MARK: - Config
 
 extension AppDelegate {
+    private func appConfig() {
+        let _ = UserManager.shared
+        let _ = WalletManager.shared
+        let _ = BackupManager.shared
+    }
+    
     private func commonConfig() {
         UITableView.appearance().sectionHeaderTopPadding = 0
         UISearchBar.appearance().tintColor = UIColor(Color.LL.Secondary.violetDiscover)

@@ -12,4 +12,8 @@ struct UserInfo: Codable {
     let nickname: String
     let username: String
     let `private`: Int
+    
+    var isPrivate: Bool {
+        return self.private == 2
+    }
 }

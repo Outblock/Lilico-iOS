@@ -109,6 +109,7 @@ extension ProfileView {
     
     struct InfoView: View {
         @EnvironmentObject private var userManager: UserManager
+        @EnvironmentObject private var router: ProfileCoordinator.Router
         
         var body: some View {
             HStack(spacing: 16) {
@@ -121,7 +122,7 @@ extension ProfileView {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Button {
-                    debugPrint("edit btn click")
+                    router.route(to: \.edit)
                 } label: {
                     Image("icon-profile-edit")
                 }

@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-struct AddressBookView_Previews: PreviewProvider {
-    static var previews: some View {
+//struct AddressBookView_Previews: PreviewProvider {
+//    static var previews: some View {
         //        ProfileView.NoLoginTipsView()
         //        ProfileView.GeneralSectionView()
-        AddressBookView()
+//        AddressBookView()
         //        ProfileView.InfoView()
         //        ProfileView.InfoActionView()
-        let contacts = [
-            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 0, username: "angel"),
-            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 1, username: "angel"),
-            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 2, username: "angel"),
-            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 3, username: "angel")
-        ]
-    }
-}
+//        let contacts = [
+//            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 0, username: "angel"),
+//            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 1, username: "angel"),
+//            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 2, username: "angel"),
+//            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 3, username: "angel")
+//        ]
+//    }
+//}
 
 struct AddressBookView: View {
     @EnvironmentObject private var router: AddressBookCoordinator.Router

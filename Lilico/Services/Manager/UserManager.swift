@@ -30,6 +30,12 @@ class UserManager: ObservableObject {
         refreshFlags()
         uploadUserNameIfNeeded()
         loginAnonymousIfNeeded()
+        
+        if isLoggedIn {
+            Task {
+                try? await fetchUserInfo()
+            }
+        }
     }
 }
 
@@ -111,8 +117,10 @@ extension UserManager {
             throw LLError.fetchUserInfoFailed
         }
         
-        LocalUserDefaults.shared.userInfo = info
-        userInfo = info
+        DispatchQueue.main.async {
+            LocalUserDefaults.shared.userInfo = info
+            self.userInfo = info
+        }
     }
 }
 
@@ -166,7 +174,7 @@ extension UserManager {
         }
     }
     
-    func uploadUserName(username: String) async {
+    private func uploadUserName(username: String) async {
         guard let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() else {
             return
         }
@@ -177,5 +185,25 @@ extension UserManager {
         } catch {
             debugPrint("update displayName failed")
         }
+    }
+    
+    func updateNickname(_ name: String) {
+        guard let current = userInfo else {
+            return
+        }
+        
+        let newUserInfo = UserInfo(avatar: current.avatar, nickname: name, username: current.username, private: current.private)
+        LocalUserDefaults.shared.userInfo = newUserInfo
+        userInfo = newUserInfo
+    }
+    
+    func updatePrivate(_ isPrivate: Bool) {
+        guard let current = userInfo else {
+            return
+        }
+        
+        let newUserInfo = UserInfo(avatar: current.avatar, nickname: current.nickname, username: current.username, private: isPrivate ? 2 : 1)
+        LocalUserDefaults.shared.userInfo = newUserInfo
+        userInfo = newUserInfo
     }
 }

@@ -7,12 +7,10 @@
 
 import Foundation
 
-/*
- {
-   "custom_token": "string",
-   "id": "string"
- }
- */
+struct CheckUserResponse: Codable {
+    let unique: Bool
+    let username: String
+}
 
 struct LoginResponse: Codable {
     let customToken: String
