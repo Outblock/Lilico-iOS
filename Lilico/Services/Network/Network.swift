@@ -60,13 +60,19 @@ enum Network {
         let result = await provider.asyncRequest(target)
         switch result {
         case let .success(response):
-            guard let model = try? decoder.decode(Response<T>.self, from: response.data) else {
-                throw NetworkError.decodeFailed
+            do {
+                let filterdResponse = try response.filterSuccessfulStatusCodes()
+                
+                guard let model = try? decoder.decode(Response<T>.self, from: filterdResponse.data) else {
+                    throw NetworkError.decodeFailed
+                }
+                guard let data = model.data else {
+                    throw NetworkError.emptyData
+                }
+                return data
+            } catch {
+                throw error
             }
-            guard let data = model.data else {
-                throw NetworkError.emptyData
-            }
-            return data
         case let .failure(error):
             throw error
         }
@@ -79,8 +85,13 @@ enum Network {
         let result = await provider.asyncRequest(target)
         switch result {
         case let .success(response):
-            let model = try decoder.decode(T.self, from: response.data)
-            return model
+            do {
+                let filterdResponse = try response.filterSuccessfulStatusCodes()
+                let model = try decoder.decode(T.self, from: filterdResponse.data)
+                return model
+            } catch {
+                throw error
+            }
         case let .failure(error):
             throw error
         }

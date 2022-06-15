@@ -36,6 +36,7 @@ extension AppDelegate {
         let _ = UserManager.shared
         let _ = WalletManager.shared
         let _ = BackupManager.shared
+        let _ = NFTListCache.cache
     }
     
     private func commonConfig() {

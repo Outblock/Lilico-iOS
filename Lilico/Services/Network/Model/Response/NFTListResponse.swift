@@ -12,7 +12,7 @@ import Foundation
 //// MARK: - NFTListResponse
 struct NFTListResponse: Codable {
     let ownerAddress: String
-    let nfts: [NFTResponse]
+    let nfts: [NFTResponse]?
     let chain, network: String
     let nftCount, offset: Int
 }

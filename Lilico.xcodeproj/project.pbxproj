@@ -774,6 +774,10 @@
 		6A2D35BA283B6AD7008293D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */; };
 		6A2D35BD283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */; };
 		6A2D35BE283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */; };
+		6A35EAD92859BD36005A85B8 /* EditAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35EAD82859BD36005A85B8 /* EditAvatarView.swift */; };
+		6A35EADA2859BD36005A85B8 /* EditAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35EAD82859BD36005A85B8 /* EditAvatarView.swift */; };
+		6A35EADD2859C20B005A85B8 /* NFTListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35EADC2859C20B005A85B8 /* NFTListCache.swift */; };
+		6A35EADE2859C20B005A85B8 /* NFTListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35EADC2859C20B005A85B8 /* NFTListCache.swift */; };
 		6A4A235028365B31001F1FDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
 		6A4A235128365B31001F1FDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
 		6A8D2A37283C7C790041100E /* AddressBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A36283C7C790041100E /* AddressBookView.swift */; };
@@ -1259,6 +1263,8 @@
 		6A1B679728570E92009E26DD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeViewModel.swift; sourceTree = "<group>"; };
+		6A35EAD82859BD36005A85B8 /* EditAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvatarView.swift; sourceTree = "<group>"; };
+		6A35EADC2859C20B005A85B8 /* NFTListCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListCache.swift; sourceTree = "<group>"; };
 		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		6A8D2A36283C7C790041100E /* AddressBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookView.swift; sourceTree = "<group>"; };
 		6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookViewModel.swift; sourceTree = "<group>"; };
@@ -2854,6 +2860,22 @@
 			path = ThemeChange;
 			sourceTree = "<group>";
 		};
+		6A35EAD72859BD0B005A85B8 /* EditAvatar */ = {
+			isa = PBXGroup;
+			children = (
+				6A35EAD82859BD36005A85B8 /* EditAvatarView.swift */,
+			);
+			path = EditAvatar;
+			sourceTree = "<group>";
+		};
+		6A35EADB2859C1FD005A85B8 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				6A35EADC2859C20B005A85B8 /* NFTListCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		6A8D2A35283C7C600041100E /* AddressBook */ = {
 			isa = PBXGroup;
 			children = (
@@ -2903,6 +2925,7 @@
 		6ABAE528283627F300C97AE2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				6A35EADB2859C1FD005A85B8 /* Cache */,
 				4EC56B2E281FC55400246878 /* FlowCoin */,
 				4EC56B28281D381400246878 /* Firebase */,
 				159A5438275368DA004BCACC /* Network */,
@@ -2937,6 +2960,7 @@
 		6ACDD1672858687700F406EB /* ProfileEdit */ = {
 			isa = PBXGroup;
 			children = (
+				6A35EAD72859BD0B005A85B8 /* EditAvatar */,
 				6ACDD17128587E7900F406EB /* EditName */,
 				6ACDD1682858688700F406EB /* ProfileEditView.swift */,
 				6ACDD16E28587A7700F406EB /* ProfileEditViewModel.swift */,
@@ -3309,6 +3333,7 @@
 				1570467027931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
 				156ADC7C2797B42D00CD4B02 /* PresentationHelper.swift in Sources */,
 				15DC20EF27819C56000B187A /* VSectionListSection.swift in Sources */,
+				6A35EADA2859BD36005A85B8 /* EditAvatarView.swift in Sources */,
 				15DC20C727819C56000B187A /* VCloseButtonState.swift in Sources */,
 				15DC214927819C56000B187A /* VTabNavigationViewModel.swift in Sources */,
 				156ADC782797B42D00CD4B02 /* PresentationType.swift in Sources */,
@@ -3590,6 +3615,7 @@
 				15DC20F727819C56000B187A /* VBaseListLayoutType.swift in Sources */,
 				15DC20FB27819C56000B187A /* VBaseListElement.swift in Sources */,
 				1570467C2793D60000D1747B /* NFTListResponse.swift in Sources */,
+				6A35EADE2859C20B005A85B8 /* NFTListCache.swift in Sources */,
 				156ADC802797B42D00CD4B02 /* FocusError.swift in Sources */,
 				6A164F442840A1380026B31E /* TabBarItemView.swift in Sources */,
 				15DC219727819C56000B187A /* VTextFieldType.swift in Sources */,
@@ -3706,6 +3732,7 @@
 				1570466F27931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
 				156ADC7B2797B42D00CD4B02 /* PresentationHelper.swift in Sources */,
 				15DC20EE27819C56000B187A /* VSectionListSection.swift in Sources */,
+				6A35EAD92859BD36005A85B8 /* EditAvatarView.swift in Sources */,
 				15DC20C627819C56000B187A /* VCloseButtonState.swift in Sources */,
 				15DC214827819C56000B187A /* VTabNavigationViewModel.swift in Sources */,
 				156ADC772797B42D00CD4B02 /* PresentationType.swift in Sources */,
@@ -3987,6 +4014,7 @@
 				15DC20FA27819C56000B187A /* VBaseListElement.swift in Sources */,
 				1570467B2793D60000D1747B /* NFTListResponse.swift in Sources */,
 				156ADC7F2797B42D00CD4B02 /* FocusError.swift in Sources */,
+				6A35EADD2859C20B005A85B8 /* NFTListCache.swift in Sources */,
 				15DC219627819C56000B187A /* VTextFieldType.swift in Sources */,
 				6A164F432840A1380026B31E /* TabBarItemView.swift in Sources */,
 				15DC210E27819C56000B187A /* VRangeSliderState.swift in Sources */,

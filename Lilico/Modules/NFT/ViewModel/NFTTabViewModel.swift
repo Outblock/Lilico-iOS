@@ -95,7 +95,11 @@ class NFTTabViewModel: ViewModel {
         do {
             let request = NFTRequest(address: owner, offset: offset, limit: limit)
             let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.list(request))
-            return (response.data!.nftCount, response.data!.nfts)
+            guard let count = response.data?.nftCount, let nfts = response.data?.nfts else {
+                return (0, [])
+            }
+            
+            return (count, nfts)
         }
         catch {
             throw error

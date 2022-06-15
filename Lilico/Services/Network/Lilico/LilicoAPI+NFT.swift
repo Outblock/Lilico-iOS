@@ -53,6 +53,12 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
     }
     
     var headers: [String: String]? {
-        return LilicoAPI.commonHeaders
+        var headers = LilicoAPI.commonHeaders
+        
+#if DEBUG
+        // TODO: current nft is error on testnet, remove this code if testnet nft is working someday.
+        headers["Network"] = LocalUserDefaults.FlowNetworkType.mainnet.rawValue
+#endif
+        return headers
     }
 }

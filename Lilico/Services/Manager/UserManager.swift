@@ -151,7 +151,7 @@ extension UserManager {
         }
     }
     
-    private func getUid() -> String? {
+    func getUid() -> String? {
         return Auth.auth().currentUser?.uid
     }
 }

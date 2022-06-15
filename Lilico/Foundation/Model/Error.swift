@@ -21,4 +21,5 @@ enum LLError: Error {
     case restoreLoginFailed
     case accountNotFound
     case fetchUserInfoFailed
+    case unknown
 }
