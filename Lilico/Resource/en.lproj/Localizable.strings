@@ -157,6 +157,9 @@
 "visible" = "Visible";
 "unvisible" = "Unvisible";
 
+// Avatar Edit
+"done" = "Done";
+
 // Address Book
 "edit_contact" = "Edit contact";
 "add_contact" = "Add contact";

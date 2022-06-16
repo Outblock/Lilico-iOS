@@ -48,14 +48,14 @@ extension AddressBookView {
     }
     
     struct ListState {
-        var sections: [SectionViewModel]
+        var sections: [AddressBookView.SectionViewModel]
         var stateType: AddressBookViewStateType = .loading
         var hudStatus: Bool = false
     }
     
     enum AddressBookInput {
         case load
-        case delete(SectionViewModel, Contact)
+        case delete(AddressBookView.SectionViewModel, Contact)
         case edit(Contact)
     }
 }
@@ -69,11 +69,11 @@ extension AddressBookView {
         @RouterObject var router: AddressBookCoordinator.Router?
         
         init() {
-            state = ListState(sections: [SectionViewModel]())
+            state = ListState(sections: [AddressBookView.SectionViewModel]())
             trigger(.load)
         }
         
-        func trigger(_ input: AddressBookInput) {
+        func trigger(_ input: AddressBookView.AddressBookInput) {
             switch input {
             case .load:
                 load()
@@ -112,7 +112,7 @@ extension AddressBookView {
             router?.route(to: \.edit, contact)
         }
         
-        private func delete(sectionVM: SectionViewModel, contact: Contact) {
+        private func delete(sectionVM: AddressBookView.SectionViewModel, contact: Contact) {
             searchText = ""
             
             guard let realSectionVM = state.sections.first(where: { svm in
@@ -192,9 +192,9 @@ extension AddressBookView {
                     return
                 }
                 
-                var sections = [SectionViewModel]()
+                var sections = [AddressBookView.SectionViewModel]()
                 for (index, title) in sectionTitleArr.enumerated() {
-                    let svm = SectionViewModel(sectionName: title, list: sortedObjArr[index])
+                    let svm = AddressBookView.SectionViewModel(sectionName: title, list: sortedObjArr[index])
                     sections.append(svm)
                 }
                 
