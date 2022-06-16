@@ -36,10 +36,13 @@ struct NFTDetailPage: View {
     @State var image: Image?
     @State var rect: CGRect = .zero
     
+    
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             
-            ScrollView(showsIndicators: false) {
+
+            OffsetScrollViewWithAppBar(title: nft.title) {
                 Spacer()
                     .frame(height: 64)
                 VStack(alignment:.leading) {
@@ -157,12 +160,11 @@ struct NFTDetailPage: View {
                 
                 image?
                     .resizable()
-                
-                
-                
+            } appBar: {
+                BackAppBar() {
+                    viewModel.trigger(.back)
+                }
             }
-            
-            
             
         }
         .background(
@@ -230,23 +232,9 @@ struct NFTDetailPage: View {
                 .cornerRadius(12)
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
                 .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 20)
-//                .background(
-//                    Color.LL.Neutrals.background
-//                        .blur(radius: 12)
-//                        .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 20)
-//                )
-                
-                
-                
-                
             }
             .padding(.trailing, 18)
         })
-        .overlay(
-            NFTNavigationBar(title: nft.title, opacity: $opacity) {
-                viewModel.trigger(.back)
-            }
-        )
         .onAppear {
             NFTDetailPage.ShareNFTView = NFTShareView(nft: nft, colors: viewModel.state.colorsMap[nft.image.absoluteString] ?? [])
                 

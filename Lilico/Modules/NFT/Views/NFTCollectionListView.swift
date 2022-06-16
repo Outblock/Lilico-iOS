@@ -24,13 +24,18 @@ struct NFTCollectionListView: View {
     var body: some View {
         
         ZStack {
-            ScrollView(showsIndicators: false) {
+            
+            OffsetScrollViewWithAppBar(title: collection.showName) {
                 Spacer()
                     .frame(height: 64)
                 
                 InfoView(collection: collection)
                     .padding(.bottom, 24)
                 NFTListView(list: collection.nfts, imageEffect: imageEffect)
+            } appBar: {
+                BackAppBar() {
+                    viewModel.trigger(.back)
+                }
             }
         }
         .background(
@@ -38,11 +43,6 @@ struct NFTCollectionListView: View {
             NFTBlurImageView(colors: viewModel.state.colorsMap[collection.iconURL.absoluteString] ?? [])
                 .ignoresSafeArea()
                 .offset(y: -4)
-        )
-        .overlay(
-            NFTNavigationBar(title: collection.showName, opacity: $opacity) {
-                viewModel.trigger(.back)
-            }
         )
     }
 }

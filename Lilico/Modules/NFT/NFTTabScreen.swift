@@ -11,6 +11,7 @@ import SwiftUI
 import CollectionViewPagingLayout
 import Kingfisher
 import WebKit
+import IrregularGradient
 
 extension NFTTabScreen {
     
@@ -51,6 +52,8 @@ struct NFTTabScreen: View {
     @State private var favoriteId: String?
     @State private var currentNFTImage: URL?
     
+    @State var offset: CGFloat = 0
+    
     @Namespace var NFTImageEffect
     
     var currentNFTs: [NFTModel] {
@@ -82,6 +85,7 @@ struct NFTTabScreen: View {
     }
     
     
+    
     var body: some View {
 
         ZStack(alignment: .topLeading) {
@@ -104,10 +108,11 @@ struct NFTTabScreen: View {
     
     var content: some View {
         GeometryReader { geo in
-            ZStack() {
-                
+            ZStack(alignment: .top) {
                 if(!viewModel.isEmpty) {
-                    ScrollView(showsIndicators: false) {
+                    
+                    OffsetScrollView(offset: $offset) {
+                        
                         LazyVStack(spacing: 0,pinnedViews: [.sectionHeaders]) {
                             
                             if(isListStyle) {
@@ -128,25 +133,20 @@ struct NFTTabScreen: View {
                             }
                         }
                     }
-                    .safeAreaInset(edge: .top) {
+                    .overlay(
                         NFTTabScreen.TopBar(listStyle: $listStyle)
-                    }
-                    .padding(.top, statusHeight)
-                    .background(
-                        ZStack {
-                            Color.LL.Neutrals.background
-                            if(canShowFavorite) {
-                                NFTBlurImageView(colors: viewModel.state.colorsMap[currentNFTImage?.absoluteString ?? ""] ?? [])
-                            }
-                        }
-
+                            .frame(maxHeight: .infinity, alignment: .top)
                     )
+                    .background(
+                        LinearGradient(gradient:
+                                        Gradient(colors:
+                                                    [.LL.Shades.front.opacity(0),
+                                                     .LL.Neutrals.background]), startPoint: .top, endPoint: .center)
+                    )
+                    .padding(.top, statusHeight)
+       
                 }
             }
-            .background(
-                
-            )
-            .ignoresSafeArea()
         }
     }
     
@@ -223,7 +223,18 @@ extension NFTTabScreen {
                         .frame(width: screenWidth,
                                height: screenHeight * 0.4, alignment: .center)
                     }
-                    
+                    .background(
+                        ZStack {
+                            
+                            if let url = currentNFTImage?.absoluteString, let colors = viewModel.state.colorsMap[url] {
+                                if colors.count > 0 {
+                                    NFTBlurImageView(colors: colors)
+//                                        .irregularGradient(colors: colors)
+                                }
+                            }
+                            
+                        }
+                    )
                     .onChange(of: favoriteId) { id in
                         guard let favoriteId = favoriteId, let nft = viewModel.favoriteStore.find(with: favoriteId) else {
                             let model = viewModel.favoriteStore.favorites.first
@@ -238,6 +249,7 @@ extension NFTTabScreen {
                     }
                 }
             }
+            
             .onAppear {
                 if(favoriteId == nil) {
                     favoriteId = viewModel.favoriteStore.favorites.first?.id
