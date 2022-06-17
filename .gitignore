@@ -91,3 +91,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 /Lilico.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+Lilico.xcodeproj/xcuserdata/**/*
+Lilico.xcodeproj/xcshareddata/**/*
+*.xcscheme
