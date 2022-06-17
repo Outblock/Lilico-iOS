@@ -159,6 +159,7 @@
 
 // Avatar Edit
 "done" = "Done";
+"current_avatar" = "Current Avatar";
 
 // Address Book
 "edit_contact" = "Edit contact";

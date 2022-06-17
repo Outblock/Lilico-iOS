@@ -35,7 +35,7 @@ struct ProfileEditView: View {
             router.dismissCoordinator()
         }
         .toast(isPresented: $vm.needShowLoadingHud) {
-            ToastView("saving".localized).toastViewStyle(.indeterminate)
+            ToastView("loading".localized).toastViewStyle(.indeterminate)
         }
     }
 }
@@ -54,6 +54,9 @@ extension ProfileEditView {
                 .clipShape(Circle())
         }
         .frame(height: 70)
+        .onTapGestureOnBackground {
+            vm.trigger(.editAvatar)
+        }
     }
     
     var editNicknameCell: some View {

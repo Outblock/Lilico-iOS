@@ -27,17 +27,42 @@ struct NFTResponse: Codable, Hashable {
     let metadata: NFTMetadata
     let postMedia: NFTPostMedia
     
-//    func imageUrl() -> String? {
-//        media?.first(where: {
-//            $0.mimeType.contains("image")
-//        })?.uri
-//    }
-//
-//    func videoUrl() -> String? {
-//        media?.first(where: {
-//            $0.mimeType.contains("video")
-//        })?.uri
-//    }
+    func cover() -> String? {
+        guard let media = media else {
+            return nil
+        }
+
+        for m in media {
+            if m.mimeType == "image" {
+                var url = m.uri
+                if url.starts(with: "ipfs://") {
+                    url = url.replacingOccurrences(of: "ipfs://", with: "https://ipfs.io/ipfs/")
+                }
+                
+                return url
+            }
+        }
+        
+        for m in metadata.metadata {
+            if m.name == "image" {
+                return m.value
+            }
+        }
+        
+        return video()
+    }
+    
+    func video() -> String? {
+        if let m = media?.first(where: { $0.mimeType.starts(with: "video/") })?.uri.trim().removePrefix("ipfs://"), !m.isEmpty {
+            return m
+        }
+        
+        if let arLink = metadata.metadata.first(where: { $0.name == "arLink" })?.value {
+            return "https://arweave.net/\(arLink)"
+        }
+        
+        return nil
+    }
 }
 
 // MARK: - Contract

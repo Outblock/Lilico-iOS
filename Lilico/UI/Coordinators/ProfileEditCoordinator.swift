@@ -12,7 +12,7 @@ final class ProfileEditCoordinator: NavigationCoordinatable {
     
     @Root var start = makeProfileEditView
     @Route(.push) var nameEdit = makeEditNameView
-//    @Route(.push) var edit = makeEditView
+    @Route(.push) var avatarEdit = makeEditAvatarView
     
 //    var addressBookVM: AddressBookView.AddressBookViewModel?
     
@@ -28,5 +28,9 @@ extension ProfileEditCoordinator {
     
     func makeEditNameView() -> some View {
         ProfileEditNameView()
+    }
+    
+    func makeEditAvatarView(items: [EditAvatarView.AvatarItemModel]) -> some View {
+        EditAvatarView(items: items)
     }
 }

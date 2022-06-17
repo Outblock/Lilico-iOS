@@ -43,21 +43,57 @@ extension EditAvatarView {
             assert(false, "AvatarItemModel id should not be nil")
             return ""
         }
+        
+        func getCover() -> String {
+            if let avatarString = avatarString {
+                return avatarString
+            }
+            
+            if let nftCover = nft?.cover() {
+                return nftCover
+            }
+            
+            return ""
+        }
+        
+        func getName() -> String {
+            if type == .string {
+                return "current_avatar".localized
+            }
+            
+            return nft?.title ?? ""
+        }
     }
 }
 
 extension EditAvatarView {
     class EditAvatarViewModel: ObservableObject {
-        @Published var mode: Mode = .preview
+        @Published var mode: Mode = .edit
         @Published var items: [AvatarItemModel]
         @Published var selectedItemId: String?
+        private var oldAvatarItem: AvatarItemModel?
         
         init(items: [AvatarItemModel]) {
             self.items = items
+            
+            if let first = items.first, first.type == .string {
+                selectedItemId = first.id
+                oldAvatarItem = first
+            }
         }
         
         func save() {
             
+        }
+        
+        func currentSelectModel() -> AvatarItemModel? {
+            for item in items {
+                if item.id == selectedItemId {
+                    return item
+                }
+            }
+            
+            return nil
         }
     }
 }

@@ -17,12 +17,14 @@ extension ProfileEditViewModel {
     
     enum Input {
         case changePrivate(Bool)
+        case editAvatar
     }
 }
 
 class ProfileEditViewModel: ViewModel {
     @Published var state: State
     @Published var needShowLoadingHud: Bool = false
+    @RouterObject var router: ProfileEditCoordinator.Router?
     
     private var cancellableSet = Set<AnyCancellable>()
     
@@ -43,6 +45,43 @@ class ProfileEditViewModel: ViewModel {
         switch input {
         case .changePrivate(let isPrivate):
             changePrivate(isPrivate)
+        case .editAvatar:
+            editAvatarAction()
+        }
+    }
+    
+    private func editAvatarAction() {
+        Task {
+            do {
+                var items = [EditAvatarView.AvatarItemModel]()
+                
+                let nfts = try await NFTListCache.cache.getNFTList()
+                if let currentAvatar = UserManager.shared.userInfo?.avatar {
+                    items.append(EditAvatarView.AvatarItemModel(type: .string, avatarString: currentAvatar))
+                }
+                
+                for nft in nfts {
+                    items.append(EditAvatarView.AvatarItemModel(type: .nft, nft: nft))
+                }
+                
+                if items.isEmpty {
+                    HUD.error(title: "nft_empty".localized)
+                    return
+                }
+                
+                gotoAvatarEdit(items: items)
+            } catch {
+                DispatchQueue.main.async {
+                    HUD.error(title: "fetch_nft_error".localized)
+                    NFTListCache.cache.refresh()
+                }
+            }
+        }
+    }
+    
+    private func gotoAvatarEdit(items: [EditAvatarView.AvatarItemModel]) {
+        DispatchQueue.main.async {
+            self.router?.route(to: \.avatarEdit, items)
         }
     }
     

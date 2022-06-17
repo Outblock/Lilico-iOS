@@ -34,6 +34,17 @@ extension String {
             return false
         }
     }
+    
+    func removePrefix(_ prefix: String) -> String {
+        if starts(with: prefix) {
+            if let range = range(of: prefix) {
+                let startIndex = range.upperBound
+                return String(self[startIndex...])
+            }
+        }
+        
+        return self
+    }
 }
 
 extension String {

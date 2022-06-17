@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct EditAvatarView_Previews: PreviewProvider {
     static var previews: some View {
@@ -19,18 +20,19 @@ private let PreviewContainerSize: CGFloat = 54
 private let PreviewImageSize: CGFloat = 40
 
 struct EditAvatarView: View {
-    private var vm: EditAvatarViewModel
+    @StateObject private var vm: EditAvatarViewModel
+    @EnvironmentObject private var router: ProfileEditCoordinator.Router
     
     init(items: [AvatarItemModel]) {
-        self.vm = EditAvatarViewModel(items: items)
+        _vm = StateObject(wrappedValue: EditAvatarViewModel(items: items))
     }
     
     var body: some View {
         ZStack() {
             VStack(spacing: 16) {
-                previewContainer
+//                previewContainer
                 scrollView
-                titleView
+//                titleView
             }
             
             ZStack() {
@@ -52,15 +54,11 @@ struct EditAvatarView: View {
         .buttonStyle(.plain)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .backgroundFill(Color(hex: "#1A1A1A"))
-        .preferredColorScheme(.dark)
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            
-        }
         .navigationBarItems(trailing: HStack {
             Button {
-                
+                vm.mode = .edit
             } label: {
                 Text("edit".localized)
                     .foregroundColor(.white)
@@ -72,13 +70,17 @@ struct EditAvatarView: View {
             }
             .visibility(vm.mode == .preview ? .visible : .invisible)
         })
+        .preferredColorScheme(.dark)
+        .addBackBtn {
+            router.pop()
+        }
     }
 }
 
 extension EditAvatarView {
     var previewContainer: some View {
         ZStack {
-            Image("")
+            KFImage(URL(string: vm.currentSelectModel()?.getCover() ?? ""))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(.black)
             
@@ -94,30 +96,39 @@ extension EditAvatarView {
     var scrollView: some View {
         GeometryReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(vm.items, id: \.id) { item in
-                        AvatarCell(isSelected: item.id == vm.selectedItemId, model: item)
-                            .snapID(item.id)
+                ScrollViewReader { reader in
+                    LazyHStack(spacing: 0) {
+                        ForEach(vm.items, id: \.id) { item in
+                            AvatarCell(isSelected: item.id == vm.selectedItemId, model: item).snapID(item.id)
+                                .onTapGesture {
+                                    DispatchQueue.main.async {
+                                        withAnimation {
+                                            reader.scrollTo(item.id, anchor: .center)
+                                        }
+                                    }
+                                }
+                        }
                     }
+                    .padding(.horizontal, proxy.size.width / 2.0 - PreviewContainerSize / 2.0)
                 }
-                .padding(.horizontal, proxy.size.width / 2.0 - PreviewContainerSize / 2.0)
             }
             .snappable(alignment: .center, mode: .afterScrolling(decelerationRate: .fast)) { snapID in
+                debugPrint("EditAvatarView -> afterScrolling")
                 if let selectedId = snapID as? String {
                     vm.selectedItemId = selectedId
                 }
             }
-            .visibility(vm.mode == .preview ? .invisible : .visible)
+//            .visibility(vm.mode == .preview ? .invisible : .visible)
         }
         .frame(height: PreviewContainerSize)
     }
     
     var titleView: some View {
-        Text("name of nft")
+        Text(vm.currentSelectModel()?.getName() ?? "")
             .lineLimit(3)
             .foregroundColor(.white)
             .font(.inter(size: 14))
-            .frame(width: .infinity)
+            .frame(maxWidth: .infinity)
             .padding(.horizontal, 16)
             .visibility(vm.mode == .preview ? .invisible : .visible)
     }
@@ -136,7 +147,7 @@ extension EditAvatarView {
                 .cornerRadius(4)
                 .visibility(isSelected ? .visible : .invisible)
                 
-                Image("")
+                KFImage(URL(string: model.getCover()))
                 .frame(width: PreviewImageSize, height: PreviewImageSize)
                 .background(.black)
                 .cornerRadius(4)
