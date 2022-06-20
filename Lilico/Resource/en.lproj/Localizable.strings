@@ -60,6 +60,8 @@
 "more" = "More";
 "purchase_price" = "Purchase Price";
 "purchase_date" = "Purchase Date";
+"Trending" = "Trending";
+"Collection list" = "Collection list";
 
 // Account
 "create_a" = "Create a";

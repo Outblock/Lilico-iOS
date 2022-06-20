@@ -15,6 +15,7 @@ class NFTTabViewModel: ViewModel {
     
     @Published
     private(set) var state: NFTTabScreen.ViewState = .init()
+    
 
     private var owner: String = "0x050aa60ac445a061"
     
@@ -36,6 +37,7 @@ class NFTTabViewModel: ViewModel {
         Task {
             print("============== refresh NFT")
             do {
+                await state.favoriteStore.loadFavorite()
                 let crudeNFTList = try await handleNFTList()
                 let collectionList = try await fetchCollections()
                 let nftGroup = Dictionary(grouping: crudeNFTList){ $0.contract.address }
@@ -50,7 +52,16 @@ class NFTTabViewModel: ViewModel {
                         return CollectionItem(name: nft!.contract.name ?? "", count: group.value.count, collection: col, nfts: nfts)
                 }
                 .sorted{ $0.count > $1.count }
+                // if the favorite NFT is not in the NFT list,remove it.
+                let favoriteList = state.favoriteStore.favorites.filter { model in
+                    crudeNFTList.first { res in
+                        res.id.tokenID == model.response.id.tokenID
+                    } != nil
+                }
+                
+                
                 await MainActor.run {
+                    state.favoriteStore.favorites = favoriteList;
                     state.items = result
                     state.loading = false
                 }
@@ -91,7 +102,7 @@ class NFTTabViewModel: ViewModel {
         return allCrudeNFTs
     }
     
-    private func fetchNFTList(from offset: Int = 0, limit: Int = 30 ) async throws -> (Int, [NFTResponse]) {
+    private func fetchNFTList(from offset: Int = 0, limit: Int = 25 ) async throws -> (Int, [NFTResponse]) {
         do {
             let request = NFTRequest(address: owner, offset: offset, limit: limit)
             let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.list(request))

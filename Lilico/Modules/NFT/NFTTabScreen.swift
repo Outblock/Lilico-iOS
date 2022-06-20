@@ -134,7 +134,7 @@ struct NFTTabScreen: View {
                         }
                     }
                     .overlay(
-                        NFTTabScreen.TopBar(listStyle: $listStyle)
+                        NFTTabScreen.TopBar(listStyle: $listStyle, offset: $offset)
                             .frame(maxHeight: .infinity, alignment: .top)
                     )
                     .background(
@@ -176,24 +176,24 @@ extension NFTTabScreen {
         @State var favoriteId: String?
         
         var body: some View {
-            VStack {
+            VStack(spacing: 0) {
                 if(viewModel.favoriteStore.favorites.count > 0) {
 
-                    VStack(alignment: .center,spacing: 0) {
-                        HStack() {
+                    VStack(alignment: .center, spacing: 0) {
+                        HStack(spacing: 8) {
                             Image(systemName: "star.fill")
-                            Text("Top Selection")
+                            Text("top_selection".localized)
                                 .font(.LL.largeTitle2)
                                 .semibold()
 
                             Spacer()
                         }
+                        .frame(height: 32)
                         .padding(.horizontal, 18)
-                        .padding(.top)
-                        .foregroundColor(.white)
+                        .foregroundColor(.LL.Shades.front)
 
                         StackPageView(viewModel.favoriteStore.favorites, selection:$favoriteId) { nft in
-                            ZStack {
+                            ZStack() {
                                 RoundedRectangle(cornerRadius: 16)
                                     .fill(Color.LL.background)
                                 KFImage
@@ -201,28 +201,29 @@ extension NFTTabScreen {
                                     .fade(duration: 0.25)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: (screenWidth * 0.76-18-24),
-                                           height: (screenWidth * 0.76-18-24) )
+                                    .frame(width: (imageHeight),
+                                           height: (imageHeight) )
                                     .cornerRadius(8)
                                     .clipped()
-
                             }
-                            .frame(width: (screenWidth * 0.76-18),
-                                   height: (screenWidth * 0.76-18) )
+                            .frame(width: imageHeight+24,
+                                   height: imageHeight+24 )
                             .onTapGesture {
                                 onTapNFT()
                             }
                         }
                         .options(options)
                         .pagePadding(
-                            top: .absolute(18),
+                            top: .absolute(0),
                             left: .absolute(18),
-                            bottom: .absolute(18),
+                            bottom: .absolute(0),
                             right: .fractionalWidth(0.24)
                         )
                         .frame(width: screenWidth,
-                               height: screenHeight * 0.4, alignment: .center)
+                               height: imageHeight+12, alignment: .center)
+                        .padding(.top, 16)
                     }
+                    .padding(.top, 48)
                     .background(
                         ZStack {
                             
@@ -256,6 +257,11 @@ extension NFTTabScreen {
                 }
             }
         }
+        
+        var imageHeight: CGFloat {
+            return (screenWidth * 0.76-18-24)
+        }
+        
         var options = StackTransformViewOptions(
             scaleFactor: 0.10,
             minScale: 0.0,
@@ -300,45 +306,56 @@ extension NFTTabScreen {
     }
     
     struct TopBar: View {
+        
         @Binding var listStyle: String
+        @Binding var offset: CGFloat
+        
         @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
         
         var body: some View {
-            HStack(alignment: .center) {
-                if(!viewModel.state.isEmpty) {
-                    
-                    NFTSegmentControl(currentTab: $listStyle, titles: ["List","Grid"])
+            HStack {
+                HStack(alignment: .center) {
+                    if(!viewModel.state.isEmpty) {
+                        
+                        NFTSegmentControl(currentTab: $listStyle, titles: ["List","Grid"])
 
+                    }
+                    Spacer()
+                    
+    //                if(!viewModel.state.isEmpty) {
+    //                    Button {
+    //                        viewModel.trigger(.search)
+    //                    } label: {
+    //                        Image(systemName: "magnifyingglass")
+    //                            .foregroundColor(.white)
+    //                            .padding(8)
+    //                            .background {
+    //                                Circle()
+    //                                    .foregroundColor(.LL.outline.opacity(0.8))
+    //                            }
+    //                    }
+    //                }
+                    
+                    Button {
+                        viewModel.trigger(.add)
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(.white)
+                            .padding(8)
+                            .background {
+                                Circle()
+                                    .foregroundColor(.LL.outline.opacity(0.8))
+                            }
+                    }
                 }
-                Spacer()
-                
-//                if(!viewModel.state.isEmpty) {
-//                    Button {
-//                        viewModel.trigger(.search)
-//                    } label: {
-//                        Image(systemName: "magnifyingglass")
-//                            .foregroundColor(.white)
-//                            .padding(8)
-//                            .background {
-//                                Circle()
-//                                    .foregroundColor(.LL.outline.opacity(0.8))
-//                            }
-//                    }
-//                }
-                
-                Button {
-                    viewModel.trigger(.add)
-                } label: {
-                    Image(systemName: "plus")
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background {
-                            Circle()
-                                .foregroundColor(.LL.outline.opacity(0.8))
-                        }
-                }
+                .padding(.horizontal, 18)
+                .padding(.bottom, 4)
             }
-            .padding(.horizontal, 18)
+            .background(
+                Color.LL.Shades.front.opacity(offset < 0 ? abs((offset)/100.0) : 0)
+            )
+            
+            
         }
     }
 }
@@ -389,9 +406,11 @@ extension NFTTabScreen {
                         .frame(height: 0)
                 }
             }
+            .padding(.top, 36)
             .background(
                 Color.LL.Neutrals.background
             )
+            
             
         }
             

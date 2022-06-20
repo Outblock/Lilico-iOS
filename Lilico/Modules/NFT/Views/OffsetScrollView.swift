@@ -20,7 +20,7 @@ struct OffsetScrollView<Content: View>: View {
     }
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             GeometryReader { geo in
                 Color.clear
                     .preference(key: NavigationScrollPreferenKey.self,

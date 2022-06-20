@@ -29,6 +29,9 @@ struct NFTDetailPage: View {
     
     @State
     private var isSharePresented: Bool = false
+    
+    @State
+    private var isFavorited: Bool = false
 
     @State
     private var items:[UIImage] = []
@@ -41,7 +44,6 @@ struct NFTDetailPage: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             
-
             OffsetScrollViewWithAppBar(title: nft.title) {
                 Spacer()
                     .frame(height: 64)
@@ -99,7 +101,6 @@ struct NFTDetailPage: View {
                             }
 
 
-                            
                             Button {
                                 if(viewModel.favoriteStore.isFavorite(with: nft)) {
                                     viewModel.favoriteStore.removeFavorite(nft)
@@ -121,9 +122,12 @@ struct NFTDetailPage: View {
                                 }
                                 .frame(width: 44, height: 44)
                                 .foregroundColor(theColor)
-                                
+                                .onChange(of: viewModel.state.favoriteStore.favorites) { value in
+                                    print("Favorite Did change")
+                                }
                             }
                             .padding(.horizontal,6)
+                            
                             
                         }
                         .padding(.top, 16)
@@ -236,7 +240,7 @@ struct NFTDetailPage: View {
             .padding(.trailing, 18)
         })
         .onAppear {
-            NFTDetailPage.ShareNFTView = NFTShareView(nft: nft, colors: viewModel.state.colorsMap[nft.image.absoluteString] ?? [])
+//            NFTDetailPage.ShareNFTView = NFTShareView(nft: nft, colors: viewModel.state.colorsMap[nft.image.absoluteString] ?? [])
                 
         }
     }

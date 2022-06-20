@@ -13,11 +13,6 @@ class NFTFavoriteStore: ObservableObject {
     @Published
     var favorites: [NFTModel] = []
     
-    init() {
-        loadFavorite()
-    }
-    
-    
     
     /*
      1. fetch all
@@ -26,21 +21,26 @@ class NFTFavoriteStore: ObservableObject {
      4. remove one
      */
     private var favoriteKey: String {
-        //TODO: fileName like userId_favorite
-        return "favorite"
+        let uid = UserManager.shared.getUid() ?? "0"
+        return "\(uid)_favorite"
     }
     
-    private func loadFavorite() {
-        let share = Shared.dataCache
-        share.fetch(key: favoriteKey).onSuccess { json in
-            do {
-                let jsonDecoder = JSONDecoder()
-                self.favorites = try jsonDecoder.decode([NFTModel].self, from: json)
-                print("====== 喜爱JSON \(json)")
-            }catch {
-                print("====== Decoder Favorite failed")
+    func loadFavorite() async  {
+        return await withCheckedContinuation { continuation in
+            let share = Shared.dataCache
+            share.fetch(key: favoriteKey).onSuccess {[self] json in
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    self.favorites = try jsonDecoder.decode([NFTModel].self, from: json)
+                    print("===== Favorites: \(self.favorites)")
+                    continuation.resume()
+                }catch {
+                    print("====== Decoder Favorite failed")
+                    continuation.resume()
+                }
+            }.onFailure { error in
+                continuation.resume()
             }
-            
         }
     }
     
@@ -60,11 +60,15 @@ class NFTFavoriteStore: ObservableObject {
     func addFavorite(_ nft: NFTModel) {
         favorites.append(nft)
         saveFavorite()
+        print("====== Add \(favorites.count)")
+        
     }
     
     func removeFavorite(_ nft: NFTModel) {
-        favorites.removeAll(where: { $0.id == nft.id })
+        favorites.removeAll(where: { $0.response.id.tokenID == nft.response.id.tokenID })
         saveFavorite()
+        print("====== remove \(favorites.count)")
+        
     }
     
 }

@@ -22,7 +22,7 @@ struct NFTSegmentControl: View {
             }
         }
         .padding(4)
-        .background(.LL.Button.light.opacity(0.24))
+        .background(.LL.Neutrals.neutrals3.opacity(0.24))
         .cornerRadius(16)
     }
 }
