@@ -68,7 +68,7 @@ extension EditAvatarView {
 
 extension EditAvatarView {
     class EditAvatarViewModel: ObservableObject {
-        @Published var mode: Mode = .edit
+        @Published var mode: Mode = .preview
         @Published var items: [AvatarItemModel]
         @Published var selectedItemId: String?
         private var oldAvatarItem: AvatarItemModel?

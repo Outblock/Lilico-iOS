@@ -25,7 +25,7 @@ internal struct SnappableModifier: ViewModifier {
         .coordinateSpace(name: coordinateSpaceName)
         .environment(\.coordinateSpaceName, coordinateSpaceName)
         .environment(\.snapAlignment, snapAlignment)
-        .introspectScrollView { scrollView in
+        .sn_introspectScrollView { scrollView in
           scrollView.decelerationRate = snapMode.decelerationRate
           scrollView.delegate = draggingDetector
         }

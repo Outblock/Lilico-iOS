@@ -30,9 +30,9 @@ struct EditAvatarView: View {
     var body: some View {
         ZStack() {
             VStack(spacing: 16) {
-//                previewContainer
+                previewContainer
                 scrollView
-//                titleView
+                titleView
             }
             
             ZStack() {
@@ -113,12 +113,11 @@ extension EditAvatarView {
                 }
             }
             .snappable(alignment: .center, mode: .afterScrolling(decelerationRate: .fast)) { snapID in
-                debugPrint("EditAvatarView -> afterScrolling")
                 if let selectedId = snapID as? String {
                     vm.selectedItemId = selectedId
                 }
             }
-//            .visibility(vm.mode == .preview ? .invisible : .visible)
+            .visibility(vm.mode == .preview ? .invisible : .visible)
         }
         .frame(height: PreviewContainerSize)
     }
