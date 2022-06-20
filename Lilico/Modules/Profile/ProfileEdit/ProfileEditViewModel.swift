@@ -35,7 +35,7 @@ class ProfileEditViewModel: ViewModel {
                 return
             }
             
-            self?.state.avatar = userInfo.avatar
+            self?.state.avatar = userInfo.avatar.convertedAvatarString()
             self?.state.nickname = userInfo.nickname
             self?.state.isPrivate = userInfo.isPrivate
         }.store(in: &cancellableSet)

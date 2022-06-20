@@ -56,3 +56,26 @@ extension String {
     }
 }
 
+// MARK: - Firebase
+
+extension String {
+    func convertedAvatarString() -> String {
+        if var comp = URLComponents(string: self) {
+            if comp.host == "source.boringavatars.com" {
+                comp.host = "lilico.app"
+                comp.path = "/api/avatar\(comp.path)"
+                return comp.url!.absoluteString
+            }
+        }
+        
+        if !self.starts(with: "https://firebasestorage.googleapis.com") {
+            return self
+        }
+        
+        if self.contains("alt=media") {
+            return self
+        }
+        
+        return "\(self)?alt=media"
+    }
+}

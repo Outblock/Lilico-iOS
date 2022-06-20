@@ -71,6 +71,9 @@ struct EditAvatarView: View {
         .addBackBtn {
             router.pop()
         }
+        .toast(isPresented: $vm.needShowLoadingHud) {
+            ToastView("saving".localized).toastViewStyle(.indeterminate)
+        }
         .environment(\.colorScheme, .dark)
     }
 }
@@ -109,6 +112,10 @@ extension EditAvatarView {
                                         withAnimation {
                                             reader.scrollTo(item.id, anchor: .center)
                                         }
+                                        
+                                        if vm.selectedItemId != item.id {
+                                            vm.selectedItemId = item.id
+                                        }
                                     }
                                 }
                         }
@@ -117,7 +124,7 @@ extension EditAvatarView {
                 }
             }
             .snappable(alignment: .center, mode: .afterScrolling(decelerationRate: .fast)) { snapID in
-                if let selectedId = snapID as? String {
+                if let selectedId = snapID as? String, selectedId != vm.selectedItemId {
                     vm.selectedItemId = selectedId
                 }
             }

@@ -38,6 +38,8 @@
 "words_not_found" = "Oops, words not found.";
 "update_nickname_failed" = "Update nickname failed";
 "update_private_failed" = "Change private status failed";
+"avatar_info_error" = "NFT info error";
+"change_avatar_error" = "Change avatar failed";
 
 // NFT
 "x_collections" = "%d Collections";

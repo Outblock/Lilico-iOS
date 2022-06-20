@@ -48,7 +48,9 @@ extension ProfileEditView {
                 .foregroundColor(titleColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            KFImage(URL(string: vm.state.avatar))
+            KFImage.url(URL(string: vm.state.avatar))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(width: 40, height: 40)
                 .background(.LL.Neutrals.note)
                 .clipShape(Circle())

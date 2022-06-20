@@ -206,4 +206,14 @@ extension UserManager {
         LocalUserDefaults.shared.userInfo = newUserInfo
         userInfo = newUserInfo
     }
+    
+    func updateAvatar(_ avatar: String) {
+        guard let current = userInfo else {
+            return
+        }
+        
+        let newUserInfo = UserInfo(avatar: avatar, nickname: current.nickname, username: current.username, private: current.private)
+        LocalUserDefaults.shared.userInfo = newUserInfo
+        userInfo = newUserInfo
+    }
 }

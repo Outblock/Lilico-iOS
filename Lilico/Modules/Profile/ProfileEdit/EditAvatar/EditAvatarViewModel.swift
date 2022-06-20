@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 extension EditAvatarView {
     enum Mode {
@@ -45,14 +46,8 @@ extension EditAvatarView {
         }
         
         func getCover() -> String {
-            if let avatarString = avatarString, var comp = URLComponents(string: avatarString) {
-                if comp.host == "source.boringavatars.com" {
-                    comp.host = "lilico.app"
-                    comp.path = "/api/avatar\(comp.path)"
-                    return comp.url!.absoluteString
-                }
-                
-                return avatarString
+            if let avatarString = avatarString {
+                return avatarString.convertedAvatarString()
             }
             
             if let nftCover = nft?.cover() {
@@ -77,7 +72,10 @@ extension EditAvatarView {
         @Published var mode: Mode = .preview
         @Published var items: [AvatarItemModel]
         @Published var selectedItemId: String?
+        @Published var needShowLoadingHud: Bool = false
         private var oldAvatarItem: AvatarItemModel?
+        
+        @RouterObject var router: ProfileEditCoordinator.Router?
         
         init(items: [AvatarItemModel]) {
             self.items = items
@@ -88,10 +86,6 @@ extension EditAvatarView {
             }
         }
         
-        func save() {
-            
-        }
-        
         func currentSelectModel() -> AvatarItemModel? {
             for item in items {
                 if item.id == selectedItemId {
@@ -100,6 +94,81 @@ extension EditAvatarView {
             }
             
             return nil
+        }
+        
+        func save() {
+            guard let item = currentSelectModel() else {
+                return
+            }
+            
+            if let idString = oldAvatarItem?.id, item.id == idString {
+                mode = .preview
+                return
+            }
+            
+            
+            guard let url = URL(string: item.getCover()) else {
+                HUD.error(title: "avatar_info_error".localized)
+                return
+            }
+            
+            let failed = {
+                DispatchQueue.main.async {
+                    self.needShowLoadingHud = false
+                    HUD.error(title: "change_avatar_error".localized)
+                }
+            }
+            
+            let success: (UIImage) -> Void = { img in
+                Task {
+                    guard let firebaseURL = await FirebaseStorageUtils.upload(avatar: img) else {
+                        failed()
+                        return
+                    }
+                    
+                    let result = await self.uploadAvatarURL(firebaseURL)
+                    if !result {
+                        failed()
+                        return
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.needShowLoadingHud = false
+                        UserManager.shared.updateAvatar(firebaseURL)
+                        self.router?.pop()
+                    }
+                }
+            }
+            
+            needShowLoadingHud = true
+            KingfisherManager.shared.retrieveImage(with: url) { result in
+                switch result {
+                case .success(let r):
+                    debugPrint("EditAvatarViewModel -> save action, did get image from: \(r.cacheType)")
+                    success(r.image)
+                case .failure(let e):
+                    debugPrint("EditAvatarViewModel -> save action, did failed get image: \(e)")
+                    failed()
+                }
+            }
+        }
+        
+        private func uploadAvatarURL(_ url: String) async -> Bool {
+            guard let nickname = UserManager.shared.userInfo?.nickname else {
+                return false
+            }
+            
+            let request = UserInfoUpdateRequest(nickname: nickname, avatar: url)
+            do {
+                let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.Profile.updateInfo(request))
+                if response.httpCode != 200 {
+                    return false
+                }
+                
+                return true
+            } catch {
+                return false
+            }
         }
     }
 }

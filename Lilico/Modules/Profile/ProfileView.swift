@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
     @StateObject var themeManager = ThemeManager.shared
@@ -113,7 +114,12 @@ extension ProfileView {
         
         var body: some View {
             HStack(spacing: 16) {
-                Image("").frame(width: 82, height: 82).background(.LL.Primary.salmonPrimary).clipShape(Circle())
+                KFImage.url(URL(string: userManager.userInfo?.avatar.convertedAvatarString() ?? ""))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 82, height: 82)
+                    .background(.LL.Primary.salmonPrimary)
+                    .clipShape(Circle())
                 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(userManager.userInfo?.nickname ?? "").foregroundColor(.LL.Neutrals.text).font(.inter(weight: .semibold))
