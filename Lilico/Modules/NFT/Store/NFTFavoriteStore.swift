@@ -14,6 +14,9 @@ class NFTFavoriteStore: ObservableObject {
     var favorites: [NFTModel] = []
     
     
+    static let shared = NFTFavoriteStore()
+    private init() {}
+    
     /*
      1. fetch all
      2. add one

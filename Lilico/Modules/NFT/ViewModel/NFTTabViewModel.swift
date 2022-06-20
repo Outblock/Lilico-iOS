@@ -17,7 +17,7 @@ class NFTTabViewModel: ViewModel {
     private(set) var state: NFTTabScreen.ViewState = .init()
     
 
-    private var owner: String = "0x050aa60ac445a061"
+    private var owner: String = "0x2b06c41f44a05656"
     
     @RouterObject
     var router: NFTCoordinator.Router?
@@ -37,7 +37,7 @@ class NFTTabViewModel: ViewModel {
         Task {
             print("============== refresh NFT")
             do {
-                await state.favoriteStore.loadFavorite()
+                await NFTFavoriteStore.shared.loadFavorite()
                 let crudeNFTList = try await handleNFTList()
                 let collectionList = try await fetchCollections()
                 let nftGroup = Dictionary(grouping: crudeNFTList){ $0.contract.address }
@@ -53,7 +53,7 @@ class NFTTabViewModel: ViewModel {
                 }
                 .sorted{ $0.count > $1.count }
                 // if the favorite NFT is not in the NFT list,remove it.
-                let favoriteList = state.favoriteStore.favorites.filter { model in
+                let favoriteList = NFTFavoriteStore.shared.favorites.filter { model in
                     crudeNFTList.first { res in
                         res.id.tokenID == model.response.id.tokenID
                     } != nil
@@ -61,7 +61,7 @@ class NFTTabViewModel: ViewModel {
                 
                 
                 await MainActor.run {
-                    state.favoriteStore.favorites = favoriteList;
+                    NFTFavoriteStore.shared.favorites = favoriteList;
                     state.items = result
                     state.loading = false
                 }

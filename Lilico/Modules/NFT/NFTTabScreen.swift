@@ -18,7 +18,6 @@ extension NFTTabScreen {
     struct ViewState {
         var loading: Bool = true
         var items: [CollectionItem] = []
-        var favoriteStore: NFTFavoriteStore = NFTFavoriteStore()
         var colorsMap: [String: [Color]] = [:]
         var isEmpty: Bool {
             return !loading && items.count == 0
@@ -47,6 +46,9 @@ struct NFTTabScreen: View {
     @StateObject
     var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action> 
     
+    @StateObject
+    var favoriteStore = NFTFavoriteStore.shared
+    
     @State var selectedIndex = 0
     
     @State private var favoriteId: String?
@@ -68,7 +70,7 @@ struct NFTTabScreen: View {
     }
     
     var canShowFavorite: Bool {
-        return  (viewModel.favoriteStore.isNotEmpty && isListStyle)
+        return  (favoriteStore.isNotEmpty && isListStyle)
     }
     
     @State private var collectionBarStyle: NFTTabScreen.CollectionBar.BarStyle = .horizontal
@@ -172,12 +174,13 @@ extension NFTTabScreen {
         var currentNFTImage: URL?
         
         @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
-        
+        @StateObject
+        var favoriteStore = NFTFavoriteStore.shared
         @State var favoriteId: String?
         
         var body: some View {
             VStack(spacing: 0) {
-                if(viewModel.favoriteStore.favorites.count > 0) {
+                if(favoriteStore.favorites.count > 0) {
 
                     VStack(alignment: .center, spacing: 0) {
                         HStack(spacing: 8) {
@@ -192,7 +195,7 @@ extension NFTTabScreen {
                         .padding(.horizontal, 18)
                         .foregroundColor(.LL.Shades.front)
 
-                        StackPageView(viewModel.favoriteStore.favorites, selection:$favoriteId) { nft in
+                        StackPageView(favoriteStore.favorites, selection:$favoriteId) { nft in
                             ZStack() {
                                 RoundedRectangle(cornerRadius: 16)
                                     .fill(Color.LL.background)
@@ -237,8 +240,8 @@ extension NFTTabScreen {
                         }
                     )
                     .onChange(of: favoriteId) { id in
-                        guard let favoriteId = favoriteId, let nft = viewModel.favoriteStore.find(with: favoriteId) else {
-                            let model = viewModel.favoriteStore.favorites.first
+                        guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
+                            let model = favoriteStore.favorites.first
                             currentNFTImage = model?.image
                             return
                         }
@@ -253,7 +256,7 @@ extension NFTTabScreen {
             
             .onAppear {
                 if(favoriteId == nil) {
-                    favoriteId = viewModel.favoriteStore.favorites.first?.id
+                    favoriteId = favoriteStore.favorites.first?.id
                 }
             }
         }
@@ -289,7 +292,7 @@ extension NFTTabScreen {
         )
         
         func onTapNFT() {
-            guard let favoriteId = favoriteId, let nft = viewModel.favoriteStore.find(with: favoriteId) else {
+            guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
                 return
             }
             viewModel.trigger(.info(nft))

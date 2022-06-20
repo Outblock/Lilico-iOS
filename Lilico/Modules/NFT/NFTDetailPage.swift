@@ -15,6 +15,9 @@ struct NFTDetailPage: View {
     @StateObject
     var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
     
+    @StateObject
+    var favorite: NFTFavoriteStore = NFTFavoriteStore.shared
+    
     var nft: NFTModel
     
     @State var opacity: Double = 0
@@ -102,14 +105,14 @@ struct NFTDetailPage: View {
 
 
                             Button {
-                                if(viewModel.favoriteStore.isFavorite(with: nft)) {
-                                    viewModel.favoriteStore.removeFavorite(nft)
+                                if(NFTFavoriteStore.shared.isFavorite(with: nft)) {
+                                    NFTFavoriteStore.shared.removeFavorite(nft)
                                 }else {
-                                    viewModel.favoriteStore.addFavorite(nft)
+                                    NFTFavoriteStore.shared.addFavorite(nft)
                                 }
                             } label: {
                                 ZStack(alignment: .center){
-                                    if(viewModel.favoriteStore.isFavorite(with: nft)) {
+                                    if(favorite.isFavorite(with: nft)) {
                                         Image("nft_logo_circle_fill")
                                         Image("nft_logo_star_fill")
                                             .frame(width: 20, height:20)
@@ -122,7 +125,7 @@ struct NFTDetailPage: View {
                                 }
                                 .frame(width: 44, height: 44)
                                 .foregroundColor(theColor)
-                                .onChange(of: viewModel.state.favoriteStore.favorites) { value in
+                                .onChange(of: favorite.favorites) { value in
                                     print("Favorite Did change")
                                 }
                             }
