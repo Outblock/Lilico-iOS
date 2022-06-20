@@ -10,9 +10,7 @@ import Kingfisher
 
 struct EditAvatarView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            EditAvatarView(items: [.init(type: .string, avatarString: "1")])
-        }
+        EmptyView()
     }
 }
 
@@ -79,18 +77,24 @@ struct EditAvatarView: View {
 
 extension EditAvatarView {
     var previewContainer: some View {
-        ZStack {
-            KFImage(URL(string: vm.currentSelectModel()?.getCover() ?? ""))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.black)
-            
-            Color.black.opacity(0.5).reverseMask {
-                Circle().padding(18)
+        GeometryReader { geometry in
+            ZStack {
+                KFImage.url(URL(string: vm.currentSelectModel()?.getCover() ?? ""))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: geometry.size.width)
+                    .background(.black)
+                    .clipped()
+                
+                Color.black.opacity(0.5).reverseMask {
+                    Circle().padding(18)
+                }
+                .visibility(vm.mode == .preview ? .invisible : .visible)
             }
-            .visibility(vm.mode == .preview ? .invisible : .visible)
+            .frame(width: geometry.size.width, height: geometry.size.width)
+            .background(.black)
         }
         .aspectRatio(1, contentMode: .fit)
-        .background(.black)
     }
     
     var scrollView: some View {
@@ -123,8 +127,8 @@ extension EditAvatarView {
     }
     
     var titleView: some View {
-        Text(vm.currentSelectModel()?.getName() ?? "")
-            .lineLimit(3)
+        Text(vm.currentSelectModel()?.getName() ?? " ")
+            .lineLimit(1)
             .foregroundColor(.white)
             .font(.inter(size: 14))
             .frame(maxWidth: .infinity)
@@ -146,11 +150,13 @@ extension EditAvatarView {
                 .cornerRadius(4)
                 .visibility(isSelected ? .visible : .invisible)
                 
-                KFImage(URL(string: model.getCover()))
-                .frame(width: PreviewImageSize, height: PreviewImageSize)
-                .background(.black)
-                .cornerRadius(4)
-                .opacity(isSelected ? 1 : 0.5)
+                KFImage.url(URL(string: model.getCover()))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: PreviewImageSize, height: PreviewImageSize)
+                    .background(.black)
+                    .cornerRadius(4)
+                    .opacity(isSelected ? 1 : 0.5)
             }
             .frame(width: PreviewContainerSize, height: PreviewContainerSize)
         }

@@ -28,40 +28,23 @@ struct NFTResponse: Codable, Hashable {
     let postMedia: NFTPostMedia
     
     func cover() -> String? {
-        guard let media = media else {
-            return nil
-        }
-
-        for m in media {
-            if m.mimeType == "image" {
-                var url = m.uri
-                if url.starts(with: "ipfs://") {
-                    url = url.replacingOccurrences(of: "ipfs://", with: "https://ipfs.io/ipfs/")
-                }
-                
-                return url
-            }
-        }
-        
-        for m in metadata.metadata {
-            if m.name == "image" {
-                return m.value
-            }
-        }
-        
-        return video()
+        return postMedia.image ?? postMedia.video
     }
     
     func video() -> String? {
-        if let m = media?.first(where: { $0.mimeType.starts(with: "video/") })?.uri.trim().removePrefix("ipfs://"), !m.isEmpty {
-            return m
+        return postMedia.video
+    }
+    
+    func name() -> String? {
+        if let title = title, !title.isEmpty {
+            return title
         }
         
-        if let arLink = metadata.metadata.first(where: { $0.name == "arLink" })?.value {
-            return "https://arweave.net/\(arLink)"
+        guard let name = contract.name else {
+            return nil
         }
         
-        return nil
+        return "\(name) #\(id.tokenID)"
     }
 }
 

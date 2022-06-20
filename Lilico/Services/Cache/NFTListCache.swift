@@ -13,7 +13,7 @@ class NFTListCache {
     static let cache = NFTListCache()
     
     private var isRefreshing = false
-    private var testOwner = "0x050aa60ac445a061"
+    private var testOwner = "0x2b06c41f44a05656"
 //    private var testOwner = "0x1e3c78c6d580273b"
     private var cancelSet = Set<AnyCancellable>()
     

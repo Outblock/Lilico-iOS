@@ -45,7 +45,13 @@ extension EditAvatarView {
         }
         
         func getCover() -> String {
-            if let avatarString = avatarString {
+            if let avatarString = avatarString, var comp = URLComponents(string: avatarString) {
+                if comp.host == "source.boringavatars.com" {
+                    comp.host = "lilico.app"
+                    comp.path = "/api/avatar\(comp.path)"
+                    return comp.url!.absoluteString
+                }
+                
                 return avatarString
             }
             
@@ -61,7 +67,7 @@ extension EditAvatarView {
                 return "current_avatar".localized
             }
             
-            return nft?.title ?? ""
+            return nft?.name() ?? " "
         }
     }
 }
