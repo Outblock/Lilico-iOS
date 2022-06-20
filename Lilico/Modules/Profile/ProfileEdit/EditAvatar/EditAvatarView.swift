@@ -68,10 +68,10 @@ struct EditAvatarView: View {
             }
             .visibility(vm.mode == .preview ? .visible : .invisible)
         })
-        .preferredColorScheme(.dark)
         .addBackBtn {
             router.pop()
         }
+        .environment(\.colorScheme, .dark)
     }
 }
 
