@@ -195,6 +195,7 @@
 "wallet" = "Wallet";
 "flow" = "Flow";
 "receive" = "Receive";
+"buy" = "Buy";
 "swap" = "Swap";
 "restore" = "Restore";
 "restore_with_words_desc" = "Restore your wallet with the 12 word \n recovery phrase that you have written down.";

@@ -11,6 +11,7 @@ extension LocalUserDefaults {
     enum Keys: String {
         case flowNetwork
         case userInfo
+        case walletHidden
     }
     
     enum FlowNetworkType: String {
@@ -52,6 +53,12 @@ class LocalUserDefaults: ObservableObject {
             } else {
                 return nil
             }
+        }
+    }
+    
+    @AppStorage(Keys.walletHidden.rawValue) var walletHidden: Bool = false {
+        didSet {
+            NotificationCenter.default.post(name: .walletHiddenFlagUpdated, object: nil)
         }
     }
 }
