@@ -47,7 +47,7 @@ class NFTTabViewModel: ViewModel {
             do {
                 await NFTFavoriteStore.shared.loadFavorite()
                 let crudeNFTList = try await handleNFTList()
-                let collectionList = try await fetchCollections()
+                let collectionList: [NFTCollection] = try await FirebaseConfig.nftCollections.fetch()
                 let nftGroup = Dictionary(grouping: crudeNFTList){ $0.contract.address }
                 let allCollectionKeys = collectionList.map { $0.address.mainnet }
                 let result = nftGroup.filter{ nft in
@@ -119,17 +119,6 @@ class NFTTabViewModel: ViewModel {
             }
             
             return (count, nfts)
-        }
-        catch {
-            throw error
-        }
-    }
-    
-    private func fetchCollections() async throws -> [NFTCollection] {
-        do {
-            let collections: [NFTCollection] = try await Network.requestWithRawModel(GithubEndpoint.collections,
-                                                                                     needToken: false)
-            return collections
         }
         catch {
             throw error

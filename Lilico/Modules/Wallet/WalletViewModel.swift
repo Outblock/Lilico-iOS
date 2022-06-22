@@ -80,7 +80,7 @@ extension WalletViewModel {
     
     private func fetchAllSupportedCoins() async throws {
         do {
-            let coins: [TokenModel] = try await AppConfig.flowCoins.fetchList()
+            let coins: [TokenModel] = try await FirebaseConfig.flowCoins.fetch()
             let validCoins = coins.filter { $0.getAddress()?.isEmpty == false }
             supportedCoins = validCoins
         } catch {

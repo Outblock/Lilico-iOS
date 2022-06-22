@@ -32,7 +32,7 @@ final class NFTCollectionConfig {
 extension NFTCollectionConfig {
     private func fetchData() async {
         do {
-            let list: [NFTCollection] = try await AppConfig.nftCollections.fetchList()
+            let list: [NFTCollection] = try await FirebaseConfig.nftCollections.fetch()
             config.removeAll()
             config.append(contentsOf: list)
         } catch  {

@@ -691,6 +691,8 @@
 		4E9E21E0282A71B500E1BACD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E9E21DC282A68CB00E1BACD /* Colors.xcassets */; };
 		4E9E21E4282C077000E1BACD /* PinCodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */; };
 		4E9E21E5282C091700E1BACD /* PinCodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */; };
+		4EA820C6286354E200DF36A8 /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EA820C5286354E200DF36A8 /* remote_config_defaults.plist */; };
+		4EA820C7286354E200DF36A8 /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EA820C5286354E200DF36A8 /* remote_config_defaults.plist */; };
 		4EAF31B92845E501002AF489 /* NFTSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF31B82845E501002AF489 /* NFTSegmentControl.swift */; };
 		4EAF31BA2845E501002AF489 /* NFTSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF31B82845E501002AF489 /* NFTSegmentControl.swift */; };
 		4EAF31BE28464ACE002AF489 /* BackAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF31BD28464ACE002AF489 /* BackAppBar.swift */; };
@@ -707,8 +709,8 @@
 		4EC482D1284A3D75000A7E1B /* ColorThief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC482CE284A3D75000A7E1B /* ColorThief.swift */; };
 		4EC482D2284A3D75000A7E1B /* MMCQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC482CF284A3D75000A7E1B /* MMCQ.swift */; };
 		4EC482D3284A3D75000A7E1B /* MMCQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC482CF284A3D75000A7E1B /* MMCQ.swift */; };
-		4EC56B2A281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
-		4EC56B2B281D385D00246878 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* AppConfigs.swift */; };
+		4EC56B2A281D385D00246878 /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* FirebaseConfig.swift */; };
+		4EC56B2B281D385D00246878 /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* FirebaseConfig.swift */; };
 		4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */; };
 		4EC56B30281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
 		4EC56B31281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
@@ -1269,6 +1271,7 @@
 		4E9E21D9282A586500E1BACD /* SecureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureView.swift; sourceTree = "<group>"; };
 		4E9E21DC282A68CB00E1BACD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeCoordinator.swift; sourceTree = "<group>"; };
+		4EA820C5286354E200DF36A8 /* remote_config_defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = remote_config_defaults.plist; sourceTree = "<group>"; };
 		4EAF31B82845E501002AF489 /* NFTSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTSegmentControl.swift; sourceTree = "<group>"; };
 		4EAF31BD28464ACE002AF489 /* BackAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackAppBar.swift; sourceTree = "<group>"; };
 		4EB17C852862947600CA4DAE /* NFTCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionModel.swift; sourceTree = "<group>"; };
@@ -1277,7 +1280,7 @@
 		4EC31181284508F200F711F5 /* NFTListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListView.swift; sourceTree = "<group>"; };
 		4EC482CE284A3D75000A7E1B /* ColorThief.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorThief.swift; sourceTree = "<group>"; };
 		4EC482CF284A3D75000A7E1B /* MMCQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMCQ.swift; sourceTree = "<group>"; };
-		4EC56B29281D385D00246878 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigs.swift; sourceTree = "<group>"; };
+		4EC56B29281D385D00246878 /* FirebaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfig.swift; sourceTree = "<group>"; };
 		4EC56B2F281FC57900246878 /* FlowQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowQuery.swift; sourceTree = "<group>"; };
 		4ECA7E64284371CA0039A210 /* NFTBlurImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTBlurImageView.swift; sourceTree = "<group>"; };
 		4ECB995E285B738C00F59852 /* OffsetScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffsetScrollView.swift; sourceTree = "<group>"; };
@@ -1791,6 +1794,7 @@
 		159A5437275368BF004BCACC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4EA820C128634A9700DF36A8 /* Json */,
 				15EC9DF7274FD1FD00F70CD9 /* Preview Content */,
 				4E4F79492831FC5500ED027C /* MaterialMap */,
 				158C9CA12787F6BC0062E0C6 /* fonts */,
@@ -2806,6 +2810,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		4EA820C128634A9700DF36A8 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				4EA820C5286354E200DF36A8 /* remote_config_defaults.plist */,
+			);
+			path = Json;
+			sourceTree = "<group>";
+		};
 		4EC482CD284A3D75000A7E1B /* ColorThief */ = {
 			isa = PBXGroup;
 			children = (
@@ -2818,7 +2830,7 @@
 		4EC56B28281D381400246878 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				4EC56B29281D385D00246878 /* AppConfigs.swift */,
+				4EC56B29281D385D00246878 /* FirebaseConfig.swift */,
 				6A204C68286070A600D0D3A4 /* FirebaseStorageUtils.swift */,
 			);
 			path = Firebase;
@@ -3354,6 +3366,7 @@
 			files = (
 				158C9CAD2787F7490062E0C6 /* Montserrat-Regular.ttf in Resources */,
 				154B8922276A1EEB00780E93 /* Preview Assets.xcassets in Resources */,
+				4EA820C7286354E200DF36A8 /* remote_config_defaults.plist in Resources */,
 				15B1F6392786B89800847BB5 /* Localizable.strings in Resources */,
 				154B8923276A1EEB00780E93 /* Assets.xcassets in Resources */,
 				158C9CB02787F7660062E0C6 /* Montserrat-SemiBold.ttf in Resources */,
@@ -3372,6 +3385,7 @@
 			files = (
 				158C9CAC2787F7490062E0C6 /* Montserrat-Regular.ttf in Resources */,
 				15EC9DF9274FD1FD00F70CD9 /* Preview Assets.xcassets in Resources */,
+				4EA820C6286354E200DF36A8 /* remote_config_defaults.plist in Resources */,
 				158C9CA32787F6EA0062E0C6 /* Inter.ttf in Resources */,
 				158C9CA82787F7490062E0C6 /* Montserrat-Bold.ttf in Resources */,
 				15B1F6382786B89800847BB5 /* Localizable.strings in Resources */,
@@ -3849,7 +3863,7 @@
 				154B8917276A1EEB00780E93 /* PageIndictor.swift in Sources */,
 				6A164F6A2845F1CB0026B31E /* IndexBar.swift in Sources */,
 				15DC216B27819C56000B187A /* VHalfModalModel.swift in Sources */,
-				4EC56B2B281D385D00246878 /* AppConfigs.swift in Sources */,
+				4EC56B2B281D385D00246878 /* FirebaseConfig.swift in Sources */,
 				15DC216127819C56000B187A /* VSideBar.swift in Sources */,
 				4EC56B31281FC57900246878 /* FlowQuery.swift in Sources */,
 				15DC21DD27819C56000B187A /* StateOpacities_PD.swift in Sources */,
@@ -4271,7 +4285,7 @@
 				15F43D122753B4F6004F6F49 /* PageIndictor.swift in Sources */,
 				6A164F692845F1CB0026B31E /* IndexBar.swift in Sources */,
 				15DC216A27819C56000B187A /* VHalfModalModel.swift in Sources */,
-				4EC56B2A281D385D00246878 /* AppConfigs.swift in Sources */,
+				4EC56B2A281D385D00246878 /* FirebaseConfig.swift in Sources */,
 				15DC216027819C56000B187A /* VSideBar.swift in Sources */,
 				4EC56B30281FC57900246878 /* FlowQuery.swift in Sources */,
 				15DC21DC27819C56000B187A /* StateOpacities_PD.swift in Sources */,

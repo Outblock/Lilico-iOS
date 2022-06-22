@@ -44,10 +44,7 @@ struct WalletService {
     
     private mutating func fetchAllToken() async -> [TokenModel]{
         do {
-            let list = try await AppConfig.flowCoins.fetch()
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let allTokens = try decoder.decode([TokenModel].self, from: list)
+            let allTokens: [TokenModel] = try await FirebaseConfig.flowCoins.fetch()
             return allTokens
         }catch {
             print("❌「Error」fetch config from firebase failed!!!\n \(error)")

@@ -20,6 +20,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         Resolver.registerAllServices()
         commonConfig()
         flowConfig()
+        FirebaseConfig.start()
 
         return true
     }
