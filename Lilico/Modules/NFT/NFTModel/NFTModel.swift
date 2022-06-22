@@ -21,6 +21,16 @@ struct NFTCollection: Codable, Hashable {
     var marketplace: URL?
     var description: String?
     var path: ContractPath
+    
+    func address(mainnet: Bool = false) -> String {
+        if(mainnet) {
+            return address.mainnet
+        }
+        if(LocalUserDefaults.shared.flowNetwork == .testnet && (address.testnet != nil)) {
+            return address.testnet!
+        }
+        return address.mainnet
+    }
 }
 
 struct ContractAddress: Codable, Hashable {
@@ -53,8 +63,8 @@ struct NFTModel: Codable, Hashable, Identifiable {
     init(_ response: NFTResponse, in collection: NFTCollection?) {
         
         
-        if let imgUrl = response.postMedia.image {
-            image = URL(string: imgUrl)!
+        if let imgUrl = response.postMedia.image, let url = URL(string: imgUrl) {
+            image = url
         }else {
             image = URL(string: placeholder)!
         }
@@ -102,7 +112,6 @@ struct CollectionItem: Hashable, Identifiable {
     }
     
     var iconURL: URL {
-        //TODO: logo placeholder
         return collection?.logo ?? URL(string: placeholder)!
     }
     

@@ -48,6 +48,7 @@ struct OffsetScrollViewWithAppBar<Content: View, Nav: View>: View {
                         .font(.title2)
                         .foregroundColor(.LL.Neutrals.text)
                         .opacity(opacity)
+                        .frame(maxWidth: screenWidth-120)
                 }
             }
                 .frame(height: 44)

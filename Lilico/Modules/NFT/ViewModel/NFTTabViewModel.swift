@@ -17,7 +17,15 @@ class NFTTabViewModel: ViewModel {
     private(set) var state: NFTTabScreen.ViewState = .init()
     
 
-    private var owner: String = "0x2b06c41f44a05656"
+    /*
+     0x2b06c41f44a05656
+     0xccea80173b51e028
+     0x53f389d96fb4ce5e
+     0x01d63aa89238a559
+     0x050aa60ac445a061
+     0xadca05d078ebf98a
+     */
+    private var owner: String = "0x01d63aa89238a559"
     
     @RouterObject
     var router: NFTCoordinator.Router?

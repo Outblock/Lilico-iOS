@@ -11,10 +11,13 @@ import Haneke
 
 enum AppConfig: String {
     case flowCoins = "flow_coins"
+    case nftCollections = "nft_collections"
+    
 }
 
 enum AppConfigError: Error {
-    case fetchFailed
+    case fetch
+    case decode
 }
 
 extension AppConfig {
@@ -29,12 +32,29 @@ extension AppConfig {
         }
     }
     
+    func fetchList<T: Codable>() async throws -> [T] {
+        let data = try? await fetch()
+        guard let data = data else {
+            throw AppConfigError.fetch
+        }
+        do {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let collections = try decoder.decode([T].self, from: data)
+            return collections
+            
+        } catch  {
+            throw AppConfigError.decode
+        }
+    }
+    
+    
     private func fetchConfig() async throws -> RemoteConfigValue {
         try await withCheckedThrowingContinuation { continuation in
             let remoteConfig = RemoteConfig.remoteConfig()
             remoteConfig.fetchAndActivate(completionHandler: { status, error in
                 if status == .error {
-                    continuation.resume(throwing: AppConfigError.fetchFailed)
+                    continuation.resume(throwing: AppConfigError.fetch)
                     print("Config not fetched")
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 } else {
