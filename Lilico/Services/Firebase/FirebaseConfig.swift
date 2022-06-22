@@ -31,10 +31,8 @@ enum FirebaseConfig: String {
     }
     
     static func onConfigLoadFinish() {
-        //TODO: init collection &
+        NFTCollectionConfig.share.reload()
     }
-    
-    
 }
 
 

@@ -11,7 +11,7 @@ final class NFTCollectionConfig {
     static let share = NFTCollectionConfig()
     private init(){}
     
-    private var config: [NFTCollection] = []
+    var config: [NFTCollection] = []
     
     func reload() {
         Task {

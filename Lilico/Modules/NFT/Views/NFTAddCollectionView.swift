@@ -123,7 +123,7 @@ extension NFTAddCollectionView {
 
 struct NFTAddCollectionView_Previews: PreviewProvider {
     static var previews: some View {
-        NFTAddCollectionView.CollectionItem(collection: NFTCollection(logo: URL(string: "https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovologo.jpeg")!, name: "OVO", address: ContractAddress(mainnet: "", testnet: ""), banner: nil, officialWebsite: nil, marketplace: nil, description: "hhhhhhhh", path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")))
+        NFTAddCollectionView.CollectionItem(collection: NFTCollection(logo: URL(string: "https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovologo.jpeg")!, name: "OVO", contractName: "", address: ContractAddress(mainnet: "", testnet: ""), banner: nil, officialWebsite: nil, marketplace: nil, description: "hhhhhhhh", path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")))
             .previewLayout(.sizeThatFits)
             .background(Color(red: 0.9, green: 0.9, blue: 0.9)
             )

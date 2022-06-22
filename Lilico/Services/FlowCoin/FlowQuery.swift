@@ -12,6 +12,7 @@ import Combine
 enum FlowQuery {
     case checkEnable
     case balance
+    case nft
 }
 
 
@@ -33,9 +34,9 @@ extension FlowQuery {
                        return [<TokenCall>]
                      }
                    """
-                   .replacingOccurrences(of: "<TokenImports>", with: importRow(with: tokens, at: network))
-                   .replacingOccurrences(of: "<TokenFunctions>", with: tokenEnableFunc(with: tokens, at: network))
-                   .replacingOccurrences(of: "<TokenCall>", with: tokenEnableCalls(with: tokens, at: network))
+            .replacingOccurrences(of: "<TokenImports>", with: importRow(with: tokens, at: network))
+            .replacingOccurrences(of: "<TokenFunctions>", with: tokenEnableFunc(with: tokens, at: network))
+            .replacingOccurrences(of: "<TokenCall>", with: tokenEnableCalls(with: tokens, at: network))
         
         return cadence
     }
@@ -72,7 +73,7 @@ extension FlowQuery {
             import <Token> from <TokenAddress>
             
             """
-            .buildTokenInfo(token, chainId: network)
+                .buildTokenInfo(token, chainId: network)
         }.joined(separator: "\n")
         return tokenImports
     }
@@ -91,7 +92,7 @@ extension FlowQuery {
               }
             
             """
-            .buildTokenInfo(token, chainId: network)
+                .buildTokenInfo(token, chainId: network)
         }.joined(separator: "\n")
         return tokenFunctions
     }
@@ -101,11 +102,62 @@ extension FlowQuery {
             """
             check<Token>Vault(address: address)
             """
-            .buildTokenInfo(token, chainId: network)
+                .buildTokenInfo(token, chainId: network)
         }
             .joined(separator: ",")
         return tokenCalls
     }
+}
+
+extension FlowQuery {
+    
+    func NFTCollectionListCheckEnabledQuery(with list: [NFTCollection], at network: Flow.ChainID) -> String {
+        if(self != .nft) {
+            print("❌: the case(\(self) can't call the func \(#function)")
+            return ""
+        }
+        
+        let tokenImports = list.map {
+            $0.formatCadence(script: "import <Token> from <TokenAddress>")
+        }.joined(separator: "\r\n")
+        
+        let tokenFunctions = list.map {
+            $0.formatCadence(script:
+            """
+            pub fun check<Token>Vault(address: Address) : Bool {
+                            let account = getAccount(address)
+                            let vaultRef = account
+                            .getCapability<&{NonFungibleToken.CollectionPublic}>(<TokenCollectionPublicPath>)
+                            .check()
+                            return vaultRef
+                        }
+            """
+            )
+        }.joined(separator: "\r\n")
+        
+        let tokenCalls = list.map {
+            $0.formatCadence(script:
+                """
+                check<Token>Vault(address: address)
+                """
+            )
+        }.joined(separator: ",")
+        
+        let cadence =
+            """
+            import NonFungibleToken from 0xNonFungibleToken
+                      <TokenImports>
+                      <TokenFunctions>
+                      pub fun main(address: Address) : [Bool] {
+                        return [<TokenCall>]
+                    }
+            """
+            .replacingOccurrences(of: "<TokenFunctions>", with: tokenFunctions)
+            .replacingOccurrences(of: "<TokenImports>", with: tokenImports)
+            .replacingOccurrences(of: "<TokenCall>", with: tokenCalls)
+        return cadence
+    }
+    
 }
 
 extension FlowQuery {
@@ -148,5 +200,22 @@ extension String {
             .replacingOccurrences(of: "<TokenBalancePath>", with: token.storagePath.balance)
             .replacingOccurrences(of: "<TokenReceiverPath>", with: token.storagePath.receiver)
             .replacingOccurrences(of: "<TokenStoragePath>", with: token.storagePath.vault)
+    }
+}
+
+
+extension NFTCollection {
+    func formatCadence(script: String) -> String {
+        return script
+            .replacingOccurrences(of: "<NFT>", with: contractName)
+            .replacingOccurrences(of: "<NFTAddress>", with: address(mainnet: false))
+            .replacingOccurrences(of: "<CollectionStoragePath>", with: path.storagePath)
+            .replacingOccurrences(of: "<CollectionPublic>", with: path.publicCollectionName)
+            .replacingOccurrences(of: "<CollectionPublicPath>", with: path.publicPath)
+            .replacingOccurrences(of: "<Token>", with: contractName)
+            .replacingOccurrences(of: "<TokenAddress>", with: address(mainnet: false))
+            .replacingOccurrences(of: "<TokenCollectionStoragePath>", with: path.storagePath)
+            .replacingOccurrences(of: "<TokenCollectionPublic>", with: path.publicCollectionName)
+            .replacingOccurrences(of: "<TokenCollectionPublicPath>", with: path.publicPath)
     }
 }

@@ -15,6 +15,7 @@ let filterMetadata = ["uri", "img", "description"]
 struct NFTCollection: Codable, Hashable {
     let logo: URL?
     let name: String
+    let contractName: String
     let address: ContractAddress
     var banner: URL? = nil
     var officialWebsite: String?
@@ -92,7 +93,7 @@ struct NFTModel: Codable, Hashable, Identifiable {
         return collection?.logo ?? URL(string: placeholder)!
     }
     
-    var tags:[NFTMetadatum] {
+    var tags: [NFTMetadatum] {
         return response.metadata.metadata.filter{ meta in
             !filterMetadata.contains(meta.name.lowercased()) && !meta.value.isEmpty && !meta.value.hasPrefix("https://")
         }
