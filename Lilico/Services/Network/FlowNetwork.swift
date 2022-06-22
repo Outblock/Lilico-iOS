@@ -21,27 +21,6 @@ class FlowNetwork {
         }
     }
     
-    //TODO: auto be canceled,why?
-    
-    static func isTokenListEnabled(address: Flow.Address, tokens: [TokenModel]) -> Future<[Bool], Error> {
-        let network = flow.chainID
-        let cadence =  FlowQuery.checkEnable.tokenEnableQuery(with: tokens, at: network)
-        let call = flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
-                                                             arguments: [.init(value: .address(address))])
-        return call
-            .toFuture()
-            .print("------********** 1")
-            .tryMap { response in
-                print("------********** tryMap")
-                guard let fields = response.fields, let array = fields.value.toArray() else {
-                    throw LLError.emptyWallet
-                }
-                return array.compactMap { $0.value.toBool() }
-            }
-            .print("------********** 2")
-            .asFuture()
-    }
-    
     static func checkTokensEnable(address: Flow.Address, tokens: [TokenModel]) async throws -> [Bool] {
         let cadence =  FlowQuery.checkEnable.tokenEnableQuery(with: tokens, at:flow.chainID)
         do {

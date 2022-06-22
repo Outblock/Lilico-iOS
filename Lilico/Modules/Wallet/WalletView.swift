@@ -9,6 +9,7 @@ import FirebaseAuth
 import SPConfetti
 import SwiftUI
 import Flow
+import Kingfisher
 
 struct WalletView_Previews: PreviewProvider {
     static var previews: some View {
@@ -106,7 +107,7 @@ struct WalletView: View {
     
     var coinSectionView: some View {
         HStack {
-            Text("2 Coins")
+            Text("x_coins".localized(vm.activatedCoins.count))
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 18, weight: .bold))
             
@@ -119,8 +120,9 @@ struct WalletView: View {
     var listView: some View {
         List {
             Section {
-                CoinCell()
-                CoinCell()
+                ForEach(vm.activatedCoins, id: \.name) { coin in
+                    CoinCell(coin: coin)
+                }
             }
             .listRowInsets(.zero)
             .listRowSeparator(.hidden)
@@ -185,16 +187,20 @@ extension WalletView {
     }
     
     struct CoinCell: View {
+        let coin: TokenModel
+        
         var body: some View {
             HStack(spacing: 9) {
-                Image("")
+                KFImage.url(coin.icon)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: CoinIconHeight, height: CoinIconHeight)
                     .background(.LL.Neutrals.note)
                     .clipShape(Circle())
                 
                 VStack(spacing: 7) {
                     HStack {
-                        Text("Coin Name")
+                        Text(coin.name)
                             .foregroundColor(.LL.Neutrals.text)
                             .font(.inter(size: 15, weight: .medium))
                         

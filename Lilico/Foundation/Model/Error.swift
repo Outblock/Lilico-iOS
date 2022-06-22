@@ -23,3 +23,7 @@ enum LLError: Error {
     case fetchUserInfoFailed
     case unknown
 }
+
+enum WalletError: Error {
+    case fetchFailed
+}

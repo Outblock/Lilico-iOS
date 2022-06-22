@@ -8,10 +8,6 @@
 import Foundation
 import Flow
 
-enum WalletError: Error {
-    case none
-}
-
 struct WalletService {
     var enableTokens: [TokenModel] = []
     //TODO: 每个钱包的余额怎么保存
@@ -36,7 +32,7 @@ struct WalletService {
     mutating func fetchWallet() async throws {
         let allToken = await fetchAllToken()
         if(allToken.isEmpty) {
-            throw WalletError.none
+//            throw WalletError.none
         }
         let address = allToken.first?.address.testnet ?? ""
         flowAddress = Flow.Address(hex: address)

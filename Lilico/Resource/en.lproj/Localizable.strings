@@ -40,6 +40,7 @@
 "update_private_failed" = "Change private status failed";
 "avatar_info_error" = "NFT info error";
 "change_avatar_error" = "Change avatar failed";
+"fetch_wallet_error" = "Fetch wallet data failed";
 
 // NFT
 "x_collections" = "%d Collections";
@@ -202,4 +203,5 @@
 "restore_with_icloud" = "Restore with iCloud";
 "restore_with_gd" = "Restore with Google Drive";
 "restore_with_recovery_phrase" = "Restore with Recovery Phrase";
+"x_coins" = "%d Coins";
 

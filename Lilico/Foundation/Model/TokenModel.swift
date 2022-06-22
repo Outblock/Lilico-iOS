@@ -9,14 +9,18 @@ import Foundation
 import Flow
 
 struct TokenModel: Codable {
-  let name: String
-  let address: FlowNetworkModel
-  let contractName: String
-  let storagePath: FlowTokenStoragePath
-  let decimal: Int
-  let icon: URL?
-  let symbol: URL?
-  let website: URL?
+    let name: String
+    let address: FlowNetworkModel
+    let contractName: String
+    let storagePath: FlowTokenStoragePath
+    let decimal: Int
+    let icon: URL?
+    let symbol: String?
+    let website: URL?
+    
+    func getAddress() -> String? {
+        return address.addressByNetwork(LocalUserDefaults.shared.flowNetwork.toFlowType())
+    }
 }
 
 struct FlowNetworkModel: Codable {
@@ -36,7 +40,7 @@ struct FlowNetworkModel: Codable {
 }
 
 struct FlowTokenStoragePath: Codable {
-  let balance: String
-  let vault: String
-  let receiver: String
+    let balance: String
+    let vault: String
+    let receiver: String
 }

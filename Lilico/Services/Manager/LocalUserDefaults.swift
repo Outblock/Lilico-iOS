@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Flow
 
 extension LocalUserDefaults {
     enum Keys: String {
@@ -17,6 +18,15 @@ extension LocalUserDefaults {
     enum FlowNetworkType: String {
         case testnet
         case mainnet
+        
+        func toFlowType() -> Flow.ChainID {
+            switch self {
+            case .testnet:
+                return Flow.ChainID.testnet
+            case .mainnet:
+                return Flow.ChainID.mainnet
+            }
+        }
     }
 }
 
