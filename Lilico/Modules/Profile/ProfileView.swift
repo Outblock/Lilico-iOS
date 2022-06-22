@@ -87,6 +87,7 @@ extension ProfileView {
                 .roundedBg(cornerRadius: 12, strokeColor: .LL.Primary.salmonPrimary, strokeLineWidth: 1)
             }
             .listRowInsets(.zero)
+            .listRowBackground(Color.clear)
             .background(.clear)
         }
     }
@@ -104,6 +105,7 @@ extension ProfileView {
                 }
             }
             .listRowInsets(.zero)
+            .listRowBackground(Color.clear)
             .background(.LL.Neutrals.background)
         }
     }

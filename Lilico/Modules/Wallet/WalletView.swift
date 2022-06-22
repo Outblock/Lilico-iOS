@@ -23,7 +23,11 @@ private let CoinCellHeight: CGFloat = 73
 private let CoinIconHeight: CGFloat = 43
 
 struct WalletView: View {
-    @ObservedObject var walletViewModel = WalletViewModel()
+    @StateObject var vm = WalletViewModel()
+    
+    init() {
+        UICollectionView.appearance().backgroundColor = .clear
+    }
     
     var body: some View {
         VStack(spacing: 32) {
@@ -38,6 +42,7 @@ struct WalletView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 18)
         .backgroundFill(.LL.Neutrals.background)
+        .environmentObject(vm)
     }
     
     var headerView: some View {
@@ -119,20 +124,20 @@ struct WalletView: View {
             }
             .listRowInsets(.zero)
             .listRowSeparator(.hidden)
+            .listRowBackground(Color.LL.Neutrals.background)
         }
         .listStyle(.plain)
-        
     }
 }
 
 extension WalletView {
     struct CardView: View {
-//        @ObservedObject var walletViewModel: WalletViewModel
+        @EnvironmentObject var vm: WalletViewModel
         
         var body: some View {
             ZStack {
                 VStack {
-                    Text("wallet name")
+                    Text(vm.walletName)
                         .foregroundColor(Color(hex: "#FDFBF9"))
                         .font(.inter(size: 14, weight: .semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -147,7 +152,7 @@ extension WalletView {
                     Spacer()
                     
                     HStack(spacing: 8) {
-                        Text("0x0c666c888d8fb999")
+                        Text(vm.address)
                             .foregroundColor(Color(hex: "#FDFBF9"))
                             .font(.inter(size: 15, weight: .bold))
                         Button {
@@ -161,10 +166,9 @@ extension WalletView {
                         Button {
                             
                         } label: {
-                            Image("icon-wallet-hidden-off")
+                            Image(vm.isHidden ? "icon-wallet-hidden-on" : "icon-wallet-hidden-off")
                         }
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(18)
                 .background {
@@ -216,7 +220,6 @@ extension WalletView {
                 .frame(maxWidth: .infinity)
             }
             .frame(height: CoinCellHeight)
-            .background(.LL.Neutrals.background)
         }
     }
 }

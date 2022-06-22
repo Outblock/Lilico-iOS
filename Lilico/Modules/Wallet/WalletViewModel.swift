@@ -12,7 +12,8 @@ import Combine
 
 class WalletViewModel : ObservableObject {
     @Published var isHidden: Bool = LocalUserDefaults.shared.walletHidden
-    @Published var walletInfo: WalletResponse?
+    @Published var walletName: String = "wallet".localized
+    @Published var address: String = "0x0000000000000000"
     
     private var cancelSets = Set<AnyCancellable>()
     
@@ -23,10 +24,10 @@ class WalletViewModel : ObservableObject {
             }
         }.store(in: &cancelSets)
         
-        WalletManager.shared.$walletInfo.sink { [weak self] newWalletInfo in
+        WalletManager.shared.$walletInfo.sink { [weak self] _ in
             if let self = self {
                 DispatchQueue.main.async {
-                    self.walletInfo = newWalletInfo?.primaryWalletModel
+                    self.refreshWalletInfo()
                 }
             }
         }.store(in: &cancelSets)
@@ -34,6 +35,13 @@ class WalletViewModel : ObservableObject {
     
     private func refreshHiddenFlag() {
         isHidden = LocalUserDefaults.shared.walletHidden
+    }
+    
+    private func refreshWalletInfo() {
+        if let walletInfo = WalletManager.shared.walletInfo?.primaryWalletModel {
+            walletName = walletInfo.getName ?? "wallet".localized
+            address = walletInfo.getAddress ?? "0x0000000000000000"
+        }
     }
 }
 

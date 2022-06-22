@@ -117,10 +117,8 @@ extension UserManager {
             throw LLError.fetchUserInfoFailed
         }
         
-        DispatchQueue.main.async {
-            LocalUserDefaults.shared.userInfo = info
-            self.userInfo = info
-        }
+        LocalUserDefaults.shared.userInfo = info
+        self.userInfo = info
     }
 }
 

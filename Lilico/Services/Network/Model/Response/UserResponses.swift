@@ -62,6 +62,14 @@ struct WalletResponse: Codable {
             return true
         }
     }
+    
+    var getAddress: String? {
+        return blockchain?.first?.address
+    }
+    
+    var getName: String? {
+        return blockchain?.first?.name
+    }
 }
 
 struct BlockChainResponse: Codable {

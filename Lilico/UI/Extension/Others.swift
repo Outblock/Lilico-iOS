@@ -30,3 +30,10 @@ func overrideNavigationAppearance() {
     UINavigationBar.appearance().compactAppearance = coloredAppearance
     UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
 }
+
+extension UICollectionReusableView {
+    override open var backgroundColor: UIColor? {
+        get { .clear }
+        set { }
+    }
+}
