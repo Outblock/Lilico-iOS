@@ -245,7 +245,8 @@ extension AddAddressView.AddAddressViewModel {
         let task = DispatchWorkItem {
             self.state.addressStateType = .checking
             
-            FlowNetwork.addressVerify(address: address) { exist, error in
+            Task {
+                let exist = await FlowNetwork.addressVerify(address: address)
                 DispatchQueue.main.async {
                     self.state.addressStateType = exist ? .passed : .notFound
                 }

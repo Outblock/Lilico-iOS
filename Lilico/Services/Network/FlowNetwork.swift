@@ -41,24 +41,20 @@ class FlowNetwork {
         }
     }
     
-    static func addressVerify(address: String, completion: @escaping (Bool, Error?) -> Void) {
+    static func addressVerify(address: String) async -> Bool {
         // testnet test address: 0x912d5440f7e3769e
-        
-        if !address.hasPrefix("0x") {
-            completion(false, nil)
-            return
+        guard address.hasPrefix("0x") else {
+            return false
         }
-        
+
         let fAddress = Flow.Address(hex: address)
-        let call = flow.accessAPI.getAccountAtLatestBlock(address: fAddress)
-        call.whenComplete { result in
-            switch result {
-            case .success(_):
-                completion(true, nil)
-            case let .failure(error):
-                completion(false, error)
-            }
+        do {
+            let _ = try await flow.accessAPI.getAccountAtLatestBlock(address: fAddress)
+            return true
+        } catch {
+            return false
         }
+
     }
     
     static func checkCollectionEnable(address: Flow.Address, list: [NFTCollection]) async throws -> [Bool] {
@@ -72,22 +68,13 @@ class FlowNetwork {
     }
     
     private static func fetch(at address: Flow.Address, by cadence: String) async throws -> [Flow.Argument] {
-        try await withCheckedThrowingContinuation { continuation in
-            let call = flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
-                                                                 arguments: [.init(value: .address(address))])
-            call.whenComplete { result in
-                switch result {
-                case let .success(response):
-                    guard let fields = response.fields, let array = fields.value.toArray() else {
-                        continuation.resume(throwing: LLError.emptyWallet)
-                        return
-                    }
-                    continuation.resume(returning: array.compactMap { $0 })
-                case let .failure(error):
-                    continuation.resume(throwing: error)
-                }
-            }
+        let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
+                                                                           arguments: [.init(value: .address(address))])
+        
+        guard let fields = response.fields, let array = fields.value.toArray() else {
+            throw LLError.emptyWallet
         }
+        return array.compactMap { $0 }
     }
     
     
