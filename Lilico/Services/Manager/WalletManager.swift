@@ -26,6 +26,9 @@ class WalletManager: ObservableObject {
     static let shared = WalletManager()
 
     @Published var walletInfo: UserWalletResponse?
+    @Published var supportedCoins: [TokenModel]?
+    @Published var activatedCoins: [TokenModel] = []
+    @Published var coinBalances: [String: Double] = [:]
 
     private var mnemonicModel: HDWallet?
     
@@ -234,6 +237,77 @@ extension WalletManager {
     
     private func getMnemoicPwd() -> String? {
         return getString(fromMainKeychain: WalletManager.mnemonicPwdStoreKey)
+    }
+}
+
+// MARK: - Coins
+
+extension WalletManager {
+    func fetchWalletDatas() async throws {
+        try await fetchSupportedCoins()
+        try await fetchActivatedCoins()
+        try await fetchBalance()
+    }
+    
+    private func fetchSupportedCoins() async throws {
+        let coins: [TokenModel] = try await FirebaseConfig.flowCoins.fetch()
+        let validCoins = coins.filter { $0.getAddress()?.isEmpty == false }
+        supportedCoins = validCoins
+    }
+    
+    private func fetchActivatedCoins() async throws {
+        guard let supportedCoins = supportedCoins, supportedCoins.count != 0 else {
+            activatedCoins.removeAll()
+            return
+        }
+        
+        guard let address = walletInfo?.primaryWalletModel?.getAddress, !address.isEmpty else {
+            activatedCoins.removeAll()
+            return
+        }
+        
+        let enabledList = try await FlowNetwork.checkTokensEnable(address: Flow.Address(hex: address), tokens: supportedCoins)
+        if enabledList.count != supportedCoins.count {
+            throw WalletError.fetchFailed
+        }
+        
+        var list = [TokenModel]()
+        for (index, value) in enabledList.enumerated() {
+            if value == true {
+                list.append(supportedCoins[index])
+            }
+        }
+        
+        activatedCoins = list
+    }
+    
+    private func fetchBalance() async throws {
+        guard activatedCoins.count > 0 else {
+            return
+        }
+
+        guard let address = walletInfo?.primaryWalletModel?.getAddress, !address.isEmpty else {
+            throw WalletError.fetchBalanceFailed
+        }
+
+        let balanceList = try await FlowNetwork.fetchBalance(at: Flow.Address(hex: address), with: activatedCoins)
+        if activatedCoins.count != balanceList.count {
+            throw WalletError.fetchBalanceFailed
+        }
+
+        var newBalanceMap: [String: Double] = [:]
+        
+        for (index, value) in activatedCoins.enumerated() {
+            let balance = balanceList[index]
+            
+            guard let symbol = value.symbol else {
+                continue
+            }
+            
+            newBalanceMap[symbol] = balance
+        }
+        
+        coinBalances = newBalanceMap
     }
 }
 

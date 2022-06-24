@@ -107,7 +107,7 @@ struct WalletView: View {
     
     var coinSectionView: some View {
         HStack {
-            Text("x_coins".localized(vm.activatedCoins.count))
+            Text("x_coins".localized(vm.coinItems.count))
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 18, weight: .bold))
             
@@ -120,7 +120,7 @@ struct WalletView: View {
     var listView: some View {
         List {
             Section {
-                ForEach(vm.activatedCoins, id: \.name) { coin in
+                ForEach(vm.coinItems, id: \.token.symbol) { coin in
                     CoinCell(coin: coin)
                 }
             }
@@ -187,11 +187,11 @@ extension WalletView {
     }
     
     struct CoinCell: View {
-        let coin: TokenModel
+        let coin: WalletViewModel.WalletCoinItemModel
         
         var body: some View {
             HStack(spacing: 9) {
-                KFImage.url(coin.icon)
+                KFImage.url(coin.token.icon)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: CoinIconHeight, height: CoinIconHeight)
@@ -200,25 +200,29 @@ extension WalletView {
                 
                 VStack(spacing: 7) {
                     HStack {
-                        Text(coin.name)
+                        Text(coin.token.name)
                             .foregroundColor(.LL.Neutrals.text)
                             .font(.inter(size: 15, weight: .medium))
                         
                         Spacer()
                         
-                        Text("1580.88 Flow")
+                        Text("\(coin.balance.currencyString) \(coin.token.symbol ?? "?")")
                             .foregroundColor(.LL.Neutrals.text)
                             .font(.inter(size: 12, weight: .medium))
                     }
                     
                     HStack {
-                        Text("$1")
+                        Text("$\(coin.last.currencyString)")
                             .foregroundColor(.LL.Neutrals.neutrals8)
                             .font(.inter(size: 12, weight: .medium))
                         
+                        Text(coin.changeString)
+                            .foregroundColor(coin.changeColor)
+                            .font(.inter(size: 11, weight: .medium))
+                        
                         Spacer()
                         
-                        Text("1580.88 Flow")
+                        Text("$\(coin.balanceAsUSD)")
                             .foregroundColor(.LL.Neutrals.neutrals8)
                             .font(.inter(size: 12, weight: .medium))
                     }

@@ -10,13 +10,46 @@ import SwiftUI
 import Flow
 import Combine
 
+extension WalletViewModel {
+    enum WalletState {
+        case idle
+        case noAddress
+        case loading
+        case error
+    }
+    
+    struct WalletCoinItemModel {
+        let token: TokenModel
+        let balance: Double
+        let last: Double
+        let changePercentage: Double
+        
+        var changeIsNegative: Bool {
+            return changePercentage < 0
+        }
+        
+        var changeString: String {
+            let symbol = changeIsNegative ? "-" : "+"
+            let num = String(format: "%.1f", fabsf(Float(changePercentage) * 100))
+            return "\(symbol)\(num)%"
+        }
+        
+        var changeColor: Color {
+            return changeIsNegative ? Color.LL.Warning.warning2 : Color.LL.Success.success2
+        }
+        
+        var balanceAsUSD: String {
+            return (balance * last).currencyString
+        }
+    }
+}
+
 class WalletViewModel : ObservableObject {
     @Published var isHidden: Bool = LocalUserDefaults.shared.walletHidden
     @Published var walletName: String = "wallet".localized
     @Published var address: String = "0x0000000000000000"
-    @Published var activatedCoins: [TokenModel] = []
-    
-    private var supportedCoins: [TokenModel] = []
+    @Published var coinItems: [WalletCoinItemModel] = []
+    @Published var walletState: WalletState = .noAddress
     
     private var cancelSets = Set<AnyCancellable>()
     
@@ -28,15 +61,33 @@ class WalletViewModel : ObservableObject {
         }.store(in: &cancelSets)
         
         WalletManager.shared.$walletInfo.sink { [weak self] newInfo in
+            guard let address = newInfo?.primaryWalletModel?.getAddress else {
+                DispatchQueue.main.async {
+                    self?.walletState = .noAddress
+                }
+                return
+            }
+            
+            if address != self?.address {
+                DispatchQueue.main.async {
+                    self?.refreshWalletInfo()
+                    self?.reloadWalletData()
+                }
+            }
+        }.store(in: &cancelSets)
+        
+        WalletManager.shared.$coinBalances.sink { [weak self] _ in
             if let self = self {
                 DispatchQueue.main.async {
-                    let needReloadWalletData = newInfo?.primaryWalletModel?.getAddress != self.address
-                    
-                    self.refreshWalletInfo()
-                    
-                    if needReloadWalletData {
-                        self.fetchWalletData()
-                    }
+                    self.refreshCoinItems()
+                }
+            }
+        }.store(in: &cancelSets)
+        
+        NotificationCenter.default.publisher(for: .coinSummarysUpdated).sink { [weak self] _ in
+            if let self = self {
+                DispatchQueue.main.async {
+                    self.refreshCoinItems()
                 }
             }
         }.store(in: &cancelSets)
@@ -52,70 +103,43 @@ class WalletViewModel : ObservableObject {
             address = walletInfo.getAddress ?? "0x0000000000000000"
         }
     }
+    
+    private func refreshCoinItems() {
+        var list = [WalletCoinItemModel]()
+        for token in WalletManager.shared.activatedCoins {
+            guard let symbol = token.symbol else {
+                continue
+            }
+            
+            let summary = CoinRateCache.cache.getSummary(for: symbol)
+            let item = WalletCoinItemModel(token: token,
+                                           balance: WalletManager.shared.coinBalances[symbol] ?? 0,
+                                           last: summary?.getLastRate() ?? 0,
+                                           changePercentage: summary?.getChangePercentage() ?? 0)
+            list.append(item)
+        }
+        
+        coinItems = list
+    }
 }
 
 // MARK: - Action
 
 extension WalletViewModel {
-    
-}
-
-// MARK: - Internal
-
-extension WalletViewModel {
-    private func fetchWalletData() {
-        if address == "0x0000000000000000" {
-            return
-        }
+    private func reloadWalletData() {
+        walletState = .loading
         
         Task {
             do {
-                try await fetchAllSupportedCoins()
-                try await fetchActivatedCoins()
+                try await WalletManager.shared.fetchWalletDatas()
+                DispatchQueue.main.async {
+                    self.walletState = .idle
+                }
             } catch {
-                HUD.error(title: "fetch_wallet_error".localized)
-            }
-        }
-    }
-    
-    private func fetchAllSupportedCoins() async throws {
-        do {
-            let coins: [TokenModel] = try await FirebaseConfig.flowCoins.fetch()
-            let validCoins = coins.filter { $0.getAddress()?.isEmpty == false }
-            supportedCoins = validCoins
-        } catch {
-            throw error
-        }
-    }
-    
-    private func fetchActivatedCoins() async throws {
-        if supportedCoins.count == 0 {
-            DispatchQueue.main.async {
-                self.activatedCoins.removeAll()
-            }
-            return
-        }
-        
-        do {
-            let enabledList = try await FlowNetwork.checkTokensEnable(address: Flow.Address(hex: address), tokens: supportedCoins)
-            if enabledList.count != supportedCoins.count {
-                throw WalletError.fetchFailed
-            }
-            
-            var list = [TokenModel]()
-            for (index, value) in enabledList.enumerated() {
-                if value == true {
-                    list.append(supportedCoins[index])
+                DispatchQueue.main.async {
+                    self.walletState = .error
                 }
             }
-            
-            let l = list
-            DispatchQueue.main.async {
-                self.activatedCoins.removeAll()
-                self.activatedCoins.append(contentsOf: l)
-            }
-        } catch {
-            throw error
         }
     }
 }

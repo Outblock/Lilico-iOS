@@ -27,4 +27,5 @@ enum LLError: Error {
 
 enum WalletError: Error {
     case fetchFailed
+    case fetchBalanceFailed
 }

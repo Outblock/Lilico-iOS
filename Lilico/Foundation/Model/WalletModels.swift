@@ -8,6 +8,35 @@
 import Foundation
 import Flow
 
+// MARK: - Coin
+
+enum QuoteMarket: String {
+    case binance
+    case kraken
+    case huobi
+    
+    var flowPricePair: String {
+        switch self {
+        case .kraken:
+            return "flowusd"
+        default:
+            return "flowusdt"
+        }
+    }
+    
+    var usdcPricePair: String {
+        switch self {
+        case .kraken:
+            return "usdcusd"
+        default:
+            return "usdcusdt"
+        }
+    }
+}
+
+let SymbolTypeFlow: String = "flow"
+let SymbolTypeFlowUSD: String = "fusd"
+
 struct TokenModel: Codable {
     let name: String
     let address: FlowNetworkModel
@@ -20,6 +49,17 @@ struct TokenModel: Codable {
     
     func getAddress() -> String? {
         return address.addressByNetwork(LocalUserDefaults.shared.flowNetwork.toFlowType())
+    }
+    
+    func getPricePair(market: QuoteMarket) -> String {
+        switch symbol {
+        case SymbolTypeFlow:
+            return market.flowPricePair
+        case SymbolTypeFlowUSD:
+            return market.usdcPricePair
+        default:
+            return ""
+        }
     }
 }
 
