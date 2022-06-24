@@ -10,16 +10,16 @@ import SwiftUI
 struct TabBarView<T: Hashable>: View {
     @State var current: T
     var pages: [TabBarPageModel<T>]
-    
+
     var maxWidth: CGFloat
     @State private var offsetX: CGFloat
     @State private var currentIndex: Int
-    
+
     init(current: T, pages: [TabBarPageModel<T>], maxWidth: CGFloat) {
         _current = State(initialValue: current)
         self.pages = pages
         self.maxWidth = maxWidth
-        
+
         var selectIndex = 0
         for (index, page) in pages.enumerated() {
             if page.tag == current {
@@ -29,7 +29,7 @@ struct TabBarView<T: Hashable>: View {
         _currentIndex = State(initialValue: selectIndex)
         _offsetX = State(initialValue: maxWidth * CGFloat(selectIndex))
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             tabView
@@ -39,10 +39,10 @@ struct TabBarView<T: Hashable>: View {
                    selected: $current)
         }
     }
-    
+
     var tabView: some View {
         TabView(selection: $current) {
-            ForEach(0..<pages.count, id: \.self) { index in
+            ForEach(0 ..< pages.count, id: \.self) { index in
                 let pageModel = pages[index]
                 pageModel.view()
                     .tag(pageModel.tag)
@@ -61,30 +61,30 @@ struct TabBarView<T: Hashable>: View {
         .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
         .ignoresSafeArea()
         .animation(.none, value: current)
-        .onChange(of: current) { newValue in
+        .onChange(of: current) { _ in
             debugPrint("tab onChange \(current)")
             currentIndex = getCurrentPageIndex()
         }
         .coordinateSpace(name: "frameLayer")
     }
-    
+
     private func offset(index: Int, frame: CGRect) {
         if currentIndex == index {
             let x = -frame.origin.x
             offsetX = CGFloat(index) * frame.size.width + x
         }
     }
-    
+
     private func getCurrentPageModel() -> TabBarPageModel<T>? {
         for page in pages {
             if page.tag == current {
                 return page
             }
         }
-        
+
         return nil
     }
-    
+
     private func getCurrentPageIndex() -> Int {
         for (index, page) in pages.enumerated() {
             if page.tag == current {
@@ -100,5 +100,5 @@ struct TabBarView<T: Hashable>: View {
 private struct ViewOffsetKey: PreferenceKey {
     typealias Value = CGRect
     static var defaultValue = CGRect.zero
-    static func reduce(value: inout Value, nextValue: () -> Value) {}
+    static func reduce(value _: inout Value, nextValue _: () -> Value) {}
 }

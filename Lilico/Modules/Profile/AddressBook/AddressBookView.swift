@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-//struct AddressBookView_Previews: PreviewProvider {
+// struct AddressBookView_Previews: PreviewProvider {
 //    static var previews: some View {
-        //        ProfileView.NoLoginTipsView()
-        //        ProfileView.GeneralSectionView()
+//        ProfileView.NoLoginTipsView()
+//        ProfileView.GeneralSectionView()
 //        AddressBookView()
-        //        ProfileView.InfoView()
-        //        ProfileView.InfoActionView()
+//        ProfileView.InfoView()
+//        ProfileView.InfoActionView()
 //        let contacts = [
 //            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 0, username: "angel"),
 //            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 1, username: "angel"),
@@ -21,15 +21,15 @@ import SwiftUI
 //            Contact(address: "0x55ad22f01ef568a1", avatar: nil, contactName: "Angel", contactType: nil, domain: nil, id: 3, username: "angel")
 //        ]
 //    }
-//}
+// }
 
 struct AddressBookView: View {
     @EnvironmentObject private var router: AddressBookCoordinator.Router
     @StateObject private var vm = AddressBookViewModel()
-    
-    @StateObject private var pendingDeleteModel: PendingDeleteModel = PendingDeleteModel()
+
+    @StateObject private var pendingDeleteModel = PendingDeleteModel()
     @State private var showAlert = false
-    
+
     var body: some View {
         BaseView {
             ZStack {
@@ -81,7 +81,7 @@ extension AddressBookView {
         .background(.LL.Neutrals.background)
         .visibility(vm.state.stateType == .loading ? .visible : .gone)
     }
-    
+
     var errorView: some View {
         VStack {
             Text("address_book_request_failed".localized)
@@ -90,7 +90,7 @@ extension AddressBookView {
         .background(.LL.Neutrals.background)
         .visibility(vm.state.stateType == .error ? .visible : .gone)
     }
-    
+
     var listView: some View {
         IndexedList(vm.searchResults) { sectionVM in
             Section {
@@ -108,7 +108,7 @@ extension AddressBookView {
                                 Text("delete".localized)
                             })
                             .tint(Color.systemRed)
-                            
+
                             Button(action: {
                                 self.vm.trigger(.edit(row))
                             }, label: {
@@ -127,7 +127,7 @@ extension AddressBookView {
         .searchable(text: $vm.searchText)
         .visibility(vm.state.stateType == .idle ? .visible : .gone)
     }
-    
+
     @ViewBuilder private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {
         let sectionName = sectionVM.state.sectionName
         Text(sectionName == "#" ? "\(sectionName)" : "#\(sectionName)").foregroundColor(.LL.Neutrals.neutrals8).font(.inter(size: 18, weight: .semibold))
@@ -135,10 +135,11 @@ extension AddressBookView {
 }
 
 // MARK: - Component
+
 extension AddressBookView {
     struct ContactCell: View {
         let contact: Contact
-        
+
         var body: some View {
             HStack {
                 // avatar
@@ -154,19 +155,19 @@ extension AddressBookView {
                 .frame(width: 48, height: 48)
                 .background(.LL.Primary.salmon5)
                 .clipShape(Circle())
-                
+
                 // text
                 VStack(alignment: .leading, spacing: 3) {
                     Text(contact.contactName ?? "no name")
                         .foregroundColor(.LL.Neutrals.text)
                         .font(.inter(size: 14, weight: .bold))
-                    
+
                     if let userName = contact.username, !userName.isEmpty {
                         Text("@\(userName)")
                             .foregroundColor(.LL.Neutrals.note)
                             .font(.inter(size: 14, weight: .medium))
                     }
-                    
+
                     Text(contact.address ?? "no address")
                         .foregroundColor(.LL.Neutrals.note)
                         .font(.inter(size: 12, weight: .regular))

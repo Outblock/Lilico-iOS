@@ -5,10 +5,10 @@
 //  Created by Selina on 9/6/2022.
 //
 
-import Foundation
 import Combine
+import Foundation
 
-private var cancellables = [String:AnyCancellable]()
+private var cancellables = [String: AnyCancellable]()
 
 /// Use both @Published and @AppStorage
 extension Published {

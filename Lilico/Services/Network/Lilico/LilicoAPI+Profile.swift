@@ -23,7 +23,7 @@ extension LilicoAPI.Profile: TargetType, AccessTokenAuthorizable {
     var baseURL: URL {
         .init(string: "https://dev.lilico.app/v1")!
     }
-    
+
     var path: String {
         switch self {
         case .updateInfo:
@@ -32,26 +32,25 @@ extension LilicoAPI.Profile: TargetType, AccessTokenAuthorizable {
             return "/profile/preference"
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
         case .updateInfo, .updatePrivate:
             return .post
         }
     }
-    
+
     var task: Task {
         switch self {
-        case .updateInfo(let request):
+        case let .updateInfo(request):
             return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
-        case .updatePrivate(let isPrivate):
+        case let .updatePrivate(isPrivate):
             let raw = isPrivate ? 2 : 1
             return .requestJSONEncodable(["private": raw])
         }
     }
-    
+
     var headers: [String: String]? {
         return LilicoAPI.commonHeaders
     }
 }
-

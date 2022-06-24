@@ -5,8 +5,8 @@
 //  Created by Hao Fu on 30/4/2022.
 //
 
-import Foundation
 import Flow
+import Foundation
 
 // MARK: - Coin
 
@@ -14,7 +14,7 @@ enum QuoteMarket: String {
     case binance
     case kraken
     case huobi
-    
+
     var flowPricePair: String {
         switch self {
         case .kraken:
@@ -23,7 +23,7 @@ enum QuoteMarket: String {
             return "flowusdt"
         }
     }
-    
+
     var usdcPricePair: String {
         switch self {
         case .kraken:
@@ -46,11 +46,11 @@ struct TokenModel: Codable {
     let icon: URL?
     let symbol: String?
     let website: URL?
-    
+
     func getAddress() -> String? {
         return address.addressByNetwork(LocalUserDefaults.shared.flowNetwork.toFlowType())
     }
-    
+
     func getPricePair(market: QuoteMarket) -> String {
         switch symbol {
         case SymbolTypeFlow:
@@ -66,7 +66,7 @@ struct TokenModel: Codable {
 struct FlowNetworkModel: Codable {
     let mainnet: String?
     let testnet: String?
-    
+
     func addressByNetwork(_ network: Flow.ChainID) -> String? {
         switch network {
         case .mainnet:

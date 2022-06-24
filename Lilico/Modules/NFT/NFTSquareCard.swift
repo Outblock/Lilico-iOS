@@ -5,16 +5,14 @@
 //  Created by cat on 2022/5/16.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct NFTSquareCard: View {
-    
     var nft: NFTModel
     var imageEffect: Namespace.ID
     var onClick: (NFTModel) -> Void
-    
-    
+
     var body: some View {
         GeometryReader { geo in
             VStack(alignment: .leading) {
@@ -30,13 +28,12 @@ struct NFTSquareCard: View {
                     .font(.LL.body)
                     .semibold()
                     .lineLimit(1)
-                
+
                 Text(nft.subtitle)
                     .font(.LL.body)
                     .foregroundColor(.LL.note)
                     .lineLimit(1)
             }
-
         }
         .onTapGesture {
             onClick(nft)
@@ -48,8 +45,8 @@ struct NFTSquareCard_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
         NFTSquareCard(nft: NFTTabViewModel.testNFT(), imageEffect: namespace, onClick: { _ in
-            
+
         })
-            .frame(width: 160)
+        .frame(width: 160)
     }
 }

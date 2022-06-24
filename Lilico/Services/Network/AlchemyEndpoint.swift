@@ -22,34 +22,33 @@ extension AlchemyEndpoint: TargetType {
     var baseURL: URL {
         return URL(string: "https://flow-mainnet.g.alchemy.com/v2/twx0ea5rbnqjbg7ev8jb058pqg50wklj/")!
     }
-    
+
     var path: String {
         switch self {
         case .nftList:
             return "getNFTs/"
         }
     }
-    
+
     var method: Moya.Method {
         .get
     }
-    
+
     var task: Task {
         switch self {
-        case .nftList(let nftListRequest):
+        case let .nftList(nftListRequest):
             return .requestParameters(parameters: nftListRequest.dictionary ?? [:], encoding: URLEncoding())
         }
     }
-    
-    var headers: [String : String]? {
+
+    var headers: [String: String]? {
         nil
     }
-    
 }
 
 extension Encodable {
-  var dictionary: [String: Any]? {
-    guard let data = try? JSONEncoder().encode(self) else { return nil }
-    return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
-  }
+    var dictionary: [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self) else { return nil }
+        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
+    }
 }

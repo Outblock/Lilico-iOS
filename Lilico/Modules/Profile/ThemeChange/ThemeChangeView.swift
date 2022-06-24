@@ -10,9 +10,9 @@ import SwiftUI
 
 struct ThemeChangeView: View {
     @EnvironmentObject private var router: ProfileCoordinator.Router
-    @StateObject private var vm: ThemeChangeViewModel = ThemeChangeViewModel()
+    @StateObject private var vm = ThemeChangeViewModel()
     @StateObject var themeManager = ThemeManager.shared
-    
+
     var body: some View {
         BaseView {
             VStack {
@@ -44,13 +44,13 @@ extension ThemeChangeView {
             ThemePreviewItemView(imageName: "preview-theme-light", title: "light".localized, isSelected: $vm.state.isLight) {
                 vm.trigger(.change(.light))
             }
-            
+
             ThemePreviewItemView(imageName: "preview-theme-dark", title: "dark".localized, isSelected: $vm.state.isDark) {
                 vm.trigger(.change(.dark))
             }
         }
     }
-    
+
     var autoItemView: some View {
         VStack {
             Toggle(isOn: $vm.state.isAuto) {
@@ -81,7 +81,7 @@ extension ThemeChangeView {
         let title: String
         @Binding var isSelected: Bool
         let action: () -> Void
-        
+
         var body: some View {
             Button {
                 action()

@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct BackAppBar: View {
-    
     var onBack: () -> Void
-    
+
     var body: some View {
-        
         HStack(alignment: .center) {
             Button {
                 onBack()
@@ -24,15 +22,12 @@ struct BackAppBar: View {
             Spacer()
         }
         .frame(height: 44)
-        .frame(maxHeight: .infinity, alignment: .top )
+        .frame(maxHeight: .infinity, alignment: .top)
     }
 }
 
 struct NFTNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        
-        BackAppBar() {
-            
-        }
+        BackAppBar {}
     }
 }

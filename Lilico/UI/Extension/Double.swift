@@ -14,7 +14,7 @@ extension Double {
         f.minimumFractionDigits = 0
         return f
     }()
-    
+
     var currencyString: String {
         let value = NSNumber(value: self).decimalValue
         return Double.currencyFormatter.string(for: value) ?? "?"

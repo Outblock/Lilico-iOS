@@ -5,39 +5,37 @@
 //  Created by cat on 2022/5/19.
 //
 
-import SwiftUI
 import CollectionViewPagingLayout
 import Kingfisher
+import SwiftUI
 
 struct NFTFavoriteView: View {
-    
     @Binding var favoriteId: String?
-    
+
     var favoriteNFTs: [NFTModel]
     var onClick: () -> Void
-    
+
     var body: some View {
         VStack {
-            if(favoriteNFTs.count > 0) {
-                
-                VStack(alignment: .center,spacing: 0) {
-                    HStack() {
+            if favoriteNFTs.count > 0 {
+                VStack(alignment: .center, spacing: 0) {
+                    HStack {
                         Image(systemName: "star.fill")
                         Text("top_selection".localized)
                             .font(.LL.largeTitle2)
                             .semibold()
-                        
+
                         Spacer()
                     }
                     .padding(.horizontal, 18)
                     .padding(.top)
                     .foregroundColor(.white)
-                    
-                    StackPageView(favoriteNFTs, selection:$favoriteId) { nft in
+
+                    StackPageView(favoriteNFTs, selection: $favoriteId) { nft in
                         ZStack {
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(Color.LL.background)
-                            
+
                             KFImage
                                 .url(nft.image)
                                 .fade(duration: 0.25)
@@ -45,7 +43,6 @@ struct NFTFavoriteView: View {
                                 .aspectRatio(1, contentMode: .fill)
                                 .cornerRadius(8)
                                 .padding()
-                            
                         }
                         .onTapGesture {
                             onTapNFT()
@@ -66,7 +63,7 @@ struct NFTFavoriteView: View {
             }
         }
     }
-    
+
     var options = StackTransformViewOptions(
         scaleFactor: 0.10,
         minScale: 0.20,
@@ -92,7 +89,7 @@ struct NFTFavoriteView: View {
         maxBlurEffectRadius: 0.00,
         blurEffectStyle: .light
     )
-    
+
     func onTapNFT() {
         onClick()
     }
@@ -102,6 +99,6 @@ struct NFTFavoriteView_Previews: PreviewProvider {
     @State static var list: [NFTModel] = []
     @State static var favoriteId: String?
     static var previews: some View {
-        NFTFavoriteView(favoriteId: $favoriteId, favoriteNFTs: list){}
+        NFTFavoriteView(favoriteId: $favoriteId, favoriteNFTs: list) {}
     }
 }

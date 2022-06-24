@@ -13,12 +13,11 @@ class ImageSaver: NSObject {
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
     }
 
-    @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if( error != nil ) {
+    @objc func saveCompleted(_: UIImage, didFinishSavingWithError error: Error?, contextInfo _: UnsafeRawPointer) {
+        if error != nil {
             print("Save Image Error: \(String(describing: error))")
-        }else {
+        } else {
             print("Save finished!")
         }
-        
     }
 }

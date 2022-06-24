@@ -8,29 +8,29 @@
 import SwiftUI
 
 extension EnvironmentValues {
-  var toastViewStyle: AnyToastViewStyle {
-    get {
-      self[ToastViewStyleEnvironmentKey.self]
+    var toastViewStyle: AnyToastViewStyle {
+        get {
+            self[ToastViewStyleEnvironmentKey.self]
+        }
+        set {
+            self[ToastViewStyleEnvironmentKey.self] = newValue
+        }
     }
-    set {
-      self[ToastViewStyleEnvironmentKey.self] = newValue
-    }
-  }
 
-  var toastDimmedBackground: Bool {
-    get {
-      self[ToastDimmedBackgroundEnvironmentKey.self]
+    var toastDimmedBackground: Bool {
+        get {
+            self[ToastDimmedBackgroundEnvironmentKey.self]
+        }
+        set {
+            self[ToastDimmedBackgroundEnvironmentKey.self] = newValue
+        }
     }
-    set {
-      self[ToastDimmedBackgroundEnvironmentKey.self] = newValue
-    }
-  }
 }
 
 struct ToastViewStyleEnvironmentKey: EnvironmentKey {
-  static let defaultValue = AnyToastViewStyle(DefaultToastViewStyle())
+    static let defaultValue = AnyToastViewStyle(DefaultToastViewStyle())
 }
 
 struct ToastDimmedBackgroundEnvironmentKey: EnvironmentKey {
-  static let defaultValue: Bool = true
+    static let defaultValue: Bool = true
 }

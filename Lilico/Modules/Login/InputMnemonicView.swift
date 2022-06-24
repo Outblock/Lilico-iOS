@@ -141,8 +141,8 @@ struct InputMnemonicView: View {
                     VPrimaryButton(model: ButtonStyle.primary,
                                    state: viewModel.state.nextEnable ? .enabled : .disabled,
                                    action: {
-                        viewModel.trigger(.next)
-                    }, title: "next".localized)
+                                       viewModel.trigger(.next)
+                                   }, title: "next".localized)
                         .padding(.horizontal, 28)
 
                     Spacer()

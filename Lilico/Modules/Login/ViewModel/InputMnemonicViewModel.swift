@@ -42,11 +42,11 @@ class InputMnemonicViewModel: ViewModel {
             restoreLogin()
         }
     }
-    
+
     private func getRawMnemonic() -> String {
         return state.text.condenseWhitespace()
     }
-    
+
     private func restoreLogin() {
         let mnemonic = getRawMnemonic()
         Task {

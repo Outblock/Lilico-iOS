@@ -22,7 +22,6 @@ import UIKit
 /// MMCQ (modified median cut quantization) algorithm from
 /// the Leptonica library (http://www.leptonica.com/).
 open class MMCQ {
-
     // Use only upper 5 bits of 8 bits
     private static let signalBits = 5
     private static let rightShift = 8 - signalBits
@@ -67,7 +66,6 @@ open class MMCQ {
 
     /// 3D color space box.
     class VBox {
-
         var rMin: UInt8
         var rMax: UInt8
         var gMin: UInt8
@@ -92,13 +90,13 @@ open class MMCQ {
         }
 
         init(vbox: VBox) {
-            self.rMin = vbox.rMin
-            self.rMax = vbox.rMax
-            self.gMin = vbox.gMin
-            self.gMax = vbox.gMax
-            self.bMin = vbox.bMin
-            self.bMax = vbox.bMax
-            self.histogram = vbox.histogram
+            rMin = vbox.rMin
+            rMax = vbox.rMax
+            gMin = vbox.gMin
+            gMax = vbox.gMax
+            bMin = vbox.bMin
+            bMax = vbox.bMax
+            histogram = vbox.histogram
         }
 
         func makeRange(min: UInt8, max: UInt8) -> CountableRange<Int> {
@@ -203,12 +201,10 @@ open class MMCQ {
                 return .b
             }
         }
-
     }
 
     /// Color map.
     open class ColorMap {
-
         var vboxes = [VBox]()
 
         func push(_ vbox: VBox) {
@@ -257,7 +253,7 @@ open class MMCQ {
             let r = pixels[i * 4 + 3]
 
             // If pixel is not mostly opaque or white
-            guard a >= 125 && !(ignoreWhite && r > 250 && g > 250 && b > 250) else {
+            guard a >= 125, !(ignoreWhite && r > 250 && g > 250 && b > 250) else {
                 continue
             }
 
@@ -381,7 +377,7 @@ open class MMCQ {
                 d2 += 1
             }
             var count2 = lookAheadSum[d2]
-            while count2 == 0 && d2 > 0 && partialSum[d2 - 1] > 0 {
+            while count2 == 0, d2 > 0, partialSum[d2 - 1] > 0 {
                 d2 -= 1
                 count2 = lookAheadSum[d2]
             }
@@ -407,7 +403,7 @@ open class MMCQ {
 
     static func quantize(_ pixels: [UInt8], quality: Int, ignoreWhite: Bool, maxColors: Int) -> ColorMap? {
         // short-circuit
-        guard !pixels.isEmpty && maxColors > 1 && maxColors <= 256 else {
+        guard !pixels.isEmpty, maxColors > 1, maxColors <= 256 else {
             return nil
         }
 
@@ -488,5 +484,4 @@ open class MMCQ {
             return aProduct < bProduct
         }
     }
-
 }

@@ -13,7 +13,7 @@ struct TabBarPageModel<T: Hashable> {
     let color: Color
     let view: () -> AnyView
     let contextMenu: (() -> AnyView)?
-    
+
     init(tag: T, iconName: String, color: Color, view: @escaping () -> AnyView, contextMenu: (() -> AnyView)? = nil) {
         self.tag = tag
         self.iconName = iconName

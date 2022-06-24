@@ -107,8 +107,8 @@ struct UsernameView: View {
                 VPrimaryButton(model: ButtonStyle.primary,
                                state: highlight == .success ? .enabled : .disabled,
                                action: {
-                    viewModel.trigger(.next)
-                }, title: "next".localized)
+                                   viewModel.trigger(.next)
+                               }, title: "next".localized)
                     .padding(.bottom)
             }
             .dismissKeyboardOnDrag()

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct VDashLine: Shape {
     func path(in rect: CGRect) -> Path {
         Path { path in
@@ -31,7 +30,7 @@ struct DashLine_Previews: PreviewProvider {
         HDashLine().stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
             .frame(height: 1)
             .foregroundColor(Color.orange)
-        
+
         VDashLine().stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
             .frame(width: 1)
             .foregroundColor(Color.orange)

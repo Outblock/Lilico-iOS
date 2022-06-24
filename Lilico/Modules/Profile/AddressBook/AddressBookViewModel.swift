@@ -5,8 +5,8 @@
 //  Created by Selina on 24/5/2022.
 //
 
-import SwiftUI
 import Stinsen
+import SwiftUI
 
 // MARK: - Define
 
@@ -14,30 +14,28 @@ extension AddressBookView {
     struct SectionState: Identifiable {
         var sectionName: String
         var list: [Contact]
-        
+
         var id: String {
             return sectionName
         }
     }
-    
+
     class SectionViewModel: ViewModel, Identifiable, Indexable {
         @Published var state: SectionState
-        
+
         var id: String {
             return state.id
         }
-        
+
         var index: Index? {
             return Index(state.sectionName, contentID: state.id)
         }
-        
+
         init(sectionName: String, list: [Contact]) {
             state = SectionState(sectionName: sectionName, list: list)
         }
-        
-        func trigger(_ input: Never) {
-            
-        }
+
+        func trigger(_: Never) {}
     }
 }
 
@@ -47,13 +45,13 @@ extension AddressBookView {
         case loading
         case error
     }
-    
+
     struct ListState {
         var sections: [AddressBookView.SectionViewModel]
         var stateType: AddressBookViewStateType = .loading
         var hudStatus: Bool = false
     }
-    
+
     enum AddressBookInput {
         case load
         case delete(AddressBookView.SectionViewModel, Contact)
@@ -68,24 +66,24 @@ extension AddressBookView {
         @Published var state: ListState
         @Published var searchText: String = ""
         @RouterObject var router: AddressBookCoordinator.Router?
-        
+
         init() {
             state = ListState(sections: [AddressBookView.SectionViewModel]())
             trigger(.load)
         }
-        
+
         func trigger(_ input: AddressBookView.AddressBookInput) {
             switch input {
             case .load:
                 load()
-            case .delete(let sectionVM, let contact):
-                
+            case let .delete(sectionVM, contact):
+
                 delete(sectionVM: sectionVM, contact: contact)
-            case .edit(let contact):
+            case let .edit(contact):
                 editContact(contact)
             }
         }
-        
+
         func contactIsExists(_ contact: Contact) -> Bool {
             for sectionVM in state.sections {
                 for tempContact in sectionVM.state.list {
@@ -93,43 +91,44 @@ extension AddressBookView {
                        tempContact.address == contact.address,
                        tempContact.contactType == contact.contactType,
                        tempContact.domain?.domainType == contact.domain?.domainType,
-                       tempContact.username == contact.username {
+                       tempContact.username == contact.username
+                    {
                         return true
                     }
                 }
             }
-            
+
             return false
         }
-        
+
         private func trimListModels() {
             state.sections = state.sections.filter { svm in
                 svm.state.list.isEmpty == false
             }
         }
-        
+
         private func editContact(_ contact: Contact) {
             searchText = ""
             router?.route(to: \.edit, contact)
         }
-        
+
         private func delete(sectionVM: AddressBookView.SectionViewModel, contact: Contact) {
             searchText = ""
-            
+
             guard let realSectionVM = state.sections.first(where: { svm in
                 svm.id == sectionVM.id
             }) else {
                 return
             }
-            
+
             guard let index = realSectionVM.state.list.firstIndex(where: { c in
                 c.id == contact.id
             }) else {
                 return
             }
-            
+
             state.hudStatus = true
-            
+
             let successAction = {
                 DispatchQueue.main.async {
                     self.state.hudStatus = false
@@ -138,33 +137,33 @@ extension AddressBookView {
                     HUD.success(title: "contact_deleted".localized)
                 }
             }
-            
+
             let failedAction = {
                 DispatchQueue.main.async {
                     self.state.hudStatus = false
                     HUD.error(title: "delete_failed".localized)
                 }
             }
-            
+
             Task {
                 do {
                     let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.AddressBook.delete(contact.id))
-                    
+
                     if response.httpCode != 200 {
                         failedAction()
                         return
                     }
-                    
+
                     successAction()
                 } catch {
                     failedAction()
                 }
             }
         }
-        
+
         private func load() {
             state.stateType = .loading
-            
+
             Task {
                 do {
                     let response: AddressListBookResponse = try await Network.request(LilicoAPI.AddressBook.fetchList)
@@ -179,26 +178,26 @@ extension AddressBookView {
                 }
             }
         }
-        
+
         private func regroup(_ contacts: [Contact]?) {
             var rawContacts = contacts
             if rawContacts == nil {
                 rawContacts = []
             }
-            
+
             BMChineseSort.share.compareTpye = .fullPinyin
-            BMChineseSort.sortAndGroup(objectArray: rawContacts, key: "contactName") { success, unGroupedArr, sectionTitleArr, sortedObjArr in
+            BMChineseSort.sortAndGroup(objectArray: rawContacts, key: "contactName") { success, _, sectionTitleArr, sortedObjArr in
                 if !success {
                     self.state.stateType = .error
                     return
                 }
-                
+
                 var sections = [AddressBookView.SectionViewModel]()
                 for (index, title) in sectionTitleArr.enumerated() {
                     let svm = AddressBookView.SectionViewModel(sectionName: title, list: sortedObjArr[index])
                     sections.append(svm)
                 }
-                
+
                 self.state.sections = sections
             }
         }
@@ -212,12 +211,12 @@ extension AddressBookView.AddressBookViewModel {
         if searchText.isEmpty {
             return state.sections
         }
-        
+
         var searchSections: [AddressBookView.SectionViewModel] = []
-        
+
         for section in state.sections {
             var contacts = [Contact]()
-            
+
             for contact in section.state.list {
                 if let address = contact.address, address.localizedCaseInsensitiveContains(searchText) {
                     contacts.append(contact)
@@ -234,13 +233,13 @@ extension AddressBookView.AddressBookViewModel {
                     continue
                 }
             }
-            
+
             if contacts.count > 0 {
                 let newSection = AddressBookView.SectionViewModel(sectionName: section.state.sectionName, list: contacts)
                 searchSections.append(newSection)
             }
         }
-        
+
         return searchSections
     }
 }

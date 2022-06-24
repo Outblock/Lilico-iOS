@@ -5,22 +5,21 @@
 //  Created by cat on 2022/5/14.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct NFTCollectionCard: View {
-    
     let index: Int
     let item: CollectionItem
     let isHorizontal: Bool
     @Binding var selectedIndex: Int
-    
+
     @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
-    
+
     private var iconSize: Double {
         return isHorizontal ? 40 : 48
     }
-    
+
     var body: some View {
         HStack {
             KFImage
@@ -30,29 +29,28 @@ struct NFTCollectionCard: View {
                 .frame(width: iconSize, height: iconSize)
                 .background(.LL.outline)
                 .cornerRadius(12)
-            
+
             VStack(alignment: .leading, spacing: 3) {
                 HStack(spacing: 3) {
                     Text(item.showName)
                         .font(.LL.body)
                         .bold()
                         .foregroundColor(.LL.neutrals1)
-                    
+
                     Image("Flow")
                         .resizable()
                         .frame(width: 12, height: 12)
                 }
-                
+
                 Text("x_collections".localized(item.count))
                     .font(.LL.body)
                     .foregroundColor(.LL.note)
             }
-            if(!isHorizontal) {
+            if !isHorizontal {
                 Spacer()
                 Image(systemName: "arrow.forward")
                     .foregroundColor(.LL.Primary.salmonPrimary)
                     .padding(.trailing, 8)
-                
             }
         }
         .padding(8)
@@ -62,25 +60,24 @@ struct NFTCollectionCard: View {
             RoundedRectangle(cornerRadius: 16)
                 .stroke(Color.LL.text,
                         lineWidth:
-                            (isHorizontal&&selectedIndex == index) ? 1 : 0)
+                        (isHorizontal && selectedIndex == index) ? 1 : 0)
         )
         .shadow(color: .LL.rebackground.opacity(0.05),
                 radius: 8, x: 0, y: 0)
         .onTapGesture {
-            if(isHorizontal) {
+            if isHorizontal {
                 selectedIndex = index
-            }else {
+            } else {
                 viewModel.trigger(.collection(item))
             }
-            
         }
         .frame(height: isHorizontal ? 56 : 64)
     }
 }
 
 struct NFTCollectionCard_Previews: PreviewProvider {
-    @State static  var selectedIndex: Int = 0
-    
+    @State static var selectedIndex: Int = 0
+
     static var previews: some View {
         VStack {
             NFTCollectionCard(index: 0, item: NFTTabViewModel().state.items.first!,
@@ -89,8 +86,7 @@ struct NFTCollectionCard_Previews: PreviewProvider {
             NFTCollectionCard(index: 0,
                               item: NFTTabViewModel().state.items.first!,
                               isHorizontal: false,
-                              selectedIndex: $selectedIndex
-            )
+                              selectedIndex: $selectedIndex)
         }
     }
 }

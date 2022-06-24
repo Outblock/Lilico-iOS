@@ -6,16 +6,16 @@
 //
 
 import Foundation
-import SwiftUI
 import Stinsen
+import SwiftUI
 
 final class AddressBookCoordinator: NavigationCoordinatable {
     let stack = NavigationStack(initial: \AddressBookCoordinator.start)
-    
+
     @Root var start = makeAddressBookView
     @Route(.push) var add = makeAddView
     @Route(.push) var edit = makeEditView
-    
+
     var addressBookVM: AddressBookView.AddressBookViewModel?
 }
 
@@ -23,11 +23,11 @@ extension AddressBookCoordinator {
     @ViewBuilder func makeAddressBookView() -> some View {
         AddressBookView()
     }
-    
+
     @ViewBuilder func makeAddView() -> some View {
         AddAddressView()
     }
-    
+
     @ViewBuilder func makeEditView(contact: Contact) -> some View {
         AddAddressView(editingContact: contact)
     }

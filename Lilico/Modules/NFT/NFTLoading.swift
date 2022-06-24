@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NFTLoading: View {
     var body: some View {
-        ZStack{
+        ZStack {
             Text("loading".localized)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

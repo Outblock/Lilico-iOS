@@ -16,26 +16,26 @@ extension GithubEndpoint: TargetType {
     var baseURL: URL {
         return URL(string: "https://raw.githubusercontent.com")!
     }
-    
+
     var path: String {
         switch self {
         case .collections:
             return "/Outblock/Assets/main/nft/nft.json"
         }
     }
-    
+
     var method: Moya.Method {
         .get
     }
-    
+
     var task: Task {
         switch self {
         case .collections:
             return .requestPlain
         }
     }
-    
-    var headers: [String : String]? {
+
+    var headers: [String: String]? {
         nil
     }
 }

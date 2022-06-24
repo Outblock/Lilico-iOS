@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct NFTSegmentControl: View {
-    
     @Binding var currentTab: String
-    var titles:[String];
+    var titles: [String]
 
     @Namespace var animation
 
@@ -18,7 +17,6 @@ struct NFTSegmentControl: View {
         HStack(spacing: 0) {
             ForEach(titles, id: \.self) { title in
                 NFTSegmentItem(title: title, animation: animation, current: $currentTab)
-                    
             }
         }
         .padding(4)
@@ -30,20 +28,20 @@ struct NFTSegmentControl: View {
 struct NFTSegmentItem: View {
     var title: String
     let animation: Namespace.ID
-    
+
     @Binding var current: String
-    
+
     var body: some View {
         Text(title)
             .font(.LL.body)
             .fontWeight(.w700)
             .foregroundColor(current == title ? .LL.Neutrals.text : .LL.Shades.front)
             .frame(height: 20)
-            .padding(.vertical,2)
+            .padding(.vertical, 2)
             .padding(.horizontal, 13)
             .background(
-                ZStack{
-                    if (current == title) {
+                ZStack {
+                    if current == title {
                         Color.LL.Shades.front
                             .cornerRadius(16)
                             .matchedGeometryEffect(id: "Segment", in: animation)
@@ -56,7 +54,6 @@ struct NFTSegmentItem: View {
                     current = title
                 }
             }
-            
     }
 }
 

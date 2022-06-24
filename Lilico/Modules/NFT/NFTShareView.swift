@@ -5,30 +5,28 @@
 //  Created by cat on 2022/6/6.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct NFTShareView: View {
     @State var nft: NFTModel
     @State var colors: [Color]
     @State var name: String = "ZYANZ"
-    
-    
+
     var body: some View {
         VStack(alignment: .leading) {
-            
             HStack(spacing: 0) {
                 KFImage
                     .url(nft.logoUrl)
                     .resizable()
-                    .onSuccess({ _ in
-                    })
+                    .onSuccess { _ in
+                    }
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 20, height: 20,alignment: .center)
+                    .frame(width: 20, height: 20, alignment: .center)
                     .cornerRadius(20)
                     .clipped()
                     .padding(.trailing, 6)
-                    
+
                 Text("from_name".localized(name.uppercased()))
                     .font(.LL.body)
                     .fontWeight(.w700)
@@ -46,8 +44,7 @@ struct NFTShareView: View {
             )
             .cornerRadius(12)
             .clipped()
-            
-            
+
             VStack(alignment: .leading) {
                 VStack(alignment: .leading, spacing: 0) {
                     Text(nft.title)
@@ -55,12 +52,12 @@ struct NFTShareView: View {
                         .fontWeight(.w700)
                         .foregroundColor(.LL.Neutrals.text)
                         .frame(height: 28)
-                    HStack(alignment: .center,spacing: 6) {
+                    HStack(alignment: .center, spacing: 6) {
                         KFImage
                             .url(nft.logoUrl)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 20, height: 20,alignment: .center)
+                            .frame(width: 20, height: 20, alignment: .center)
                             .cornerRadius(20)
                             .clipped()
                         Text(nft.subtitle)
@@ -69,39 +66,34 @@ struct NFTShareView: View {
                             .foregroundColor(.LL.Neutrals.neutrals4)
                     }
                 }
-                
-                
-                
+
                 KFImage
                     .url(nft.image)
-                    .onSuccess({ result in
+                    .onSuccess { _ in
 //                        color(from: result.image)
-                    })
+                    }
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                     .frame(alignment: .center)
                     .cornerRadius(8)
                     .padding(.top, 24)
                     .clipped()
-                    
             }
             .cornerRadius(16)
             .background(Color.LL.background.opacity(0.48))
-            
-            
+
             HDashLine().stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
                 .frame(height: 1)
                 .foregroundColor(
                     colors.count > 0 ? colors[0].opacity(0.18) : .LL.Neutrals.background
                 )
 
-            
             HStack(spacing: 0) {
-                VStack(alignment: .leading,spacing: 0) {
-                    //TODO: app logo
+                VStack(alignment: .leading, spacing: 0) {
+                    // TODO: app logo
                     Image("")
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 24, height: 24,alignment: .center)
+                        .frame(width: 24, height: 24, alignment: .center)
                         .cornerRadius(4)
                         .clipped()
                     VStack(alignment: .leading) {
@@ -114,7 +106,7 @@ struct NFTShareView: View {
                                 .font(.LL.miniTitle)
                                 .fontWeight(Font.Weight.w600)
                                 .foregroundColor(.LL.Neutrals.note)
-                            HStack{}
+                            HStack {}
                                 .frame(width: 7, height: 3)
                                 .cornerRadius(4)
                                 .background(Color.LL.Primary.salmonPrimary)
@@ -126,18 +118,14 @@ struct NFTShareView: View {
                     .frame(width: 64, height: 64)
                     .cornerRadius(4)
             }
-            .padding(.vertical,12)
+            .padding(.vertical, 12)
             .cornerRadius(16)
-            
         }
         .background(
             NFTBlurImageView(colors: colors)
         )
         .padding(18)
-        
-        
     }
-    
 }
 
 struct NFTShareView_Previews: PreviewProvider {
@@ -145,6 +133,3 @@ struct NFTShareView_Previews: PreviewProvider {
         NFTShareView(nft: NFTTabViewModel.testNFT(), colors: [])
     }
 }
-
-
-

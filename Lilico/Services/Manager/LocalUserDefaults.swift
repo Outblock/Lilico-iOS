@@ -5,8 +5,8 @@
 //  Created by Selina on 7/6/2022.
 //
 
-import SwiftUI
 import Flow
+import SwiftUI
 
 extension LocalUserDefaults {
     enum Keys: String {
@@ -16,11 +16,11 @@ extension LocalUserDefaults {
         case quoteMarket
         case coinSummary
     }
-    
+
     enum FlowNetworkType: String {
         case testnet
         case mainnet
-        
+
         func toFlowType() -> Flow.ChainID {
             switch self {
             case .testnet:
@@ -34,23 +34,23 @@ extension LocalUserDefaults {
 
 class LocalUserDefaults: ObservableObject {
     static let shared = LocalUserDefaults()
-    
+
     #if DEBUG
-    @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .testnet {
-        didSet {
-            FlowNetwork.setup()
-            WalletManager.shared.reloadWalletInfo()
+        @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .testnet {
+            didSet {
+                FlowNetwork.setup()
+                WalletManager.shared.reloadWalletInfo()
+            }
         }
-    }
     #else
-    @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .mainnet {
-        didSet {
-            FlowNetwork.setup()
-            WalletManager.shared.reloadWalletInfo()
+        @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .mainnet {
+            didSet {
+                FlowNetwork.setup()
+                WalletManager.shared.reloadWalletInfo()
+            }
         }
-    }
     #endif
-    
+
     var userInfo: UserInfo? {
         set {
             if let value = newValue, let data = try? LilicoAPI.jsonEncoder.encode(value) {
@@ -67,19 +67,19 @@ class LocalUserDefaults: ObservableObject {
             }
         }
     }
-    
+
     @AppStorage(Keys.walletHidden.rawValue) var walletHidden: Bool = false {
         didSet {
             NotificationCenter.default.post(name: .walletHiddenFlagUpdated, object: nil)
         }
     }
-    
+
     @AppStorage(Keys.quoteMarket.rawValue) var market: QuoteMarket = .binance {
         didSet {
             NotificationCenter.default.post(name: .quoteMarketUpdated, object: nil)
         }
     }
-    
+
     var coinSummarys: [CoinRateCache.CoinRateModel]? {
         set {
             if let value = newValue, let data = try? LilicoAPI.jsonEncoder.encode(value) {

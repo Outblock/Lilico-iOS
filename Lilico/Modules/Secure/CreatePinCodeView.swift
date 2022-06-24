@@ -72,7 +72,7 @@ struct CreatePinCodeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 30)
 
-                SecureView(text: $text, maxCount: 6) { text, res in
+                SecureView(text: $text, maxCount: 6) { text, _ in
                     viewModel.trigger(.input(text))
                 }
 

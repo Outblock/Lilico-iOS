@@ -92,8 +92,8 @@ struct EnterPasswordView: View {
                 VPrimaryButton(model: ButtonStyle.primary,
                                state: buttonState,
                                action: {
-                    viewModel.trigger(.signIn(text))
-                }, title: "restore_account".localized)
+                                   viewModel.trigger(.signIn(text))
+                               }, title: "restore_account".localized)
 
 //                Button {
 //                    router.route(to: \.userName)

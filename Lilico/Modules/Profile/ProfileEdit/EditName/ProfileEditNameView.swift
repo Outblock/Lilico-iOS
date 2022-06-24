@@ -15,8 +15,8 @@ struct ProfileEditNameView_Previews: PreviewProvider {
 
 struct ProfileEditNameView: View {
     @EnvironmentObject private var router: ProfileEditCoordinator.Router
-    @StateObject private var vm: ProfileEditNameViewModel = ProfileEditNameViewModel()
-    
+    @StateObject private var vm = ProfileEditNameViewModel()
+
     var body: some View {
         BaseView {
             VStack(spacing: 30) {

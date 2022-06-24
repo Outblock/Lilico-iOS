@@ -6,16 +6,15 @@
 //
 
 import Foundation
+import Stinsen
 import SwiftUI
 import SwiftUIX
-import Stinsen
 
 final class NFTCoordinator: NavigationCoordinatable {
-    
     var stack = NavigationStack(initial: \NFTCoordinator.start)
-    
+
     var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action> = NFTTabViewModel().toAnyViewModel()
-    
+
     @Root() var start = makeStart
     @Root(.push) var detail = makeDetail
     @Root(.push) var collection = makeCollection
@@ -23,14 +22,14 @@ final class NFTCoordinator: NavigationCoordinatable {
 
 extension NFTCoordinator {
     @ViewBuilder func makeStart() -> some View {
-        NFTTabScreen(viewModel: self.viewModel)
+        NFTTabScreen(viewModel: viewModel)
             .hideNavigationBar()
     }
-    
+
     @ViewBuilder func makeDetail(model: NFTModel) -> some View {
-        NFTDetailPage(viewModel: self.viewModel, nft: model).hideNavigationBar()
+        NFTDetailPage(viewModel: viewModel, nft: model).hideNavigationBar()
     }
-    
+
     @ViewBuilder func makeCollection(item: CollectionItem) -> some View {
         NFTCollectionListView(collection: item)
             .hideNavigationBar()
@@ -42,11 +41,11 @@ extension NFTCoordinator: AppTabBarPageProtocol {
     static func tabTag() -> AppTabType {
         return .nft
     }
-    
+
     static func iconName() -> String {
         return "house.fill"
     }
-    
+
     static func color() -> Color {
         return .LL.blue
     }

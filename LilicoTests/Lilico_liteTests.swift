@@ -22,7 +22,7 @@ class Lilico_liteTests: XCTestCase {
 //        let string = try setAccountDatatoiCloud()
 //        print(string)
     }
-    
+
     func testAESS() {
         let data = try! WalletManager.encryptionAES(key: "passwr", data: "123".data(using: .utf8)!)
         print(data.hexValue)

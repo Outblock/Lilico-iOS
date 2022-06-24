@@ -7,9 +7,9 @@
 
 import Combine
 import Foundation
-//import NIO
+// import NIO
 
-//extension EventLoopFuture {
+// extension EventLoopFuture {
 //    func toFuture() -> Future<Value, Error> {
 //        return Future { promise in
 //            self.whenComplete { result in
@@ -22,7 +22,7 @@ import Foundation
 //            }
 //        }
 //    }
-//}
+// }
 
 extension Publisher {
     func asFuture() -> Future<Output, Failure> {
@@ -30,12 +30,12 @@ extension Publisher {
         return Future<Output, Failure> { promise in
             // cancellable is captured to assure the completion of the wrapped future
             cancellable = self.sink { completion in
-                    if case .failure(let error) = completion {
-                        promise(.failure(error))
-                    }
-                } receiveValue: { value in
-                    promise(.success(value))
+                if case let .failure(error) = completion {
+                    promise(.failure(error))
                 }
+            } receiveValue: { value in
+                promise(.success(value))
+            }
         }
     }
 }

@@ -5,16 +5,15 @@
 //  Created by Hao Fu on 16/1/22.
 //
 
-import SwiftUI
 // Make sure you added this dependency to your project
 // More info at https://bit.ly/CVPagingLayout
 import CollectionViewPagingLayout
-import Kingfisher
-import WebKit
 import IrregularGradient
+import Kingfisher
+import SwiftUI
+import WebKit
 
 extension NFTTabScreen {
-    
     struct ViewState {
         var loading: Bool = true
         var items: [CollectionItem] = []
@@ -23,7 +22,7 @@ extension NFTTabScreen {
             return !loading && items.count == 0
         }
     }
-    
+
     enum Action {
         case search
         case add
@@ -38,66 +37,61 @@ struct NFTTabScreen: View {
     @StateObject var themeManager = ThemeManager.shared
 
     @State var listStyle: String = "List"
-    
+
     var isListStyle: Bool {
         return listStyle == "List"
     }
-    
+
     @StateObject
-    var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action> 
-    
+    var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+
     @StateObject
     var favoriteStore = NFTFavoriteStore.shared
-    
+
     @State var selectedIndex = 0
-    
+
     @State private var favoriteId: String?
     @State private var currentNFTImage: URL?
-    
+
     @State var offset: CGFloat = 0
-    
+
     @Namespace var NFTImageEffect
-    
+
     var currentNFTs: [NFTModel] {
-        if(isListStyle) {
-            if(viewModel.state.items.isEmpty) {
+        if isListStyle {
+            if viewModel.state.items.isEmpty {
                 return []
             }
             return viewModel.state.items[selectedIndex].nfts
-        }else {
-            return viewModel.state.items.flatMap{$0.nfts}
+        } else {
+            return viewModel.state.items.flatMap { $0.nfts }
         }
     }
-    
+
     var canShowFavorite: Bool {
-        return  (favoriteStore.isNotEmpty && isListStyle)
+        return (favoriteStore.isNotEmpty && isListStyle)
     }
-    
+
     @State private var collectionBarStyle: NFTTabScreen.CollectionBar.BarStyle = .horizontal
-    
+
     /// show the collection by vertical layout
     var onlyShowCollection: Bool {
         return collectionBarStyle == .vertical
     }
-    
+
     let modifier = AnyModifier { request in
         var r = request
         r.setValue("APKAJYJ4EHJ62UVUHINA", forHTTPHeaderField: "CloudFront-Key-Pair-Id")
         return r
     }
-    
-    
-    
-    var body: some View {
 
+    var body: some View {
         ZStack(alignment: .topLeading) {
-            if(viewModel.state.loading) {
+            if viewModel.state.loading {
                 NFTLoading()
-            }
-            else if(viewModel.state.isEmpty) {
+            } else if viewModel.state.isEmpty {
                 NFTEmptyView()
-            }
-            else {
+            } else {
                 content
                     .clipped()
             }
@@ -107,31 +101,27 @@ struct NFTTabScreen: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .environmentObject(viewModel)
     }
-    
+
     var content: some View {
-        GeometryReader { geo in
+        GeometryReader { _ in
             ZStack(alignment: .top) {
-                if(!viewModel.isEmpty) {
-                    
+                if !viewModel.isEmpty {
                     OffsetScrollView(offset: $offset) {
-                        
-                        LazyVStack(spacing: 0,pinnedViews: [.sectionHeaders]) {
-                            
-                            if(isListStyle) {
-                                if(canShowFavorite) {
+                        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                            if isListStyle {
+                                if canShowFavorite {
                                     NFTTabScreen.FavoriteView(currentNFTImage: $currentNFTImage)
                                 }
                                 NFTTabScreen.CollectionBar(barStyle: $collectionBarStyle, listStyle: $listStyle)
                                 Section {
-                                    if(collectionBarStyle == .horizontal) {
+                                    if collectionBarStyle == .horizontal {
                                         NFTListView(list: currentNFTs, imageEffect: NFTImageEffect)
-
                                     }
                                 } header: {
                                     NFTTabScreen.CollectionBody(barStyle: $collectionBarStyle, selectedIndex: $selectedIndex)
                                 }
-                            }else {
-                                NFTListView(list: currentNFTs,imageEffect: NFTImageEffect)
+                            } else {
+                                NFTListView(list: currentNFTs, imageEffect: NFTImageEffect)
                             }
                         }
                     }
@@ -141,19 +131,18 @@ struct NFTTabScreen: View {
                     )
                     .background(
                         LinearGradient(gradient:
-                                        Gradient(colors:
-                                                    [.LL.Shades.front.opacity(0),
-                                                     .LL.Neutrals.background]), startPoint: .top, endPoint: .center)
+                            Gradient(colors:
+                                [.LL.Shades.front.opacity(0),
+                                 .LL.Neutrals.background]), startPoint: .top, endPoint: .center)
                     )
                     .padding(.top, statusHeight)
-       
                 }
             }
         }
     }
-    
+
     var statusHeight: CGFloat {
-        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let window = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
         lazy var statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         return statusBarHeight
     }
@@ -165,23 +154,21 @@ extension NFTTabScreen {
     }
 }
 
-//MARK: FavoriteView
+// MARK: FavoriteView
+
 extension NFTTabScreen {
-    
     struct FavoriteView: View {
-        
         @Binding
         var currentNFTImage: URL?
-        
+
         @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
         @StateObject
         var favoriteStore = NFTFavoriteStore.shared
         @State var favoriteId: String?
-        
+
         var body: some View {
             VStack(spacing: 0) {
-                if(favoriteStore.favorites.count > 0) {
-
+                if favoriteStore.favorites.count > 0 {
                     VStack(alignment: .center, spacing: 0) {
                         HStack(spacing: 8) {
                             Image(systemName: "star.fill")
@@ -195,8 +182,8 @@ extension NFTTabScreen {
                         .padding(.horizontal, 18)
                         .foregroundColor(.LL.Shades.front)
 
-                        StackPageView(favoriteStore.favorites, selection:$favoriteId) { nft in
-                            ZStack() {
+                        StackPageView(favoriteStore.favorites, selection: $favoriteId) { nft in
+                            ZStack {
                                 RoundedRectangle(cornerRadius: 16)
                                     .fill(Color.LL.background)
                                 KFImage
@@ -204,13 +191,13 @@ extension NFTTabScreen {
                                     .fade(duration: 0.25)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: (imageHeight),
-                                           height: (imageHeight) )
+                                    .frame(width: imageHeight,
+                                           height: imageHeight)
                                     .cornerRadius(8)
                                     .clipped()
                             }
-                            .frame(width: imageHeight+24,
-                                   height: imageHeight+24 )
+                            .frame(width: imageHeight + 24,
+                                   height: imageHeight + 24)
                             .onTapGesture {
                                 onTapNFT()
                             }
@@ -223,23 +210,21 @@ extension NFTTabScreen {
                             right: .fractionalWidth(0.24)
                         )
                         .frame(width: screenWidth,
-                               height: imageHeight+12, alignment: .center)
+                               height: imageHeight + 12, alignment: .center)
                         .padding(.top, 16)
                     }
                     .padding(.top, 48)
                     .background(
                         ZStack {
-                            
                             if let url = currentNFTImage?.absoluteString, let colors = viewModel.state.colorsMap[url] {
                                 if colors.count > 0 {
                                     NFTBlurImageView(colors: colors)
 //                                        .irregularGradient(colors: colors)
                                 }
                             }
-                            
                         }
                     )
-                    .onChange(of: favoriteId) { id in
+                    .onChange(of: favoriteId) { _ in
                         guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
                             let model = favoriteStore.favorites.first
                             currentNFTImage = model?.image
@@ -249,22 +234,21 @@ extension NFTTabScreen {
                         if let url = currentNFTImage?.absoluteString {
                             viewModel.trigger(.fetchColors(url))
                         }
-                        
                     }
                 }
             }
-            
+
             .onAppear {
-                if(favoriteId == nil) {
+                if favoriteId == nil {
                     favoriteId = favoriteStore.favorites.first?.id
                 }
             }
         }
-        
+
         var imageHeight: CGFloat {
-            return (screenWidth * 0.76-18-24)
+            return (screenWidth * 0.76 - 18 - 24)
         }
-        
+
         var options = StackTransformViewOptions(
             scaleFactor: 0.10,
             minScale: 0.0,
@@ -290,7 +274,7 @@ extension NFTTabScreen {
             maxBlurEffectRadius: 0.00,
             blurEffectStyle: .light
         )
-        
+
         func onTapNFT() {
             guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
                 return
@@ -300,45 +284,42 @@ extension NFTTabScreen {
     }
 }
 
-//MARK: TopBar
+// MARK: TopBar
+
 extension NFTTabScreen {
-    
     enum ListStyle: String, CaseIterable, Identifiable {
         case list, grid
         var id: Self { self }
     }
-    
+
     struct TopBar: View {
-        
         @Binding var listStyle: String
         @Binding var offset: CGFloat
-        
+
         @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
-        
+
         var body: some View {
             HStack {
                 HStack(alignment: .center) {
-                    if(!viewModel.state.isEmpty) {
-                        
-                        NFTSegmentControl(currentTab: $listStyle, titles: ["List","Grid"])
-
+                    if !viewModel.state.isEmpty {
+                        NFTSegmentControl(currentTab: $listStyle, titles: ["List", "Grid"])
                     }
                     Spacer()
-                    
-    //                if(!viewModel.state.isEmpty) {
-    //                    Button {
-    //                        viewModel.trigger(.search)
-    //                    } label: {
-    //                        Image(systemName: "magnifyingglass")
-    //                            .foregroundColor(.white)
-    //                            .padding(8)
-    //                            .background {
-    //                                Circle()
-    //                                    .foregroundColor(.LL.outline.opacity(0.8))
-    //                            }
-    //                    }
-    //                }
-                    
+
+                    //                if(!viewModel.state.isEmpty) {
+                    //                    Button {
+                    //                        viewModel.trigger(.search)
+                    //                    } label: {
+                    //                        Image(systemName: "magnifyingglass")
+                    //                            .foregroundColor(.white)
+                    //                            .padding(8)
+                    //                            .background {
+                    //                                Circle()
+                    //                                    .foregroundColor(.LL.outline.opacity(0.8))
+                    //                            }
+                    //                    }
+                    //                }
+
                     Button {
                         viewModel.trigger(.add)
                     } label: {
@@ -355,22 +336,20 @@ extension NFTTabScreen {
                 .padding(.bottom, 4)
             }
             .background(
-                Color.LL.Shades.front.opacity(offset < 0 ? abs((offset)/100.0) : 0)
+                Color.LL.Shades.front.opacity(offset < 0 ? abs(offset / 100.0) : 0)
             )
-            
-            
         }
     }
 }
 
-//MARK: Collection Bar
+// MARK: Collection Bar
+
 extension NFTTabScreen {
     struct CollectionBar: View {
-        
         enum BarStyle {
             case horizontal
             case vertical
-            
+
             mutating func toggle() {
                 switch self {
                 case .horizontal:
@@ -380,32 +359,31 @@ extension NFTTabScreen {
                 }
             }
         }
-        
+
         @Binding var barStyle: NFTTabScreen.CollectionBar.BarStyle
         @Binding var listStyle: String
-        
+
         var body: some View {
             VStack {
-                if(listStyle == "List") {
-                    HStack() {
+                if listStyle == "List" {
+                    HStack {
                         Image(.Image.Logo.collection3D)
                         Text("collections".localized)
                             .font(.LL.largeTitle2)
                             .semibold()
-                        
+
                         Spacer()
                         Button {
                             barStyle.toggle()
                         } label: {
-                            Image((barStyle == .horizontal ? .Image.Logo.gridHLayout : .Image.Logo.gridHLayout))
-
+                            Image(barStyle == .horizontal ? .Image.Logo.gridHLayout : .Image.Logo.gridHLayout)
                         }
                     }
                     .foregroundColor(.LL.text)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 16)
-                }else {
-                    HStack{}
+                } else {
+                    HStack {}
                         .frame(height: 0)
                 }
             }
@@ -413,51 +391,45 @@ extension NFTTabScreen {
             .background(
                 Color.LL.Neutrals.background
             )
-            
-            
         }
-            
     }
 }
 
-//MARK: Collection Section
+// MARK: Collection Section
+
 extension NFTTabScreen {
     struct CollectionBody: View {
-        
         @Binding var barStyle: NFTTabScreen.CollectionBar.BarStyle
         @Binding var selectedIndex: Int
         @EnvironmentObject var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
-        
+
         var body: some View {
             VStack {
-                if( barStyle == .horizontal) {
+                if barStyle == .horizontal {
                     ScrollViewReader { proxy in
                         ScrollView(.horizontal,
                                    showsIndicators: false,
                                    content: {
-                            
-                            LazyHStack(alignment: .center, spacing: 12, content: {
-                                
-                                ForEach(viewModel.state.items, id: \.self) { item in
-                                    let index = viewModel.state.items.firstIndex(of: item)!
-                                    NFTCollectionCard(index: index, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
-                                        .id(index)
-                                        .onChange(of: selectedIndex) { value in
-                                            withAnimation {
-                                                proxy.scrollTo(value, anchor: .center)
-                                            }
-                                        }
-                                }
-                            })
-                            .frame(height: 56)
-                            .padding(.leading, 18)
-                            .padding(.bottom, 12)
-                            
-                        })
+                                       LazyHStack(alignment: .center, spacing: 12, content: {
+                                           ForEach(viewModel.state.items, id: \.self) { item in
+                                               let index = viewModel.state.items.firstIndex(of: item)!
+                                               NFTCollectionCard(index: index, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
+                                                   .id(index)
+                                                   .onChange(of: selectedIndex) { value in
+                                                       withAnimation {
+                                                           proxy.scrollTo(value, anchor: .center)
+                                                       }
+                                                   }
+                                           }
+                                       })
+                                       .frame(height: 56)
+                                       .padding(.leading, 18)
+                                       .padding(.bottom, 12)
+
+                                   })
                     }
-                }else {
+                } else {
                     LazyVStack(alignment: .center, spacing: 12, content: {
-                        
                         ForEach(viewModel.state.items, id: \.self) { item in
                             NFTCollectionCard(index: viewModel.state.items.firstIndex(of: item)!, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
                         }
@@ -472,11 +444,10 @@ extension NFTTabScreen {
     }
 }
 
+// MARK: Preview
 
-//MARK: Preview
 struct NFTTabScreen_Previews: PreviewProvider {
     static var previews: some View {
         NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
-            
     }
 }

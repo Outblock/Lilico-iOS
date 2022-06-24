@@ -5,21 +5,21 @@
 //  Created by Hao Fu on 30/12/21.
 //
 
+import Combine
 import Flow
 import Foundation
 import KeychainAccess
 import WalletCore
-import Combine
 
 // MARK: - Define
 
 extension WalletManager {
     static let flowPath = "m/44'/539'/0'/0/0"
     static let mnemonicStrength: Int32 = 128
-    static private let defaultBundleID = "io.outblock.lilico"
-    static private let mnemonicStoreKeyPrefix = "lilico.mnemonic"
-    static private let mnemonicPwdStoreKey = "lilico.mnemonic.password"
-    static private let walletFetchInterval: TimeInterval = 20
+    private static let defaultBundleID = "io.outblock.lilico"
+    private static let mnemonicStoreKeyPrefix = "lilico.mnemonic"
+    private static let mnemonicPwdStoreKey = "lilico.mnemonic.password"
+    private static let walletFetchInterval: TimeInterval = 20
 }
 
 class WalletManager: ObservableObject {
@@ -31,23 +31,23 @@ class WalletManager: ObservableObject {
     @Published var coinBalances: [String: Double] = [:]
 
     private var mnemonicModel: HDWallet?
-    
+
     private var mainKeychain = Keychain(service: Bundle.main.bundleIdentifier ?? defaultBundleID)
         .label("Lilico app backup")
         .synchronizable(true)
         .accessibility(.whenUnlocked)
     private let backupKeychain = Keychain(server: "https://lilico.app", protocolType: .https)
-    
+
     private var walletInfoRetryTimer: Timer?
     private var cancellableSet = Set<AnyCancellable>()
 
     init() {
         generateMnemonicPwdIfNeeded()
-        
+
         if UserManager.shared.isLoggedIn {
             restoreMnemonicForCurrentUser()
         }
-        
+
         UserManager.shared.$isLoggedIn.sink { [weak self] _ in
             DispatchQueue.main.async {
                 self?.reloadWalletInfo()
@@ -62,7 +62,7 @@ extension WalletManager {
     func getCurrentMnemoic() -> String? {
         return mnemonicModel?.mnemonic
     }
-    
+
     func getCurrentFlowAccountKey() -> Flow.AccountKey? {
         return mnemonicModel?.flowAccountKey
     }
@@ -79,14 +79,13 @@ extension WalletManager {
 // MARK: - Server Wallet
 
 extension WalletManager {
-    
     /// Request server create wallet address, DO NOT call it multiple times.
     func asyncCreateWalletAddressFromServer() {
         Task {
             let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.userAddress)
         }
     }
-    
+
     private func startWalletInfoRetryTimer() {
         debugPrint("WalletManager -> startWalletInfoRetryTimer")
         stopWalletInfoRetryTimer()
@@ -94,27 +93,27 @@ extension WalletManager {
         walletInfoRetryTimer = timer
         RunLoop.main.add(timer, forMode: .common)
     }
-    
+
     private func stopWalletInfoRetryTimer() {
         if let timer = walletInfoRetryTimer {
             timer.invalidate()
             walletInfoRetryTimer = nil
         }
     }
-    
+
     @objc private func onWalletInfoRetryTimer() {
         debugPrint("WalletManager -> onWalletInfoRetryTimer")
         reloadWalletInfo()
     }
-    
+
     func reloadWalletInfo() {
         debugPrint("WalletManager -> reloadWalletInfo")
         stopWalletInfoRetryTimer()
-        
+
         if !UserManager.shared.isLoggedIn {
             return
         }
-        
+
         Task {
             do {
                 let response: UserWalletResponse = try await Network.request(LilicoAPI.User.userWallet)
@@ -131,7 +130,7 @@ extension WalletManager {
             }
         }
     }
-    
+
     /// polling wallet info, if wallet address is not exists
     private func pollingWalletInfoIfNeeded() {
         debugPrint("WalletManager -> pollingWalletInfoIfNeeded, isMainThread: \(Thread.isMainThread)")
@@ -149,10 +148,10 @@ extension WalletManager {
         if let mnemonic = mnemonic {
             return HDWallet(mnemonic: mnemonic, passphrase: passphrase)
         }
-        
+
         return HDWallet(strength: WalletManager.mnemonicStrength, passphrase: passphrase)
     }
-    
+
     func storeAndActiveMnemonicToKeychain(_ mnemonic: String, username: String) throws {
         guard var password = getMnemoicPwd() else {
             throw LLError.emptyEncryptKey
@@ -171,13 +170,13 @@ extension WalletManager {
         defer {
             encodedData = Data()
         }
-        
+
         try set(toMainKeychain: encodedData, forKey: getMnemonicStoreKey(username: username), comment: "Lilico user: \(username)")
         if !activeMnemonic(mnemonic) {
             throw LLError.createWalletFailed
         }
     }
-    
+
     private func generateMnemonicPwdIfNeeded() {
         if getMnemoicPwd() == nil {
             try? set(toMainKeychain: UUID().uuidString, forKey: WalletManager.mnemonicPwdStoreKey)
@@ -195,30 +194,31 @@ extension WalletManager {
             }
         }
     }
-    
+
     private func restoreMnemonicFromKeychain(username: String) -> Bool {
         if var encryptedData = getEncryptedMnemonicData(username: username),
            var pwd = getMnemoicPwd(),
            var decryptedData = try? WalletManager.decryptionAES(key: pwd, data: encryptedData),
-           var mnemonic = String(data: decryptedData, encoding: .utf8) {
+           var mnemonic = String(data: decryptedData, encoding: .utf8)
+        {
             defer {
                 encryptedData = Data()
                 pwd = ""
                 decryptedData = Data()
                 mnemonic = ""
             }
-            
+
             return activeMnemonic(mnemonic)
         }
-        
+
         return false
     }
-    
+
     private func activeMnemonic(_ mnemonic: String) -> Bool {
         guard let model = createMnemonicModel(mnemonic: mnemonic) else {
             return false
         }
-        
+
         mnemonicModel = model
         return true
     }
@@ -230,11 +230,11 @@ extension WalletManager {
     private func getMnemonicStoreKey(username: String) -> String {
         return "\(WalletManager.mnemonicStoreKeyPrefix).\(username)"
     }
-    
+
     private func getEncryptedMnemonicData(username: String) -> Data? {
         return getData(fromMainKeychain: getMnemonicStoreKey(username: username))
     }
-    
+
     private func getMnemoicPwd() -> String? {
         return getString(fromMainKeychain: WalletManager.mnemonicPwdStoreKey)
     }
@@ -248,39 +248,39 @@ extension WalletManager {
         try await fetchActivatedCoins()
         try await fetchBalance()
     }
-    
+
     private func fetchSupportedCoins() async throws {
         let coins: [TokenModel] = try await FirebaseConfig.flowCoins.fetch()
         let validCoins = coins.filter { $0.getAddress()?.isEmpty == false }
         supportedCoins = validCoins
     }
-    
+
     private func fetchActivatedCoins() async throws {
         guard let supportedCoins = supportedCoins, supportedCoins.count != 0 else {
             activatedCoins.removeAll()
             return
         }
-        
+
         guard let address = walletInfo?.primaryWalletModel?.getAddress, !address.isEmpty else {
             activatedCoins.removeAll()
             return
         }
-        
+
         let enabledList = try await FlowNetwork.checkTokensEnable(address: Flow.Address(hex: address), tokens: supportedCoins)
         if enabledList.count != supportedCoins.count {
             throw WalletError.fetchFailed
         }
-        
+
         var list = [TokenModel]()
         for (index, value) in enabledList.enumerated() {
             if value == true {
                 list.append(supportedCoins[index])
             }
         }
-        
+
         activatedCoins = list
     }
-    
+
     private func fetchBalance() async throws {
         guard activatedCoins.count > 0 else {
             return
@@ -296,17 +296,17 @@ extension WalletManager {
         }
 
         var newBalanceMap: [String: Double] = [:]
-        
+
         for (index, value) in activatedCoins.enumerated() {
             let balance = balanceList[index]
-            
+
             guard let symbol = value.symbol else {
                 continue
             }
-            
+
             newBalanceMap[symbol] = balance
         }
-        
+
         coinBalances = newBalanceMap
     }
 }
@@ -317,17 +317,17 @@ extension WalletManager {
     private func set(toBackupKeychain value: String, forKey key: String) throws {
         try backupKeychain.set(value, key: key)
     }
-    
+
     private func getString(fromBackupKeychain key: String) -> String? {
         return try? backupKeychain.get(key)
     }
-    
+
     // MARK: -
-    
+
     private func set(toMainKeychain value: String, forKey key: String) throws {
         try mainKeychain.set(value, key: key)
     }
-    
+
     private func set(toMainKeychain value: Data, forKey key: String, comment: String? = nil) throws {
         if let comment = comment {
             try mainKeychain.comment(comment).set(value, key: key)
@@ -335,15 +335,15 @@ extension WalletManager {
             try mainKeychain.set(value, key: key)
         }
     }
-    
+
     private func getString(fromMainKeychain key: String) -> String? {
         return try? mainKeychain.getString(key)
     }
-    
+
     private func getData(fromMainKeychain key: String) -> Data? {
         return try? mainKeychain.getData(key)
     }
-    
+
     static func encryptionAES(key: String, iv: String = "0102030405060708", data: Data) throws -> Data {
         guard var keyData = key.data(using: .utf8), let ivData = iv.data(using: .utf8) else {
             throw LLError.aesKeyEncryptionFailed
@@ -388,27 +388,27 @@ extension HDWallet {
             .dropPrefix("04")
         return p256PublicKey
     }
-    
+
     func sign(_ text: String) -> String? {
         guard let textData = text.data(using: .utf8) else {
             return nil
         }
-        
+
         let data = Flow.DomainTag.user.normalize + textData
         return sign(data)
     }
-    
+
     func sign(_ data: Data) -> String? {
         let privateKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
         let hashedData = Hash.sha256(data: data)
         guard var signature = privateKey.sign(digest: hashedData, curve: .secp256k1) else {
             return nil
         }
-        
+
         signature.removeLast()
         return signature.hexValue
     }
-    
+
     var flowAccountKey: Flow.AccountKey {
         let p256PublicKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
             .getPublicKeySecp256k1(compressed: false)
@@ -422,7 +422,7 @@ extension HDWallet {
                                hashAlgo: .SHA2_256,
                                weight: 1000)
     }
-    
+
     var flowAccountP256Key: Flow.AccountKey {
         let p256PublicKey = getCurveKey(curve: .nist256p1, derivationPath: WalletManager.flowPath)
             .getPublicKeyNist256p1()

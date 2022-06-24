@@ -6,8 +6,8 @@
 //
 
 import Resolver
-import SwiftUI
 import Stinsen
+import SwiftUI
 
 @main
 struct Lilico_App: App {
@@ -18,7 +18,7 @@ struct Lilico_App: App {
             MainCoordinator().view()
         }
     }
-    
+
     init() {
         setupNavigationBar()
     }

@@ -9,9 +9,9 @@ import SwiftUI
 
 struct TabBarItemView<T: Hashable>: View {
     var pageModel: TabBarPageModel<T>
-    @Binding var selected : T
+    @Binding var selected: T
     var action: () -> Void
-    
+
     var body: some View {
         Button(action: {
             withAnimation(.spring()) { selected = pageModel.tag }

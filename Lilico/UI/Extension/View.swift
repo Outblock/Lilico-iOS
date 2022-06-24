@@ -138,51 +138,49 @@ extension View {
             }
         }
     }
-    
+
     @ViewBuilder func roundedBg(cornerRadius: CGFloat = 16, fillColor: Color = .LL.deepBg, strokeColor: Color? = nil, strokeLineWidth: CGFloat? = nil) -> some View {
         let fillBg = RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).fill(fillColor)
-        
+
         if let strokeColor = strokeColor, let lineWidth = strokeLineWidth {
             let strokeAndFillBg = RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                 .strokeBorder(strokeColor, lineWidth: lineWidth)
                 .background(fillBg)
-            
-            self.background(strokeAndFillBg)
+
+            background(strokeAndFillBg)
         } else {
-            self.background(fillBg)
+            background(fillBg)
         }
     }
-    
+
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
     }
-    
+
     func roundedButtonStyle(bgColor: Color = .LL.Secondary.violet5) -> some View {
-        self.background(bgColor).clipShape(Circle())
+        background(bgColor).clipShape(Circle())
     }
 }
 
 struct CornerRadiusStyle: ViewModifier {
     var radius: CGFloat
     var corners: UIRectCorner
-    
+
     struct CornerRadiusShape: Shape {
-        
         var radius = CGFloat.infinity
         var corners = UIRectCorner.allCorners
-        
+
         func path(in rect: CGRect) -> Path {
             let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
             return Path(path.cgPath)
         }
     }
-    
+
     func body(content: Content) -> some View {
         content
             .clipShape(CornerRadiusShape(radius: radius, corners: corners))
     }
 }
-
 
 // MARK: - NavigationBar back button
 
@@ -196,9 +194,9 @@ extension View {
             }
         }
     }
-    
+
     @ViewBuilder func addBackBtn(action: @escaping () -> Void) -> some View {
-        self.navigationBarBackButtonHidden(true)
+        navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backBtn(action: action))
     }
 }

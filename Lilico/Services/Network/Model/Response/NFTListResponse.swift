@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 //// MARK: - NFTListResponse
 struct NFTListResponse: Codable {
     let ownerAddress: String
@@ -18,6 +16,7 @@ struct NFTListResponse: Codable {
 }
 
 // MARK: - Nft
+
 struct NFTResponse: Codable, Hashable {
     let contract: NFTContract
     let id: NFTID
@@ -26,29 +25,30 @@ struct NFTResponse: Codable, Hashable {
     let media: [NFTMedia]?
     let metadata: NFTMetadata
     let postMedia: NFTPostMedia
-    
+
     func cover() -> String? {
         return postMedia.image ?? postMedia.video
     }
-    
+
     func video() -> String? {
         return postMedia.video
     }
-    
+
     func name() -> String? {
         if let title = title, !title.isEmpty {
             return title
         }
-        
+
         guard let name = contract.name else {
             return nil
         }
-        
+
         return "\(name) #\(id.tokenID)"
     }
 }
 
 // MARK: - Contract
+
 struct NFTContract: Codable, Hashable {
     let name: String?
     let address, externalDomain: String
@@ -56,6 +56,7 @@ struct NFTContract: Codable, Hashable {
 }
 
 // MARK: - ContractMetadata
+
 struct NFTContractMetadata: Codable, Hashable {
     let storagePath, publicPath, publicCollectionName: String
 }
@@ -65,11 +66,10 @@ struct NFTPostMedia: Codable, Hashable {
     let image: String?
     let description: String?
     let video: String?
-    
-    
 }
 
 // MARK: - ID
+
 struct NFTID: Codable, Hashable {
     let tokenID: String
     let tokenMetadata: NFTTokenMetadata?
@@ -81,21 +81,25 @@ struct NFTID: Codable, Hashable {
 }
 
 // MARK: - TokenMetadata
+
 struct NFTTokenMetadata: Codable, Hashable {
     let uuid: String
 }
 
 // MARK: - Media
+
 struct NFTMedia: Codable, Hashable {
     let uri, mimeType: String
 }
 
 // MARK: - Metadata
-struct NFTMetadata: Codable , Hashable{
+
+struct NFTMetadata: Codable, Hashable {
     let metadata: [NFTMetadatum]
 }
 
 // MARK: - Metadatum
+
 struct NFTMetadatum: Codable, Hashable {
     let name: String
     let value: String

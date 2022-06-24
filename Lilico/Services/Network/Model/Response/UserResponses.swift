@@ -34,7 +34,7 @@ struct UserWalletResponse: Codable {
     let primaryWallet: Int
     let username: String?
     let wallets: [WalletResponse]?
-    
+
     var primaryWalletModel: WalletResponse? {
         if let wallets = wallets {
             for wallet in wallets {
@@ -43,7 +43,7 @@ struct UserWalletResponse: Codable {
                 }
             }
         }
-        
+
         return nil
     }
 }
@@ -54,7 +54,7 @@ struct WalletResponse: Codable {
     let name: String?
     let id: Int
     let blockchain: [BlockChainResponse]?
-    
+
     var isEmptyBlockChain: Bool {
         if let blockchain = blockchain, !blockchain.isEmpty {
             return false
@@ -62,11 +62,11 @@ struct WalletResponse: Codable {
             return true
         }
     }
-    
+
     var getAddress: String? {
         return blockchain?.first?.address
     }
-    
+
     var getName: String? {
         return blockchain?.first?.name
     }
@@ -80,9 +80,9 @@ struct BlockChainResponse: Codable {
     let coins: [String]?
 }
 
-//struct CoinsResponse: Codable {
+// struct CoinsResponse: Codable {
 //    let decimal: Int
 //    let isToken: Bool
 //    let name: String
 //    let symbol: String
-//}
+// }

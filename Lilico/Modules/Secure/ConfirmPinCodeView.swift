@@ -112,4 +112,3 @@ struct ConfirmPinCodeView_Previews: PreviewProvider {
 //            .colorScheme(.dark)
     }
 }
-

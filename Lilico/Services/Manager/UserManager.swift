@@ -18,19 +18,20 @@ class UserManager: ObservableObject {
             uploadUserNameIfNeeded()
         }
     }
-    
+
     @Published var isLoggedIn: Bool = false {
         didSet {
             debugPrint("UserManager -> isLoggedIn: \(isLoggedIn)")
         }
     }
+
     @Published var isAnonymous: Bool = true
 
     init() {
         refreshFlags()
         uploadUserNameIfNeeded()
         loginAnonymousIfNeeded()
-        
+
         if isLoggedIn {
             Task {
                 try? await fetchUserInfo()
@@ -47,11 +48,11 @@ extension UserManager {
             HUD.error(title: "empty_wallet_key".localized)
             throw LLError.emptyWallet
         }
-        
+
         let key = mnemonicModel.flowAccountKey
         let request = RegisterRequest(username: username, accountKey: key.toCodableModel())
         let model: RegisterResponse = try await Network.request(LilicoAPI.User.register(request))
-        
+
         try await finishLogin(mnemonic: mnemonicModel.mnemonic, customToken: model.customToken)
         WalletManager.shared.asyncCreateWalletAddressFromServer()
     }
@@ -64,27 +65,27 @@ extension UserManager {
         guard let mnemonicModel = WalletManager.shared.createMnemonicModel(mnemonic: mnemonic) else {
             throw LLError.incorrectPhrase
         }
-        
+
         guard let token = try? await getIDToken(), !token.isEmpty else {
             loginAnonymousIfNeeded()
             throw LLError.restoreLoginFailed
         }
-        
+
         let publicKey = mnemonicModel.getPublicKey()
         guard let signature = mnemonicModel.sign(token) else {
             throw LLError.restoreLoginFailed
         }
-        
+
         let request = LoginRequest(publicKey: publicKey, signature: signature)
         let response: Network.Response<LoginResponse> = try await Network.requestWithRawModel(LilicoAPI.User.login(request))
         if response.httpCode == 404 {
             throw LLError.accountNotFound
         }
-        
+
         guard let customToken = response.data?.customToken, !customToken.isEmpty else {
             throw LLError.restoreLoginFailed
         }
-        
+
         try await finishLogin(mnemonic: mnemonicModel.mnemonic, customToken: customToken)
     }
 }
@@ -96,29 +97,29 @@ extension UserManager {
         try await firebaseLogin(customToken: customToken)
         try await fetchUserInfo()
         uploadUserNameIfNeeded()
-        
+
         guard let username = userInfo?.username else {
             throw LLError.fetchUserInfoFailed
         }
-        
+
         try WalletManager.shared.storeAndActiveMnemonicToKeychain(mnemonic, username: username)
     }
-    
+
     private func firebaseLogin(customToken: String) async throws {
         let result = try await Auth.auth().signIn(withCustomToken: customToken)
         debugPrint("Logged in -> \(result.user.uid)")
     }
-    
+
     private func fetchUserInfo() async throws {
         let response: UserInfoResponse = try await Network.request(LilicoAPI.User.userInfo)
         let info = UserInfo(avatar: response.avatar, nickname: response.nickname, username: response.username, private: response.private)
-        
+
         if info.username.isEmpty {
             throw LLError.fetchUserInfoFailed
         }
-        
+
         LocalUserDefaults.shared.userInfo = info
-        self.userInfo = info
+        userInfo = info
     }
 }
 
@@ -129,12 +130,12 @@ extension UserManager {
         isLoggedIn = userInfo != nil
         isAnonymous = Auth.auth().currentUser?.isAnonymous ?? true
     }
-    
+
     private func loginAnonymousIfNeeded() {
         if isLoggedIn {
             return
         }
-        
+
         if Auth.auth().currentUser == nil {
             Task {
                 do {
@@ -148,11 +149,11 @@ extension UserManager {
             }
         }
     }
-    
+
     func getUid() -> String? {
         return Auth.auth().currentUser?.uid
     }
-    
+
     func getIDToken() async throws -> String? {
         return try await Auth.auth().currentUser?.getIDToken()
     }
@@ -165,22 +166,22 @@ extension UserManager {
         if isAnonymous || !isLoggedIn {
             return
         }
-        
+
         let username = userInfo?.username ?? ""
         let displayName = Auth.auth().currentUser?.displayName ?? ""
-        
+
         if !username.isEmpty, username != displayName {
             Task {
                 await uploadUserName(username: username)
             }
         }
     }
-    
+
     private func uploadUserName(username: String) async {
         guard let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() else {
             return
         }
-        
+
         changeRequest.displayName = username
         do {
             try await changeRequest.commitChanges()
@@ -188,32 +189,32 @@ extension UserManager {
             debugPrint("update displayName failed")
         }
     }
-    
+
     func updateNickname(_ name: String) {
         guard let current = userInfo else {
             return
         }
-        
+
         let newUserInfo = UserInfo(avatar: current.avatar, nickname: name, username: current.username, private: current.private)
         LocalUserDefaults.shared.userInfo = newUserInfo
         userInfo = newUserInfo
     }
-    
+
     func updatePrivate(_ isPrivate: Bool) {
         guard let current = userInfo else {
             return
         }
-        
+
         let newUserInfo = UserInfo(avatar: current.avatar, nickname: current.nickname, username: current.username, private: isPrivate ? 2 : 1)
         LocalUserDefaults.shared.userInfo = newUserInfo
         userInfo = newUserInfo
     }
-    
+
     func updateAvatar(_ avatar: String) {
         guard let current = userInfo else {
             return
         }
-        
+
         let newUserInfo = UserInfo(avatar: avatar, nickname: current.nickname, username: current.username, private: current.private)
         LocalUserDefaults.shared.userInfo = newUserInfo
         userInfo = newUserInfo

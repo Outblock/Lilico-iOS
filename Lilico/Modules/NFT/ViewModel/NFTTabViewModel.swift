@@ -6,16 +6,14 @@
 //
 
 import Foundation
-import SwiftUIX
 import Haneke
 import Kingfisher
 import Stinsen
+import SwiftUIX
 
 class NFTTabViewModel: ViewModel {
-    
     @Published
     private(set) var state: NFTTabScreen.ViewState = .init()
-    
 
     /*
      0x2b06c41f44a05656
@@ -26,54 +24,53 @@ class NFTTabViewModel: ViewModel {
      0xadca05d078ebf98a
      */
     private var owner: String = "0x01d63aa89238a559"
-    
+
     @RouterObject
     var router: NFTCoordinator.Router?
-    
+
     init() {
         Task {
             await refresh()
         }
     }
-    
+
     /*
      1. fetch all nft,
      2. fetch collection
      3. group
      */
-    func refresh() async{
+    func refresh() async {
         Task {
             print("============== refresh NFT")
             do {
                 await NFTFavoriteStore.shared.loadFavorite()
                 let crudeNFTList = try await handleNFTList()
                 let collectionList: [NFTCollection] = try await FirebaseConfig.nftCollections.fetch()
-                let nftGroup = Dictionary(grouping: crudeNFTList){ $0.contract.address }
+                let nftGroup = Dictionary(grouping: crudeNFTList) { $0.contract.address }
                 let allCollectionKeys = collectionList.map { $0.address.mainnet }
-                let result = nftGroup.filter{ nft in
+                let result = nftGroup.filter { nft in
                     allCollectionKeys.contains(nft.key)
                 }
                 .map { group -> CollectionItem in
-                        let nft = group.value.first
-                        let col = collectionList.first{ col in col.address.mainnet == group.key }
+                    let nft = group.value.first
+                    let col = collectionList.first { col in col.address.mainnet == group.key }
                     let nfts = group.value.map { NFTModel($0, in: col) }
-                        return CollectionItem(name: nft!.contract.name ?? "", count: group.value.count, collection: col, nfts: nfts)
+                    return CollectionItem(name: nft!.contract.name ?? "", count: group.value.count, collection: col, nfts: nfts)
                 }
-                .sorted{ $0.count > $1.count }
+                .sorted { $0.count > $1.count }
                 // if the favorite NFT is not in the NFT list,remove it.
                 let favoriteList = NFTFavoriteStore.shared.favorites.filter { model in
                     crudeNFTList.first { res in
                         res.id.tokenID == model.response.id.tokenID
                     } != nil
                 }
-                
-                
+
                 await MainActor.run {
-                    NFTFavoriteStore.shared.favorites = favoriteList;
+                    NFTFavoriteStore.shared.favorites = favoriteList
                     state.items = result
                     state.loading = false
                 }
-            }catch {
+            } catch {
                 print(error)
                 await MainActor.run {
                     state.loading = false
@@ -81,11 +78,10 @@ class NFTTabViewModel: ViewModel {
                 HUD.debugError(title: "fetch_nft_error".localized)
             }
         }
-        
     }
-    
+
     /// fetch all nft first.
-    private func handleNFTList() async throws -> [NFTResponse]{
+    private func handleNFTList() async throws -> [NFTResponse] {
         var totalCount = 0
         var currentCount = 0
         var offset = 0
@@ -98,39 +94,35 @@ class NFTTabViewModel: ViewModel {
                 totalCount = result.0
                 currentCount = allCrudeNFTs.count
                 offset = currentCount
-            }catch {
+            } catch {
                 print(error)
                 HUD.debugError(title: "fetch_nft_error".localized)
-                break;
+                break
             }
             print("获取的NFT数量：\(totalCount) | \(currentCount)")
-        }
-        while(false)
+        } while false
 //        while ( totalCount > currentCount)
         return allCrudeNFTs
     }
-    
-    private func fetchNFTList(from offset: Int = 0, limit: Int = 25 ) async throws -> (Int, [NFTResponse]) {
+
+    private func fetchNFTList(from offset: Int = 0, limit: Int = 25) async throws -> (Int, [NFTResponse]) {
         do {
             let request = NFTRequest(address: owner, offset: offset, limit: limit)
             let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.list(request))
             guard let count = response.data?.nftCount, let nfts = response.data?.nfts else {
                 return (0, [])
             }
-            
+
             return (count, nfts)
-        }
-        catch {
+        } catch {
             throw error
         }
     }
-    
-    
+
     func trigger(_ input: NFTTabScreen.Action) {
         switch input {
         case let .info(model):
             router?.route(to: \.detail, model)
-            break
         case .search:
             break
         case .add:
@@ -147,7 +139,6 @@ class NFTTabViewModel: ViewModel {
     }
 }
 
-
 extension NFTTabViewModel {
     func fetchColors(from url: String) {
         if state.colorsMap[url] != nil {
@@ -157,33 +148,28 @@ extension NFTTabViewModel {
             await colors(from: url)
         }
     }
-    
-    private func colors(from url: String) async -> Void{
-       return await withCheckedContinuation { continuation in
+
+    private func colors(from url: String) async {
+        return await withCheckedContinuation { continuation in
             ImageCache.default.retrieveImage(forKey: url) { [self] result in
                 switch result {
-                case .success( let value ):
-                        Task {
-                            let colors = await value.image!.colors()
-                            
-                            DispatchQueue.main.async {
-                                self.state.colorsMap[url] = colors
-                                continuation.resume()
-                            }
+                case let .success(value):
+                    Task {
+                        let colors = await value.image!.colors()
+
+                        DispatchQueue.main.async {
+                            self.state.colorsMap[url] = colors
+                            continuation.resume()
                         }
-                    
-                case .failure(_):
+                    }
+
+                case .failure:
                     continuation.resume()
                 }
             }
         }
-        
     }
-    
 }
-
-
-
 
 @propertyWrapper
 struct NullEncodable<T>: Encodable where T: Encodable {
@@ -202,17 +188,13 @@ struct NullEncodable<T>: Encodable where T: Encodable {
     }
 }
 
-
 extension NFTTabViewModel {
-    static func testCollection() -> CollectionItem{
-        
-        let nftModel = testNFT();
+    static func testCollection() -> CollectionItem {
+        let nftModel = testNFT()
         let model = CollectionItem(name: "测试", count: 10, collection: nftModel.collection, nfts: [nftModel])
         return model
     }
-    
 
-    
     static func testNFT() -> NFTModel {
         let nftJsonData = """
         {
@@ -260,7 +242,7 @@ extension NFTTabViewModel {
                         "title": "Patrol Code Block"
                     }
         """.data(using: .utf8)!
-        
+
         let collJsonData = """
         {
         "name": "OVO",
@@ -281,14 +263,11 @@ extension NFTTabViewModel {
         "description": "ovo (ovo space) is the industry's frst platform to issue holographic AR-NFT assets and is currently deployed on the BSC and FLOW. The NFT issued by ovo will be delivered as Super Avatars to various Metaverses and GameFi platforms."
         }
         """.data(using: .utf8)!
-        
+
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         let response = try! jsonDecoder.decode(NFTResponse.self, from: nftJsonData)
         let collModel = try! jsonDecoder.decode(NFTCollection.self, from: collJsonData)
         return NFTModel(response, in: collModel)
-        
     }
-    
-    
 }

@@ -13,44 +13,42 @@ struct SecureView: View {
     var emptyColor: Color = .LL.Neutrals.outline
     var highlightColor: Color = .LL.Primary.salmonPrimary
     var handler: (String, Bool) -> Void
-    
+
     private let spacing = 24.0
     private let itemSize = 20.0
     private var maxWidth: Double {
         (spacing + itemSize) * Double(maxCount) - spacing
     }
-    
+
     var body: some View {
-        
         HStack {
             Spacer()
             ZStack(alignment: .leading) {
-                HStack(spacing: spacing){
-                    ForEach(0..<maxCount,id: \.self) { index in
+                HStack(spacing: spacing) {
+                    ForEach(0 ..< maxCount, id: \.self) { _ in
                         DotView(color: emptyColor, size: itemSize)
                     }
                 }
-                
+
                 HStack(spacing: spacing) {
-                    ForEach(0..<min(maxCount, text.count),id: \.self) { index in
+                    ForEach(0 ..< min(maxCount, text.count), id: \.self) { _ in
                         DotView(color: highlightColor, size: itemSize)
                     }
                 }
-                
+
                 TextField("", text: $text)
                     .foregroundColor(Color.clear)
                     .accentColor(Color.clear)
-                    .onChange(of: text) { newValue in
-                        if(text.count > maxCount) {
-                            text = String(text[text.startIndex...text.index(text.startIndex, offsetBy: maxCount-1)])
+                    .onChange(of: text) { _ in
+                        if text.count > maxCount {
+                            text = String(text[text.startIndex ... text.index(text.startIndex, offsetBy: maxCount - 1)])
                         }
-                        handler(text, text.count ==  maxCount)
+                        handler(text, text.count == maxCount)
                     }
                     .frame(width: maxWidth)
             }
             Spacer()
         }
-        
     }
 }
 
@@ -68,15 +66,11 @@ struct SecureView_Previews: PreviewProvider {
     @State static var content: String = ""
     static var previews: some View {
         Group {
-            SecureView(text: $content) { content, res in
-                
+            SecureView(text: $content) { _, _ in
             }
-            SecureView(text: $content) { content, res in
-                
+            SecureView(text: $content) { _, _ in
             }
             .preferredColorScheme(.dark)
         }
     }
 }
-
-

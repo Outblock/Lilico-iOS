@@ -34,6 +34,6 @@ func overrideNavigationAppearance() {
 extension UICollectionReusableView {
     override open var backgroundColor: UIColor? {
         get { .clear }
-        set { }
+        set {}
     }
 }

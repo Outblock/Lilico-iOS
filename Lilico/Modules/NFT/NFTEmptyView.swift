@@ -13,9 +13,8 @@ struct NFTEmptyView: View {
             Image("nft_empty_bg")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                
-            VStack {
 
+            VStack {
                 Text("nft_empty".localized)
                     .font(.LL.mindTitle)
                     .foregroundColor(.LL.Neutrals.neutrals3)
@@ -25,9 +24,7 @@ struct NFTEmptyView: View {
                     .foregroundColor(.LL.Neutrals.neutrals8)
                 Spacer()
                     .frame(height: 18)
-                Button {
-
-                } label: {
+                Button {} label: {
                     Text("get_new_nft".localized)
                         .foregroundColor(.LL.Primary.salmonPrimary)
                 }

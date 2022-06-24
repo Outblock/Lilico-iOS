@@ -8,31 +8,28 @@
 import SwiftUI
 
 struct OffsetScrollViewWithAppBar<Content: View, Nav: View>: View {
-    
     var title: String
-    
+
     let content: Content
     let navBar: Nav
-    
+
     @State private var offset: CGFloat = 0
-    @State private var opacity: CGFloat = 0;
-    
-    init(title: String = "", @ViewBuilder content: @escaping () -> Content, @ViewBuilder appBar: @escaping () -> Nav ) {
+    @State private var opacity: CGFloat = 0
+
+    init(title: String = "", @ViewBuilder content: @escaping () -> Content, @ViewBuilder appBar: @escaping () -> Nav) {
         self.content = content()
-        self.navBar = appBar()
+        navBar = appBar()
         self.title = title
-        
     }
-    
-    
+
     var body: some View {
         OffsetScrollView(offset: $offset) {
             content
         }
         .onChange(of: offset, perform: { value in
-            if(value < 0) {
-                opacity = min(1, abs(value/44.0))
-            }else {
+            if value < 0 {
+                opacity = min(1, abs(value / 44.0))
+            } else {
                 opacity = 0
             }
         })
@@ -43,29 +40,22 @@ struct OffsetScrollViewWithAppBar<Content: View, Nav: View>: View {
                     .opacity(opacity)
                 navBar
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                if(title.count > 0) {
+                if title.count > 0 {
                     Text(title)
                         .font(.title2)
                         .foregroundColor(.LL.Neutrals.text)
                         .opacity(opacity)
-                        .frame(maxWidth: screenWidth-120)
+                        .frame(maxWidth: screenWidth - 120)
                 }
             }
-                .frame(height: 44)
-                .frame(maxHeight: .infinity, alignment: .top)
-            
-            
+            .frame(height: 44)
+            .frame(maxHeight: .infinity, alignment: .top)
         )
     }
 }
 
 struct OffsetScrollWithAppBar_Previews: PreviewProvider {
     static var previews: some View {
-        OffsetScrollViewWithAppBar {
-            
-        } appBar: {
-            
-        }
-        
+        OffsetScrollViewWithAppBar {} appBar: {}
     }
 }

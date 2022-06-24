@@ -1,14 +1,14 @@
 /**
-*  SwiftUIIndexedList
-*  Copyright (c) Ciaran O'Brien 2022
-*  MIT license, see LICENSE file for details
-*/
+ *  SwiftUIIndexedList
+ *  Copyright (c) Ciaran O'Brien 2022
+ *  MIT license, see LICENSE file for details
+ */
 
 import Foundation
 
 internal extension ScrollAccessory {
     func showsIndexBar<Indices>(indices: Indices) -> Bool
-    where Indices : RandomAccessCollection
+        where Indices: RandomAccessCollection
     {
         switch self {
         case .automatic: return !indices.isEmpty
@@ -17,9 +17,9 @@ internal extension ScrollAccessory {
         case .none: return false
         }
     }
-    
+
     func showsScrollIndicator<Indices>(indices: Indices) -> Bool
-    where Indices : RandomAccessCollection
+        where Indices: RandomAccessCollection
     {
         switch self {
         case .automatic: return indices.isEmpty

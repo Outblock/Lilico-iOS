@@ -13,4 +13,3 @@ extension String {
     static let sun = "sun.max.fill"
     static let error = "xmark.octagon.fill"
 }
-

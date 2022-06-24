@@ -6,8 +6,8 @@
 //
 
 import Combine
-import SwiftUI
 import Stinsen
+import SwiftUI
 
 final class WalletCoordinator: NavigationCoordinatable {
     let stack = NavigationStack(initial: UserManager.shared.isLoggedIn ? \WalletCoordinator.start : \WalletCoordinator.empty)
@@ -24,11 +24,10 @@ final class WalletCoordinator: NavigationCoordinatable {
     @Route(.push) var createSecure = makeCreateSecure
 
     var isFristTime: Bool = true
-    
+
     private var cancelSets = Set<AnyCancellable>()
 
     init() {
-        
         UserManager.shared.$isLoggedIn.sink { [weak self] isLoggedIn in
             DispatchQueue.main.async {
                 self?.root(isLoggedIn ? \.start : \.empty)
@@ -73,11 +72,11 @@ extension WalletCoordinator: AppTabBarPageProtocol {
     static func tabTag() -> AppTabType {
         return .wallet
     }
-    
+
     static func iconName() -> String {
         return "house.fill"
     }
-    
+
     static func color() -> Color {
         return .LL.orange
     }

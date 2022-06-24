@@ -29,7 +29,7 @@ struct EnumeratedForEach<ItemType, ContentView: View>: View {
 struct EmptyWalletView: View {
     @StateObject
     var viewModel: AnyViewModel<EmptyWalletState, EmptyWalletAction>
-    
+
     @StateObject var themeManager = ThemeManager.shared
 
     @State

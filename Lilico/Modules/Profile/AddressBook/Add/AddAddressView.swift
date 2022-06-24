@@ -10,15 +10,15 @@ import SwiftUI
 struct AddAddressView: View {
     @EnvironmentObject private var router: AddressBookCoordinator.Router
     @StateObject var vm: AddAddressViewModel
-    
+
     init() {
         _vm = StateObject(wrappedValue: AddAddressViewModel())
     }
-    
+
     init(editingContact: Contact) {
         _vm = StateObject(wrappedValue: AddAddressViewModel(contact: editingContact))
     }
-    
+
     var body: some View {
         BaseView {
             VStack(spacing: 30) {
@@ -48,7 +48,7 @@ struct AddAddressView: View {
             ToastView("saving".localized).toastViewStyle(.indeterminate)
         }
     }
-    
+
     var nameField: some View {
         VStack(alignment: .leading) {
             ZStack {
@@ -56,11 +56,11 @@ struct AddAddressView: View {
             }
             .padding(.horizontal, 10)
             .border(Color.LL.Neutrals.text, cornerRadius: 6)
-            
+
             Text("enter_a_name".localized).foregroundColor(.LL.Neutrals.text).font(.inter(size: 14, weight: .regular))
         }
     }
-    
+
     var addressField: some View {
         VStack(alignment: .leading) {
             ZStack {
@@ -71,24 +71,24 @@ struct AddAddressView: View {
             }
             .padding(.horizontal, 10)
             .border(Color.LL.Neutrals.text, cornerRadius: 6)
-            
+
             let addressNormalView = Text("enter_address".localized)
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 14, weight: .regular))
-            
+
             switch vm.state.addressStateType {
             case .idle, .checking, .passed:
                 addressNormalView.visibility(.visible)
             default:
                 addressNormalView.visibility(.gone)
             }
-            
+
             let addressErrorView =
-            HStack(spacing: 5) {
-                Image(systemName: .error).foregroundColor(.red)
-                Text(vm.state.addressStateType.desc).foregroundColor(.LL.Neutrals.text).font(.inter(size: 14, weight: .regular))
-            }
-            
+                HStack(spacing: 5) {
+                    Image(systemName: .error).foregroundColor(.red)
+                    Text(vm.state.addressStateType.desc).foregroundColor(.LL.Neutrals.text).font(.inter(size: 14, weight: .regular))
+                }
+
             switch vm.state.addressStateType {
             case .idle, .checking, .passed:
                 addressErrorView.visibility(.gone)

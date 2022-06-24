@@ -11,13 +11,13 @@ extension Contact {
         case user = 1
         case domain = 2
     }
-    
+
     enum DomainType: Int, Codable {
         case unknown = 0
         case find = 1
         case flowns = 2
     }
-    
+
     struct Domain: Codable {
         let domainType: DomainType?
         let value: String?
@@ -25,6 +25,7 @@ extension Contact {
 }
 
 // MARK: - AddressBook
+
 struct Contact: Codable, Identifiable {
     let address, avatar, contactName: String?
     let contactType: ContactType?

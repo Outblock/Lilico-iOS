@@ -8,26 +8,25 @@
 import SwiftUI
 
 struct NFTListView: View {
-    
     var list: [NFTModel]
     var imageEffect: Namespace.ID
-    
+
     @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
 
     private let nftLayout: [GridItem] = [
         GridItem(.adaptive(minimum: 130), spacing: 18),
-        GridItem(.adaptive(minimum: 130), spacing: 18)
+        GridItem(.adaptive(minimum: 130), spacing: 18),
     ]
-    
+
     var body: some View {
         VStack {
             LazyVGrid(columns: nftLayout, alignment: .center) {
                 ForEach(list, id: \.self) { nft in
-                    
+
                     NFTSquareCard(nft: nft, imageEffect: imageEffect) { model in
                         viewModel.trigger(.info(model))
                     }
-                    .frame(height: ceil((screenWidth-18*3)/2+50))
+                    .frame(height: ceil((screenWidth - 18 * 3) / 2 + 50))
                 }
             }
             .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
@@ -36,11 +35,10 @@ struct NFTListView: View {
             Color.LL.Shades.front
         )
         .cornerRadius(16)
-        
     }
-    
+
     func repairHeight() -> CGFloat {
-        if(list.count < 4) {
+        if list.count < 4 {
             return 200.0
         }
         return 0.0

@@ -13,13 +13,13 @@ enum LilicoAPI {
         coder.keyEncodingStrategy = .convertToSnakeCase
         return coder
     }
-    
+
     static var jsonDecoder: JSONDecoder {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }
-    
+
     static var commonHeaders: [String: String] {
         let network = LocalUserDefaults.shared.flowNetwork.rawValue
         return ["Network": network]

@@ -5,8 +5,8 @@
 //  Created by Selina on 15/6/2022.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct EditAvatarView_Previews: PreviewProvider {
     static var previews: some View {
@@ -20,20 +20,20 @@ private let PreviewImageSize: CGFloat = 40
 struct EditAvatarView: View {
     @StateObject private var vm: EditAvatarViewModel
     @EnvironmentObject private var router: ProfileEditCoordinator.Router
-    
+
     init(items: [AvatarItemModel]) {
         _vm = StateObject(wrappedValue: EditAvatarViewModel(items: items))
     }
-    
+
     var body: some View {
-        ZStack() {
+        ZStack {
             VStack(spacing: 16) {
                 previewContainer
                 scrollView
                 titleView
             }
-            
-            ZStack() {
+
+            ZStack {
                 Button {
                     vm.save()
                 } label: {
@@ -88,7 +88,7 @@ extension EditAvatarView {
                     .frame(width: geometry.size.width, height: geometry.size.width)
                     .background(.black)
                     .clipped()
-                
+
                 Color.black.opacity(0.5).reverseMask {
                     Circle().padding(18)
                 }
@@ -99,7 +99,7 @@ extension EditAvatarView {
         }
         .aspectRatio(1, contentMode: .fit)
     }
-    
+
     var scrollView: some View {
         GeometryReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
@@ -112,7 +112,7 @@ extension EditAvatarView {
                                         withAnimation {
                                             reader.scrollTo(item.id, anchor: .center)
                                         }
-                                        
+
                                         if vm.selectedItemId != item.id {
                                             vm.selectedItemId = item.id
                                         }
@@ -132,7 +132,7 @@ extension EditAvatarView {
         }
         .frame(height: PreviewContainerSize)
     }
-    
+
     var titleView: some View {
         Text(vm.currentSelectModel()?.getName() ?? " ")
             .lineLimit(1)
@@ -148,15 +148,15 @@ extension EditAvatarView {
     struct AvatarCell: View {
         let isSelected: Bool
         let model: AvatarItemModel
-        
+
         var body: some View {
             ZStack {
                 LinearGradient(colors: [Color(hex: "#000000", alpha: 0), Color(hex: "#777777", alpha: 1)],
                                startPoint: .top,
                                endPoint: .bottom)
-                .cornerRadius(4)
-                .visibility(isSelected ? .visible : .invisible)
-                
+                    .cornerRadius(4)
+                    .visibility(isSelected ? .visible : .invisible)
+
                 KFImage.url(URL(string: model.getCover()))
                     .resizable()
                     .aspectRatio(contentMode: .fill)

@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import WalletCore
 import Stinsen
+import WalletCore
 
 class ManualBackupViewModel: ViewModel {
     @Published
@@ -25,7 +25,7 @@ class ManualBackupViewModel: ViewModel {
 //                .init(position: 10, correct: 0, list: ["Zip", "Zion", "Zoo"])
 //            ]
 //        )
-        
+
         guard let mnemonic = WalletManager.shared.getCurrentMnemoic(), !mnemonic.isEmpty else {
             HUD.error(title: "load_wallet_error".localized)
             return

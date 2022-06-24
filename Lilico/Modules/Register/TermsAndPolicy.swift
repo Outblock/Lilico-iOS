@@ -81,8 +81,8 @@ struct TermsAndPolicy: View {
 
                 VPrimaryButton(model: ButtonStyle.primary,
                                action: {
-                    router.route(to: \.username)
-                }, title: "i_accept".localized)
+                                   router.route(to: \.username)
+                               }, title: "i_accept".localized)
                     .padding(.bottom)
             }
             .padding(.horizontal, 28)

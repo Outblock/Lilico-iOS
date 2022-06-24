@@ -9,26 +9,19 @@ import SwiftUI
 
 struct NFTAddCollectionView: View {
     var body: some View {
-        
         OffsetScrollView(offset: .constant(1)) {
             VLazyScrollView {
-                Section {
-                    
-                } header: {
+                Section {} header: {
                     title(title: "Trending")
                 }
-                
-                Section {
-                    
-                } header: {
+
+                Section {} header: {
                     title(title: "Collection list")
                 }
-
             }
         }
-        
     }
-    
+
     private func title(title: String) -> some View {
         return Text(title.localized.uppercased())
             .foregroundColor(.LL.Neutrals.neutrals6)
@@ -36,17 +29,14 @@ struct NFTAddCollectionView: View {
     }
 }
 
-
 extension NFTAddCollectionView {
-    
     struct CollectionItem: View {
-        
         var collection: NFTCollection
-    
+
         var body: some View {
             HStack {
                 HStack(alignment: .center) {
-                    VStack(alignment: .leading,spacing: 4) {
+                    VStack(alignment: .leading, spacing: 4) {
                         HStack(alignment: .center) {
                             Text(collection.name)
                                 .font(.LL.largeTitle3)
@@ -60,7 +50,7 @@ extension NFTAddCollectionView {
                                 .frame(width: 10, height: 10)
                         }
                         .frame(height: 26)
-                        
+
                         Text(collection.description ?? "")
                             .font(.LL.body)
                             .fontWeight(.w400)
@@ -68,54 +58,46 @@ extension NFTAddCollectionView {
                             .padding(.bottom, 18)
                             .frame(height: 36)
                     }
-                    
+
                     Spacer(minLength: 88)
-                    Button {
-                        
-                    } label: {
-                        
+                    Button {} label: {
                         Image("icon_nft_add")
                             .foregroundColor(.LL.Primary.salmonPrimary)
                             .frame(width: 26, height: 26, alignment: .center)
                             .padding(6)
                             .background(.LL.Shades.front)
                             .clipShape(Circle())
-                           
                     }
-
                 }
                 .padding(.vertical, 12)
                 .padding(.horizontal, 18)
             }
-            
+
             .background(
                 ZStack {
-                    HStack() {
+                    HStack {
                         Spacer()
                         Image("test_nft_logo")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 148,alignment: .trailing)
-                            
+                            .frame(width: 148, alignment: .trailing)
                     }
-                    
+
                     LinearGradient(colors:
-                                    [
-                                        .LL.Shades.front.opacity(0.32),
-                                        .LL.Shades.front.opacity(0.88),
-                                        .LL.Shades.front,
-                                    ],
-                                   startPoint: .topLeading,
-                                   endPoint: .trailing)
-                    .blur(radius: 6)
+                        [
+                            .LL.Shades.front.opacity(0.32),
+                            .LL.Shades.front.opacity(0.88),
+                            .LL.Shades.front,
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .trailing)
+                        .blur(radius: 6)
                 }
-                    .background(
-                        Color.LL.Shades.front
-                    )
+                .background(
+                    Color.LL.Shades.front
+                )
             )
-            
-            
-            
+
             .clipShape(RoundedRectangle(cornerRadius: 16))
         }
     }
@@ -129,4 +111,3 @@ struct NFTAddCollectionView_Previews: PreviewProvider {
             )
     }
 }
-

@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import Stinsen
 import SwiftUI
 import SwiftUIX
-import Stinsen
 
 final class BackupCoordinator: NavigationCoordinatable {
     var stack = NavigationStack(initial: \BackupCoordinator.recoveryPhrase)
@@ -49,7 +49,7 @@ extension BackupCoordinator {
         ManualBackupView(viewModel: ManualBackupViewModel().toAnyViewModel())
             .hideNavigationBar()
     }
-    
+
     func makeHome() -> WalletCoordinator {
         WalletCoordinator()
     }

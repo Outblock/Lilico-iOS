@@ -5,8 +5,8 @@
 //  Created by cat on 2022/4/30.
 //
 
-import Foundation
 import FirebaseRemoteConfig
+import Foundation
 import Haneke
 
 enum FirebaseConfigError: Error {
@@ -15,45 +15,39 @@ enum FirebaseConfigError: Error {
 }
 
 enum FirebaseConfig: String {
-    case all = "all"
+    case all
     case flowCoins = "flow_coins"
     case nftCollections = "nft_collections"
-    
-    static func start()  {
+
+    static func start() {
         Task {
             do {
                 _ = try await FirebaseConfig.all.fetchConfig()
                 onConfigLoadFinish()
-            } catch {
-                
-            }
+            } catch {}
         }
     }
-    
+
     static func onConfigLoadFinish() {
         NFTCollectionConfig.share.reload()
     }
 }
 
-
-
 extension FirebaseConfig {
-    
     func fetch<T: Codable>() async throws -> T {
         let remoteConfig = RemoteConfig.remoteConfig()
-        let json = remoteConfig.configValue(forKey: self.rawValue)
+        let json = remoteConfig.configValue(forKey: rawValue)
         do {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             let collections = try decoder.decode(T.self, from: json.dataValue)
             return collections
-            
-        } catch  {
+
+        } catch {
             throw FirebaseConfigError.decode
         }
     }
-    
-    
+
     private func fetchConfig() async throws -> RemoteConfigValue {
         try await withCheckedThrowingContinuation { continuation in
             let remoteConfig = RemoteConfig.remoteConfig()
@@ -72,7 +66,5 @@ extension FirebaseConfig {
                 }
             })
         }
-        
     }
 }
-

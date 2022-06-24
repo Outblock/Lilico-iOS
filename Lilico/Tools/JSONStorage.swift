@@ -6,29 +6,27 @@
 //
 
 import Foundation
-import SwiftUIX
 import Haneke
-
-
+import SwiftUIX
 
 @propertyWrapper
 struct JSONStorage<T: Codable> {
     var value: T?
     let key: String
-    
+
     init(key: String) {
         self.key = key
-        if let jsonData = UserDefaults.standard.data(forKey: theKey){
+        if let jsonData = UserDefaults.standard.data(forKey: theKey) {
             let decoder = JSONDecoder()
             value = try? decoder.decode(T.self, from: jsonData)
         }
     }
-    
+
     private var theKey: String {
-        //TODO: fileName: {userId_filename}
+        // TODO: fileName: {userId_filename}
         return key
     }
-    
+
     var wrappedValue: T? {
         set {
             value = newValue
@@ -51,14 +49,13 @@ struct JSONTestReader<T: Codable> {
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             do {
                 let url = URL(fileURLWithPath: path)
-                let jsonData = try Data.init(contentsOf: url)
+                let jsonData = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 value = try? decoder.decode(T.self, from: jsonData)
-            }
-            catch {}
+            } catch {}
         }
     }
-    
+
     var wrappedValue: T? {
         set {
             value = newValue
@@ -66,6 +63,5 @@ struct JSONTestReader<T: Codable> {
         get {
             value
         }
-        
     }
 }

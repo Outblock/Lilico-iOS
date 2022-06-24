@@ -146,18 +146,18 @@ struct RecoveryPhraseView: View {
                     VPrimaryButton(model: ButtonStyle.primary,
                                    state: viewModel.icloudLoading ? .loading : .enabled,
                                    action: {
-                        viewModel.trigger(.icloudBackup)
-                    }, title: "backup_to_icloud".localized)
+                                       viewModel.trigger(.icloudBackup)
+                                   }, title: "backup_to_icloud".localized)
 
                     VPrimaryButton(model: ButtonStyle.border,
                                    action: {
-                        viewModel.trigger(.googleBackup)
-                    }, title: "backup_to_gd".localized)
+                                       viewModel.trigger(.googleBackup)
+                                   }, title: "backup_to_gd".localized)
 
                     VPrimaryButton(model: ButtonStyle.plain,
                                    action: {
-                        viewModel.trigger(.manualBackup)
-                    }, title: "backup_manually".localized)
+                                       viewModel.trigger(.manualBackup)
+                                   }, title: "backup_manually".localized)
                 }
 //                    .padding(.bottom)
             }

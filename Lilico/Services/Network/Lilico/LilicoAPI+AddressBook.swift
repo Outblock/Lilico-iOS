@@ -25,7 +25,7 @@ extension LilicoAPI.AddressBook: TargetType, AccessTokenAuthorizable {
     var baseURL: URL {
         .init(string: "https://dev.lilico.app/v1")!
     }
-    
+
     var path: String {
         switch self {
         case .addExternal:
@@ -34,7 +34,7 @@ extension LilicoAPI.AddressBook: TargetType, AccessTokenAuthorizable {
             return "/addressbook/contact"
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
         case .addExternal:
@@ -47,20 +47,20 @@ extension LilicoAPI.AddressBook: TargetType, AccessTokenAuthorizable {
             return .post
         }
     }
-    
+
     var task: Task {
         switch self {
         case .fetchList:
             return .requestPlain
-        case .addExternal(let request):
+        case let .addExternal(request):
             return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
         case let .delete(contactId):
             return .requestParameters(parameters: ["id": contactId], encoding: URLEncoding.queryString)
-        case .edit(let request):
+        case let .edit(request):
             return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
         }
     }
-    
+
     var headers: [String: String]? {
         return LilicoAPI.commonHeaders
     }

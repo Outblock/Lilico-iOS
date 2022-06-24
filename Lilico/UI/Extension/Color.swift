@@ -57,10 +57,9 @@ extension Color {
         static let bgForIcon = Color("BgForIcon")
 
         static let deepBg = Color("DeepBackground")
-        
+
         static let neutrals1 = Color("Neutrals1")
-        
-        
+
         /// The primary color palette is used across all the iteractive elemets such as CTA’s(Call to The Action), links, inputs,active states,etc
         enum Primary {
             static let salmon1 = Color("primary.salmon1")
@@ -69,7 +68,7 @@ extension Color {
             static let salmon4 = Color("primary.salmon4")
             static let salmon5 = Color("primary.salmon5")
         }
-        
+
         /// The neutral color palette is used as supportig secondary colors in backgrounds, text colors,  seperators, models, etc
         enum Secondary {
             static let violet1 = Color("secondary.violet1")
@@ -77,21 +76,20 @@ extension Color {
             static let violet3 = Color("secondary.violet3")
             static let violet4 = Color("secondary.violet4")
             static let violet5 = Color("secondary.violet5")
-            
+
             static let navy1 = Color("secondary.navy1")
             static let navyWallet = Color("secondary.navyWallet")
             static let navy3 = Color("secondary.navy3")
             static let navy4 = Color("secondary.navy4")
             static let navy5 = Color("secondary.navy5")
-            
+
             static let mango1 = Color("secondary.mango1")
             static let mangoNFT = Color("secondary.mangoNFT")
             static let mango3 = Color("secondary.mango3")
             static let mango4 = Color("secondary.mango4")
             static let mango5 = Color("secondary.mango5")
         }
-        
-        
+
         /// The neutral color palette is used as supportig secondary colors in backgrounds, text colors,  seperators, models, etc
         enum Neutrals {
             static let neutrals1 = Color("neutrals.1")
@@ -100,7 +98,7 @@ extension Color {
             static let neutrals4 = Color("neutrals.4")
             static let note = Color("neutrals.note")
             static let neutrals6 = Color("neutrals.6")
-            
+
             static let neutrals7 = Color("neutrals.7")
             static let neutrals8 = Color("neutrals.8")
             static let neutrals9 = Color("neutrals.9")
@@ -108,7 +106,7 @@ extension Color {
             static let outline = Color("neutrals.outline")
             static let background = Color("neutrals.background")
         }
-        
+
         /// These colors depict an emotion of positivity. Generally used across success, complete states.
         enum Success {
             static let success1 = Color("success.1")
@@ -117,7 +115,7 @@ extension Color {
             static let success4 = Color("success.4")
             static let success5 = Color("success.5")
         }
-        
+
         enum Warning {
             static let warning1 = Color("warning.1")
             static let warning2 = Color("warning.2")
@@ -126,17 +124,14 @@ extension Color {
             static let warning5 = Color("warning.5")
             static let warning6 = Color("warning.6")
         }
-        
+
         enum Shades {
             static let front = Color("shades.front")
             static let shades2 = Color("shades.2")
         }
-        
+
         enum Button {
             static let light = Color("button.light")
         }
-        
     }
-    
-    
 }

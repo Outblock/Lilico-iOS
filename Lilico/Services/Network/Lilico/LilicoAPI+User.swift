@@ -58,11 +58,11 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
         switch self {
         case .userAddress, .userInfo, .userWallet:
             return .requestPlain
-        case .checkUsername(let username):
+        case let .checkUsername(username):
             return .requestParameters(parameters: ["username": username], encoding: URLEncoding.queryString)
-        case .register(let request):
+        case let .register(request):
             return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
-        case .login(let request):
+        case let .login(request):
             return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
         }
     }

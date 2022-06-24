@@ -90,7 +90,7 @@ struct TYNKView: View {
                                state: buttonState,
                                action: {
                                    viewModel.trigger(.createWallet)
-                }, title: buttonState == .loading ? "almost_there".localized : "next".localized)
+                               }, title: buttonState == .loading ? "almost_there".localized : "next".localized)
                     .padding(.bottom)
             }
             .padding(.horizontal, 28)

@@ -16,7 +16,7 @@ extension UIImage {
                     DispatchQueue.main.async {
                         continuation.resume(returning: [])
                     }
-                    
+
                     return
                 }
                 DispatchQueue.main.async {

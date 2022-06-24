@@ -5,22 +5,22 @@
 //  Created by Hao Fu on 30/11/21.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct ProfileView: View {
     @StateObject var themeManager = ThemeManager.shared
-    @StateObject private var vm: ProfileViewModel = ProfileViewModel()
+    @StateObject private var vm = ProfileViewModel()
     @EnvironmentObject private var router: ProfileCoordinator.Router
     @StateObject private var lud = LocalUserDefaults.shared
     @StateObject private var userManager = UserManager.shared
-    
+
     init() {
 //        UITableView.appearance().sectionFooterHeight = .leastNormalMagnitude
 //        UITableView.appearance().sectionHeaderHeight = .leastNormalMagnitude
         UITableView.appearance().backgroundColor = .clear
     }
-    
+
     var body: some View {
         ZStack {
             List {
@@ -30,10 +30,10 @@ struct ProfileView: View {
                 } else {
                     NoLoginTipsView()
                 }
-                
+
                 GeneralSectionView()
                 AboutSectionView()
-                
+
                 if vm.state.isLogin {
                     MoreSectionView()
                 }
@@ -66,20 +66,20 @@ extension ProfileView {
     struct NoLoginTipsView: View {
         private let title = "welcome_to_lilico".localized
         private let desc = "welcome_desc".localized
-        
+
         var body: some View {
             Section {
                 HStack {
                     VStack {
                         Image("icon-cool-cat")
                     }.frame(maxHeight: .infinity, alignment: .top)
-                    
+
                     VStack(alignment: .leading) {
                         Text(title).font(.inter(size: 16, weight: .bold))
                         Text(desc).font(.inter(size: 16))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    
+
                     Image("icon-orange-right-arrow")
                 }
                 .padding(.horizontal, 12)
@@ -109,11 +109,11 @@ extension ProfileView {
             .background(.LL.Neutrals.background)
         }
     }
-    
+
     struct InfoView: View {
         @EnvironmentObject private var userManager: UserManager
         @EnvironmentObject private var router: ProfileCoordinator.Router
-        
+
         var body: some View {
             HStack(spacing: 16) {
                 KFImage.url(URL(string: userManager.userInfo?.avatar.convertedAvatarString() ?? ""))
@@ -122,13 +122,13 @@ extension ProfileView {
                     .frame(width: 82, height: 82)
                     .background(.LL.Primary.salmonPrimary)
                     .clipShape(Circle())
-                
+
                 VStack(alignment: .leading, spacing: 8) {
                     Text(userManager.userInfo?.nickname ?? "").foregroundColor(.LL.Neutrals.text).font(.inter(weight: .semibold))
                     Text("@\(userManager.userInfo?.username ?? "")").foregroundColor(.LL.Neutrals.text).font(.inter(size: 14, weight: .medium))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                
+
                 Button {
                     router.route(to: \.edit)
                 } label: {
@@ -139,10 +139,10 @@ extension ProfileView {
             }
         }
     }
-    
+
     struct InfoActionView: View {
         @EnvironmentObject private var router: ProfileCoordinator.Router
-        
+
         var body: some View {
             HStack(alignment: .center, spacing: 0) {
                 ProfileView.InfoActionButton(iconName: "icon-address", title: "addresses".localized) {
@@ -161,12 +161,12 @@ extension ProfileView {
             .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
         }
     }
-    
+
     struct InfoActionButton: View {
         let iconName: String
         let title: String
         let action: () -> Void
-        
+
         var body: some View {
             Button(action: action) {
                 VStack {
@@ -188,7 +188,7 @@ extension ProfileView {
             case backup
             case security
         }
-        
+
         var body: some View {
             Section {
                 ForEach(Row.allCases, id: \.self) {
@@ -209,7 +209,7 @@ extension ProfileView.ActionSectionView.Row {
             return "icon-security"
         }
     }
-    
+
     var title: String {
         switch self {
         case .backup:
@@ -218,7 +218,7 @@ extension ProfileView.ActionSectionView.Row {
             return "security".localized
         }
     }
-    
+
     var style: ProfileView.SettingItemCell.Style {
         switch self {
         case .backup:
@@ -227,7 +227,7 @@ extension ProfileView.ActionSectionView.Row {
             return .arrow
         }
     }
-    
+
     var desc: String {
         switch self {
         case .backup:
@@ -236,7 +236,7 @@ extension ProfileView.ActionSectionView.Row {
             return ""
         }
     }
-    
+
     var toggle: Bool {
         switch self {
         case .backup:
@@ -253,13 +253,13 @@ extension ProfileView {
     struct GeneralSectionView: View {
         @EnvironmentObject private var vm: ProfileViewModel
         @EnvironmentObject var router: ProfileCoordinator.Router
-        
+
         enum Row: CaseIterable {
             case currency
             case theme
             case notification
         }
-        
+
         var body: some View {
             Section {
                 ForEach(Row.allCases, id: \.self) { row in
@@ -287,7 +287,7 @@ extension ProfileView.GeneralSectionView.Row {
             return "icon-notification"
         }
     }
-    
+
     var title: String {
         switch self {
         case .currency:
@@ -298,7 +298,7 @@ extension ProfileView.GeneralSectionView.Row {
             return "notifications".localized
         }
     }
-    
+
     var style: ProfileView.SettingItemCell.Style {
         switch self {
         case .currency:
@@ -309,7 +309,7 @@ extension ProfileView.GeneralSectionView.Row {
             return .toggle
         }
     }
-    
+
     var toggle: Bool {
         switch self {
         case .currency:
@@ -320,7 +320,7 @@ extension ProfileView.GeneralSectionView.Row {
             return false
         }
     }
-    
+
     func desc(with vm: ProfileView.ProfileViewModel) -> String {
         switch self {
         case .currency:
@@ -339,12 +339,12 @@ extension ProfileView {
     struct AboutSectionView: View {
         @EnvironmentObject var router: ProfileCoordinator.Router
         @EnvironmentObject var lud: LocalUserDefaults
-        
+
         enum Row {
             case developerMode(LocalUserDefaults)
             case about
         }
-        
+
         var body: some View {
             Section {
                 let dm = Row.developerMode(lud)
@@ -352,11 +352,9 @@ extension ProfileView {
                     .onTapGestureOnBackground {
                         router.route(to: \.developerMode)
                     }
-                
+
                 ProfileView.SettingItemCell(iconName: Row.about.iconName, title: Row.about.title, style: Row.about.style, desc: Row.about.desc, toggle: Row.about.toggle)
-                    .onTapGestureOnBackground {
-                        
-                    }
+                    .onTapGestureOnBackground {}
             }
             .listRowInsets(.zero)
         }
@@ -372,7 +370,7 @@ extension ProfileView.AboutSectionView.Row {
             return "icon-developer-mode"
         }
     }
-    
+
     var title: String {
         switch self {
         case .about:
@@ -381,7 +379,7 @@ extension ProfileView.AboutSectionView.Row {
             return "developer_mode".localized
         }
     }
-    
+
     var style: ProfileView.SettingItemCell.Style {
         switch self {
         case .about:
@@ -390,16 +388,16 @@ extension ProfileView.AboutSectionView.Row {
             return .desc
         }
     }
-    
+
     var desc: String {
         switch self {
         case .about:
             return "about".localized
-        case .developerMode(let lud):
+        case let .developerMode(lud):
             return lud.flowNetwork.rawValue
         }
     }
-    
+
     var toggle: Bool {
         switch self {
         case .about:
@@ -417,7 +415,7 @@ extension ProfileView {
         enum Row: CaseIterable {
             case switchAccount
         }
-        
+
         var body: some View {
             Section {
                 ForEach(Row.allCases, id: \.self) {
@@ -436,28 +434,28 @@ extension ProfileView.MoreSectionView.Row {
             return "icon-switch-account"
         }
     }
-    
+
     var title: String {
         switch self {
         case .switchAccount:
             return "switch_account".localized
         }
     }
-    
+
     var style: ProfileView.SettingItemCell.Style {
         switch self {
         case .switchAccount:
             return .none
         }
     }
-    
+
     var desc: String {
         switch self {
         case .switchAccount:
             return ""
         }
     }
-    
+
     var toggle: Bool {
         switch self {
         case .switchAccount:
@@ -477,34 +475,32 @@ extension ProfileView {
             case toggle
             case image
         }
-        
+
         let iconName: String
         let title: String
         let style: Style
-        
+
         var desc: String? = ""
         @State var toggle: Bool = false
         var imageName: String? = ""
         var toggleAction: ((Bool) -> Void)? = nil
-        
+
         var body: some View {
             HStack {
                 Image(iconName)
                 Text(title).font(.inter()).frame(maxWidth: .infinity, alignment: .leading)
-                
+
                 Text(desc ?? "").font(.inter()).foregroundColor(.LL.Neutrals.note).visibility(style == .desc ? .visible : .gone)
                 Image("icon-black-right-arrow").visibility(style == .arrow ? .visible : .gone)
-                Toggle(isOn: $toggle) {
-                    
-                }
-                .tint(.LL.Primary.salmonPrimary)
-                .visibility(style == .toggle ? .visible : .gone)
-                .onChange(of: toggle) { value in
-                    if let action = toggleAction {
-                        action(value)
+                Toggle(isOn: $toggle) {}
+                    .tint(.LL.Primary.salmonPrimary)
+                    .visibility(style == .toggle ? .visible : .gone)
+                    .onChange(of: toggle) { value in
+                        if let action = toggleAction {
+                            action(value)
+                        }
                     }
-                }
-                
+
                 if let imageName = imageName, style == .image {
                     Image(imageName)
                 }

@@ -5,8 +5,8 @@
 //  Created by Selina on 14/6/2022.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct ProfileEditView_Previews: PreviewProvider {
     static var previews: some View {
@@ -16,8 +16,8 @@ struct ProfileEditView_Previews: PreviewProvider {
 
 struct ProfileEditView: View {
     @EnvironmentObject private var router: ProfileEditCoordinator.Router
-    @StateObject private var vm: ProfileEditViewModel = ProfileEditViewModel()
-    
+    @StateObject private var vm = ProfileEditViewModel()
+
     var body: some View {
         List {
             Section {
@@ -42,12 +42,12 @@ struct ProfileEditView: View {
 
 extension ProfileEditView {
     var editAvatarCell: some View {
-        HStack() {
+        HStack {
             Text("edit_avatar".localized)
                 .font(titleFont)
                 .foregroundColor(titleColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
+
             KFImage.url(URL(string: vm.state.avatar))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -60,14 +60,14 @@ extension ProfileEditView {
             vm.trigger(.editAvatar)
         }
     }
-    
+
     var editNicknameCell: some View {
         HStack {
             Text("edit_nickname".localized)
                 .font(titleFont)
                 .foregroundColor(titleColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
+
             Text(vm.state.nickname)
                 .font(.inter(size: 16, weight: .medium))
                 .foregroundColor(.LL.Neutrals.note)
@@ -77,20 +77,20 @@ extension ProfileEditView {
             router.route(to: \.nameEdit)
         }
     }
-    
+
     var editPrivateCell: some View {
         HStack {
             VStack(alignment: .leading, spacing: 8) {
                 Text("private".localized)
                     .font(titleFont)
                     .foregroundColor(titleColor)
-                
+
                 Text(vm.state.isPrivate ? "private_on_desc".localized : "private_off_desc".localized)
                     .font(.inter(size: 12))
                     .foregroundColor(.LL.Neutrals.note)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            
+
             HStack(spacing: 24) {
                 Button {
                     vm.trigger(.changePrivate(false))
@@ -101,13 +101,13 @@ extension ProfileEditView {
                             Image("icon-selected-small").visibility(vm.state.isPrivate ? .gone : .visible)
                         }
                         .frame(width: 33, height: 33)
-                        
+
                         Text("visible".localized)
                             .font(.inter(size: 12))
                             .foregroundColor(.LL.Neutrals.note)
                     }
                 }
-                
+
                 Button {
                     vm.trigger(.changePrivate(true))
                 } label: {
@@ -117,7 +117,7 @@ extension ProfileEditView {
                             Image("icon-selected-small").visibility(vm.state.isPrivate ? .visible : .gone)
                         }
                         .frame(width: 33, height: 33)
-                        
+
                         Text("unvisible".localized)
                             .font(.inter(size: 12))
                             .foregroundColor(.LL.Neutrals.note)
@@ -133,7 +133,7 @@ extension ProfileEditView {
     var titleColor: Color {
         return .LL.Neutrals.text
     }
-    
+
     var titleFont: Font {
         return .inter(size: 17, weight: .medium)
     }

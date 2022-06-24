@@ -10,25 +10,25 @@ import SwiftUI
 
 class ThemeManager: ObservableObject {
     static let shared = ThemeManager()
-    
+
     @Published var style: ColorScheme?
     @AppStorage("customThemeKey") private var storageThemeKey: String?
-    
+
     init() {
         reloadStyle()
     }
-    
+
     private func reloadStyle() {
         style = ColorScheme.fromKey(key: storageThemeKey)
     }
-    
+
     func setStyle(style: ColorScheme?) {
         if let style = style {
             storageThemeKey = style.key
         } else {
             storageThemeKey = nil
         }
-        
+
         reloadStyle()
     }
 }
@@ -44,7 +44,7 @@ extension ColorScheme {
             return "light"
         }
     }
-    
+
     var desc: String {
         switch self {
         case .light:
@@ -55,12 +55,12 @@ extension ColorScheme {
             return "Light"
         }
     }
-    
+
     static func fromKey(key: String?) -> ColorScheme? {
         guard let key = key else {
             return nil
         }
-        
+
         switch key {
         case ColorScheme.light.key:
             return ColorScheme.light

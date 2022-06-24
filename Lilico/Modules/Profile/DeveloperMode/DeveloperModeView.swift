@@ -16,7 +16,7 @@ struct DeveloperModeView_Previews: PreviewProvider {
 struct DeveloperModeView: View {
     @EnvironmentObject private var router: ProfileCoordinator.Router
     @StateObject private var lud = LocalUserDefaults.shared
-    
+
     var body: some View {
         List {
             Section {
@@ -53,7 +53,7 @@ extension DeveloperModeView {
         let sysImageTuple: (String, Color)
         let title: String
         let desc: String
-        
+
         var body: some View {
             HStack {
                 Image(systemName: sysImageTuple.0).foregroundColor(sysImageTuple.1)

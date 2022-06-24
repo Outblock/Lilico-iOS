@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension Notification.Name {
-    public static let walletHiddenFlagUpdated = Notification.Name("walletHiddenFlagUpdated")
-    public static let quoteMarketUpdated = Notification.Name("quoteMarketUpdated")
-    public static let coinSummarysUpdated = Notification.Name("coinSummarysUpdated")
+public extension Notification.Name {
+    static let walletHiddenFlagUpdated = Notification.Name("walletHiddenFlagUpdated")
+    static let quoteMarketUpdated = Notification.Name("quoteMarketUpdated")
+    static let coinSummarysUpdated = Notification.Name("coinSummarysUpdated")
 }

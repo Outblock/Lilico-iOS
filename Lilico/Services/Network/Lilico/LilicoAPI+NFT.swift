@@ -28,35 +28,35 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
     var baseURL: URL {
         .init(string: "https://dev.lilico.app")!
     }
-    
+
     var path: String {
         switch self {
-        case .list(_):
+        case .list:
             return "v2/nft/list"
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
-        case .list(_):
+        case .list:
             return .get
         }
     }
-    
+
     var task: Task {
         switch self {
-        case .list(let nftListRequest):
+        case let .list(nftListRequest):
             return .requestParameters(parameters: nftListRequest.dictionary ?? [:], encoding: URLEncoding())
         }
     }
-    
+
     var headers: [String: String]? {
         var headers = LilicoAPI.commonHeaders
-        
-#if DEBUG
-        // TODO: current nft is error on testnet, remove this code if testnet nft is working someday.
-        headers["Network"] = LocalUserDefaults.FlowNetworkType.mainnet.rawValue
-#endif
+
+        #if DEBUG
+            // TODO: current nft is error on testnet, remove this code if testnet nft is working someday.
+            headers["Network"] = LocalUserDefaults.FlowNetworkType.mainnet.rawValue
+        #endif
         return headers
     }
 }
