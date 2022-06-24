@@ -23,9 +23,17 @@ final class WalletCoordinator: NavigationCoordinatable {
     @Route(.push) var createSecure = makeCreateSecure
 
     var isFristTime: Bool = true
+    
+    private var cancelSets = Set<AnyCancellable>()
 
     init() {
-        stack = NavigationStack(initial: \WalletCoordinator.empty)
+        stack = NavigationStack(initial: UserManager.shared.isLoggedIn ? \WalletCoordinator.start : \WalletCoordinator.empty)
+        
+        UserManager.shared.$isLoggedIn.sink { [weak self] isLoggedIn in
+            DispatchQueue.main.async {
+                self?.root(isLoggedIn ? \.start : \.empty)
+            }
+        }.store(in: &cancelSets)
     }
 }
 
