@@ -136,6 +136,7 @@ extension WalletViewModel {
                     self.walletState = .idle
                 }
             } catch {
+                print(error)
                 DispatchQueue.main.async {
                     self.walletState = .error
                 }

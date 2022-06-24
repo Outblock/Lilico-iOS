@@ -22,23 +22,14 @@ class FlowNetwork {
     }
     
     static func checkTokensEnable(address: Flow.Address, tokens: [TokenModel]) async throws -> [Bool] {
-        let cadence =  FlowQuery.checkEnable.tokenEnableQuery(with: tokens, at:flow.chainID)
-        do {
-            let list = try await fetch(at: address, by: cadence)
-            return list.map{ $0.value.toBool() ?? false }
-        }catch {
-            throw LLError.emptyWallet
-        }
+        let cadence = FlowQuery.checkEnable.tokenEnableQuery(with: tokens, at:flow.chainID)
+        let test: [Bool] = try await fetch(at: address, by: cadence)
+        return test
     }
     
     static func fetchBalance(at address: Flow.Address, with tokens: [TokenModel]) async throws -> [Double] {
         let cadence = FlowQuery.balance.balanceQuery(with: tokens, at: flow.chainID)
-        do {
-            let list = try await fetch(at: address, by: cadence)
-            return list.map{ $0.value.toUFix64() ?? 0}
-        }catch {
-            throw LLError.emptyWallet
-        }
+        return try await fetch(at: address, by: cadence)
     }
     
     static func addressVerify(address: String) async -> Bool {
@@ -54,34 +45,19 @@ class FlowNetwork {
         } catch {
             return false
         }
-
     }
     
     static func checkCollectionEnable(address: Flow.Address, list: [NFTCollection]) async throws -> [Bool] {
-        let cadence =  FlowQuery.nft.NFTCollectionListCheckEnabledQuery(with: list, at:flow.chainID)
-        do {
-            let list = try await fetch(at: address, by: cadence)
-            return list.map{ $0.value.toBool() ?? false }
-        }catch {
-            throw LLError.emptyWallet
-        }
+        let cadence = FlowQuery.nft.NFTCollectionListCheckEnabledQuery(with: list, at:flow.chainID)
+        return try await fetch(at: address, by: cadence)
     }
     
-    private static func fetch(at address: Flow.Address, by cadence: String) async throws -> [Flow.Argument] {
+    private static func fetch<T: Decodable>(at address: Flow.Address, by cadence: String) async throws -> T {
         let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
-                                                                           arguments: [.init(value: .address(address))])
+                                                                           arguments: [.address(address)])
         
-        guard let fields = response.fields, let array = fields.value.toArray() else {
-            throw LLError.emptyWallet
-        }
-        return array.compactMap { $0 }
+        let model: T = try response.decode()
+        return model
     }
-    
-    
-    
-    
-    
-    
-    
 }
 
