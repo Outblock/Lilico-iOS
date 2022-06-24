@@ -65,13 +65,13 @@ extension UserManager {
             throw LLError.incorrectPhrase
         }
         
-        guard let uid = getUid(), !uid.isEmpty else {
+        guard let token = try? await getIDToken(), !token.isEmpty else {
             loginAnonymousIfNeeded()
             throw LLError.restoreLoginFailed
         }
         
         let publicKey = mnemonicModel.getPublicKey()
-        guard let signature = mnemonicModel.sign(uid) else {
+        guard let signature = mnemonicModel.sign(token) else {
             throw LLError.restoreLoginFailed
         }
         
@@ -151,6 +151,10 @@ extension UserManager {
     
     func getUid() -> String? {
         return Auth.auth().currentUser?.uid
+    }
+    
+    func getIDToken() async throws -> String? {
+        return try await Auth.auth().currentUser?.getIDToken()
     }
 }
 

@@ -25,23 +25,23 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
     }
 
     var baseURL: URL {
-        .init(string: "https://dev.lilico.app/v1")!
+        .init(string: "https://dev.lilico.app")!
     }
 
     var path: String {
         switch self {
         case .login:
-            return "/login"
+            return "/v2/login"
         case .checkUsername:
-            return "/user/check"
+            return "/v1/user/check"
         case .register:
-            return "/register"
+            return "/v1/register"
         case .userAddress:
-            return "/user/address"
+            return "/v1/user/address"
         case .userInfo:
-            return "/user/info"
+            return "/v1/user/info"
         case .userWallet:
-            return "/user/wallet"
+            return "/v1/user/wallet"
         }
     }
 
