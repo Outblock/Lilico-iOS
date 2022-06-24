@@ -30,20 +30,49 @@ struct WalletView: View {
         UICollectionView.appearance().backgroundColor = .clear
     }
     
+    var emptyView: some View {
+        Text("no address")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .backgroundFill(.LL.Neutrals.background)
+    }
+    
+    var loadingView: some View {
+        Text("loading")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .backgroundFill(.LL.Neutrals.background)
+    }
+    
+    var errorView: some View {
+        Text("error")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .backgroundFill(.LL.Neutrals.background)
+    }
+    
     var body: some View {
+        emptyView
+            .visibility(vm.walletState == .noAddress ? .visible : .gone)
+        
         VStack(spacing: 32) {
             headerView
             CardView()
             actionView
+            
+            loadingView
+                .visibility(vm.walletState == .loading ? .visible : .gone)
+            errorView
+                .visibility(vm.walletState == .error ? .visible : .gone)
+            
             VStack(spacing: 0) {
                 coinSectionView
                 listView
             }
+            .visibility(vm.walletState == .idle ? .visible : .gone)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 18)
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
+        .visibility(vm.walletState != .noAddress ? .visible : .gone)
     }
     
     var headerView: some View {
