@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Stinsen
 
 typealias VoidBlock = () -> Void
 typealias BoolBlock = (Bool) -> Void

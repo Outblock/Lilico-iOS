@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Stinsen
 
 enum AppTabType {
     case wallet
@@ -20,17 +21,13 @@ protocol AppTabBarPageProtocol {
 }
 
 final class TabBarCoordinator: NavigationCoordinatable {
-    let stack: NavigationStack<TabBarCoordinator>
+    let stack = NavigationStack(initial: \TabBarCoordinator.start)
     
     private let walletView = WalletCoordinator().view()
     private let nftView = NFTCoordinator().view()
     private let profileView = ProfileCoordinator().view()
     
     @Root var start = makeTabView
-    
-    init() {
-        stack = NavigationStack(initial: \TabBarCoordinator.start)
-    }
     
     @ViewBuilder func makeTabView() -> some View {
         let wallet = TabBarPageModel<AppTabType>(tag: WalletCoordinator.tabTag(), iconName: WalletCoordinator.iconName(), color: WalletCoordinator.color()) {

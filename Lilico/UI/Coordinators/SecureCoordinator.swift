@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Stinsen
 
 final class SecureCoordinator: NavigationCoordinatable {
     var stack = NavigationStack(initial: \SecureCoordinator.requestScreen)

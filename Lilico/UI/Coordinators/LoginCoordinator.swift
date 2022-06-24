@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Stinsen
 
 final class LoginCoordinator: NavigationCoordinatable {
     var stack = NavigationStack(initial: \LoginCoordinator.restore)

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftUIX
+import Stinsen
 
 struct EmptyWalletState {
     var dataSource: [CardDataSource]

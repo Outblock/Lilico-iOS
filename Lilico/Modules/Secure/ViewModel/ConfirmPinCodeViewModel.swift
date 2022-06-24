@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Stinsen
 
 class ConfirmPinCodeViewModel: ViewModel {
     @Published

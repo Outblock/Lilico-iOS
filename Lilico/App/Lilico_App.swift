@@ -7,6 +7,7 @@
 
 import Resolver
 import SwiftUI
+import Stinsen
 
 @main
 struct Lilico_App: App {

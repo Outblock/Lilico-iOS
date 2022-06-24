@@ -6,19 +6,16 @@
 //
 
 import SwiftUI
+import Stinsen
 
 final class ProfileEditCoordinator: NavigationCoordinatable {
-    let stack: NavigationStack<ProfileEditCoordinator>
+    let stack = NavigationStack(initial: \ProfileEditCoordinator.start)
     
     @Root var start = makeProfileEditView
     @Route(.push) var nameEdit = makeEditNameView
     @Route(.push) var avatarEdit = makeEditAvatarView
     
 //    var addressBookVM: AddressBookView.AddressBookViewModel?
-    
-    init() {
-        stack = NavigationStack(initial: \ProfileEditCoordinator.start)
-    }
 }
 
 extension ProfileEditCoordinator {

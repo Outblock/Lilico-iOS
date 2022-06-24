@@ -10,6 +10,7 @@ import GoogleAPIClientForREST_Drive
 import GoogleAPIClientForRESTCore
 import GoogleSignIn
 import GTMSessionFetcherCore
+import Stinsen
 
 class RestoreWalletViewModel {
     @RouterObject

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Stinsen
 
 final class RegisterCoordinator: NavigationCoordinatable {
     var stack = NavigationStack(initial: \RegisterCoordinator.termScreen)

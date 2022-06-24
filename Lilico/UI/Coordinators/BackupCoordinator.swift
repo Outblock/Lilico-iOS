@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftUIX
+import Stinsen
 
 final class BackupCoordinator: NavigationCoordinatable {
     var stack = NavigationStack(initial: \BackupCoordinator.recoveryPhrase)

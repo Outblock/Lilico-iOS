@@ -7,9 +7,10 @@
 
 import Combine
 import SwiftUI
+import Stinsen
 
 final class WalletCoordinator: NavigationCoordinatable {
-    let stack: NavigationStack<WalletCoordinator>
+    let stack = NavigationStack(initial: UserManager.shared.isLoggedIn ? \WalletCoordinator.start : \WalletCoordinator.empty)
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -27,7 +28,6 @@ final class WalletCoordinator: NavigationCoordinatable {
     private var cancelSets = Set<AnyCancellable>()
 
     init() {
-        stack = NavigationStack(initial: UserManager.shared.isLoggedIn ? \WalletCoordinator.start : \WalletCoordinator.empty)
         
         UserManager.shared.$isLoggedIn.sink { [weak self] isLoggedIn in
             DispatchQueue.main.async {

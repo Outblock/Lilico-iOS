@@ -58,6 +58,8 @@
 		1552DC652787063100EAA7D5 /* PinStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC632787063100EAA7D5 /* PinStackView.swift */; };
 		1552DC68278708AB00EAA7D5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 1552DC67278708AB00EAA7D5 /* Introspect */; };
 		1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 1552DC692787090D00EAA7D5 /* Introspect */; };
+		155EACD728664DB80088FC0F /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 155EACD628664DB80088FC0F /* Stinsen */; };
+		155EACD928664DC70088FC0F /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 155EACD828664DC70088FC0F /* Stinsen */; };
 		156AC7A727802F4F00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7A627802F4F00ED5E3E /* GoogleAPIClientForRESTCore */; };
 		156AC7A927802F4F00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7A827802F4F00ED5E3E /* GoogleAPIClientForREST_Drive */; };
 		156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7AA27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive */; };
@@ -65,58 +67,6 @@
 		156AC7B1278042DE00ED5E3E /* GTMSessionFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7B0278042DE00ED5E3E /* GTMSessionFetcher */; };
 		156AC7B327804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
 		156AC7B427804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
-		156ADC4D2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2B2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift */; };
-		156ADC4E2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2B2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift */; };
-		156ADC4F2797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2C2797B42D00CD4B02 /* ViewWrapperCoordinator.swift */; };
-		156ADC502797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2C2797B42D00CD4B02 /* ViewWrapperCoordinator.swift */; };
-		156ADC512797B42D00CD4B02 /* StringIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2E2797B42D00CD4B02 /* StringIdentifiable.swift */; };
-		156ADC522797B42D00CD4B02 /* StringIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2E2797B42D00CD4B02 /* StringIdentifiable.swift */; };
-		156ADC532797B42D00CD4B02 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2F2797B42D00CD4B02 /* Presentable.swift */; };
-		156ADC542797B42D00CD4B02 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC2F2797B42D00CD4B02 /* Presentable.swift */; };
-		156ADC552797B42D00CD4B02 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC302797B42D00CD4B02 /* Coordinatable.swift */; };
-		156ADC562797B42D00CD4B02 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC302797B42D00CD4B02 /* Coordinatable.swift */; };
-		156ADC572797B42D00CD4B02 /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC312797B42D00CD4B02 /* AnyCoordinator.swift */; };
-		156ADC582797B42D00CD4B02 /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC312797B42D00CD4B02 /* AnyCoordinator.swift */; };
-		156ADC592797B42D00CD4B02 /* ChildDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC322797B42D00CD4B02 /* ChildDismissable.swift */; };
-		156ADC5A2797B42D00CD4B02 /* ChildDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC322797B42D00CD4B02 /* ChildDismissable.swift */; };
-		156ADC5B2797B42D00CD4B02 /* NavigationViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC342797B42D00CD4B02 /* NavigationViewCoordinator.swift */; };
-		156ADC5C2797B42D00CD4B02 /* NavigationViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC342797B42D00CD4B02 /* NavigationViewCoordinator.swift */; };
-		156ADC5D2797B42D00CD4B02 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC362797B42D00CD4B02 /* WeakRef.swift */; };
-		156ADC5E2797B42D00CD4B02 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC362797B42D00CD4B02 /* WeakRef.swift */; };
-		156ADC5F2797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC372797B42D00CD4B02 /* Array+SafeIndex.swift */; };
-		156ADC602797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC372797B42D00CD4B02 /* Array+SafeIndex.swift */; };
-		156ADC612797B42D00CD4B02 /* RouterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC392797B42D00CD4B02 /* RouterStore.swift */; };
-		156ADC622797B42D00CD4B02 /* RouterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC392797B42D00CD4B02 /* RouterStore.swift */; };
-		156ADC632797B42D00CD4B02 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3B2797B42D00CD4B02 /* TabRouter.swift */; };
-		156ADC642797B42D00CD4B02 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3B2797B42D00CD4B02 /* TabRouter.swift */; };
-		156ADC652797B42D00CD4B02 /* TabChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3C2797B42D00CD4B02 /* TabChild.swift */; };
-		156ADC662797B42D00CD4B02 /* TabChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3C2797B42D00CD4B02 /* TabChild.swift */; };
-		156ADC672797B42D00CD4B02 /* TabCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3D2797B42D00CD4B02 /* TabCoordinatable.swift */; };
-		156ADC682797B42D00CD4B02 /* TabCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3D2797B42D00CD4B02 /* TabCoordinatable.swift */; };
-		156ADC692797B42D00CD4B02 /* TabRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3E2797B42D00CD4B02 /* TabRoute.swift */; };
-		156ADC6A2797B42D00CD4B02 /* TabRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3E2797B42D00CD4B02 /* TabRoute.swift */; };
-		156ADC6B2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3F2797B42D00CD4B02 /* TabCoordinatableView.swift */; };
-		156ADC6C2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC3F2797B42D00CD4B02 /* TabCoordinatableView.swift */; };
-		156ADC6D2797B42D00CD4B02 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC412797B42D00CD4B02 /* Routable.swift */; };
-		156ADC6E2797B42D00CD4B02 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC412797B42D00CD4B02 /* Routable.swift */; };
-		156ADC6F2797B42D00CD4B02 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC432797B42D00CD4B02 /* NavigationRouter.swift */; };
-		156ADC702797B42D00CD4B02 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC432797B42D00CD4B02 /* NavigationRouter.swift */; };
-		156ADC712797B42D00CD4B02 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC442797B42D00CD4B02 /* NavigationStack.swift */; };
-		156ADC722797B42D00CD4B02 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC442797B42D00CD4B02 /* NavigationStack.swift */; };
-		156ADC732797B42D00CD4B02 /* Presented.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC452797B42D00CD4B02 /* Presented.swift */; };
-		156ADC742797B42D00CD4B02 /* Presented.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC452797B42D00CD4B02 /* Presented.swift */; };
-		156ADC752797B42D00CD4B02 /* NavigationCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC462797B42D00CD4B02 /* NavigationCoordinatable.swift */; };
-		156ADC762797B42D00CD4B02 /* NavigationCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC462797B42D00CD4B02 /* NavigationCoordinatable.swift */; };
-		156ADC772797B42D00CD4B02 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC472797B42D00CD4B02 /* PresentationType.swift */; };
-		156ADC782797B42D00CD4B02 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC472797B42D00CD4B02 /* PresentationType.swift */; };
-		156ADC792797B42D00CD4B02 /* NavigationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC482797B42D00CD4B02 /* NavigationRoute.swift */; };
-		156ADC7A2797B42D00CD4B02 /* NavigationRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC482797B42D00CD4B02 /* NavigationRoute.swift */; };
-		156ADC7B2797B42D00CD4B02 /* PresentationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC492797B42D00CD4B02 /* PresentationHelper.swift */; };
-		156ADC7C2797B42D00CD4B02 /* PresentationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC492797B42D00CD4B02 /* PresentationHelper.swift */; };
-		156ADC7D2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */; };
-		156ADC7E2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */; };
-		156ADC7F2797B42D00CD4B02 /* FocusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4C2797B42D00CD4B02 /* FocusError.swift */; };
-		156ADC802797B42D00CD4B02 /* FocusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156ADC4C2797B42D00CD4B02 /* FocusError.swift */; };
 		156E84A9281CDE7500415896 /* FlowNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84A8281CDE7500415896 /* FlowNetwork.swift */; };
 		156E84AA281CDE7500415896 /* FlowNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84A8281CDE7500415896 /* FlowNetwork.swift */; };
 		156E84AD281CDF4F00415896 /* WalletModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84AC281CDF4F00415896 /* WalletModels.swift */; };
@@ -968,32 +918,6 @@
 		1552DC632787063100EAA7D5 /* PinStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStackView.swift; sourceTree = "<group>"; };
 		156AC7AE2780427900ED5E3E /* Lilico-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lilico-Bridging-Header.h"; sourceTree = "<group>"; };
 		156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		156ADC2B2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWrapperCoordinatorView.swift; sourceTree = "<group>"; };
-		156ADC2C2797B42D00CD4B02 /* ViewWrapperCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWrapperCoordinator.swift; sourceTree = "<group>"; };
-		156ADC2E2797B42D00CD4B02 /* StringIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIdentifiable.swift; sourceTree = "<group>"; };
-		156ADC2F2797B42D00CD4B02 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
-		156ADC302797B42D00CD4B02 /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
-		156ADC312797B42D00CD4B02 /* AnyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCoordinator.swift; sourceTree = "<group>"; };
-		156ADC322797B42D00CD4B02 /* ChildDismissable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildDismissable.swift; sourceTree = "<group>"; };
-		156ADC342797B42D00CD4B02 /* NavigationViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewCoordinator.swift; sourceTree = "<group>"; };
-		156ADC362797B42D00CD4B02 /* WeakRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
-		156ADC372797B42D00CD4B02 /* Array+SafeIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndex.swift"; sourceTree = "<group>"; };
-		156ADC392797B42D00CD4B02 /* RouterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterStore.swift; sourceTree = "<group>"; };
-		156ADC3B2797B42D00CD4B02 /* TabRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
-		156ADC3C2797B42D00CD4B02 /* TabChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabChild.swift; sourceTree = "<group>"; };
-		156ADC3D2797B42D00CD4B02 /* TabCoordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabCoordinatable.swift; sourceTree = "<group>"; };
-		156ADC3E2797B42D00CD4B02 /* TabRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabRoute.swift; sourceTree = "<group>"; };
-		156ADC3F2797B42D00CD4B02 /* TabCoordinatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabCoordinatableView.swift; sourceTree = "<group>"; };
-		156ADC412797B42D00CD4B02 /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
-		156ADC432797B42D00CD4B02 /* NavigationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
-		156ADC442797B42D00CD4B02 /* NavigationStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
-		156ADC452797B42D00CD4B02 /* Presented.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presented.swift; sourceTree = "<group>"; };
-		156ADC462797B42D00CD4B02 /* NavigationCoordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatable.swift; sourceTree = "<group>"; };
-		156ADC472797B42D00CD4B02 /* PresentationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationType.swift; sourceTree = "<group>"; };
-		156ADC482797B42D00CD4B02 /* NavigationRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRoute.swift; sourceTree = "<group>"; };
-		156ADC492797B42D00CD4B02 /* PresentationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationHelper.swift; sourceTree = "<group>"; };
-		156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatableView.swift; sourceTree = "<group>"; };
-		156ADC4C2797B42D00CD4B02 /* FocusError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusError.swift; sourceTree = "<group>"; };
 		156E84A8281CDE7500415896 /* FlowNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowNetwork.swift; sourceTree = "<group>"; };
 		156E84AC281CDF4F00415896 /* WalletModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModels.swift; sourceTree = "<group>"; };
 		156E84B0281CF01000415896 /* EventLoop+Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventLoop+Future.swift"; sourceTree = "<group>"; };
@@ -1418,6 +1342,7 @@
 				156AC7AD27802FAC00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */,
 				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				4ED6DD10285A22A800105133 /* IrregularGradient in Frameworks */,
+				155EACD928664DC70088FC0F /* Stinsen in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				15BCFF102775986E000B7863 /* SPIndicator in Frameworks */,
@@ -1457,6 +1382,7 @@
 				154B88822765EBA800780E93 /* FirebaseDynamicLinks in Frameworks */,
 				15DDFB8E2750D039008263A2 /* SwiftUIX in Frameworks */,
 				156AC7B1278042DE00ED5E3E /* GTMSessionFetcher in Frameworks */,
+				155EACD728664DB80088FC0F /* Stinsen in Frameworks */,
 				15DE22F9277FF55C00B5EE03 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1594,111 +1520,6 @@
 				1552DC632787063100EAA7D5 /* PinStackView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		156ADC292797B42D00CD4B02 /* Stinsen */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC2A2797B42D00CD4B02 /* ViewWrapperCoordinator */,
-				156ADC2D2797B42D00CD4B02 /* Coordinatable */,
-				156ADC332797B42D00CD4B02 /* NavigationViewCoordinator */,
-				156ADC352797B42D00CD4B02 /* Utilities */,
-				156ADC382797B42D00CD4B02 /* RouterStore */,
-				156ADC3A2797B42D00CD4B02 /* TabCoordinatable */,
-				156ADC402797B42D00CD4B02 /* Protocols */,
-				156ADC422797B42D00CD4B02 /* NavigationCoordinatable */,
-				156ADC4B2797B42D00CD4B02 /* Entities */,
-			);
-			path = Stinsen;
-			sourceTree = "<group>";
-		};
-		156ADC2A2797B42D00CD4B02 /* ViewWrapperCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC2B2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift */,
-				156ADC2C2797B42D00CD4B02 /* ViewWrapperCoordinator.swift */,
-			);
-			path = ViewWrapperCoordinator;
-			sourceTree = "<group>";
-		};
-		156ADC2D2797B42D00CD4B02 /* Coordinatable */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC2E2797B42D00CD4B02 /* StringIdentifiable.swift */,
-				156ADC2F2797B42D00CD4B02 /* Presentable.swift */,
-				156ADC302797B42D00CD4B02 /* Coordinatable.swift */,
-				156ADC312797B42D00CD4B02 /* AnyCoordinator.swift */,
-				156ADC322797B42D00CD4B02 /* ChildDismissable.swift */,
-			);
-			path = Coordinatable;
-			sourceTree = "<group>";
-		};
-		156ADC332797B42D00CD4B02 /* NavigationViewCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC342797B42D00CD4B02 /* NavigationViewCoordinator.swift */,
-			);
-			path = NavigationViewCoordinator;
-			sourceTree = "<group>";
-		};
-		156ADC352797B42D00CD4B02 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC362797B42D00CD4B02 /* WeakRef.swift */,
-				156ADC372797B42D00CD4B02 /* Array+SafeIndex.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		156ADC382797B42D00CD4B02 /* RouterStore */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC392797B42D00CD4B02 /* RouterStore.swift */,
-			);
-			path = RouterStore;
-			sourceTree = "<group>";
-		};
-		156ADC3A2797B42D00CD4B02 /* TabCoordinatable */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC3B2797B42D00CD4B02 /* TabRouter.swift */,
-				156ADC3C2797B42D00CD4B02 /* TabChild.swift */,
-				156ADC3D2797B42D00CD4B02 /* TabCoordinatable.swift */,
-				156ADC3E2797B42D00CD4B02 /* TabRoute.swift */,
-				156ADC3F2797B42D00CD4B02 /* TabCoordinatableView.swift */,
-			);
-			path = TabCoordinatable;
-			sourceTree = "<group>";
-		};
-		156ADC402797B42D00CD4B02 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC412797B42D00CD4B02 /* Routable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		156ADC422797B42D00CD4B02 /* NavigationCoordinatable */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC432797B42D00CD4B02 /* NavigationRouter.swift */,
-				156ADC442797B42D00CD4B02 /* NavigationStack.swift */,
-				156ADC452797B42D00CD4B02 /* Presented.swift */,
-				156ADC462797B42D00CD4B02 /* NavigationCoordinatable.swift */,
-				156ADC472797B42D00CD4B02 /* PresentationType.swift */,
-				156ADC482797B42D00CD4B02 /* NavigationRoute.swift */,
-				156ADC492797B42D00CD4B02 /* PresentationHelper.swift */,
-				156ADC4A2797B42D00CD4B02 /* NavigationCoordinatableView.swift */,
-			);
-			path = NavigationCoordinatable;
-			sourceTree = "<group>";
-		};
-		156ADC4B2797B42D00CD4B02 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				156ADC4C2797B42D00CD4B02 /* FocusError.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		1570466A27930EA500D1747B /* NFT */ = {
@@ -3151,7 +2972,6 @@
 				6AF95B412848C8D60012C837 /* BMChineseSort */,
 				6AAA45DA284862D000A9AC96 /* ToastUI */,
 				6A164F4F2845F1CA0026B31E /* SwiftUIIndexedList */,
-				156ADC292797B42D00CD4B02 /* Stinsen */,
 				6ABAE50C2836243300C97AE2 /* VComponents */,
 			);
 			path = ThirdParty;
@@ -3254,6 +3074,7 @@
 				4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */,
 				4ED6DD0F285A22A800105133 /* IrregularGradient */,
 				6A204C6B2860784B00D0D3A4 /* FirebaseStorage */,
+				155EACD828664DC70088FC0F /* Stinsen */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -3296,6 +3117,7 @@
 				15F22F17278B20A800FCF772 /* BiometricAuthentication */,
 				1570466327906F7F00D1747B /* CollectionViewPagingLayout */,
 				157046722793237300D1747B /* Kingfisher */,
+				155EACD628664DB80088FC0F /* Stinsen */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15EC9DEE274FD1FC00F70CD9 /* Lilico.app */;
@@ -3367,6 +3189,7 @@
 				1570466227906F7F00D1747B /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */,
 				157046712793237300D1747B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4ED6DD0E285A22A800105133 /* XCRemoteSwiftPackageReference "IrregularGradient" */,
+				155EACD528664DB80088FC0F /* XCRemoteSwiftPackageReference "stinsen" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -3517,7 +3340,6 @@
 				15DC21B527819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
 				6ACDD17428587E8B00F406EB /* ProfileEditNameView.swift in Sources */,
 				15DC210327819C56000B187A /* VStepperState.swift in Sources */,
-				156ADC7A2797B42D00CD4B02 /* NavigationRoute.swift in Sources */,
 				15D9283627849E6800382226 /* BackupCoordinator.swift in Sources */,
 				158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */,
 				4EE8E4992835EAF500DFEF59 /* NFTFavoriteView.swift in Sources */,
@@ -3538,12 +3360,10 @@
 				4EB17C872862947600CA4DAE /* NFTCollectionModel.swift in Sources */,
 				4ECB9966285B8FF600F59852 /* OffsetScrollViewWithAppBar.swift in Sources */,
 				1570467027931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
-				156ADC7C2797B42D00CD4B02 /* PresentationHelper.swift in Sources */,
 				15DC20EF27819C56000B187A /* VSectionListSection.swift in Sources */,
 				6A35EADA2859BD36005A85B8 /* EditAvatarView.swift in Sources */,
 				15DC20C727819C56000B187A /* VCloseButtonState.swift in Sources */,
 				15DC214927819C56000B187A /* VTabNavigationViewModel.swift in Sources */,
-				156ADC782797B42D00CD4B02 /* PresentationType.swift in Sources */,
 				15DC20FF27819C56000B187A /* VStepperModel.swift in Sources */,
 				6A164F462840A1380026B31E /* TabBarView.swift in Sources */,
 				154B8903276A1EEB00780E93 /* ProfileView.swift in Sources */,
@@ -3565,8 +3385,6 @@
 				15DC21C727819C56000B187A /* LayoutGroup_HV.swift in Sources */,
 				6AEF839F28647BDC0081E285 /* CryptoRequests.swift in Sources */,
 				15DC21B327819C56000B187A /* Optional.LetBlockTransformation.swift in Sources */,
-				156ADC742797B42D00CD4B02 /* Presented.swift in Sources */,
-				156ADC5A2797B42D00CD4B02 /* ChildDismissable.swift in Sources */,
 				6AF95B452848C8D70012C837 /* BMChineseSort.swift in Sources */,
 				15DC1F7327819B74000B187A /* SpinnerStyle.swift in Sources */,
 				15DC20A927819C56000B187A /* VWebLink.swift in Sources */,
@@ -3586,7 +3404,6 @@
 				6A8FA498285B192800EE5BE3 /* Introspect.swift in Sources */,
 				15DC21E727819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
 				6A4A235128365B31001F1FDE /* Image.swift in Sources */,
-				156ADC702797B42D00CD4B02 /* NavigationRouter.swift in Sources */,
 				1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
 				15DC20B727819C56000B187A /* VChevronButton.swift in Sources */,
 				6A8FA49E285B192900EE5BE3 /* SnapTiming.swift in Sources */,
@@ -3607,7 +3424,6 @@
 				15DC21A927819C56000B187A /* UIKitTextFieldCoordinator.swift in Sources */,
 				159CFF2C27887ED3006421FB /* InputMnemonicView.swift in Sources */,
 				15DC213927819C56000B187A /* VMenuPickerState.swift in Sources */,
-				156ADC5C2797B42D00CD4B02 /* NavigationViewCoordinator.swift in Sources */,
 				15DC20E927819C56000B187A /* VAccordionState.swift in Sources */,
 				6AEF839928647A3B0081E285 /* WalletResponses.swift in Sources */,
 				15DC20B527819C56000B187A /* VChevronButtonDirection.swift in Sources */,
@@ -3616,11 +3432,9 @@
 				6AF95B3D2848686D0012C837 /* AddressBookRequest.swift in Sources */,
 				15DC215D27819C56000B187A /* VMenuRow.swift in Sources */,
 				15F22F20278B33EE00FCF772 /* CreatePinCodeViewModel.swift in Sources */,
-				156ADC502797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */,
 				15DC210527819C56000B187A /* VSliderModel.swift in Sources */,
 				15D574CA277816F200045E79 /* UsernameView.swift in Sources */,
 				6ACDD16A2858688700F406EB /* ProfileEditView.swift in Sources */,
-				156ADC6E2797B42D00CD4B02 /* Routable.swift in Sources */,
 				15DC218127819C56000B187A /* VActionSheet.swift in Sources */,
 				15DC20D327819C56000B187A /* VPlainButton.swift in Sources */,
 				15DC20ED27819C56000B187A /* VSectionListModel.swift in Sources */,
@@ -3628,18 +3442,15 @@
 				4EAF31BF28464ACE002AF489 /* BackAppBar.swift in Sources */,
 				15F22F15278B1F3D00FCF772 /* RequestSecureViewModel.swift in Sources */,
 				6AAA45F1284862D100A9AC96 /* ToastViewModifier.swift in Sources */,
-				156ADC522797B42D00CD4B02 /* StringIdentifiable.swift in Sources */,
 				6AEF83A2286594280081E285 /* Double.swift in Sources */,
 				15DC21BF27819C56000B187A /* WindowOverlayView.swift in Sources */,
 				15DC20FD27819C56000B187A /* VStepperButton.swift in Sources */,
 				15DC21F32781F7D9000B187A /* Keyboard.swift in Sources */,
 				15DC208127819C56000B187A /* VBaseViewNavigationBarCenter.swift in Sources */,
-				156ADC642797B42D00CD4B02 /* TabRouter.swift in Sources */,
 				6A8FA4B6285B192900EE5BE3 /* View+SnappableIDModifier.swift in Sources */,
 				6A164F682845F1CB0026B31E /* UITableViewCustomizer.swift in Sources */,
 				15DC213B27819C56000B187A /* VMenuPicker.swift in Sources */,
 				15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
-				156ADC662797B42D00CD4B02 /* TabChild.swift in Sources */,
 				15DC218727819C56000B187A /* VToggle.swift in Sources */,
 				15DC20A727819C56000B187A /* VWebLinkState.swift in Sources */,
 				15DC218F27819C56000B187A /* VCheckBox.swift in Sources */,
@@ -3652,13 +3463,11 @@
 				15DC216927819C56000B187A /* VHalfModalNavigationViewCloseButton.swift in Sources */,
 				15DC20D727819C56000B187A /* VPlainButtonState.swift in Sources */,
 				15DC1D4A27814AD1000B187A /* TextFieldStyle.swift in Sources */,
-				156ADC622797B42D00CD4B02 /* RouterStore.swift in Sources */,
 				15D9283027843D4900382226 /* ManualBackupView.swift in Sources */,
 				15DC21D927819C56000B187A /* StateColors_EPLD.swift in Sources */,
 				15BCFEFC277565F0000B7863 /* TermsAndPolicy.swift in Sources */,
 				15DC209927819C56000B187A /* VToastModel.swift in Sources */,
 				15DC20F327819C56000B187A /* VSectionList.swift in Sources */,
-				156ADC6A2797B42D00CD4B02 /* TabRoute.swift in Sources */,
 				156E84AA281CDE7500415896 /* FlowNetwork.swift in Sources */,
 				6ACDD17028587A7700F406EB /* ProfileEditViewModel.swift in Sources */,
 				15DC20AD27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
@@ -3686,13 +3495,11 @@
 				15DC20BD27819C56000B187A /* VSquareButtonModel.swift in Sources */,
 				4EC482D3284A3D75000A7E1B /* MMCQ.swift in Sources */,
 				15DC21AB27819C56000B187A /* FocusableTextField.swift in Sources */,
-				156ADC562797B42D00CD4B02 /* Coordinatable.swift in Sources */,
 				15DC219B27819C56000B187A /* VTextFieldActions.swift in Sources */,
 				154B8908276A1EEB00780E93 /* ColorBook.swift in Sources */,
 				15DC212127819C56000B187A /* VSpinnerModelDashed.swift in Sources */,
 				6AD90069284717FC00B65CE6 /* AddAddressViewModel.swift in Sources */,
 				15DC20DB27819C56000B187A /* VPrimaryButtonState.swift in Sources */,
-				156ADC7E2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */,
 				6A9D7C472833B45500078F63 /* ThemeManager.swift in Sources */,
 				4ED21F42284E4C0A00320AD0 /* NFTShareView.swift in Sources */,
 				15B1F6332786B1BB00847BB5 /* CheckboxStyle.swift in Sources */,
@@ -3711,7 +3518,6 @@
 				15DC214127819C56000B187A /* VTabNavigationViewAppearance.swift in Sources */,
 				1552DC5F2786EBA100EAA7D5 /* RequestSecureView.swift in Sources */,
 				15DC214D27819C56000B187A /* VNavigationViewModel.swift in Sources */,
-				156ADC722797B42D00CD4B02 /* NavigationStack.swift in Sources */,
 				6ABAE52B2836288400C97AE2 /* Font.swift in Sources */,
 				6A8FA4B0285B192900EE5BE3 /* SnapMode.swift in Sources */,
 				15DC21A527819C56000B187A /* VBaseTextFieldState.swift in Sources */,
@@ -3721,7 +3527,6 @@
 				15DC20B127819C56000B187A /* VBaseButtonState.swift in Sources */,
 				15D9282D2783395F00382226 /* HUDManager.swift in Sources */,
 				4E4F794C2831FCB700ED027C /* ImageName.swift in Sources */,
-				156ADC5E2797B42D00CD4B02 /* WeakRef.swift in Sources */,
 				15B1F6302786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				6A164F782845F1CB0026B31E /* ScrollAccessory.swift in Sources */,
 				15D9282A278338DB00382226 /* UIApplication.swift in Sources */,
@@ -3747,7 +3552,6 @@
 				15DC215727819C56000B187A /* VMenuSubMenu.swift in Sources */,
 				6A204C6A286070A600D0D3A4 /* FirebaseStorageUtils.swift in Sources */,
 				4ED21F45284E5A6700320AD0 /* DashLine.swift in Sources */,
-				156ADC762797B42D00CD4B02 /* NavigationCoordinatable.swift in Sources */,
 				15DC215527819C56000B187A /* VMenuState.swift in Sources */,
 				15DC210B27819C56000B187A /* VRangeSlider.swift in Sources */,
 				15DC1D5627816605000B187A /* CacheManager.swift in Sources */,
@@ -3759,7 +3563,6 @@
 				15DC213327819C56000B187A /* VSegmentedPickerModel.swift in Sources */,
 				15DC21E327819C56000B187A /* StateColors_EFD.swift in Sources */,
 				15DC20E727819C56000B187A /* VAccordionModel.swift in Sources */,
-				156ADC4E2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */,
 				6A8FA4A2285B192900EE5BE3 /* SnapAlignmentEnvironmentKey.swift in Sources */,
 				6AEF8396286462410081E285 /* CoinRateCache.swift in Sources */,
 				15DC21C527819C56000B187A /* LayoutGroup_LT.swift in Sources */,
@@ -3792,7 +3595,6 @@
 				6A164F6C2845F1CB0026B31E /* Indexable.swift in Sources */,
 				6AEF839C28647B830081E285 /* LilicoAPI+Crypto.swift in Sources */,
 				15DC216D27819C56000B187A /* VDialogButton.swift in Sources */,
-				156ADC682797B42D00CD4B02 /* TabCoordinatable.swift in Sources */,
 				15DC21EB27819C57000B187A /* StateOpacities_P.swift in Sources */,
 				15DC21D727819C56000B187A /* StateColors_ED.swift in Sources */,
 				15DC21D327819C56000B187A /* StateColors_EFSEPD.swift in Sources */,
@@ -3813,7 +3615,6 @@
 				15DC1D3F27809F83000B187A /* BackupManager.swift in Sources */,
 				6AAA45F3284862D100A9AC96 /* ToastViewHostingController.swift in Sources */,
 				154B8911276A1EEB00780E93 /* AppCoordinator.swift in Sources */,
-				156ADC582797B42D00CD4B02 /* AnyCoordinator.swift in Sources */,
 				15DC21E127819C56000B187A /* StateOpacities_D.swift in Sources */,
 				154B8912276A1EEB00780E93 /* WalletSetupViewModel.swift in Sources */,
 				15F22F10278B1DF400FCF772 /* SecureCoordinator.swift in Sources */,
@@ -3842,7 +3643,6 @@
 				15DC20FB27819C56000B187A /* VBaseListElement.swift in Sources */,
 				1570467C2793D60000D1747B /* NFTListResponse.swift in Sources */,
 				6A35EADE2859C20B005A85B8 /* NFTListCache.swift in Sources */,
-				156ADC802797B42D00CD4B02 /* FocusError.swift in Sources */,
 				6A164F442840A1380026B31E /* TabBarItemView.swift in Sources */,
 				15DC219727819C56000B187A /* VTextFieldType.swift in Sources */,
 				6AE0842128505887003BEEF0 /* Error.swift in Sources */,
@@ -3850,9 +3650,7 @@
 				15DC210F27819C56000B187A /* VRangeSliderState.swift in Sources */,
 				15D5774B277C0FFB00045E79 /* UsernameViewModel.swift in Sources */,
 				15DC21E527819C57000B187A /* StateColors_EFSED.swift in Sources */,
-				156ADC602797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */,
 				15DC218927819C56000B187A /* VRadioButtonState.swift in Sources */,
-				156ADC542797B42D00CD4B02 /* Presentable.swift in Sources */,
 				6A164F662845F1CB0026B31E /* ScrollAccessory+Extensions.swift in Sources */,
 				4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */,
 				15DC215927819C56000B187A /* VMenu.swift in Sources */,
@@ -3926,7 +3724,6 @@
 				156E84B2281CF01000415896 /* EventLoop+Future.swift in Sources */,
 				15DC20D927819C56000B187A /* VPrimaryButtonModel.swift in Sources */,
 				15DC208327819C56000B187A /* VLazyScrollViewModelHorizontal.swift in Sources */,
-				156ADC6C2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */,
 				15DC20CB27819C56000B187A /* VNavigationLinkState.swift in Sources */,
 				6AF95B472848C8D70012C837 /* BMChineseUtils.swift in Sources */,
 				6A164F4B2840B2B50026B31E /* TabBarCoordinator.swift in Sources */,
@@ -3944,7 +3741,6 @@
 				15DC21B427819C56000B187A /* Collection.EnumeratedArray.swift in Sources */,
 				6ACDD17328587E8B00F406EB /* ProfileEditNameView.swift in Sources */,
 				15DC210227819C56000B187A /* VStepperState.swift in Sources */,
-				156ADC792797B42D00CD4B02 /* NavigationRoute.swift in Sources */,
 				15D9283527849E6800382226 /* BackupCoordinator.swift in Sources */,
 				158C9C9F27871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */,
 				4EE8E4982835EAF100DFEF59 /* NFTFavoriteView.swift in Sources */,
@@ -3964,12 +3760,10 @@
 				15DC217C27819C56000B187A /* _VModal.swift in Sources */,
 				4EB17C862862947600CA4DAE /* NFTCollectionModel.swift in Sources */,
 				1570466F27931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
-				156ADC7B2797B42D00CD4B02 /* PresentationHelper.swift in Sources */,
 				15DC20EE27819C56000B187A /* VSectionListSection.swift in Sources */,
 				6A35EAD92859BD36005A85B8 /* EditAvatarView.swift in Sources */,
 				15DC20C627819C56000B187A /* VCloseButtonState.swift in Sources */,
 				15DC214827819C56000B187A /* VTabNavigationViewModel.swift in Sources */,
-				156ADC772797B42D00CD4B02 /* PresentationType.swift in Sources */,
 				15DC20FE27819C56000B187A /* VStepperModel.swift in Sources */,
 				6A164F452840A1380026B31E /* TabBarView.swift in Sources */,
 				1507C7EF275634C900890C5D /* ProfileView.swift in Sources */,
@@ -3991,8 +3785,6 @@
 				15DC21C627819C56000B187A /* LayoutGroup_HV.swift in Sources */,
 				15DC21B227819C56000B187A /* Optional.LetBlockTransformation.swift in Sources */,
 				6AEF839E28647BDC0081E285 /* CryptoRequests.swift in Sources */,
-				156ADC732797B42D00CD4B02 /* Presented.swift in Sources */,
-				156ADC592797B42D00CD4B02 /* ChildDismissable.swift in Sources */,
 				6AF95B442848C8D70012C837 /* BMChineseSort.swift in Sources */,
 				15DC1F7227819B74000B187A /* SpinnerStyle.swift in Sources */,
 				15DC20A827819C56000B187A /* VWebLink.swift in Sources */,
@@ -4012,7 +3804,6 @@
 				6A8FA497285B192800EE5BE3 /* Introspect.swift in Sources */,
 				15DC21E627819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
 				6A4A235028365B31001F1FDE /* Image.swift in Sources */,
-				156ADC6F2797B42D00CD4B02 /* NavigationRouter.swift in Sources */,
 				1570467E2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
 				15DC20B627819C56000B187A /* VChevronButton.swift in Sources */,
 				6A8FA49D285B192800EE5BE3 /* SnapTiming.swift in Sources */,
@@ -4033,7 +3824,6 @@
 				15DC21A827819C56000B187A /* UIKitTextFieldCoordinator.swift in Sources */,
 				159CFF2B27887ED3006421FB /* InputMnemonicView.swift in Sources */,
 				15DC213827819C56000B187A /* VMenuPickerState.swift in Sources */,
-				156ADC5B2797B42D00CD4B02 /* NavigationViewCoordinator.swift in Sources */,
 				15DC20E827819C56000B187A /* VAccordionState.swift in Sources */,
 				15DC20B427819C56000B187A /* VChevronButtonDirection.swift in Sources */,
 				6AEF839828647A3B0081E285 /* WalletResponses.swift in Sources */,
@@ -4042,11 +3832,9 @@
 				6AF95B3C2848686D0012C837 /* AddressBookRequest.swift in Sources */,
 				15DC215C27819C56000B187A /* VMenuRow.swift in Sources */,
 				15F22F1F278B33EE00FCF772 /* CreatePinCodeViewModel.swift in Sources */,
-				156ADC4F2797B42D00CD4B02 /* ViewWrapperCoordinator.swift in Sources */,
 				15DC210427819C56000B187A /* VSliderModel.swift in Sources */,
 				15D574C9277816F200045E79 /* UsernameView.swift in Sources */,
 				6ACDD1692858688700F406EB /* ProfileEditView.swift in Sources */,
-				156ADC6D2797B42D00CD4B02 /* Routable.swift in Sources */,
 				15DC218027819C56000B187A /* VActionSheet.swift in Sources */,
 				15DC20D227819C56000B187A /* VPlainButton.swift in Sources */,
 				15DC20EC27819C56000B187A /* VSectionListModel.swift in Sources */,
@@ -4054,18 +3842,15 @@
 				4EAF31BE28464ACE002AF489 /* BackAppBar.swift in Sources */,
 				15F22F14278B1F3D00FCF772 /* RequestSecureViewModel.swift in Sources */,
 				6AAA45F0284862D100A9AC96 /* ToastViewModifier.swift in Sources */,
-				156ADC512797B42D00CD4B02 /* StringIdentifiable.swift in Sources */,
 				15DC21BE27819C56000B187A /* WindowOverlayView.swift in Sources */,
 				6AEF83A1286594280081E285 /* Double.swift in Sources */,
 				15DC20FC27819C56000B187A /* VStepperButton.swift in Sources */,
 				15DC21F22781F7D9000B187A /* Keyboard.swift in Sources */,
 				15DC208027819C56000B187A /* VBaseViewNavigationBarCenter.swift in Sources */,
-				156ADC632797B42D00CD4B02 /* TabRouter.swift in Sources */,
 				6A8FA4B5285B192900EE5BE3 /* View+SnappableIDModifier.swift in Sources */,
 				6A164F672845F1CB0026B31E /* UITableViewCustomizer.swift in Sources */,
 				15DC213A27819C56000B187A /* VMenuPicker.swift in Sources */,
 				15BCFF1B277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
-				156ADC652797B42D00CD4B02 /* TabChild.swift in Sources */,
 				15DC218627819C56000B187A /* VToggle.swift in Sources */,
 				15DC20A627819C56000B187A /* VWebLinkState.swift in Sources */,
 				15DC218E27819C56000B187A /* VCheckBox.swift in Sources */,
@@ -4078,13 +3863,11 @@
 				15DC216827819C56000B187A /* VHalfModalNavigationViewCloseButton.swift in Sources */,
 				15DC20D627819C56000B187A /* VPlainButtonState.swift in Sources */,
 				15DC1D4927814AD1000B187A /* TextFieldStyle.swift in Sources */,
-				156ADC612797B42D00CD4B02 /* RouterStore.swift in Sources */,
 				15D9282F27843D4900382226 /* ManualBackupView.swift in Sources */,
 				15DC21D827819C56000B187A /* StateColors_EPLD.swift in Sources */,
 				15BCFEFB277565F0000B7863 /* TermsAndPolicy.swift in Sources */,
 				15DC209827819C56000B187A /* VToastModel.swift in Sources */,
 				15DC20F227819C56000B187A /* VSectionList.swift in Sources */,
-				156ADC692797B42D00CD4B02 /* TabRoute.swift in Sources */,
 				156E84A9281CDE7500415896 /* FlowNetwork.swift in Sources */,
 				6ACDD16F28587A7700F406EB /* ProfileEditViewModel.swift in Sources */,
 				15DC20AC27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
@@ -4112,13 +3895,11 @@
 				15DC20BC27819C56000B187A /* VSquareButtonModel.swift in Sources */,
 				4EC482D2284A3D75000A7E1B /* MMCQ.swift in Sources */,
 				15DC21AA27819C56000B187A /* FocusableTextField.swift in Sources */,
-				156ADC552797B42D00CD4B02 /* Coordinatable.swift in Sources */,
 				15DC219A27819C56000B187A /* VTextFieldActions.swift in Sources */,
 				159A55FF27536CD9004BCACC /* ColorBook.swift in Sources */,
 				15DC212027819C56000B187A /* VSpinnerModelDashed.swift in Sources */,
 				6AD90068284717FC00B65CE6 /* AddAddressViewModel.swift in Sources */,
 				15DC20DA27819C56000B187A /* VPrimaryButtonState.swift in Sources */,
-				156ADC7D2797B42D00CD4B02 /* NavigationCoordinatableView.swift in Sources */,
 				15B1F6322786B1BB00847BB5 /* CheckboxStyle.swift in Sources */,
 				4ED21F41284E4C0A00320AD0 /* NFTShareView.swift in Sources */,
 				153C44012751CFA4006D1E8D /* Color.swift in Sources */,
@@ -4136,7 +3917,6 @@
 				15DC214027819C56000B187A /* VTabNavigationViewAppearance.swift in Sources */,
 				1552DC5E2786EBA100EAA7D5 /* RequestSecureView.swift in Sources */,
 				15DC214C27819C56000B187A /* VNavigationViewModel.swift in Sources */,
-				156ADC712797B42D00CD4B02 /* NavigationStack.swift in Sources */,
 				15DC21A427819C56000B187A /* VBaseTextFieldState.swift in Sources */,
 				6ABAE52A2836288400C97AE2 /* Font.swift in Sources */,
 				6A8FA4AF285B192900EE5BE3 /* SnapMode.swift in Sources */,
@@ -4146,7 +3926,6 @@
 				15DC20B027819C56000B187A /* VBaseButtonState.swift in Sources */,
 				15D9282C2783395F00382226 /* HUDManager.swift in Sources */,
 				4E4F794B2831FCB700ED027C /* ImageName.swift in Sources */,
-				156ADC5D2797B42D00CD4B02 /* WeakRef.swift in Sources */,
 				15B1F62F2786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				15D92829278338DB00382226 /* UIApplication.swift in Sources */,
 				6A164F772845F1CB0026B31E /* ScrollAccessory.swift in Sources */,
@@ -4170,7 +3949,6 @@
 				154B88862765F33400780E93 /* AppDelegate.swift in Sources */,
 				6AAA45E6284862D100A9AC96 /* ToastView.swift in Sources */,
 				15DC215627819C56000B187A /* VMenuSubMenu.swift in Sources */,
-				156ADC752797B42D00CD4B02 /* NavigationCoordinatable.swift in Sources */,
 				4ED21F44284E5A6700320AD0 /* DashLine.swift in Sources */,
 				6A204C69286070A600D0D3A4 /* FirebaseStorageUtils.swift in Sources */,
 				15DC215427819C56000B187A /* VMenuState.swift in Sources */,
@@ -4184,7 +3962,6 @@
 				15DC213227819C56000B187A /* VSegmentedPickerModel.swift in Sources */,
 				15DC21E227819C56000B187A /* StateColors_EFD.swift in Sources */,
 				15DC20E627819C56000B187A /* VAccordionModel.swift in Sources */,
-				156ADC4D2797B42D00CD4B02 /* ViewWrapperCoordinatorView.swift in Sources */,
 				15DC21C427819C56000B187A /* LayoutGroup_LT.swift in Sources */,
 				6A8FA4A1285B192900EE5BE3 /* SnapAlignmentEnvironmentKey.swift in Sources */,
 				15DC21A627819C56000B187A /* VBaseTextField.swift in Sources */,
@@ -4216,7 +3993,6 @@
 				15DC218427819C56000B187A /* VToggleModel.swift in Sources */,
 				15DC216C27819C56000B187A /* VDialogButton.swift in Sources */,
 				6A164F6B2845F1CB0026B31E /* Indexable.swift in Sources */,
-				156ADC672797B42D00CD4B02 /* TabCoordinatable.swift in Sources */,
 				6AEF839B28647B830081E285 /* LilicoAPI+Crypto.swift in Sources */,
 				15DC21EA27819C57000B187A /* StateOpacities_P.swift in Sources */,
 				4ECB9965285B8D6A00F59852 /* OffsetScrollViewWithAppBar.swift in Sources */,
@@ -4239,7 +4015,6 @@
 				15DC1D3E27809F83000B187A /* BackupManager.swift in Sources */,
 				152F985C275CDED0001C5855 /* AppCoordinator.swift in Sources */,
 				6AAA45F2284862D100A9AC96 /* ToastViewHostingController.swift in Sources */,
-				156ADC572797B42D00CD4B02 /* AnyCoordinator.swift in Sources */,
 				15DC21E027819C56000B187A /* StateOpacities_D.swift in Sources */,
 				159A569427539A2C004BCACC /* WalletSetupViewModel.swift in Sources */,
 				15F22F0F278B1DF400FCF772 /* SecureCoordinator.swift in Sources */,
@@ -4267,7 +4042,6 @@
 				15DC20FA27819C56000B187A /* VBaseListElement.swift in Sources */,
 				6A8FA4A5285B192900EE5BE3 /* SnapAlignment+Convert.swift in Sources */,
 				1570467B2793D60000D1747B /* NFTListResponse.swift in Sources */,
-				156ADC7F2797B42D00CD4B02 /* FocusError.swift in Sources */,
 				6A35EADD2859C20B005A85B8 /* NFTListCache.swift in Sources */,
 				15DC219627819C56000B187A /* VTextFieldType.swift in Sources */,
 				6A164F432840A1380026B31E /* TabBarItemView.swift in Sources */,
@@ -4276,9 +4050,7 @@
 				6A8D2A3D283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */,
 				15D5774A277C0FFB00045E79 /* UsernameViewModel.swift in Sources */,
 				15DC21E427819C57000B187A /* StateColors_EFSED.swift in Sources */,
-				156ADC5F2797B42D00CD4B02 /* Array+SafeIndex.swift in Sources */,
 				15DC218827819C56000B187A /* VRadioButtonState.swift in Sources */,
-				156ADC532797B42D00CD4B02 /* Presentable.swift in Sources */,
 				4EF5129C28333A230014F4EC /* NFTTagsView.swift in Sources */,
 				6A164F652845F1CB0026B31E /* ScrollAccessory+Extensions.swift in Sources */,
 				15DC215827819C56000B187A /* VMenu.swift in Sources */,
@@ -4353,7 +4125,6 @@
 				156E84B1281CF01000415896 /* EventLoop+Future.swift in Sources */,
 				15DC20D827819C56000B187A /* VPrimaryButtonModel.swift in Sources */,
 				15DC208227819C56000B187A /* VLazyScrollViewModelHorizontal.swift in Sources */,
-				156ADC6B2797B42D00CD4B02 /* TabCoordinatableView.swift in Sources */,
 				15DC20CA27819C56000B187A /* VNavigationLinkState.swift in Sources */,
 				6AF95B462848C8D70012C837 /* BMChineseUtils.swift in Sources */,
 				6A164F4A2840B2B50026B31E /* TabBarCoordinator.swift in Sources */,
@@ -4816,6 +4587,14 @@
 				minimumVersion = 0.1.3;
 			};
 		};
+		155EACD528664DB80088FC0F /* XCRemoteSwiftPackageReference "stinsen" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rundfunk47/stinsen";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/google-api-objectivec-client-for-rest";
@@ -5000,6 +4779,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		155EACD628664DB80088FC0F /* Stinsen */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 155EACD528664DB80088FC0F /* XCRemoteSwiftPackageReference "stinsen" */;
+			productName = Stinsen;
+		};
+		155EACD828664DC70088FC0F /* Stinsen */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 155EACD528664DB80088FC0F /* XCRemoteSwiftPackageReference "stinsen" */;
+			productName = Stinsen;
 		};
 		156AC7A627802F4F00ED5E3E /* GoogleAPIClientForRESTCore */ = {
 			isa = XCSwiftPackageProductDependency;

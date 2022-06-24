@@ -9,7 +9,7 @@ import Foundation
 import SwiftUIX
 import Haneke
 import Kingfisher
-
+import Stinsen
 
 class NFTTabViewModel: ViewModel {
     

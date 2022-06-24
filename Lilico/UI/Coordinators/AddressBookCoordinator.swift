@@ -7,19 +7,16 @@
 
 import Foundation
 import SwiftUI
+import Stinsen
 
 final class AddressBookCoordinator: NavigationCoordinatable {
-    let stack: NavigationStack<AddressBookCoordinator>
+    let stack = NavigationStack(initial: \AddressBookCoordinator.start)
     
     @Root var start = makeAddressBookView
     @Route(.push) var add = makeAddView
     @Route(.push) var edit = makeEditView
     
     var addressBookVM: AddressBookView.AddressBookViewModel?
-    
-    init() {
-        stack = NavigationStack(initial: \AddressBookCoordinator.start)
-    }
 }
 
 extension AddressBookCoordinator {

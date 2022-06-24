@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Stinsen
 
 extension EditAvatarView {
     enum Mode {

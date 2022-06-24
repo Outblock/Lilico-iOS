@@ -7,9 +7,10 @@
 
 import Foundation
 import SwiftUI
+import Stinsen
 
 final class ProfileCoordinator: NavigationCoordinatable {
-    let stack: NavigationStack<ProfileCoordinator>
+    let stack = NavigationStack(initial: \ProfileCoordinator.start)
     
     @Root var start = makeProfileView
     @Route(.push) var themeChange = makeThemeChangeView
@@ -17,9 +18,9 @@ final class ProfileCoordinator: NavigationCoordinatable {
     @Route(.push) var developerMode = makeDeveloperModeView
     @Route(.push) var edit = makeEdit
     
-    init() {
-        stack = NavigationStack(initial: \ProfileCoordinator.start)
-    }
+//    init() {
+//        stack = NavigationStack(initial: \ProfileCoordinator.start)
+//    }
 }
 
 extension ProfileCoordinator {

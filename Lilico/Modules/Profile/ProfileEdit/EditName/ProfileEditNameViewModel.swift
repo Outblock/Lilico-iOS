@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import Stinsen
 
 extension ProfileEditNameViewModel {
     enum Input {

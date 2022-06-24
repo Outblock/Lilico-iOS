@@ -8,15 +8,13 @@
 import Foundation
 import SwiftUI
 import SwiftUIX
+import Stinsen
 
 final class MainCoordinator: NavigationCoordinatable {
-    var stack: NavigationStack<MainCoordinator>
+    var stack = NavigationStack(initial: \MainCoordinator.home)
 
     @Root var home = makeHome
 
-    init() {
-        stack = NavigationStack(initial: \MainCoordinator.home)
-    }
 }
 
 extension MainCoordinator {
