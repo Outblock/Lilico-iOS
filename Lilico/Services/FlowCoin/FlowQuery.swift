@@ -151,12 +151,12 @@ extension FlowQuery where T == FlowQueryAction.nft {
             $0.formatCadence(script:
                 """
                 pub fun check<Token>Vault(address: Address) : Bool {
-                                let account = getAccount(address)
-                                let vaultRef = account
-                                .getCapability<&{NonFungibleToken.CollectionPublic}>(<TokenCollectionPublicPath>)
-                                .check()
-                                return vaultRef
-                            }
+                    let account = getAccount(address)
+                    let vaultRef = account
+                    .getCapability<&{NonFungibleToken.CollectionPublic}>(<TokenCollectionPublicPath>)
+                    .check()
+                    return vaultRef
+                }
                 """
             )
         }.joined(separator: "\r\n")
@@ -171,12 +171,14 @@ extension FlowQuery where T == FlowQueryAction.nft {
 
         let cadence =
             """
-            import NonFungibleToken from 0xNonFungibleToken
-                      <TokenImports>
-                      <TokenFunctions>
-                      pub fun main(address: Address) : [Bool] {
-                        return [<TokenCall>]
-                    }
+            import NonFungibleToken from 0x1d7e57aa55817448
+            <TokenImports>
+            
+            <TokenFunctions>
+            
+            pub fun main(address: Address) : [Bool] {
+                return [<TokenCall>]
+            }
             """
             .replacingOccurrences(of: "<TokenFunctions>", with: tokenFunctions)
             .replacingOccurrences(of: "<TokenImports>", with: tokenImports)
@@ -209,15 +211,15 @@ extension String {
 }
 
 extension NFTCollection {
-    func formatCadence(script: String) -> String {
+    func formatCadence(script: String, chainId: Flow.ChainID = flow.chainID) -> String {
         return script
             .replacingOccurrences(of: "<NFT>", with: contractName)
-            .replacingOccurrences(of: "<NFTAddress>", with: address(mainnet: false))
+            .replacingOccurrences(of: "<NFTAddress>", with: address.chooseBy(network: chainId) ?? "")
             .replacingOccurrences(of: "<CollectionStoragePath>", with: path.storagePath)
             .replacingOccurrences(of: "<CollectionPublic>", with: path.publicCollectionName)
             .replacingOccurrences(of: "<CollectionPublicPath>", with: path.publicPath)
             .replacingOccurrences(of: "<Token>", with: contractName)
-            .replacingOccurrences(of: "<TokenAddress>", with: address(mainnet: false))
+            .replacingOccurrences(of: "<TokenAddress>", with: address.chooseBy(network: chainId) ?? "")
             .replacingOccurrences(of: "<TokenCollectionStoragePath>", with: path.storagePath)
             .replacingOccurrences(of: "<TokenCollectionPublic>", with: path.publicCollectionName)
             .replacingOccurrences(of: "<TokenCollectionPublicPath>", with: path.publicPath)

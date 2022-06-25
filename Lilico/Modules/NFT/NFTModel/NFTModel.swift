@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Flow
 
 let placeholder: String = "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
 // TODO: which filter?
@@ -22,21 +23,22 @@ struct NFTCollection: Codable, Hashable {
     var marketplace: URL?
     var description: String?
     var path: ContractPath
-
-    func address(mainnet: Bool = false) -> String {
-        if mainnet {
-            return address.mainnet
-        }
-        if LocalUserDefaults.shared.flowNetwork == .testnet, address.testnet != nil {
-            return address.testnet!
-        }
-        return address.mainnet
-    }
 }
 
 struct ContractAddress: Codable, Hashable {
     let mainnet: String
     let testnet: String?
+    
+    func chooseBy(network: Flow.ChainID = LocalUserDefaults.shared.flowNetwork.toFlowType()) -> String? {
+        switch network {
+        case .mainnet:
+            return mainnet
+        case .testnet:
+            return testnet
+        default:
+            return mainnet
+        }
+    }
 }
 
 struct ContractPath: Codable, Hashable {

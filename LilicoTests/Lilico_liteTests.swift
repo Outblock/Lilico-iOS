@@ -67,15 +67,35 @@ class Lilico_liteTests: XCTestCase {
         
         let list: [NFTCollection] = try await FirebaseConfig.nftCollections.fetch()
         
-        var dict = [String : Bool]()
+        struct TestType: Codable {
+            let name: String
+            let available: Bool
+        }
+        
+        var enabled = [TestType]()
+        
+        var disable = [TestType]()
         
         flow.configure(chainID: .mainnet)
         
         for nft in list {
-            let result: [Bool] = try await FlowNetwork.checkCollectionEnable(address: address, list: [nft])
-            dict[nft.name] = result.first!
+            do {
+                let _: [Bool] = try await FlowNetwork.checkCollectionEnable(address: address, list: [nft])
+                enabled.append(TestType(name: nft.name, available: true))
+            } catch {
+//                dict[nft.name] = false
+                disable.append(TestType(name: nft.name, available: false))
+                continue
+            }
         }
         
-        print(dict)
+        
+        let data1 = try JSONEncoder().encode(enabled)
+        let dataString1 = String(data: data1, encoding: .utf8)
+        print(dataString1!)
+        
+        let data2 = try JSONEncoder().encode(disable)
+        let dataString2 = String(data: data2, encoding: .utf8)
+        print(dataString2!)
     }
 }
