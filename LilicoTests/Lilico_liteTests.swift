@@ -7,6 +7,7 @@
 
 @testable import Lilico
 import XCTest
+import Flow
 
 class Lilico_liteTests: XCTestCase {
     func testExample() throws {}
@@ -57,4 +58,22 @@ class Lilico_liteTests: XCTestCase {
 //        let secret = String(data: encryptData, encoding: .utf8)!
 //        return secret
 //    }
+    
+    func testV2NFTCollection() async throws {
+        
+//        FlowNetwork.checkCollectionEnable(address: <#T##Flow.Address#>, list: <#T##[NFTCollection]#>)
+        
+        let address = Flow.Address(hex: "0x2b06c41f44a05656")
+        
+        let list: [NFTCollection] = try await FirebaseConfig.nftCollections.fetch()
+        
+        var dict = [String : Bool]()
+        
+        for nft in list {
+            let result: [Bool] = try await FlowNetwork.checkCollectionEnable(address: address, list: [nft])
+            dict[nft.name] = result.first!
+        }
+        
+        print(dict)
+    }
 }

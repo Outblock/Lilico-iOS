@@ -22,8 +22,7 @@ class FlowNetwork {
 
     static func checkTokensEnable(address: Flow.Address, tokens: [TokenModel]) async throws -> [Bool] {
         let cadence = TokenQuery.tokenEnable(with: tokens, at:flow.chainID)
-        let test: [Bool] = try await fetch(at: address, by: cadence)
-        return test
+        return try await fetch(at: address, by: cadence)
     }
 
     static func fetchBalance(at address: Flow.Address, with tokens: [TokenModel]) async throws -> [Double] {
