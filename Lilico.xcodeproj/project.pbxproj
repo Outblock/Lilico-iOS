@@ -4536,7 +4536,7 @@
 			repositoryURL = "https://github.com/ivanvorobei/SPIndicator";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.3;
+				minimumVersion = 1.6.4;
 			};
 		};
 		154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -4632,7 +4632,7 @@
 			repositoryURL = "https://github.com/ivanvorobei/SPConfetti";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
+				minimumVersion = 1.4.1;
 			};
 		};
 		15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */ = {

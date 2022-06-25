@@ -22,12 +22,12 @@ final class NFTCoordinator: NavigationCoordinatable {
 
 extension NFTCoordinator {
     @ViewBuilder func makeStart() -> some View {
-        NFTTabScreen(viewModel: viewModel)
+        NFTTabScreen(viewModel: self.viewModel)
             .hideNavigationBar()
     }
 
     @ViewBuilder func makeDetail(model: NFTModel) -> some View {
-        NFTDetailPage(viewModel: viewModel, nft: model).hideNavigationBar()
+        NFTDetailPage(viewModel: self.viewModel, nft: model).hideNavigationBar()
     }
 
     @ViewBuilder func makeCollection(item: CollectionItem) -> some View {

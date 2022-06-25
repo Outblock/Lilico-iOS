@@ -21,13 +21,13 @@ class FlowNetwork {
     }
 
     static func checkTokensEnable(address: Flow.Address, tokens: [TokenModel]) async throws -> [Bool] {
-        let cadence = FlowQuery.checkEnable.tokenEnableQuery(with: tokens, at: flow.chainID)
+        let cadence = TokenQuery.tokenEnable(with: tokens, at:flow.chainID)
         let test: [Bool] = try await fetch(at: address, by: cadence)
         return test
     }
 
     static func fetchBalance(at address: Flow.Address, with tokens: [TokenModel]) async throws -> [Double] {
-        let cadence = FlowQuery.balance.balanceQuery(with: tokens, at: flow.chainID)
+        let cadence = BlanceQuery.balance(with: tokens, at: flow.chainID)
         return try await fetch(at: address, by: cadence)
     }
 
@@ -47,7 +47,7 @@ class FlowNetwork {
     }
 
     static func checkCollectionEnable(address: Flow.Address, list: [NFTCollection]) async throws -> [Bool] {
-        let cadence = FlowQuery.nft.NFTCollectionListCheckEnabledQuery(with: list, at: flow.chainID)
+        let cadence = NFTQuery.collectionListCheckEnabled(with: list, at:flow.chainID)
         return try await fetch(at: address, by: cadence)
     }
 
