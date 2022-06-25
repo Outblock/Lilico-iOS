@@ -23,7 +23,8 @@ final class NFTCollectionConfig {
         if config.isEmpty {
             await fetchData()
         }
-        return config.first { $0.address() == address }
+        return config.first { $0.address.chooseBy(network: .mainnet) == address ||
+            $0.address.chooseBy(network: .testnet) == address }
     }
 }
 

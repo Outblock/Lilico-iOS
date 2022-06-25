@@ -80,8 +80,8 @@ class Lilico_liteTests: XCTestCase {
         
         for nft in list {
             do {
-                let _: [Bool] = try await FlowNetwork.checkCollectionEnable(address: address, list: [nft])
-                enabled.append(TestType(name: nft.name, available: true))
+                let result: [Bool] = try await FlowNetwork.checkCollectionEnable(address: address, list: [nft])
+                enabled.append(TestType(name: nft.name, available: result.first!))
             } catch {
 //                dict[nft.name] = false
                 disable.append(TestType(name: nft.name, available: false))
