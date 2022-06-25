@@ -4470,7 +4470,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.outbloc.lilico.lite.LilicoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.outbloc.lilico.LilicoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -4496,7 +4496,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.outbloc.lilico.lite.LilicoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.outbloc.lilico.LilicoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;

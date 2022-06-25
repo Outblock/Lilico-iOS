@@ -69,6 +69,8 @@ class Lilico_liteTests: XCTestCase {
         
         var dict = [String : Bool]()
         
+        flow.configure(chainID: .mainnet)
+        
         for nft in list {
             let result: [Bool] = try await FlowNetwork.checkCollectionEnable(address: address, list: [nft])
             dict[nft.name] = result.first!

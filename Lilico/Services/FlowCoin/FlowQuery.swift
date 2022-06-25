@@ -187,11 +187,24 @@ extension FlowQuery where T == FlowQueryAction.nft {
 
 extension String {
     func buildTokenInfo(_ token: TokenModel, chainId: Flow.ChainID) -> String {
-        return replacingOccurrences(of: "<Token>", with: token.contractName)
-            .replacingOccurrences(of: "<TokenAddress>", with: token.address.addressByNetwork(chainId) ?? "0x")
-            .replacingOccurrences(of: "<TokenBalancePath>", with: token.storagePath.balance)
-            .replacingOccurrences(of: "<TokenReceiverPath>", with: token.storagePath.receiver)
-            .replacingOccurrences(of: "<TokenStoragePath>", with: token.storagePath.vault)
+        let dict = [
+            "<Token>" : token.contractName,
+            "<TokenAddress>": token.address.addressByNetwork(chainId) ?? "0x",
+            "<TokenBalancePath>": token.storagePath.balance,
+            "<TokenReceiverPath>": token.storagePath.receiver,
+            "<TokenStoragePath>": token.storagePath.vault
+        ]
+        return replace(by: dict)
+    }
+}
+
+extension String {
+    func replace(by dict: [String: String]) -> String {
+        var string = self
+        for (key, value) in dict {
+            string = string.replacingOccurrences(of: key, with: value)
+        }
+        return string
     }
 }
 
