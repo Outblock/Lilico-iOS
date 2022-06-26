@@ -273,12 +273,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ivanvorobei/SPIndicator",
       "state" : {
-<<<<<<< HEAD
         "revision" : "f9676f1d56239b1836587794923cb89cec8ae18a"
-=======
-        "revision" : "43600857729d9efff046dc6673e6f94e095882c7",
-        "version" : "1.6.4"
->>>>>>> ce63676 (「Mod」add context menu  to nft item)
       }
     },
     {

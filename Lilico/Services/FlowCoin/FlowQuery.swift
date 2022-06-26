@@ -226,21 +226,6 @@ extension FlowQuery where T == FlowQueryAction.nft {
     }
 }
 
-//MARK: Body of Check Token vault is enabled
-extension FlowQuery {
-    
-    static private func importRow(with tokens: [TokenModel], at network: Flow.ChainID) -> String {
-        let tokenImports = tokens.map { token in
-            """
-            import <Token> from <TokenAddress>
-            
-            """
-                .buildTokenInfo(token, chainId: network)
-        }.joined(separator: "\r\n")
-        return tokenImports
-    }
-    
-}
 
 extension String {
     func buildTokenInfo(_ token: TokenModel, chainId: Flow.ChainID) -> String {
