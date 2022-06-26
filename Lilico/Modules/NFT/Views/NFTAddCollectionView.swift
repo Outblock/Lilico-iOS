@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct NFTAddCollectionView: View {
     
@@ -26,28 +27,16 @@ struct NFTAddCollectionView: View {
             OffsetScrollView(offset: $offset) {
                 LazyVStack(alignment: .leading, spacing: 0) {
                     
-                    if addViewModel.hasTrending() {
-                        Section() {
-                            
-                        } header: {
-                            title(title: "trending")
-                                .padding(.leading, 26)
-                                
-                        }
+                    ForEach(addViewModel.liveList, id:\.self) { it in
+                        NFTAddCollectionView.CollectionItem(item: it)
                     }
                     
-
-                    Section {
-                        ForEach(addViewModel.liveList, id:\.self) { it in
-                            NFTAddCollectionView.CollectionItem(item: it)
-                        }
-                    } header: {
-                        title(title: "collection_list")
-                            .padding(.leading, 26)
-                    }
                 }
             }
         }
+        .background(
+            Color.LL.Neutrals.background
+        )
         .onAppear {
             
         }
@@ -66,71 +55,77 @@ extension NFTAddCollectionView {
         var item: NFTCollectionItem
 
         var body: some View {
-            HStack {
-                HStack(alignment: .center) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack(alignment: .center) {
-                            Text(item.collection.name)
-                                .font(.LL.largeTitle3)
-                                .fontWeight(.w700)
-                                .foregroundColor(.LL.Neutrals.text)
-                            Image("Flow")
-                                .resizable()
-                                .frame(width: 12, height: 12)
-                            Image("arrow_right_grey")
-                                .resizable()
-                                .frame(width: 10, height: 10)
-                        }
-                        .frame(height: 26)
-
-                        Text(item.collection.description ?? "")
-                            .font(.LL.body)
-                            .fontWeight(.w400)
-                            .foregroundColor(.LL.Neutrals.neutrals4)
-                            .padding(.bottom, 18)
-                            .frame(height: 36)
+            HStack(alignment: .center) {
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(alignment: .center) {
+                        Text(item.collection.name)
+                            .font(.LL.largeTitle3)
+                            .fontWeight(.w700)
+                            .foregroundColor(.LL.Neutrals.text)
+                        Image("Flow")
+                            .resizable()
+                            .frame(width: 12, height: 12)
+                        Image("arrow_right_grey")
+                            .resizable()
+                            .frame(width: 10, height: 10)
                     }
+                    .frame(height: 26)
 
-                    Spacer(minLength: 88)
-                    Button {} label: {
-                        Image("icon_nft_add")
-                            .foregroundColor(.LL.Primary.salmonPrimary)
-                            .frame(width: 26, height: 26, alignment: .center)
-                            .padding(6)
-                            .background(.LL.Shades.front)
-                            .clipShape(Circle())
-                    }
+                    Text(item.collection.description ?? "")
+                        .font(Font.inter(size: 12,weight: .w400))
+                        .fontWeight(.w400)
+                        .foregroundColor(.LL.Neutrals.neutrals7)
+                        .padding(.bottom, 18)
+                        .lineLimit(2)
+                        
                 }
-                .padding(.vertical, 12)
-                .padding(.horizontal, 18)
-            }
+                .padding(.leading, 18)
 
+                Spacer(minLength: 88)
+                Button {} label: {
+                    Image("icon_nft_add")
+                        .foregroundColor(.LL.Primary.salmonPrimary)
+                        .frame(width: 26, height: 26, alignment: .center)
+                        .padding(6)
+                        .background(.LL.Shades.front)
+                        .clipShape(Circle())
+                }
+                .padding(.trailing, 16)
+            }
+            .frame(height: 88)
             .background(
                 ZStack {
                     HStack {
                         Spacer()
-                        Image("test_nft_logo")
+                        KFImage
+                            .url(item.collection.logo)
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 148, alignment: .trailing)
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 148,height: 148, alignment: .trailing)
+                            .clipped()
                     }
 
                     LinearGradient(colors:
                         [
-                            .LL.Shades.front.opacity(0.32),
-                            .LL.Shades.front.opacity(0.88),
                             .LL.Shades.front,
+                            .LL.Shades.front.opacity(0.88),
+                            .LL.Shades.front.opacity(0.32),
+                            
+                            
                         ],
-                        startPoint: .topLeading,
+                        startPoint: .leading,
                         endPoint: .trailing)
-                        .blur(radius: 6)
+                        
                 }
-                .background(
-                    Color.LL.Shades.front
-                )
+                    .blur(radius: 6)
             )
-
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            
+            .clipShape(
+                RoundedRectangle(cornerRadius: 16)
+            )
+            .padding(.top, 12)
+            .padding(.horizontal, 18)
+            
         }
     }
 }
