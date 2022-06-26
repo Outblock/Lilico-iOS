@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct NFTListView: View {
     var list: [NFTModel]
@@ -22,11 +23,57 @@ struct NFTListView: View {
         VStack {
             LazyVGrid(columns: nftLayout, alignment: .center) {
                 ForEach(list, id: \.self) { nft in
-
-                    NFTSquareCard(nft: nft, imageEffect: imageEffect) { model in
-                        viewModel.trigger(.info(model))
+                    
+                    
+                    ContextMenuPreview {
+                        NFTSquareCard(nft: nft, imageEffect: imageEffect) { model in
+                            viewModel.trigger(.info(model))
+                        }
+                        .frame(height: ceil((screenWidth - 18 * 3) / 2 + 50))
+                    } preview: {
+                        KFImage
+                            .url(nft.image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    } menu: {
+                        let like = UIAction(title: "top_selection".localized, image: UIImage(named: "nft_btn_selection")) { _ in
+                            NFTFavoriteStore.shared.addFavorite(nft)
+                        }
+                        
+                        let share = UIAction(title: "share".localized, image: UIImage(named: "nft_btn_share")) { _ in
+                            //TODO: share action
+                        }
+                        
+                        let send = UIAction(title: "send".localized, image: UIImage(named: "nft_btn_send")) { _ in
+                            //TODO: send NFT
+                        }
+                        
+                        return UIMenu(title: "", children: [like, share,send])
+                    } onEnd: {
+                        
                     }
-                    .frame(height: ceil((screenWidth - 18 * 3) / 2 + 50))
+
+                    
+/*
+                    
+                    ContextMenuWithImage {
+                        NFTSquareCard(nft: nft, imageEffect: imageEffect) { model in
+                            viewModel.trigger(.info(model))
+                        }
+                        .frame(height: ceil((screenWidth - 18 * 3) / 2 + 50))
+                    } preview: {
+                        KFImage
+                            .url(nft.image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } action: {
+                        
+                    } onEnd: {
+                        
+                    }
+
+ */
+                    
                 }
             }
             .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
