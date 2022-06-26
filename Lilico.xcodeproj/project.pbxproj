@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1500783228682BEF00A00109 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 1500783128682BEF00A00109 /* SPIndicator */; };
 		1500783428682BF700A00109 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 1500783328682BF700A00109 /* SPIndicator */; };
 		1500783E286830EF00A00109 /* LilicoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500783D286830EF00A00109 /* LilicoTests.swift */; };
 		1505E5FC28363578007B98D8 /* LilicoAPI+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */; };
@@ -56,47 +55,6 @@
 		1570467C2793D60000D1747B /* NFTListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467A2793D60000D1747B /* NFTListResponse.swift */; };
 		1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467D2793EBA100D1747B /* GithubEndpoint.swift */; };
 		15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B632867641D0066046D /* GTMSessionFetcherCore */; };
-		15832D24286767E20066046D /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B7E286767E20066046D /* GoogleAPIClientForREST_Drive */; };
-		15832D25286767E20066046D /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B6D286767E20066046D /* Flow */; };
-		15832D26286767E20066046D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B7C286767E20066046D /* GoogleSignIn */; };
-		15832D27286767E20066046D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B6F286767E20066046D /* FirebaseAuth */; };
-		15832D28286767E20066046D /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */; };
-		15832D29286767E20066046D /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
-		15832D2A286767E20066046D /* SPConfetti in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B85286767E20066046D /* SPConfetti */; };
-		15832D2B286767E20066046D /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B94286767E20066046D /* GTMSessionFetcherCore */; };
-		15832D2C286767E20066046D /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B77286767E20066046D /* Moya */; };
-		15832D2D286767E20066046D /* BiometricAuthentication in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B87286767E20066046D /* BiometricAuthentication */; };
-		15832D2E286767E20066046D /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B6B286767E20066046D /* Resolver */; };
-		15832D2F286767E20066046D /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B78286767E20066046D /* KeychainAccess */; };
-		15832D30286767E20066046D /* Haneke in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B81286767E20066046D /* Haneke */; };
-		15832D31286767E20066046D /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B80286767E20066046D /* GoogleAPIClientForRESTCore */; };
-		15832D32286767E20066046D /* CollectionViewPagingLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B89286767E20066046D /* CollectionViewPagingLayout */; };
-		15832D33286767E20066046D /* IrregularGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B8F286767E20066046D /* IrregularGradient */; };
-		15832D34286767E20066046D /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B92286767E20066046D /* Stinsen */; };
-		15832D35286767E20066046D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B71286767E20066046D /* FirebaseCrashlytics */; };
-		15832D36286767E20066046D /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B8D286767E20066046D /* FirebaseRemoteConfig */; };
-		15832D38286767E20066046D /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B75286767E20066046D /* CombineMoya */; };
-		15832D39286767E20066046D /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B72286767E20066046D /* FirebaseDynamicLinks */; };
-		15832D3A286767E20066046D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B8B286767E20066046D /* Kingfisher */; };
-		15832D3B286767E20066046D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B91286767E20066046D /* FirebaseStorage */; };
-		15832D3C286767E20066046D /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B7A286767E20066046D /* SkeletonUI */; };
-		15832D3D286767E20066046D /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B83286767E20066046D /* Introspect */; };
-		15832D3E286767E20066046D /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B69286767E20066046D /* SwiftUIX */; };
-		15832D3F286767E20066046D /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
-		15832D41286767E20066046D /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA72787F7490062E0C6 /* Montserrat-Regular.ttf */; };
-		15832D42286767E20066046D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */; };
-		15832D43286767E20066046D /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EA820C5286354E200DF36A8 /* remote_config_defaults.plist */; };
-		15832D44286767E20066046D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B1F63B2786B89800847BB5 /* Localizable.strings */; };
-		15832D45286767E20066046D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */; };
-		15832D46286767E20066046D /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CAE2787F7610062E0C6 /* Montserrat-SemiBold.ttf */; };
-		15832D47286767E20066046D /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA62787F7490062E0C6 /* Montserrat-Italic.ttf */; };
-		15832D49286767E20066046D /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
-		15832D4A286767E20066046D /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DE22FC27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist */; };
-		15832D4B286767E20066046D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E9E21DC282A68CB00E1BACD /* Colors.xcassets */; };
-		15832D4C286767E20066046D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
-		15832D4E286767E20066046D /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15832D4F286767E20066046D /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15832D562867689D0066046D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154B892E276A1FD700780E93 /* GoogleService-Info.plist */; };
 		15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832D58286816ED0066046D /* FlowAddressRegistor.swift */; };
 		158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
 		158C9CA42787F6EA0062E0C6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
@@ -118,6 +76,453 @@
 		15BCFEFC277565F0000B7863 /* TermsAndPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */; };
 		15BCFF1527770D76000B7863 /* EmptyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1327770D76000B7863 /* EmptyWalletView.swift */; };
 		15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */; };
+		15C58AAF2868A4EE00BD4FC6 /* BasicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206327819C56000B187A /* BasicAnimation.swift */; };
+		15C58AB02868A4EE00BD4FC6 /* VBaseHeaderFooterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9527819C56000B187A /* VBaseHeaderFooterType.swift */; };
+		15C58AB12868A4EE00BD4FC6 /* VSecondaryButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9827819C56000B187A /* VSecondaryButtonModel.swift */; };
+		15C58AB22868A4EE00BD4FC6 /* Collection.EnumeratedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205327819C56000B187A /* Collection.EnumeratedArray.swift */; };
+		15C58AB32868A4EE00BD4FC6 /* ProfileEditNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17228587E8B00F406EB /* ProfileEditNameView.swift */; };
+		15C58AB42868A4EE00BD4FC6 /* VStepperState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FD927819C56000B187A /* VStepperState.swift */; };
+		15C58AB52868A4EE00BD4FC6 /* BackupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9283427849E6800382226 /* BackupCoordinator.swift */; };
+		15C58AB62868A4EE00BD4FC6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
+		15C58AB72868A4EE00BD4FC6 /* NFTFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E4972835EAF100DFEF59 /* NFTFavoriteView.swift */; };
+		15C58AB82868A4EE00BD4FC6 /* EnvironmentValues+IndexBarInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5C2845F1CB0026B31E /* EnvironmentValues+IndexBarInsets.swift */; };
+		15C58AB92868A4EE00BD4FC6 /* VNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FB527819C56000B187A /* VNavigationLink.swift */; };
+		15C58ABA2868A4EE00BD4FC6 /* VPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FBF27819C56000B187A /* VPrimaryButton.swift */; };
+		15C58ABB2868A4EE00BD4FC6 /* VBaseTextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204C27819C56000B187A /* VBaseTextFieldModel.swift */; };
+		15C58ABC2868A4EE00BD4FC6 /* AddressBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A36283C7C790041100E /* AddressBookView.swift */; };
+		15C58ABD2868A4EE00BD4FC6 /* VTabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200827819C56000B187A /* VTabNavigationView.swift */; };
+		15C58ABE2868A4EE00BD4FC6 /* ThemeChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */; };
+		15C58ABF2868A4EE00BD4FC6 /* AddressBookListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF95B3E2848B0B40012C837 /* AddressBookListResponse.swift */; };
+		15C58AC02868A4EE00BD4FC6 /* WalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1537B3D9277C8DC8008ECD05 /* WalletCoordinator.swift */; };
+		15C58AC12868A4EE00BD4FC6 /* VAccordion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FC627819C56000B187A /* VAccordion.swift */; };
+		15C58AC22868A4EE00BD4FC6 /* StateColorsAndOpacities_EP_D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206A27819C56000B187A /* StateColorsAndOpacities_EP_D.swift */; };
+		15C58AC32868A4EE00BD4FC6 /* StateColors_OOID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC207327819C56000B187A /* StateColors_OOID.swift */; };
+		15C58AC42868A4EE00BD4FC6 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED9028364BC100F06AD3 /* UIFont.swift */; };
+		15C58AC52868A4EE00BD4FC6 /* _VModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202C27819C56000B187A /* _VModal.swift */; };
+		15C58AC62868A4EE00BD4FC6 /* NFTCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB17C852862947600CA4DAE /* NFTCollectionModel.swift */; };
+		15C58AC72868A4EE00BD4FC6 /* OffsetScrollViewWithAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECB9964285B8D6A00F59852 /* OffsetScrollViewWithAppBar.swift */; };
+		15C58AC82868A4EE00BD4FC6 /* AlchemyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570466E27931F5100D1747B /* AlchemyEndpoint.swift */; };
+		15C58AC92868A4EE00BD4FC6 /* VSectionListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FCC27819C56000B187A /* VSectionListSection.swift */; };
+		15C58ACA2868A4EE00BD4FC6 /* EditAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35EAD82859BD36005A85B8 /* EditAvatarView.swift */; };
+		15C58ACB2868A4EE00BD4FC6 /* VCloseButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FB127819C56000B187A /* VCloseButtonState.swift */; };
+		15C58ACC2868A4EE00BD4FC6 /* VTabNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200B27819C56000B187A /* VTabNavigationViewModel.swift */; };
+		15C58ACD2868A4EE00BD4FC6 /* VStepperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FD727819C56000B187A /* VStepperModel.swift */; };
+		15C58ACE2868A4EE00BD4FC6 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3F2840A1380026B31E /* TabBarView.swift */; };
+		15C58ACF2868A4EE00BD4FC6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507C7EE275634C900890C5D /* ProfileView.swift */; };
+		15C58AD02868A4EE00BD4FC6 /* View.CustomViewFrames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205827819C56000B187A /* View.CustomViewFrames.swift */; };
+		15C58AD12868A4EE00BD4FC6 /* VMenuPickerButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200427819C56000B187A /* VMenuPickerButtonType.swift */; };
+		15C58AD22868A4EE00BD4FC6 /* VSquareButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FAC27819C56000B187A /* VSquareButtonState.swift */; };
+		15C58AD32868A4EE00BD4FC6 /* SnapAnchorPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA47E285B192800EE5BE3 /* SnapAnchorPreferenceKey.swift */; };
+		15C58AD42868A4EE00BD4FC6 /* VDialogButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202727819C56000B187A /* VDialogButtonModel.swift */; };
+		15C58AD52868A4EE00BD4FC6 /* WalletModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84AC281CDF4F00415896 /* WalletModels.swift */; };
+		15C58AD62868A4EE00BD4FC6 /* VCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FB027819C56000B187A /* VCloseButton.swift */; };
+		15C58AD72868A4EE00BD4FC6 /* JSONStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DD9FB282E52110016A931 /* JSONStorage.swift */; };
+		15C58AD82868A4EE00BD4FC6 /* AppDelegate+Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22D4277DCCED00B5EE03 /* AppDelegate+Resolver.swift */; };
+		15C58AD92868A4EE00BD4FC6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */; };
+		15C58ADA2868A4EE00BD4FC6 /* ToastUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45E3284862D100A9AC96 /* ToastUI.swift */; };
+		15C58ADB2868A4EE00BD4FC6 /* VTextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F7727819C55000B187A /* VTextType.swift */; };
+		15C58ADC2868A4EE00BD4FC6 /* ComponentStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206127819C56000B187A /* ComponentStateManager.swift */; };
+		15C58ADD2868A4EE00BD4FC6 /* LayoutGroup_TB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205D27819C56000B187A /* LayoutGroup_TB.swift */; };
+		15C58ADE2868A4EE00BD4FC6 /* NFTSquareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F794D2831FF0F00ED027C /* NFTSquareCard.swift */; };
+		15C58ADF2868A4EE00BD4FC6 /* LayoutGroup_HV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205F27819C56000B187A /* LayoutGroup_HV.swift */; };
+		15C58AE02868A4EE00BD4FC6 /* CryptoRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF839D28647BDC0081E285 /* CryptoRequests.swift */; };
+		15C58AE12868A4EE00BD4FC6 /* Optional.LetBlockTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205227819C56000B187A /* Optional.LetBlockTransformation.swift */; };
+		15C58AE22868A4EE00BD4FC6 /* BMChineseSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF95B422848C8D60012C837 /* BMChineseSort.swift */; };
+		15C58AE32868A4EE00BD4FC6 /* SpinnerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F7127819B74000B187A /* SpinnerStyle.swift */; };
+		15C58AE42868A4EE00BD4FC6 /* VWebLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9E27819C56000B187A /* VWebLink.swift */; };
+		15C58AE52868A4EE00BD4FC6 /* VBaseViewSwipeGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F7C27819C55000B187A /* VBaseViewSwipeGesture.swift */; };
+		15C58AE62868A4EE00BD4FC6 /* VToastType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9027819C56000B187A /* VToastType.swift */; };
+		15C58AE72868A4EE00BD4FC6 /* ThemeChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */; };
+		15C58AE82868A4EE00BD4FC6 /* VBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F7A27819C55000B187A /* VBaseViewModel.swift */; };
+		15C58AE92868A4EE00BD4FC6 /* ChooseAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F08278B009200FCF772 /* ChooseAccountViewModel.swift */; };
+		15C58AEA2868A4EE00BD4FC6 /* VToggleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203227819C56000B187A /* VToggleState.swift */; };
+		15C58AEB2868A4EE00BD4FC6 /* RestoreWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22FF2780208300B5EE03 /* RestoreWalletViewModel.swift */; };
+		15C58AEC2868A4EE00BD4FC6 /* NFTLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E49A283626D000DFEF59 /* NFTLoading.swift */; };
+		15C58AED2868A4EE00BD4FC6 /* _VHalfModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201E27819C56000B187A /* _VHalfModal.swift */; };
+		15C58AEE2868A4EE00BD4FC6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */; };
+		15C58AEF2868A4EE00BD4FC6 /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */; };
+		15C58AF02868A4EE00BD4FC6 /* TYNKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */; };
+		15C58AF12868A4EE00BD4FC6 /* NFTFavoriteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1E9BC3283E04770028CBBD /* NFTFavoriteStore.swift */; };
+		15C58AF22868A4EE00BD4FC6 /* Introspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA47B285B192800EE5BE3 /* Introspect.swift */; };
+		15C58AF32868A4EE00BD4FC6 /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC207027819C56000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift */; };
+		15C58AF42868A4EE00BD4FC6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
+		15C58AF52868A4EE00BD4FC6 /* GithubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467D2793EBA100D1747B /* GithubEndpoint.swift */; };
+		15C58AF62868A4EE00BD4FC6 /* VChevronButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA727819C56000B187A /* VChevronButton.swift */; };
+		15C58AF72868A4EE00BD4FC6 /* SnapTiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA481285B192800EE5BE3 /* SnapTiming.swift */; };
+		15C58AF82868A4EE00BD4FC6 /* VListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FC327819C56000B187A /* VListModel.swift */; };
+		15C58AF92868A4EE00BD4FC6 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E51B4FA2854A76500EDE4FE /* CaptureView.swift */; };
+		15C58AFA2868A4EE00BD4FC6 /* VSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FFE27819C56000B187A /* VSegmentedPicker.swift */; };
+		15C58AFB2868A4EE00BD4FC6 /* StateColorsAndOpacities_EPD_PD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206727819C56000B187A /* StateColorsAndOpacities_EPD_PD.swift */; };
+		15C58AFC2868A4EE00BD4FC6 /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FDD27819C56000B187A /* VSlider.swift */; };
+		15C58AFD2868A4EE00BD4FC6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE0841C284F58F3003BEEF0 /* UserModel.swift */; };
+		15C58AFE2868A4EE00BD4FC6 /* VPickableItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206427819C56000B187A /* VPickableItems.swift */; };
+		15C58AFF2868A4EE00BD4FC6 /* EnvironmentValues+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F522845F1CB0026B31E /* EnvironmentValues+Extensions.swift */; };
+		15C58B002868A4EE00BD4FC6 /* VSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FEC27819C56000B187A /* VSpinner.swift */; };
+		15C58B012868A4EE00BD4FC6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED942836539E00F06AD3 /* BaseView.swift */; };
+		15C58B022868A4EE00BD4FC6 /* ContextMenuPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB60F8E286825960025DD72 /* ContextMenuPreview.swift */; };
+		15C58B032868A4EE00BD4FC6 /* VList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FC427819C56000B187A /* VList.swift */; };
+		15C58B042868A4EE00BD4FC6 /* VSpinnerDashed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FF027819C56000B187A /* VSpinnerDashed.swift */; };
+		15C58B052868A4EE00BD4FC6 /* NFTSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF31B82845E501002AF489 /* NFTSegmentControl.swift */; };
+		15C58B062868A4EE00BD4FC6 /* VBaseTextFieldActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204727819C56000B187A /* VBaseTextFieldActions.swift */; };
+		15C58B072868A4EE00BD4FC6 /* UIKitTextFieldCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204A27819C56000B187A /* UIKitTextFieldCoordinator.swift */; };
+		15C58B082868A4EE00BD4FC6 /* InputMnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CFF2A27887ED3006421FB /* InputMnemonicView.swift */; };
+		15C58B092868A4EE00BD4FC6 /* VMenuPickerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200127819C56000B187A /* VMenuPickerState.swift */; };
+		15C58B0A2868A4EE00BD4FC6 /* VAccordionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FC827819C56000B187A /* VAccordionState.swift */; };
+		15C58B0B2868A4EE00BD4FC6 /* WalletResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF839728647A3B0081E285 /* WalletResponses.swift */; };
+		15C58B0C2868A4EE00BD4FC6 /* VChevronButtonDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA627819C56000B187A /* VChevronButtonDirection.swift */; };
+		15C58B0D2868A4EE00BD4FC6 /* VNavigationLinkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FB627819C56000B187A /* VNavigationLinkExtension.swift */; };
+		15C58B0E2868A4EE00BD4FC6 /* VSpinnerModelContinous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FF327819C56000B187A /* VSpinnerModelContinous.swift */; };
+		15C58B0F2868A4EE00BD4FC6 /* AddressBookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF95B3B2848686D0012C837 /* AddressBookRequest.swift */; };
+		15C58B102868A4EE00BD4FC6 /* VMenuRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201827819C56000B187A /* VMenuRow.swift */; };
+		15C58B112868A4EE00BD4FC6 /* CreatePinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F1E278B33EE00FCF772 /* CreatePinCodeViewModel.swift */; };
+		15C58B122868A4EE00BD4FC6 /* VSliderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FDB27819C56000B187A /* VSliderModel.swift */; };
+		15C58B132868A4EE00BD4FC6 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D574C8277816F200045E79 /* UsernameView.swift */; };
+		15C58B142868A4EE00BD4FC6 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD1682858688700F406EB /* ProfileEditView.swift */; };
+		15C58B152868A4EE00BD4FC6 /* VActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202F27819C56000B187A /* VActionSheet.swift */; };
+		15C58B162868A4EE00BD4FC6 /* VPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FB927819C56000B187A /* VPlainButton.swift */; };
+		15C58B172868A4EE00BD4FC6 /* VSectionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FCB27819C56000B187A /* VSectionListModel.swift */; };
+		15C58B182868A4EE00BD4FC6 /* VRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203827819C56000B187A /* VRadioButton.swift */; };
+		15C58B192868A4EE00BD4FC6 /* BackAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF31BD28464ACE002AF489 /* BackAppBar.swift */; };
+		15C58B1A2868A4EE00BD4FC6 /* RequestSecureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F13278B1F3D00FCF772 /* RequestSecureViewModel.swift */; };
+		15C58B1B2868A4EE00BD4FC6 /* ToastViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45E1284862D100A9AC96 /* ToastViewModifier.swift */; };
+		15C58B1C2868A4EE00BD4FC6 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF83A0286594280081E285 /* Double.swift */; };
+		15C58B1D2868A4EE00BD4FC6 /* WindowOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205A27819C56000B187A /* WindowOverlayView.swift */; };
+		15C58B1E2868A4EE00BD4FC6 /* VStepperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FD627819C56000B187A /* VStepperButton.swift */; };
+		15C58B1F2868A4EE00BD4FC6 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC21F12781F7D9000B187A /* Keyboard.swift */; };
+		15C58B202868A4EE00BD4FC6 /* VBaseViewNavigationBarCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F7E27819C55000B187A /* VBaseViewNavigationBarCenter.swift */; };
+		15C58B212868A4EE00BD4FC6 /* View+SnappableIDModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA492285B192800EE5BE3 /* View+SnappableIDModifier.swift */; };
+		15C58B222868A4EE00BD4FC6 /* UITableViewCustomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F552845F1CB0026B31E /* UITableViewCustomizer.swift */; };
+		15C58B232868A4EE00BD4FC6 /* VMenuPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200227819C56000B187A /* VMenuPicker.swift */; };
+		15C58B242868A4EE00BD4FC6 /* EmptyWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */; };
+		15C58B252868A4EE00BD4FC6 /* VToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203427819C56000B187A /* VToggle.swift */; };
+		15C58B262868A4EE00BD4FC6 /* VWebLinkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9D27819C56000B187A /* VWebLinkState.swift */; };
+		15C58B272868A4EE00BD4FC6 /* VCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203A27819C56000B187A /* VCheckBox.swift */; };
+		15C58B282868A4EE00BD4FC6 /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD900632847175100B65CE6 /* AddAddressView.swift */; };
+		15C58B292868A4EE00BD4FC6 /* AddCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */; };
+		15C58B2A2868A4EE00BD4FC6 /* VNavigationLinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FB727819C56000B187A /* VNavigationLinkType.swift */; };
+		15C58B2B2868A4EE00BD4FC6 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21B1282644B100E1BACD /* WalletViewModel.swift */; };
+		15C58B2C2868A4EE00BD4FC6 /* VLazyScrollViewHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8227819C55000B187A /* VLazyScrollViewHorizontal.swift */; };
+		15C58B2D2868A4EE00BD4FC6 /* VPageIndicatorInfinite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE527819C56000B187A /* VPageIndicatorInfinite.swift */; };
+		15C58B2E2868A4EE00BD4FC6 /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
+		15C58B2F2868A4EE00BD4FC6 /* VHalfModalNavigationViewCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202027819C56000B187A /* VHalfModalNavigationViewCloseButton.swift */; };
+		15C58B302868A4EE00BD4FC6 /* VPlainButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FBB27819C56000B187A /* VPlainButtonState.swift */; };
+		15C58B312868A4EE00BD4FC6 /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4827814AD1000B187A /* TextFieldStyle.swift */; };
+		15C58B322868A4EE00BD4FC6 /* ManualBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282E27843D4900382226 /* ManualBackupView.swift */; };
+		15C58B332868A4EE00BD4FC6 /* StateColors_EPLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206927819C56000B187A /* StateColors_EPLD.swift */; };
+		15C58B342868A4EE00BD4FC6 /* TermsAndPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */; };
+		15C58B352868A4EE00BD4FC6 /* VToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9127819C56000B187A /* VToastModel.swift */; };
+		15C58B362868A4EE00BD4FC6 /* VSectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FCE27819C56000B187A /* VSectionList.swift */; };
+		15C58B372868A4EE00BD4FC6 /* FlowNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84A8281CDE7500415896 /* FlowNetwork.swift */; };
+		15C58B382868A4EE00BD4FC6 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD16E28587A7700F406EB /* ProfileEditViewModel.swift */; };
+		15C58B392868A4EE00BD4FC6 /* VBaseButtonViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA127819C56000B187A /* VBaseButtonViewRepresentable.swift */; };
+		15C58B3A2868A4EE00BD4FC6 /* RecoveryPhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */; };
+		15C58B3B2868A4EE00BD4FC6 /* Lilico_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9DF1274FD1FD00F70CD9 /* Lilico_App.swift */; };
+		15C58B3C2868A4EE00BD4FC6 /* NotificationDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A41B6A82861D06F00999451 /* NotificationDefine.swift */; };
+		15C58B3D2868A4EE00BD4FC6 /* VChevronButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA927819C56000B187A /* VChevronButtonState.swift */; };
+		15C58B3E2868A4EE00BD4FC6 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C440227520752006D1E8D /* View.swift */; };
+		15C58B3F2868A4EE00BD4FC6 /* SnapAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA48E285B192800EE5BE3 /* SnapAlignment.swift */; };
+		15C58B402868A4EE00BD4FC6 /* CGPoint+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA486285B192800EE5BE3 /* CGPoint+Distance.swift */; };
+		15C58B412868A4EE00BD4FC6 /* VPageIndicatorAuto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE727819C56000B187A /* VPageIndicatorAuto.swift */; };
+		15C58B422868A4EE00BD4FC6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22D1277DBE0000B5EE03 /* UserManager.swift */; };
+		15C58B432868A4EE00BD4FC6 /* ProfileEditNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17528587FF800F406EB /* ProfileEditNameViewModel.swift */; };
+		15C58B442868A4EE00BD4FC6 /* VSpinnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FED27819C56000B187A /* VSpinnerType.swift */; };
+		15C58B452868A4EE00BD4FC6 /* VBaseViewNavigationBarLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F7D27819C55000B187A /* VBaseViewNavigationBarLeading.swift */; };
+		15C58B462868A4EE00BD4FC6 /* VBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F7B27819C55000B187A /* VBaseView.swift */; };
+		15C58B472868A4EE00BD4FC6 /* ManualBackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9283127843DAD00382226 /* ManualBackupViewModel.swift */; };
+		15C58B482868A4EE00BD4FC6 /* VLazyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8527819C55000B187A /* VLazyScrollView.swift */; };
+		15C58B492868A4EE00BD4FC6 /* VTabNavigationViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200A27819C56000B187A /* VTabNavigationViewPage.swift */; };
+		15C58B4A2868A4EE00BD4FC6 /* SnapIDModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA48A285B192800EE5BE3 /* SnapIDModifier.swift */; };
+		15C58B4B2868A4EE00BD4FC6 /* VBaseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FD227819C56000B187A /* VBaseList.swift */; };
+		15C58B4C2868A4EE00BD4FC6 /* DerivedButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205B27819C56000B187A /* DerivedButtonType.swift */; };
+		15C58B4D2868A4EE00BD4FC6 /* VModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202A27819C56000B187A /* VModal.swift */; };
+		15C58B4E2868A4EE00BD4FC6 /* UIKitTextFieldRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204627819C56000B187A /* UIKitTextFieldRepresentable.swift */; };
+		15C58B4F2868A4EE00BD4FC6 /* VSquareButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FAB27819C56000B187A /* VSquareButtonModel.swift */; };
+		15C58B502868A4EE00BD4FC6 /* MMCQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC482CF284A3D75000A7E1B /* MMCQ.swift */; };
+		15C58B512868A4EE00BD4FC6 /* FocusableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204B27819C56000B187A /* FocusableTextField.swift */; };
+		15C58B522868A4EE00BD4FC6 /* VTextFieldActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204227819C56000B187A /* VTextFieldActions.swift */; };
+		15C58B532868A4EE00BD4FC6 /* ColorBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A55FD27536CD9004BCACC /* ColorBook.swift */; };
+		15C58B542868A4EE00BD4FC6 /* VSpinnerModelDashed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FEF27819C56000B187A /* VSpinnerModelDashed.swift */; };
+		15C58B552868A4EE00BD4FC6 /* AddAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD90067284717FC00B65CE6 /* AddAddressViewModel.swift */; };
+		15C58B562868A4EE00BD4FC6 /* VPrimaryButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FBE27819C56000B187A /* VPrimaryButtonState.swift */; };
+		15C58B572868A4EE00BD4FC6 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */; };
+		15C58B582868A4EE00BD4FC6 /* NFTShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED21F40284E4C0A00320AD0 /* NFTShareView.swift */; };
+		15C58B592868A4EE00BD4FC6 /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6312786B1BB00847BB5 /* CheckboxStyle.swift */; };
+		15C58B5A2868A4EE00BD4FC6 /* IndexedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5D2845F1CB0026B31E /* IndexedScrollView.swift */; };
+		15C58B5B2868A4EE00BD4FC6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C44002751CFA4006D1E8D /* Color.swift */; };
+		15C58B5C2868A4EE00BD4FC6 /* VPageIndicatorFinite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE427819C56000B187A /* VPageIndicatorFinite.swift */; };
+		15C58B5D2868A4EE00BD4FC6 /* VNavigationViewBackButtonHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FB327819C56000B187A /* VNavigationViewBackButtonHidden.swift */; };
+		15C58B5E2868A4EE00BD4FC6 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21D42828E52D00E1BACD /* WalletService.swift */; };
+		15C58B5F2868A4EE00BD4FC6 /* VTextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204127819C56000B187A /* VTextFieldModel.swift */; };
+		15C58B602868A4EE00BD4FC6 /* VProgressBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FF627819C56000B187A /* VProgressBarModel.swift */; };
+		15C58B612868A4EE00BD4FC6 /* View+IndexBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F592845F1CB0026B31E /* View+IndexBarBackground.swift */; };
+		15C58B622868A4EE00BD4FC6 /* VMenuPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200327819C56000B187A /* VMenuPickerRow.swift */; };
+		15C58B632868A4EE00BD4FC6 /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22EA277F0B0C00B5EE03 /* Shimmer.swift */; };
+		15C58B642868A4EE00BD4FC6 /* NFTTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046772793243400D1747B /* NFTTabViewModel.swift */; };
+		15C58B652868A4EE00BD4FC6 /* EnterPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F0B278B13EB00FCF772 /* EnterPasswordViewModel.swift */; };
+		15C58B662868A4EE00BD4FC6 /* VTabNavigationViewAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200727819C56000B187A /* VTabNavigationViewAppearance.swift */; };
+		15C58B672868A4EE00BD4FC6 /* RequestSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC5D2786EBA100EAA7D5 /* RequestSecureView.swift */; };
+		15C58B682868A4EE00BD4FC6 /* VNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200E27819C56000B187A /* VNavigationViewModel.swift */; };
+		15C58B692868A4EE00BD4FC6 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE5292836288400C97AE2 /* Font.swift */; };
+		15C58B6A2868A4EE00BD4FC6 /* SnapMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA48F285B192800EE5BE3 /* SnapMode.swift */; };
+		15C58B6B2868A4EE00BD4FC6 /* VBaseTextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204827819C56000B187A /* VBaseTextFieldState.swift */; };
+		15C58B6C2868A4EE00BD4FC6 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E51B4FD2854BEB600EDE4FE /* ImageSaver.swift */; };
+		15C58B6D2868A4EE00BD4FC6 /* ConfirmPinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F1B278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift */; };
+		15C58B6E2868A4EE00BD4FC6 /* VWheelPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FFB27819C56000B187A /* VWheelPickerModel.swift */; };
+		15C58B6F2868A4EE00BD4FC6 /* VBaseButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA327819C56000B187A /* VBaseButtonState.swift */; };
+		15C58B702868A4EE00BD4FC6 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282B2783395F00382226 /* HUDManager.swift */; };
+		15C58B712868A4EE00BD4FC6 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F794A2831FCB700ED027C /* ImageName.swift */; };
+		15C58B722868A4EE00BD4FC6 /* BackupPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F62E2786AC9E00847BB5 /* BackupPasswordViewModel.swift */; };
+		15C58B732868A4EE00BD4FC6 /* ScrollAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5E2845F1CB0026B31E /* ScrollAccessory.swift */; };
+		15C58B742868A4EE00BD4FC6 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D92828278338DB00382226 /* UIApplication.swift */; };
+		15C58B752868A4EE00BD4FC6 /* VChevronButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA827819C56000B187A /* VChevronButtonModel.swift */; };
+		15C58B762868A4EE00BD4FC6 /* VSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8B27819C56000B187A /* VSheet.swift */; };
+		15C58B772868A4EE00BD4FC6 /* Introspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45DE284862D100A9AC96 /* Introspection.swift */; };
+		15C58B782868A4EE00BD4FC6 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED8D2836424400F06AD3 /* UINavigationController.swift */; };
+		15C58B792868A4EE00BD4FC6 /* VLazyScrollViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8427819C55000B187A /* VLazyScrollViewType.swift */; };
+		15C58B7A2868A4EE00BD4FC6 /* AddressBookInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3F283C865F0041100E /* AddressBookInfoModel.swift */; };
+		15C58B7B2868A4EE00BD4FC6 /* TabBarPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F402840A1380026B31E /* TabBarPageModel.swift */; };
+		15C58B7C2868A4EE00BD4FC6 /* LocalUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE08415284EF667003BEEF0 /* LocalUserDefaults.swift */; };
+		15C58B7D2868A4EE00BD4FC6 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F772278894E00094B196 /* String.swift */; };
+		15C58B7E2868A4EE00BD4FC6 /* VBaseListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FD027819C56000B187A /* VBaseListModel.swift */; };
+		15C58B7F2868A4EE00BD4FC6 /* BackupPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F62B2786ABE400847BB5 /* BackupPasswordView.swift */; };
+		15C58B802868A4EE00BD4FC6 /* UINavigationBar.NavigationBarHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204F27819C56000B187A /* UINavigationBar.NavigationBarHeight.swift */; };
+		15C58B812868A4EE00BD4FC6 /* _VSideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201C27819C56000B187A /* _VSideBar.swift */; };
+		15C58B822868A4EE00BD4FC6 /* NFTCollectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */; };
+		15C58B832868A4EE00BD4FC6 /* VLazyScrollViewVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8727819C56000B187A /* VLazyScrollViewVertical.swift */; };
+		15C58B842868A4EE00BD4FC6 /* VPageIndicatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE927819C56000B187A /* VPageIndicatorModel.swift */; };
+		15C58B852868A4EE00BD4FC6 /* PinCodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */; };
+		15C58B862868A4EE00BD4FC6 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45DC284862D100A9AC96 /* ToastView.swift */; };
+		15C58B872868A4EE00BD4FC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B88852765F33400780E93 /* AppDelegate.swift */; };
+		15C58B882868A4EE00BD4FC6 /* VMenuSubMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201527819C56000B187A /* VMenuSubMenu.swift */; };
+		15C58B892868A4EE00BD4FC6 /* FirebaseStorageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A204C68286070A600D0D3A4 /* FirebaseStorageUtils.swift */; };
+		15C58B8A2868A4EE00BD4FC6 /* DashLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED21F43284E5A6700320AD0 /* DashLine.swift */; };
+		15C58B8B2868A4EE00BD4FC6 /* VMenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201427819C56000B187A /* VMenuState.swift */; };
+		15C58B8C2868A4EE00BD4FC6 /* VRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FDF27819C56000B187A /* VRangeSlider.swift */; };
+		15C58B8D2868A4EE00BD4FC6 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D5427816605000B187A /* CacheManager.swift */; };
+		15C58B8E2868A4EE00BD4FC6 /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */; };
+		15C58B8F2868A4EE00BD4FC6 /* VLazyScrollViewModelVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8827819C56000B187A /* VLazyScrollViewModelVertical.swift */; };
+		15C58B902868A4EE00BD4FC6 /* VSheetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8A27819C56000B187A /* VSheetModel.swift */; };
+		15C58B912868A4EE00BD4FC6 /* VProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FF527819C56000B187A /* VProgressBar.swift */; };
+		15C58B922868A4EE00BD4FC6 /* VBaseHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9427819C56000B187A /* VBaseHeaderFooterView.swift */; };
+		15C58B932868A4EE00BD4FC6 /* VSegmentedPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FFD27819C56000B187A /* VSegmentedPickerModel.swift */; };
+		15C58B942868A4EE00BD4FC6 /* StateColors_EFD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206E27819C56000B187A /* StateColors_EFD.swift */; };
+		15C58B952868A4EE00BD4FC6 /* VAccordionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FC727819C56000B187A /* VAccordionModel.swift */; };
+		15C58B962868A4EE00BD4FC6 /* SnapAlignmentEnvironmentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA484285B192800EE5BE3 /* SnapAlignmentEnvironmentKey.swift */; };
+		15C58B972868A4EE00BD4FC6 /* CoinRateCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF8394286462400081E285 /* CoinRateCache.swift */; };
+		15C58B982868A4EE00BD4FC6 /* FlowAddressRegistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832D58286816ED0066046D /* FlowAddressRegistor.swift */; };
+		15C58B992868A4EE00BD4FC6 /* LayoutGroup_LT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205E27819C56000B187A /* LayoutGroup_LT.swift */; };
+		15C58B9A2868A4EE00BD4FC6 /* LilicoAPI+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17828588B3F00F406EB /* LilicoAPI+Profile.swift */; };
+		15C58B9B2868A4EE00BD4FC6 /* VBaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204927819C56000B187A /* VBaseTextField.swift */; };
+		15C58B9C2868A4EE00BD4FC6 /* VSliderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FDC27819C56000B187A /* VSliderState.swift */; };
+		15C58B9D2868A4EE00BD4FC6 /* VMenuButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201727819C56000B187A /* VMenuButtonType.swift */; };
+		15C58B9E2868A4EE00BD4FC6 /* VActionSheetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202E27819C56000B187A /* VActionSheetRow.swift */; };
+		15C58B9F2868A4EE00BD4FC6 /* VSecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9927819C56000B187A /* VSecondaryButton.swift */; };
+		15C58BA02868A4EE00BD4FC6 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D5727816660000B187A /* Network.swift */; };
+		15C58BA12868A4EE00BD4FC6 /* VTabNavigationPageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200927819C56000B187A /* VTabNavigationPageItem.swift */; };
+		15C58BA22868A4EE00BD4FC6 /* VSquareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FAD27819C56000B187A /* VSquareButton.swift */; };
+		15C58BA32868A4EE00BD4FC6 /* VDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202427819C56000B187A /* VDialog.swift */; };
+		15C58BA42868A4EE00BD4FC6 /* ProfileEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD16B285874DC00F406EB /* ProfileEditCoordinator.swift */; };
+		15C58BA52868A4EE00BD4FC6 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3D2840A1380026B31E /* TabBar.swift */; };
+		15C58BA62868A4EE00BD4FC6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE084222851D481003BEEF0 /* Logger.swift */; };
+		15C58BA72868A4EE00BD4FC6 /* VStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FD827819C56000B187A /* VStepper.swift */; };
+		15C58BA82868A4EE00BD4FC6 /* NFTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E4942834DC7100DFEF59 /* NFTModel.swift */; };
+		15C58BA92868A4EE00BD4FC6 /* VHalfModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201F27819C56000B187A /* VHalfModal.swift */; };
+		15C58BAA2868A4EE00BD4FC6 /* SecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21D9282A586500E1BACD /* SecureView.swift */; };
+		15C58BAB2868A4EE00BD4FC6 /* NFTCollectionStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB17C8828629DE200CA4DAE /* NFTCollectionStateManager.swift */; };
+		15C58BAC2868A4EE00BD4FC6 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22CE277DBDF800B5EE03 /* WalletManager.swift */; };
+		15C58BAD2868A4EE00BD4FC6 /* ScrollView+SnappableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA491285B192800EE5BE3 /* ScrollView+SnappableModifier.swift */; };
+		15C58BAE2868A4EE00BD4FC6 /* VNavigationViewNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200F27819C56000B187A /* VNavigationViewNavigationBar.swift */; };
+		15C58BAF2868A4EE00BD4FC6 /* IndexBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F512845F1CB0026B31E /* IndexBarBackground.swift */; };
+		15C58BB02868A4EE00BD4FC6 /* PinStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC632787063100EAA7D5 /* PinStackView.swift */; };
+		15C58BB12868A4EE00BD4FC6 /* VWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FF927819C56000B187A /* VWheelPicker.swift */; };
+		15C58BB22868A4EE00BD4FC6 /* VAccordionLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FC927819C56000B187A /* VAccordionLayoutType.swift */; };
+		15C58BB32868A4EE00BD4FC6 /* VToggleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203327819C56000B187A /* VToggleModel.swift */; };
+		15C58BB42868A4EE00BD4FC6 /* Indexable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F582845F1CB0026B31E /* Indexable.swift */; };
+		15C58BB52868A4EE00BD4FC6 /* LilicoAPI+Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF839A28647B830081E285 /* LilicoAPI+Crypto.swift */; };
+		15C58BB62868A4EE00BD4FC6 /* VDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202327819C56000B187A /* VDialogButton.swift */; };
+		15C58BB72868A4EE00BD4FC6 /* StateOpacities_P.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC207227819C56000B187A /* StateOpacities_P.swift */; };
+		15C58BB82868A4EE00BD4FC6 /* StateColors_ED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206827819C56000B187A /* StateColors_ED.swift */; };
+		15C58BB92868A4EE00BD4FC6 /* StateColors_EFSEPD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206627819C56000B187A /* StateColors_EFSEPD.swift */; };
+		15C58BBA2868A4EE00BD4FC6 /* NFTTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570466B27930EB200D1747B /* NFTTabScreen.swift */; };
+		15C58BBB2868A4EE00BD4FC6 /* VModalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202B27819C56000B187A /* VModalModel.swift */; };
+		15C58BBC2868A4EE00BD4FC6 /* LilicoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57750277C224300045E79 /* LilicoAPI.swift */; };
+		15C58BBD2868A4EE00BD4FC6 /* VRadioButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203727819C56000B187A /* VRadioButtonModel.swift */; };
+		15C58BBE2868A4EE00BD4FC6 /* EmptyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1327770D76000B7863 /* EmptyWalletView.swift */; };
+		15C58BBF2868A4EE00BD4FC6 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5A2845F1CB0026B31E /* Index.swift */; };
+		15C58BC02868A4EE00BD4FC6 /* LilicoAPI+NFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7DD2602858E74600052B21 /* LilicoAPI+NFT.swift */; };
+		15C58BC12868A4EE00BD4FC6 /* VNavigationViewAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201127819C56000B187A /* VNavigationViewAppearance.swift */; };
+		15C58BC22868A4EE00BD4FC6 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4527814A68000B187A /* ButtonStyle.swift */; };
+		15C58BC32868A4EE00BD4FC6 /* ToastPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45E0284862D100A9AC96 /* ToastPresentationAnimator.swift */; };
+		15C58BC42868A4EE00BD4FC6 /* VTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203F27819C56000B187A /* VTextField.swift */; };
+		15C58BC52868A4EE00BD4FC6 /* VWebLinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9C27819C56000B187A /* VWebLinkType.swift */; };
+		15C58BC62868A4EE00BD4FC6 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A204C632860236600D0D3A4 /* ViewExtensions.swift */; };
+		15C58BC72868A4EE00BD4FC6 /* StateColors_OOD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC207127819C56000B187A /* StateColors_OOD.swift */; };
+		15C58BC82868A4EE00BD4FC6 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D3D27809F83000B187A /* BackupManager.swift */; };
+		15C58BC92868A4EE00BD4FC6 /* ToastViewHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45E2284862D100A9AC96 /* ToastViewHostingController.swift */; };
+		15C58BCA2868A4EE00BD4FC6 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F985B275CDED0001C5855 /* AppCoordinator.swift */; };
+		15C58BCB2868A4EE00BD4FC6 /* StateOpacities_D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206D27819C56000B187A /* StateOpacities_D.swift */; };
+		15C58BCC2868A4EE00BD4FC6 /* WalletSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A569327539A2C004BCACC /* WalletSetupViewModel.swift */; };
+		15C58BCD2868A4EE00BD4FC6 /* SecureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F0E278B1DF400FCF772 /* SecureCoordinator.swift */; };
+		15C58BCE2868A4EE00BD4FC6 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */; };
+		15C58BCF2868A4EE00BD4FC6 /* View.ConditionalViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205627819C56000B187A /* View.ConditionalViewModifiers.swift */; };
+		15C58BD02868A4EE00BD4FC6 /* LLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D574CB27781D2000045E79 /* LLTextField.swift */; };
+		15C58BD12868A4EE00BD4FC6 /* VSegmentedPickerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FFF27819C56000B187A /* VSegmentedPickerState.swift */; };
+		15C58BD22868A4EE00BD4FC6 /* _VToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8F27819C56000B187A /* _VToast.swift */; };
+		15C58BD32868A4EE00BD4FC6 /* UIVIew.SafeAreas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205027819C56000B187A /* UIVIew.SafeAreas.swift */; };
+		15C58BD42868A4EE00BD4FC6 /* ImageBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A55FE27536CD9004BCACC /* ImageBook.swift */; };
+		15C58BD52868A4EE00BD4FC6 /* VWheelPickerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FFA27819C56000B187A /* VWheelPickerState.swift */; };
+		15C58BD62868A4EE00BD4FC6 /* VSpinnerContinous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FF227819C56000B187A /* VSpinnerContinous.swift */; };
+		15C58BD72868A4EE00BD4FC6 /* ColorsFromImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2D7752850DDBE00B9A572 /* ColorsFromImage.swift */; };
+		15C58BD82868A4EE00BD4FC6 /* NFTCollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC3117E284503C600F711F5 /* NFTCollectionListView.swift */; };
+		15C58BD92868A4EE00BD4FC6 /* DecelerationRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA490285B192800EE5BE3 /* DecelerationRate.swift */; };
+		15C58BDA2868A4EE00BD4FC6 /* NFTAddCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDAA22285F5DC600EB8AF9 /* NFTAddCollectionView.swift */; };
+		15C58BDB2868A4EE00BD4FC6 /* NFTEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DD9F7282E2FBB0016A931 /* NFTEmptyView.swift */; };
+		15C58BDC2868A4EE00BD4FC6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A54312753681F004BCACC /* ViewModel.swift */; };
+		15C58BDD2868A4EE00BD4FC6 /* IndexedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F5B2845F1CB0026B31E /* IndexedList.swift */; };
+		15C58BDE2868A4EE00BD4FC6 /* VText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F7827819C55000B187A /* VText.swift */; };
+		15C58BDF2868A4EE00BD4FC6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F532845F1CB0026B31E /* UIView+Extensions.swift */; };
+		15C58BE02868A4EE00BD4FC6 /* NavigateBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5774D277C119400045E79 /* NavigateBackButton.swift */; };
+		15C58BE12868A4EE00BD4FC6 /* MoyaAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D5B27816F46000B187A /* MoyaAsync.swift */; };
+		15C58BE22868A4EE00BD4FC6 /* VBaseListLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FD127819C56000B187A /* VBaseListLayoutType.swift */; };
+		15C58BE32868A4EE00BD4FC6 /* SnapAlignment+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA487285B192800EE5BE3 /* SnapAlignment+Convert.swift */; };
+		15C58BE42868A4EE00BD4FC6 /* VBaseListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FD327819C56000B187A /* VBaseListElement.swift */; };
+		15C58BE52868A4EE00BD4FC6 /* NFTListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467A2793D60000D1747B /* NFTListResponse.swift */; };
+		15C58BE62868A4EE00BD4FC6 /* NFTListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35EADC2859C20B005A85B8 /* NFTListCache.swift */; };
+		15C58BE72868A4EE00BD4FC6 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3E2840A1380026B31E /* TabBarItemView.swift */; };
+		15C58BE82868A4EE00BD4FC6 /* VTextFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204027819C56000B187A /* VTextFieldType.swift */; };
+		15C58BE92868A4EE00BD4FC6 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE0841F28505887003BEEF0 /* Error.swift */; };
+		15C58BEA2868A4EE00BD4FC6 /* AddressBookCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */; };
+		15C58BEB2868A4EE00BD4FC6 /* VRangeSliderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE127819C56000B187A /* VRangeSliderState.swift */; };
+		15C58BEC2868A4EE00BD4FC6 /* UsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57749277C0FFB00045E79 /* UsernameViewModel.swift */; };
+		15C58BED2868A4EE00BD4FC6 /* StateColors_EFSED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206F27819C56000B187A /* StateColors_EFSED.swift */; };
+		15C58BEE2868A4EE00BD4FC6 /* VRadioButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203627819C56000B187A /* VRadioButtonState.swift */; };
+		15C58BEF2868A4EE00BD4FC6 /* ScrollAccessory+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F542845F1CB0026B31E /* ScrollAccessory+Extensions.swift */; };
+		15C58BF02868A4EE00BD4FC6 /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
+		15C58BF12868A4EE00BD4FC6 /* VMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201627819C56000B187A /* VMenu.swift */; };
+		15C58BF22868A4EE00BD4FC6 /* CreatePinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */; };
+		15C58BF32868A4EE00BD4FC6 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */; };
+		15C58BF42868A4EE00BD4FC6 /* VNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201027819C56000B187A /* VNavigationView.swift */; };
+		15C58BF52868A4EE00BD4FC6 /* ToastViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45DB284862D100A9AC96 /* ToastViewStyle.swift */; };
+		15C58BF62868A4EE00BD4FC6 /* OffsetScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECB995E285B738C00F59852 /* OffsetScrollView.swift */; };
+		15C58BF72868A4EE00BD4FC6 /* TYNKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC21EE2781F388000B187A /* TYNKView.swift */; };
+		15C58BF82868A4EE00BD4FC6 /* LilicoAPI+AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */; };
+		15C58BF92868A4EE00BD4FC6 /* VPageIndicatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE827819C56000B187A /* VPageIndicatorType.swift */; };
+		15C58BFA2868A4EE00BD4FC6 /* VBaseButtonGestureState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA227819C56000B187A /* VBaseButtonGestureState.swift */; };
+		15C58BFB2868A4EE00BD4FC6 /* DraggingDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA488285B192800EE5BE3 /* DraggingDetector.swift */; };
+		15C58BFC2868A4EE00BD4FC6 /* DeveloperModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE08419284EFF6D003BEEF0 /* DeveloperModeView.swift */; };
+		15C58BFD2868A4EE00BD4FC6 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22E7277EDC4700B5EE03 /* WalletView.swift */; };
+		15C58BFE2868A4EE00BD4FC6 /* VSideBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201A27819C56000B187A /* VSideBarModel.swift */; };
+		15C58BFF2868A4EE00BD4FC6 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
+		15C58C002868A4EE00BD4FC6 /* VDialogButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202527819C56000B187A /* VDialogButtons.swift */; };
+		15C58C012868A4EE00BD4FC6 /* RestoreWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22DE277DF37D00B5EE03 /* RestoreWalletView.swift */; };
+		15C58C022868A4EE00BD4FC6 /* NFTCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E37571828376B0D005D924B /* NFTCoordinator.swift */; };
+		15C58C032868A4EE00BD4FC6 /* AddressBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */; };
+		15C58C042868A4EE00BD4FC6 /* View.CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205727819C56000B187A /* View.CornerRadius.swift */; };
+		15C58C052868A4EE00BD4FC6 /* Published.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE084282851E7B3003BEEF0 /* Published.swift */; };
+		15C58C062868A4EE00BD4FC6 /* RecoveryPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87C27829E68006A8394 /* RecoveryPhraseView.swift */; };
+		15C58C072868A4EE00BD4FC6 /* ColorThief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC482CE284A3D75000A7E1B /* ColorThief.swift */; };
+		15C58C082868A4EE00BD4FC6 /* _VDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202827819C56000B187A /* _VDialog.swift */; };
+		15C58C092868A4EE00BD4FC6 /* VListLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FC227819C56000B187A /* VListLayoutType.swift */; };
+		15C58C0A2868A4EE00BD4FC6 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45DD284862D100A9AC96 /* EnvironmentValues.swift */; };
+		15C58C0B2868A4EE00BD4FC6 /* BackgroundModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C440B27525D04006D1E8D /* BackgroundModifer.swift */; };
+		15C58C0C2868A4EE00BD4FC6 /* UserResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE8872782DAD7006A8394 /* UserResponses.swift */; };
+		15C58C0D2868A4EE00BD4FC6 /* VBaseNaviationViewNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC200D27819C56000B187A /* VBaseNaviationViewNavigationBar.swift */; };
+		15C58C0E2868A4EE00BD4FC6 /* SnappableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA48B285B192800EE5BE3 /* SnappableModifier.swift */; };
+		15C58C0F2868A4EE00BD4FC6 /* PageIndictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F43D112753B4F6004F6F49 /* PageIndictor.swift */; };
+		15C58C102868A4EE00BD4FC6 /* IndexBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F562845F1CB0026B31E /* IndexBar.swift */; };
+		15C58C112868A4EE00BD4FC6 /* VHalfModalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202127819C56000B187A /* VHalfModalModel.swift */; };
+		15C58C122868A4EE00BD4FC6 /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* FirebaseConfig.swift */; };
+		15C58C132868A4EE00BD4FC6 /* VSideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201B27819C56000B187A /* VSideBar.swift */; };
+		15C58C142868A4EE00BD4FC6 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
+		15C58C152868A4EE00BD4FC6 /* StateOpacities_PD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206B27819C56000B187A /* StateOpacities_PD.swift */; };
+		15C58C162868A4EE00BD4FC6 /* DefaultToastViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45DF284862D100A9AC96 /* DefaultToastViewStyle.swift */; };
+		15C58C172868A4EE00BD4FC6 /* CoordinateSpaceNameEnvironmentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA483285B192800EE5BE3 /* CoordinateSpaceNameEnvironmentKey.swift */; };
+		15C58C182868A4EE00BD4FC6 /* UIKitIntrospectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA47A285B192800EE5BE3 /* UIKitIntrospectionView.swift */; };
+		15C58C192868A4EE00BD4FC6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A560127536E4E004BCACC /* Endpoint.swift */; };
+		15C58C1A2868A4EE00BD4FC6 /* ChooseAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22E1277EACF200B5EE03 /* ChooseAccountView.swift */; };
+		15C58C1B2868A4EE00BD4FC6 /* StateColors_EPD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206C27819C56000B187A /* StateColors_EPD.swift */; };
+		15C58C1C2868A4EE00BD4FC6 /* InputMnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F76F278892680094B196 /* InputMnemonicViewModel.swift */; };
+		15C58C1D2868A4EE00BD4FC6 /* View.ReadSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC205527819C56000B187A /* View.ReadSize.swift */; };
+		15C58C1E2868A4EE00BD4FC6 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED21F36284E2E6E00320AD0 /* ShareSheet.swift */; };
+		15C58C1F2868A4EE00BD4FC6 /* VToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8E27819C56000B187A /* VToast.swift */; };
+		15C58C202868A4EE00BD4FC6 /* SliderHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206227819C56000B187A /* SliderHelpers.swift */; };
+		15C58C212868A4EE00BD4FC6 /* SnapID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA480285B192800EE5BE3 /* SnapID.swift */; };
+		15C58C222868A4EE00BD4FC6 /* VBaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA027819C56000B187A /* VBaseButton.swift */; };
+		15C58C232868A4EE00BD4FC6 /* VTextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204327819C56000B187A /* VTextFieldState.swift */; };
+		15C58C242868A4EE00BD4FC6 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
+		15C58C252868A4EE00BD4FC6 /* LilicoAPI+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */; };
+		15C58C262868A4EE00BD4FC6 /* EnterPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22E4277EAFF300B5EE03 /* EnterPasswordView.swift */; };
+		15C58C272868A4EE00BD4FC6 /* LayoutGroup_LTTB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206027819C56000B187A /* LayoutGroup_LTTB.swift */; };
+		15C58C282868A4EE00BD4FC6 /* EditAvatarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA4B7285B1FEB00EE5BE3 /* EditAvatarViewModel.swift */; };
+		15C58C292868A4EE00BD4FC6 /* NFTBlurImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA7E64284371CA0039A210 /* NFTBlurImageView.swift */; };
+		15C58C2A2868A4EE00BD4FC6 /* VSectionListLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FCD27819C56000B187A /* VSectionListLayoutType.swift */; };
+		15C58C2B2868A4EE00BD4FC6 /* VCloseButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FAF27819C56000B187A /* VCloseButtonModel.swift */; };
+		15C58C2C2868A4EE00BD4FC6 /* VRangeSliderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE027819C56000B187A /* VRangeSliderModel.swift */; };
+		15C58C2D2868A4EE00BD4FC6 /* VBaseButtonTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA427819C56000B187A /* VBaseButtonTapGestureRecognizer.swift */; };
+		15C58C2E2868A4EE00BD4FC6 /* VSecondaryButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9A27819C56000B187A /* VSecondaryButtonState.swift */; };
+		15C58C2F2868A4EE00BD4FC6 /* VCheckBoxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203B27819C56000B187A /* VCheckBoxState.swift */; };
+		15C58C302868A4EE00BD4FC6 /* VPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE627819C56000B187A /* VPageIndicator.swift */; };
+		15C58C312868A4EE00BD4FC6 /* VPlainButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FBA27819C56000B187A /* VPlainButtonModel.swift */; };
+		15C58C322868A4EE00BD4FC6 /* VTextFieldHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204427819C56000B187A /* VTextFieldHighlight.swift */; };
+		15C58C332868A4EE00BD4FC6 /* VDialogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC202627819C56000B187A /* VDialogModel.swift */; };
+		15C58C342868A4EE00BD4FC6 /* VCheckBoxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC203C27819C56000B187A /* VCheckBoxModel.swift */; };
+		15C58C352868A4EE00BD4FC6 /* EventLoop+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84B0281CF01000415896 /* EventLoop+Future.swift */; };
+		15C58C362868A4EE00BD4FC6 /* VPrimaryButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FBD27819C56000B187A /* VPrimaryButtonModel.swift */; };
+		15C58C372868A4EE00BD4FC6 /* VLazyScrollViewModelHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8127819C55000B187A /* VLazyScrollViewModelHorizontal.swift */; };
+		15C58C382868A4EE00BD4FC6 /* VNavigationLinkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FB427819C56000B187A /* VNavigationLinkState.swift */; };
+		15C58C392868A4EE00BD4FC6 /* BMChineseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF95B432848C8D60012C837 /* BMChineseUtils.swift */; };
+		15C58C3A2868A4EE00BD4FC6 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F492840B2B50026B31E /* TabBarCoordinator.swift */; };
+		15C58C3B2868A4EE00BD4FC6 /* NFTListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC31181284508F200F711F5 /* NFTListView.swift */; };
+		15C58C3D2868A4EE00BD4FC6 /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A922868A4EE00BD4FC6 /* GoogleAPIClientForREST_Drive */; };
+		15C58C3E2868A4EE00BD4FC6 /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A832868A4EE00BD4FC6 /* Flow */; };
+		15C58C3F2868A4EE00BD4FC6 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A902868A4EE00BD4FC6 /* GoogleSignIn */; };
+		15C58C402868A4EE00BD4FC6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A852868A4EE00BD4FC6 /* FirebaseAuth */; };
+		15C58C412868A4EE00BD4FC6 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */; };
+		15C58C422868A4EE00BD4FC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9BFF5C2867631300601339 /* UIKit.framework */; };
+		15C58C432868A4EE00BD4FC6 /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
+		15C58C442868A4EE00BD4FC6 /* SPConfetti in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A992868A4EE00BD4FC6 /* SPConfetti */; };
+		15C58C452868A4EE00BD4FC6 /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AA82868A4EE00BD4FC6 /* GTMSessionFetcherCore */; };
+		15C58C462868A4EE00BD4FC6 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A8B2868A4EE00BD4FC6 /* Moya */; };
+		15C58C472868A4EE00BD4FC6 /* BiometricAuthentication in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A9B2868A4EE00BD4FC6 /* BiometricAuthentication */; };
+		15C58C482868A4EE00BD4FC6 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A812868A4EE00BD4FC6 /* Resolver */; };
+		15C58C492868A4EE00BD4FC6 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A8C2868A4EE00BD4FC6 /* KeychainAccess */; };
+		15C58C4A2868A4EE00BD4FC6 /* Haneke in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A952868A4EE00BD4FC6 /* Haneke */; };
+		15C58C4B2868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A942868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore */; };
+		15C58C4C2868A4EE00BD4FC6 /* CollectionViewPagingLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A9D2868A4EE00BD4FC6 /* CollectionViewPagingLayout */; };
+		15C58C4D2868A4EE00BD4FC6 /* IrregularGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AA32868A4EE00BD4FC6 /* IrregularGradient */; };
+		15C58C4E2868A4EE00BD4FC6 /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AA62868A4EE00BD4FC6 /* Stinsen */; };
+		15C58C4F2868A4EE00BD4FC6 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A872868A4EE00BD4FC6 /* FirebaseCrashlytics */; };
+		15C58C502868A4EE00BD4FC6 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AA12868A4EE00BD4FC6 /* FirebaseRemoteConfig */; };
+		15C58C512868A4EE00BD4FC6 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A892868A4EE00BD4FC6 /* CombineMoya */; };
+		15C58C522868A4EE00BD4FC6 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A882868A4EE00BD4FC6 /* FirebaseDynamicLinks */; };
+		15C58C532868A4EE00BD4FC6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A9F2868A4EE00BD4FC6 /* Kingfisher */; };
+		15C58C542868A4EE00BD4FC6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AA52868A4EE00BD4FC6 /* FirebaseStorage */; };
+		15C58C552868A4EE00BD4FC6 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AAA2868A4EE00BD4FC6 /* SPIndicator */; };
+		15C58C562868A4EE00BD4FC6 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A8E2868A4EE00BD4FC6 /* SkeletonUI */; };
+		15C58C572868A4EE00BD4FC6 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A972868A4EE00BD4FC6 /* Introspect */; };
+		15C58C582868A4EE00BD4FC6 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A7F2868A4EE00BD4FC6 /* SwiftUIX */; };
+		15C58C592868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
+		15C58C5B2868A4EE00BD4FC6 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA72787F7490062E0C6 /* Montserrat-Regular.ttf */; };
+		15C58C5C2868A4EE00BD4FC6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */; };
+		15C58C5D2868A4EE00BD4FC6 /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EA820C5286354E200DF36A8 /* remote_config_defaults.plist */; };
+		15C58C5E2868A4EE00BD4FC6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B1F63B2786B89800847BB5 /* Localizable.strings */; };
+		15C58C5F2868A4EE00BD4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */; };
+		15C58C602868A4EE00BD4FC6 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CAE2787F7610062E0C6 /* Montserrat-SemiBold.ttf */; };
+		15C58C612868A4EE00BD4FC6 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA62787F7490062E0C6 /* Montserrat-Italic.ttf */; };
+		15C58C622868A4EE00BD4FC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154B88832765EBF700780E93 /* GoogleService-Info.plist */; };
+		15C58C632868A4EE00BD4FC6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
+		15C58C642868A4EE00BD4FC6 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DE22FC27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist */; };
+		15C58C652868A4EE00BD4FC6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E9E21DC282A68CB00E1BACD /* Colors.xcassets */; };
+		15C58C662868A4EE00BD4FC6 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
+		15C58C682868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15C58C692868A4EE00BD4FC6 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15C58C702868A5DC00BD4FC6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C6F2868A5DC00BD4FC6 /* FirebaseAuth */; };
+		15C58C722868A5EA00BD4FC6 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C712868A5EA00BD4FC6 /* FirebaseRemoteConfig */; };
+		15C58C742868A5F200BD4FC6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C732868A5F200BD4FC6 /* FirebaseStorage */; };
+		15C58C762868A5FA00BD4FC6 /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C752868A5FA00BD4FC6 /* GTMSessionFetcherCore */; };
+		15C58C782868A61400BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C772868A61400BD4FC6 /* GoogleAPIClientForRESTCore */; };
+		15C58C7A2868A61900BD4FC6 /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C792868A61900BD4FC6 /* GoogleAPIClientForREST_Drive */; };
+		15C58C7C2868A62000BD4FC6 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C7B2868A62000BD4FC6 /* GoogleSignIn */; };
 		15D574CA277816F200045E79 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D574C8277816F200045E79 /* UsernameView.swift */; };
 		15D574CD27781D2000045E79 /* LLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D574CB27781D2000045E79 /* LLTextField.swift */; };
 		15D5774B277C0FFB00045E79 /* UsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57749277C0FFB00045E79 /* UsernameViewModel.swift */; };
@@ -492,29 +897,7 @@
 		6AF95B472848C8D70012C837 /* BMChineseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF95B432848C8D60012C837 /* BMChineseUtils.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		1500783F286830EF00A00109 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 15832B68286767E20066046D;
-			remoteInfo = Lilico;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		15832D4D286767E20066046D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				15832D4E286767E20066046D /* SwiftProtobuf.xcframework in Embed Frameworks */,
-				15832D4F286767E20066046D /* WalletCore.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		158CEFBE277DB3FF004EF2C7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -523,6 +906,18 @@
 			files = (
 				4E174670281AF841002A029C /* SwiftProtobuf.xcframework in Embed Frameworks */,
 				4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15C58C672868A4EE00BD4FC6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				15C58C682868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Embed Frameworks */,
+				15C58C692868A4EE00BD4FC6 /* WalletCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,8 +953,6 @@
 		157046772793243400D1747B /* NFTTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTabViewModel.swift; sourceTree = "<group>"; };
 		1570467A2793D60000D1747B /* NFTListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListResponse.swift; sourceTree = "<group>"; };
 		1570467D2793EBA100D1747B /* GithubEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubEndpoint.swift; sourceTree = "<group>"; };
-		15832D53286767E20066046D /* Lilico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lilico.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		15832D54286767E20066046D /* Lilico-dev copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Lilico-dev copy-Info.plist"; path = "/Users/lmcmz/outblock/Lilico-lite/Lilico-dev copy-Info.plist"; sourceTree = "<absolute>"; };
 		15832D58286816ED0066046D /* FlowAddressRegistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowAddressRegistor.swift; sourceTree = "<group>"; };
 		158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeView.swift; sourceTree = "<group>"; };
 		158C9CA22787F6EA0062E0C6 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
@@ -589,6 +982,7 @@
 		15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndPolicy.swift; sourceTree = "<group>"; };
 		15BCFF1327770D76000B7863 /* EmptyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletView.swift; sourceTree = "<group>"; };
 		15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletViewModel.swift; sourceTree = "<group>"; };
+		15C58C6D2868A4EE00BD4FC6 /* Lilico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lilico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		15D574C8277816F200045E79 /* UsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameView.swift; sourceTree = "<group>"; };
 		15D574CB27781D2000045E79 /* LLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLTextField.swift; sourceTree = "<group>"; };
@@ -963,6 +1357,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15C58C7A2868A61900BD4FC6 /* GoogleAPIClientForREST_Drive in Frameworks */,
+				15C58C782868A61400BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */,
+				15C58C702868A5DC00BD4FC6 /* FirebaseAuth in Frameworks */,
+				15C58C722868A5EA00BD4FC6 /* FirebaseRemoteConfig in Frameworks */,
+				15C58C742868A5F200BD4FC6 /* FirebaseStorage in Frameworks */,
+				15C58C762868A5FA00BD4FC6 /* GTMSessionFetcherCore in Frameworks */,
+				15C58C7C2868A62000BD4FC6 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,38 +1403,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15832D23286767E20066046D /* Frameworks */ = {
+		15C58C3C2868A4EE00BD4FC6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15832D24286767E20066046D /* GoogleAPIClientForREST_Drive in Frameworks */,
-				15832D25286767E20066046D /* Flow in Frameworks */,
-				15832D26286767E20066046D /* GoogleSignIn in Frameworks */,
-				15832D27286767E20066046D /* FirebaseAuth in Frameworks */,
-				15832D28286767E20066046D /* AuthenticationServices.framework in Frameworks */,
-				15832D29286767E20066046D /* WalletCore.xcframework in Frameworks */,
-				15832D2A286767E20066046D /* SPConfetti in Frameworks */,
-				15832D2B286767E20066046D /* GTMSessionFetcherCore in Frameworks */,
-				15832D2C286767E20066046D /* Moya in Frameworks */,
-				15832D2D286767E20066046D /* BiometricAuthentication in Frameworks */,
-				15832D2E286767E20066046D /* Resolver in Frameworks */,
-				15832D2F286767E20066046D /* KeychainAccess in Frameworks */,
-				15832D30286767E20066046D /* Haneke in Frameworks */,
-				15832D31286767E20066046D /* GoogleAPIClientForRESTCore in Frameworks */,
-				15832D32286767E20066046D /* CollectionViewPagingLayout in Frameworks */,
-				15832D33286767E20066046D /* IrregularGradient in Frameworks */,
-				15832D34286767E20066046D /* Stinsen in Frameworks */,
-				15832D35286767E20066046D /* FirebaseCrashlytics in Frameworks */,
-				15832D36286767E20066046D /* FirebaseRemoteConfig in Frameworks */,
-				15832D38286767E20066046D /* CombineMoya in Frameworks */,
-				15832D39286767E20066046D /* FirebaseDynamicLinks in Frameworks */,
-				15832D3A286767E20066046D /* Kingfisher in Frameworks */,
-				15832D3B286767E20066046D /* FirebaseStorage in Frameworks */,
-				1500783228682BEF00A00109 /* SPIndicator in Frameworks */,
-				15832D3C286767E20066046D /* SkeletonUI in Frameworks */,
-				15832D3D286767E20066046D /* Introspect in Frameworks */,
-				15832D3E286767E20066046D /* SwiftUIX in Frameworks */,
-				15832D3F286767E20066046D /* SwiftProtobuf.xcframework in Frameworks */,
+				15C58C3D2868A4EE00BD4FC6 /* GoogleAPIClientForREST_Drive in Frameworks */,
+				15C58C3E2868A4EE00BD4FC6 /* Flow in Frameworks */,
+				15C58C3F2868A4EE00BD4FC6 /* GoogleSignIn in Frameworks */,
+				15C58C402868A4EE00BD4FC6 /* FirebaseAuth in Frameworks */,
+				15C58C412868A4EE00BD4FC6 /* AuthenticationServices.framework in Frameworks */,
+				15C58C422868A4EE00BD4FC6 /* UIKit.framework in Frameworks */,
+				15C58C432868A4EE00BD4FC6 /* WalletCore.xcframework in Frameworks */,
+				15C58C442868A4EE00BD4FC6 /* SPConfetti in Frameworks */,
+				15C58C452868A4EE00BD4FC6 /* GTMSessionFetcherCore in Frameworks */,
+				15C58C462868A4EE00BD4FC6 /* Moya in Frameworks */,
+				15C58C472868A4EE00BD4FC6 /* BiometricAuthentication in Frameworks */,
+				15C58C482868A4EE00BD4FC6 /* Resolver in Frameworks */,
+				15C58C492868A4EE00BD4FC6 /* KeychainAccess in Frameworks */,
+				15C58C4A2868A4EE00BD4FC6 /* Haneke in Frameworks */,
+				15C58C4B2868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */,
+				15C58C4C2868A4EE00BD4FC6 /* CollectionViewPagingLayout in Frameworks */,
+				15C58C4D2868A4EE00BD4FC6 /* IrregularGradient in Frameworks */,
+				15C58C4E2868A4EE00BD4FC6 /* Stinsen in Frameworks */,
+				15C58C4F2868A4EE00BD4FC6 /* FirebaseCrashlytics in Frameworks */,
+				15C58C502868A4EE00BD4FC6 /* FirebaseRemoteConfig in Frameworks */,
+				15C58C512868A4EE00BD4FC6 /* CombineMoya in Frameworks */,
+				15C58C522868A4EE00BD4FC6 /* FirebaseDynamicLinks in Frameworks */,
+				15C58C532868A4EE00BD4FC6 /* Kingfisher in Frameworks */,
+				15C58C542868A4EE00BD4FC6 /* FirebaseStorage in Frameworks */,
+				15C58C552868A4EE00BD4FC6 /* SPIndicator in Frameworks */,
+				15C58C562868A4EE00BD4FC6 /* SkeletonUI in Frameworks */,
+				15C58C572868A4EE00BD4FC6 /* Introspect in Frameworks */,
+				15C58C582868A4EE00BD4FC6 /* SwiftUIX in Frameworks */,
+				15C58C592868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2196,7 +2598,6 @@
 				1500783C286830EF00A00109 /* LilicoTests */,
 				15EC9DEF274FD1FC00F70CD9 /* Products */,
 				15B1A67A276A2D670006B621 /* Frameworks */,
-				15832D54286767E20066046D /* Lilico-dev copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2204,8 +2605,8 @@
 			isa = PBXGroup;
 			children = (
 				154B8928276A1EEB00780E93 /* Lilico-dev.app */,
-				15832D53286767E20066046D /* Lilico.app */,
 				1500783B286830EF00A00109 /* LilicoTests.xctest */,
+				15C58C6D2868A4EE00BD4FC6 /* Lilico.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2702,9 +3103,17 @@
 			buildRules = (
 			);
 			dependencies = (
-				15007840286830EF00A00109 /* PBXTargetDependency */,
 			);
 			name = LilicoTests;
+			packageProductDependencies = (
+				15C58C6F2868A5DC00BD4FC6 /* FirebaseAuth */,
+				15C58C712868A5EA00BD4FC6 /* FirebaseRemoteConfig */,
+				15C58C732868A5F200BD4FC6 /* FirebaseStorage */,
+				15C58C752868A5FA00BD4FC6 /* GTMSessionFetcherCore */,
+				15C58C772868A61400BD4FC6 /* GoogleAPIClientForRESTCore */,
+				15C58C792868A61900BD4FC6 /* GoogleAPIClientForREST_Drive */,
+				15C58C7B2868A62000BD4FC6 /* GoogleSignIn */,
+			);
 			productName = LilicoTests;
 			productReference = 1500783B286830EF00A00109 /* LilicoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2756,15 +3165,16 @@
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
 			productType = "com.apple.product-type.application";
 		};
-		15832B68286767E20066046D /* Lilico */ = {
+		15C58A7E2868A4EE00BD4FC6 /* Lilico */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15832D50286767E20066046D /* Build configuration list for PBXNativeTarget "Lilico" */;
+			buildConfigurationList = 15C58C6A2868A4EE00BD4FC6 /* Build configuration list for PBXNativeTarget "Lilico" */;
 			buildPhases = (
-				15832B96286767E20066046D /* Swift Format */,
-				15832B97286767E20066046D /* R swift */,
-				15832D23286767E20066046D /* Frameworks */,
-				15832D40286767E20066046D /* Resources */,
-				15832D4D286767E20066046D /* Embed Frameworks */,
+				15C58AAC2868A4EE00BD4FC6 /* Swift Format */,
+				15C58AAD2868A4EE00BD4FC6 /* R swift */,
+				15C58AAE2868A4EE00BD4FC6 /* Sources */,
+				15C58C3C2868A4EE00BD4FC6 /* Frameworks */,
+				15C58C5A2868A4EE00BD4FC6 /* Resources */,
+				15C58C672868A4EE00BD4FC6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2772,34 +3182,34 @@
 			);
 			name = Lilico;
 			packageProductDependencies = (
-				15832B69286767E20066046D /* SwiftUIX */,
-				15832B6B286767E20066046D /* Resolver */,
-				15832B6D286767E20066046D /* Flow */,
-				15832B6F286767E20066046D /* FirebaseAuth */,
-				15832B71286767E20066046D /* FirebaseCrashlytics */,
-				15832B72286767E20066046D /* FirebaseDynamicLinks */,
-				15832B75286767E20066046D /* CombineMoya */,
-				15832B77286767E20066046D /* Moya */,
-				15832B78286767E20066046D /* KeychainAccess */,
-				15832B7A286767E20066046D /* SkeletonUI */,
-				15832B7C286767E20066046D /* GoogleSignIn */,
-				15832B7E286767E20066046D /* GoogleAPIClientForREST_Drive */,
-				15832B80286767E20066046D /* GoogleAPIClientForRESTCore */,
-				15832B81286767E20066046D /* Haneke */,
-				15832B83286767E20066046D /* Introspect */,
-				15832B85286767E20066046D /* SPConfetti */,
-				15832B87286767E20066046D /* BiometricAuthentication */,
-				15832B89286767E20066046D /* CollectionViewPagingLayout */,
-				15832B8B286767E20066046D /* Kingfisher */,
-				15832B8D286767E20066046D /* FirebaseRemoteConfig */,
-				15832B8F286767E20066046D /* IrregularGradient */,
-				15832B91286767E20066046D /* FirebaseStorage */,
-				15832B92286767E20066046D /* Stinsen */,
-				15832B94286767E20066046D /* GTMSessionFetcherCore */,
-				1500783128682BEF00A00109 /* SPIndicator */,
+				15C58A7F2868A4EE00BD4FC6 /* SwiftUIX */,
+				15C58A812868A4EE00BD4FC6 /* Resolver */,
+				15C58A832868A4EE00BD4FC6 /* Flow */,
+				15C58A852868A4EE00BD4FC6 /* FirebaseAuth */,
+				15C58A872868A4EE00BD4FC6 /* FirebaseCrashlytics */,
+				15C58A882868A4EE00BD4FC6 /* FirebaseDynamicLinks */,
+				15C58A892868A4EE00BD4FC6 /* CombineMoya */,
+				15C58A8B2868A4EE00BD4FC6 /* Moya */,
+				15C58A8C2868A4EE00BD4FC6 /* KeychainAccess */,
+				15C58A8E2868A4EE00BD4FC6 /* SkeletonUI */,
+				15C58A902868A4EE00BD4FC6 /* GoogleSignIn */,
+				15C58A922868A4EE00BD4FC6 /* GoogleAPIClientForREST_Drive */,
+				15C58A942868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore */,
+				15C58A952868A4EE00BD4FC6 /* Haneke */,
+				15C58A972868A4EE00BD4FC6 /* Introspect */,
+				15C58A992868A4EE00BD4FC6 /* SPConfetti */,
+				15C58A9B2868A4EE00BD4FC6 /* BiometricAuthentication */,
+				15C58A9D2868A4EE00BD4FC6 /* CollectionViewPagingLayout */,
+				15C58A9F2868A4EE00BD4FC6 /* Kingfisher */,
+				15C58AA12868A4EE00BD4FC6 /* FirebaseRemoteConfig */,
+				15C58AA32868A4EE00BD4FC6 /* IrregularGradient */,
+				15C58AA52868A4EE00BD4FC6 /* FirebaseStorage */,
+				15C58AA62868A4EE00BD4FC6 /* Stinsen */,
+				15C58AA82868A4EE00BD4FC6 /* GTMSessionFetcherCore */,
+				15C58AAA2868A4EE00BD4FC6 /* SPIndicator */,
 			);
 			productName = "Lilico-lite";
-			productReference = 15832D53286767E20066046D /* Lilico.app */;
+			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2853,7 +3263,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				15832B68286767E20066046D /* Lilico */,
+				15C58A7E2868A4EE00BD4FC6 /* Lilico */,
 				154B88F0276A1EEB00780E93 /* Lilico-dev */,
 				1500783A286830EF00A00109 /* LilicoTests */,
 			);
@@ -2887,22 +3297,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15832D40286767E20066046D /* Resources */ = {
+		15C58C5A2868A4EE00BD4FC6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15832D41286767E20066046D /* Montserrat-Regular.ttf in Resources */,
-				15832D42286767E20066046D /* Preview Assets.xcassets in Resources */,
-				15832D43286767E20066046D /* remote_config_defaults.plist in Resources */,
-				15832D44286767E20066046D /* Localizable.strings in Resources */,
-				15832D45286767E20066046D /* Assets.xcassets in Resources */,
-				15832D46286767E20066046D /* Montserrat-SemiBold.ttf in Resources */,
-				15832D47286767E20066046D /* Montserrat-Italic.ttf in Resources */,
-				15832D49286767E20066046D /* Inter.ttf in Resources */,
-				15832D4A286767E20066046D /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */,
-				15832D4B286767E20066046D /* Colors.xcassets in Resources */,
-				15832D4C286767E20066046D /* Montserrat-Bold.ttf in Resources */,
-				15832D562867689D0066046D /* GoogleService-Info.plist in Resources */,
+				15C58C5B2868A4EE00BD4FC6 /* Montserrat-Regular.ttf in Resources */,
+				15C58C5C2868A4EE00BD4FC6 /* Preview Assets.xcassets in Resources */,
+				15C58C5D2868A4EE00BD4FC6 /* remote_config_defaults.plist in Resources */,
+				15C58C5E2868A4EE00BD4FC6 /* Localizable.strings in Resources */,
+				15C58C5F2868A4EE00BD4FC6 /* Assets.xcassets in Resources */,
+				15C58C602868A4EE00BD4FC6 /* Montserrat-SemiBold.ttf in Resources */,
+				15C58C612868A4EE00BD4FC6 /* Montserrat-Italic.ttf in Resources */,
+				15C58C622868A4EE00BD4FC6 /* GoogleService-Info.plist in Resources */,
+				15C58C632868A4EE00BD4FC6 /* Inter.ttf in Resources */,
+				15C58C642868A4EE00BD4FC6 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */,
+				15C58C652868A4EE00BD4FC6 /* Colors.xcassets in Resources */,
+				15C58C662868A4EE00BD4FC6 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2947,7 +3357,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n# Not workimg well with SwiftUI\n#if [ `uname -m` == 'arm64' ] && [ -d /opt/homebrew/bin/ ]; then\n#  export PATH=/opt/homebrew/bin:$PATH\n#fi\n\n#if which rswift >/dev/null; then\n#    rswift generate \"$SRCROOT/R.generated.swift\"\n#else\n#  echo \"warning: Rswift not installed, download from https://github.com/mac-cain13/R.swift/releases/tag/v6.0.0\"\n#fi\n";
 		};
-		15832B96286767E20066046D /* Swift Format */ = {
+		15C58AAC2868A4EE00BD4FC6 /* Swift Format */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2965,7 +3375,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n\nif [ `uname -m` == 'arm64' ] && [ -d /opt/homebrew/bin/ ]; then\n  export PATH=/opt/homebrew/bin:$PATH\nfi\n\n\n#if which swiftformat >/dev/null; then\n  # swiftformat --swiftversion 5.5 .\n#else\n  #echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\n#fi\n";
 		};
-		15832B97286767E20066046D /* R swift */ = {
+		15C58AAD2868A4EE00BD4FC6 /* R swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -3400,15 +3810,411 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		15007840286830EF00A00109 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 15832B68286767E20066046D /* Lilico */;
-			targetProxy = 1500783F286830EF00A00109 /* PBXContainerItemProxy */;
+		15C58AAE2868A4EE00BD4FC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15C58AAF2868A4EE00BD4FC6 /* BasicAnimation.swift in Sources */,
+				15C58AB02868A4EE00BD4FC6 /* VBaseHeaderFooterType.swift in Sources */,
+				15C58AB12868A4EE00BD4FC6 /* VSecondaryButtonModel.swift in Sources */,
+				15C58AB22868A4EE00BD4FC6 /* Collection.EnumeratedArray.swift in Sources */,
+				15C58AB32868A4EE00BD4FC6 /* ProfileEditNameView.swift in Sources */,
+				15C58AB42868A4EE00BD4FC6 /* VStepperState.swift in Sources */,
+				15C58AB52868A4EE00BD4FC6 /* BackupCoordinator.swift in Sources */,
+				15C58AB62868A4EE00BD4FC6 /* ConfirmPinCodeView.swift in Sources */,
+				15C58AB72868A4EE00BD4FC6 /* NFTFavoriteView.swift in Sources */,
+				15C58AB82868A4EE00BD4FC6 /* EnvironmentValues+IndexBarInsets.swift in Sources */,
+				15C58AB92868A4EE00BD4FC6 /* VNavigationLink.swift in Sources */,
+				15C58ABA2868A4EE00BD4FC6 /* VPrimaryButton.swift in Sources */,
+				15C58ABB2868A4EE00BD4FC6 /* VBaseTextFieldModel.swift in Sources */,
+				15C58ABC2868A4EE00BD4FC6 /* AddressBookView.swift in Sources */,
+				15C58ABD2868A4EE00BD4FC6 /* VTabNavigationView.swift in Sources */,
+				15C58ABE2868A4EE00BD4FC6 /* ThemeChangeViewModel.swift in Sources */,
+				15C58ABF2868A4EE00BD4FC6 /* AddressBookListResponse.swift in Sources */,
+				15C58AC02868A4EE00BD4FC6 /* WalletCoordinator.swift in Sources */,
+				15C58AC12868A4EE00BD4FC6 /* VAccordion.swift in Sources */,
+				15C58AC22868A4EE00BD4FC6 /* StateColorsAndOpacities_EP_D.swift in Sources */,
+				15C58AC32868A4EE00BD4FC6 /* StateColors_OOID.swift in Sources */,
+				15C58AC42868A4EE00BD4FC6 /* UIFont.swift in Sources */,
+				15C58AC52868A4EE00BD4FC6 /* _VModal.swift in Sources */,
+				15C58AC62868A4EE00BD4FC6 /* NFTCollectionModel.swift in Sources */,
+				15C58AC72868A4EE00BD4FC6 /* OffsetScrollViewWithAppBar.swift in Sources */,
+				15C58AC82868A4EE00BD4FC6 /* AlchemyEndpoint.swift in Sources */,
+				15C58AC92868A4EE00BD4FC6 /* VSectionListSection.swift in Sources */,
+				15C58ACA2868A4EE00BD4FC6 /* EditAvatarView.swift in Sources */,
+				15C58ACB2868A4EE00BD4FC6 /* VCloseButtonState.swift in Sources */,
+				15C58ACC2868A4EE00BD4FC6 /* VTabNavigationViewModel.swift in Sources */,
+				15C58ACD2868A4EE00BD4FC6 /* VStepperModel.swift in Sources */,
+				15C58ACE2868A4EE00BD4FC6 /* TabBarView.swift in Sources */,
+				15C58ACF2868A4EE00BD4FC6 /* ProfileView.swift in Sources */,
+				15C58AD02868A4EE00BD4FC6 /* View.CustomViewFrames.swift in Sources */,
+				15C58AD12868A4EE00BD4FC6 /* VMenuPickerButtonType.swift in Sources */,
+				15C58AD22868A4EE00BD4FC6 /* VSquareButtonState.swift in Sources */,
+				15C58AD32868A4EE00BD4FC6 /* SnapAnchorPreferenceKey.swift in Sources */,
+				15C58AD42868A4EE00BD4FC6 /* VDialogButtonModel.swift in Sources */,
+				15C58AD52868A4EE00BD4FC6 /* WalletModels.swift in Sources */,
+				15C58AD62868A4EE00BD4FC6 /* VCloseButton.swift in Sources */,
+				15C58AD72868A4EE00BD4FC6 /* JSONStorage.swift in Sources */,
+				15C58AD82868A4EE00BD4FC6 /* AppDelegate+Resolver.swift in Sources */,
+				15C58AD92868A4EE00BD4FC6 /* ProfileViewModel.swift in Sources */,
+				15C58ADA2868A4EE00BD4FC6 /* ToastUI.swift in Sources */,
+				15C58ADB2868A4EE00BD4FC6 /* VTextType.swift in Sources */,
+				15C58ADC2868A4EE00BD4FC6 /* ComponentStateManager.swift in Sources */,
+				15C58ADD2868A4EE00BD4FC6 /* LayoutGroup_TB.swift in Sources */,
+				15C58ADE2868A4EE00BD4FC6 /* NFTSquareCard.swift in Sources */,
+				15C58ADF2868A4EE00BD4FC6 /* LayoutGroup_HV.swift in Sources */,
+				15C58AE02868A4EE00BD4FC6 /* CryptoRequests.swift in Sources */,
+				15C58AE12868A4EE00BD4FC6 /* Optional.LetBlockTransformation.swift in Sources */,
+				15C58AE22868A4EE00BD4FC6 /* BMChineseSort.swift in Sources */,
+				15C58AE32868A4EE00BD4FC6 /* SpinnerStyle.swift in Sources */,
+				15C58AE42868A4EE00BD4FC6 /* VWebLink.swift in Sources */,
+				15C58AE52868A4EE00BD4FC6 /* VBaseViewSwipeGesture.swift in Sources */,
+				15C58AE62868A4EE00BD4FC6 /* VToastType.swift in Sources */,
+				15C58AE72868A4EE00BD4FC6 /* ThemeChangeView.swift in Sources */,
+				15C58AE82868A4EE00BD4FC6 /* VBaseViewModel.swift in Sources */,
+				15C58AE92868A4EE00BD4FC6 /* ChooseAccountViewModel.swift in Sources */,
+				15C58AEA2868A4EE00BD4FC6 /* VToggleState.swift in Sources */,
+				15C58AEB2868A4EE00BD4FC6 /* RestoreWalletViewModel.swift in Sources */,
+				15C58AEC2868A4EE00BD4FC6 /* NFTLoading.swift in Sources */,
+				15C58AED2868A4EE00BD4FC6 /* _VHalfModal.swift in Sources */,
+				15C58AEE2868A4EE00BD4FC6 /* UserRequests.swift in Sources */,
+				15C58AEF2868A4EE00BD4FC6 /* OffsetPageTabView.swift in Sources */,
+				15C58AF02868A4EE00BD4FC6 /* TYNKViewModel.swift in Sources */,
+				15C58AF12868A4EE00BD4FC6 /* NFTFavoriteStore.swift in Sources */,
+				15C58AF22868A4EE00BD4FC6 /* Introspect.swift in Sources */,
+				15C58AF32868A4EE00BD4FC6 /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
+				15C58AF42868A4EE00BD4FC6 /* Image.swift in Sources */,
+				15C58AF52868A4EE00BD4FC6 /* GithubEndpoint.swift in Sources */,
+				15C58AF62868A4EE00BD4FC6 /* VChevronButton.swift in Sources */,
+				15C58AF72868A4EE00BD4FC6 /* SnapTiming.swift in Sources */,
+				15C58AF82868A4EE00BD4FC6 /* VListModel.swift in Sources */,
+				15C58AF92868A4EE00BD4FC6 /* CaptureView.swift in Sources */,
+				15C58AFA2868A4EE00BD4FC6 /* VSegmentedPicker.swift in Sources */,
+				15C58AFB2868A4EE00BD4FC6 /* StateColorsAndOpacities_EPD_PD.swift in Sources */,
+				15C58AFC2868A4EE00BD4FC6 /* VSlider.swift in Sources */,
+				15C58AFD2868A4EE00BD4FC6 /* UserModel.swift in Sources */,
+				15C58AFE2868A4EE00BD4FC6 /* VPickableItems.swift in Sources */,
+				15C58AFF2868A4EE00BD4FC6 /* EnvironmentValues+Extensions.swift in Sources */,
+				15C58B002868A4EE00BD4FC6 /* VSpinner.swift in Sources */,
+				15C58B012868A4EE00BD4FC6 /* BaseView.swift in Sources */,
+				15C58B022868A4EE00BD4FC6 /* ContextMenuPreview.swift in Sources */,
+				15C58B032868A4EE00BD4FC6 /* VList.swift in Sources */,
+				15C58B042868A4EE00BD4FC6 /* VSpinnerDashed.swift in Sources */,
+				15C58B052868A4EE00BD4FC6 /* NFTSegmentControl.swift in Sources */,
+				15C58B062868A4EE00BD4FC6 /* VBaseTextFieldActions.swift in Sources */,
+				15C58B072868A4EE00BD4FC6 /* UIKitTextFieldCoordinator.swift in Sources */,
+				15C58B082868A4EE00BD4FC6 /* InputMnemonicView.swift in Sources */,
+				15C58B092868A4EE00BD4FC6 /* VMenuPickerState.swift in Sources */,
+				15C58B0A2868A4EE00BD4FC6 /* VAccordionState.swift in Sources */,
+				15C58B0B2868A4EE00BD4FC6 /* WalletResponses.swift in Sources */,
+				15C58B0C2868A4EE00BD4FC6 /* VChevronButtonDirection.swift in Sources */,
+				15C58B0D2868A4EE00BD4FC6 /* VNavigationLinkExtension.swift in Sources */,
+				15C58B0E2868A4EE00BD4FC6 /* VSpinnerModelContinous.swift in Sources */,
+				15C58B0F2868A4EE00BD4FC6 /* AddressBookRequest.swift in Sources */,
+				15C58B102868A4EE00BD4FC6 /* VMenuRow.swift in Sources */,
+				15C58B112868A4EE00BD4FC6 /* CreatePinCodeViewModel.swift in Sources */,
+				15C58B122868A4EE00BD4FC6 /* VSliderModel.swift in Sources */,
+				15C58B132868A4EE00BD4FC6 /* UsernameView.swift in Sources */,
+				15C58B142868A4EE00BD4FC6 /* ProfileEditView.swift in Sources */,
+				15C58B152868A4EE00BD4FC6 /* VActionSheet.swift in Sources */,
+				15C58B162868A4EE00BD4FC6 /* VPlainButton.swift in Sources */,
+				15C58B172868A4EE00BD4FC6 /* VSectionListModel.swift in Sources */,
+				15C58B182868A4EE00BD4FC6 /* VRadioButton.swift in Sources */,
+				15C58B192868A4EE00BD4FC6 /* BackAppBar.swift in Sources */,
+				15C58B1A2868A4EE00BD4FC6 /* RequestSecureViewModel.swift in Sources */,
+				15C58B1B2868A4EE00BD4FC6 /* ToastViewModifier.swift in Sources */,
+				15C58B1C2868A4EE00BD4FC6 /* Double.swift in Sources */,
+				15C58B1D2868A4EE00BD4FC6 /* WindowOverlayView.swift in Sources */,
+				15C58B1E2868A4EE00BD4FC6 /* VStepperButton.swift in Sources */,
+				15C58B1F2868A4EE00BD4FC6 /* Keyboard.swift in Sources */,
+				15C58B202868A4EE00BD4FC6 /* VBaseViewNavigationBarCenter.swift in Sources */,
+				15C58B212868A4EE00BD4FC6 /* View+SnappableIDModifier.swift in Sources */,
+				15C58B222868A4EE00BD4FC6 /* UITableViewCustomizer.swift in Sources */,
+				15C58B232868A4EE00BD4FC6 /* VMenuPicker.swift in Sources */,
+				15C58B242868A4EE00BD4FC6 /* EmptyWalletViewModel.swift in Sources */,
+				15C58B252868A4EE00BD4FC6 /* VToggle.swift in Sources */,
+				15C58B262868A4EE00BD4FC6 /* VWebLinkState.swift in Sources */,
+				15C58B272868A4EE00BD4FC6 /* VCheckBox.swift in Sources */,
+				15C58B282868A4EE00BD4FC6 /* AddAddressView.swift in Sources */,
+				15C58B292868A4EE00BD4FC6 /* AddCollectionViewModel.swift in Sources */,
+				15C58B2A2868A4EE00BD4FC6 /* VNavigationLinkType.swift in Sources */,
+				15C58B2B2868A4EE00BD4FC6 /* WalletViewModel.swift in Sources */,
+				15C58B2C2868A4EE00BD4FC6 /* VLazyScrollViewHorizontal.swift in Sources */,
+				15C58B2D2868A4EE00BD4FC6 /* VPageIndicatorInfinite.swift in Sources */,
+				15C58B2E2868A4EE00BD4FC6 /* NFTDetailPage.swift in Sources */,
+				15C58B2F2868A4EE00BD4FC6 /* VHalfModalNavigationViewCloseButton.swift in Sources */,
+				15C58B302868A4EE00BD4FC6 /* VPlainButtonState.swift in Sources */,
+				15C58B312868A4EE00BD4FC6 /* TextFieldStyle.swift in Sources */,
+				15C58B322868A4EE00BD4FC6 /* ManualBackupView.swift in Sources */,
+				15C58B332868A4EE00BD4FC6 /* StateColors_EPLD.swift in Sources */,
+				15C58B342868A4EE00BD4FC6 /* TermsAndPolicy.swift in Sources */,
+				15C58B352868A4EE00BD4FC6 /* VToastModel.swift in Sources */,
+				15C58B362868A4EE00BD4FC6 /* VSectionList.swift in Sources */,
+				15C58B372868A4EE00BD4FC6 /* FlowNetwork.swift in Sources */,
+				15C58B382868A4EE00BD4FC6 /* ProfileEditViewModel.swift in Sources */,
+				15C58B392868A4EE00BD4FC6 /* VBaseButtonViewRepresentable.swift in Sources */,
+				15C58B3A2868A4EE00BD4FC6 /* RecoveryPhraseViewModel.swift in Sources */,
+				15C58B3B2868A4EE00BD4FC6 /* Lilico_App.swift in Sources */,
+				15C58B3C2868A4EE00BD4FC6 /* NotificationDefine.swift in Sources */,
+				15C58B3D2868A4EE00BD4FC6 /* VChevronButtonState.swift in Sources */,
+				15C58B3E2868A4EE00BD4FC6 /* View.swift in Sources */,
+				15C58B3F2868A4EE00BD4FC6 /* SnapAlignment.swift in Sources */,
+				15C58B402868A4EE00BD4FC6 /* CGPoint+Distance.swift in Sources */,
+				15C58B412868A4EE00BD4FC6 /* VPageIndicatorAuto.swift in Sources */,
+				15C58B422868A4EE00BD4FC6 /* UserManager.swift in Sources */,
+				15C58B432868A4EE00BD4FC6 /* ProfileEditNameViewModel.swift in Sources */,
+				15C58B442868A4EE00BD4FC6 /* VSpinnerType.swift in Sources */,
+				15C58B452868A4EE00BD4FC6 /* VBaseViewNavigationBarLeading.swift in Sources */,
+				15C58B462868A4EE00BD4FC6 /* VBaseView.swift in Sources */,
+				15C58B472868A4EE00BD4FC6 /* ManualBackupViewModel.swift in Sources */,
+				15C58B482868A4EE00BD4FC6 /* VLazyScrollView.swift in Sources */,
+				15C58B492868A4EE00BD4FC6 /* VTabNavigationViewPage.swift in Sources */,
+				15C58B4A2868A4EE00BD4FC6 /* SnapIDModifier.swift in Sources */,
+				15C58B4B2868A4EE00BD4FC6 /* VBaseList.swift in Sources */,
+				15C58B4C2868A4EE00BD4FC6 /* DerivedButtonType.swift in Sources */,
+				15C58B4D2868A4EE00BD4FC6 /* VModal.swift in Sources */,
+				15C58B4E2868A4EE00BD4FC6 /* UIKitTextFieldRepresentable.swift in Sources */,
+				15C58B4F2868A4EE00BD4FC6 /* VSquareButtonModel.swift in Sources */,
+				15C58B502868A4EE00BD4FC6 /* MMCQ.swift in Sources */,
+				15C58B512868A4EE00BD4FC6 /* FocusableTextField.swift in Sources */,
+				15C58B522868A4EE00BD4FC6 /* VTextFieldActions.swift in Sources */,
+				15C58B532868A4EE00BD4FC6 /* ColorBook.swift in Sources */,
+				15C58B542868A4EE00BD4FC6 /* VSpinnerModelDashed.swift in Sources */,
+				15C58B552868A4EE00BD4FC6 /* AddAddressViewModel.swift in Sources */,
+				15C58B562868A4EE00BD4FC6 /* VPrimaryButtonState.swift in Sources */,
+				15C58B572868A4EE00BD4FC6 /* ThemeManager.swift in Sources */,
+				15C58B582868A4EE00BD4FC6 /* NFTShareView.swift in Sources */,
+				15C58B592868A4EE00BD4FC6 /* CheckboxStyle.swift in Sources */,
+				15C58B5A2868A4EE00BD4FC6 /* IndexedScrollView.swift in Sources */,
+				15C58B5B2868A4EE00BD4FC6 /* Color.swift in Sources */,
+				15C58B5C2868A4EE00BD4FC6 /* VPageIndicatorFinite.swift in Sources */,
+				15C58B5D2868A4EE00BD4FC6 /* VNavigationViewBackButtonHidden.swift in Sources */,
+				15C58B5E2868A4EE00BD4FC6 /* WalletService.swift in Sources */,
+				15C58B5F2868A4EE00BD4FC6 /* VTextFieldModel.swift in Sources */,
+				15C58B602868A4EE00BD4FC6 /* VProgressBarModel.swift in Sources */,
+				15C58B612868A4EE00BD4FC6 /* View+IndexBarBackground.swift in Sources */,
+				15C58B622868A4EE00BD4FC6 /* VMenuPickerRow.swift in Sources */,
+				15C58B632868A4EE00BD4FC6 /* Shimmer.swift in Sources */,
+				15C58B642868A4EE00BD4FC6 /* NFTTabViewModel.swift in Sources */,
+				15C58B652868A4EE00BD4FC6 /* EnterPasswordViewModel.swift in Sources */,
+				15C58B662868A4EE00BD4FC6 /* VTabNavigationViewAppearance.swift in Sources */,
+				15C58B672868A4EE00BD4FC6 /* RequestSecureView.swift in Sources */,
+				15C58B682868A4EE00BD4FC6 /* VNavigationViewModel.swift in Sources */,
+				15C58B692868A4EE00BD4FC6 /* Font.swift in Sources */,
+				15C58B6A2868A4EE00BD4FC6 /* SnapMode.swift in Sources */,
+				15C58B6B2868A4EE00BD4FC6 /* VBaseTextFieldState.swift in Sources */,
+				15C58B6C2868A4EE00BD4FC6 /* ImageSaver.swift in Sources */,
+				15C58B6D2868A4EE00BD4FC6 /* ConfirmPinCodeViewModel.swift in Sources */,
+				15C58B6E2868A4EE00BD4FC6 /* VWheelPickerModel.swift in Sources */,
+				15C58B6F2868A4EE00BD4FC6 /* VBaseButtonState.swift in Sources */,
+				15C58B702868A4EE00BD4FC6 /* HUDManager.swift in Sources */,
+				15C58B712868A4EE00BD4FC6 /* ImageName.swift in Sources */,
+				15C58B722868A4EE00BD4FC6 /* BackupPasswordViewModel.swift in Sources */,
+				15C58B732868A4EE00BD4FC6 /* ScrollAccessory.swift in Sources */,
+				15C58B742868A4EE00BD4FC6 /* UIApplication.swift in Sources */,
+				15C58B752868A4EE00BD4FC6 /* VChevronButtonModel.swift in Sources */,
+				15C58B762868A4EE00BD4FC6 /* VSheet.swift in Sources */,
+				15C58B772868A4EE00BD4FC6 /* Introspection.swift in Sources */,
+				15C58B782868A4EE00BD4FC6 /* UINavigationController.swift in Sources */,
+				15C58B792868A4EE00BD4FC6 /* VLazyScrollViewType.swift in Sources */,
+				15C58B7A2868A4EE00BD4FC6 /* AddressBookInfoModel.swift in Sources */,
+				15C58B7B2868A4EE00BD4FC6 /* TabBarPageModel.swift in Sources */,
+				15C58B7C2868A4EE00BD4FC6 /* LocalUserDefaults.swift in Sources */,
+				15C58B7D2868A4EE00BD4FC6 /* String.swift in Sources */,
+				15C58B7E2868A4EE00BD4FC6 /* VBaseListModel.swift in Sources */,
+				15C58B7F2868A4EE00BD4FC6 /* BackupPasswordView.swift in Sources */,
+				15C58B802868A4EE00BD4FC6 /* UINavigationBar.NavigationBarHeight.swift in Sources */,
+				15C58B812868A4EE00BD4FC6 /* _VSideBar.swift in Sources */,
+				15C58B822868A4EE00BD4FC6 /* NFTCollectionCard.swift in Sources */,
+				15C58B832868A4EE00BD4FC6 /* VLazyScrollViewVertical.swift in Sources */,
+				15C58B842868A4EE00BD4FC6 /* VPageIndicatorModel.swift in Sources */,
+				15C58B852868A4EE00BD4FC6 /* PinCodeCoordinator.swift in Sources */,
+				15C58B862868A4EE00BD4FC6 /* ToastView.swift in Sources */,
+				15C58B872868A4EE00BD4FC6 /* AppDelegate.swift in Sources */,
+				15C58B882868A4EE00BD4FC6 /* VMenuSubMenu.swift in Sources */,
+				15C58B892868A4EE00BD4FC6 /* FirebaseStorageUtils.swift in Sources */,
+				15C58B8A2868A4EE00BD4FC6 /* DashLine.swift in Sources */,
+				15C58B8B2868A4EE00BD4FC6 /* VMenuState.swift in Sources */,
+				15C58B8C2868A4EE00BD4FC6 /* VRangeSlider.swift in Sources */,
+				15C58B8D2868A4EE00BD4FC6 /* CacheManager.swift in Sources */,
+				15C58B8E2868A4EE00BD4FC6 /* ProfileRequests.swift in Sources */,
+				15C58B8F2868A4EE00BD4FC6 /* VLazyScrollViewModelVertical.swift in Sources */,
+				15C58B902868A4EE00BD4FC6 /* VSheetModel.swift in Sources */,
+				15C58B912868A4EE00BD4FC6 /* VProgressBar.swift in Sources */,
+				15C58B922868A4EE00BD4FC6 /* VBaseHeaderFooterView.swift in Sources */,
+				15C58B932868A4EE00BD4FC6 /* VSegmentedPickerModel.swift in Sources */,
+				15C58B942868A4EE00BD4FC6 /* StateColors_EFD.swift in Sources */,
+				15C58B952868A4EE00BD4FC6 /* VAccordionModel.swift in Sources */,
+				15C58B962868A4EE00BD4FC6 /* SnapAlignmentEnvironmentKey.swift in Sources */,
+				15C58B972868A4EE00BD4FC6 /* CoinRateCache.swift in Sources */,
+				15C58B982868A4EE00BD4FC6 /* FlowAddressRegistor.swift in Sources */,
+				15C58B992868A4EE00BD4FC6 /* LayoutGroup_LT.swift in Sources */,
+				15C58B9A2868A4EE00BD4FC6 /* LilicoAPI+Profile.swift in Sources */,
+				15C58B9B2868A4EE00BD4FC6 /* VBaseTextField.swift in Sources */,
+				15C58B9C2868A4EE00BD4FC6 /* VSliderState.swift in Sources */,
+				15C58B9D2868A4EE00BD4FC6 /* VMenuButtonType.swift in Sources */,
+				15C58B9E2868A4EE00BD4FC6 /* VActionSheetRow.swift in Sources */,
+				15C58B9F2868A4EE00BD4FC6 /* VSecondaryButton.swift in Sources */,
+				15C58BA02868A4EE00BD4FC6 /* Network.swift in Sources */,
+				15C58BA12868A4EE00BD4FC6 /* VTabNavigationPageItem.swift in Sources */,
+				15C58BA22868A4EE00BD4FC6 /* VSquareButton.swift in Sources */,
+				15C58BA32868A4EE00BD4FC6 /* VDialog.swift in Sources */,
+				15C58BA42868A4EE00BD4FC6 /* ProfileEditCoordinator.swift in Sources */,
+				15C58BA52868A4EE00BD4FC6 /* TabBar.swift in Sources */,
+				15C58BA62868A4EE00BD4FC6 /* Logger.swift in Sources */,
+				15C58BA72868A4EE00BD4FC6 /* VStepper.swift in Sources */,
+				15C58BA82868A4EE00BD4FC6 /* NFTModel.swift in Sources */,
+				15C58BA92868A4EE00BD4FC6 /* VHalfModal.swift in Sources */,
+				15C58BAA2868A4EE00BD4FC6 /* SecureView.swift in Sources */,
+				15C58BAB2868A4EE00BD4FC6 /* NFTCollectionStateManager.swift in Sources */,
+				15C58BAC2868A4EE00BD4FC6 /* WalletManager.swift in Sources */,
+				15C58BAD2868A4EE00BD4FC6 /* ScrollView+SnappableModifier.swift in Sources */,
+				15C58BAE2868A4EE00BD4FC6 /* VNavigationViewNavigationBar.swift in Sources */,
+				15C58BAF2868A4EE00BD4FC6 /* IndexBarBackground.swift in Sources */,
+				15C58BB02868A4EE00BD4FC6 /* PinStackView.swift in Sources */,
+				15C58BB12868A4EE00BD4FC6 /* VWheelPicker.swift in Sources */,
+				15C58BB22868A4EE00BD4FC6 /* VAccordionLayoutType.swift in Sources */,
+				15C58BB32868A4EE00BD4FC6 /* VToggleModel.swift in Sources */,
+				15C58BB42868A4EE00BD4FC6 /* Indexable.swift in Sources */,
+				15C58BB52868A4EE00BD4FC6 /* LilicoAPI+Crypto.swift in Sources */,
+				15C58BB62868A4EE00BD4FC6 /* VDialogButton.swift in Sources */,
+				15C58BB72868A4EE00BD4FC6 /* StateOpacities_P.swift in Sources */,
+				15C58BB82868A4EE00BD4FC6 /* StateColors_ED.swift in Sources */,
+				15C58BB92868A4EE00BD4FC6 /* StateColors_EFSEPD.swift in Sources */,
+				15C58BBA2868A4EE00BD4FC6 /* NFTTabScreen.swift in Sources */,
+				15C58BBB2868A4EE00BD4FC6 /* VModalModel.swift in Sources */,
+				15C58BBC2868A4EE00BD4FC6 /* LilicoAPI.swift in Sources */,
+				15C58BBD2868A4EE00BD4FC6 /* VRadioButtonModel.swift in Sources */,
+				15C58BBE2868A4EE00BD4FC6 /* EmptyWalletView.swift in Sources */,
+				15C58BBF2868A4EE00BD4FC6 /* Index.swift in Sources */,
+				15C58BC02868A4EE00BD4FC6 /* LilicoAPI+NFT.swift in Sources */,
+				15C58BC12868A4EE00BD4FC6 /* VNavigationViewAppearance.swift in Sources */,
+				15C58BC22868A4EE00BD4FC6 /* ButtonStyle.swift in Sources */,
+				15C58BC32868A4EE00BD4FC6 /* ToastPresentationAnimator.swift in Sources */,
+				15C58BC42868A4EE00BD4FC6 /* VTextField.swift in Sources */,
+				15C58BC52868A4EE00BD4FC6 /* VWebLinkType.swift in Sources */,
+				15C58BC62868A4EE00BD4FC6 /* ViewExtensions.swift in Sources */,
+				15C58BC72868A4EE00BD4FC6 /* StateColors_OOD.swift in Sources */,
+				15C58BC82868A4EE00BD4FC6 /* BackupManager.swift in Sources */,
+				15C58BC92868A4EE00BD4FC6 /* ToastViewHostingController.swift in Sources */,
+				15C58BCA2868A4EE00BD4FC6 /* AppCoordinator.swift in Sources */,
+				15C58BCB2868A4EE00BD4FC6 /* StateOpacities_D.swift in Sources */,
+				15C58BCC2868A4EE00BD4FC6 /* WalletSetupViewModel.swift in Sources */,
+				15C58BCD2868A4EE00BD4FC6 /* SecureCoordinator.swift in Sources */,
+				15C58BCE2868A4EE00BD4FC6 /* ProfileCoordinator.swift in Sources */,
+				15C58BCF2868A4EE00BD4FC6 /* View.ConditionalViewModifiers.swift in Sources */,
+				15C58BD02868A4EE00BD4FC6 /* LLTextField.swift in Sources */,
+				15C58BD12868A4EE00BD4FC6 /* VSegmentedPickerState.swift in Sources */,
+				15C58BD22868A4EE00BD4FC6 /* _VToast.swift in Sources */,
+				15C58BD32868A4EE00BD4FC6 /* UIVIew.SafeAreas.swift in Sources */,
+				15C58BD42868A4EE00BD4FC6 /* ImageBook.swift in Sources */,
+				15C58BD52868A4EE00BD4FC6 /* VWheelPickerState.swift in Sources */,
+				15C58BD62868A4EE00BD4FC6 /* VSpinnerContinous.swift in Sources */,
+				15C58BD72868A4EE00BD4FC6 /* ColorsFromImage.swift in Sources */,
+				15C58BD82868A4EE00BD4FC6 /* NFTCollectionListView.swift in Sources */,
+				15C58BD92868A4EE00BD4FC6 /* DecelerationRate.swift in Sources */,
+				15C58BDA2868A4EE00BD4FC6 /* NFTAddCollectionView.swift in Sources */,
+				15C58BDB2868A4EE00BD4FC6 /* NFTEmptyView.swift in Sources */,
+				15C58BDC2868A4EE00BD4FC6 /* ViewModel.swift in Sources */,
+				15C58BDD2868A4EE00BD4FC6 /* IndexedList.swift in Sources */,
+				15C58BDE2868A4EE00BD4FC6 /* VText.swift in Sources */,
+				15C58BDF2868A4EE00BD4FC6 /* UIView+Extensions.swift in Sources */,
+				15C58BE02868A4EE00BD4FC6 /* NavigateBackButton.swift in Sources */,
+				15C58BE12868A4EE00BD4FC6 /* MoyaAsync.swift in Sources */,
+				15C58BE22868A4EE00BD4FC6 /* VBaseListLayoutType.swift in Sources */,
+				15C58BE32868A4EE00BD4FC6 /* SnapAlignment+Convert.swift in Sources */,
+				15C58BE42868A4EE00BD4FC6 /* VBaseListElement.swift in Sources */,
+				15C58BE52868A4EE00BD4FC6 /* NFTListResponse.swift in Sources */,
+				15C58BE62868A4EE00BD4FC6 /* NFTListCache.swift in Sources */,
+				15C58BE72868A4EE00BD4FC6 /* TabBarItemView.swift in Sources */,
+				15C58BE82868A4EE00BD4FC6 /* VTextFieldType.swift in Sources */,
+				15C58BE92868A4EE00BD4FC6 /* Error.swift in Sources */,
+				15C58BEA2868A4EE00BD4FC6 /* AddressBookCoordinator.swift in Sources */,
+				15C58BEB2868A4EE00BD4FC6 /* VRangeSliderState.swift in Sources */,
+				15C58BEC2868A4EE00BD4FC6 /* UsernameViewModel.swift in Sources */,
+				15C58BED2868A4EE00BD4FC6 /* StateColors_EFSED.swift in Sources */,
+				15C58BEE2868A4EE00BD4FC6 /* VRadioButtonState.swift in Sources */,
+				15C58BEF2868A4EE00BD4FC6 /* ScrollAccessory+Extensions.swift in Sources */,
+				15C58BF02868A4EE00BD4FC6 /* NFTTagsView.swift in Sources */,
+				15C58BF12868A4EE00BD4FC6 /* VMenu.swift in Sources */,
+				15C58BF22868A4EE00BD4FC6 /* CreatePinCodeView.swift in Sources */,
+				15C58BF32868A4EE00BD4FC6 /* RegisterCoordinator.swift in Sources */,
+				15C58BF42868A4EE00BD4FC6 /* VNavigationView.swift in Sources */,
+				15C58BF52868A4EE00BD4FC6 /* ToastViewStyle.swift in Sources */,
+				15C58BF62868A4EE00BD4FC6 /* OffsetScrollView.swift in Sources */,
+				15C58BF72868A4EE00BD4FC6 /* TYNKView.swift in Sources */,
+				15C58BF82868A4EE00BD4FC6 /* LilicoAPI+AddressBook.swift in Sources */,
+				15C58BF92868A4EE00BD4FC6 /* VPageIndicatorType.swift in Sources */,
+				15C58BFA2868A4EE00BD4FC6 /* VBaseButtonGestureState.swift in Sources */,
+				15C58BFB2868A4EE00BD4FC6 /* DraggingDetector.swift in Sources */,
+				15C58BFC2868A4EE00BD4FC6 /* DeveloperModeView.swift in Sources */,
+				15C58BFD2868A4EE00BD4FC6 /* WalletView.swift in Sources */,
+				15C58BFE2868A4EE00BD4FC6 /* VSideBarModel.swift in Sources */,
+				15C58BFF2868A4EE00BD4FC6 /* Others.swift in Sources */,
+				15C58C002868A4EE00BD4FC6 /* VDialogButtons.swift in Sources */,
+				15C58C012868A4EE00BD4FC6 /* RestoreWalletView.swift in Sources */,
+				15C58C022868A4EE00BD4FC6 /* NFTCoordinator.swift in Sources */,
+				15C58C032868A4EE00BD4FC6 /* AddressBookViewModel.swift in Sources */,
+				15C58C042868A4EE00BD4FC6 /* View.CornerRadius.swift in Sources */,
+				15C58C052868A4EE00BD4FC6 /* Published.swift in Sources */,
+				15C58C062868A4EE00BD4FC6 /* RecoveryPhraseView.swift in Sources */,
+				15C58C072868A4EE00BD4FC6 /* ColorThief.swift in Sources */,
+				15C58C082868A4EE00BD4FC6 /* _VDialog.swift in Sources */,
+				15C58C092868A4EE00BD4FC6 /* VListLayoutType.swift in Sources */,
+				15C58C0A2868A4EE00BD4FC6 /* EnvironmentValues.swift in Sources */,
+				15C58C0B2868A4EE00BD4FC6 /* BackgroundModifer.swift in Sources */,
+				15C58C0C2868A4EE00BD4FC6 /* UserResponses.swift in Sources */,
+				15C58C0D2868A4EE00BD4FC6 /* VBaseNaviationViewNavigationBar.swift in Sources */,
+				15C58C0E2868A4EE00BD4FC6 /* SnappableModifier.swift in Sources */,
+				15C58C0F2868A4EE00BD4FC6 /* PageIndictor.swift in Sources */,
+				15C58C102868A4EE00BD4FC6 /* IndexBar.swift in Sources */,
+				15C58C112868A4EE00BD4FC6 /* VHalfModalModel.swift in Sources */,
+				15C58C122868A4EE00BD4FC6 /* FirebaseConfig.swift in Sources */,
+				15C58C132868A4EE00BD4FC6 /* VSideBar.swift in Sources */,
+				15C58C142868A4EE00BD4FC6 /* FlowQuery.swift in Sources */,
+				15C58C152868A4EE00BD4FC6 /* StateOpacities_PD.swift in Sources */,
+				15C58C162868A4EE00BD4FC6 /* DefaultToastViewStyle.swift in Sources */,
+				15C58C172868A4EE00BD4FC6 /* CoordinateSpaceNameEnvironmentKey.swift in Sources */,
+				15C58C182868A4EE00BD4FC6 /* UIKitIntrospectionView.swift in Sources */,
+				15C58C192868A4EE00BD4FC6 /* Endpoint.swift in Sources */,
+				15C58C1A2868A4EE00BD4FC6 /* ChooseAccountView.swift in Sources */,
+				15C58C1B2868A4EE00BD4FC6 /* StateColors_EPD.swift in Sources */,
+				15C58C1C2868A4EE00BD4FC6 /* InputMnemonicViewModel.swift in Sources */,
+				15C58C1D2868A4EE00BD4FC6 /* View.ReadSize.swift in Sources */,
+				15C58C1E2868A4EE00BD4FC6 /* ShareSheet.swift in Sources */,
+				15C58C1F2868A4EE00BD4FC6 /* VToast.swift in Sources */,
+				15C58C202868A4EE00BD4FC6 /* SliderHelpers.swift in Sources */,
+				15C58C212868A4EE00BD4FC6 /* SnapID.swift in Sources */,
+				15C58C222868A4EE00BD4FC6 /* VBaseButton.swift in Sources */,
+				15C58C232868A4EE00BD4FC6 /* VTextFieldState.swift in Sources */,
+				15C58C242868A4EE00BD4FC6 /* LoginCoordinator.swift in Sources */,
+				15C58C252868A4EE00BD4FC6 /* LilicoAPI+User.swift in Sources */,
+				15C58C262868A4EE00BD4FC6 /* EnterPasswordView.swift in Sources */,
+				15C58C272868A4EE00BD4FC6 /* LayoutGroup_LTTB.swift in Sources */,
+				15C58C282868A4EE00BD4FC6 /* EditAvatarViewModel.swift in Sources */,
+				15C58C292868A4EE00BD4FC6 /* NFTBlurImageView.swift in Sources */,
+				15C58C2A2868A4EE00BD4FC6 /* VSectionListLayoutType.swift in Sources */,
+				15C58C2B2868A4EE00BD4FC6 /* VCloseButtonModel.swift in Sources */,
+				15C58C2C2868A4EE00BD4FC6 /* VRangeSliderModel.swift in Sources */,
+				15C58C2D2868A4EE00BD4FC6 /* VBaseButtonTapGestureRecognizer.swift in Sources */,
+				15C58C2E2868A4EE00BD4FC6 /* VSecondaryButtonState.swift in Sources */,
+				15C58C2F2868A4EE00BD4FC6 /* VCheckBoxState.swift in Sources */,
+				15C58C302868A4EE00BD4FC6 /* VPageIndicator.swift in Sources */,
+				15C58C312868A4EE00BD4FC6 /* VPlainButtonModel.swift in Sources */,
+				15C58C322868A4EE00BD4FC6 /* VTextFieldHighlight.swift in Sources */,
+				15C58C332868A4EE00BD4FC6 /* VDialogModel.swift in Sources */,
+				15C58C342868A4EE00BD4FC6 /* VCheckBoxModel.swift in Sources */,
+				15C58C352868A4EE00BD4FC6 /* EventLoop+Future.swift in Sources */,
+				15C58C362868A4EE00BD4FC6 /* VPrimaryButtonModel.swift in Sources */,
+				15C58C372868A4EE00BD4FC6 /* VLazyScrollViewModelHorizontal.swift in Sources */,
+				15C58C382868A4EE00BD4FC6 /* VNavigationLinkState.swift in Sources */,
+				15C58C392868A4EE00BD4FC6 /* BMChineseUtils.swift in Sources */,
+				15C58C3A2868A4EE00BD4FC6 /* TabBarCoordinator.swift in Sources */,
+				15C58C3B2868A4EE00BD4FC6 /* NFTListView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXTargetDependency section */
+/* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
 		15B1F63B2786B89800847BB5 /* Localizable.strings */ = {
@@ -3546,7 +4352,7 @@
 			};
 			name = Release;
 		};
-		15832D51286767E20066046D /* Debug */ = {
+		15C58C6B2868A4EE00BD4FC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3563,7 +4369,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lilico/App/Env/Prod/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = lilico;
+				INFOPLIST_KEY_CFBundleDisplayName = Lilico;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
@@ -3587,7 +4393,7 @@
 			};
 			name = Debug;
 		};
-		15832D52286767E20066046D /* Release */ = {
+		15C58C6C2868A4EE00BD4FC6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3601,7 +4407,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "SWIFT_PACKAGE=1";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lilico/App/Env/Prod/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = lilico;
+				INFOPLIST_KEY_CFBundleDisplayName = Lilico;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
@@ -3766,11 +4572,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15832D50286767E20066046D /* Build configuration list for PBXNativeTarget "Lilico" */ = {
+		15C58C6A2868A4EE00BD4FC6 /* Build configuration list for PBXNativeTarget "Lilico" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				15832D51286767E20066046D /* Debug */,
-				15832D52286767E20066046D /* Release */,
+				15C58C6B2868A4EE00BD4FC6 /* Debug */,
+				15C58C6C2868A4EE00BD4FC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3891,7 +4697,15 @@
 				minimumVersion = 7.1.2;
 			};
 		};
-		15832B6A286767E20066046D /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+		1599F7752789734B0094B196 /* XCRemoteSwiftPackageReference "SPConfetti" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanvorobei/SPConfetti";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
+		15C58A802868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
 			requirement = {
@@ -3899,7 +4713,7 @@
 				minimumVersion = 0.1.0;
 			};
 		};
-		15832B6C286767E20066046D /* XCRemoteSwiftPackageReference "Resolver" */ = {
+		15C58A822868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "Resolver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Resolver";
 			requirement = {
@@ -3907,7 +4721,7 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		15832B6E286767E20066046D /* XCRemoteSwiftPackageReference "flow-swift" */ = {
+		15C58A842868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "flow-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/outblock/flow-swift";
 			requirement = {
@@ -3915,7 +4729,7 @@
 				kind = branch;
 			};
 		};
-		15832B70286767E20066046D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		15C58A862868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -3923,7 +4737,7 @@
 				minimumVersion = 8.0.0;
 			};
 		};
-		15832B76286767E20066046D /* XCRemoteSwiftPackageReference "Moya" */ = {
+		15C58A8A2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
 			requirement = {
@@ -3931,7 +4745,7 @@
 				minimumVersion = 15.0.0;
 			};
 		};
-		15832B79286767E20066046D /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+		15C58A8D2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
 			requirement = {
@@ -3939,7 +4753,7 @@
 				minimumVersion = 4.2.2;
 			};
 		};
-		15832B7B286767E20066046D /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
+		15C58A8F2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CSolanaM/SkeletonUI.git";
 			requirement = {
@@ -3947,7 +4761,7 @@
 				minimumVersion = 1.0.7;
 			};
 		};
-		15832B7D286767E20066046D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+		15C58A912868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
 			requirement = {
@@ -3955,7 +4769,7 @@
 				minimumVersion = 6.1.0;
 			};
 		};
-		15832B7F286767E20066046D /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
+		15C58A932868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/google-api-objectivec-client-for-rest";
 			requirement = {
@@ -3963,7 +4777,7 @@
 				revision = 392de3fb0d5350a874396e7651541e8755322be1;
 			};
 		};
-		15832B82286767E20066046D /* XCRemoteSwiftPackageReference "HanekeSwift" */ = {
+		15C58A962868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "HanekeSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Haneke/HanekeSwift";
 			requirement = {
@@ -3971,7 +4785,7 @@
 				kind = branch;
 			};
 		};
-		15832B84286767E20066046D /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+		15C58A982868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
 			requirement = {
@@ -3979,7 +4793,7 @@
 				minimumVersion = 0.1.3;
 			};
 		};
-		15832B86286767E20066046D /* XCRemoteSwiftPackageReference "SPConfetti" */ = {
+		15C58A9A2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SPConfetti" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanvorobei/SPConfetti";
 			requirement = {
@@ -3987,7 +4801,7 @@
 				minimumVersion = 1.4.1;
 			};
 		};
-		15832B88286767E20066046D /* XCRemoteSwiftPackageReference "BiometricAuthentication" */ = {
+		15C58A9C2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "BiometricAuthentication" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rushisangani/BiometricAuthentication";
 			requirement = {
@@ -3995,7 +4809,7 @@
 				minimumVersion = 3.1.3;
 			};
 		};
-		15832B8A286767E20066046D /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */ = {
+		15C58A9E2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/amirdew/CollectionViewPagingLayout";
 			requirement = {
@@ -4003,7 +4817,7 @@
 				minimumVersion = 1.0.3;
 			};
 		};
-		15832B8C286767E20066046D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		15C58AA02868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -4011,7 +4825,7 @@
 				minimumVersion = 7.1.2;
 			};
 		};
-		15832B8E286767E20066046D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		15C58AA22868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -4019,7 +4833,7 @@
 				minimumVersion = 8.0.0;
 			};
 		};
-		15832B90286767E20066046D /* XCRemoteSwiftPackageReference "IrregularGradient" */ = {
+		15C58AA42868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "IrregularGradient" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/joogps/IrregularGradient";
 			requirement = {
@@ -4027,7 +4841,7 @@
 				kind = branch;
 			};
 		};
-		15832B93286767E20066046D /* XCRemoteSwiftPackageReference "stinsen" */ = {
+		15C58AA72868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "stinsen" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rundfunk47/stinsen";
 			requirement = {
@@ -4035,7 +4849,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		15832B95286767E20066046D /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */ = {
+		15C58AA92868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/gtm-session-fetcher";
 			requirement = {
@@ -4043,12 +4857,12 @@
 				minimumVersion = 1.7.0;
 			};
 		};
-		1599F7752789734B0094B196 /* XCRemoteSwiftPackageReference "SPConfetti" */ = {
+		15C58AAB2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SPIndicator" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ivanvorobei/SPConfetti";
+			repositoryURL = "https://github.com/ivanvorobei/SPIndicator";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
+				kind = revision;
+				revision = f9676f1d56239b1836587794923cb89cec8ae18a;
 			};
 		};
 		15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */ = {
@@ -4126,11 +4940,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1500783128682BEF00A00109 /* SPIndicator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1500783028682B8900A00109 /* XCRemoteSwiftPackageReference "SPIndicator" */;
-			productName = SPIndicator;
-		};
 		1500783328682BF700A00109 /* SPIndicator */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1500783028682B8900A00109 /* XCRemoteSwiftPackageReference "SPIndicator" */;
@@ -4206,125 +5015,165 @@
 			package = 156AC7AF278042DE00ED5E3E /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
 			productName = GTMSessionFetcherCore;
 		};
-		15832B69286767E20066046D /* SwiftUIX */ = {
+		15C58A7F2868A4EE00BD4FC6 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B6A286767E20066046D /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			package = 15C58A802868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
 		};
-		15832B6B286767E20066046D /* Resolver */ = {
+		15C58A812868A4EE00BD4FC6 /* Resolver */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B6C286767E20066046D /* XCRemoteSwiftPackageReference "Resolver" */;
+			package = 15C58A822868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
 		};
-		15832B6D286767E20066046D /* Flow */ = {
+		15C58A832868A4EE00BD4FC6 /* Flow */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B6E286767E20066046D /* XCRemoteSwiftPackageReference "flow-swift" */;
+			package = 15C58A842868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "flow-swift" */;
 			productName = Flow;
 		};
-		15832B6F286767E20066046D /* FirebaseAuth */ = {
+		15C58A852868A4EE00BD4FC6 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B70286767E20066046D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 15C58A862868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		15832B71286767E20066046D /* FirebaseCrashlytics */ = {
+		15C58A872868A4EE00BD4FC6 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B70286767E20066046D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 15C58A862868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
-		15832B72286767E20066046D /* FirebaseDynamicLinks */ = {
+		15C58A882868A4EE00BD4FC6 /* FirebaseDynamicLinks */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B70286767E20066046D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 15C58A862868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
 		};
-		15832B75286767E20066046D /* CombineMoya */ = {
+		15C58A892868A4EE00BD4FC6 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B76286767E20066046D /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 15C58A8A2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = CombineMoya;
 		};
-		15832B77286767E20066046D /* Moya */ = {
+		15C58A8B2868A4EE00BD4FC6 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B76286767E20066046D /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 15C58A8A2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
 		};
-		15832B78286767E20066046D /* KeychainAccess */ = {
+		15C58A8C2868A4EE00BD4FC6 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B79286767E20066046D /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			package = 15C58A8D2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
-		15832B7A286767E20066046D /* SkeletonUI */ = {
+		15C58A8E2868A4EE00BD4FC6 /* SkeletonUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B7B286767E20066046D /* XCRemoteSwiftPackageReference "SkeletonUI" */;
+			package = 15C58A8F2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SkeletonUI" */;
 			productName = SkeletonUI;
 		};
-		15832B7C286767E20066046D /* GoogleSignIn */ = {
+		15C58A902868A4EE00BD4FC6 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B7D286767E20066046D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			package = 15C58A912868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
-		15832B7E286767E20066046D /* GoogleAPIClientForREST_Drive */ = {
+		15C58A922868A4EE00BD4FC6 /* GoogleAPIClientForREST_Drive */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B7F286767E20066046D /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			package = 15C58A932868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
 			productName = GoogleAPIClientForREST_Drive;
 		};
-		15832B80286767E20066046D /* GoogleAPIClientForRESTCore */ = {
+		15C58A942868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B7F286767E20066046D /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			package = 15C58A932868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
 			productName = GoogleAPIClientForRESTCore;
 		};
-		15832B81286767E20066046D /* Haneke */ = {
+		15C58A952868A4EE00BD4FC6 /* Haneke */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B82286767E20066046D /* XCRemoteSwiftPackageReference "HanekeSwift" */;
+			package = 15C58A962868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "HanekeSwift" */;
 			productName = Haneke;
 		};
-		15832B83286767E20066046D /* Introspect */ = {
+		15C58A972868A4EE00BD4FC6 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B84286767E20066046D /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			package = 15C58A982868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
 		};
-		15832B85286767E20066046D /* SPConfetti */ = {
+		15C58A992868A4EE00BD4FC6 /* SPConfetti */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B86286767E20066046D /* XCRemoteSwiftPackageReference "SPConfetti" */;
+			package = 15C58A9A2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SPConfetti" */;
 			productName = SPConfetti;
 		};
-		15832B87286767E20066046D /* BiometricAuthentication */ = {
+		15C58A9B2868A4EE00BD4FC6 /* BiometricAuthentication */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B88286767E20066046D /* XCRemoteSwiftPackageReference "BiometricAuthentication" */;
+			package = 15C58A9C2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "BiometricAuthentication" */;
 			productName = BiometricAuthentication;
 		};
-		15832B89286767E20066046D /* CollectionViewPagingLayout */ = {
+		15C58A9D2868A4EE00BD4FC6 /* CollectionViewPagingLayout */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B8A286767E20066046D /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */;
+			package = 15C58A9E2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */;
 			productName = CollectionViewPagingLayout;
 		};
-		15832B8B286767E20066046D /* Kingfisher */ = {
+		15C58A9F2868A4EE00BD4FC6 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B8C286767E20066046D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 15C58AA02868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		15832B8D286767E20066046D /* FirebaseRemoteConfig */ = {
+		15C58AA12868A4EE00BD4FC6 /* FirebaseRemoteConfig */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B8E286767E20066046D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 15C58AA22868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
 		};
-		15832B8F286767E20066046D /* IrregularGradient */ = {
+		15C58AA32868A4EE00BD4FC6 /* IrregularGradient */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B90286767E20066046D /* XCRemoteSwiftPackageReference "IrregularGradient" */;
+			package = 15C58AA42868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "IrregularGradient" */;
 			productName = IrregularGradient;
 		};
-		15832B91286767E20066046D /* FirebaseStorage */ = {
+		15C58AA52868A4EE00BD4FC6 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B8E286767E20066046D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 15C58AA22868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
-		15832B92286767E20066046D /* Stinsen */ = {
+		15C58AA62868A4EE00BD4FC6 /* Stinsen */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B93286767E20066046D /* XCRemoteSwiftPackageReference "stinsen" */;
+			package = 15C58AA72868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "stinsen" */;
 			productName = Stinsen;
 		};
-		15832B94286767E20066046D /* GTMSessionFetcherCore */ = {
+		15C58AA82868A4EE00BD4FC6 /* GTMSessionFetcherCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 15832B95286767E20066046D /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
+			package = 15C58AA92868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
 			productName = GTMSessionFetcherCore;
+		};
+		15C58AAA2868A4EE00BD4FC6 /* SPIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15C58AAB2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SPIndicator" */;
+			productName = SPIndicator;
+		};
+		15C58C6F2868A5DC00BD4FC6 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		15C58C712868A5EA00BD4FC6 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		15C58C732868A5F200BD4FC6 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		15C58C752868A5FA00BD4FC6 /* GTMSessionFetcherCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 156AC7AF278042DE00ED5E3E /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
+			productName = GTMSessionFetcherCore;
+		};
+		15C58C772868A61400BD4FC6 /* GoogleAPIClientForRESTCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			productName = GoogleAPIClientForRESTCore;
+		};
+		15C58C792868A61900BD4FC6 /* GoogleAPIClientForREST_Drive */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			productName = GoogleAPIClientForREST_Drive;
+		};
+		15C58C7B2868A62000BD4FC6 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15DE22F7277FF55C00B5EE03 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 		15D57758277C23BF00045E79 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
