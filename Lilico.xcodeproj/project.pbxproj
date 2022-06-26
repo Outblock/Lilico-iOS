@@ -897,6 +897,23 @@
 		6AF95B472848C8D70012C837 /* BMChineseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF95B432848C8D60012C837 /* BMChineseUtils.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		15C58C7D2868AB5700BD4FC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15C58A7E2868A4EE00BD4FC6;
+			remoteInfo = Lilico;
+		};
+		15C58CCF2868ABF700BD4FC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 154B88F0276A1EEB00780E93;
+			remoteInfo = "Lilico-dev";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		158CEFBE277DB3FF004EF2C7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -3103,6 +3120,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				15C58C7E2868AB5700BD4FC6 /* PBXTargetDependency */,
+				15C58CD02868ABF700BD4FC6 /* PBXTargetDependency */,
 			);
 			name = LilicoTests;
 			packageProductDependencies = (
@@ -3220,11 +3239,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					1500783A286830EF00A00109 = {
 						CreatedOnToolsVersion = 14.0;
-						TestTargetID = 15832B68286767E20066046D;
+						TestTargetID = 154B88F0276A1EEB00780E93;
 					};
 				};
 			};
@@ -3389,7 +3408,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4216,6 +4234,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		15C58C7E2868AB5700BD4FC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15C58A7E2868A4EE00BD4FC6 /* Lilico */;
+			targetProxy = 15C58C7D2868AB5700BD4FC6 /* PBXContainerItemProxy */;
+		};
+		15C58CD02868ABF700BD4FC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 154B88F0276A1EEB00780E93 /* Lilico-dev */;
+			targetProxy = 15C58CCF2868ABF700BD4FC6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		15B1F63B2786B89800847BB5 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -4235,6 +4266,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -4247,7 +4279,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lilico.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lilico";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lilico-dev.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lilico-dev";
 			};
 			name = Debug;
 		};
@@ -4257,6 +4289,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -4269,7 +4302,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lilico.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lilico";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lilico-dev.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lilico-dev";
 			};
 			name = Release;
 		};
