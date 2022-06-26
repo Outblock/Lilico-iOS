@@ -18,9 +18,10 @@ enum ScriptAddress: String, CaseIterable {
     case nonFungibleToken = "0xNONFUNGIBLETOKEN"
     
     static func addressMap(on network: LocalUserDefaults.FlowNetworkType = LocalUserDefaults.shared.flowNetwork) -> [String: String] {
-        return ScriptAddress.allCases.reduce(into: [String: String]()) { partialResult, script in
-            partialResult[script.rawValue] = script.address(on: network).hex
+        let dict = ScriptAddress.allCases.reduce(into: [String: String]()) { partialResult, script in
+            partialResult[script.rawValue] = script.address(on: network).hex.withPrefix()
         }
+        return dict
     }
     
     func address(on network: LocalUserDefaults.FlowNetworkType = LocalUserDefaults.shared.flowNetwork ) -> Flow.Address {

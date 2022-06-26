@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/abseil-cpp-SwiftPM.git",
       "state" : {
-        "revision" : "fffc3c2729be5747390ad02d5100291a0d9ad26a",
-        "version" : "0.20200225.4"
+        "revision" : "d302de612e3d57c6f4afaf087da18fba8eac72a7",
+        "version" : "0.20220203.1"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
-        "revision" : "f82c23a8a7ef8dc1a49a8bfc6a96883e79121864",
-        "version" : "5.5.0"
+        "revision" : "354dda32d89fc8cd4f5c46487f64957d355f53d8",
+        "version" : "5.6.1"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/openid/AppAuth-iOS.git",
       "state" : {
-        "revision" : "01131d68346c8ae552961c768d583c715fbe1410",
-        "version" : "1.4.0"
+        "revision" : "33660c271c961f8ce1084cc13f2ea8195e864f7d",
+        "version" : "1.5.0"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/boringssl-SwiftPM.git",
       "state" : {
-        "revision" : "734a8247442fde37df4364c21f6a0085b6a36728",
-        "version" : "0.7.2"
+        "revision" : "79db6516894a932d0ddaff3b05b9da1e4f6c4069",
+        "version" : "0.9.0"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/amirdew/CollectionViewPagingLayout",
       "state" : {
-        "revision" : "1b2fc00ddb46de9937276b943093c215748627c4",
-        "version" : "1.0.3"
+        "revision" : "4bdec327535470c8d9765d190625b13e99b87db5",
+        "version" : "1.1.0"
       }
     },
     {
@@ -68,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "08686f04881483d2bc098b2696e674c0ba135e47",
-        "version" : "8.10.0"
+        "revision" : "111d8d6ad1a1afd6c8e9561d26e55ab1e74fcb42",
+        "version" : "8.15.0"
       }
     },
     {
@@ -93,8 +93,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "9b2f6aca5b4685c45f9f5481f19bee8e7982c538",
-        "version" : "8.9.1"
+        "revision" : "ef819db8c58657a6ca367322e73f3b6322afe0a2",
+        "version" : "8.15.0"
       }
     },
     {
@@ -102,8 +102,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleDataTransport.git",
       "state" : {
-        "revision" : "15ccdfd25ac55b9239b82809531ff26605e7556e",
-        "version" : "9.1.2"
+        "revision" : "b905c49326b72211531ed9d7baa02d724828a8dc",
+        "version" : "9.1.4"
       }
     },
     {
@@ -111,8 +111,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleSignIn-iOS",
       "state" : {
-        "revision" : "60ca2bfd218ccb194a746a79b41d9d50eb7e3af0",
-        "version" : "6.1.0"
+        "revision" : "9450e779619fc184d360c9f7ce61023587f7e1f4",
+        "version" : "6.2.2"
       }
     },
     {
@@ -120,26 +120,26 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleUtilities.git",
       "state" : {
-        "revision" : "797005ad8a1f0614063933e2fa010a5d13cb09d0",
-        "version" : "7.6.0"
+        "revision" : "f4abe56ce62a779e64b525eb133c8fc2a84bbc1f",
+        "version" : "7.7.1"
       }
     },
     {
-      "identity" : "grpc-swiftpm",
+      "identity" : "grpc-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/grpc-SwiftPM.git",
+      "location" : "https://github.com/grpc/grpc-ios.git",
       "state" : {
-        "revision" : "fb405dd2c7901485f7e158b24e3a0a47e4efd8b5",
-        "version" : "1.28.4"
+        "revision" : "2af4f6e9c2b18beae228f50b1198c641be859d2b",
+        "version" : "1.44.2-grpc"
       }
     },
     {
       "identity" : "gtm-session-fetcher",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/gtm-session-fetcher.git",
+      "location" : "https://github.com/google/gtm-session-fetcher",
       "state" : {
-        "revision" : "bc6a19702ac76ac4e488b68148710eb815f9bc56",
-        "version" : "1.7.0"
+        "revision" : "4e9bbf2808b8fee444e84a48f5f3c12641987d3e",
+        "version" : "1.7.2"
       }
     },
     {
@@ -147,8 +147,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GTMAppAuth.git",
       "state" : {
-        "revision" : "40f4103fb52109032c05599a0c39ad43edbdf80a",
-        "version" : "1.2.2"
+        "revision" : "b9d1683be336ba8c8d1c6867bafeb056a5399700",
+        "version" : "1.3.0"
       }
     },
     {
@@ -183,8 +183,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "0c02c46cfdc0656ce74fd0963a75e5000a0b7f23",
-        "version" : "7.1.2"
+        "revision" : "022e4eeb79f817748544b318b991d9a70036bbf8",
+        "version" : "7.2.4"
       }
     },
     {
@@ -219,8 +219,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/promises.git",
       "state" : {
-        "revision" : "611337c330350c9c1823ad6d671e7f936af5ee13",
-        "version" : "2.0.0"
+        "revision" : "3e4e743631e86c8c70dbc6efdc7beaa6e90fd3bb",
+        "version" : "2.1.1"
       }
     },
     {
@@ -246,8 +246,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveX/RxSwift.git",
       "state" : {
-        "revision" : "7c17a6ccca06b5c107cfa4284e634562ddaf5951",
-        "version" : "6.2.0"
+        "revision" : "b4307ba0b6425c0ba4178e138799946c3da594f8",
+        "version" : "6.5.0"
       }
     },
     {
@@ -273,8 +273,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ivanvorobei/SPIndicator",
       "state" : {
-        "revision" : "17fc8e08b5428e9553f5dea7ebc8c201513a745c",
-        "version" : "1.6.4"
+        "revision" : "f9676f1d56239b1836587794923cb89cec8ae18a"
       }
     },
     {
@@ -309,8 +308,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/siteline/SwiftUI-Introspect",
       "state" : {
-        "revision" : "2e09be8af614401bc9f87d40093ec19ce56ccaf2",
-        "version" : "0.1.3"
+        "revision" : "f2616860a41f9d9932da412a8978fec79c06fe24",
+        "version" : "0.1.4"
       }
     },
     {
@@ -319,7 +318,7 @@
       "location" : "https://github.com/SwiftUIX/SwiftUIX",
       "state" : {
         "branch" : "master",
-        "revision" : "f05b66cd75dad8cf7edf55cccc75bec90057e934"
+        "revision" : "29ca44720c6157c0d3dc25c3b0338d204d970b9b"
       }
     }
   ],
