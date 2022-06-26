@@ -4959,7 +4959,7 @@
 			repositoryURL = "https://github.com/outblock/flow-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
+				minimumVersion = 0.2.1;
 			};
 		};
 		4ED6DD0E285A22A800105133 /* XCRemoteSwiftPackageReference "IrregularGradient" */ = {
