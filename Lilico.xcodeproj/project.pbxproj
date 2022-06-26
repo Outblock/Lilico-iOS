@@ -351,6 +351,7 @@
 		15F22F1A278B21B600FCF772 /* BiometricAuthentication in Frameworks */ = {isa = PBXBuildFile; productRef = 15F22F19278B21B600FCF772 /* BiometricAuthentication */; };
 		15F22F1D278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F1B278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift */; };
 		15F22F20278B33EE00FCF772 /* CreatePinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F1E278B33EE00FCF772 /* CreatePinCodeViewModel.swift */; };
+		4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */; };
 		4E17466C281AF840002A029C /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
 		4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E17466F281AF841002A029C /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
@@ -821,6 +822,7 @@
 		15F22F1B278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeViewModel.swift; sourceTree = "<group>"; };
 		15F22F1E278B33EE00FCF772 /* CreatePinCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinCodeViewModel.swift; sourceTree = "<group>"; };
 		15F43D112753B4F6004F6F49 /* PageIndictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndictor.swift; sourceTree = "<group>"; };
+		4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCollectionViewModel.swift; sourceTree = "<group>"; };
 		4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = Lilico/Library/SwiftProtobuf.xcframework; sourceTree = "<group>"; };
 		4E1E9BC3283E04770028CBBD /* NFTFavoriteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTFavoriteStore.swift; sourceTree = "<group>"; };
 		4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionCard.swift; sourceTree = "<group>"; };
@@ -1197,6 +1199,7 @@
 			isa = PBXGroup;
 			children = (
 				157046772793243400D1747B /* NFTTabViewModel.swift */,
+				4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -3119,6 +3122,7 @@
 				15DC20A727819C56000B187A /* VWebLinkState.swift in Sources */,
 				15DC218F27819C56000B187A /* VCheckBox.swift in Sources */,
 				6AD900652847175100B65CE6 /* AddAddressView.swift in Sources */,
+				4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */,
 				15DC20D127819C56000B187A /* VNavigationLinkType.swift in Sources */,
 				4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */,
 				15DC208527819C56000B187A /* VLazyScrollViewHorizontal.swift in Sources */,

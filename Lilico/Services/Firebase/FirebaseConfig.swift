@@ -29,7 +29,9 @@ enum FirebaseConfig: String {
     }
 
     static func onConfigLoadFinish() {
-        NFTCollectionConfig.share.reload()
+        Task {
+            await NFTCollectionConfig.share.reload()
+        }
     }
 }
 

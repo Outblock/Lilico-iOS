@@ -57,7 +57,8 @@
 "purchase_price" = "Purchase Price";
 "purchase_date" = "Purchase Date";
 "Trending" = "Trending";
-"Collection list" = "Collection list";
+"collection_list" = "Collection list";
+"add_collection" = "Add Collection";
 
 // Account
 "create_a" = "Create a";

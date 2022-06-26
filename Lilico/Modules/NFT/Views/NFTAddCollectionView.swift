@@ -8,17 +8,48 @@
 import SwiftUI
 
 struct NFTAddCollectionView: View {
+    
+    @State private var offset: CGFloat = 0
+    @EnvironmentObject var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    
+    @StateObject
+    var addViewModel: AddCollectionViewModel = AddCollectionViewModel()
+    
     var body: some View {
-        OffsetScrollView(offset: .constant(1)) {
-            VLazyScrollView {
-                Section {} header: {
-                    title(title: "Trending")
-                }
+        VStack(spacing: 0) {
+            BackAppBar(title: "add_collection".localized) {
+                
+            }
+            .frame(height: 44)
+            //TODO: show page by the status: empty, loading, net error, list
+            
+            OffsetScrollView(offset: $offset) {
+                LazyVStack(alignment: .leading, spacing: 0) {
+                    
+                    if addViewModel.hasTrending() {
+                        Section() {
+                            
+                        } header: {
+                            title(title: "trending")
+                                .padding(.leading, 26)
+                                
+                        }
+                    }
+                    
 
-                Section {} header: {
-                    title(title: "Collection list")
+                    Section {
+                        ForEach(addViewModel.liveList, id:\.self) { it in
+                            NFTAddCollectionView.CollectionItem(item: it)
+                        }
+                    } header: {
+                        title(title: "collection_list")
+                            .padding(.leading, 26)
+                    }
                 }
             }
+        }
+        .onAppear {
+            
         }
     }
 
@@ -31,14 +62,15 @@ struct NFTAddCollectionView: View {
 
 extension NFTAddCollectionView {
     struct CollectionItem: View {
-        var collection: NFTCollection
+        
+        var item: NFTCollectionItem
 
         var body: some View {
             HStack {
                 HStack(alignment: .center) {
                     VStack(alignment: .leading, spacing: 4) {
                         HStack(alignment: .center) {
-                            Text(collection.name)
+                            Text(item.collection.name)
                                 .font(.LL.largeTitle3)
                                 .fontWeight(.w700)
                                 .foregroundColor(.LL.Neutrals.text)
@@ -51,7 +83,7 @@ extension NFTAddCollectionView {
                         }
                         .frame(height: 26)
 
-                        Text(collection.description ?? "")
+                        Text(item.collection.description ?? "")
                             .font(.LL.body)
                             .fontWeight(.w400)
                             .foregroundColor(.LL.Neutrals.neutrals4)
@@ -103,9 +135,40 @@ extension NFTAddCollectionView {
     }
 }
 
+extension NFTAddCollectionView {
+    //TODO:
+    struct ErrorView: View {
+        var body: some View {
+            return Text("Error Net")
+        }
+    }
+    
+    struct EmptyView: View {
+        var body: some View {
+            return Text("Empty")
+        }
+    }
+}
+
 struct NFTAddCollectionView_Previews: PreviewProvider {
+    
+    
+    
+    static let item = NFTCollectionItem(collection: NFTCollection(logo: URL(string: "https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovologo.jpeg")!, name: "OVO", contractName: "", address: ContractAddress(mainnet: "", testnet: ""), banner: nil, officialWebsite: nil, marketplace: nil, description: "hhhhhhhh", path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")),
+                                        isAdded: false,
+                                        isAdding: false)
+    
+    
+    
+    
+    static let list: [NFTCollectionItem] = [
+        item
+    ]
     static var previews: some View {
-        NFTAddCollectionView.CollectionItem(collection: NFTCollection(logo: URL(string: "https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovologo.jpeg")!, name: "OVO", contractName: "", address: ContractAddress(mainnet: "", testnet: ""), banner: nil, officialWebsite: nil, marketplace: nil, description: "hhhhhhhh", path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")))
+        
+        NFTAddCollectionView()
+        
+        NFTAddCollectionView.CollectionItem(item: item)
             .previewLayout(.sizeThatFits)
             .background(Color(red: 0.9, green: 0.9, blue: 0.9)
             )

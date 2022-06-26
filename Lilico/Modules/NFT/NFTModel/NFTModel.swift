@@ -23,6 +23,17 @@ struct NFTCollection: Codable, Hashable {
     var marketplace: URL?
     var description: String?
     var path: ContractPath
+    
+    func currentAddress(forceMainnet: Bool = false) -> String {
+        if(forceMainnet) {
+            return address.mainnet
+        }else {
+            if LocalUserDefaults.shared.flowNetwork == .testnet &&  address.testnet != nil && !address.testnet!.isEmpty {
+                return address.testnet!
+            }
+        }
+        return address.mainnet
+    }
 }
 
 struct ContractAddress: Codable, Hashable {

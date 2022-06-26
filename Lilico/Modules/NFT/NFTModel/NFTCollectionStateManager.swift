@@ -6,20 +6,47 @@
 //
 
 import Foundation
+import Flow
 
-final class NFTCollectionState {
-    let share = NFTCollectionState()
+final class NFTCollectionStateManager {
+    
+    static let share = NFTCollectionStateManager()
+    
     private init() {
-        // TODO: load cache
+        
     }
 
     private var tokenStateList: [NftCollectionState] = []
 
-    func fetch() {
-        Task {
-            let list = NFTCollectionConfig.share.config
+    func fetch() async {
+        let list = NFTCollectionConfig.share.config
+        guard let address = WalletManager.shared.walletInfo?.primaryWalletModel?.getAddress,
+                !address.isEmpty else {
+            return
+        }
+        
+        do {
+            let isEnableList = try await FlowNetwork.checkCollectionEnable(address: Flow.Address(hex: address), list: list);
+            guard isEnableList.count == list.count else {
+                return
+            }
+            
+            for (index, collection) in list.enumerated() {
+                let isEnable = isEnableList[index]
+                let oldState = tokenStateList.first { $0.address == collection.currentAddress()}
+                tokenStateList.remove(at: index)
+                tokenStateList.append(NftCollectionState(name: collection.name, address: collection.currentAddress(), isAdded: isEnable))
+            }
+            
+        }catch {
+            
         }
     }
+    func isTokenAdded(_ address: String) -> Bool {
+        tokenStateList.first { $0.address == address }?.isAdded ?? false
+    }
+    
+
 }
 
 struct NftCollectionState {

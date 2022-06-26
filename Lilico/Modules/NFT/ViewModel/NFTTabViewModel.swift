@@ -126,7 +126,7 @@ class NFTTabViewModel: ViewModel {
         case .search:
             break
         case .add:
-            break
+            router?.route(to: \.addCollection)
         case let .collection(item):
             router?.route(to: \.collection, item)
         case let .fetchColors(url):

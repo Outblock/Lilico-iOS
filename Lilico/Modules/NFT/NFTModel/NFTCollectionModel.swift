@@ -13,10 +13,9 @@ final class NFTCollectionConfig {
 
     var config: [NFTCollection] = []
 
-    func reload() {
-        Task {
-            await fetchData()
-        }
+    func reload() async {
+        
+        await fetchData()
     }
 
     func get(from address: String) async -> NFTCollection? {

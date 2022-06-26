@@ -18,6 +18,7 @@ final class NFTCoordinator: NavigationCoordinatable {
     @Root() var start = makeStart
     @Root(.push) var detail = makeDetail
     @Root(.push) var collection = makeCollection
+    @Root(.push) var addCollection = makeAddCollection
 }
 
 extension NFTCoordinator {
@@ -32,6 +33,12 @@ extension NFTCoordinator {
 
     @ViewBuilder func makeCollection(item: CollectionItem) -> some View {
         NFTCollectionListView(collection: item)
+            .hideNavigationBar()
+            .environmentObject(viewModel)
+    }
+    
+    @ViewBuilder func makeAddCollection() -> some View {
+        NFTAddCollectionView()
             .hideNavigationBar()
             .environmentObject(viewModel)
     }
