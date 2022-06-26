@@ -489,6 +489,8 @@
 		15832D4E286767E20066046D /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15832D4F286767E20066046D /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15832D562867689D0066046D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154B892E276A1FD700780E93 /* GoogleService-Info.plist */; };
+		15832D59286816ED0066046D /* FlowAddressRegistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832D58286816ED0066046D /* FlowAddressRegistor.swift */; };
+		15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832D58286816ED0066046D /* FlowAddressRegistor.swift */; };
 		158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
 		158C9CA42787F6EA0062E0C6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
 		158C9CA92787F7490062E0C6 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
@@ -938,6 +940,7 @@
 		1570467D2793EBA100D1747B /* GithubEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubEndpoint.swift; sourceTree = "<group>"; };
 		15832D53286767E20066046D /* Lilico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lilico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15832D54286767E20066046D /* Lilico-dev copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Lilico-dev copy-Info.plist"; path = "/Users/lmcmz/outblock/Lilico-lite/Lilico-dev copy-Info.plist"; sourceTree = "<absolute>"; };
+		15832D58286816ED0066046D /* FlowAddressRegistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowAddressRegistor.swift; sourceTree = "<group>"; };
 		158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeView.swift; sourceTree = "<group>"; };
 		158C9CA22787F6EA0062E0C6 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -2698,6 +2701,7 @@
 			isa = PBXGroup;
 			children = (
 				4EC56B2F281FC57900246878 /* FlowQuery.swift */,
+				15832D58286816ED0066046D /* FlowAddressRegistor.swift */,
 			);
 			path = FlowCoin;
 			sourceTree = "<group>";
@@ -3584,6 +3588,7 @@
 				15DC20E727819C56000B187A /* VAccordionModel.swift in Sources */,
 				6A8FA4A2285B192900EE5BE3 /* SnapAlignmentEnvironmentKey.swift in Sources */,
 				6AEF8396286462410081E285 /* CoinRateCache.swift in Sources */,
+				15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */,
 				15DC21C527819C56000B187A /* LayoutGroup_LT.swift in Sources */,
 				6ACDD17A28588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */,
 				15DC21A727819C56000B187A /* VBaseTextField.swift in Sources */,
@@ -3985,6 +3990,7 @@
 				15832C7D286767E20066046D /* VAccordionModel.swift in Sources */,
 				15832C7E286767E20066046D /* SnapAlignmentEnvironmentKey.swift in Sources */,
 				15832C7F286767E20066046D /* CoinRateCache.swift in Sources */,
+				15832D59286816ED0066046D /* FlowAddressRegistor.swift in Sources */,
 				15832C80286767E20066046D /* LayoutGroup_LT.swift in Sources */,
 				15832C81286767E20066046D /* LilicoAPI+Profile.swift in Sources */,
 				15832C82286767E20066046D /* VBaseTextField.swift in Sources */,

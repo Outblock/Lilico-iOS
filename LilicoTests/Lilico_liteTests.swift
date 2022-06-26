@@ -63,7 +63,7 @@ class Lilico_liteTests: XCTestCase {
         
 //        FlowNetwork.checkCollectionEnable(address: <#T##Flow.Address#>, list: <#T##[NFTCollection]#>)
         
-        let address = Flow.Address(hex: "0x2b06c41f44a05656")
+        let address = Flow.Address(hex: "0x267f8b177e85a4c6")
         
         let list: [NFTCollection] = try await FirebaseConfig.nftCollections.fetch()
         
@@ -72,18 +72,21 @@ class Lilico_liteTests: XCTestCase {
             let available: Bool
         }
         
-        var enabled = [TestType]()
+        var filteredList: [NFTCollection] = []
         
+        var enabled = [TestType]()
         var disable = [TestType]()
         
-        flow.configure(chainID: .mainnet)
+        flow.configure(chainID: .testnet)
         
         for nft in list {
             do {
                 let result: [Bool] = try await FlowNetwork.checkCollectionEnable(address: address, list: [nft])
                 enabled.append(TestType(name: nft.name, available: result.first!))
+                filteredList.append(nft)
             } catch {
 //                dict[nft.name] = false
+                print(error)
                 disable.append(TestType(name: nft.name, available: false))
                 continue
             }
@@ -97,5 +100,8 @@ class Lilico_liteTests: XCTestCase {
         let data2 = try JSONEncoder().encode(disable)
         let dataString2 = String(data: data2, encoding: .utf8)
         print(dataString2!)
+        
+        let filderResult: [Bool] = try await FlowNetwork.checkCollectionEnable(address: address, list: filteredList)
+        print("filderResult ->", filderResult)
     }
 }

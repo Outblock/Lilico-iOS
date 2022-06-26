@@ -18,7 +18,7 @@ struct WalletService {
     }
 
     var totalBalance: String {
-        let balance = balanceList.reduce(0.0) { $0 + $1 }
+        let balance = balanceList.reduce(+)
         return String(balance)
     }
 

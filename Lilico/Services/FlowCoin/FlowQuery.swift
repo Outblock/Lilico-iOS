@@ -27,7 +27,7 @@ extension FlowQuery where T == FlowQueryAction.token {
         
         let cadence =
             """
-              import FungibleToken from 0x9a0766d93b6608b7
+              import FungibleToken from 0xFungibleToken
               <TokenImports>
               <TokenFunctions>
               pub fun main(address: Address) : [Bool] {
@@ -78,13 +78,14 @@ extension FlowQuery where T == FlowQueryAction.blance {
     static func balance(with tokens: [TokenModel], at network: Flow.ChainID) -> String {
         let cadence =
             """
-            import FungibleToken from 0x9a0766d93b6608b7
+            import FungibleToken from 0xFungibleToken
             <TokenImports>
             <TokenFunctions>
             pub fun main(address: Address) : [UFix64] {
               return [<TokenCall>]
             }
             """
+            .replace(by: ScriptAddress.addressMap())
             .replacingOccurrences(of: "<TokenImports>", with: importRow(with: tokens, at: network))
             .replacingOccurrences(of: "<TokenFunctions>", with: balanceFunc(with: tokens, at: network))
             .replacingOccurrences(of: "<TokenCall>", with: balanceCalls(with: tokens, at: network))
@@ -131,7 +132,7 @@ extension FlowQuery {
             import <Token> from <TokenAddress>
             
             """
-                .buildTokenInfo(token, chainId: network)
+            .buildTokenInfo(token, chainId: network)
         }.joined(separator: "\r\n")
         return tokenImports
     }
@@ -142,7 +143,7 @@ extension FlowQuery {
 
 extension FlowQuery where T == FlowQueryAction.nft {
     
-    static func collectionListCheckEnabled(with list: [NFTCollection], at network: Flow.ChainID) -> String {
+    static func collectionListCheckEnabled(with list: [NFTCollection], on network: Flow.ChainID) -> String {
         let tokenImports = list.map {
             $0.formatCadence(script: "import <Token> from <TokenAddress>")
         }.joined(separator: "\r\n")
@@ -171,7 +172,7 @@ extension FlowQuery where T == FlowQueryAction.nft {
 
         let cadence =
             """
-            import NonFungibleToken from 0x1d7e57aa55817448
+            import NonFungibleToken from 0xNonFungibleToken
             <TokenImports>
             
             <TokenFunctions>
@@ -180,9 +181,46 @@ extension FlowQuery where T == FlowQueryAction.nft {
                 return [<TokenCall>]
             }
             """
+            .replace(by: ScriptAddress.addressMap())
             .replacingOccurrences(of: "<TokenFunctions>", with: tokenFunctions)
             .replacingOccurrences(of: "<TokenImports>", with: tokenImports)
             .replacingOccurrences(of: "<TokenCall>", with: tokenCalls)
+        return cadence
+    }
+    
+    static func collectionListIdCheck(with list: [NFTCollection], on network: Flow.ChainID) -> String {
+        let tokenImports = list.map {
+            $0.formatCadence(script: "import <NFT> from <NFTAddress>")
+        }.joined(separator: "\r\n")
+
+        let tokenFunctions = list.map {
+            $0.formatCadence(script:
+                """
+                if let col = owner.getCapability(<CollectionPublicPath>)
+                        .borrow<&{<CollectionPublic>}>() {
+                            ids[<CollectionName>] = col.getIDs()
+                }
+                """
+            )
+        }.joined(separator: "\r\n")
+
+        let cadence =
+            """
+            import NonFungibleToken from 0xNonFungibleToken
+            <TokenImports>
+            
+            pub fun main(address: Address) : {String: [UInt64]}  {
+                let owner = getAccount(ownerAddress)
+                let ids: {String: [UInt64]} = {}
+            
+                <TokenFunctions>
+            
+                return ids
+            }
+            """
+            .replace(by: ScriptAddress.addressMap())
+            .replacingOccurrences(of: "<TokenFunctions>", with: tokenFunctions)
+            .replacingOccurrences(of: "<TokenImports>", with: tokenImports)
         return cadence
     }
 }
@@ -218,6 +256,7 @@ extension NFTCollection {
             .replacingOccurrences(of: "<CollectionStoragePath>", with: path.storagePath)
             .replacingOccurrences(of: "<CollectionPublic>", with: path.publicCollectionName)
             .replacingOccurrences(of: "<CollectionPublicPath>", with: path.publicPath)
+            .replacingOccurrences(of: "<CollectionName>", with: name)
             .replacingOccurrences(of: "<Token>", with: contractName)
             .replacingOccurrences(of: "<TokenAddress>", with: address.chooseBy(network: chainId) ?? "")
             .replacingOccurrences(of: "<TokenCollectionStoragePath>", with: path.storagePath)
