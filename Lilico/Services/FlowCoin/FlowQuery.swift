@@ -27,13 +27,14 @@ extension FlowQuery where T == FlowQueryAction.token {
         
         let cadence =
             """
-              import FungibleToken from 0xFungibleToken
+              import FungibleToken from 0xFUNGIBLETOKEN
               <TokenImports>
               <TokenFunctions>
               pub fun main(address: Address) : [Bool] {
                 return [<TokenCall>]
               }
             """
+            .replace(by: ScriptAddress.addressMap())
             .replacingOccurrences(of: "<TokenImports>", with: importRow(with: tokens, at: network))
             .replacingOccurrences(of: "<TokenFunctions>", with: tokenEnableFunc(with: tokens, at: network))
             .replacingOccurrences(of: "<TokenCall>", with: tokenEnableCalls(with: tokens, at: network))
@@ -78,7 +79,7 @@ extension FlowQuery where T == FlowQueryAction.blance {
     static func balance(with tokens: [TokenModel], at network: Flow.ChainID) -> String {
         let cadence =
             """
-            import FungibleToken from 0xFungibleToken
+            import FungibleToken from 0xFUNGIBLETOKEN
             <TokenImports>
             <TokenFunctions>
             pub fun main(address: Address) : [UFix64] {
@@ -172,7 +173,7 @@ extension FlowQuery where T == FlowQueryAction.nft {
 
         let cadence =
             """
-            import NonFungibleToken from 0xNonFungibleToken
+            import NonFungibleToken from 0xNONFUNGIBLETOKEN
             <TokenImports>
             
             <TokenFunctions>
@@ -206,7 +207,7 @@ extension FlowQuery where T == FlowQueryAction.nft {
 
         let cadence =
             """
-            import NonFungibleToken from 0xNonFungibleToken
+            import NonFungibleToken from 0xNONFUNGIBLETOKEN
             <TokenImports>
             
             pub fun main(address: Address) : {String: [UInt64]}  {
