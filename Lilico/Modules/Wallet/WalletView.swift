@@ -152,6 +152,7 @@ struct WalletView: View {
 
             Image("icon-wallet-coin-add")
         }
+        .padding(.top, 32)
     }
 }
 
@@ -169,7 +170,7 @@ extension WalletView {
 
                     Spacer()
 
-                    Text("$ 1290.00")
+                    Text(vm.isHidden ? "****" : "$ 1290.00")
                         .foregroundColor(.white)
                         .font(.inter(size: 28, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -177,16 +178,20 @@ extension WalletView {
                     Spacer()
 
                     HStack(spacing: 8) {
-                        Text(vm.address)
+                        Text(vm.isHidden ? "******************" : vm.address)
                             .foregroundColor(Color(hex: "#FDFBF9"))
                             .font(.inter(size: 15, weight: .bold))
-                        Button {} label: {
+                        Button {
+                            vm.copyAddressAction()
+                        } label: {
                             Image("icon-address-copy")
                         }
 
                         Spacer()
 
-                        Button {} label: {
+                        Button {
+                            vm.toggleHiddenStatusAction()
+                        } label: {
                             Image(vm.isHidden ? "icon-wallet-hidden-on" : "icon-wallet-hidden-off")
                         }
                     }
@@ -206,6 +211,7 @@ extension WalletView {
 
     struct CoinCell: View {
         let coin: WalletViewModel.WalletCoinItemModel
+        @EnvironmentObject var vm: WalletViewModel
 
         var body: some View {
             HStack(spacing: 9) {
@@ -224,7 +230,7 @@ extension WalletView {
 
                         Spacer()
 
-                        Text("\(coin.balance.currencyString) \(coin.token.symbol ?? "?")")
+                        Text("\(vm.isHidden ? "****" : coin.balance.currencyString) \(coin.token.symbol?.uppercased() ?? "?")")
                             .foregroundColor(.LL.Neutrals.text)
                             .font(.inter(size: 12, weight: .medium))
                     }
@@ -240,7 +246,7 @@ extension WalletView {
 
                         Spacer()
 
-                        Text("$\(coin.balanceAsUSD)")
+                        Text(vm.isHidden ? "****" : "$\(coin.balanceAsUSD)")
                             .foregroundColor(.LL.Neutrals.neutrals8)
                             .font(.inter(size: 12, weight: .medium))
                     }

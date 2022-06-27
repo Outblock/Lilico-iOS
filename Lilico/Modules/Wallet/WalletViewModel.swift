@@ -143,4 +143,13 @@ extension WalletViewModel {
             }
         }
     }
+    
+    func copyAddressAction() {
+        UIPasteboard.general.string = address
+        HUD.success(title: "copied".localized)
+    }
+    
+    func toggleHiddenStatusAction() {
+        LocalUserDefaults.shared.walletHidden = !isHidden
+    }
 }
