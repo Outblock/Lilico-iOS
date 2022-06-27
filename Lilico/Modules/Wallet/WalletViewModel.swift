@@ -48,6 +48,7 @@ class WalletViewModel: ObservableObject {
     @Published var isHidden: Bool = LocalUserDefaults.shared.walletHidden
     @Published var walletName: String = "wallet".localized
     @Published var address: String = "0x0000000000000000"
+    @Published var balance: Double = 0
     @Published var coinItems: [WalletCoinItemModel] = []
     @Published var walletState: WalletState = .noAddress
 
@@ -120,6 +121,18 @@ class WalletViewModel: ObservableObject {
         }
 
         coinItems = list
+        
+        refreshTotalBalance()
+    }
+    
+    private func refreshTotalBalance() {
+        var total: Double = 0
+        for item in coinItems {
+            let asUSD = item.balance * item.last
+            total += asUSD
+        }
+        
+        balance = total
     }
 }
 

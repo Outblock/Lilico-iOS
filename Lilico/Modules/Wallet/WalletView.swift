@@ -170,7 +170,7 @@ extension WalletView {
 
                     Spacer()
 
-                    Text(vm.isHidden ? "****" : "$ 1290.00")
+                    Text(vm.isHidden ? "****" : "$ \(vm.balance.currencyString)")
                         .foregroundColor(.white)
                         .font(.inter(size: 28, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
