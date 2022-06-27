@@ -51,23 +51,36 @@ struct WalletView: View {
     var body: some View {
         emptyView
             .visibility(vm.walletState == .noAddress ? .visible : .gone)
-
-        VStack(spacing: 32) {
-            headerView
-            CardView()
-            actionView
-
-            loadingView
-                .visibility(vm.walletState == .loading ? .visible : .gone)
-            errorView
-                .visibility(vm.walletState == .error ? .visible : .gone)
-
-            VStack(spacing: 0) {
-                coinSectionView
-                listView
+        
+        List {
+            Section {
+                VStack(spacing: 32) {
+                    headerView
+                    CardView()
+                    actionView
+                }
+                
+                loadingView
+                    .visibility(vm.walletState == .loading ? .visible : .gone)
+                errorView
+                    .visibility(vm.walletState == .error ? .visible : .gone)
             }
+            .listRowInsets(.zero)
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.LL.Neutrals.background)
+            
+            Section {
+                coinSectionView
+                ForEach(vm.coinItems, id: \.token.symbol) { coin in
+                    CoinCell(coin: coin)
+                }
+            }
+            .listRowInsets(.zero)
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.LL.Neutrals.background)
             .visibility(vm.walletState == .idle ? .visible : .gone)
         }
+        .listStyle(.plain)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 18)
         .backgroundFill(.LL.Neutrals.background)
@@ -123,6 +136,7 @@ struct WalletView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .buttonStyle(.plain)
         .frame(height: ActionViewHeight)
         .background(.LL.Shades.front)
         .cornerRadius(16)
@@ -138,20 +152,6 @@ struct WalletView: View {
 
             Image("icon-wallet-coin-add")
         }
-    }
-
-    var listView: some View {
-        List {
-            Section {
-                ForEach(vm.coinItems, id: \.token.symbol) { coin in
-                    CoinCell(coin: coin)
-                }
-            }
-            .listRowInsets(.zero)
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.LL.Neutrals.background)
-        }
-        .listStyle(.plain)
     }
 }
 
