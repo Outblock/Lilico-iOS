@@ -10,6 +10,7 @@ import Flow
 import Kingfisher
 import SPConfetti
 import SwiftUI
+import Stinsen
 
 struct WalletView_Previews: PreviewProvider {
     static var previews: some View {
@@ -24,7 +25,8 @@ private let CoinCellHeight: CGFloat = 73
 private let CoinIconHeight: CGFloat = 43
 
 struct WalletView: View {
-    @StateObject var vm = WalletViewModel()
+    @StateObject private var vm = WalletViewModel()
+    @EnvironmentObject private var router: WalletCoordinator.Router
 
     init() {
         UICollectionView.appearance().backgroundColor = .clear
@@ -150,8 +152,14 @@ struct WalletView: View {
 
             Spacer()
 
-            Image("icon-wallet-coin-add")
+            Button {
+                router.route(to: \.addToken)
+            } label: {
+                Image("icon-wallet-coin-add")
+            }
+
         }
+        .buttonStyle(.plain)
         .padding(.top, 32)
     }
 }

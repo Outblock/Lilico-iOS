@@ -12,4 +12,5 @@ extension String {
     static let checkmarkUnselected = "circle"
     static let sun = "sun.max.fill"
     static let error = "xmark.octagon.fill"
+    static let add = "plus.circle"
 }

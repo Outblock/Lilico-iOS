@@ -37,7 +37,7 @@ enum QuoteMarket: String {
 let SymbolTypeFlow: String = "flow"
 let SymbolTypeFlowUSD: String = "fusd"
 
-struct TokenModel: Codable {
+struct TokenModel: Codable, Identifiable {
     let name: String
     let address: FlowNetworkModel
     let contractName: String
@@ -46,6 +46,10 @@ struct TokenModel: Codable {
     let icon: URL?
     let symbol: String?
     let website: URL?
+    
+    var id: String {
+        return symbol ?? ""
+    }
 
     func getAddress() -> String? {
         return address.addressByNetwork(LocalUserDefaults.shared.flowNetwork.toFlowType())
@@ -60,6 +64,14 @@ struct TokenModel: Codable {
         default:
             return ""
         }
+    }
+    
+    var isActivated: Bool {
+        if let symbol = symbol {
+            return WalletManager.shared.isTokenActivated(symbol: symbol)
+        }
+        
+        return false
     }
 }
 

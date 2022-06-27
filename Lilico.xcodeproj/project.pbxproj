@@ -251,7 +251,6 @@
 		15C58B5B2868A4EE00BD4FC6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C44002751CFA4006D1E8D /* Color.swift */; };
 		15C58B5C2868A4EE00BD4FC6 /* VPageIndicatorFinite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE427819C56000B187A /* VPageIndicatorFinite.swift */; };
 		15C58B5D2868A4EE00BD4FC6 /* VNavigationViewBackButtonHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FB327819C56000B187A /* VNavigationViewBackButtonHidden.swift */; };
-		15C58B5E2868A4EE00BD4FC6 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21D42828E52D00E1BACD /* WalletService.swift */; };
 		15C58B5F2868A4EE00BD4FC6 /* VTextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204127819C56000B187A /* VTextFieldModel.swift */; };
 		15C58B602868A4EE00BD4FC6 /* VProgressBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FF627819C56000B187A /* VProgressBarModel.swift */; };
 		15C58B612868A4EE00BD4FC6 /* View+IndexBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F592845F1CB0026B31E /* View+IndexBarBackground.swift */; };
@@ -773,7 +772,6 @@
 		4E8DD9FD282E52110016A931 /* JSONStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DD9FB282E52110016A931 /* JSONStorage.swift */; };
 		4E9BFF5D2867631300601339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9BFF5C2867631300601339 /* UIKit.framework */; };
 		4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21B1282644B100E1BACD /* WalletViewModel.swift */; };
-		4E9E21D62828E52D00E1BACD /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21D42828E52D00E1BACD /* WalletService.swift */; };
 		4E9E21DB282A5B9400E1BACD /* SecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21D9282A586500E1BACD /* SecureView.swift */; };
 		4E9E21E0282A71B500E1BACD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E9E21DC282A68CB00E1BACD /* Colors.xcassets */; };
 		4E9E21E5282C091700E1BACD /* PinCodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */; };
@@ -831,6 +829,8 @@
 		6A35EADE2859C20B005A85B8 /* NFTListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35EADC2859C20B005A85B8 /* NFTListCache.swift */; };
 		6A41B6AA2861D06F00999451 /* NotificationDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A41B6A82861D06F00999451 /* NotificationDefine.swift */; };
 		6A4A235128365B31001F1FDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
+		6A7F989F2869A40500282845 /* AddTokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F989E2869A40500282845 /* AddTokenViewModel.swift */; };
+		6A7F98A02869A40500282845 /* AddTokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F989E2869A40500282845 /* AddTokenViewModel.swift */; };
 		6A8D2A38283C7C790041100E /* AddressBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A36283C7C790041100E /* AddressBookView.swift */; };
 		6A8D2A3B283C7C880041100E /* AddressBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */; };
 		6A8D2A3E283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */; };
@@ -888,6 +888,8 @@
 		6AEF839C28647B830081E285 /* LilicoAPI+Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF839A28647B830081E285 /* LilicoAPI+Crypto.swift */; };
 		6AEF839F28647BDC0081E285 /* CryptoRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF839D28647BDC0081E285 /* CryptoRequests.swift */; };
 		6AEF83A2286594280081E285 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF83A0286594280081E285 /* Double.swift */; };
+		6AF1F35D2869977B0084DF3D /* AddTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF1F35C2869977B0084DF3D /* AddTokenView.swift */; };
+		6AF1F35E2869977B0084DF3D /* AddTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF1F35C2869977B0084DF3D /* AddTokenView.swift */; };
 		6AF2ED8F2836424400F06AD3 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED8D2836424400F06AD3 /* UINavigationController.swift */; };
 		6AF2ED9228364BC200F06AD3 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED9028364BC100F06AD3 /* UIFont.swift */; };
 		6AF2ED962836539E00F06AD3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2ED942836539E00F06AD3 /* BaseView.swift */; };
@@ -1247,7 +1249,6 @@
 		4E8DD9FB282E52110016A931 /* JSONStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStorage.swift; sourceTree = "<group>"; };
 		4E9BFF5C2867631300601339 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4E9E21B1282644B100E1BACD /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
-		4E9E21D42828E52D00E1BACD /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		4E9E21D9282A586500E1BACD /* SecureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureView.swift; sourceTree = "<group>"; };
 		4E9E21DC282A68CB00E1BACD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeCoordinator.swift; sourceTree = "<group>"; };
@@ -1303,6 +1304,7 @@
 		6A35EADC2859C20B005A85B8 /* NFTListCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListCache.swift; sourceTree = "<group>"; };
 		6A41B6A82861D06F00999451 /* NotificationDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDefine.swift; sourceTree = "<group>"; };
 		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		6A7F989E2869A40500282845 /* AddTokenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenViewModel.swift; sourceTree = "<group>"; };
 		6A8D2A36283C7C790041100E /* AddressBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookView.swift; sourceTree = "<group>"; };
 		6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookViewModel.swift; sourceTree = "<group>"; };
 		6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookCoordinator.swift; sourceTree = "<group>"; };
@@ -1360,6 +1362,7 @@
 		6AEF839A28647B830081E285 /* LilicoAPI+Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+Crypto.swift"; sourceTree = "<group>"; };
 		6AEF839D28647BDC0081E285 /* CryptoRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoRequests.swift; sourceTree = "<group>"; };
 		6AEF83A0286594280081E285 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		6AF1F35C2869977B0084DF3D /* AddTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenView.swift; sourceTree = "<group>"; };
 		6AF2ED8D2836424400F06AD3 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		6AF2ED9028364BC100F06AD3 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		6AF2ED942836539E00F06AD3 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -1483,7 +1486,7 @@
 		1507C7EA2755FCB100890C5D /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				4E9E21D02828C5A200E1BACD /* Service */,
+				6AF1F35B286997690084DF3D /* AddToken */,
 				15BCFF1627772994000B7863 /* Empty */,
 				15DE22E7277EDC4700B5EE03 /* WalletView.swift */,
 				4E9E21B1282644B100E1BACD /* WalletViewModel.swift */,
@@ -2716,14 +2719,6 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		4E9E21D02828C5A200E1BACD /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				4E9E21D42828E52D00E1BACD /* WalletService.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		4EA820C128634A9700DF36A8 /* Json */ = {
 			isa = PBXGroup;
 			children = (
@@ -3087,6 +3082,15 @@
 				6AE08419284EFF6D003BEEF0 /* DeveloperModeView.swift */,
 			);
 			path = DeveloperMode;
+			sourceTree = "<group>";
+		};
+		6AF1F35B286997690084DF3D /* AddToken */ = {
+			isa = PBXGroup;
+			children = (
+				6AF1F35C2869977B0084DF3D /* AddTokenView.swift */,
+				6A7F989E2869A40500282845 /* AddTokenViewModel.swift */,
+			);
+			path = AddToken;
 			sourceTree = "<group>";
 		};
 		6AF2ED932836537800F06AD3 /* Base */ = {
@@ -3497,6 +3501,7 @@
 				4E1E9BC5283E04770028CBBD /* NFTFavoriteStore.swift in Sources */,
 				6A8FA498285B192800EE5BE3 /* Introspect.swift in Sources */,
 				15DC21E727819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
+				6AF1F35E2869977B0084DF3D /* AddTokenView.swift in Sources */,
 				6A4A235128365B31001F1FDE /* Image.swift in Sources */,
 				1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
 				15DC20B727819C56000B187A /* VChevronButton.swift in Sources */,
@@ -3603,7 +3608,6 @@
 				154B8909276A1EEB00780E93 /* Color.swift in Sources */,
 				15DC211127819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
 				15DC20C927819C56000B187A /* VNavigationViewBackButtonHidden.swift in Sources */,
-				4E9E21D62828E52D00E1BACD /* WalletService.swift in Sources */,
 				15DC219927819C56000B187A /* VTextFieldModel.swift in Sources */,
 				15DC212B27819C56000B187A /* VProgressBarModel.swift in Sources */,
 				6A164F6E2845F1CB0026B31E /* View+IndexBarBackground.swift in Sources */,
@@ -3674,6 +3678,7 @@
 				15DC20C127819C56000B187A /* VSquareButton.swift in Sources */,
 				15DC216F27819C56000B187A /* VDialog.swift in Sources */,
 				6ACDD16D285874DC00F406EB /* ProfileEditCoordinator.swift in Sources */,
+				6A7F98A02869A40500282845 /* AddTokenViewModel.swift in Sources */,
 				6A164F422840A1380026B31E /* TabBar.swift in Sources */,
 				6AE084242851D481003BEEF0 /* Logger.swift in Sources */,
 				15DC210127819C56000B187A /* VStepper.swift in Sources */,
@@ -3901,6 +3906,7 @@
 				15C58AF12868A4EE00BD4FC6 /* NFTFavoriteStore.swift in Sources */,
 				15C58AF22868A4EE00BD4FC6 /* Introspect.swift in Sources */,
 				15C58AF32868A4EE00BD4FC6 /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
+				6AF1F35D2869977B0084DF3D /* AddTokenView.swift in Sources */,
 				15C58AF42868A4EE00BD4FC6 /* Image.swift in Sources */,
 				15C58AF52868A4EE00BD4FC6 /* GithubEndpoint.swift in Sources */,
 				15C58AF62868A4EE00BD4FC6 /* VChevronButton.swift in Sources */,
@@ -4007,7 +4013,6 @@
 				15C58B5B2868A4EE00BD4FC6 /* Color.swift in Sources */,
 				15C58B5C2868A4EE00BD4FC6 /* VPageIndicatorFinite.swift in Sources */,
 				15C58B5D2868A4EE00BD4FC6 /* VNavigationViewBackButtonHidden.swift in Sources */,
-				15C58B5E2868A4EE00BD4FC6 /* WalletService.swift in Sources */,
 				15C58B5F2868A4EE00BD4FC6 /* VTextFieldModel.swift in Sources */,
 				15C58B602868A4EE00BD4FC6 /* VProgressBarModel.swift in Sources */,
 				15C58B612868A4EE00BD4FC6 /* View+IndexBarBackground.swift in Sources */,
@@ -4078,6 +4083,7 @@
 				15C58BA22868A4EE00BD4FC6 /* VSquareButton.swift in Sources */,
 				15C58BA32868A4EE00BD4FC6 /* VDialog.swift in Sources */,
 				15C58BA42868A4EE00BD4FC6 /* ProfileEditCoordinator.swift in Sources */,
+				6A7F989F2869A40500282845 /* AddTokenViewModel.swift in Sources */,
 				15C58BA52868A4EE00BD4FC6 /* TabBar.swift in Sources */,
 				15C58BA62868A4EE00BD4FC6 /* Logger.swift in Sources */,
 				15C58BA72868A4EE00BD4FC6 /* VStepper.swift in Sources */,

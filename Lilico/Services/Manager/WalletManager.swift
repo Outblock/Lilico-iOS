@@ -66,6 +66,16 @@ extension WalletManager {
     func getCurrentFlowAccountKey() -> Flow.AccountKey? {
         return mnemonicModel?.flowAccountKey
     }
+    
+    func isTokenActivated(symbol: String) -> Bool {
+        for token in activatedCoins {
+            if token.symbol == symbol {
+                return true
+            }
+        }
+        
+        return false
+    }
 }
 
 // MARK: - Setter

@@ -18,10 +18,9 @@ final class WalletCoordinator: NavigationCoordinatable {
     @Root var empty = makeEmptyWallet
     @Route(.push) var register = makeRegister
     @Route(.push) var login = makeLogin
-
     @Route(.push) var recoveryPhrase = makeRecoveryPhrase
-
     @Route(.push) var createSecure = makeCreateSecure
+    @Route(.push) var addToken = makeAddToken
 
     var isFristTime: Bool = true
 
@@ -65,6 +64,10 @@ extension WalletCoordinator {
 
     func makeCreateSecure() -> SecureCoordinator {
         SecureCoordinator()
+    }
+    
+    func makeAddToken() -> some View {
+        AddTokenView()
     }
 }
 
