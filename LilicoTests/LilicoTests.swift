@@ -5,8 +5,8 @@
 //  Created by Hao Fu on 26/6/2022.
 //
 
-@testable import Lilico
 import XCTest
+@testable import Lilico_dev
 
 final class LilicoTests: XCTestCase {
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1500783428682BF700A00109 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 1500783328682BF700A00109 /* SPIndicator */; };
-		1500783E286830EF00A00109 /* LilicoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500783D286830EF00A00109 /* LilicoTests.swift */; };
 		1505E5FC28363578007B98D8 /* LilicoAPI+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */; };
 		1505E5FF2836365C007B98D8 /* LilicoAPI+AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */; };
 		15185ED8278A73A3006B74A9 /* SPConfetti in Frameworks */ = {isa = PBXBuildFile; productRef = 15185ED7278A73A3006B74A9 /* SPConfetti */; };
@@ -515,13 +514,6 @@
 		15C58C662868A4EE00BD4FC6 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
 		15C58C682868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15C58C692868A4EE00BD4FC6 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15C58C702868A5DC00BD4FC6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C6F2868A5DC00BD4FC6 /* FirebaseAuth */; };
-		15C58C722868A5EA00BD4FC6 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C712868A5EA00BD4FC6 /* FirebaseRemoteConfig */; };
-		15C58C742868A5F200BD4FC6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C732868A5F200BD4FC6 /* FirebaseStorage */; };
-		15C58C762868A5FA00BD4FC6 /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C752868A5FA00BD4FC6 /* GTMSessionFetcherCore */; };
-		15C58C782868A61400BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C772868A61400BD4FC6 /* GoogleAPIClientForRESTCore */; };
-		15C58C7A2868A61900BD4FC6 /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C792868A61900BD4FC6 /* GoogleAPIClientForREST_Drive */; };
-		15C58C7C2868A62000BD4FC6 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58C7B2868A62000BD4FC6 /* GoogleSignIn */; };
 		15D574CA277816F200045E79 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D574C8277816F200045E79 /* UsernameView.swift */; };
 		15D574CD27781D2000045E79 /* LLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D574CB27781D2000045E79 /* LLTextField.swift */; };
 		15D5774B277C0FFB00045E79 /* UsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57749277C0FFB00045E79 /* UsernameViewModel.swift */; };
@@ -867,6 +859,16 @@
 		6AAA45F5284862D100A9AC96 /* ToastUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA45E3284862D100A9AC96 /* ToastUI.swift */; };
 		6ABAE52B2836288400C97AE2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE5292836288400C97AE2 /* Font.swift */; };
 		6ABAE53028362D1100C97AE2 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
+		6AC62AF2286AE92B000876D9 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF1286AE92B000876D9 /* FirebaseDynamicLinks */; };
+		6AC62AF4286AE936000876D9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF3286AE936000876D9 /* FirebaseAuth */; };
+		6AC62AF6286AE948000876D9 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF5286AE948000876D9 /* FirebaseCrashlytics */; };
+		6AC62AF8286AE955000876D9 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF7286AE955000876D9 /* FirebaseRemoteConfig */; };
+		6AC62AFA286AE964000876D9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF9286AE964000876D9 /* FirebaseStorage */; };
+		6AC62AFC286AE98E000876D9 /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AFB286AE98E000876D9 /* GTMSessionFetcherCore */; };
+		6AC62AFE286AE9B6000876D9 /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AFD286AE9B6000876D9 /* GoogleAPIClientForREST_Drive */; };
+		6AC62B00286AE9D2000876D9 /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AFF286AE9D2000876D9 /* GoogleAPIClientForRESTCore */; };
+		6AC62B02286AEA04000876D9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62B01286AEA04000876D9 /* GoogleSignIn */; };
+		6AC62B03286AEFB5000876D9 /* LilicoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500783D286830EF00A00109 /* LilicoTests.swift */; };
 		6ACDD16A2858688700F406EB /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD1682858688700F406EB /* ProfileEditView.swift */; };
 		6ACDD16D285874DC00F406EB /* ProfileEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD16B285874DC00F406EB /* ProfileEditCoordinator.swift */; };
 		6ACDD17028587A7700F406EB /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD16E28587A7700F406EB /* ProfileEditViewModel.swift */; };
@@ -900,13 +902,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		15C58C7D2868AB5700BD4FC6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 15C58A7E2868A4EE00BD4FC6;
-			remoteInfo = Lilico;
-		};
 		15C58CCF2868ABF700BD4FC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
@@ -1227,7 +1222,6 @@
 		15EC9DF1274FD1FD00F70CD9 /* Lilico_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_App.swift; sourceTree = "<group>"; };
 		15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		15EC9E02274FD1FD00F70CD9 /* Lilico_liteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lilico_liteTests.swift; sourceTree = "<group>"; };
 		15F22F08278B009200FCF772 /* ChooseAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAccountViewModel.swift; sourceTree = "<group>"; };
 		15F22F0B278B13EB00FCF772 /* EnterPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPasswordViewModel.swift; sourceTree = "<group>"; };
 		15F22F0E278B1DF400FCF772 /* SecureCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureCoordinator.swift; sourceTree = "<group>"; };
@@ -1377,13 +1371,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15C58C7A2868A61900BD4FC6 /* GoogleAPIClientForREST_Drive in Frameworks */,
-				15C58C782868A61400BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */,
-				15C58C702868A5DC00BD4FC6 /* FirebaseAuth in Frameworks */,
-				15C58C722868A5EA00BD4FC6 /* FirebaseRemoteConfig in Frameworks */,
-				15C58C742868A5F200BD4FC6 /* FirebaseStorage in Frameworks */,
-				15C58C762868A5FA00BD4FC6 /* GTMSessionFetcherCore in Frameworks */,
-				15C58C7C2868A62000BD4FC6 /* GoogleSignIn in Frameworks */,
+				6AC62AFE286AE9B6000876D9 /* GoogleAPIClientForREST_Drive in Frameworks */,
+				6AC62AF6286AE948000876D9 /* FirebaseCrashlytics in Frameworks */,
+				6AC62AF2286AE92B000876D9 /* FirebaseDynamicLinks in Frameworks */,
+				6AC62AF4286AE936000876D9 /* FirebaseAuth in Frameworks */,
+				6AC62AFC286AE98E000876D9 /* GTMSessionFetcherCore in Frameworks */,
+				6AC62AFA286AE964000876D9 /* FirebaseStorage in Frameworks */,
+				6AC62B00286AE9D2000876D9 /* GoogleAPIClientForRESTCore in Frameworks */,
+				6AC62AF8286AE955000876D9 /* FirebaseRemoteConfig in Frameworks */,
+				6AC62B02286AEA04000876D9 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2614,7 +2610,6 @@
 			isa = PBXGroup;
 			children = (
 				15EC9DF0274FD1FC00F70CD9 /* Lilico */,
-				15EC9E01274FD1FD00F70CD9 /* Lilico-Tests */,
 				1500783C286830EF00A00109 /* LilicoTests */,
 				15EC9DEF274FD1FC00F70CD9 /* Products */,
 				15B1A67A276A2D670006B621 /* Frameworks */,
@@ -2652,15 +2647,6 @@
 				15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		15EC9E01274FD1FD00F70CD9 /* Lilico-Tests */ = {
-			isa = PBXGroup;
-			children = (
-				15EC9E02274FD1FD00F70CD9 /* Lilico_liteTests.swift */,
-			);
-			name = "Lilico-Tests";
-			path = LilicoTests;
 			sourceTree = "<group>";
 		};
 		15F22F11278B1E7300FCF772 /* Secure */ = {
@@ -3124,18 +3110,19 @@
 			buildRules = (
 			);
 			dependencies = (
-				15C58C7E2868AB5700BD4FC6 /* PBXTargetDependency */,
 				15C58CD02868ABF700BD4FC6 /* PBXTargetDependency */,
 			);
 			name = LilicoTests;
 			packageProductDependencies = (
-				15C58C6F2868A5DC00BD4FC6 /* FirebaseAuth */,
-				15C58C712868A5EA00BD4FC6 /* FirebaseRemoteConfig */,
-				15C58C732868A5F200BD4FC6 /* FirebaseStorage */,
-				15C58C752868A5FA00BD4FC6 /* GTMSessionFetcherCore */,
-				15C58C772868A61400BD4FC6 /* GoogleAPIClientForRESTCore */,
-				15C58C792868A61900BD4FC6 /* GoogleAPIClientForREST_Drive */,
-				15C58C7B2868A62000BD4FC6 /* GoogleSignIn */,
+				6AC62AF1286AE92B000876D9 /* FirebaseDynamicLinks */,
+				6AC62AF3286AE936000876D9 /* FirebaseAuth */,
+				6AC62AF5286AE948000876D9 /* FirebaseCrashlytics */,
+				6AC62AF7286AE955000876D9 /* FirebaseRemoteConfig */,
+				6AC62AF9286AE964000876D9 /* FirebaseStorage */,
+				6AC62AFB286AE98E000876D9 /* GTMSessionFetcherCore */,
+				6AC62AFD286AE9B6000876D9 /* GoogleAPIClientForREST_Drive */,
+				6AC62AFF286AE9D2000876D9 /* GoogleAPIClientForRESTCore */,
+				6AC62B01286AEA04000876D9 /* GoogleSignIn */,
 			);
 			productName = LilicoTests;
 			productReference = 1500783B286830EF00A00109 /* LilicoTests.xctest */;
@@ -3424,7 +3411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1500783E286830EF00A00109 /* LilicoTests.swift in Sources */,
+				6AC62B03286AEFB5000876D9 /* LilicoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4241,11 +4228,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		15C58C7E2868AB5700BD4FC6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 15C58A7E2868A4EE00BD4FC6 /* Lilico */;
-			targetProxy = 15C58C7D2868AB5700BD4FC6 /* PBXContainerItemProxy */;
-		};
 		15C58CD02868ABF700BD4FC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 154B88F0276A1EEB00780E93 /* Lilico-dev */;
@@ -4708,8 +4690,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/google-api-objectivec-client-for-rest";
 			requirement = {
-				kind = revision;
-				revision = 392de3fb0d5350a874396e7651541e8755322be1;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 		156AC7AF278042DE00ED5E3E /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */ = {
@@ -5179,41 +5161,6 @@
 			package = 15C58AAB2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SPIndicator" */;
 			productName = SPIndicator;
 		};
-		15C58C6F2868A5DC00BD4FC6 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		15C58C712868A5EA00BD4FC6 /* FirebaseRemoteConfig */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseRemoteConfig;
-		};
-		15C58C732868A5F200BD4FC6 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
-		15C58C752868A5FA00BD4FC6 /* GTMSessionFetcherCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 156AC7AF278042DE00ED5E3E /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
-			productName = GTMSessionFetcherCore;
-		};
-		15C58C772868A61400BD4FC6 /* GoogleAPIClientForRESTCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
-			productName = GoogleAPIClientForRESTCore;
-		};
-		15C58C792868A61900BD4FC6 /* GoogleAPIClientForREST_Drive */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
-			productName = GoogleAPIClientForREST_Drive;
-		};
-		15C58C7B2868A62000BD4FC6 /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15DE22F7277FF55C00B5EE03 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
 		15D57758277C23BF00045E79 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */;
@@ -5263,6 +5210,51 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		6AC62AF1286AE92B000876D9 /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
+		};
+		6AC62AF3286AE936000876D9 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		6AC62AF5286AE948000876D9 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		6AC62AF7286AE955000876D9 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		6AC62AF9286AE964000876D9 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		6AC62AFB286AE98E000876D9 /* GTMSessionFetcherCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 156AC7AF278042DE00ED5E3E /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
+			productName = GTMSessionFetcherCore;
+		};
+		6AC62AFD286AE9B6000876D9 /* GoogleAPIClientForREST_Drive */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			productName = GoogleAPIClientForREST_Drive;
+		};
+		6AC62AFF286AE9D2000876D9 /* GoogleAPIClientForRESTCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			productName = GoogleAPIClientForRESTCore;
+		};
+		6AC62B01286AEA04000876D9 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15DE22F7277FF55C00B5EE03 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
