@@ -81,6 +81,7 @@ extension WalletManager {
 // MARK: - Setter
 
 extension WalletManager {
+    #warning("change saving key from username to uid")
     func setSecurePassword(_ pwd: String, username: String) throws {
         try set(toBackupKeychain: pwd, forKey: username)
     }
@@ -162,7 +163,7 @@ extension WalletManager {
         return HDWallet(strength: WalletManager.mnemonicStrength, passphrase: passphrase)
     }
 
-    func storeAndActiveMnemonicToKeychain(_ mnemonic: String, username: String) throws {
+    func storeAndActiveMnemonicToKeychain(_ mnemonic: String, uid: String) throws {
         guard var password = getMnemoicPwd() else {
             throw LLError.emptyEncryptKey
         }
@@ -181,7 +182,7 @@ extension WalletManager {
             encodedData = Data()
         }
 
-        try set(toMainKeychain: encodedData, forKey: getMnemonicStoreKey(username: username), comment: "Lilico user: \(username)")
+        try set(toMainKeychain: encodedData, forKey: getMnemonicStoreKey(uid: uid), comment: "Lilico user uid: \(uid)")
         if !activeMnemonic(mnemonic) {
             throw LLError.createWalletFailed
         }
@@ -198,15 +199,15 @@ extension WalletManager {
 
 extension WalletManager {
     private func restoreMnemonicForCurrentUser() {
-        if !UserManager.shared.isAnonymous, let username = UserManager.shared.userInfo?.username {
-            if !restoreMnemonicFromKeychain(username: username) {
+        if !UserManager.shared.isAnonymous, let uid = UserManager.shared.getUid() {
+            if !restoreMnemonicFromKeychain(uid: uid) {
                 HUD.error(title: "no_private_key".localized)
             }
         }
     }
 
-    private func restoreMnemonicFromKeychain(username: String) -> Bool {
-        if var encryptedData = getEncryptedMnemonicData(username: username),
+    private func restoreMnemonicFromKeychain(uid: String) -> Bool {
+        if var encryptedData = getEncryptedMnemonicData(uid: uid),
            var pwd = getMnemoicPwd(),
            var decryptedData = try? WalletManager.decryptionAES(key: pwd, data: encryptedData),
            var mnemonic = String(data: decryptedData, encoding: .utf8)
@@ -237,12 +238,12 @@ extension WalletManager {
 // MARK: - Internal Getter
 
 extension WalletManager {
-    private func getMnemonicStoreKey(username: String) -> String {
-        return "\(WalletManager.mnemonicStoreKeyPrefix).\(username)"
+    private func getMnemonicStoreKey(uid: String) -> String {
+        return "\(WalletManager.mnemonicStoreKeyPrefix).\(uid)"
     }
 
-    private func getEncryptedMnemonicData(username: String) -> Data? {
-        return getData(fromMainKeychain: getMnemonicStoreKey(username: username))
+    private func getEncryptedMnemonicData(uid: String) -> Data? {
+        return getData(fromMainKeychain: getMnemonicStoreKey(uid: uid))
     }
 
     private func getMnemoicPwd() -> String? {

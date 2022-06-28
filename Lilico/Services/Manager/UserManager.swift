@@ -98,11 +98,11 @@ extension UserManager {
         try await fetchUserInfo()
         uploadUserNameIfNeeded()
 
-        guard let username = userInfo?.username else {
+        guard let uid = UserManager.shared.getUid() else {
             throw LLError.fetchUserInfoFailed
         }
 
-        try WalletManager.shared.storeAndActiveMnemonicToKeychain(mnemonic, username: username)
+        try WalletManager.shared.storeAndActiveMnemonicToKeychain(mnemonic, uid: uid)
     }
 
     private func firebaseLogin(customToken: String) async throws {
