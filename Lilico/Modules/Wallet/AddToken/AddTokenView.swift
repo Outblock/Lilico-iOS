@@ -37,18 +37,18 @@ struct AddTokenView: View {
                 ForEach(section.tokenList) { token in
                     TokenItemCell(token: token)
                         .listRowSeparator(.hidden)
-                        .background(Color.clear)
+                        .listRowBackground(Color.clear)
                 }
             } header: {
                 sectionHeader(section)
                     .id(section.id)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            .listStyle(.plain)
-            .background(Color.LL.deepBg)
-            .searchable(text: $vm.searchText)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 7))
+            .listRowInsets(EdgeInsets(top: 6, leading: 18, bottom: 6, trailing: 27))
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .listStyle(.plain)
+        .background(Color.LL.deepBg)
+        .searchable(text: $vm.searchText)
     }
     
     @ViewBuilder private func sectionHeader(_ section: AddTokenViewModel.Section) -> some View {
@@ -56,7 +56,6 @@ struct AddTokenView: View {
         Text(sectionName == "#" ? "\(sectionName)" : "#\(sectionName)")
             .foregroundColor(.LL.Neutrals.neutrals8)
             .font(.inter(size: 18, weight: .semibold))
-            .padding(.top, 16)
     }
 }
 
