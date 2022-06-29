@@ -67,6 +67,10 @@ extension WalletManager {
         return mnemonicModel?.flowAccountKey
     }
     
+    func getPrimaryWalletAddress() -> String? {
+        return walletInfo?.primaryWalletModel?.getAddress
+    }
+    
     func isTokenActivated(symbol: String) -> Bool {
         for token in activatedCoins {
             if token.symbol == symbol {

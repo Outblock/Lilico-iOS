@@ -41,6 +41,9 @@
 "avatar_info_error" = "NFT info error";
 "change_avatar_error" = "Change avatar failed";
 "fetch_wallet_error" = "Fetch wallet data failed";
+"add_token_failed" = "Add token failed";
+"add_token_success" = "Add token success";
+"add_token_timeout" = "Add token timeout";
 
 // NFT
 "x_collections" = "%d Collections";
@@ -207,3 +210,4 @@
 "x_coins" = "%d Coins";
 "copied" = "Copied";
 "add_token" = "Add Token";
+"enable" = "Enable";

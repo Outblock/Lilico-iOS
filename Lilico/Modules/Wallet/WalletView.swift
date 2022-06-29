@@ -25,6 +25,7 @@ private let CoinCellHeight: CGFloat = 73
 private let CoinIconHeight: CGFloat = 43
 
 struct WalletView: View {
+    @StateObject var themeManager = ThemeManager.shared
     @StateObject private var vm = WalletViewModel()
     @EnvironmentObject private var router: WalletCoordinator.Router
 
@@ -88,6 +89,7 @@ struct WalletView: View {
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
         .visibility(vm.walletState != .noAddress ? .visible : .gone)
+        .preferredColorScheme(themeManager.style)
     }
 
     var headerView: some View {
@@ -156,6 +158,8 @@ struct WalletView: View {
                 router.route(to: \.addToken)
             } label: {
                 Image("icon-wallet-coin-add")
+                    .renderingMode(.template)
+                    .foregroundColor(.LL.Neutrals.neutrals1)
             }
 
         }

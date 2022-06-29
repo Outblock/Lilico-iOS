@@ -266,3 +266,17 @@ extension NFTCollection {
             .replacingOccurrences(of: "<TokenCollectionPublicPath>", with: path.publicPath)
     }
 }
+
+extension TokenModel {
+    func formatCadence(cadence: String) -> String {
+        let dict = [
+            "<Token>": contractName,
+            "<TokenAddress>": getAddress() ?? "0x",
+            "<TokenReceiverPath>": storagePath.receiver,
+            "<TokenBalancePath>": storagePath.balance,
+            "<TokenStoragePath>": storagePath.vault
+        ]
+        
+        return cadence.replace(by: dict)
+    }
+}

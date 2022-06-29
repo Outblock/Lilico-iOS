@@ -243,7 +243,11 @@ extension AddAddressView.AddAddressViewModel {
     }
 
     private func delayCheckAddressIsExist(_ address: String) {
-        let task = DispatchWorkItem {
+        let task = DispatchWorkItem { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
             self.state.addressStateType = .checking
 
             Task {

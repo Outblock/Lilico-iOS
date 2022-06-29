@@ -37,8 +37,8 @@ class UsernameViewModel: ViewModel {
             if localCheckUserName(text) {
                 state.status = .loading()
                 task?.cancel()
-                task = DispatchWorkItem {
-                    self.checkUsername(text)
+                task = DispatchWorkItem { [weak self] in
+                    self?.checkUsername(text)
                 }
                 if let work = task {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: work)

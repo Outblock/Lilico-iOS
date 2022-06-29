@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Flow
 
 extension AddTokenViewModel {
     class Section: ObservableObject, Identifiable, Indexable {
@@ -27,7 +28,14 @@ class AddTokenViewModel: ObservableObject {
     @Published var sections: [Section] = []
     @Published var searchText: String = ""
     
+    @Published var confirmSheetIsPresented = false
+    var pendingActiveToken: TokenModel?
+    
+    @Published var isRequesting: Bool = false
+    
     private var cancelSets = Set<AnyCancellable>()
+    private var checkTask: DispatchWorkItem?
+    private var loopCheckTimes: Int = 0
     
     init() {
         WalletManager.shared.$activatedCoins.sink { _ in
@@ -107,5 +115,95 @@ extension AddTokenViewModel {
 
         return searchSections
 
+    }
+}
+
+// MARK: - Action
+
+extension AddTokenViewModel {
+    func willActiveTokenAction(_ token: TokenModel) {
+        pendingActiveToken = token
+        withAnimation(.easeInOut(duration: 0.2)) {
+            confirmSheetIsPresented = true
+        }
+    }
+    
+    func confirmActiveTokenAction(_ token: TokenModel) {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        isRequesting = true
+        Task {
+            do {
+                let transactionId = try await FlowNetwork.enableToken(at: Flow.Address(hex: address), token: token)
+                loopCheckTimes = 0
+                loopCheckTransactionResult(id: transactionId.hex)
+            } catch {
+                debugPrint("AddTokenViewModel -> confirmActiveTokenAction error: \(error)")
+                
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    HUD.error(title: "add_token_failed".localized)
+                }
+            }
+        }
+    }
+}
+
+extension AddTokenViewModel {
+    private func loopCheckTransactionResult(id: String) {
+        if loopCheckTimes >= 20 {
+            debugPrint("AddTokenViewModel -> loopCheckTransactionResult timeout")
+            
+            DispatchQueue.main.async {
+                self.isRequesting = false
+                HUD.error(title: "add_token_timeout".localized)
+            }
+            return
+        }
+        
+        let task = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            
+            Task {
+                do {
+                    let result = try await FlowNetwork.getTransactionResult(by: id)
+                    if result.isProcessing {
+                        debugPrint("AddTokenViewModel -> loopCheckTransactionResult isProcessing")
+                        self.loopCheckTransactionResult(id: id)
+                        return
+                    }
+                    
+                    if result.isFailed {
+                        debugPrint("AddTokenViewModel -> loopCheckTransactionResult failed")
+                        
+                        DispatchQueue.main.async {
+                            self.isRequesting = false
+                            HUD.error(title: "add_token_failed".localized)
+                        }
+                        return
+                    }
+                    
+                    if result.isComplete {
+                        debugPrint("AddTokenViewModel -> loopCheckTransactionResult isComplete")
+                        
+                        DispatchQueue.main.async {
+                            self.isRequesting = false
+                            self.confirmSheetIsPresented = false
+                            HUD.success(title: "add_token_success".localized)
+                        }
+                        return
+                    }
+                } catch {
+                    debugPrint("AddTokenViewModel -> loopCheckTransactionResult failed: \(error)")
+                    self.loopCheckTransactionResult(id: id)
+                }
+            }
+        }
+        
+        checkTask = task
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: task)
+        loopCheckTimes += 1
     }
 }
