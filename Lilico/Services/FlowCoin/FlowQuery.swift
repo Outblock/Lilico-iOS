@@ -1,5 +1,5 @@
 //
-//  FlowQuery.swift
+//  LLCadence.swift
 //  Lilico
 //
 //  Created by cat on 2022/5/2.
@@ -9,20 +9,20 @@ import Combine
 import Flow
 import Foundation
 
-typealias TokenQuery = FlowQuery<FlowQueryAction.token>
-typealias BlanceQuery = FlowQuery<FlowQueryAction.blance>
-typealias NFTQuery = FlowQuery<FlowQueryAction.nft>
+typealias TokenCadence = LLCadence<LLCadenceAction.token>
+typealias BalanceCadence = LLCadence<LLCadenceAction.balance>
+typealias NFTCadence = LLCadence<LLCadenceAction.nft>
 
-enum FlowQueryAction {
+enum LLCadenceAction {
     enum token {}
-    enum blance {}
+    enum balance {}
     enum nft{}
 }
 
-struct FlowQuery<T> {}
+struct LLCadence<T> {}
 
 //MARK: Check Token vault is enabled
-extension FlowQuery where T == FlowQueryAction.token {
+extension LLCadence where T == LLCadenceAction.token {
     static func tokenEnable(with tokens: [TokenModel], at network: Flow.ChainID) -> String {
         
         let cadence =
@@ -74,7 +74,7 @@ extension FlowQuery where T == FlowQueryAction.token {
 }
 
 //MARK: Get Token Balance
-extension FlowQuery where T == FlowQueryAction.blance {
+extension LLCadence where T == LLCadenceAction.balance {
     
     static func balance(with tokens: [TokenModel], at network: Flow.ChainID) -> String {
         let cadence =
@@ -125,7 +125,7 @@ extension FlowQuery where T == FlowQueryAction.blance {
 }
 
 //MARK: Body of Check Token vault is enabled
-extension FlowQuery {
+extension LLCadence {
     
     static private func importRow(with tokens: [TokenModel], at network: Flow.ChainID) -> String {
         let tokenImports = tokens.map { token in
@@ -142,7 +142,7 @@ extension FlowQuery {
 
 //MARK: NFT
 
-extension FlowQuery where T == FlowQueryAction.nft {
+extension LLCadence where T == LLCadenceAction.nft {
     
     static func collectionListCheckEnabled(with list: [NFTCollection], on network: Flow.ChainID) -> String {
         let tokenImports = list.map {
