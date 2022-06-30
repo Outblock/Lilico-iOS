@@ -211,3 +211,5 @@
 "copied" = "Copied";
 "add_token" = "Add Token";
 "enable" = "Enable";
+"send_uppercase" = "SEND";
+"receive_uppercase" = "RECEIVE";
