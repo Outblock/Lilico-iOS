@@ -30,10 +30,6 @@ struct WalletView: View {
     @StateObject private var vm = WalletViewModel()
     @EnvironmentObject private var router: WalletCoordinator.Router
 
-    init() {
-        UICollectionView.appearance().backgroundColor = .clear
-    }
-
     var emptyView: some View {
         Text("no address")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -56,35 +52,36 @@ struct WalletView: View {
         emptyView
             .visibility(vm.walletState == .noAddress ? .visible : .gone)
         
-        List {
-            Section {
-                VStack(spacing: 32) {
-                    headerView
-                    CardView()
-                    actionView
+        ScrollView(.vertical, showsIndicators: false) {
+            LazyVStack(spacing: 0) {
+                Section {
+                    VStack(spacing: 32) {
+                        headerView
+                        CardView()
+                        actionView
+                    }
+                    
+                    loadingView
+                        .visibility(vm.walletState == .loading ? .visible : .gone)
+                    errorView
+                        .visibility(vm.walletState == .error ? .visible : .gone)
                 }
+                .listRowInsets(.zero)
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.LL.Neutrals.background)
                 
-                loadingView
-                    .visibility(vm.walletState == .loading ? .visible : .gone)
-                errorView
-                    .visibility(vm.walletState == .error ? .visible : .gone)
-            }
-            .listRowInsets(.zero)
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.LL.Neutrals.background)
-            
-            Section {
-                coinSectionView
-                ForEach(vm.coinItems, id: \.token.symbol) { coin in
-                    CoinCell(coin: coin)
+                Section {
+                    coinSectionView
+                    ForEach(vm.coinItems, id: \.token.symbol) { coin in
+                        CoinCell(coin: coin)
+                    }
                 }
+                .listRowInsets(.zero)
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.LL.Neutrals.background)
+                .visibility(vm.walletState == .idle ? .visible : .gone)
             }
-            .listRowInsets(.zero)
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.LL.Neutrals.background)
-            .visibility(vm.walletState == .idle ? .visible : .gone)
         }
-        .scrollIndicatorStyle(HiddenScrollViewIndicatorStyle())
         .listStyle(.plain)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 18)

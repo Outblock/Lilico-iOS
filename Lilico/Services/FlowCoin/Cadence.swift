@@ -9,7 +9,7 @@ import Foundation
 
 class Cadences {
     static let addToken = """
-        import FungibleToken from 0xFungibleToken
+        import FungibleToken from 0xFUNGIBLETOKEN
         import <Token> from <TokenAddress>
         transaction {
             prepare(signer: AuthAccount) {

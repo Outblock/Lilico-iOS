@@ -47,8 +47,8 @@ extension FlowNetwork {
                 address
             }
             
-            arguments {
-                [.address(address)]
+            authorizers {
+                address
             }
         }
     }
@@ -103,11 +103,11 @@ extension FlowNetwork {
 
 extension Flow.TransactionResult {
     var isProcessing: Bool {
-        return status < .sealed && status > .unknown
+        return status < .sealed && errorMessage.isEmpty
     }
     
     var isComplete: Bool {
-        return status == .sealed
+        return status == .sealed && errorMessage.isEmpty
     }
     
     var isFailed: Bool {
@@ -115,6 +115,6 @@ extension Flow.TransactionResult {
             return false
         }
         
-        return status == .unknown || status == .expired
+        return !errorMessage.isEmpty
     }
 }

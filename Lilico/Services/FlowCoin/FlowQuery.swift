@@ -277,6 +277,6 @@ extension TokenModel {
             "<TokenStoragePath>": storagePath.vault
         ]
         
-        return cadence.replace(by: dict)
+        return cadence.replace(by: dict).replace(by: ScriptAddress.addressMap())
     }
 }

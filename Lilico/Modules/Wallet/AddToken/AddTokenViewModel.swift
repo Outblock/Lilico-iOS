@@ -34,8 +34,6 @@ class AddTokenViewModel: ObservableObject {
     @Published var isRequesting: Bool = false
     
     private var cancelSets = Set<AnyCancellable>()
-    private var checkTask: DispatchWorkItem?
-    private var loopCheckTimes: Int = 0
     
     init() {
         WalletManager.shared.$activatedCoins.sink { _ in
@@ -122,6 +120,10 @@ extension AddTokenViewModel {
 
 extension AddTokenViewModel {
     func willActiveTokenAction(_ token: TokenModel) {
+        if token.isActivated {
+            return
+        }
+        
         pendingActiveToken = token
         withAnimation(.easeInOut(duration: 0.2)) {
             confirmSheetIsPresented = true
@@ -133,77 +135,45 @@ extension AddTokenViewModel {
             return
         }
         
+        let successBlock = {
+            DispatchQueue.main.async {
+                self.isRequesting = false
+                self.confirmSheetIsPresented = false
+                HUD.success(title: "add_token_success".localized)
+                
+                Task {
+                    try? await WalletManager.shared.fetchWalletDatas()
+                }
+            }
+        }
+        
+        let failedBlock = {
+            DispatchQueue.main.async {
+                self.isRequesting = false
+                HUD.error(title: "add_token_failed".localized)
+            }
+        }
+        
         isRequesting = true
         Task {
             do {
                 let transactionId = try await FlowNetwork.enableToken(at: Flow.Address(hex: address), token: token)
-                loopCheckTimes = 0
-                loopCheckTransactionResult(id: transactionId.hex)
+                let result = try await transactionId.onceSealed()
+                
+                if result.isFailed {
+                    debugPrint("AddTokenViewModel -> confirmActiveTokenAction result failed errorMessage: \(result.errorMessage)")
+                    failedBlock()
+                    return
+                }
+                
+                if result.isComplete {
+                    successBlock()
+                    return
+                }
             } catch {
                 debugPrint("AddTokenViewModel -> confirmActiveTokenAction error: \(error)")
-                
-                DispatchQueue.main.async {
-                    self.isRequesting = false
-                    HUD.error(title: "add_token_failed".localized)
-                }
+                failedBlock()
             }
         }
-    }
-}
-
-extension AddTokenViewModel {
-    private func loopCheckTransactionResult(id: String) {
-        if loopCheckTimes >= 20 {
-            debugPrint("AddTokenViewModel -> loopCheckTransactionResult timeout")
-            
-            DispatchQueue.main.async {
-                self.isRequesting = false
-                HUD.error(title: "add_token_timeout".localized)
-            }
-            return
-        }
-        
-        let task = DispatchWorkItem { [weak self] in
-            guard let self = self else { return }
-            
-            Task {
-                do {
-                    let result = try await FlowNetwork.getTransactionResult(by: id)
-                    if result.isProcessing {
-                        debugPrint("AddTokenViewModel -> loopCheckTransactionResult isProcessing")
-                        self.loopCheckTransactionResult(id: id)
-                        return
-                    }
-                    
-                    if result.isFailed {
-                        debugPrint("AddTokenViewModel -> loopCheckTransactionResult failed")
-                        
-                        DispatchQueue.main.async {
-                            self.isRequesting = false
-                            HUD.error(title: "add_token_failed".localized)
-                        }
-                        return
-                    }
-                    
-                    if result.isComplete {
-                        debugPrint("AddTokenViewModel -> loopCheckTransactionResult isComplete")
-                        
-                        DispatchQueue.main.async {
-                            self.isRequesting = false
-                            self.confirmSheetIsPresented = false
-                            HUD.success(title: "add_token_success".localized)
-                        }
-                        return
-                    }
-                } catch {
-                    debugPrint("AddTokenViewModel -> loopCheckTransactionResult failed: \(error)")
-                    self.loopCheckTransactionResult(id: id)
-                }
-            }
-        }
-        
-        checkTask = task
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: task)
-        loopCheckTimes += 1
     }
 }

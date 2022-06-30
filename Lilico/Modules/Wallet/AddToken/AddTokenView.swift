@@ -43,7 +43,7 @@ struct AddTokenView: View {
                     Button {
                         vm.willActiveTokenAction(token)
                     } label: {
-                        TokenItemCell(token: token)
+                        TokenItemCell(token: token, isActivated: token.isActivated)
                             .listRowSeparator(.hidden)
                             .listRowBackground(Color.clear)
                     }
@@ -74,6 +74,7 @@ private let TokenCellHeight: CGFloat = 52
 extension AddTokenView {
     struct TokenItemCell: View {
         let token: TokenModel
+        let isActivated: Bool
         
         var body: some View {
             HStack {
@@ -96,7 +97,7 @@ extension AddTokenView {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                if token.isActivated {
+                if isActivated {
                     Image(systemName: .checkmarkSelected).foregroundColor(.LL.Success.success3)
                 } else {
                     Image(systemName: .add).foregroundColor(.LL.Primary.salmonPrimary)
