@@ -30,7 +30,7 @@ class WalletManager: ObservableObject {
     @Published var activatedCoins: [TokenModel] = []
     @Published var coinBalances: [String: Double] = [:]
 
-    private var mnemonicModel: HDWallet?
+    private var hdWallet: HDWallet?
 
     private var mainKeychain = Keychain(service: Bundle.main.bundleIdentifier ?? defaultBundleID)
         .label("Lilico app backup")
@@ -60,11 +60,11 @@ class WalletManager: ObservableObject {
 
 extension WalletManager {
     func getCurrentMnemoic() -> String? {
-        return mnemonicModel?.mnemonic
+        return hdWallet?.mnemonic
     }
 
     func getCurrentFlowAccountKey() -> Flow.AccountKey? {
-        return mnemonicModel?.flowAccountKey
+        return hdWallet?.flowAccountKey
     }
     
     func getPrimaryWalletAddress() -> String? {
@@ -159,7 +159,7 @@ extension WalletManager {
 // MARK: - Mnemonic Create & Save
 
 extension WalletManager {
-    func createMnemonicModel(mnemonic: String? = nil, passphrase: String = "") -> HDWallet? {
+    func createHDWallet(mnemonic: String? = nil, passphrase: String = "") -> HDWallet? {
         if let mnemonic = mnemonic {
             return HDWallet(mnemonic: mnemonic, passphrase: passphrase)
         }
@@ -230,11 +230,11 @@ extension WalletManager {
     }
 
     private func activeMnemonic(_ mnemonic: String) -> Bool {
-        guard let model = createMnemonicModel(mnemonic: mnemonic) else {
+        guard let model = createHDWallet(mnemonic: mnemonic) else {
             return false
         }
 
-        mnemonicModel = model
+        hdWallet = model
         return true
     }
 }
@@ -417,7 +417,7 @@ extension WalletManager: FlowSigner {
     }
     
     public func sign(signableData: Data) async throws -> Data {
-        guard let hdWallet = mnemonicModel else {
+        guard let hdWallet = hdWallet else {
             throw LLError.emptyWallet
         }
         

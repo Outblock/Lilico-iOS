@@ -44,16 +44,16 @@ class UserManager: ObservableObject {
 
 extension UserManager {
     func register(_ username: String) async throws {
-        guard let mnemonicModel = WalletManager.shared.createMnemonicModel() else {
+        guard let hdWallet = WalletManager.shared.createHDWallet() else {
             HUD.error(title: "empty_wallet_key".localized)
             throw LLError.emptyWallet
         }
 
-        let key = mnemonicModel.flowAccountKey
+        let key = hdWallet.flowAccountKey
         let request = RegisterRequest(username: username, accountKey: key.toCodableModel())
         let model: RegisterResponse = try await Network.request(LilicoAPI.User.register(request))
 
-        try await finishLogin(mnemonic: mnemonicModel.mnemonic, customToken: model.customToken)
+        try await finishLogin(mnemonic: hdWallet.mnemonic, customToken: model.customToken)
         WalletManager.shared.asyncCreateWalletAddressFromServer()
     }
 }
@@ -62,7 +62,7 @@ extension UserManager {
 
 extension UserManager {
     func restoreLogin(withMnemonic mnemonic: String) async throws {
-        guard let mnemonicModel = WalletManager.shared.createMnemonicModel(mnemonic: mnemonic) else {
+        guard let hdWallet = WalletManager.shared.createHDWallet(mnemonic: mnemonic) else {
             throw LLError.incorrectPhrase
         }
 
@@ -71,8 +71,8 @@ extension UserManager {
             throw LLError.restoreLoginFailed
         }
 
-        let publicKey = mnemonicModel.getPublicKey()
-        guard let signature = mnemonicModel.sign(token) else {
+        let publicKey = hdWallet.getPublicKey()
+        guard let signature = hdWallet.sign(token) else {
             throw LLError.restoreLoginFailed
         }
 
@@ -86,7 +86,7 @@ extension UserManager {
             throw LLError.restoreLoginFailed
         }
 
-        try await finishLogin(mnemonic: mnemonicModel.mnemonic, customToken: customToken)
+        try await finishLogin(mnemonic: hdWallet.mnemonic, customToken: customToken)
     }
 }
 
