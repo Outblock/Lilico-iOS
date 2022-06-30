@@ -393,7 +393,49 @@ extension WalletManager {
     }
 }
 
+extension WalletManager: FlowSigner {
+    public var address: Flow.Address {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return Flow.Address(hex: "")
+        }
+        return Flow.Address(hex: address)
+    }
+    
+    public var hashAlgo: Flow.HashAlgorithm {
+        // TODO: FIX ME, make it dynamic
+        .SHA2_256
+    }
+    
+    public var signatureAlgo: Flow.SignatureAlgorithm {
+        // TODO: FIX ME, make it dynamic
+        .ECDSA_SECP256k1
+    }
+    
+    public var keyIndex: Int {
+        // TODO: FIX ME, make it dynamic
+        0
+    }
+    
+    public func sign(signableData: Data) async throws -> Data {
+        guard let hdWallet = mnemonicModel else {
+            throw LLError.emptyWallet
+        }
+        
+        let privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        let hashedData = Hash.sha256(data: signableData)
+        
+        guard var signature = privateKey.sign(digest: hashedData, curve: .secp256k1) else {
+            throw LLError.signFailed
+        }
+        signature.removeLast()
+        return signature
+    }
+    
+    
+}
+
 extension HDWallet {
+    
     func getPublicKey() -> String {
         let p256PublicKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
             .getPublicKeySecp256k1(compressed: false)

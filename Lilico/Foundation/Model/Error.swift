@@ -22,6 +22,7 @@ enum LLError: Error {
     case accountNotFound
     case fetchUserInfoFailed
     case invalidAddress
+    case signFailed
     case unknown
 }
 

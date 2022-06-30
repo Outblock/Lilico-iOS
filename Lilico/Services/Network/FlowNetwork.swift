@@ -36,27 +36,21 @@ extension FlowNetwork {
     }
     
     static func enableToken(at address: Flow.Address, token: TokenModel) async throws -> Flow.ID {
-        let cadence = token.formatCadence(cadence: Cadences.addToken)
+        let cadenceString = token.formatCadence(cadence: Cadences.addToken)
         
-        let account = try await flow.accessAPI.getAccountAtLatestBlock(address: address)
-        guard let keyIndex = account.keys.first?.index, let sequence = account.keys.first?.sequenceNumber else {
-            throw Flow.FError.invaildResponse
+        return try await flow.sendTransaction(signers: [WalletManager.shared]) {
+            cadence {
+                cadenceString
+            }
+            
+            proposer {
+                address
+            }
+            
+            arguments {
+                [.address(address)]
+            }
         }
-        
-        let args = [Flow.Argument]()
-        let limit = BigUInt(9999)
-        let payer = address
-        let proposalKey = Flow.TransactionProposalKey(address: account.address, keyIndex: keyIndex, sequenceNumber: sequence)
-        let refBlock = try await flow.accessAPI.getLatestBlockHeader().id
-        
-        let transaction = Flow.Transaction(script: Flow.Script(text: cadence),
-                                           arguments: args,
-                                           referenceBlockId: refBlock,
-                                           gasLimit: limit,
-                                           proposalKey: proposalKey,
-                                           payer: payer,
-                                           authorizers: [address])
-        return try await flow.accessAPI.sendTransaction(transaction: transaction)
     }
 }
 

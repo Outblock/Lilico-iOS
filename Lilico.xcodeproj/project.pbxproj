@@ -4958,8 +4958,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/outblock/flow-swift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.1;
+				kind = revision;
+				revision = 95c7d6ca2d2ab12a2a832805ff1fbfc8953e27da;
 			};
 		};
 		4ED6DD0E285A22A800105133 /* XCRemoteSwiftPackageReference "IrregularGradient" */ = {
