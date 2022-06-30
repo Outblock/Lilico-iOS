@@ -11,3 +11,10 @@ struct CryptoSummaryRequest: Codable {
     let provider: String
     let pair: String
 }
+
+struct CryptoHistoryRequest: Codable {
+    let provider: String
+    let pair: String
+    let after: String
+    let period: String
+}

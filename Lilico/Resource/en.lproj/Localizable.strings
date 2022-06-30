@@ -213,3 +213,5 @@
 "enable" = "Enable";
 "send_uppercase" = "SEND";
 "receive_uppercase" = "RECEIVE";
+"recent_price" = "Recent Price";
+"data_from" = "DATA FROM";

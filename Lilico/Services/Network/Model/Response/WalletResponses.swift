@@ -44,3 +44,8 @@ struct CryptoSummaryResponse: Codable {
         return result.price.change.percentage
     }
 }
+
+struct CryptoHistoryResponse: Codable {
+    let allowance: CryptoSummaryResponse.Allowance
+    let result: [String: [[[Double]]]]
+}

@@ -11,6 +11,7 @@ import Moya
 extension LilicoAPI {
     enum Crypto {
         case summary(CryptoSummaryRequest)
+        case history(CryptoHistoryRequest)
     }
 }
 
@@ -27,12 +28,14 @@ extension LilicoAPI.Crypto: TargetType, AccessTokenAuthorizable {
         switch self {
         case .summary:
             return "/crypto/summary"
+        case .history:
+            return "/crypto/history"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .summary:
+        case .summary, .history:
             return .get
         }
     }
@@ -40,6 +43,8 @@ extension LilicoAPI.Crypto: TargetType, AccessTokenAuthorizable {
     var task: Task {
         switch self {
         case let .summary(request):
+            return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
+        case let .history(request):
             return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
         }
     }

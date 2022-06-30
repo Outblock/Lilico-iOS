@@ -24,6 +24,7 @@ struct TokenDetailView: View {
             LazyVStack(spacing: 12) {
                 summaryView
                 moreView
+                chartContainerView
             }
             .padding(.horizontal, 18)
             .padding(.top, 12)
@@ -134,6 +135,119 @@ struct TokenDetailView: View {
         .padding(.horizontal, 18)
         .background {
             Color.LL.Neutrals.background.cornerRadius(16)
+        }
+    }
+    
+    var chartContainerView: some View {
+        VStack(spacing: 0) {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("recent_price".localized)
+                        .foregroundColor(.LL.Neutrals.text)
+                        .font(.inter(size: 16, weight: .semibold))
+                    
+                    HStack(spacing: 4) {
+                        Text("$127.80")
+                            .foregroundColor(.LL.Neutrals.text)
+                            .font(.inter(size: 14, weight: .regular))
+                        
+                        HStack(spacing: 4) {
+                            Image(systemName: .arrowTriangleUp)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 9, height: 7)
+                                .foregroundColor(.LL.Success.success2)
+                            
+                            Text("5.2%")
+                                .foregroundColor(.LL.Success.success2)
+                                .font(.inter(size: 12, weight: .semibold))
+                        }
+                        .padding(.horizontal, 7)
+                        .frame(height: 18)
+                        .background {
+                            Color.LL.Success.success3
+                                .cornerRadius(4)
+                                .opacity(0.12)
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.top, 12)
+                    .padding(.bottom, 18)
+                }
+                sourceSwitchButton
+            }
+            HStack(spacing: 0) {
+                
+                
+                Spacer()
+                
+                
+            }
+            
+            
+            
+            if colorScheme == .dark {
+                Color(hex: "#262626")
+                    .opacity(0.64)
+                    .frame(height: 1)
+                    .padding(.horizontal, -18)
+            } else {
+                Color.LL.Neutrals.neutrals10
+                    .opacity(0.64)
+                    .frame(height: 1)
+                    .padding(.horizontal, -18)
+            }
+            
+            chartView
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 336)
+        .padding(.all, 18)
+        .background {
+            Color.LL.Neutrals.background.cornerRadius(16)
+        }
+    }
+    
+    var chartView: some View {
+        VStack {
+            
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.orange)
+    }
+}
+
+extension TokenDetailView {
+    var sourceSwitchButton: some View {
+        Button {
+            
+        } label: {
+            VStack(alignment: .trailing, spacing: 14) {
+                HStack(spacing: 6) {
+                    Image(systemName: String.arrowDown)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 10, height: 10)
+                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
+                    
+                    Text("data_from".localized)
+                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
+                        .font(.inter(size: 14, weight: .regular))
+                }
+                
+                HStack(spacing: 6) {
+                    Image(systemName: String.arrowDown)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 10, height: 10)
+                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
+                    
+                    Text("Huobi")
+                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
+                        .font(.inter(size: 14, weight: .regular))
+                }
+            }
         }
     }
 }
