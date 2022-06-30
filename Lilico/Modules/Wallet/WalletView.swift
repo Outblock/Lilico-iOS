@@ -11,6 +11,7 @@ import Kingfisher
 import SPConfetti
 import SwiftUI
 import Stinsen
+import SwiftUIX
 
 struct WalletView_Previews: PreviewProvider {
     static var previews: some View {
@@ -83,6 +84,7 @@ struct WalletView: View {
             .listRowBackground(Color.LL.Neutrals.background)
             .visibility(vm.walletState == .idle ? .visible : .gone)
         }
+        .scrollIndicatorStyle(HiddenScrollViewIndicatorStyle())
         .listStyle(.plain)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 18)
