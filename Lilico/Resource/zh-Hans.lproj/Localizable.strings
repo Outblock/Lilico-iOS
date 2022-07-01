@@ -59,6 +59,9 @@
 "Trending" = "Trending";
 "collection_list" = "Collection list";
 "add_collection" = "Add Collection";
+"confirmation" = "Confirmation";
+"enable_collection"="Enable Collection";
+"nft_collection_add_failed"="failed";
 
 // Account
 "create_a" = "Create a";

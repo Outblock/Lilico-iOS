@@ -132,6 +132,8 @@ extension Color {
 
         enum Button {
             static let light = Color("button.light")
+            static let color = Color("button.color")
+            static let text = Color("button.text")
         }
     }
 }

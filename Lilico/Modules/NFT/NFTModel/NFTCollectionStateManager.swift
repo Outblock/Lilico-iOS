@@ -39,7 +39,7 @@ final class NFTCollectionStateManager {
             }
             
         }catch {
-            
+            print(error)
         }
     }
     func isTokenAdded(_ address: String) -> Bool {

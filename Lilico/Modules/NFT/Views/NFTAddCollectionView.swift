@@ -13,8 +13,12 @@ struct NFTAddCollectionView: View {
     @State private var offset: CGFloat = 0
     @EnvironmentObject var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
     
+    @State private var isPresented = false
+    
     @StateObject
     var addViewModel: AddCollectionViewModel = AddCollectionViewModel()
+    
+    @State private var selectItem: NFTCollectionItem?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -28,17 +32,23 @@ struct NFTAddCollectionView: View {
                 LazyVStack(alignment: .leading, spacing: 0) {
                     
                     ForEach(addViewModel.liveList, id:\.self) { it in
-                        NFTAddCollectionView.CollectionItem(item: it)
+                        NFTAddCollectionView.CollectionItem(item: it) { item in
+                            self.selectItem = item
+                            isPresented.toggle()
+                        }       
                     }
-                    
                 }
             }
         }
-        .background(
-            Color.LL.Neutrals.background
-        )
-        .onAppear {
-            
+        .background(Color.LL.Neutrals.background)
+        .overlay {
+            if let item = self.selectItem  {
+                if(isPresented ) {
+                    withAnimation {
+                        NFTAddCollectionView.NFTCollectionEnableView(item: item, isPresented: $isPresented)
+                    }
+                }
+            }
         }
     }
 
@@ -53,6 +63,8 @@ extension NFTAddCollectionView {
     struct CollectionItem: View {
         
         var item: NFTCollectionItem
+        var onAdd: (_ item: NFTCollectionItem)->Void
+        @State private var isPresented = false
 
         var body: some View {
             HStack(alignment: .center) {
@@ -82,7 +94,10 @@ extension NFTAddCollectionView {
                 .padding(.leading, 18)
 
                 Spacer(minLength: 88)
-                Button {} label: {
+                Button {
+                    onAdd(item)
+                    
+                } label: {
                     Image("icon_nft_add")
                         .foregroundColor(.LL.Primary.salmonPrimary)
                         .frame(width: 26, height: 26, alignment: .center)
@@ -91,6 +106,8 @@ extension NFTAddCollectionView {
                         .clipShape(Circle())
                 }
                 .padding(.trailing, 16)
+                
+
             }
             .frame(height: 88)
             .background(
@@ -119,12 +136,12 @@ extension NFTAddCollectionView {
                 }
                     .blur(radius: 6)
             )
-            
             .clipShape(
                 RoundedRectangle(cornerRadius: 16)
             )
             .padding(.top, 12)
             .padding(.horizontal, 18)
+        
             
         }
     }
@@ -149,9 +166,7 @@ struct NFTAddCollectionView_Previews: PreviewProvider {
     
     
     
-    static let item = NFTCollectionItem(collection: NFTCollection(logo: URL(string: "https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovologo.jpeg")!, name: "OVO", contractName: "", address: ContractAddress(mainnet: "", testnet: ""), banner: nil, officialWebsite: nil, marketplace: nil, description: "hhhhhhhh", path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")),
-                                        isAdded: false,
-                                        isAdding: false)
+    static let item = NFTCollectionItem(collection: NFTCollection(logo: URL(string: "https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovologo.jpeg")!, name: "OVO", contractName: "", address: ContractAddress(mainnet: "", testnet: ""), banner: nil, officialWebsite: nil, marketplace: nil, description: "hhhhhhhh", path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")))
     
     
     
@@ -163,9 +178,6 @@ struct NFTAddCollectionView_Previews: PreviewProvider {
         
         NFTAddCollectionView()
         
-        NFTAddCollectionView.CollectionItem(item: item)
-            .previewLayout(.sizeThatFits)
-            .background(Color(red: 0.9, green: 0.9, blue: 0.9)
-            )
+      
     }
 }

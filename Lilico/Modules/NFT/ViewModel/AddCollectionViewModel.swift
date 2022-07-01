@@ -28,7 +28,7 @@ class AddCollectionViewModel: ObservableObject {
             !col.currentAddress().isEmpty
         })
         .map({ it in
-            NFTCollectionItem(collection: it, isAdded: NFTCollectionStateManager.share.isTokenAdded(it.currentAddress()), isAdding: false)
+            NFTCollectionItem(collection: it, status: NFTCollectionStateManager.share.isTokenAdded(it.currentAddress()) ? .own : .failed)
         })
         
         await MainActor.run {
@@ -50,8 +50,30 @@ extension AddCollectionViewModel {
 }
 
 
+
 struct NFTCollectionItem: Hashable {
+    
+    enum ItemStatus {
+        case idle
+        case own
+        case pending
+        case failed
+    }
+    
     var collection: NFTCollection
-    var isAdded: Bool
-    var isAdding: Bool
+    var status: ItemStatus = .idle
+    
+    func processName() -> String {
+        switch status {
+            
+        case .idle:
+            return ""
+        case .own:
+            return ""
+        case .pending:
+            return "nft_collection_add_pending".localized
+        case .failed:
+            return "nft_collection_add_failed".localized
+        }
+    }
 }
