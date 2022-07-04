@@ -17,7 +17,7 @@ extension CoinRateCache {
     }
 }
 
-private let CacheUpdateInverval = TimeInterval(30 * 60)
+private let CacheUpdateInverval = TimeInterval(30)
 
 class CoinRateCache {
     static let cache = CoinRateCache()

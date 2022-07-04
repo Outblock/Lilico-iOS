@@ -76,11 +76,43 @@ extension TokenDetailView {
 }
 
 class TokenDetailViewModel: ObservableObject {
+//    @Published var token: TokenModel
     @Published var selectedRangeType: TokenDetailView.ChartRangeType = .d1
     @Published var chartData: LineChartData
     
+    private var cancelSets = Set<AnyCancellable>()
+    
     init() {
         chartData = TokenDetailViewModel.generateTestChartData()
+    }
+    
+//    init(token: TokenModel) {
+//        self.token = token
+//
+//        NotificationCenter.default.publisher(for: .quoteMarketUpdated).sink { _ in
+//            DispatchQueue.main.async {
+//                self.refreshData()
+//            }
+//        }.store(in: &cancelSets)
+//
+//        NotificationCenter.default.publisher(for: .coinSummarysUpdated).sink { _ in
+//            DispatchQueue.main.async {
+//                self.refreshData()
+//            }
+//        }.store(in: &cancelSets)
+//    }
+    
+    private func refreshData() {
+        refreshSummary()
+        fetchChartData()
+    }
+    
+    private func refreshSummary() {
+        
+    }
+    
+    private func fetchChartData() {
+        
     }
     
     static func generateTestChartData() -> LineChartData {

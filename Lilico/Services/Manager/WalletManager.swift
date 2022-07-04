@@ -324,6 +324,19 @@ extension WalletManager {
 
         coinBalances = newBalanceMap
     }
+    
+    /// get balance from cache then refresh from server
+    func getBalance(by token: TokenModel) -> Double? {
+        guard let symbol = token.symbol else {
+            return nil
+        }
+        
+        Task {
+            try? await fetchBalance()
+        }
+        
+        return coinBalances[symbol]
+    }
 }
 
 // MARK: - Helper
