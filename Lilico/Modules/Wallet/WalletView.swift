@@ -74,6 +74,9 @@ struct WalletView: View {
                     coinSectionView
                     ForEach(vm.coinItems, id: \.token.symbol) { coin in
                         CoinCell(coin: coin)
+                            .onTapGestureOnBackground {
+                                router.route(to: \.tokenDetail)
+                            }
                     }
                 }
                 .listRowInsets(.zero)

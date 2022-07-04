@@ -6,15 +6,22 @@
 //
 
 import SwiftUI
+import SwiftUICharts
 
 struct TokenDetailView_Previews: PreviewProvider {
     static var previews: some View {
         TokenDetailView()
+//        VStack {
+//            TokenDetailView.SelectButton(isSelect: false)
+//        }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .backgroundFill(.LL.Neutrals.background)
     }
 }
 
 struct TokenDetailView: View {
     @Environment(\.colorScheme) var colorScheme
+    @StateObject private var vm = TokenDetailViewModel()
     
     private let lightGradientColors: [Color] = [.white.opacity(0), Color(hex: "#E6E6E6").opacity(0), Color(hex: "#E6E6E6").opacity(1)]
     private let darkGradientColors: [Color] = [.white.opacity(0), .white.opacity(0), Color(hex: "#282828").opacity(1)]
@@ -177,51 +184,93 @@ struct TokenDetailView: View {
                 }
                 sourceSwitchButton
             }
-            HStack(spacing: 0) {
-                
-                
-                Spacer()
-                
-                
-            }
-            
-            
+            .padding(.horizontal, 18)
             
             if colorScheme == .dark {
                 Color(hex: "#262626")
                     .opacity(0.64)
                     .frame(height: 1)
-                    .padding(.horizontal, -18)
             } else {
                 Color.LL.Neutrals.neutrals10
                     .opacity(0.64)
                     .frame(height: 1)
-                    .padding(.horizontal, -18)
             }
             
+            chartRangeView
             chartView
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 336)
-        .padding(.all, 18)
+        .padding(.vertical, 18)
         .background {
             Color.LL.Neutrals.background.cornerRadius(16)
         }
     }
     
-    var chartView: some View {
-        VStack {
-            
+    var chartRangeView: some View {
+        HStack(spacing: 0) {
+            ForEach(ChartRangeType.allCases, id: \.self) { type in
+                SelectButton(title: type.title, isSelect: vm.selectedRangeType == type)
+            }
+            .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.orange)
+        .padding(.vertical, 7)
+    }
+}
+
+// MARK: - Chart
+
+extension TokenDetailView {
+    var chartView: some View {
+        FilledLineChart(chartData: vm.chartData)
+            .filledTopLine(chartData: vm.chartData,
+                           lineColour: chartFilledTopLineColor,
+                           strokeStyle: chartFilledTopLineStrokeStyle)
+            .touchOverlay(chartData: vm.chartData, specifier: "%.2f")
+            .floatingInfoBox(chartData: vm.chartData)
+            .yAxisLabels(chartData: vm.chartData, specifier: "%.2f")
+            .id(vm.chartData.id)
+            .frame(height: 163)
+            .padding(.horizontal, 18)
+    }
+    
+    var chartFilledTopLineColor: ColourStyle {
+        return ColourStyle(colour: Color.LL.Primary.salmonPrimary)
+    }
+    
+    var chartFilledTopLineStrokeStyle: StrokeStyle {
+        return StrokeStyle(lineWidth: 1, lineCap: .round)
     }
 }
 
 extension TokenDetailView {
     var sourceSwitchButton: some View {
-        Button {
+        Menu {
+            Button {
+                
+            } label: {
+                HStack {
+                    Image("icon_nft_add")
+                    Text("binance".localized)
+                        .foregroundColor(.LL.Neutrals.text)
+                        .font(.inter(size: 14, weight: .regular))
+                }
+            }
+
+            Button {
+                
+            } label: {
+                Text("kraken".localized)
+                    .foregroundColor(.LL.Neutrals.text)
+                    .font(.inter(size: 14, weight: .regular))
+            }
             
+            Button {
+                
+            } label: {
+                Text("huobi".localized)
+                    .foregroundColor(.LL.Neutrals.text)
+                    .font(.inter(size: 14, weight: .regular))
+            }
         } label: {
             VStack(alignment: .trailing, spacing: 14) {
                 HStack(spacing: 6) {
@@ -248,6 +297,47 @@ extension TokenDetailView {
                         .font(.inter(size: 14, weight: .regular))
                 }
             }
+        }
+    }
+}
+
+extension TokenDetailView {
+    struct SelectButton: View {
+        @Environment(\.colorScheme) var colorScheme
+        let title: String
+        let isSelect: Bool
+        
+        var body: some View {
+            Button {
+                
+            } label: {
+                Text(title)
+                    .foregroundColor(labelColor)
+                    .font(labelFont)
+                    .frame(height: 26)
+                    .padding(.horizontal, 7)
+                    .background {
+                        labelBgColor
+                            .cornerRadius(8)
+                            .visibility(isSelect ? .visible : .invisible)
+                    }
+            }
+        }
+        
+        private var labelBgColor: Color {
+            return colorScheme == .dark ? Color.LL.Neutrals.neutrals10 : Color.LL.Neutrals.outline
+        }
+        
+        private var labelColor: Color {
+            if colorScheme == .dark {
+                return isSelect ? Color.LL.Neutrals.text : Color.LL.Neutrals.note
+            } else {
+                return isSelect ? Color.LL.Neutrals.text : Color.LL.Neutrals.note
+            }
+        }
+        
+        private var labelFont: Font {
+            return isSelect ? .inter(size: 12, weight: .semibold) : .inter(size: 12, weight: .regular)
         }
     }
 }

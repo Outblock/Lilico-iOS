@@ -45,7 +45,23 @@ struct CryptoSummaryResponse: Codable {
     }
 }
 
+// MARK: -
+
 struct CryptoHistoryResponse: Codable {
     let allowance: CryptoSummaryResponse.Allowance
-    let result: [String: [[[Double]]]]
+    let result: [String: [[Double]]]
+    
+    func parseMarketQuoteData(rangeType: TokenDetailView.ChartRangeType) -> [TokenDetailView.Quote] {
+        guard let array = result["\(rangeType.frequency.rawValue)"] else {
+            return []
+        }
+        
+        var quotes = [TokenDetailView.Quote]()
+        for l in array {
+            let quote = TokenDetailView.Quote(closeTime: l[0], openPrice: l[1], highPrice: l[2], lowPrice: l[3], closePrice: l[4], volume: l[5], quoteVolume: l[6])
+            quotes.append(quote)
+        }
+        
+        return quotes
+    }
 }
