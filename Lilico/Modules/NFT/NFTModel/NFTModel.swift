@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Flow
 
-let placeholder: String = "https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
+let placeholder: String = "https://lilico.app/placeholder.png"
 // TODO: which filter?
 let filterMetadata = ["uri", "img", "description"]
 
