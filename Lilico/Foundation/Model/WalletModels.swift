@@ -32,6 +32,10 @@ enum QuoteMarket: String {
             return "usdcusdt"
         }
     }
+    
+    var iconName: String {
+        return self.rawValue
+    }
 }
 
 let SymbolTypeFlow: String = "flow"

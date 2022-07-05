@@ -278,7 +278,10 @@ extension TokenDetailView {
                 vm.changeMarketAction(.binance)
             } label: {
                 HStack {
-                    Image("icon_nft_add")
+                    Image("binance")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 15, height: 15)
                     Text("binance".localized)
                         .foregroundColor(.LL.Neutrals.text)
                         .font(.inter(size: 14, weight: .regular))
@@ -288,6 +291,10 @@ extension TokenDetailView {
             Button {
                 vm.changeMarketAction(.kraken)
             } label: {
+                Image("kraken")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 15, height: 15)
                 Text("kraken".localized)
                     .foregroundColor(.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .regular))
@@ -296,6 +303,10 @@ extension TokenDetailView {
             Button {
                 vm.changeMarketAction(.huobi)
             } label: {
+                Image("huobi")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 15, height: 15)
                 Text("huobi".localized)
                     .foregroundColor(.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .regular))
@@ -315,10 +326,10 @@ extension TokenDetailView {
                 }
                 
                 HStack(spacing: 6) {
-                    Image(systemName: String.arrowDown)
+                    Image(vm.market.iconName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 10, height: 10)
+                        .frame(width: 15, height: 15)
                         .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
                     
                     Text(vm.market.rawValue.capitalized)
