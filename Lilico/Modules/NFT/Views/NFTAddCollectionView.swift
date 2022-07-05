@@ -20,6 +20,8 @@ struct NFTAddCollectionView: View {
     
     @State private var selectItem: NFTCollectionItem?
     
+    @State var searchQuery = ""
+    
     var body: some View {
         VStack(spacing: 0) {
             BackAppBar(title: "add_collection".localized) {
@@ -50,6 +52,7 @@ struct NFTAddCollectionView: View {
                 }
             }
         }
+        .searchable(text: $searchQuery)
     }
 
     private func title(title: String) -> some View {
