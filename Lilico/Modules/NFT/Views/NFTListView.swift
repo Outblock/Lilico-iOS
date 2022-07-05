@@ -36,8 +36,14 @@ struct NFTListView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     } menu: {
-                        let like = UIAction(title: "top_selection".localized, image: UIImage(named: "nft_btn_selection")) { _ in
-                            NFTFavoriteStore.shared.addFavorite(nft)
+                        let isFavorite =  NFTFavoriteStore.shared.isFavorite(with: nft)
+                        let imageName = isFavorite ? "nft_btn_selection_s" : "nft_btn_selection";
+                        let like = UIAction(title: "top_selection".localized, image: UIImage(named: imageName)) { _ in
+                            if isFavorite {
+                                NFTFavoriteStore.shared.removeFavorite(nft)
+                            }else {
+                                NFTFavoriteStore.shared.addFavorite(nft)
+                            }
                         }
                         
                         let share = UIAction(title: "share".localized, image: UIImage(named: "nft_btn_share")) { _ in
