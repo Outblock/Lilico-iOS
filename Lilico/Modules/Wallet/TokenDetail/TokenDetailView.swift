@@ -7,83 +7,102 @@
 
 import SwiftUI
 import SwiftUICharts
+import Kingfisher
 
-struct TokenDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        TokenDetailView()
+//struct TokenDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TokenDetailView()
 //        VStack {
 //            TokenDetailView.SelectButton(isSelect: false)
 //        }
 //        .frame(maxWidth: .infinity, maxHeight: .infinity)
 //        .backgroundFill(.LL.Neutrals.background)
-    }
-}
+//    }
+//}
 
 struct TokenDetailView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateObject private var vm = TokenDetailViewModel()
+    @StateObject private var vm: TokenDetailViewModel
+    @EnvironmentObject private var router: WalletCoordinator.Router
     
     private let lightGradientColors: [Color] = [.white.opacity(0), Color(hex: "#E6E6E6").opacity(0), Color(hex: "#E6E6E6").opacity(1)]
     private let darkGradientColors: [Color] = [.white.opacity(0), .white.opacity(0), Color(hex: "#282828").opacity(1)]
+    
+    init(token: TokenModel) {
+        _vm = StateObject(wrappedValue: TokenDetailViewModel(token: token))
+    }
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(spacing: 12) {
                 summaryView
-                moreView
-                chartContainerView
+                moreView.visibility(vm.hasRateAndChartData ? .visible : .gone)
+                chartContainerView.visibility(vm.hasRateAndChartData ? .visible : .gone)
             }
             .padding(.horizontal, 18)
             .padding(.top, 12)
         }
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+        .addBackBtn {
+            router.pop()
+        }
         .buttonStyle(.plain)
-        //        .backgroundFill(.LL.deepBg)
-        .backgroundFill(Color.purple)
+        .backgroundFill(.LL.deepBg)
+//        .backgroundFill(Color.purple)
     }
     
     var summaryView: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ZStack(alignment: .leading) {
-                HStack(spacing: 5) {
-                    Text("Flow")
-                        .foregroundColor(.LL.Neutrals.neutrals1)
-                        .font(.inter(size: 16, weight: .semibold))
-                    Image("icon-right-arrow")
+            Button {
+                if let url = vm.token.website {
+                    UIApplication.shared.open(url)
                 }
-                .frame(height: 32)
-                .padding(.trailing, 10)
-                .padding(.leading, 90)
-                .background {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(.linearGradient(
-                            colors: colorScheme == .dark ? darkGradientColors : lightGradientColors,
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        ))
+            } label: {
+                ZStack(alignment: .leading) {
+                    HStack(spacing: 5) {
+                        Text(vm.token.name)
+                            .foregroundColor(.LL.Neutrals.neutrals1)
+                            .font(.inter(size: 16, weight: .semibold))
+                        Image("icon-right-arrow")
+                    }
+                    .frame(height: 32)
+                    .padding(.trailing, 10)
+                    .padding(.leading, 90)
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.linearGradient(
+                                colors: colorScheme == .dark ? darkGradientColors : lightGradientColors,
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            ))
+                    }
+                    
+                    KFImage.url(vm.token.icon)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 64, height: 64)
+                        .background(.LL.Neutrals.note)
+                        .clipShape(Circle())
+                        .padding(.top, -12)
+                        .padding(.leading, 18)
                 }
-                
-                Image("")
-                    .frame(width: 64, height: 64)
-                    .background(.LL.Neutrals.note)
-                    .clipShape(Circle())
-                    .padding(.top, -12)
-                    .padding(.leading, 18)
+                .padding(.leading, -18)
             }
-            .padding(.leading, -18)
             
             HStack(alignment: .bottom, spacing: 6) {
-                Text("1580.88")
+                Text(vm.balanceString)
                     .foregroundColor(.LL.Neutrals.neutrals1)
                     .font(.inter(size: 32, weight: .semibold))
                 
-                Text("FLOW")
+                Text(vm.token.symbol?.uppercased() ?? "?")
                     .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals8)
                     .font(.inter(size: 14, weight: .medium))
                     .padding(.bottom, 5)
             }
             .padding(.top, 15)
             
-            Text("$292929 USD")
+            Text("$\(vm.balanceAsUSDString) USD")
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 16, weight: .medium))
                 .padding(.top, 3)
@@ -124,24 +143,30 @@ struct TokenDetailView: View {
     }
     
     var moreView: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 3) {
-                Text("Get more FLOW")
-                    .foregroundColor(.LL.Neutrals.text)
-                    .font(.inter(size: 16, weight: .semibold))
-                
-                Text("Stake tokens and earn rewards")
-                    .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals8)
-                    .font(.inter(size: 14, weight: .medium))
+        Button {
+            if LocalUserDefaults.shared.flowNetwork == .testnet {
+                UIApplication.shared.open(URL(string: "https://testnet-faucet.onflow.org/fund-account")!)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            
-            Image("icon-bitcoin")
-        }
-        .frame(height: 68)
-        .padding(.horizontal, 18)
-        .background {
-            Color.LL.Neutrals.background.cornerRadius(16)
+        } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Get more FLOW")
+                        .foregroundColor(.LL.Neutrals.text)
+                        .font(.inter(size: 16, weight: .semibold))
+                    
+                    Text("Stake tokens and earn rewards")
+                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals8)
+                        .font(.inter(size: 14, weight: .medium))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Image("icon-bitcoin")
+            }
+            .frame(height: 68)
+            .padding(.horizontal, 18)
+            .background {
+                Color.LL.Neutrals.background.cornerRadius(16)
+            }
         }
     }
     
@@ -154,25 +179,25 @@ struct TokenDetailView: View {
                         .font(.inter(size: 16, weight: .semibold))
                     
                     HStack(spacing: 4) {
-                        Text("$127.80")
+                        Text("$\(vm.rate.currencyString)")
                             .foregroundColor(.LL.Neutrals.text)
                             .font(.inter(size: 14, weight: .regular))
                         
                         HStack(spacing: 4) {
-                            Image(systemName: .arrowTriangleUp)
+                            Image(systemName: vm.changeIsNegative ? .arrowTriangleDown : .arrowTriangleUp)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 9, height: 7)
                                 .foregroundColor(.LL.Success.success2)
                             
-                            Text("5.2%")
+                            Text(vm.changePercentString)
                                 .foregroundColor(.LL.Success.success2)
                                 .font(.inter(size: 12, weight: .semibold))
                         }
                         .padding(.horizontal, 7)
                         .frame(height: 18)
                         .background {
-                            Color.LL.Success.success3
+                            vm.changeColor
                                 .cornerRadius(4)
                                 .opacity(0.12)
                         }
@@ -209,7 +234,11 @@ struct TokenDetailView: View {
     var chartRangeView: some View {
         HStack(spacing: 0) {
             ForEach(ChartRangeType.allCases, id: \.self) { type in
-                SelectButton(title: type.title, isSelect: vm.selectedRangeType == type)
+                Button {
+                    vm.changeSelectRangeTypeAction(type)
+                } label: {
+                    SelectButton(title: type.title, isSelect: vm.selectedRangeType == type)
+                }
             }
             .frame(maxWidth: .infinity)
         }
@@ -221,24 +250,24 @@ struct TokenDetailView: View {
 
 extension TokenDetailView {
     var chartView: some View {
-        FilledLineChart(chartData: vm.chartData)
-            .filledTopLine(chartData: vm.chartData,
-                           lineColour: chartFilledTopLineColor,
-                           strokeStyle: chartFilledTopLineStrokeStyle)
-            .touchOverlay(chartData: vm.chartData, specifier: "%.2f")
-            .floatingInfoBox(chartData: vm.chartData)
-            .yAxisLabels(chartData: vm.chartData, specifier: "%.2f")
-            .id(vm.chartData.id)
+        guard let chartData = vm.chartData else {
+            return AnyView(Color.LL.Neutrals.background.frame(height: 163))
+        }
+        
+        let c =
+        FilledLineChart(chartData: chartData)
+            .filledTopLine(chartData: chartData,
+                           lineColour: ColourStyle(colour: Color.LL.Primary.salmonPrimary),
+                           strokeStyle: StrokeStyle(lineWidth: 1, lineCap: .round))
+            .touchOverlay(chartData: chartData, specifier: "%.2f")
+            .floatingInfoBox(chartData: chartData)
+            .yAxisLabels(chartData: chartData, specifier: "%.2f")
+            .id(chartData.id)
             .frame(height: 163)
             .padding(.horizontal, 18)
-    }
-    
-    var chartFilledTopLineColor: ColourStyle {
-        return ColourStyle(colour: Color.LL.Primary.salmonPrimary)
-    }
-    
-    var chartFilledTopLineStrokeStyle: StrokeStyle {
-        return StrokeStyle(lineWidth: 1, lineCap: .round)
+            .padding(.top, 5)
+        
+        return AnyView(c)
     }
 }
 
@@ -246,7 +275,7 @@ extension TokenDetailView {
     var sourceSwitchButton: some View {
         Menu {
             Button {
-                
+                vm.changeMarketAction(.binance)
             } label: {
                 HStack {
                     Image("icon_nft_add")
@@ -257,7 +286,7 @@ extension TokenDetailView {
             }
 
             Button {
-                
+                vm.changeMarketAction(.kraken)
             } label: {
                 Text("kraken".localized)
                     .foregroundColor(.LL.Neutrals.text)
@@ -265,7 +294,7 @@ extension TokenDetailView {
             }
             
             Button {
-                
+                vm.changeMarketAction(.huobi)
             } label: {
                 Text("huobi".localized)
                     .foregroundColor(.LL.Neutrals.text)
@@ -292,7 +321,7 @@ extension TokenDetailView {
                         .frame(width: 10, height: 10)
                         .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
                     
-                    Text("Huobi")
+                    Text(vm.market.rawValue.capitalized)
                         .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
                         .font(.inter(size: 14, weight: .regular))
                 }
@@ -308,20 +337,16 @@ extension TokenDetailView {
         let isSelect: Bool
         
         var body: some View {
-            Button {
-                
-            } label: {
-                Text(title)
-                    .foregroundColor(labelColor)
-                    .font(labelFont)
-                    .frame(height: 26)
-                    .padding(.horizontal, 7)
-                    .background {
-                        labelBgColor
-                            .cornerRadius(8)
-                            .visibility(isSelect ? .visible : .invisible)
-                    }
-            }
+            Text(title)
+                .foregroundColor(labelColor)
+                .font(labelFont)
+                .frame(height: 26)
+                .padding(.horizontal, 7)
+                .background {
+                    labelBgColor
+                        .cornerRadius(8)
+                        .visibility(isSelect ? .visible : .invisible)
+                }
         }
         
         private var labelBgColor: Color {

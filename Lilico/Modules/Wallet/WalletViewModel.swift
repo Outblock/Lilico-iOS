@@ -55,9 +55,9 @@ class WalletViewModel: ObservableObject {
     private var cancelSets = Set<AnyCancellable>()
 
     init() {
-        NotificationCenter.default.publisher(for: .walletHiddenFlagUpdated).sink { _ in
+        NotificationCenter.default.publisher(for: .walletHiddenFlagUpdated).sink { [weak self] _ in
             DispatchQueue.main.async {
-                self.refreshHiddenFlag()
+                self?.refreshHiddenFlag()
             }
         }.store(in: &cancelSets)
 

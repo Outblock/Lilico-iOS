@@ -31,9 +31,9 @@ class CoinRateCache {
     init() {
         loadFromCache()
 
-        NotificationCenter.default.publisher(for: .quoteMarketUpdated).sink { _ in
+        NotificationCenter.default.publisher(for: .quoteMarketUpdated).sink { [weak self] _ in
             DispatchQueue.main.async {
-                self.refresh()
+                self?.refresh()
             }
         }.store(in: &cancelSets)
 

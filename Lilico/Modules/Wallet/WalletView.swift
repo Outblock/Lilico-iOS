@@ -75,7 +75,7 @@ struct WalletView: View {
                     ForEach(vm.coinItems, id: \.token.symbol) { coin in
                         CoinCell(coin: coin)
                             .onTapGestureOnBackground {
-                                router.route(to: \.tokenDetail)
+                                router.route(to: \.tokenDetail, coin.token)
                             }
                     }
                 }

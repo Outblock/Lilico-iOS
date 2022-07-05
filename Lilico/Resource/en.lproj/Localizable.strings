@@ -44,6 +44,7 @@
 "add_token_failed" = "Add token failed";
 "add_token_success" = "Add token success";
 "add_token_timeout" = "Add token timeout";
+"fetch_chart_data_failed" = "Fetch chart data failed";
 
 // NFT
 "x_collections" = "%d Collections";

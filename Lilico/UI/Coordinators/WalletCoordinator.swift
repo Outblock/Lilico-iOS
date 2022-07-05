@@ -71,8 +71,8 @@ extension WalletCoordinator {
         AddTokenView()
     }
     
-    func makeTokenDetail() -> some View {
-        TokenDetailView()
+    func makeTokenDetail(token: TokenModel) -> some View {
+        TokenDetailView(token: token)
     }
 }
 

@@ -21,7 +21,7 @@ extension TokenDetailView {
         
         var generateChartPoint: LineChartDataPoint {
             let date = Date(timeIntervalSince1970: closeTime)
-            return LineChartDataPoint(value: closePrice, xAxisLabel: "ha", description: date.ymdString, date: date)
+            return LineChartDataPoint(value: closePrice, description: date.ymdString, date: date)
         }
     }
 
@@ -72,64 +72,171 @@ extension TokenDetailView {
                 return .oneWeek
             }
         }
+        
+        var after: String {
+            let oneDayInterval: TimeInterval = 24 * 60 * 60
+            switch self {
+            case .d1:
+                return String(format: "%.0lf", Date(timeIntervalSinceNow: -oneDayInterval).timeIntervalSince1970)
+            case .w1:
+                return String(format: "%.0lf", Date(timeIntervalSinceNow: -oneDayInterval * 7).timeIntervalSince1970)
+            case .m1:
+                return String(format: "%.0lf", Date(timeIntervalSinceNow: -oneDayInterval * 30).timeIntervalSince1970)
+            case .m3:
+                return String(format: "%.0lf", Date(timeIntervalSinceNow: -oneDayInterval * 90).timeIntervalSince1970)
+            case .y1:
+                return String(format: "%.0lf", Date(timeIntervalSinceNow: -oneDayInterval * 365).timeIntervalSince1970)
+            case .all:
+                return ""
+            }
+        }
     }
 }
 
 class TokenDetailViewModel: ObservableObject {
-//    @Published var token: TokenModel
+    @Published var token: TokenModel
+    @Published var market: QuoteMarket = LocalUserDefaults.shared.market
     @Published var selectedRangeType: TokenDetailView.ChartRangeType = .d1
-    @Published var chartData: LineChartData
+    @Published var chartData: LineChartData?
+    @Published var balance: Double = 0
+    @Published var balanceAsUSD: Double = 0
+    @Published var changePercent: Double = 0
+    @Published var rate: Double = 0
     
     private var cancelSets = Set<AnyCancellable>()
     
-    init() {
-        chartData = TokenDetailViewModel.generateTestChartData()
+    init(token: TokenModel) {
+        self.token = token
+        setupObserver()
+        fetchAllData()
     }
     
-//    init(token: TokenModel) {
-//        self.token = token
-//
-//        NotificationCenter.default.publisher(for: .quoteMarketUpdated).sink { _ in
-//            DispatchQueue.main.async {
-//                self.refreshData()
-//            }
-//        }.store(in: &cancelSets)
-//
-//        NotificationCenter.default.publisher(for: .coinSummarysUpdated).sink { _ in
-//            DispatchQueue.main.async {
-//                self.refreshData()
-//            }
-//        }.store(in: &cancelSets)
-//    }
+    private func setupObserver() {
+        NotificationCenter.default.publisher(for: .quoteMarketUpdated).sink { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.market = LocalUserDefaults.shared.market
+                self?.fetchAllData()
+            }
+        }.store(in: &cancelSets)
+
+        NotificationCenter.default.publisher(for: .coinSummarysUpdated).sink { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.refreshSummary()
+            }
+        }.store(in: &cancelSets)
+        
+        WalletManager.shared.$coinBalances.sink { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.refreshSummary()
+            }
+        }.store(in: &cancelSets)
+    }
+}
+
+// MARK: - Getter
+
+extension TokenDetailViewModel {
+    var changePercentString: String {
+        let num = String(format: "%.1f", fabsf(Float(changePercent) * 100))
+        return "\(num)%"
+    }
     
-    private func refreshData() {
-        refreshSummary()
+    var balanceString: String {
+        return balance.currencyString
+    }
+    
+    var balanceAsUSDString: String {
+        return balanceAsUSD.currencyString
+    }
+    
+    var changeIsNegative: Bool {
+        return changePercent < 0
+    }
+    
+    var changeColor: Color {
+        return changeIsNegative ? Color.LL.Warning.warning2 : Color.LL.Success.success2
+    }
+    
+    var hasRateAndChartData: Bool {
+        return token.symbol == SymbolTypeFlow || token.symbol == SymbolTypeFlowUSD
+    }
+}
+
+// MARK: - Action
+
+extension TokenDetailViewModel {
+    func changeSelectRangeTypeAction(_ type: TokenDetailView.ChartRangeType) {
+        if selectedRangeType == type {
+            return
+        }
+        
+        selectedRangeType = type
         fetchChartData()
     }
     
-    private func refreshSummary() {
+    func changeMarketAction(_ market: QuoteMarket) {
+        if self.market == market {
+            return
+        }
         
+        LocalUserDefaults.shared.market = market
+    }
+}
+
+// MARK: - Fetch & Refresh
+
+extension TokenDetailViewModel {
+    private func fetchAllData() {
+        Task {
+            try? await WalletManager.shared.fetchBalance()
+        }
+        
+        if hasRateAndChartData {
+            fetchChartData()
+        }
+    }
+    
+    private func refreshSummary() {
+        guard let symbol = token.symbol else {
+            return
+        }
+        
+        balance = WalletManager.shared.coinBalances[symbol] ?? 0
+        rate = CoinRateCache.cache.getSummary(for: symbol)?.getLastRate() ?? 0
+        balanceAsUSD = balance * rate
+        changePercent = CoinRateCache.cache.getSummary(for: symbol)?.getChangePercentage() ?? 0
     }
     
     private func fetchChartData() {
-        
+        Task {
+            let pair = token.getPricePair(market: market)
+            let currentRangeType = selectedRangeType
+            
+            let request = CryptoHistoryRequest(provider: market.rawValue, pair: pair, after: currentRangeType.after, period: "\(currentRangeType.frequency.rawValue)")
+            
+            do {
+                let response: CryptoHistoryResponse = try await Network.request(LilicoAPI.Crypto.history(request))
+                
+                if currentRangeType != self.selectedRangeType {
+                    // selectedRangeType is changed, this is an outdated response
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.generateChartData(response: response)
+                }
+            } catch {
+                HUD.error(title: "fetch_chart_data_failed".localized)
+            }
+        }
     }
     
-    static func generateTestChartData() -> LineChartData {
-        var rawPoints = [TokenDetailView.Quote]()
-        let startTime = Date().timeIntervalSince1970
-        rawPoints.append(TokenDetailView.Quote(closeTime: startTime - 7 * 3600 * 24, openPrice: 0, highPrice: 0, lowPrice: 0, closePrice: 1.62, volume: 0, quoteVolume: 0))
-        rawPoints.append(TokenDetailView.Quote(closeTime: startTime - 6 * 3600 * 24, openPrice: 0, highPrice: 0, lowPrice: 0, closePrice: 1.61, volume: 0, quoteVolume: 0))
-        rawPoints.append(TokenDetailView.Quote(closeTime: startTime - 5 * 3600 * 24, openPrice: 0, highPrice: 0, lowPrice: 0, closePrice: 1.59, volume: 0, quoteVolume: 0))
-        rawPoints.append(TokenDetailView.Quote(closeTime: startTime - 4 * 3600 * 24, openPrice: 0, highPrice: 0, lowPrice: 0, closePrice: 1.61, volume: 0, quoteVolume: 0))
-        rawPoints.append(TokenDetailView.Quote(closeTime: startTime - 3 * 3600 * 24, openPrice: 0, highPrice: 0, lowPrice: 0, closePrice: 1.58, volume: 0, quoteVolume: 0))
-        rawPoints.append(TokenDetailView.Quote(closeTime: startTime - 2 * 3600 * 24, openPrice: 0, highPrice: 0, lowPrice: 0, closePrice: 1.59, volume: 0, quoteVolume: 0))
-        rawPoints.append(TokenDetailView.Quote(closeTime: startTime - 1 * 3600 * 24, openPrice: 0, highPrice: 0, lowPrice: 0, closePrice: 1.56, volume: 0, quoteVolume: 0))
-        
-        let linePoints = rawPoints.map { $0.generateChartPoint }
+    private func generateChartData(response: CryptoHistoryResponse) {
+        let quotes = response.parseMarketQuoteData(rangeType: selectedRangeType)
+        let linePoints = quotes.map { $0.generateChartPoint }
         let chartLineStyle = LineStyle(lineColour: ColourStyle(colours: [Color.LL.Primary.salmonPrimary.opacity(0.24), Color.LL.Primary.salmonPrimary.opacity(0)], startPoint: .top, endPoint: .bottom))
-        let set = LineDataSet(dataPoints: linePoints, pointStyle: PointStyle(), style: chartLineStyle)
         
+        let set = LineDataSet(dataPoints: linePoints, style: chartLineStyle)
         let chartStyle = LineChartStyle(infoBoxPlacement: .floating,
                                         infoBoxBorderColour: .LL.Primary.salmonPrimary,
                                         infoBoxBorderStyle: StrokeStyle(lineWidth: 1),
@@ -138,10 +245,9 @@ class TokenDetailViewModel: ObservableObject {
                                         yAxisLabelFont: .inter(size: 12, weight: .regular),
                                         yAxisLabelColour: Color.LL.Neutrals.neutrals8,
                                         yAxisNumberOfLabels: 4)
+        let cd = LineChartData(dataSets: set, chartStyle: chartStyle)
+        cd.legends = []
         
-        let chartData = LineChartData(dataSets: set, chartStyle: chartStyle)
-        chartData.legends = []
-        
-        return chartData
+        chartData = cd
     }
 }

@@ -17,3 +17,9 @@ extension String {
     static let arrowTriangleUp = "arrowtriangle.up.fill"
     static let arrowTriangleDown = "arrowtriangle.down.fill"
 }
+
+extension Image {
+    static var placeholderImage: Image {
+        return Image("placeholder")
+    }
+}
