@@ -228,3 +228,6 @@
 "qr_code_desc" = "Shown your QR code to receive transactions.";
 "wallet_address" = "Wallet Address";
 "copy" = "Copy";
+"recent" = "Recent";
+"send_to" = "Send to";
+"send_search_placeholder" = "Username, address(0x), Find or Flowns";
