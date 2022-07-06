@@ -63,10 +63,10 @@ struct BottomSheet<Background: View, SheetContent: View>: ViewModifier {
 }
 
 extension View {
-    func customBottomSheet<Background: View, SheetContent: View>(
+    func customBottomSheet<Bg: View, SheetContent: View>(
         isPresented: Binding<Bool>,
         title: String? = nil,
-        background: @escaping () -> Background = { Color.LL.deepBg },
+        background: @escaping () -> Bg = { Color.LL.deepBg as! Bg },
         sheetContent: @escaping () -> SheetContent
     ) -> some View {
         self.modifier(BottomSheet(isPresented: isPresented, title: title, bg: background, sheetContent: sheetContent))

@@ -7,7 +7,7 @@
 
 import Foundation
 
-private let yyyyMMddFormatter = {
+private let yyyyMMddFormatter = { () -> DateFormatter in
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
     return formatter
