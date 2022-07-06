@@ -188,10 +188,10 @@ struct TokenDetailView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 9, height: 7)
-                                .foregroundColor(.LL.Success.success2)
+                                .foregroundColor(vm.changeColor)
                             
                             Text(vm.changePercentString)
-                                .foregroundColor(.LL.Success.success2)
+                                .foregroundColor(vm.changeColor)
                                 .font(.inter(size: 12, weight: .semibold))
                         }
                         .padding(.horizontal, 7)
