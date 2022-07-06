@@ -121,7 +121,7 @@ struct TokenDetailView: View {
                 }
                 
                 Button {
-                    
+                    router.route(to: \.receive)
                 } label: {
                     Text("receive_uppercase".localized)
                         .foregroundColor(.white)

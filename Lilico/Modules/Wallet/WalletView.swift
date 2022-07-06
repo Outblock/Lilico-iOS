@@ -120,7 +120,9 @@ struct WalletView: View {
 
             Spacer()
 
-            Button {} label: {
+            Button {
+                router.route(to: \.receive)
+            } label: {
                 VStack(spacing: 7) {
                     Image("icon-wallet-receive")
                     Text("receive".localized)
