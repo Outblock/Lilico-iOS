@@ -26,6 +26,8 @@ struct WalletReceiveView: View {
             qrCodeContainerView
             
             Spacer()
+            
+            copyButton
         }
         .navigationTitle("receive".localized)
         .navigationBarTitleDisplayMode(.large)
@@ -42,20 +44,14 @@ struct WalletReceiveView: View {
                 Text("wallet_address".localized)
                     .foregroundColor(.white)
                     .font(.inter(size: 14, weight: .semibold))
-                Text("(\(vm.address)")
+                Text("(\(vm.address))")
                     .foregroundColor(.white)
                     .font(.inter(size: 14, weight: .medium))
             }
             
             Spacer()
-            
-            Button {
-                vm.copyAddressAction()
-            } label: {
-                Image("icon-address-copy")
-            }
         }
-        .padding(.vertical, 6)
+        .padding(.vertical, 8)
         .padding(.horizontal, 16)
         .background(Color.LL.Primary.salmonPrimary.cornerRadius(16))
         .padding(.horizontal, 18)
@@ -86,6 +82,22 @@ struct WalletReceiveView: View {
         .background(.LL.bgForIcon)
         .cornerRadius(16)
         .padding(.horizontal, 33)
+    }
+    
+    var copyButton: some View {
+        Button {
+            vm.copyAddressAction()
+        } label: {
+            Text("copy".localized)
+                .foregroundColor(.LL.Button.text)
+                .font(.inter(size: 14, weight: .semibold))
+                .frame(width: 64, height: 32)
+                .background {
+                    Color.LL.Button.color.cornerRadius(16)
+                }
+                .padding(.bottom, 20)
+        }
+
     }
 }
 

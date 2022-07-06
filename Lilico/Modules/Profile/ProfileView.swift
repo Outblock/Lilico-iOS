@@ -15,32 +15,30 @@ struct ProfileView: View {
     @StateObject private var lud = LocalUserDefaults.shared
     @StateObject private var userManager = UserManager.shared
 
-    init() {
-//        UITableView.appearance().sectionFooterHeight = .leastNormalMagnitude
-//        UITableView.appearance().sectionHeaderHeight = .leastNormalMagnitude
-        UITableView.appearance().backgroundColor = .clear
-    }
-
     var body: some View {
         ZStack {
-            List {
-                if userManager.isLoggedIn {
-                    InfoContainerView()
-                    ActionSectionView()
-                } else {
-                    NoLoginTipsView()
-                }
+            ScrollView {
+                VStack(spacing: 16) {
+                    if userManager.isLoggedIn {
+                        InfoContainerView()
+                        ActionSectionView()
+                    } else {
+                        NoLoginTipsView()
+                    }
 
-                GeneralSectionView()
-                AboutSectionView()
+                    GeneralSectionView()
+                    AboutSectionView()
 
-                if vm.state.isLogin {
-                    MoreSectionView()
+                    if vm.state.isLogin {
+                        MoreSectionView()
+                    }
                 }
+                .padding(.horizontal, 18)
             }
             .background(.LL.Neutrals.background)
             .buttonStyle(.plain)
         }
+        .padding(.top, 16)
         .preferredColorScheme(themeManager.style)
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
@@ -104,8 +102,6 @@ extension ProfileView {
                     ProfileView.InfoActionView()
                 }
             }
-            .listRowInsets(.zero)
-            .listRowBackground(Color.clear)
             .background(.LL.Neutrals.background)
         }
     }
@@ -190,12 +186,18 @@ extension ProfileView {
         }
 
         var body: some View {
-            Section {
-                ForEach(Row.allCases, id: \.self) {
-                    ProfileView.SettingItemCell(iconName: $0.iconName, title: $0.title, style: $0.style, desc: $0.desc, toggle: $0.toggle)
+            VStack {
+                Section {
+                    ForEach(Row.allCases, id: \.self) {
+                        ProfileView.SettingItemCell(iconName: $0.iconName, title: $0.title, style: $0.style, desc: $0.desc, toggle: $0.toggle)
+                        
+                        if $0 != .security {
+                            Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
+                        }
+                    }
                 }
             }
-            .listRowInsets(.zero)
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
         }
     }
 }
@@ -261,17 +263,23 @@ extension ProfileView {
         }
 
         var body: some View {
-            Section {
-                ForEach(Row.allCases, id: \.self) { row in
-                    ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc(with: vm), toggle: row.toggle)
-                        .onTapGestureOnBackground {
-                            if row == .theme {
-                                router.route(to: \.themeChange)
+            VStack {
+                Section {
+                    ForEach(Row.allCases, id: \.self) { row in
+                        ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc(with: vm), toggle: row.toggle)
+                            .onTapGestureOnBackground {
+                                if row == .theme {
+                                    router.route(to: \.themeChange)
+                                }
                             }
+                        
+                        if row != .notification {
+                            Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
                         }
+                    }
                 }
             }
-            .listRowInsets(.zero)
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
         }
     }
 }
@@ -346,17 +354,21 @@ extension ProfileView {
         }
 
         var body: some View {
-            Section {
-                let dm = Row.developerMode(lud)
-                ProfileView.SettingItemCell(iconName: dm.iconName, title: dm.title, style: dm.style, desc: dm.desc, toggle: dm.toggle)
-                    .onTapGestureOnBackground {
-                        router.route(to: \.developerMode)
-                    }
+            VStack {
+                Section {
+                    let dm = Row.developerMode(lud)
+                    ProfileView.SettingItemCell(iconName: dm.iconName, title: dm.title, style: dm.style, desc: dm.desc, toggle: dm.toggle)
+                        .onTapGestureOnBackground {
+                            router.route(to: \.developerMode)
+                        }
+                    
+                    Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
 
-                ProfileView.SettingItemCell(iconName: Row.about.iconName, title: Row.about.title, style: Row.about.style, desc: Row.about.desc, toggle: Row.about.toggle)
-                    .onTapGestureOnBackground {}
+                    ProfileView.SettingItemCell(iconName: Row.about.iconName, title: Row.about.title, style: Row.about.style, desc: Row.about.desc, toggle: Row.about.toggle)
+                        .onTapGestureOnBackground {}
+                }
             }
-            .listRowInsets(.zero)
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
         }
     }
 }
@@ -417,12 +429,14 @@ extension ProfileView {
         }
 
         var body: some View {
-            Section {
-                ForEach(Row.allCases, id: \.self) {
-                    ProfileView.SettingItemCell(iconName: $0.iconName, title: $0.title, style: $0.style, desc: $0.desc, toggle: $0.toggle)
+            VStack {
+                Section {
+                    ForEach(Row.allCases, id: \.self) {
+                        ProfileView.SettingItemCell(iconName: $0.iconName, title: $0.title, style: $0.style, desc: $0.desc, toggle: $0.toggle)
+                    }
                 }
             }
-            .listRowInsets(.zero)
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
         }
     }
 }

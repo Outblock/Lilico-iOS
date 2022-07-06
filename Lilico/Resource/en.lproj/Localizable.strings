@@ -227,3 +227,4 @@
 "qr_code_str" = "QR Code";
 "qr_code_desc" = "Shown your QR code to receive transactions.";
 "wallet_address" = "Wallet Address";
+"copy" = "Copy";
