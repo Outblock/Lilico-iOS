@@ -232,3 +232,6 @@
 "send_to" = "Send to";
 "send_search_placeholder" = "Username, address(0x), Find or Flowns";
 "send_user_empty" = "Search to find more users";
+"search_the_id" = "Search the ID:";
+"no_account_found_msg" = "Sorry, We did not find any related account, please check your enter and search it again.";
+"search_failed_msg" = "Search failed. Please try again.";

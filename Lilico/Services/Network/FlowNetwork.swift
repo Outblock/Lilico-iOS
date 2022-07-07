@@ -63,6 +63,15 @@ extension FlowNetwork {
     }
 }
 
+// MARK: - Search
+
+extension FlowNetwork {
+    static func queryAddressByDomainFind(domain: String) async throws -> Flow.Address? {
+        let cadence = Cadences.queryAddressByDomainFind
+        return try await fetch(cadence: cadence, arguments: [.string(domain)])
+    }
+}
+
 // MARK: - Others
 
 extension FlowNetwork {
@@ -94,6 +103,12 @@ extension FlowNetwork {
         let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
                                                                            arguments: [.address(address)])
 
+        let model: T = try response.decode()
+        return model
+    }
+    
+    private static func fetch<T: Decodable>(cadence: String, arguments: [Flow.Cadence.FValue]) async throws -> T {
+        let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence), arguments: arguments)
         let model: T = try response.decode()
         return model
     }
