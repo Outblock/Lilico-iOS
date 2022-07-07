@@ -108,7 +108,9 @@ struct WalletView: View {
 
     var actionView: some View {
         HStack {
-            Button {} label: {
+            Button {
+                router.route(to: \.send)
+            } label: {
                 VStack(spacing: 7) {
                     Image("icon-wallet-send")
                     Text("send".localized)

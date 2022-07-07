@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIPager
 
 struct WalletSendView_Previews: PreviewProvider {
     static var previews: some View {
@@ -26,11 +27,14 @@ struct WalletSendView: View {
     @EnvironmentObject private var router: WalletCoordinator.Router
     @State var tabType: TabType = .recent
     @State var searchText: String = ""
+    @StateObject var page: Page = .first()
+    @State var recentList: [Contact] = [Contact(address: "0x123456", avatar: "", contactName: "ContactName", contactType: .user, domain: nil, id: 0, username: "username1"), Contact(address: "0x1234567890", avatar: "", contactName: "ContactName2", contactType: .user, domain: nil, id: 1, username: "username2")]
     
     var body: some View {
         VStack(spacing: 0) {
             searchBar
             switchBar
+            contentView
         }
         .navigationTitle("send_to".localized)
         .navigationBarTitleDisplayMode(.large)
@@ -62,20 +66,19 @@ struct WalletSendView: View {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 0) {
                     Button {
-                        self.changeTabTypeAction(type: .recent)
+                        changeTabTypeAction(type: .recent)
                     } label: {
                         SwitchButton(icon: "icon-recent", title: "recent".localized, isSelected: tabType == .recent)
                             .contentShape(Rectangle())
                     }
 
                     Button {
-                        self.changeTabTypeAction(type: .addressBook)
+                        changeTabTypeAction(type: .addressBook)
                     } label: {
                         SwitchButton(icon: "icon-addressbook", title: "address_book".localized, isSelected: tabType == .addressBook)
                             .contentShape(Rectangle())
                     }
                 }
-                .frame(height: 70)
                 
                 // indicator
                 let widthPerTab = geo.size.width / CGFloat(tabCount)
@@ -84,6 +87,57 @@ struct WalletSendView: View {
                     .padding(.leading, widthPerTab * CGFloat(tabType.rawValue))
             }
         }
+        .frame(height: 70)
+    }
+    
+    var contentView: some View {
+        ZStack {
+            Pager(page: page, data: TabType.allCases, id: \.self) { type in
+                switch type {
+                case .recent:
+                    recentContainerView
+                case .addressBook:
+                    addressBookContainerView
+                }
+            }
+            .onPageChanged { newIndex in
+                changeTabTypeAction(type: TabType(rawValue: newIndex) ?? .recent)
+            }
+        }
+    }
+    
+    var recentContainerView: some View {
+        ZStack {
+            ScrollView {
+                LazyVStack {
+                    ForEach(recentList, id: \.id) { contact in
+                        AddressBookView.ContactCell(contact: contact)
+                    }
+                }
+            }
+            
+            emptyView.visibility(recentList.isEmpty ? .visible : .gone)
+        }
+        .frame(maxHeight: .infinity)
+    }
+    
+    var addressBookContainerView: some View {
+        ZStack {
+            AddressBookView(mode: .inline)
+            emptyView.visibility(.gone)
+        }
+        .frame(maxHeight: .infinity)
+        .background(.green)
+    }
+    
+    var emptyView: some View {
+        VStack {
+            Image("icon-send-empty-users")
+            Text("send_user_empty".localized)
+                .foregroundColor(Color.LL.note)
+                .font(.inter(size: 18, weight: .semibold))
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -127,6 +181,7 @@ extension WalletSendView {
     func changeTabTypeAction(type: WalletSendView.TabType) {
         withAnimation(.easeInOut(duration: 0.2)) {
             self.tabType = type
+            page.update(.new(index: type.rawValue))
         }
     }
 }

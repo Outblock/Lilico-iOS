@@ -341,6 +341,15 @@
       }
     },
     {
+      "identity" : "swiftuipager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fermoya/SwiftUIPager.git",
+      "state" : {
+        "revision" : "6e4170ef7cafd04b3d8ab8dc5b0469036b2bcd6a",
+        "version" : "2.4.0"
+      }
+    },
+    {
       "identity" : "swiftuix",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftUIX/SwiftUIX",

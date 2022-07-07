@@ -795,6 +795,7 @@
 		4EE8E49C283626D000DFEF59 /* NFTLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E49A283626D000DFEF59 /* NFTLoading.swift */; };
 		4EF5129A28329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
+		6A0454CD28768E9E00A9131C /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 6A0454CC28768E9E00A9131C /* SwiftUIPager */; };
 		6A15C1FF286D914000C2EBA2 /* TokenDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A15C1FE286D914000C2EBA2 /* TokenDetailView.swift */; };
 		6A15C200286D914000C2EBA2 /* TokenDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A15C1FE286D914000C2EBA2 /* TokenDetailView.swift */; };
 		6A164F422840A1380026B31E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3D2840A1380026B31E /* TabBar.swift */; };
@@ -904,6 +905,7 @@
 		6AE0842128505887003BEEF0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE0841F28505887003BEEF0 /* Error.swift */; };
 		6AE084242851D481003BEEF0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE084222851D481003BEEF0 /* Logger.swift */; };
 		6AE0842A2851E7B3003BEEF0 /* Published.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE084282851E7B3003BEEF0 /* Published.swift */; };
+		6AE1D48E287690E7000FA0B7 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 6AE1D48D287690E7000FA0B7 /* SwiftUIPager */; };
 		6AE4605E286ED142009C2B96 /* TokenDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4605D286ED142009C2B96 /* TokenDetailViewModel.swift */; };
 		6AE4605F286ED142009C2B96 /* TokenDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4605D286ED142009C2B96 /* TokenDetailViewModel.swift */; };
 		6AE46062286EE644009C2B96 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 6AE46061286EE644009C2B96 /* SwiftUICharts */; };
@@ -1427,6 +1429,7 @@
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
 				15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */,
 				4E9BFF5D2867631300601339 /* UIKit.framework in Frameworks */,
+				6AE1D48E287690E7000FA0B7 /* SwiftUIPager in Frameworks */,
 				4E17466C281AF840002A029C /* WalletCore.xcframework in Frameworks */,
 				15185ED8278A73A3006B74A9 /* SPConfetti in Frameworks */,
 				15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */,
@@ -1465,6 +1468,7 @@
 				15C58C402868A4EE00BD4FC6 /* FirebaseAuth in Frameworks */,
 				15C58C412868A4EE00BD4FC6 /* AuthenticationServices.framework in Frameworks */,
 				15C58C422868A4EE00BD4FC6 /* UIKit.framework in Frameworks */,
+				6A0454CD28768E9E00A9131C /* SwiftUIPager in Frameworks */,
 				15C58C432868A4EE00BD4FC6 /* WalletCore.xcframework in Frameworks */,
 				15C58C442868A4EE00BD4FC6 /* SPConfetti in Frameworks */,
 				15C58C452868A4EE00BD4FC6 /* GTMSessionFetcherCore in Frameworks */,
@@ -3243,6 +3247,7 @@
 				1500783328682BF700A00109 /* SPIndicator */,
 				6A7C080E286EE95E00020987 /* SwiftUICharts */,
 				6A400926287578FF00A77070 /* QRCode */,
+				6AE1D48D287690E7000FA0B7 /* SwiftUIPager */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -3292,6 +3297,7 @@
 				15C58AAA2868A4EE00BD4FC6 /* SPIndicator */,
 				6AE46061286EE644009C2B96 /* SwiftUICharts */,
 				6A400924287578D400A77070 /* QRCode */,
+				6A0454CC28768E9E00A9131C /* SwiftUIPager */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -3346,6 +3352,7 @@
 				1500783028682B8900A00109 /* XCRemoteSwiftPackageReference "SPIndicator" */,
 				6AE46060286EE644009C2B96 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 				6A400923287578D400A77070 /* XCRemoteSwiftPackageReference "QRCode" */,
+				6A0454CB28768E9E00A9131C /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -5055,6 +5062,14 @@
 				kind = branch;
 			};
 		};
+		6A0454CB28768E9E00A9131C /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		6A400923287578D400A77070 /* XCRemoteSwiftPackageReference "QRCode" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dagronf/QRCode";
@@ -5319,6 +5334,11 @@
 			package = 4ED6DD0E285A22A800105133 /* XCRemoteSwiftPackageReference "IrregularGradient" */;
 			productName = IrregularGradient;
 		};
+		6A0454CC28768E9E00A9131C /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A0454CB28768E9E00A9131C /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
+		};
 		6A204C6B2860784B00D0D3A4 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -5383,6 +5403,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15DE22F7277FF55C00B5EE03 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
+		};
+		6AE1D48D287690E7000FA0B7 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A0454CB28768E9E00A9131C /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
 		};
 		6AE46061286EE644009C2B96 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;

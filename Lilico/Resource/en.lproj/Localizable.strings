@@ -231,3 +231,4 @@
 "recent" = "Recent";
 "send_to" = "Send to";
 "send_search_placeholder" = "Username, address(0x), Find or Flowns";
+"send_user_empty" = "Search to find more users";

@@ -23,52 +23,75 @@ import SwiftUI
 //    }
 // }
 
+extension AddressBookView {
+    enum Mode {
+        case normal
+        case inline
+    }
+}
+
 struct AddressBookView: View {
     @EnvironmentObject private var router: AddressBookCoordinator.Router
     @StateObject private var vm = AddressBookViewModel()
 
     @StateObject private var pendingDeleteModel = PendingDeleteModel()
     @State private var showAlert = false
+    
+    @State private var mode: Mode
+    
+    init() {
+        self.init(mode: .normal)
+    }
+    
+    init(mode: Mode) {
+        self.mode = mode
+    }
 
     var body: some View {
-        BaseView {
-            ZStack {
-                listView
-                loadingView
-                errorView
-            }
+        let view =
+        ZStack {
+            listView
+            loadingView
+            errorView
         }
-        .navigationTitle("address_book".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing: HStack(spacing: 20) {
-            Button {
-                router.route(to: \.add)
-            } label: {
-                Image("btn-add")
-            }
-
-            Button {
-                debugPrint("scan btn click")
-            } label: {
-                Image("btn-scan")
-            }
-        })
-        .addBackBtn {
-            router.dismissCoordinator()
-        }
-        .onAppear {
-            router.coordinator.addressBookVM = vm
-        }
-        .toast(isPresented: $vm.state.hudStatus) {
-            ToastView("deleting".localized).toastViewStyle(.indeterminate)
-        }
-        .alert("contact_delete_alert".localized, isPresented: $showAlert) {
-            Button("delete".localized, role: .destructive) {
-                if let sectionVM = self.pendingDeleteModel.sectionVM, let contact = self.pendingDeleteModel.contact {
-                    self.vm.trigger(.delete(sectionVM, contact))
+        
+        if mode == .normal {
+            return AnyView(view
+                .navigationTitle("address_book".localized)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(trailing: HStack(spacing: 20) {
+                    Button {
+                        router.route(to: \.add)
+                    } label: {
+                        Image("btn-add")
+                    }
+                    
+                    Button {
+                        debugPrint("scan btn click")
+                    } label: {
+                        Image("btn-scan")
+                    }
+                })
+                    .addBackBtn {
+                        router.dismissCoordinator()
+                    }
+                .onAppear {
+                    router.coordinator.addressBookVM = vm
                 }
-            }
+                .toast(isPresented: $vm.state.hudStatus) {
+                    ToastView("deleting".localized).toastViewStyle(.indeterminate)
+                }
+                .alert("contact_delete_alert".localized, isPresented: $showAlert) {
+                    Button("delete".localized, role: .destructive) {
+                        if let sectionVM = self.pendingDeleteModel.sectionVM, let contact = self.pendingDeleteModel.contact {
+                            self.vm.trigger(.delete(sectionVM, contact))
+                        }
+                    }
+                }
+            )
         }
+        
+        return AnyView(view)
     }
 }
 
@@ -92,14 +115,18 @@ extension AddressBookView {
     }
 
     var listView: some View {
+        let list =
+        
         IndexedList(vm.searchResults) { sectionVM in
             Section {
                 ForEach(sectionVM.state.list) { row in
+                    let cell =
                     ContactCell(contact: row)
                         .listRowSeparator(.hidden)
                         .listRowInsets(.zero)
-                        .background(.LL.Neutrals.background)
-                        .swipeActions(allowsFullSwipe: false) {
+                    
+                    if mode == .normal {
+                        cell.swipeActions(allowsFullSwipe: false) {
                             Button(action: {
                                 self.pendingDeleteModel.sectionVM = sectionVM
                                 self.pendingDeleteModel.contact = row
@@ -108,13 +135,16 @@ extension AddressBookView {
                                 Text("delete".localized)
                             })
                             .tint(Color.systemRed)
-
+                            
                             Button(action: {
                                 self.vm.trigger(.edit(row))
                             }, label: {
                                 Text("edit".localized)
                             })
                         }
+                    }
+                    
+                    cell
                 }
             } header: {
                 sectionHeader(sectionVM)
@@ -123,9 +153,12 @@ extension AddressBookView {
         }
         .frame(maxHeight: .infinity)
         .listStyle(.plain)
-        .background(.LL.Neutrals.background)
-        .searchable(text: $vm.searchText)
         .visibility(vm.state.stateType == .idle ? .visible : .gone)
+        if mode == .normal {
+            return AnyView(list.searchable(text: $vm.searchText))
+        }
+        
+        return AnyView(list)
     }
 
     @ViewBuilder private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {
