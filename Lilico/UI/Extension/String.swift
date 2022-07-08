@@ -54,6 +54,14 @@ extension String {
 
         return self
     }
+    
+    func removeSuffix(_ suffix: String) -> String {
+        if hasSuffix(suffix) {
+            return String(self.dropLast(suffix.count))
+        }
+        
+        return self
+    }
 }
 
 extension String {

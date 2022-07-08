@@ -16,6 +16,7 @@ extension LilicoAPI {
         case userAddress
         case userInfo
         case userWallet
+        case search(String)
     }
 }
 
@@ -42,12 +43,14 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
             return "/v1/user/info"
         case .userWallet:
             return "/v1/user/wallet"
+        case .search:
+            return "/v1/user/search"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .checkUsername, .userInfo, .userWallet:
+        case .checkUsername, .userInfo, .userWallet, .search:
             return .get
         case .login, .register, .userAddress:
             return .post
@@ -64,6 +67,8 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
             return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
         case let .login(request):
             return .requestCustomJSONEncodable(request, encoder: LilicoAPI.jsonEncoder)
+        case let .search(keyword):
+            return .requestParameters(parameters: ["keyword": keyword], encoding: URLEncoding.queryString)
         }
     }
 

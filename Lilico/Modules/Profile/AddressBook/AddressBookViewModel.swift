@@ -242,4 +242,37 @@ extension AddressBookView.AddressBookViewModel {
 
         return searchSections
     }
+
+    /// search from send view
+    func searchLocal(text: String) -> [WalletSendView.SearchSection] {
+        var results = [WalletSendView.SearchSection]()
+        
+        for section in state.sections {
+            var contacts = [Contact]()
+
+            for contact in section.state.list {
+                if let address = contact.address, address.localizedCaseInsensitiveContains(text) {
+                    contacts.append(contact)
+                    continue
+                }
+
+                if let contactName = contact.contactName, contactName.localizedCaseInsensitiveContains(text) {
+                    contacts.append(contact)
+                    continue
+                }
+
+                if let userName = contact.username, userName.localizedCaseInsensitiveContains(text) {
+                    contacts.append(contact)
+                    continue
+                }
+            }
+
+            if contacts.count > 0 {
+                let newSection = WalletSendView.SearchSection(title: section.state.sectionName, rows: contacts)
+                results.append(newSection)
+            }
+        }
+        
+        return results
+    }
 }

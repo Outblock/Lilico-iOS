@@ -8,63 +8,17 @@
 import SwiftUI
 import SwiftUIPager
 
-struct WalletSendView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            WalletSendView()
-        }
-    }
-}
-
-extension WalletSendView {
-    enum TabType: Int, CaseIterable {
-        case recent
-        case addressBook
-    }
-    
-    enum ViewStatus {
-        case normal
-        case prepareSearching
-        case searchResult
-        case error
-    }
-    
-    enum ErrorType {
-        case none
-        case notFound
-        case failed
-        
-        var desc: String {
-            switch self {
-            case .none:
-                return ""
-            case .notFound:
-                return "no_account_found_msg".localized
-            case .failed:
-                return "search_failed_msg".localized
-            }
-        }
-    }
-    
-    struct SearchSection: VSectionListSectionViewModelable {
-        let id: UUID = .init()
-        let title: String
-        let rows: [Contact]
-    }
-}
-
-private let testList = [Contact(address: "0x123456", avatar: "", contactName: "ContactName", contactType: .user, domain: nil, id: 0, username: "username1"), Contact(address: "0x1234567890", avatar: "", contactName: "ContactName2", contactType: .user, domain: nil, id: 1, username: "username2")]
+//struct WalletSendView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            WalletSendView()
+//        }
+//    }
+//}
 
 struct WalletSendView: View {
     @EnvironmentObject private var router: WalletCoordinator.Router
-    @State var tabType: TabType = .recent
-    @State var searchText: String = ""
-    @StateObject var page: Page = .first()
-    @State var recentList: [Contact] = [Contact(address: "0x123456", avatar: "", contactName: "ContactName", contactType: .user, domain: nil, id: 0, username: "username1"), Contact(address: "0x1234567890", avatar: "", contactName: "ContactName2", contactType: .user, domain: nil, id: 1, username: "username2")]
-    
-    @State var sections = [SearchSection(title: "section0", rows: testList), SearchSection(title: "section1", rows: testList)]
-    @State var status: WalletSendView.ViewStatus = .normal
-    @State var errorType: ErrorType = .none
+    @StateObject private var vm = WalletSendViewModel()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -77,7 +31,7 @@ struct WalletSendView: View {
                 }
                 
                 searchContainerView
-                    .visibility(status == .normal ? .gone : .visible)
+                    .visibility(vm.status == .normal ? .gone : .visible)
             }
         }
         .navigationTitle("send_to".localized)
@@ -94,16 +48,16 @@ struct WalletSendView: View {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 0) {
                     Button {
-                        changeTabTypeAction(type: .recent)
+                        vm.changeTabTypeAction(type: .recent)
                     } label: {
-                        SwitchButton(icon: "icon-recent", title: "recent".localized, isSelected: tabType == .recent)
+                        SwitchButton(icon: "icon-recent", title: "recent".localized, isSelected: vm.tabType == .recent)
                             .contentShape(Rectangle())
                     }
 
                     Button {
-                        changeTabTypeAction(type: .addressBook)
+                        vm.changeTabTypeAction(type: .addressBook)
                     } label: {
-                        SwitchButton(icon: "icon-addressbook", title: "address_book".localized, isSelected: tabType == .addressBook)
+                        SwitchButton(icon: "icon-addressbook", title: "address_book".localized, isSelected: vm.tabType == .addressBook)
                             .contentShape(Rectangle())
                     }
                 }
@@ -112,7 +66,7 @@ struct WalletSendView: View {
                 let widthPerTab = geo.size.width / CGFloat(tabCount)
                 Color.LL.Primary.salmon4
                     .frame(width: widthPerTab, height: 2)
-                    .padding(.leading, widthPerTab * CGFloat(tabType.rawValue))
+                    .padding(.leading, widthPerTab * CGFloat(vm.tabType.rawValue))
             }
         }
         .frame(height: 70)
@@ -120,7 +74,7 @@ struct WalletSendView: View {
     
     var contentView: some View {
         ZStack {
-            Pager(page: page, data: TabType.allCases, id: \.self) { type in
+            Pager(page: vm.page, data: TabType.allCases, id: \.self) { type in
                 switch type {
                 case .recent:
                     recentContainerView
@@ -129,7 +83,7 @@ struct WalletSendView: View {
                 }
             }
             .onPageChanged { newIndex in
-                changeTabTypeAction(type: TabType(rawValue: newIndex) ?? .recent)
+                vm.changeTabTypeAction(type: TabType(rawValue: newIndex) ?? .recent)
             }
         }
     }
@@ -141,21 +95,17 @@ extension WalletSendView {
     var searchBar: some View {
         HStack(spacing: 8) {
             Image("icon-search")
-            TextField("", text: $searchText)
-                .modifier(PlaceholderStyle(showPlaceHolder: searchText.isEmpty,
+            TextField("", text: $vm.searchText)
+                .modifier(PlaceholderStyle(showPlaceHolder: vm.searchText.isEmpty,
                                            placeholder: "send_search_placeholder".localized,
                                            font: .inter(size: 14, weight: .medium),
                                            color: Color.LL.Neutrals.neutrals6))
                 .submitLabel(.search)
-                .onChange(of: searchText) { st in
-                    if st.isEmpty {
-                        status = .normal
-                    } else {
-                        status = .prepareSearching
-                    }
+                .onChange(of: vm.searchText) { st in
+                    vm.searchTextDidChangeAction(text: st)
                 }
                 .onSubmit {
-                    debugPrint("search button click")
+                    vm.searchCommitAction()
                 }
         }
         .frame(height: 52)
@@ -167,14 +117,17 @@ extension WalletSendView {
     
     var searchContainerView: some View {
         VStack() {
-            searchTipsView
-                .visibility(status == .prepareSearching ? .visible : .gone)
+            searchLocalView
+                .visibility(vm.status == .prepareSearching ? .visible : .gone)
             
             errorMsgView
-                .visibility(status == .error ? .visible : .gone)
+                .visibility(vm.status == .error ? .visible : .gone)
             
-            searchResultView
-                .visibility(status == .searchResult ? .visible : .gone)
+            searchingView
+                .visibility(vm.status == .searching ? .visible : .gone)
+            
+            remoteSearchListView
+                .visibility(vm.status == .searchResult ? .visible : .gone)
             
             Spacer()
         }
@@ -183,29 +136,58 @@ extension WalletSendView {
         .backgroundFill(Color.LL.deepBg)
     }
     
-    var searchTipsView: some View {
-        HStack(spacing: 0) {
-            Image("icon-add-friends")
-                .frame(width: 40, height: 40)
-                .background(.LL.bgForIcon)
-                .clipShape(Circle())
+    var searchLocalView: some View {
+        VStack(spacing: 10) {
+            // tips
+            HStack(spacing: 0) {
+                Image("icon-add-friends")
+                    .frame(width: 40, height: 40)
+                    .background(.LL.bgForIcon)
+                    .clipShape(Circle())
+                
+                
+                Text("search_the_id".localized)
+                    .foregroundColor(.LL.Neutrals.neutrals6)
+                    .font(.inter(size: 14, weight: .semibold))
+                    .padding(.leading, 16)
+                
+                Text(vm.searchText)
+                    .foregroundColor(.LL.Primary.salmonPrimary)
+                    .font(.inter(size: 14, weight: .medium))
+                    .underline()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 5)
+                    .lineLimit(1)
+            }
+            .frame(height: 50)
+            .padding(.horizontal, 18)
             
-            
-            Text("search_the_id".localized)
-                .foregroundColor(.LL.Neutrals.neutrals6)
-                .font(.inter(size: 14, weight: .semibold))
-                .padding(.leading, 16)
-            
-            Text(searchText)
-                .foregroundColor(.LL.Primary.salmonPrimary)
-                .font(.inter(size: 14, weight: .medium))
-                .underline()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 5)
-                .lineLimit(1)
+            // local search table view
+            localSearchListView
         }
-        .frame(height: 50)
-        .padding(.horizontal, 18)
+    }
+    
+    var localSearchListView: some View {
+        return VSectionList(model: searchSectionListConfig,
+                            sections: vm.localSearchResults,
+                            headerContent: { section in
+            searchResultSectionHeader(title: section.title)
+        },
+                            footerContent: { section in
+            Color.clear
+                .frame(maxWidth: .infinity)
+                .frame(height: 20)
+        },
+                            rowContent: { row in
+            AddressBookView.ContactCell(contact: row)
+        })
+    }
+    
+    var searchingView: some View {
+        Text("searching")
+            .foregroundColor(.LL.Neutrals.note)
+            .font(.inter(size: 12, weight: .medium))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     var errorMsgView: some View {
@@ -220,23 +202,11 @@ extension WalletSendView {
         .padding(.horizontal, 18)
     }
     
-    var searchResultView: some View {
-        var model = VSectionListModel()
-        model.layout.dividerHeight = 0
-        model.layout.contentMargin = 0
-        model.layout.sectionSpacing = 0
-        model.layout.rowSpacing = 0
-        model.layout.headerMarginBottom = 8
-        model.layout.footerMarginTop = 0
-        model.colors.background = Color.LL.deepBg
-        
-        return VSectionList(model: model, sections: sections,
+    var remoteSearchListView: some View {
+        return VSectionList(model: searchSectionListConfig,
+                            sections: vm.remoteSearchResults,
                             headerContent: { section in
-            Text(section.title)
-                .foregroundColor(.LL.Neutrals.note)
-                .font(.inter(size: 14, weight: .medium))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 33)
+            searchResultSectionHeader(title: section.title)
         },
                             footerContent: { section in
             Color.clear
@@ -247,6 +217,27 @@ extension WalletSendView {
             AddressBookView.ContactCell(contact: row)
         })
     }
+    
+    var searchSectionListConfig: VSectionListModel {
+        var model = VSectionListModel()
+        model.layout.dividerHeight = 0
+        model.layout.contentMargin = 0
+        model.layout.sectionSpacing = 0
+        model.layout.rowSpacing = 0
+        model.layout.headerMarginBottom = 8
+        model.layout.footerMarginTop = 0
+        model.colors.background = Color.LL.deepBg
+        
+        return model
+    }
+    
+    private func searchResultSectionHeader(title: String) -> some View {
+        Text(title)
+            .foregroundColor(.LL.Neutrals.note)
+            .font(.inter(size: 14, weight: .medium))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 33)
+    }
 }
 
 // MARK: - Recent
@@ -256,13 +247,13 @@ extension WalletSendView {
         ZStack {
             ScrollView {
                 LazyVStack {
-                    ForEach(recentList, id: \.id) { contact in
+                    ForEach(vm.recentList, id: \.id) { contact in
                         AddressBookView.ContactCell(contact: contact)
                     }
                 }
             }
             
-            emptyView.visibility(recentList.isEmpty ? .visible : .gone)
+            emptyView.visibility(vm.recentList.isEmpty ? .visible : .gone)
         }
         .frame(maxHeight: .infinity)
     }
@@ -283,7 +274,7 @@ extension WalletSendView {
 extension WalletSendView {
     var addressBookContainerView: some View {
         ZStack {
-            AddressBookView(mode: .inline)
+            AddressBookView(mode: .inline, vm: vm.addressBookVM)
         }
         .frame(maxHeight: .infinity)
     }
@@ -320,17 +311,6 @@ extension WalletSendView {
 extension WalletSendView {
     var tabCount: Int {
         return TabType.allCases.count
-    }
-}
-
-// MARK: - Test
-
-extension WalletSendView {
-    func changeTabTypeAction(type: WalletSendView.TabType) {
-        withAnimation(.easeInOut(duration: 0.2)) {
-            self.tabType = type
-            page.update(.new(index: type.rawValue))
-        }
     }
 }
 

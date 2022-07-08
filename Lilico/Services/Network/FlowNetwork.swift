@@ -66,9 +66,14 @@ extension FlowNetwork {
 // MARK: - Search
 
 extension FlowNetwork {
-    static func queryAddressByDomainFind(domain: String) async throws -> Flow.Address? {
+    static func queryAddressByDomainFind(domain: String) async throws -> String {
         let cadence = Cadences.queryAddressByDomainFind
         return try await fetch(cadence: cadence, arguments: [.string(domain)])
+    }
+    
+    static func queryAddressByDomainFlowns(domain: String, root: String = "fn") async throws -> String {
+        let cadence = Cadences.queryAddressByDomainFlowns
+        return try await fetch(cadence: cadence, arguments: [.string(domain), .string(root)])
     }
 }
 
@@ -100,7 +105,9 @@ extension FlowNetwork {
 
 extension FlowNetwork {
     private static func fetch<T: Decodable>(at address: Flow.Address, by cadence: String) async throws -> T {
-        let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence),
+        let replacedCadence = cadence.replace(by: ScriptAddress.addressMap())
+        
+        let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: replacedCadence),
                                                                            arguments: [.address(address)])
 
         let model: T = try response.decode()
@@ -108,7 +115,9 @@ extension FlowNetwork {
     }
     
     private static func fetch<T: Decodable>(cadence: String, arguments: [Flow.Cadence.FValue]) async throws -> T {
-        let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: cadence), arguments: arguments)
+        let replacedCadence = cadence.replace(by: ScriptAddress.addressMap())
+        
+        let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: replacedCadence), arguments: arguments)
         let model: T = try response.decode()
         return model
     }

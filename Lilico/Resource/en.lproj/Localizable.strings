@@ -235,3 +235,6 @@
 "search_the_id" = "Search the ID:";
 "no_account_found_msg" = "Sorry, We did not find any related account, please check your enter and search it again.";
 "search_failed_msg" = "Search failed. Please try again.";
+"lilico_user" = "Lilico user";
+".find" = ".find";
+".flowns" = ".flowns";

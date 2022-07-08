@@ -32,4 +32,19 @@ struct Contact: Codable, Identifiable {
     let domain: Domain?
     let id: Int
     let username: String?
+    
+    var needShowLocalAvatar: Bool {
+        return contactType == .domain
+    }
+    
+    var localAvatar: String? {
+        switch domain?.domainType {
+        case .find:
+            return "icon-find"
+        case .flowns:
+            return "icon-flowns"
+        default:
+            return nil
+        }
+    }
 }

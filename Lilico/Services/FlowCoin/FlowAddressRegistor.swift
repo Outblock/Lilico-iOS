@@ -16,6 +16,9 @@ enum ScriptAddress: String, CaseIterable {
     case lockedTokens = "0xLOCKEDTOKENS"
     case stakingProxy = "0xSTAKINGPROXY"
     case nonFungibleToken = "0xNONFUNGIBLETOKEN"
+    case findToken = "0xFIND"
+    case domainsToken = "0xDOMAINS"
+    case flownsToken = "0xFLOWNS"
     
     static func addressMap(on network: LocalUserDefaults.FlowNetworkType = LocalUserDefaults.shared.flowNetwork) -> [String: String] {
         let dict = ScriptAddress.allCases.reduce(into: [String: String]()) { partialResult, script in
@@ -41,6 +44,13 @@ enum ScriptAddress: String, CaseIterable {
             return Flow.Address(hex: "0x62430cf28c26d095")
         case (.nonFungibleToken, .mainnet):
             return Flow.Address(hex: "0x1d7e57aa55817448")
+        case (.findToken, .mainnet):
+            return Flow.Address(hex: "0x097bafa4e0b48eef")
+        case (.domainsToken, .mainnet):
+            return Flow.Address(hex: "0x233eb012d34b0070")
+        case (.flownsToken, .mainnet):
+            return Flow.Address(hex: "0x233eb012d34b0070")
+            
             // Testnet
         case (.fungibleToken, .testnet):
             return Flow.Address(hex: "0x9a0766d93b6608b7")
@@ -56,6 +66,12 @@ enum ScriptAddress: String, CaseIterable {
             return Flow.Address(hex: "0x7aad92e5a0715d21")
         case (.nonFungibleToken, .testnet):
             return Flow.Address(hex: "0x631e88ae7f1d7c20")
+        case (.findToken, .testnet):
+            return Flow.Address(hex: "0xa16ab1d0abde3625")
+        case (.domainsToken, .testnet):
+            return Flow.Address(hex: "0xb05b2abb42335e88")
+        case (.flownsToken, .testnet):
+            return Flow.Address(hex: "0xb05b2abb42335e88")
         }
     }
 }

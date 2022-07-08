@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 // struct AddressBookView_Previews: PreviewProvider {
 //    static var previews: some View {
@@ -32,7 +33,7 @@ extension AddressBookView {
 
 struct AddressBookView: View {
     @EnvironmentObject private var router: AddressBookCoordinator.Router
-    @StateObject private var vm = AddressBookViewModel()
+    @StateObject private var vm: AddressBookViewModel
 
     @StateObject private var pendingDeleteModel = PendingDeleteModel()
     @State private var showAlert = false
@@ -43,8 +44,14 @@ struct AddressBookView: View {
         self.init(mode: .normal)
     }
     
-    init(mode: Mode) {
+    init(mode: Mode, vm: AddressBookViewModel? = nil) {
         self.mode = mode
+        
+        if let vm = vm {
+            _vm = StateObject(wrappedValue: vm)
+        } else {
+            _vm = StateObject(wrappedValue: AddressBookViewModel())
+        }
     }
 
     var body: some View {
@@ -177,8 +184,16 @@ extension AddressBookView {
             HStack {
                 // avatar
                 ZStack {
-                    if let avatar = contact.avatar, avatar.isEmpty == false {
-                        Image(avatar).aspectRatio(contentMode: .fill)
+                    if let avatar = contact.avatar?.convertedAvatarString(), avatar.isEmpty == false {
+                        KFImage.url(URL(string: avatar))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 48, height: 48)
+                    } else if contact.needShowLocalAvatar {
+                        Image(contact.localAvatar ?? "")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 48, height: 48)
                     } else {
                         Text(String((contact.contactName?.first ?? "A").uppercased()))
                             .foregroundColor(.LL.Primary.salmonPrimary)

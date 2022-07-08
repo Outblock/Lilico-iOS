@@ -80,6 +80,10 @@ struct BlockChainResponse: Codable {
     let coins: [String]?
 }
 
+struct UserSearchResponse: Codable {
+    let users: [UserInfo]?
+}
+
 // struct CoinsResponse: Codable {
 //    let decimal: Int
 //    let isToken: Bool
