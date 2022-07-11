@@ -17,7 +17,7 @@ import QRCode
 //}
 
 struct WalletReceiveView: View {
-    @EnvironmentObject private var router: WalletCoordinator.Router
+    @EnvironmentObject private var router: WalletReceiveCoordinator.Router
     @StateObject var vm = WalletReceiveViewModel()
     
     var body: some View {
@@ -31,8 +31,9 @@ struct WalletReceiveView: View {
         }
         .navigationTitle("receive".localized)
         .navigationBarTitleDisplayMode(.large)
+        .interactiveDismissDisabled()
         .addBackBtn {
-            router.pop()
+            router.dismissCoordinator()
         }
         .buttonStyle(.plain)
         .backgroundFill(Color.LL.deepBg)

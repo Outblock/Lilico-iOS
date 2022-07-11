@@ -250,6 +250,13 @@ extension WalletSendViewModel {
     }
     
     func searchCommitAction() {
+        let trimedText = searchText.trim()
+        
+        if trimedText.isEmpty {
+            status = .normal
+            return
+        }
+        
         status = .searching
         clearRemoteSearch()
         searchRemote()

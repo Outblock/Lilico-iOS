@@ -22,8 +22,8 @@ final class WalletCoordinator: NavigationCoordinatable {
     @Route(.push) var createSecure = makeCreateSecure
     @Route(.push) var addToken = makeAddToken
     @Route(.push) var tokenDetail = makeTokenDetail
-    @Route(.push) var receive = makeReceive
-    @Route(.push) var send = makeSend
+    @Route(.modal) var receive = makeReceive
+    @Route(.modal) var send = makeSend
 
     var isFristTime: Bool = true
 
@@ -77,12 +77,12 @@ extension WalletCoordinator {
         TokenDetailView(token: token)
     }
     
-    func makeReceive() -> some View {
-        WalletReceiveView()
+    func makeReceive() -> NavigationViewCoordinator<WalletReceiveCoordinator> {
+        return NavigationViewCoordinator(WalletReceiveCoordinator())
     }
     
-    func makeSend() -> some View {
-        WalletSendView()
+    func makeSend() -> NavigationViewCoordinator<WalletSendCoordinator> {
+        return NavigationViewCoordinator(WalletSendCoordinator())
     }
 }
 

@@ -17,7 +17,7 @@ import SwiftUIPager
 //}
 
 struct WalletSendView: View {
-    @EnvironmentObject private var router: WalletCoordinator.Router
+    @EnvironmentObject private var router: WalletSendCoordinator.Router
     @StateObject private var vm = WalletSendViewModel()
     
     var body: some View {
@@ -36,8 +36,9 @@ struct WalletSendView: View {
         }
         .navigationTitle("send_to".localized)
         .navigationBarTitleDisplayMode(.large)
+        .interactiveDismissDisabled()
         .addBackBtn {
-            router.pop()
+            router.dismissCoordinator()
         }
         .buttonStyle(.plain)
         .backgroundFill(Color.LL.deepBg)
