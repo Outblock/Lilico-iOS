@@ -73,7 +73,6 @@ extension EditAvatarView {
         @Published var mode: Mode = .preview
         @Published var items: [AvatarItemModel]
         @Published var selectedItemId: String?
-        @Published var needShowLoadingHud: Bool = false
         private var oldAvatarItem: AvatarItemModel?
 
         @RouterObject var router: ProfileEditCoordinator.Router?
@@ -114,7 +113,7 @@ extension EditAvatarView {
 
             let failed = {
                 DispatchQueue.main.async {
-                    self.needShowLoadingHud = false
+                    HUD.dismissLoading()
                     HUD.error(title: "change_avatar_error".localized)
                 }
             }
@@ -133,14 +132,14 @@ extension EditAvatarView {
                     }
 
                     DispatchQueue.main.async {
-                        self.needShowLoadingHud = false
+                        HUD.dismissLoading()
                         UserManager.shared.updateAvatar(firebaseURL)
                         self.router?.pop()
                     }
                 }
             }
 
-            needShowLoadingHud = true
+            HUD.loading("saving".localized)
             KingfisherManager.shared.retrieveImage(with: url) { result in
                 switch result {
                 case let .success(r):

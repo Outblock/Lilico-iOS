@@ -27,7 +27,6 @@ class ProfileEditNameViewModel: ObservableObject {
         }
     }
 
-    @Published var needShowLoadingHud: Bool = false
     @Published var status: StatusType = .idle
 
     @RouterObject var router: ProfileEditCoordinator.Router?
@@ -54,14 +53,14 @@ class ProfileEditNameViewModel: ObservableObject {
     }
 
     private func save() {
-        needShowLoadingHud = true
+        HUD.loading("saving".localized)
 
         let name = name.trim()
         let avatar = UserManager.shared.userInfo?.avatar ?? ""
 
         let success = {
             DispatchQueue.main.async {
-                self.needShowLoadingHud = false
+                HUD.dismissLoading()
                 UserManager.shared.updateNickname(name)
                 self.router?.pop()
             }
@@ -69,7 +68,7 @@ class ProfileEditNameViewModel: ObservableObject {
 
         let failed = {
             DispatchQueue.main.async {
-                self.needShowLoadingHud = false
+                HUD.dismissLoading()
                 HUD.error(title: "update_nickname_failed".localized)
             }
         }

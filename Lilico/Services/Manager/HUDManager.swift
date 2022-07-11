@@ -5,8 +5,10 @@
 //  Created by Hao Fu on 4/1/22.
 //
 
-import Foundation
+import UIKit
+import SwiftUI
 import SPIndicator
+import ProgressHUD
 
 class HUD {
     static func present(title: String,
@@ -38,5 +40,21 @@ class HUD {
         #if DEBUG
             HUD.present(title: title, message: message, preset: preset, haptic: haptic)
         #endif
+    }
+    
+    static func setupProgressHUD() {
+        ProgressHUD.animationType = .circleSpinFade
+        ProgressHUD.colorAnimation = UIColor(Color.LL.Primary.salmonPrimary)
+        ProgressHUD.colorStatus = UIColor(Color.LL.Primary.salmonPrimary)
+        ProgressHUD.fontStatus = .systemFont(ofSize: 19, weight: .medium)
+        
+    }
+    
+    static func loading(_ title: String = "", interaction: Bool = false) {
+        ProgressHUD.show(title, interaction: interaction)
+    }
+    
+    static func dismissLoading() {
+        ProgressHUD.dismiss()
     }
 }

@@ -44,9 +44,6 @@ struct AddAddressView: View {
             .foregroundColor(.LL.Primary.salmonPrimary)
             .disabled(!vm.state.isReadyForSave)
         })
-        .toast(isPresented: $vm.state.needShowLoadingHud) {
-            ToastView("saving".localized).toastViewStyle(.indeterminate)
-        }
     }
 
     var nameField: some View {

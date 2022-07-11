@@ -7,6 +7,7 @@
 
 import Stinsen
 import SwiftUI
+import ProgressHUD
 
 // MARK: - Define
 
@@ -49,7 +50,6 @@ extension AddressBookView {
     struct ListState {
         var sections: [AddressBookView.SectionViewModel]
         var stateType: AddressBookViewStateType = .loading
-        var hudStatus: Bool = false
     }
 
     enum AddressBookInput {
@@ -66,6 +66,8 @@ extension AddressBookView {
         @Published var state: ListState
         @Published var searchText: String = ""
         @RouterObject var router: AddressBookCoordinator.Router?
+        
+        private var rawContacts: [Contact]?
 
         init() {
             state = ListState(sections: [AddressBookView.SectionViewModel]())
@@ -127,11 +129,11 @@ extension AddressBookView {
                 return
             }
 
-            state.hudStatus = true
+            HUD.loading("deleting".localized)
 
             let successAction = {
                 DispatchQueue.main.async {
-                    self.state.hudStatus = false
+                    HUD.dismissLoading()
                     realSectionVM.state.list.remove(at: index)
                     self.trimListModels()
                     HUD.success(title: "contact_deleted".localized)
@@ -140,7 +142,7 @@ extension AddressBookView {
 
             let failedAction = {
                 DispatchQueue.main.async {
-                    self.state.hudStatus = false
+                    HUD.dismissLoading()
                     HUD.error(title: "delete_failed".localized)
                 }
             }
@@ -168,6 +170,7 @@ extension AddressBookView {
                 do {
                     let response: AddressListBookResponse = try await Network.request(LilicoAPI.AddressBook.fetchList)
                     DispatchQueue.main.async {
+                        self.rawContacts = response.contacts
                         self.regroup(response.contacts)
                         self.state.stateType = .idle
                     }
@@ -242,7 +245,11 @@ extension AddressBookView.AddressBookViewModel {
 
         return searchSections
     }
+}
 
+// MARK: - Extra
+
+extension AddressBookView.AddressBookViewModel {
     /// search from send view
     func searchLocal(text: String) -> [WalletSendView.SearchSection] {
         var results = [WalletSendView.SearchSection]()
@@ -274,5 +281,21 @@ extension AddressBookView.AddressBookViewModel {
         }
         
         return results
+    }
+    
+    func isFriend(contact: Contact) -> Bool {
+        for tempContact in rawContacts ?? [] {
+            if tempContact.uniqueId == contact.uniqueId {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func appendNewContact(contact: Contact) {
+        rawContacts?.append(contact)
+        regroup(rawContacts)
+        state.stateType = .idle
     }
 }

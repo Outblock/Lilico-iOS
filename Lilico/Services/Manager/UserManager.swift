@@ -112,7 +112,7 @@ extension UserManager {
 
     private func fetchUserInfo() async throws {
         let response: UserInfoResponse = try await Network.request(LilicoAPI.User.userInfo)
-        let info = UserInfo(avatar: response.avatar, nickname: response.nickname, username: response.username, private: response.private)
+        let info = UserInfo(avatar: response.avatar, nickname: response.nickname, username: response.username, private: response.private, address: nil)
 
         if info.username.isEmpty {
             throw LLError.fetchUserInfoFailed
@@ -195,7 +195,7 @@ extension UserManager {
             return
         }
 
-        let newUserInfo = UserInfo(avatar: current.avatar, nickname: name, username: current.username, private: current.private)
+        let newUserInfo = UserInfo(avatar: current.avatar, nickname: name, username: current.username, private: current.private, address: nil)
         LocalUserDefaults.shared.userInfo = newUserInfo
         userInfo = newUserInfo
     }
@@ -205,7 +205,7 @@ extension UserManager {
             return
         }
 
-        let newUserInfo = UserInfo(avatar: current.avatar, nickname: current.nickname, username: current.username, private: isPrivate ? 2 : 1)
+        let newUserInfo = UserInfo(avatar: current.avatar, nickname: current.nickname, username: current.username, private: isPrivate ? 2 : 1, address: nil)
         LocalUserDefaults.shared.userInfo = newUserInfo
         userInfo = newUserInfo
     }
@@ -215,7 +215,7 @@ extension UserManager {
             return
         }
 
-        let newUserInfo = UserInfo(avatar: avatar, nickname: current.nickname, username: current.username, private: current.private)
+        let newUserInfo = UserInfo(avatar: avatar, nickname: current.nickname, username: current.username, private: current.private, address: nil)
         LocalUserDefaults.shared.userInfo = newUserInfo
         userInfo = newUserInfo
     }

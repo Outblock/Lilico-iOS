@@ -44,7 +44,6 @@ extension AddAddressView {
         }
 
         var isReadyForSave = false
-        var needShowLoadingHud = false
 
         var isEditingMode = false
         var editingContact: Contact?
@@ -123,20 +122,20 @@ extension AddAddressView {
         }
 
         private func addContactAction() {
-            state.needShowLoadingHud = true
+            HUD.loading("saving".localized)
             let contactName = state.name.trim()
             let address = state.address.trim().lowercased()
 
             let errorAction = {
                 DispatchQueue.main.async {
-                    self.state.needShowLoadingHud = false
+                    HUD.dismissLoading()
                     HUD.error(title: "request_failed".localized)
                 }
             }
 
             let successAction = {
                 DispatchQueue.main.async {
-                    self.state.needShowLoadingHud = false
+                    HUD.dismissLoading()
                     self.router?.coordinator.addressBookVM?.trigger(.load)
                     self.router?.pop()
                     HUD.success(title: "contact_added".localized)
@@ -161,20 +160,20 @@ extension AddAddressView {
         }
 
         private func editContactAction() {
-            state.needShowLoadingHud = true
+            HUD.loading("saving".localized)
             let contactName = state.name.trim()
             let address = state.address.trim().lowercased()
 
             let errorAction = {
                 DispatchQueue.main.async {
-                    self.state.needShowLoadingHud = false
+                    HUD.dismissLoading()
                     HUD.error(title: "request_failed".localized)
                 }
             }
 
             let successAction = {
                 DispatchQueue.main.async {
-                    self.state.needShowLoadingHud = false
+                    HUD.dismissLoading()
                     self.router?.coordinator.addressBookVM?.trigger(.load)
                     self.router?.pop()
                     HUD.success(title: "contact_edited".localized)

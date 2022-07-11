@@ -268,6 +268,48 @@ extension WalletSendViewModel {
             page.update(.new(index: type.rawValue))
         }
     }
+    
+    func addContactAction(contact: Contact) {
+        let errorAction = {
+            DispatchQueue.main.async {
+                HUD.dismissLoading()
+                HUD.error(title: "request_failed".localized)
+            }
+        }
+        
+        guard let contactName = contact.contactName?.trim(), !contactName.isEmpty,
+              let address = contact.address?.trim(), !address.isEmpty else {
+            errorAction()
+            return
+        }
+        
+        HUD.loading("saving".localized)
+        
+        Task {
+            do {
+                let request = AddressBookAddRequest(contactName: contactName,
+                                                    address: address,
+                                                    domain: contact.domain?.value ?? "",
+                                                    domainType: contact.domain?.domainType ?? .unknown,
+                                                    username: contact.username ?? "")
+                let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.AddressBook.addExternal(request))
+
+                if response.httpCode != 200 {
+                    errorAction()
+                    return
+                }
+
+                DispatchQueue.main.async {
+                    HUD.dismissLoading()
+                    self.addressBookVM.appendNewContact(contact: contact)
+                    HUD.success(title: "contact_added".localized)
+                    self.status = .searchResult
+                }
+            } catch {
+                errorAction()
+            }
+        }
+    }
 }
 
 // MARK: - Helper

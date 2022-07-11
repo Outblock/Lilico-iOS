@@ -24,7 +24,6 @@ extension ProfileEditViewModel {
 
 class ProfileEditViewModel: ViewModel {
     @Published var state: State
-    @Published var needShowLoadingHud: Bool = false
     @RouterObject var router: ProfileEditCoordinator.Router?
 
     private var cancellableSet = Set<AnyCancellable>()
@@ -91,13 +90,13 @@ class ProfileEditViewModel: ViewModel {
             return
         }
 
-        needShowLoadingHud = true
+        HUD.loading("loading".localized)
 
         Task {
             do {
                 let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.Profile.updatePrivate(isPrivate))
                 DispatchQueue.main.async {
-                    self.needShowLoadingHud = false
+                    HUD.dismissLoading()
                     if response.httpCode == 200 {
                         UserManager.shared.updatePrivate(isPrivate)
                     } else {
@@ -106,7 +105,7 @@ class ProfileEditViewModel: ViewModel {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.needShowLoadingHud = false
+                    HUD.dismissLoading()
                     HUD.error(title: "update_private_failed".localized)
                 }
             }

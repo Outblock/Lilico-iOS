@@ -34,9 +34,6 @@ struct ProfileEditView: View {
         .addBackBtn {
             router.dismissCoordinator()
         }
-        .toast(isPresented: $vm.needShowLoadingHud) {
-            ToastView("loading".localized).toastViewStyle(.indeterminate)
-        }
     }
 }
 

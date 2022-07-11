@@ -15,7 +15,7 @@ struct UserInfo: Codable {
     
     /// Only applicable under certain circumstances.
     /// Note: The Logged-in user did not use this.
-    let address: String? = nil
+    let address: String?
 
     var isPrivate: Bool {
         return self.private == 2

@@ -71,9 +71,6 @@ struct EditAvatarView: View {
         .addBackBtn {
             router.pop()
         }
-        .toast(isPresented: $vm.needShowLoadingHud) {
-            ToastView("saving".localized).toastViewStyle(.indeterminate)
-        }
         .environment(\.colorScheme, .dark)
     }
 }

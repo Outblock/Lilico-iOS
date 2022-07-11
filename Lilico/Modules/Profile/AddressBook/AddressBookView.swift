@@ -85,9 +85,6 @@ struct AddressBookView: View {
                 .onAppear {
                     router.coordinator.addressBookVM = vm
                 }
-                .toast(isPresented: $vm.state.hudStatus) {
-                    ToastView("deleting".localized).toastViewStyle(.indeterminate)
-                }
                 .alert("contact_delete_alert".localized, isPresented: $showAlert) {
                     Button("delete".localized, role: .destructive) {
                         if let sectionVM = self.pendingDeleteModel.sectionVM, let contact = self.pendingDeleteModel.contact {
@@ -149,9 +146,9 @@ extension AddressBookView {
                                 Text("edit".localized)
                             })
                         }
+                    } else {
+                        cell
                     }
-                    
-                    cell
                 }
             } header: {
                 sectionHeader(sectionVM)
@@ -179,6 +176,8 @@ extension AddressBookView {
 extension AddressBookView {
     struct ContactCell: View {
         let contact: Contact
+        var showAddBtn: Bool? = false
+        var addAction: (() -> Void)? = nil
 
         var body: some View {
             HStack {
@@ -221,6 +220,14 @@ extension AddressBookView {
                         .font(.inter(size: 12, weight: .regular))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Button {
+                    addAction?()
+                } label: {
+                    Image("icon-add-friends")
+                }
+                .visibility(showAddBtn ?? false ? .visible : .gone)
+
             }
             .padding(EdgeInsets(top: 10, leading: 34, bottom: 10, trailing: 34))
         }

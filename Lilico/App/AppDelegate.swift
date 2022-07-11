@@ -46,6 +46,8 @@ extension AppDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
 
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .orange
+        
+        HUD.setupProgressHUD()
     }
 
     private func flowConfig() {

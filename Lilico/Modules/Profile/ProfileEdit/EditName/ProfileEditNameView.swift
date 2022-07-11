@@ -41,9 +41,6 @@ struct ProfileEditNameView: View {
             .foregroundColor(.LL.Primary.salmonPrimary)
             .disabled(vm.status != .ok)
         })
-        .toast(isPresented: $vm.needShowLoadingHud) {
-            ToastView("saving".localized).toastViewStyle(.indeterminate)
-        }
     }
 }
 

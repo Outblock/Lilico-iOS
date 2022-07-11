@@ -19,6 +19,7 @@ import SwiftUIPager
 struct WalletSendView: View {
     @EnvironmentObject private var router: WalletSendCoordinator.Router
     @StateObject private var vm = WalletSendViewModel()
+    @FocusState private var searchIsFocused: Bool
     
     var body: some View {
         VStack(spacing: 0) {
@@ -101,6 +102,7 @@ extension WalletSendView {
                                            placeholder: "send_search_placeholder".localized,
                                            font: .inter(size: 14, weight: .medium),
                                            color: Color.LL.Neutrals.neutrals6))
+                .autocorrectionDisabled()
                 .submitLabel(.search)
                 .onChange(of: vm.searchText) { st in
                     vm.searchTextDidChangeAction(text: st)
@@ -108,6 +110,7 @@ extension WalletSendView {
                 .onSubmit {
                     vm.searchCommitAction()
                 }
+                .focused($searchIsFocused)
         }
         .frame(height: 52)
         .padding(.horizontal, 16)
@@ -140,28 +143,34 @@ extension WalletSendView {
     var searchLocalView: some View {
         VStack(spacing: 10) {
             // tips
-            HStack(spacing: 0) {
-                Image("icon-add-friends")
-                    .frame(width: 40, height: 40)
-                    .background(.LL.bgForIcon)
-                    .clipShape(Circle())
-                
-                
-                Text("search_the_id".localized)
-                    .foregroundColor(.LL.Neutrals.neutrals6)
-                    .font(.inter(size: 14, weight: .semibold))
-                    .padding(.leading, 16)
-                
-                Text(vm.searchText)
-                    .foregroundColor(.LL.Primary.salmonPrimary)
-                    .font(.inter(size: 14, weight: .medium))
-                    .underline()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 5)
-                    .lineLimit(1)
+            Button {
+                vm.searchCommitAction()
+                searchIsFocused = false
+            } label: {
+                HStack(spacing: 0) {
+                    Image("icon-add-friends")
+                        .frame(width: 40, height: 40)
+                        .background(.LL.bgForIcon)
+                        .clipShape(Circle())
+                    
+                    
+                    Text("search_the_id".localized)
+                        .foregroundColor(.LL.Neutrals.neutrals6)
+                        .font(.inter(size: 14, weight: .semibold))
+                        .padding(.leading, 16)
+                    
+                    Text(vm.searchText)
+                        .foregroundColor(.LL.Primary.salmonPrimary)
+                        .font(.inter(size: 14, weight: .medium))
+                        .underline()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 5)
+                        .lineLimit(1)
+                }
+                .frame(height: 50)
+                .padding(.horizontal, 18)
+                .contentShape(Rectangle())
             }
-            .frame(height: 50)
-            .padding(.horizontal, 18)
             
             // local search table view
             localSearchListView
@@ -215,7 +224,9 @@ extension WalletSendView {
                 .frame(height: 20)
         },
                             rowContent: { row in
-            AddressBookView.ContactCell(contact: row)
+            AddressBookView.ContactCell(contact: row, showAddBtn: !vm.addressBookVM.isFriend(contact: row)) {
+                vm.addContactAction(contact: row)
+            }
         })
     }
     

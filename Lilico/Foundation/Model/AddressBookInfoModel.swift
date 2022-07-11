@@ -47,4 +47,20 @@ struct Contact: Codable, Identifiable {
             return nil
         }
     }
+    
+    var name: String {
+        if let username = username, !username.isEmpty {
+            return username
+        }
+        
+        if let contactName = contactName, !contactName.isEmpty {
+            return contactName
+        }
+        
+        return ""
+    }
+    
+    var uniqueId: String {
+        return "\(address ?? "")-\(domain?.domainType?.rawValue ?? 0)-\(name)-\(contactType?.rawValue ?? 0)"
+    }
 }
