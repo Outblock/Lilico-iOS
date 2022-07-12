@@ -109,7 +109,7 @@ struct TokenDetailView: View {
             
             HStack(spacing: 13) {
                 Button {
-                    
+                    router.route(to: \.send)
                 } label: {
                     Text("send_uppercase".localized)
                         .foregroundColor(.white)
