@@ -51,6 +51,8 @@ struct WalletSendAmountView: View {
             amountBalanceView
             
             Spacer()
+            
+            nextButton
         }
         .navigationTitle("send_to".localized)
         .navigationBarTitleDisplayMode(.large)
@@ -261,6 +263,23 @@ struct WalletSendAmountView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 18)
     }
+    
+    var nextButton: some View {
+        Button {
+            
+        } label: {
+            ZStack {
+                Text("next".localized)
+                    .foregroundColor(Color.LL.Button.light)
+                    .font(.inter(size: 14, weight: .bold))
+            }
+            .frame(height: 54)
+            .frame(maxWidth: .infinity)
+            .background(Color.LL.Button.color)
+            .cornerRadius(16)
+            .padding(.horizontal, 18)
+        }
+    }
 }
 
 extension WalletSendAmountView {
@@ -270,5 +289,25 @@ extension WalletSendAmountView {
         } else {
             exchangeType = .token
         }
+    }
+}
+
+extension WalletSendAmountView {
+    struct SendConfirmView: View {
+        var body: some View {
+            VStack(spacing: 0) {
+                
+            }
+        }
+        
+        var fromToView: some View {
+            HStack {
+                
+            }
+        }
+        
+//        func contactView(contact: Contact) -> some View {
+//            
+//        }
     }
 }
