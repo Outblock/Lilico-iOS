@@ -238,3 +238,8 @@
 "lilico_user" = "Lilico user";
 ".find" = ".find";
 ".flowns" = ".flowns";
+"transfer_amount" = "Transfer Amount";
+"enter_amount" = "Enter Amount";
+"max" = "Max";
+"insufficient_balance" = "Insufficient Balance";
+"amount_balance" = "Amount Balance";

@@ -16,6 +16,7 @@ extension String {
     static let arrowDown = "chevron.down"
     static let arrowTriangleUp = "arrowtriangle.up.fill"
     static let arrowTriangleDown = "arrowtriangle.down.fill"
+    static let delete = "xmark"
 }
 
 extension Image {

@@ -8,7 +8,6 @@
 import UIKit
 import SwiftUI
 import SPIndicator
-import ProgressHUD
 
 class HUD {
     static func present(title: String,
