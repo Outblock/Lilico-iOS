@@ -40,14 +40,13 @@ struct AddTokenView: View {
         IndexedList(vm.searchResults) { section in
             Section {
                 ForEach(section.tokenList) { token in
-                    Button {
+                    TokenItemCell(token: token, isActivated: token.isActivated, action: {
                         vm.willActiveTokenAction(token)
-                    } label: {
-                        TokenItemCell(token: token, isActivated: token.isActivated)
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
-                    }
+                    })
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
                 }
+                .buttonStyle(.plain)
             } header: {
                 sectionHeader(section)
                     .id(section.id)
@@ -75,39 +74,44 @@ extension AddTokenView {
     struct TokenItemCell: View {
         let token: TokenModel
         let isActivated: Bool
+        let action: () -> Void
         
         var body: some View {
-            HStack {
-                KFImage.url(token.icon)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: TokenIconWidth, height: TokenIconWidth)
-                    .background(.LL.Neutrals.note)
-                    .clipShape(Circle())
-                
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(token.name)
-                        .foregroundColor(.LL.Neutrals.text)
-                        .font(.inter(size: 14, weight: .semibold))
+            Button {
+                action()
+            } label: {
+                HStack {
+                    KFImage.url(token.icon)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: TokenIconWidth, height: TokenIconWidth)
+                        .background(.LL.Neutrals.note)
+                        .clipShape(Circle())
                     
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(token.name)
+                            .foregroundColor(.LL.Neutrals.text)
+                            .font(.inter(size: 14, weight: .semibold))
+                        
+                        
+                        Text(token.symbol?.uppercased() ?? "")
+                            .foregroundColor(.LL.Neutrals.note)
+                            .font(.inter(size: 12, weight: .medium))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text(token.symbol?.uppercased() ?? "")
-                        .foregroundColor(.LL.Neutrals.note)
-                        .font(.inter(size: 12, weight: .medium))
+                    if isActivated {
+                        Image(systemName: .checkmarkSelected).foregroundColor(.LL.Success.success3)
+                    } else {
+                        Image(systemName: .add).foregroundColor(.LL.Primary.salmonPrimary)
+                    }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                if isActivated {
-                    Image(systemName: .checkmarkSelected).foregroundColor(.LL.Success.success3)
-                } else {
-                    Image(systemName: .add).foregroundColor(.LL.Primary.salmonPrimary)
-                }
+                .padding(.horizontal, 11)
+                .frame(height: TokenCellHeight)
+                .background({
+                    Color.LL.Neutrals.background.cornerRadius(16)
+                })
             }
-            .padding(.horizontal, 11)
-            .frame(height: TokenCellHeight)
-            .background({
-                Color.LL.Neutrals.background.cornerRadius(16)
-            })
         }
     }
 }
