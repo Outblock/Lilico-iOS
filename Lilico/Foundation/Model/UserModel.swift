@@ -25,4 +25,9 @@ struct UserInfo: Codable {
         let contact = Contact(address: address, avatar: avatar, contactName: nickname, contactType: .user, domain: nil, id: UUID().hashValue, username: username)
         return contact
     }
+    
+    func toContactWithCurrentUserAddress() -> Contact {
+        let contact = Contact(address: WalletManager.shared.getPrimaryWalletAddress(), avatar: avatar, contactName: nickname, contactType: .user, domain: nil, id: UUID().hashValue, username: username)
+        return contact
+    }
 }

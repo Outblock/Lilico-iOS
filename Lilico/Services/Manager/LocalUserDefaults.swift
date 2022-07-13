@@ -15,6 +15,7 @@ extension LocalUserDefaults {
         case walletHidden
         case quoteMarket
         case coinSummary
+        case recentSendByToken
     }
 
     enum FlowNetworkType: String {
@@ -96,4 +97,6 @@ class LocalUserDefaults: ObservableObject {
             }
         }
     }
+    
+    @AppStorage(Keys.recentSendByToken.rawValue) var recentToken: String?
 }

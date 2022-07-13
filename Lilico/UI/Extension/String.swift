@@ -62,6 +62,10 @@ extension String {
         
         return self
     }
+    
+    var isNumber: Bool {
+        return !isEmpty && Double.currencyFormatter.number(from: self) != nil
+    }
 }
 
 extension String {

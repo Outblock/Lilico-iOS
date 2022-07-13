@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import SwiftUICharts
+import Stinsen
 
 extension TokenDetailView {
     struct Quote: Codable {
@@ -94,6 +95,8 @@ extension TokenDetailView {
 }
 
 class TokenDetailViewModel: ObservableObject {
+    @RouterObject var router: WalletCoordinator.Router?
+    
     @Published var token: TokenModel
     @Published var market: QuoteMarket = LocalUserDefaults.shared.market
     @Published var selectedRangeType: TokenDetailView.ChartRangeType = .d1
@@ -165,6 +168,15 @@ extension TokenDetailViewModel {
 // MARK: - Action
 
 extension TokenDetailViewModel {
+    func sendAction() {
+        LocalUserDefaults.shared.recentToken = token.symbol
+        router?.route(to: \.send)
+    }
+    
+    func receiveAction() {
+        router?.route(to: \.receive)
+    }
+    
     func changeSelectRangeTypeAction(_ type: TokenDetailView.ChartRangeType) {
         if selectedRangeType == type {
             return
@@ -201,7 +213,7 @@ extension TokenDetailViewModel {
             return
         }
         
-        balance = WalletManager.shared.coinBalances[symbol] ?? 0
+        balance = WalletManager.shared.getBalance(bySymbol: symbol)
         rate = CoinRateCache.cache.getSummary(for: symbol)?.getLastRate() ?? 0
         balanceAsUSD = balance * rate
         changePercent = CoinRateCache.cache.getSummary(for: symbol)?.getChangePercentage() ?? 0

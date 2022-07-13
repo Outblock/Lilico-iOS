@@ -114,7 +114,7 @@ class WalletViewModel: ObservableObject {
 
             let summary = CoinRateCache.cache.getSummary(for: symbol)
             let item = WalletCoinItemModel(token: token,
-                                           balance: WalletManager.shared.coinBalances[symbol] ?? 0,
+                                           balance: WalletManager.shared.getBalance(bySymbol: symbol),
                                            last: summary?.getLastRate() ?? 0,
                                            changePercentage: summary?.getChangePercentage() ?? 0)
             list.append(item)

@@ -9,43 +9,25 @@ import SwiftUI
 import Kingfisher
 import Combine
 
-struct WalletSendAmountView_Previews: PreviewProvider {
-    static var previews: some View {
-        WalletSendAmountView()
-//        WalletSendAmountView.SendConfirmProgressView()
-    }
-}
-
-extension WalletSendAmountView {
-    enum ExchangeType {
-        case token
-        case dollar
-    }
-    
-    enum ErrorType {
-        case none
-        case insufficientBalance
-        
-        var desc: String {
-            switch self {
-            case .none:
-                return ""
-            case .insufficientBalance:
-                return "insufficient_balance".localized
-            }
-        }
-    }
-}
+//struct WalletSendAmountView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        WalletSendAmountView()
+////        WalletSendAmountView.SendConfirmProgressView()
+//    }
+//}
 
 struct WalletSendAmountView: View {
     @EnvironmentObject private var router: WalletSendCoordinator.Router
-    @State var contact: Contact = Contact(address: "0x93da24f027c675c5", avatar: "", contactName: "ContactName", contactType: .domain, domain: Contact.Domain(domainType: .flowns, value: ""), id: UUID().hashValue, username: nil)
-    @State var inputText: String = ""
-    @State var aboutEqualToName: String = "Flow"
-    @State var aboutEqualToNum: Double = 0.1
-    @State var exchangeType: ExchangeType = .token
-    @State var errorType: ErrorType = .none
-    @State var showConfirmView: Bool = true
+    @StateObject private var vm: WalletSendAmountViewModel
+    
+    init(target: Contact) {
+        let symbol = LocalUserDefaults.shared.recentToken ?? "flow"
+        guard let token = WalletManager.shared.getToken(bySymbol: symbol) else {
+            assert(false, "token should not be nil")
+        }
+        
+        _vm = StateObject(wrappedValue: WalletSendAmountViewModel(target: target, token: token))
+    }
     
     var body: some View {
         VStack(spacing: 24) {
@@ -65,27 +47,28 @@ struct WalletSendAmountView: View {
         }
         .buttonStyle(.plain)
         .backgroundFill(Color.LL.deepBg)
-        .customBottomSheet(isPresented: $showConfirmView, title: "confirmation".localized, background: { Color.LL.Neutrals.background }) {
+        .customBottomSheet(isPresented: $vm.showConfirmView, title: "confirmation".localized, background: { Color.LL.Neutrals.background }) {
             SendConfirmView()
         }
+        .environmentObject(vm)
     }
     
     var targetView: some View {
         HStack(spacing: 15) {
             // avatar
             ZStack {
-                if let avatar = contact.avatar?.convertedAvatarString(), avatar.isEmpty == false {
+                if let avatar = vm.targetContact.avatar?.convertedAvatarString(), avatar.isEmpty == false {
                     KFImage.url(URL(string: avatar))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 44, height: 44)
-                } else if contact.needShowLocalAvatar {
-                    Image(contact.localAvatar ?? "")
+                } else if vm.targetContact.needShowLocalAvatar {
+                    Image(vm.targetContact.localAvatar ?? "")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 44, height: 44)
                 } else {
-                    Text(String((contact.contactName?.first ?? "A").uppercased()))
+                    Text(String((vm.targetContact.contactName?.first ?? "A").uppercased()))
                         .foregroundColor(.LL.Primary.salmonPrimary)
                         .font(.inter(size: 24, weight: .semibold))
                 }
@@ -96,18 +79,18 @@ struct WalletSendAmountView: View {
 
             // text
             VStack(alignment: .leading, spacing: 3) {
-                Text(contact.contactName ?? "no name")
+                Text(vm.targetContact.contactName ?? "no name")
                     .foregroundColor(.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .bold))
 
-                Text(contact.address ?? "no address")
+                Text(vm.targetContact.address ?? "no address")
                     .foregroundColor(.LL.Neutrals.note)
                     .font(.inter(size: 14, weight: .regular))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
             Button {
-                
+                router.pop()
             } label: {
                 Image(systemName: .delete)
                     .foregroundColor(.LL.Neutrals.note)
@@ -134,44 +117,43 @@ struct WalletSendAmountView: View {
                     Text("$")
                         .foregroundColor(.LL.Neutrals.note)
                         .font(.inter(size: 16, weight: .bold))
-                        .visibility(exchangeType == .dollar ? .visible : .gone)
+                        .visibility(vm.exchangeType == .dollar ? .visible : .gone)
                     
                     // switch btn
                     Button {
                         
                     } label: {
                         HStack(spacing: 8) {
-                            Image("icon-us-dollar")
+                            KFImage.url(vm.token.icon)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 32, height: 32)
+                                .background(Color.LL.Neutrals.note)
+                                .clipShape(Circle())
                             
                             Image("icon-arrow-bottom")
                                 .foregroundColor(.LL.Neutrals.neutrals3)
                         }
                     }
-                    .visibility(exchangeType == .token ? .visible : .gone)
+                    .visibility(vm.exchangeType == .token ? .visible : .gone)
 
                     // input view
-                    TextField("", text: $inputText)
-                        .modifier(PlaceholderStyle(showPlaceHolder: inputText.isEmpty,
+                    TextField("", text: $vm.inputText)
+                        .modifier(PlaceholderStyle(showPlaceHolder: vm.inputText.isEmpty,
                                                    placeholder: "enter_amount".localized,
                                                    font: .inter(size: 14, weight: .medium),
                                                    color: Color.LL.Neutrals.note))
+                        .font(.inter(size: 20, weight: .medium))
                         .autocorrectionDisabled()
-                        .onChange(of: inputText) { text in
+                        .onChange(of: vm.inputText) { text in
                             withAnimation {
-                                if text.isEmpty {
-                                    errorType = .none
-                                } else {
-                                    errorType = .insufficientBalance
-                                }
+                                vm.inputTextDidChangeAction(text: text)
                             }
                         }
                     
                     // max btn
                     Button {
-                        
+                        vm.maxAction()
                     } label: {
                         Text("max".localized)
                             .foregroundColor(.LL.Button.color)
@@ -189,16 +171,26 @@ struct WalletSendAmountView: View {
                         .foregroundColor(.LL.Neutrals.note)
                         .font(.inter(size: 16, weight: .medium))
                     
-                    Text(exchangeType == .token ? "$" : "\(aboutEqualToName)")
+                    Text("$")
                         .foregroundColor(.LL.Neutrals.note)
                         .font(.inter(size: 16, weight: .medium))
+                        .visibility(vm.exchangeType == .token ? .visible : .gone)
                     
-                    Text("\(aboutEqualToNum.currencyString)")
+                    KFImage.url(vm.token.icon)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 20, height: 20)
+                        .background(Color.LL.Neutrals.note)
+                        .clipShape(Circle())
+                        .visibility(vm.exchangeType == .dollar ? .visible : .gone)
+                    
+                    Text(vm.exchangeType == .token ? vm.inputDollarNum.currencyString : vm.inputTokenNum.currencyString)
                         .foregroundColor(.LL.Neutrals.note)
                         .font(.inter(size: 16, weight: .medium))
+                        .lineLimit(1)
                     
                     Button {
-                        toggleExchangeTypeAction()
+                        vm.toggleExchangeTypeAction()
                     } label: {
                         Image("icon-exchange").renderingMode(.template).foregroundColor(.LL.Neutrals.text)
                     }
@@ -225,7 +217,7 @@ struct WalletSendAmountView: View {
                 Image(systemName: .error)
                     .foregroundColor(Color(hex: "#C44536"))
                 
-                Text(errorType.desc)
+                Text(vm.errorType.desc)
                     .foregroundColor(.LL.Neutrals.note)
                     .font(.inter(size: 12, weight: .regular))
             }
@@ -238,7 +230,7 @@ struct WalletSendAmountView: View {
         .cornerRadius(16)
         .padding(.top, -23)
         .padding(.horizontal, 5)
-        .visibility(errorType == .none ? .gone : .visible)
+        .visibility(vm.errorType == .none ? .gone : .visible)
         .transition(.move(edge: .top))
     }
     
@@ -250,18 +242,18 @@ struct WalletSendAmountView: View {
                 .padding(.bottom, 9)
             
             HStack {
-                KFImage.url(nil)
+                KFImage.url(vm.token.icon)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 32, height: 32)
                     .background(.LL.Neutrals.note)
                     .clipShape(Circle())
                 
-                Text("999 Flow")
+                Text("\(vm.amountBalance.currencyString) \(vm.token.symbol?.uppercased() ?? "?")")
                     .foregroundColor(.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .medium))
                 
-                Text("≈ $ 123.00")
+                Text("≈ $ \(vm.amountBalanceAsDollar.currencyString)")
                     .foregroundColor(.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .medium))
             }
@@ -272,7 +264,7 @@ struct WalletSendAmountView: View {
     
     var nextButton: some View {
         Button {
-            
+            vm.nextAction()
         } label: {
             ZStack {
                 Text("next".localized)
@@ -285,24 +277,13 @@ struct WalletSendAmountView: View {
             .cornerRadius(16)
             .padding(.horizontal, 18)
         }
-    }
-}
-
-extension WalletSendAmountView {
-    func toggleExchangeTypeAction() {
-        if exchangeType == .token {
-            exchangeType = .dollar
-        } else {
-            exchangeType = .token
-        }
+        .disabled(!vm.isReadyForSend)
     }
 }
 
 extension WalletSendAmountView {
     struct SendConfirmView: View {
-        @State var fromContact: Contact = Contact(address: "0x93da24f027c675c5", avatar: "", contactName: "FromCjsdljaljsldlsafjsdkfjadlsfjlsdkfjontact", contactType: .domain, domain: Contact.Domain(domainType: .flowns, value: ""), id: UUID().hashValue, username: nil)
-
-        @State var toContact: Contact = Contact(address: "0x93da24f027c675c5", avatar: "", contactName: "ToTimCook", contactType: .domain, domain: Contact.Domain(domainType: .flowns, value: ""), id: UUID().hashValue, username: nil)
+        @EnvironmentObject var vm: WalletSendAmountViewModel
 
         var body: some View {
             VStack(spacing: 0) {
@@ -324,9 +305,9 @@ extension WalletSendAmountView {
 
         var fromToView: some View {
             HStack(spacing: 16) {
-                contactView(contact: fromContact)
+                contactView(contact: UserManager.shared.userInfo!.toContactWithCurrentUserAddress())
                 Spacer()
-                contactView(contact: toContact)
+                contactView(contact: vm.targetContact)
             }
         }
 
@@ -376,21 +357,21 @@ extension WalletSendAmountView {
                     .font(.inter(size: 14, weight: .medium))
                 
                 HStack(spacing: 0) {
-                    KFImage.url(nil)
+                    KFImage.url(vm.token.icon)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 32, height: 32)
                         .background(Color.LL.Neutrals.note)
                         .clipShape(Circle())
                     
-                    Text("FlowName")
+                    Text(vm.token.name)
                         .foregroundColor(.LL.Neutrals.text)
                         .font(.inter(size: 18, weight: .medium))
                         .padding(.leading, 8)
                     
                     Spacer()
                     
-                    Text("1400.88 Flow")
+                    Text("\(vm.inputTokenNum) \(vm.token.name.uppercased())")
                         .foregroundColor(.LL.Neutrals.text)
                         .font(.inter(size: 20, weight: .semibold))
                         .minimumScaleFactor(0.5)
@@ -402,7 +383,7 @@ extension WalletSendAmountView {
                 HStack {
                     Spacer()
                     
-                    Text("USD $ 29929.23")
+                    Text("USD $ \(vm.inputDollarNum.currencyString)")
                         .foregroundColor(.LL.Neutrals.neutrals8)
                         .font(.inter(size: 14, weight: .medium))
                 }

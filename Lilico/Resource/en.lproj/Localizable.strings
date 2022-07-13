@@ -245,3 +245,4 @@
 "amount_balance" = "Amount Balance";
 "confirmation" = "Confirmation";
 "amount_confirmation" = "Amount Confirmation";
+"format_error" = "Format Error";

@@ -80,6 +80,20 @@ extension WalletManager {
         
         return false
     }
+    
+    func getToken(bySymbol symbol: String) -> TokenModel? {
+        for token in activatedCoins {
+            if token.symbol == symbol {
+                return token
+            }
+        }
+        
+        return nil
+    }
+    
+    func getBalance(bySymbol symbol: String) -> Double {
+        return coinBalances[symbol] ?? 0
+    }
 }
 
 // MARK: - Setter

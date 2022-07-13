@@ -55,6 +55,7 @@ extension AddressBookView {
         case load
         case delete(AddressBookView.SectionViewModel, Contact)
         case edit(Contact)
+        case select(Contact)
     }
 }
 
@@ -65,6 +66,8 @@ extension AddressBookView {
         @Published var state: ListState
         @Published var searchText: String = ""
         @RouterObject var router: AddressBookCoordinator.Router?
+        
+        var injectSelectAction: ((Contact) -> Void)?
         
         private var rawContacts: [Contact]?
 
@@ -82,6 +85,8 @@ extension AddressBookView {
                 delete(sectionVM: sectionVM, contact: contact)
             case let .edit(contact):
                 editContact(contact)
+            case let .select(contact):
+                selectContact(contact)
             }
         }
 
@@ -159,6 +164,12 @@ extension AddressBookView {
                 } catch {
                     failedAction()
                 }
+            }
+        }
+        
+        private func selectContact(_ contact: Contact) {
+            if let action = injectSelectAction {
+                action(contact)
             }
         }
 

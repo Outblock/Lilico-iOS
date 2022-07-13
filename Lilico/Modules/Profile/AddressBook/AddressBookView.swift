@@ -128,6 +128,9 @@ extension AddressBookView {
                     ContactCell(contact: row)
                         .listRowSeparator(.hidden)
                         .listRowInsets(.zero)
+                        .onTapGestureOnBackground {
+                            vm.trigger(.select(row))
+                        }
                     
                     if mode == .normal {
                         cell.swipeActions(allowsFullSwipe: false) {

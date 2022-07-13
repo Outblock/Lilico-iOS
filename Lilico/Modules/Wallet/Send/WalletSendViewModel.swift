@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import SwiftUIPager
 import Flow
+import Stinsen
 
 extension WalletSendView {
     enum TabType: Int, CaseIterable {
@@ -49,6 +50,8 @@ extension WalletSendView {
 }
 
 class WalletSendViewModel: ObservableObject {
+    @RouterObject var router: WalletSendCoordinator.Router?
+    
     @Published var status: WalletSendView.ViewStatus = .normal
     @Published var errorType: WalletSendView.ErrorType = .none
     
@@ -58,12 +61,22 @@ class WalletSendViewModel: ObservableObject {
     
     // TODO: recentList implementation
     @Published var recentList: [Contact] = []
-    let addressBookVM = AddressBookView.AddressBookViewModel()
+    let addressBookVM: AddressBookView.AddressBookViewModel = AddressBookView.AddressBookViewModel()
     
     @Published var localSearchResults: [WalletSendView.SearchSection] = []
     @Published var serverSearchList: [Contact]?
     @Published var findSearchList: [Contact]?
     @Published var flownsSearchList: [Contact]?
+    
+    init() {
+        addressBookVM.injectSelectAction = { [weak self] contact in
+            guard let self = self else {
+                return
+            }
+            
+            self.sendToTargetAction(target: contact)
+        }
+    }
     
     var remoteSearchResults: [WalletSendView.SearchSection] {
         var sections = [WalletSendView.SearchSection]()
@@ -231,6 +244,10 @@ extension WalletSendViewModel {
 // MARK: - Action
 
 extension WalletSendViewModel {
+    func sendToTargetAction(target: Contact) {
+        router?.route(to: \.amount, target)
+    }
+    
     func searchTextDidChangeAction(text: String) {
         let trimedText = text.trim()
         
