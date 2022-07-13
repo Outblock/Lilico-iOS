@@ -7,10 +7,12 @@
 
 import SwiftUI
 import Kingfisher
+import Combine
 
 struct WalletSendAmountView_Previews: PreviewProvider {
     static var previews: some View {
         WalletSendAmountView()
+//        WalletSendAmountView.SendConfirmProgressView()
     }
 }
 
@@ -43,6 +45,7 @@ struct WalletSendAmountView: View {
     @State var aboutEqualToNum: Double = 0.1
     @State var exchangeType: ExchangeType = .token
     @State var errorType: ErrorType = .none
+    @State var showConfirmView: Bool = true
     
     var body: some View {
         VStack(spacing: 24) {
@@ -62,6 +65,9 @@ struct WalletSendAmountView: View {
         }
         .buttonStyle(.plain)
         .backgroundFill(Color.LL.deepBg)
+        .customBottomSheet(isPresented: $showConfirmView, title: "confirmation".localized, background: { Color.LL.Neutrals.background }) {
+            SendConfirmView()
+        }
     }
     
     var targetView: some View {
@@ -294,20 +300,181 @@ extension WalletSendAmountView {
 
 extension WalletSendAmountView {
     struct SendConfirmView: View {
+        @State var fromContact: Contact = Contact(address: "0x93da24f027c675c5", avatar: "", contactName: "FromCjsdljaljsldlsafjsdkfjadlsfjlsdkfjontact", contactType: .domain, domain: Contact.Domain(domainType: .flowns, value: ""), id: UUID().hashValue, username: nil)
+
+        @State var toContact: Contact = Contact(address: "0x93da24f027c675c5", avatar: "", contactName: "ToTimCook", contactType: .domain, domain: Contact.Domain(domainType: .flowns, value: ""), id: UUID().hashValue, username: nil)
+
         var body: some View {
             VStack(spacing: 0) {
+                ZStack {
+                    fromToView
+                    WalletSendAmountView.SendConfirmProgressView()
+                        .padding(.bottom, 37)
+                }
                 
+                amountDetailView
+                    .padding(.top, 37)
+                
+                sendButton
+                    .padding(.top, 27)
+                    .padding(.bottom, 20 + UIView.bottomSafeAreaHeight)
             }
+            .padding(.horizontal, 28)
         }
-        
+
         var fromToView: some View {
-            HStack {
-                
+            HStack(spacing: 16) {
+                contactView(contact: fromContact)
+                Spacer()
+                contactView(contact: toContact)
             }
         }
+
+        func contactView(contact: Contact) -> some View {
+            VStack(spacing: 5) {
+                // avatar
+                ZStack {
+                    if let avatar = contact.avatar?.convertedAvatarString(), avatar.isEmpty == false {
+                        KFImage.url(URL(string: avatar))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 44, height: 44)
+                    } else if contact.needShowLocalAvatar {
+                        Image(contact.localAvatar ?? "")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 44, height: 44)
+                    } else {
+                        Text(String((contact.contactName?.first ?? "A").uppercased()))
+                            .foregroundColor(.LL.Primary.salmonPrimary)
+                            .font(.inter(size: 24, weight: .semibold))
+                    }
+                }
+                .frame(width: 44, height: 44)
+                .background(.LL.Primary.salmon5)
+                .clipShape(Circle())
+
+                // contact name
+                Text(contact.contactName ?? "name")
+                    .foregroundColor(.LL.Neutrals.neutrals1)
+                    .font(.inter(size: 14, weight: .semibold))
+                    .lineLimit(1)
+
+                // address
+                Text(contact.address ?? "0x")
+                    .foregroundColor(.LL.Neutrals.note)
+                    .font(.inter(size: 12, weight: .regular))
+                    .lineLimit(1)
+            }
+            .frame(maxWidth: .infinity)
+        }
         
-//        func contactView(contact: Contact) -> some View {
-//            
-//        }
+        var amountDetailView: some View {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("amount_confirmation".localized)
+                    .foregroundColor(.LL.Neutrals.note)
+                    .font(.inter(size: 14, weight: .medium))
+                
+                HStack(spacing: 0) {
+                    KFImage.url(nil)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 32, height: 32)
+                        .background(Color.LL.Neutrals.note)
+                        .clipShape(Circle())
+                    
+                    Text("FlowName")
+                        .foregroundColor(.LL.Neutrals.text)
+                        .font(.inter(size: 18, weight: .medium))
+                        .padding(.leading, 8)
+                    
+                    Spacer()
+                    
+                    Text("1400.88 Flow")
+                        .foregroundColor(.LL.Neutrals.text)
+                        .font(.inter(size: 20, weight: .semibold))
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
+                }
+                .frame(height: 32)
+                .padding(.top, 25)
+                
+                HStack {
+                    Spacer()
+                    
+                    Text("USD $ 29929.23")
+                        .foregroundColor(.LL.Neutrals.neutrals8)
+                        .font(.inter(size: 14, weight: .medium))
+                }
+                .padding(.top, 14)
+            }
+            .padding(.horizontal, 18)
+            .padding(.vertical, 18)
+            .background(Color.LL.bgForIcon)
+            .cornerRadius(16)
+        }
+        
+        var sendButton: some View {
+            Button {
+                
+            } label: {
+                ZStack {
+                    Text("send".localized)
+                        .foregroundColor(Color.LL.Button.light)
+                        .font(.inter(size: 14, weight: .bold))
+                }
+                .frame(height: 54)
+                .frame(maxWidth: .infinity)
+                .background(Color.LL.Button.color)
+                .cornerRadius(16)
+                .padding(.horizontal, 18)
+            }
+        }
+    }
+    
+    struct SendConfirmProgressView: View {
+        private let totalNum: Int = 7
+        @State private var step: Int = 0
+        private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
+        var body: some View {
+            HStack(spacing: 12) {
+                ForEach(0..<totalNum, id: \.self) { index in
+                    if step == index {
+                        Image("icon-right-arrow-1")
+                            .renderingMode(.template)
+                            .foregroundColor(.LL.Primary.salmonPrimary)
+                    } else {
+                        switch index {
+                        case 0:
+                            Circle()
+                                .frame(width: 6, height: 6)
+                                .foregroundColor(.LL.Primary.salmon5)
+                        case 1:
+                            Circle()
+                                .frame(width: 6, height: 6)
+                                .foregroundColor(.LL.Primary.salmon4)
+                        case 2:
+                            Circle()
+                                .frame(width: 6, height: 6)
+                                .foregroundColor(.LL.Primary.salmon3)
+                        default:
+                            Circle()
+                                .frame(width: 6, height: 6)
+                                .foregroundColor(.LL.Primary.salmonPrimary)
+                        }
+                    }
+                }
+            }
+            .onReceive(timer) { _ in
+                DispatchQueue.main.async {
+                    if step < totalNum - 1 {
+                        step += 1
+                    } else {
+                        step = 0
+                    }
+                }
+            }
+        }
     }
 }
