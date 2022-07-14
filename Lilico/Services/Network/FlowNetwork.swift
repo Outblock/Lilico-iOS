@@ -52,6 +52,32 @@ extension FlowNetwork {
             }
         }
     }
+    
+    static func transferToken(to address: Flow.Address, amount: Double) async throws -> Flow.ID {
+        let cadenceString = Cadences.transferToken.replace(by: ScriptAddress.addressMap())
+        
+        return try await flow.sendTransaction(signers: [WalletManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                WalletManager.shared.getPrimaryWalletAddress() ?? ""
+            }
+            
+            proposer {
+                WalletManager.shared.getPrimaryWalletAddress() ?? ""
+            }
+            
+            authorizers {
+                Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+            }
+            
+            arguments {
+                [.ufix64(amount), .address(address)]
+            }
+        })
+    }
 }
 
 // MARK: - NFT

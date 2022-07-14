@@ -246,3 +246,6 @@
 "confirmation" = "Confirmation";
 "amount_confirmation" = "Amount Confirmation";
 "format_error" = "Format Error";
+"sending" = "Sending...";
+"sent_successfully" = "Sent successfully";
+"send_failed" = "Send failed";

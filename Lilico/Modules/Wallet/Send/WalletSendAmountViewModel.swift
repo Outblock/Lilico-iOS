@@ -7,6 +7,9 @@
 
 import Foundation
 import SwiftUI
+import Flow
+import Stinsen
+import Combine
 
 extension WalletSendAmountView {
     enum ExchangeType {
@@ -33,6 +36,8 @@ extension WalletSendAmountView {
 }
 
 class WalletSendAmountViewModel: ObservableObject {
+    @RouterObject var router: WalletSendCoordinator.Router?
+    
     @Published var targetContact: Contact
     @Published var token: TokenModel
     @Published var amountBalance: Double = 0
@@ -47,10 +52,19 @@ class WalletSendAmountViewModel: ObservableObject {
     
     @Published var showConfirmView: Bool = false
     
+    private var isSending = false
+    private var cancelSets = Set<AnyCancellable>()
+    
     init(target: Contact, token: TokenModel) {
         self.targetContact = target
         self.token = token
-        refreshTokenData()
+        
+        WalletManager.shared.$coinBalances.sink { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.refreshTokenData()
+                self?.refreshInput()
+            }
+        }.store(in: &cancelSets)
     }
     
     private func refreshTokenData() {
@@ -104,8 +118,6 @@ extension WalletSendAmountViewModel {
 
 extension WalletSendAmountViewModel {
     func inputTextDidChangeAction(text: String) {
-        debugPrint("WalletSendAmountViewModel -> inputTextDidChangeAction: \(text)")
-        
         let filtered = text.filter {"0123456789.".contains($0)}
         
         if filtered.contains(".") {
@@ -144,6 +156,57 @@ extension WalletSendAmountViewModel {
         
         withAnimation(.easeInOut(duration: 0.2)) {
             showConfirmView = true
+        }
+    }
+    
+    func sendAction() {
+        if isSending {
+            return
+        }
+        
+        let successBlock = {
+            DispatchQueue.main.async {
+                self.isSending = false
+                HUD.dismissLoading()
+                HUD.success(title: "sent_successfully".localized)
+                self.router?.popToRoot()
+                
+                Task {
+                    try? await WalletManager.shared.fetchBalance()
+                }
+            }
+        }
+        
+        let failureBlock = {
+            DispatchQueue.main.async {
+                self.isSending = false
+                HUD.dismissLoading()
+                HUD.error(title: "send_failed".localized)
+            }
+        }
+        
+        isSending = true
+        HUD.loading("sending".localized)
+        
+        Task {
+            do {
+                let id = try await FlowNetwork.transferToken(to: Flow.Address(hex: targetContact.address ?? "0x"), amount: inputTokenNum)
+                let result = try await id.onceSealed()
+                
+                if result.isFailed {
+                    debugPrint("WalletSendAmountViewModel -> sendAction result failed: \(result.errorMessage)")
+                    failureBlock()
+                    return
+                }
+                
+                if result.isComplete {
+                    successBlock()
+                    return
+                }
+            } catch {
+                debugPrint("WalletSendAmountViewModel -> sendAction error: \(error)")
+                failureBlock()
+            }
         }
     }
     
