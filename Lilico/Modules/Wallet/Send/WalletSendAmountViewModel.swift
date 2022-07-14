@@ -130,7 +130,7 @@ extension WalletSendAmountViewModel {
     }
     
     func toggleExchangeTypeAction() {
-        if exchangeType == .token {
+        if exchangeType == .token, coinRate != 0 {
             exchangeType = .dollar
             inputText = inputDollarNum.currencyString
         } else {
@@ -140,6 +140,8 @@ extension WalletSendAmountViewModel {
     }
     
     func nextAction() {
+        UIApplication.shared.endEditing()
+        
         withAnimation(.easeInOut(duration: 0.2)) {
             showConfirmView = true
         }

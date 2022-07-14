@@ -30,15 +30,18 @@ struct WalletSendAmountView: View {
     }
     
     var body: some View {
-        VStack(spacing: 24) {
-            targetView
-            transferInputContainerView
-            amountBalanceView
-            
-            Spacer()
-            
-            nextButton
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 24) {
+                targetView
+                transferInputContainerView
+                amountBalanceView
+                
+                Spacer()
+                
+                nextButton
+            }
         }
+        .hideKeyboardWhenTappedAround()
         .navigationTitle("send_to".localized)
         .navigationBarTitleDisplayMode(.large)
         .interactiveDismissDisabled()
@@ -119,23 +122,8 @@ struct WalletSendAmountView: View {
                         .font(.inter(size: 16, weight: .bold))
                         .visibility(vm.exchangeType == .dollar ? .visible : .gone)
                     
-                    // switch btn
-                    Button {
-                        
-                    } label: {
-                        HStack(spacing: 8) {
-                            KFImage.url(vm.token.icon)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 32, height: 32)
-                                .background(Color.LL.Neutrals.note)
-                                .clipShape(Circle())
-                            
-                            Image("icon-arrow-bottom")
-                                .foregroundColor(.LL.Neutrals.neutrals3)
-                        }
-                    }
-                    .visibility(vm.exchangeType == .token ? .visible : .gone)
+                    switchMenuButton
+                        .visibility(vm.exchangeType == .token ? .visible : .gone)
 
                     // input view
                     TextField("", text: $vm.inputText)
@@ -209,6 +197,35 @@ struct WalletSendAmountView: View {
         .padding(.horizontal, 18)
     }
     
+    var switchMenuButton: some View {
+        Menu {
+            ForEach(WalletManager.shared.activatedCoins) { token in
+                Button {
+                    vm.changeTokenModelAction(token: token)
+                } label: {
+                    KFImage.url(token.icon)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 32, height: 32)
+                        .clipShape(Circle())
+                    Text(token.name)
+                }
+            }
+        } label: {
+            HStack(spacing: 8) {
+                KFImage.url(vm.token.icon)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 32, height: 32)
+                    .background(Color.LL.Neutrals.note)
+                    .clipShape(Circle())
+                
+                Image("icon-arrow-bottom")
+                    .foregroundColor(.LL.Neutrals.neutrals3)
+            }
+        }
+    }
+    
     var errorTipsView: some View {
         VStack {
             Spacer()
@@ -268,7 +285,7 @@ struct WalletSendAmountView: View {
         } label: {
             ZStack {
                 Text("next".localized)
-                    .foregroundColor(Color.LL.Button.light)
+                    .foregroundColor(Color.LL.Button.text)
                     .font(.inter(size: 14, weight: .bold))
             }
             .frame(height: 54)
@@ -401,7 +418,7 @@ extension WalletSendAmountView {
             } label: {
                 ZStack {
                     Text("send".localized)
-                        .foregroundColor(Color.LL.Button.light)
+                        .foregroundColor(Color.LL.Button.text)
                         .font(.inter(size: 14, weight: .bold))
                 }
                 .frame(height: 54)

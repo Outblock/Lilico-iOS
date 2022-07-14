@@ -10,6 +10,7 @@ import Flow
 import Foundation
 import KeychainAccess
 import WalletCore
+import Kingfisher
 
 // MARK: - Define
 
@@ -308,6 +309,7 @@ extension WalletManager {
         }
 
         activatedCoins = list
+        preloadActivatedIcons()
     }
 
     func fetchBalance() async throws {
@@ -343,6 +345,16 @@ extension WalletManager {
 // MARK: - Helper
 
 extension WalletManager {
+    private func preloadActivatedIcons() {
+        for token in activatedCoins {
+            if let url = token.icon {
+                KingfisherManager.shared.retrieveImage(with: url) { _ in
+                    
+                }
+            }
+        }
+    }
+    
     private func set(toBackupKeychain value: String, forKey key: String) throws {
         try backupKeychain.set(value, key: key)
     }
