@@ -71,9 +71,15 @@ struct WalletSendAmountView: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 44, height: 44)
                 } else {
-                    Text(String((vm.targetContact.contactName?.first ?? "A").uppercased()))
-                        .foregroundColor(.LL.Primary.salmonPrimary)
-                        .font(.inter(size: 24, weight: .semibold))
+                    if let contactType = vm.targetContact.contactType, let contactName = vm.targetContact.contactName, contactType == .external, contactName.isAddress {
+                        Text("0x")
+                            .foregroundColor(.LL.Primary.salmonPrimary)
+                            .font(.inter(size: 24, weight: .semibold))
+                    } else {
+                        Text(String((vm.targetContact.contactName?.first ?? "A").uppercased()))
+                            .foregroundColor(.LL.Primary.salmonPrimary)
+                            .font(.inter(size: 24, weight: .semibold))
+                    }
                 }
             }
             .frame(width: 44, height: 44)

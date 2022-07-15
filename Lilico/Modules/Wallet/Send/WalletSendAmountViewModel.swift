@@ -21,6 +21,7 @@ extension WalletSendAmountView {
         case none
         case insufficientBalance
         case formatError
+        case invalidAddress
         
         var desc: String {
             switch self {
@@ -30,6 +31,8 @@ extension WalletSendAmountView {
                 return "insufficient_balance".localized
             case .formatError:
                 return "format_error".localized
+            case .invalidAddress:
+                return "invalid_address".localized
             }
         }
     }
@@ -55,6 +58,8 @@ class WalletSendAmountViewModel: ObservableObject {
     private var isSending = false
     private var cancelSets = Set<AnyCancellable>()
     
+    private var addressIsValid: Bool?
+    
     init(target: Contact, token: TokenModel) {
         self.targetContact = target
         self.token = token
@@ -65,6 +70,8 @@ class WalletSendAmountViewModel: ObservableObject {
                 self?.refreshInput()
             }
         }.store(in: &cancelSets)
+        
+        checkAddress()
     }
     
     var amountBalanceAsDollar: Double {
@@ -72,17 +79,35 @@ class WalletSendAmountViewModel: ObservableObject {
     }
     
     var isReadyForSend: Bool {
-        return errorType == .none && inputText.isNumber
+        return errorType == .none && inputText.isNumber && addressIsValid == true
     }
 }
 
 extension WalletSendAmountViewModel {
+    private func checkAddress() {
+        Task {
+            if let address = targetContact.address {
+                let isValid = await FlowNetwork.addressVerify(address: address)
+                DispatchQueue.main.async {
+                    self.addressIsValid = isValid
+                    if isValid == false {
+                        self.errorType = .invalidAddress
+                    }
+                }
+            }
+        }
+    }
+    
     private func refreshTokenData() {
         amountBalance = WalletManager.shared.getBalance(bySymbol: token.symbol ?? "")
         coinRate = CoinRateCache.cache.getSummary(for: token.symbol ?? "")?.getLastRate() ?? 0
     }
     
     private func refreshInput() {
+        if errorType == .invalidAddress {
+            return
+        }
+        
         if inputText.isEmpty {
             errorType = .none
             return

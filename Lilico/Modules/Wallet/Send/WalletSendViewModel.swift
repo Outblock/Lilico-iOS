@@ -259,6 +259,11 @@ extension WalletSendViewModel {
     func searchTextDidChangeAction(text: String) {
         let trimedText = text.trim()
         
+        if trimedText.isAddress {
+            sendToAddressAction(trimedText)
+            return
+        }
+        
         if trimedText.isEmpty {
             status = .normal
             return
@@ -272,6 +277,11 @@ extension WalletSendViewModel {
         status = .prepareSearching
         clearRemoteSearch()
         searchLocal()
+    }
+    
+    private func sendToAddressAction(_ address: String) {
+        let contact = Contact(address: address, avatar: nil, contactName: address, contactType: .external, domain: nil, id: UUID().hashValue, username: nil)
+        router?.route(to: \.amount, contact)
     }
     
     func searchCommitAction() {

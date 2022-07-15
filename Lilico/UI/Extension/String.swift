@@ -66,6 +66,10 @@ extension String {
     var isNumber: Bool {
         return !isEmpty && Double.currencyFormatter.number(from: self) != nil
     }
+    
+    var isAddress: Bool {
+        return !isEmpty && self.hasPrefix("0x") && self.count == 18
+    }
 }
 
 extension String {
