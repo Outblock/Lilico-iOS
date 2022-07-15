@@ -67,11 +67,6 @@ class WalletSendAmountViewModel: ObservableObject {
         }.store(in: &cancelSets)
     }
     
-    private func refreshTokenData() {
-        amountBalance = WalletManager.shared.getBalance(bySymbol: token.symbol ?? "")
-        coinRate = CoinRateCache.cache.getSummary(for: token.symbol ?? "")?.getLastRate() ?? 0
-    }
-    
     var amountBalanceAsDollar: Double {
         return coinRate * amountBalance
     }
@@ -82,6 +77,11 @@ class WalletSendAmountViewModel: ObservableObject {
 }
 
 extension WalletSendAmountViewModel {
+    private func refreshTokenData() {
+        amountBalance = WalletManager.shared.getBalance(bySymbol: token.symbol ?? "")
+        coinRate = CoinRateCache.cache.getSummary(for: token.symbol ?? "")?.getLastRate() ?? 0
+    }
+    
     private func refreshInput() {
         if inputText.isEmpty {
             errorType = .none
@@ -113,6 +113,10 @@ extension WalletSendAmountViewModel {
         }
         
         errorType = .none
+    }
+    
+    private func saveToRecentLlist() {
+        RecentListCache.cache.append(contact: targetContact)
     }
 }
 
@@ -184,6 +188,8 @@ extension WalletSendAmountViewModel {
                 HUD.error(title: "send_failed".localized)
             }
         }
+        
+        saveToRecentLlist()
         
         isSending = true
         HUD.loading("sending".localized)

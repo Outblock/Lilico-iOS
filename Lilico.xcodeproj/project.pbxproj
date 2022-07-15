@@ -842,6 +842,8 @@
 		6A7C080F286EE95E00020987 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 6A7C080E286EE95E00020987 /* SwiftUICharts */; };
 		6A7F989F2869A40500282845 /* AddTokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F989E2869A40500282845 /* AddTokenViewModel.swift */; };
 		6A7F98A02869A40500282845 /* AddTokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F989E2869A40500282845 /* AddTokenViewModel.swift */; };
+		6A8D223D2881499D005A7081 /* RecentListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D223C2881499D005A7081 /* RecentListCache.swift */; };
+		6A8D223E2881499D005A7081 /* RecentListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D223C2881499D005A7081 /* RecentListCache.swift */; };
 		6A8D2A38283C7C790041100E /* AddressBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A36283C7C790041100E /* AddressBookView.swift */; };
 		6A8D2A3B283C7C880041100E /* AddressBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */; };
 		6A8D2A3E283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */; };
@@ -1333,6 +1335,7 @@
 		6A6BD9DB287D5066009FA262 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		6A6BD9DE287D5467009FA262 /* PlaceholderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderStyle.swift; sourceTree = "<group>"; };
 		6A7F989E2869A40500282845 /* AddTokenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenViewModel.swift; sourceTree = "<group>"; };
+		6A8D223C2881499D005A7081 /* RecentListCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentListCache.swift; sourceTree = "<group>"; };
 		6A8D2A36283C7C790041100E /* AddressBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookView.swift; sourceTree = "<group>"; };
 		6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookViewModel.swift; sourceTree = "<group>"; };
 		6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookCoordinator.swift; sourceTree = "<group>"; };
@@ -2896,6 +2899,7 @@
 			children = (
 				6A35EADC2859C20B005A85B8 /* NFTListCache.swift */,
 				6AEF8394286462400081E285 /* CoinRateCache.swift */,
+				6A8D223C2881499D005A7081 /* RecentListCache.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -3629,6 +3633,7 @@
 				15DC218F27819C56000B187A /* VCheckBox.swift in Sources */,
 				6AD900652847175100B65CE6 /* AddAddressView.swift in Sources */,
 				4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */,
+				6A8D223E2881499D005A7081 /* RecentListCache.swift in Sources */,
 				15DC20D127819C56000B187A /* VNavigationLinkType.swift in Sources */,
 				4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */,
 				15DC208527819C56000B187A /* VLazyScrollViewHorizontal.swift in Sources */,
@@ -4041,6 +4046,7 @@
 				15C58B272868A4EE00BD4FC6 /* VCheckBox.swift in Sources */,
 				15C58B282868A4EE00BD4FC6 /* AddAddressView.swift in Sources */,
 				15C58B292868A4EE00BD4FC6 /* AddCollectionViewModel.swift in Sources */,
+				6A8D223D2881499D005A7081 /* RecentListCache.swift in Sources */,
 				15C58B2A2868A4EE00BD4FC6 /* VNavigationLinkType.swift in Sources */,
 				15C58B2B2868A4EE00BD4FC6 /* WalletViewModel.swift in Sources */,
 				15C58B2C2868A4EE00BD4FC6 /* VLazyScrollViewHorizontal.swift in Sources */,

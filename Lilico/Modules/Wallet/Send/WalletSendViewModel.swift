@@ -10,6 +10,7 @@ import SwiftUI
 import SwiftUIPager
 import Flow
 import Stinsen
+import Combine
 
 extension WalletSendView {
     enum TabType: Int, CaseIterable {
@@ -59,7 +60,6 @@ class WalletSendViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var page: Page = .first()
     
-    // TODO: recentList implementation
     @Published var recentList: [Contact] = []
     let addressBookVM: AddressBookView.AddressBookViewModel = AddressBookView.AddressBookViewModel()
     
@@ -67,6 +67,8 @@ class WalletSendViewModel: ObservableObject {
     @Published var serverSearchList: [Contact]?
     @Published var findSearchList: [Contact]?
     @Published var flownsSearchList: [Contact]?
+    
+    private var cancelSets = Set<AnyCancellable>()
     
     init() {
         addressBookVM.injectSelectAction = { [weak self] contact in
@@ -76,6 +78,12 @@ class WalletSendViewModel: ObservableObject {
             
             self.sendToTargetAction(target: contact)
         }
+        
+        RecentListCache.cache.$list.sink { list in
+            DispatchQueue.main.async {
+                self.recentList = list
+            }
+        }.store(in: &cancelSets)
     }
     
     var remoteSearchResults: [WalletSendView.SearchSection] {

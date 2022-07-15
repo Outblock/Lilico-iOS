@@ -261,6 +261,9 @@ extension WalletSendView {
                 LazyVStack {
                     ForEach(vm.recentList, id: \.id) { contact in
                         AddressBookView.ContactCell(contact: contact)
+                            .onTapGestureOnBackground {
+                                vm.sendToTargetAction(target: contact)
+                            }
                     }
                 }
             }
