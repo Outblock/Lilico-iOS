@@ -157,15 +157,24 @@ extension AddressBookView {
                 sectionHeader(sectionVM)
                     .id(sectionVM.id)
             }
+            .listRowBackground(Color.LL.deepBg)
         }
         .frame(maxHeight: .infinity)
         .listStyle(.plain)
         .visibility(vm.state.stateType == .idle ? .visible : .gone)
+        
+        var anyView: AnyView
         if mode == .normal {
-            return AnyView(list.searchable(text: $vm.searchText))
+            anyView = AnyView(list.searchable(text: $vm.searchText))
+        } else {
+            anyView = AnyView(list)
         }
         
-        return AnyView(list)
+        if #available(iOS 16.0, *) {
+            return anyView.scrollContentBackground(Color.LL.deepBg)
+        } else {
+            return anyView
+        }
     }
 
     @ViewBuilder private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {
