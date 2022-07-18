@@ -30,3 +30,9 @@ enum WalletError: Error {
     case fetchFailed
     case fetchBalanceFailed
 }
+
+enum BackupError: Error {
+    case missingUserName
+    case missingMnemonic
+    case missingUid
+}

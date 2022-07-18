@@ -35,7 +35,7 @@ class RecoveryPhraseViewModel: ViewModel {
     var router: BackupCoordinator.Router?
 
     init() {
-        if let mnemonic = WalletManager.shared.getCurrentMnemoic() {
+        if let mnemonic = WalletManager.shared.getCurrentMnemonic() {
             state = RecoveryPhraseView.ViewState(dataSource: mnemonic.split(separator: " ").enumerated().map { item in
                 WordListView.WordItem(id: item.offset + 1, word: String(item.element))
             })

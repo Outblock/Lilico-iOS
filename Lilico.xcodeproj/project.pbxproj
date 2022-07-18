@@ -869,6 +869,8 @@
 		6A9D7C472833B45500078F63 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */; };
 		6A9D7C4A2834D64800078F63 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */; };
 		6A9D7C4D2834D7D100078F63 /* ThemeChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */; };
+		6AA591F628854FB300F4B5CA /* BackupGDTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */; };
+		6AA591F728854FB300F4B5CA /* BackupGDTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */; };
 		6ABAE52B2836288400C97AE2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE5292836288400C97AE2 /* Font.swift */; };
 		6ABAE53028362D1100C97AE2 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
 		6AC62AF2286AE92B000876D9 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF1286AE92B000876D9 /* FirebaseDynamicLinks */; };
@@ -1361,6 +1363,7 @@
 		6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeView.swift; sourceTree = "<group>"; };
+		6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupGDTarget.swift; sourceTree = "<group>"; };
 		6ABAE5292836288400C97AE2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		6ABAE52E28362D1100C97AE2 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
 		6AC717E1287EA61100AA5040 /* WalletSendAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendAmountViewModel.swift; sourceTree = "<group>"; };
@@ -2628,9 +2631,9 @@
 		15DE22CC277DBDC300B5EE03 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				6AA591F328854F5900F4B5CA /* Backup */,
 				15DE22CE277DBDF800B5EE03 /* WalletManager.swift */,
 				15DE22D1277DBE0000B5EE03 /* UserManager.swift */,
-				15DC1D3D27809F83000B187A /* BackupManager.swift */,
 				15DC1D5427816605000B187A /* CacheManager.swift */,
 				15D9282B2783395F00382226 /* HUDManager.swift */,
 				6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */,
@@ -3055,6 +3058,23 @@
 				6A8FA490285B192800EE5BE3 /* DecelerationRate.swift */,
 			);
 			path = Types;
+			sourceTree = "<group>";
+		};
+		6AA591F328854F5900F4B5CA /* Backup */ = {
+			isa = PBXGroup;
+			children = (
+				6AA591F428854F6500F4B5CA /* Target */,
+				15DC1D3D27809F83000B187A /* BackupManager.swift */,
+			);
+			path = Backup;
+			sourceTree = "<group>";
+		};
+		6AA591F428854F6500F4B5CA /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */,
+			);
+			path = Target;
 			sourceTree = "<group>";
 		};
 		6ABAE50C2836243300C97AE2 /* VComponents */ = {
@@ -3633,6 +3653,7 @@
 				15DC218F27819C56000B187A /* VCheckBox.swift in Sources */,
 				6AD900652847175100B65CE6 /* AddAddressView.swift in Sources */,
 				4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */,
+				6AA591F728854FB300F4B5CA /* BackupGDTarget.swift in Sources */,
 				6A8D223E2881499D005A7081 /* RecentListCache.swift in Sources */,
 				15DC20D127819C56000B187A /* VNavigationLinkType.swift in Sources */,
 				4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */,
@@ -4046,6 +4067,7 @@
 				15C58B272868A4EE00BD4FC6 /* VCheckBox.swift in Sources */,
 				15C58B282868A4EE00BD4FC6 /* AddAddressView.swift in Sources */,
 				15C58B292868A4EE00BD4FC6 /* AddCollectionViewModel.swift in Sources */,
+				6AA591F628854FB300F4B5CA /* BackupGDTarget.swift in Sources */,
 				6A8D223D2881499D005A7081 /* RecentListCache.swift in Sources */,
 				15C58B2A2868A4EE00BD4FC6 /* VNavigationLinkType.swift in Sources */,
 				15C58B2B2868A4EE00BD4FC6 /* WalletViewModel.swift in Sources */,

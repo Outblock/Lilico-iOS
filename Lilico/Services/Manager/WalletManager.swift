@@ -60,7 +60,7 @@ class WalletManager: ObservableObject {
 // MARK: - Getter
 
 extension WalletManager {
-    func getCurrentMnemoic() -> String? {
+    func getCurrentMnemonic() -> String? {
         return hdWallet?.mnemonic
     }
 

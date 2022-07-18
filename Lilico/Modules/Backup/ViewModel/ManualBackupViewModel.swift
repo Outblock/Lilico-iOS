@@ -26,7 +26,7 @@ class ManualBackupViewModel: ViewModel {
 //            ]
 //        )
 
-        guard let mnemonic = WalletManager.shared.getCurrentMnemoic(), !mnemonic.isEmpty else {
+        guard let mnemonic = WalletManager.shared.getCurrentMnemonic(), !mnemonic.isEmpty else {
             HUD.error(title: "load_wallet_error".localized)
             return
         }
