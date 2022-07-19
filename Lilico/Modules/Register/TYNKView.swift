@@ -19,27 +19,9 @@ extension TYNKView {
 }
 
 struct TYNKView: View {
-    @Environment(\.presentationMode)
-    var presentationMode: Binding<PresentationMode>
-
-    @StateObject
-    var viewModel: AnyViewModel<ViewState, Action>
-
-    @State
-    var stateList: [Bool] = [false, false, false]
-
-    var btnBack: some View {
-        Button {
-//            self.presentationMode.wrappedValue.dismiss()
-
-        } label: {
-            HStack {
-                Image(systemName: "arrow.backward")
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(Color.LL.rebackground)
-            }
-        }
-    }
+    @EnvironmentObject var router: RegisterCoordinator.Router
+    @StateObject var viewModel: AnyViewModel<ViewState, Action>
+    @State var stateList: [Bool] = [false, false, false]
 
     var buttonState: VPrimaryButtonState {
         if viewModel.isLoading {
@@ -49,55 +31,56 @@ struct TYNKView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                VStack(alignment: .leading) {
-                    Text("things_you".localized)
-                        .font(.LL.largeTitle)
+        VStack {
+            Spacer()
+            VStack(alignment: .leading) {
+                Text("things_you".localized)
+                    .font(.LL.largeTitle)
+                    .bold()
+                    .foregroundColor(Color.LL.rebackground)
+                HStack {
+                    Text("need_to".localized)
                         .bold()
                         .foregroundColor(Color.LL.rebackground)
-                    HStack {
-                        Text("need_to".localized)
-                            .bold()
-                            .foregroundColor(Color.LL.rebackground)
 
-                        Text("know".localized)
-                            .bold()
-                            .foregroundColor(Color.LL.orange)
-                    }
-                    .font(.LL.largeTitle)
-
-                    Text("secret_phrase_tips".localized)
-                        .font(.LL.body)
-                        .foregroundColor(.LL.note)
-                        .padding(.top, 1)
+                    Text("know".localized)
+                        .bold()
+                        .foregroundColor(Color.LL.orange)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                Spacer()
+                .font(.LL.largeTitle)
 
-                VStack(spacing: 12) {
-                    ConditionView(isOn: $stateList[0],
-                                  text: "secret_phrase_tips_1".localized)
-                    ConditionView(isOn: $stateList[1],
-                                  text: "secret_phrase_tips_2".localized)
-                    ConditionView(isOn: $stateList[2],
-                                  text: "secret_phrase_tips_3".localized)
-                }
-                .padding(.bottom, 40)
-
-                VPrimaryButton(model: ButtonStyle.primary,
-                               state: buttonState,
-                               action: {
-                                   viewModel.trigger(.createWallet)
-                               }, title: buttonState == .loading ? "almost_there".localized : "next".localized)
-                    .padding(.bottom)
+                Text("secret_phrase_tips".localized)
+                    .font(.LL.body)
+                    .foregroundColor(.LL.note)
+                    .padding(.top, 1)
             }
-            .padding(.horizontal, 28)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: btnBack)
-            .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            Spacer()
+
+            VStack(spacing: 12) {
+                ConditionView(isOn: $stateList[0],
+                              text: "secret_phrase_tips_1".localized)
+                ConditionView(isOn: $stateList[1],
+                              text: "secret_phrase_tips_2".localized)
+                ConditionView(isOn: $stateList[2],
+                              text: "secret_phrase_tips_3".localized)
+            }
+            .padding(.bottom, 40)
+
+            VPrimaryButton(model: ButtonStyle.primary,
+                           state: buttonState,
+                           action: {
+                               viewModel.trigger(.createWallet)
+                           }, title: buttonState == .loading ? "almost_there".localized : "next".localized)
+                .padding(.bottom)
         }
+        .padding(.horizontal, 28)
+        .navigationTitle("".localized)
+        .navigationBarTitleDisplayMode(.inline)
+        .addBackBtn {
+            router.pop()
+        }
+        .background(Color.LL.background, ignoresSafeAreaEdges: .all)
     }
 }
 

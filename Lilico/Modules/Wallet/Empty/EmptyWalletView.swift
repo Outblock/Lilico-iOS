@@ -105,53 +105,31 @@ struct EmptyWalletView: View {
             viewModel.trigger(dataSource.action)
         }
     }
+    
+    var headerView: some View {
+        HStack {
+            Text("wallet".localized)
+                .foregroundColor(.LL.Neutrals.text)
+                .font(.inter(size: 24, weight: .bold))
 
-//    var scene: SCNScene? = {
-//        var scene = SCNScene(named: "Bitcoin_metal_coin.obj")
-//        scene?.background.contents = UIColor.clear
-//        return scene
-//    }()
-//
-//    var cameraNode: SCNNode? {
-//        let cameraNode = SCNNode()
-//        cameraNode.camera = SCNCamera()
-//        cameraNode.position = SCNVector3(x: 0, y: 10, z: 50)
-//        return cameraNode
-//    }
+            Spacer()
+
+//            Image("icon-wallet-scan").renderingMode(.template).foregroundColor(.primary)
+        }
+        .padding(.horizontal, 18)
+    }
 
     var body: some View {
-        VStack {
-            HStack {
-                Image(systemName: "person.fill")
-                    .foregroundColor(.secondary)
-                    .padding(8)
-                    .overlay {
-                        Circle().foregroundColor(.separator)
-                    }
-                Spacer()
-                Image(systemName: "qrcode.viewfinder")
-                    .font(.title2)
-            }.padding(.horizontal, 20)
-                .padding(.vertical, 8)
-
-//            ScenekitView()
-            // for user action...
-            // setting custom frame...
-//                .frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height / 2)
+        VStack(spacing: 0) {
+            headerView
+                .padding(.bottom, 10)
 
             EnumeratedForEach(viewModel.dataSource) { index, dataSource in
                 cardView(dataSource, index: index)
             }
         }
         .preferredColorScheme(themeManager.style)
-//        .onAppear {
-//            isDraggingArray
-//            isPresenting = true
-//        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background {
-//            NewEmptyWalletBackgroundView()
-        }
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))
     }
 }

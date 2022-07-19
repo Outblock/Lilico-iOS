@@ -13,12 +13,12 @@ import SwiftUI
 import Stinsen
 import SwiftUIX
 
-struct WalletView_Previews: PreviewProvider {
-    static var previews: some View {
-        WalletView()
-//        WalletView.CoinCell()
-    }
-}
+//struct WalletView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WalletView()
+////        WalletView.CoinCell()
+//    }
+//}
 
 private let ActionViewHeight: CGFloat = 76
 private let CardViewHeight: CGFloat = 214
