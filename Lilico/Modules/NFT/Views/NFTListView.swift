@@ -58,28 +58,6 @@ struct NFTListView: View {
                     } onEnd: {
                         
                     }
-
-                    
-/*
-                    
-                    ContextMenuWithImage {
-                        NFTSquareCard(nft: nft, imageEffect: imageEffect) { model in
-                            viewModel.trigger(.info(model))
-                        }
-                        .frame(height: ceil((screenWidth - 18 * 3) / 2 + 50))
-                    } preview: {
-                        KFImage
-                            .url(nft.image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } action: {
-                        
-                    } onEnd: {
-                        
-                    }
-
- */
-                    
                 }
             }
             .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))

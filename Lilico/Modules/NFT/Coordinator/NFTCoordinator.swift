@@ -39,7 +39,6 @@ extension NFTCoordinator {
     
     @ViewBuilder func makeAddCollection() -> some View {
         NFTAddCollectionView()
-            .hideNavigationBar()
             .environmentObject(viewModel)
     }
 }

@@ -72,6 +72,7 @@
 "enable_collection"="Enable Collection";
 "nft_collection_add_failed"="Failed";
 "nft_collection_add_pending"="Pending";
+"search_NFT_collection" = "Search NFT Collection";
 
 
 // Account

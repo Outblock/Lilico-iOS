@@ -9,8 +9,25 @@ import Foundation
 
 class AddCollectionViewModel: ObservableObject {
     
-    @Published
-    var liveList: [NFTCollectionItem] = []
+    @Published var searchQuery = ""
+
+    var liveList: [NFTCollectionItem] {
+        if searchQuery.isEmpty {
+            return collectionList
+        }
+        var list: [NFTCollectionItem] = []
+        list = collectionList.filter{ item in
+            if item.collection.name.localizedCaseInsensitiveContains(searchQuery) {
+                return true
+            }
+            if let des = item.collection.description, des.localizedCaseInsensitiveContains(searchQuery) {
+                return true
+            }
+            return false
+        }
+        return list
+        
+    }
     
     private var collectionList: [NFTCollectionItem] = []
     
@@ -32,10 +49,7 @@ class AddCollectionViewModel: ObservableObject {
         })
         
         await MainActor.run {
-            liveList.removeAll { _ in
-                true
-            }
-            liveList.append(contentsOf: collectionList)
+            self.searchQuery = ""
         }
     }
     

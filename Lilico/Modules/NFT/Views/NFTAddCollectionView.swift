@@ -20,29 +20,36 @@ struct NFTAddCollectionView: View {
     
     @State private var selectItem: NFTCollectionItem?
     
-    @State var searchQuery = ""
     
     var body: some View {
         VStack(spacing: 0) {
-            BackAppBar(title: "add_collection".localized) {
-                
-            }
-            .frame(height: 44)
             //TODO: show page by the status: empty, loading, net error, list
-            
+
             OffsetScrollView(offset: $offset) {
                 LazyVStack(alignment: .leading, spacing: 0) {
                     
                     ForEach(addViewModel.liveList, id:\.self) { it in
                         NFTAddCollectionView.CollectionItem(item: it) { item in
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
                             self.selectItem = item
-                            isPresented.toggle()
+                            if (self.selectItem != nil) {
+                                isPresented.toggle()
+                            }
+                                
                         }       
                     }
                 }
             }
+            .searchable(text: $addViewModel.searchQuery, prompt: "search_NFT_collection".localized)
         }
         .background(Color.LL.Neutrals.background)
+        .navigationTitle("add_collection".localized)
+        .navigationBarTitleDisplayMode(.inline)
+        
+        .addBackBtn {
+            viewModel.trigger(.back)
+        }
+        
         .overlay {
             if let item = self.selectItem  {
                 if(isPresented ) {
@@ -52,7 +59,7 @@ struct NFTAddCollectionView: View {
                 }
             }
         }
-        .searchable(text: $searchQuery)
+        
     }
 
     private func title(title: String) -> some View {
@@ -178,9 +185,8 @@ struct NFTAddCollectionView_Previews: PreviewProvider {
         item
     ]
     static var previews: some View {
-        
-        NFTAddCollectionView()
-        
-      
+        NavigationView {
+            NFTAddCollectionView()
+        }
     }
 }
