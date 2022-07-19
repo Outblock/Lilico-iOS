@@ -3231,7 +3231,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 154B8925276A1EEB00780E93 /* Build configuration list for PBXNativeTarget "Lilico-dev" */;
 			buildPhases = (
-				154B88FD276A1EEB00780E93 /* Swift Format */,
 				154B88FE276A1EEB00780E93 /* R swift */,
 				154B88FF276A1EEB00780E93 /* Sources */,
 				154B8919276A1EEB00780E93 /* Frameworks */,
@@ -3281,7 +3280,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15C58C6A2868A4EE00BD4FC6 /* Build configuration list for PBXNativeTarget "Lilico" */;
 			buildPhases = (
-				15C58AAC2868A4EE00BD4FC6 /* Swift Format */,
 				15C58AAD2868A4EE00BD4FC6 /* R swift */,
 				15C58AAE2868A4EE00BD4FC6 /* Sources */,
 				15C58C3C2868A4EE00BD4FC6 /* Frameworks */,
@@ -3438,24 +3436,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		154B88FD276A1EEB00780E93 /* Swift Format */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Swift Format";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n\nif [ `uname -m` == 'arm64' ] && [ -d /opt/homebrew/bin/ ]; then\n  export PATH=/opt/homebrew/bin:$PATH\nfi\n\n\n#if which swiftformat >/dev/null; then\n  # swiftformat --swiftversion 5.5 .\n#else\n  #echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\n#fi\n";
-		};
 		154B88FE276A1EEB00780E93 /* R swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -3475,24 +3455,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n# Not workimg well with SwiftUI\n#if [ `uname -m` == 'arm64' ] && [ -d /opt/homebrew/bin/ ]; then\n#  export PATH=/opt/homebrew/bin:$PATH\n#fi\n\n#if which rswift >/dev/null; then\n#    rswift generate \"$SRCROOT/R.generated.swift\"\n#else\n#  echo \"warning: Rswift not installed, download from https://github.com/mac-cain13/R.swift/releases/tag/v6.0.0\"\n#fi\n";
-		};
-		15C58AAC2868A4EE00BD4FC6 /* Swift Format */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Swift Format";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n\nif [ `uname -m` == 'arm64' ] && [ -d /opt/homebrew/bin/ ]; then\n  export PATH=/opt/homebrew/bin:$PATH\nfi\n\n\n#if which swiftformat >/dev/null; then\n  # swiftformat --swiftversion 5.5 .\n#else\n  #echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\n#fi\n";
 		};
 		15C58AAD2868A4EE00BD4FC6 /* R swift */ = {
 			isa = PBXShellScriptBuildPhase;
