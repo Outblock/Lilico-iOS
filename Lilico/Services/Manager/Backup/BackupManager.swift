@@ -32,7 +32,7 @@ extension BackupManager {
 extension BackupManager {
     class DriveItem: Codable {
         var username: String
-        var uid: String
+        var uid: String?
         var data: String
         var version: String
         var time: String?
@@ -50,7 +50,8 @@ extension BackupManager {
     func uploadMnemonic(to type: BackupManager.BackupType, password: String) {
         switch type {
         case .googleDrive:
-            gdTarget.uploadMnemonic(password: password)
+//            gdTarget.uploadMnemonic(password: password)
+            break
         case .icloud:
             break
         default:
@@ -62,6 +63,7 @@ extension BackupManager {
 // MARK: - Helper
 
 extension BackupManager {
+    /// append current user mnemonic to list with encrypt
     func addCurrentMnemonicToList(_ list: [BackupManager.DriveItem], password: String) throws -> [BackupManager.DriveItem] {
         guard let username = UserManager.shared.userInfo?.username, !username.isEmpty else {
             throw BackupError.missingUserName
@@ -71,14 +73,14 @@ extension BackupManager {
             throw BackupError.missingMnemonic
         }
         
-        let dataHexString = try WalletManager.encryptionAES(key: password, data: mnemonicData).hexString
+        let dataHexString = try encryptMnemonic(mnemonicData, password: password)
         
         let existItem = list.first { item in
             item.username == username
         }
         
         if let existItem = existItem {
-            existItem.version = "1.0"
+            existItem.version = "1"
             existItem.data = dataHexString
             return list
         }
@@ -90,7 +92,7 @@ extension BackupManager {
         let item = BackupManager.DriveItem()
         item.username = username
         item.uid = uid
-        item.version = "1.0"
+        item.version = "1"
         item.data = dataHexString
         
         var newList = [item]
@@ -98,16 +100,46 @@ extension BackupManager {
         return newList
     }
     
+    /// encrypt list to hex string
     func encryptList(_ list: [BackupManager.DriveItem]) throws -> String {
         let jsonData = try JSONEncoder().encode(list)
         let encrypedData = try WalletManager.encryptionAES(key: BackupManager.backupAESKey, data: jsonData)
         return encrypedData.hexString
     }
     
-    func decryptData(_ data: Data) throws -> [BackupManager.DriveItem] {
+    /// decrypt hex string to list
+    func decryptHexString(_ hexString: String) throws -> [BackupManager.DriveItem] {
+        guard let data = Data(hexString: hexString) else {
+            throw BackupError.hexStringToDataFailed
+        }
+        
+        return try decryptData(data)
+    }
+    
+    private func decryptData(_ data: Data) throws -> [BackupManager.DriveItem] {
         let jsonData = try WalletManager.decryptionAES(key: BackupManager.backupAESKey, data: data)
         let list = try JSONDecoder().decode([BackupManager.DriveItem].self, from: jsonData)
         return list
+    }
+    
+    /// encrypt mnemonic data to hex string
+    func encryptMnemonic(_ mnemonicData: Data, password: String) throws -> String {
+        let dataHexString = try WalletManager.encryptionAES(key: password, data: mnemonicData).hexString
+        return dataHexString
+    }
+    
+    /// decrypt hex string to mnemonic string
+    func decryptMnemonic(_ hexString: String, password: String) throws -> String {
+        guard let encryptData = Data(hexString: hexString) else {
+            throw BackupError.hexStringToDataFailed
+        }
+        
+        let decryptedData = try WalletManager.decryptionAES(key: password, data: encryptData)
+        guard let mm = String(data: decryptedData, encoding: .utf8), !mm.isEmpty else {
+            throw BackupError.decryptMnemonicFailed
+        }
+        
+        return mm
     }
 }
 

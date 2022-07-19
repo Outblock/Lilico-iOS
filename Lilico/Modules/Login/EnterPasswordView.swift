@@ -119,9 +119,9 @@ struct EnterPasswordView: View {
     }
 }
 
-struct EnterPasswordView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = EnterPasswordViewModel(account: .init(data: "", username: "AAA"))
-        EnterPasswordView(viewModel: viewModel.toAnyViewModel())
-    }
-}
+//struct EnterPasswordView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let viewModel = EnterPasswordViewModel(account: .init(data: "", username: "AAA"))
+//        EnterPasswordView(viewModel: viewModel.toAnyViewModel())
+//    }
+//}

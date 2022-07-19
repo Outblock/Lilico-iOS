@@ -35,4 +35,6 @@ enum BackupError: Error {
     case missingUserName
     case missingMnemonic
     case missingUid
+    case hexStringToDataFailed
+    case decryptMnemonicFailed
 }

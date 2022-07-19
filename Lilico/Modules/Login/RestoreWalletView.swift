@@ -81,7 +81,7 @@ struct RestoreWalletView: View {
                 }
 
                 Button {
-                    router.route(to: \.inputMnemonic)
+//                    router.route(to: \.inputMnemonic)
                 } label: {
                     Text("restore_with_recovery_phrase".localized)
                         .font(.headline)

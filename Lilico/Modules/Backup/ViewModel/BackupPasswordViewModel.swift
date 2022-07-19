@@ -31,7 +31,7 @@ class BackupPasswordViewModel: ViewModel {
         case let .secureBackup(password):
             do {
                 try WalletManager.shared.setSecurePassword(password, username: state.username)
-                try BackupManager.shared.setAccountDatatoiCloud(password: password)
+//                try BackupManager.shared.setAccountDatatoiCloud(password: password)
 
                 homeRouter?
                     .popToRoot()

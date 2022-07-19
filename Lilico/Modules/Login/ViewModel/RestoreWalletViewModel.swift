@@ -17,11 +17,11 @@ class RestoreWalletViewModel {
     var router: LoginCoordinator.Router?
 
     func getKeyFromiCloud() {
-        if let accountList = BackupManager.shared.loadAccountDataFromiCloud(), accountList.count > 0 {
-            router?.route(to: \.chooseAccount, accountList)
-        } else {
-            HUD.error(title: "no_icloud_backup".localized)
-        }
+//        if let accountList = BackupManager.shared.loadAccountDataFromiCloud(), accountList.count > 0 {
+//            router?.route(to: \.chooseAccount, accountList)
+//        } else {
+//            HUD.error(title: "no_icloud_backup".localized)
+//        }
     }
 
     func restoreSignIn() {
