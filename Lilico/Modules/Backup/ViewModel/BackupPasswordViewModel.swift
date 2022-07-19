@@ -18,30 +18,22 @@ class BackupPasswordViewModel: ViewModel {
     @RouterObject
     var homeRouter: WalletCoordinator.Router?
 
-    init() {
-        state = .init(username: UserManager.shared.userInfo?.username ?? "user")
+    init(backupType: BackupManager.BackupType) {
+        state = .init(backupType: backupType, uid: UserManager.shared.getUid() ?? "unknown_uid")
     }
 
     func trigger(_ input: BackupPasswordView.Action) {
         switch input {
-        case let .onPasswordChanged(password):
-            break
-        case let .onConfirmChanged(confirmPassword):
-            break
         case let .secureBackup(password):
-            do {
-                try WalletManager.shared.setSecurePassword(password, username: state.username)
-//                try BackupManager.shared.setAccountDatatoiCloud(password: password)
-
-                homeRouter?
-                    .popToRoot()
-                    .route(to: \.createSecure)
-            } catch {
-                HUD.error(title: "backup_failed".localized)
-                debugPrint(error)
-            }
+            // TODO: backup to cloud
+            BackupManager.shared.uploadMnemonic(to: state.backupType, password: password)
+            setWebPassword(password: password)
         default:
             break
         }
+    }
+    
+    private func setWebPassword(password: String) {
+        try? WalletManager.shared.setSecurePassword(password, uid: state.uid)
     }
 }

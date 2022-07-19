@@ -30,11 +30,11 @@ final class WalletCoordinator: NavigationCoordinatable {
     private var cancelSets = Set<AnyCancellable>()
 
     init() {
-        UserManager.shared.$isLoggedIn.sink { [weak self] isLoggedIn in
-            DispatchQueue.main.async {
-                self?.root(isLoggedIn ? \.start : \.empty)
-            }
-        }.store(in: &cancelSets)
+        
+    }
+    
+    private func refreshRoot() {
+        self.root(UserManager.shared.isLoggedIn ? \.start : \.empty)
     }
 }
 

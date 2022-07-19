@@ -100,9 +100,8 @@ extension WalletManager {
 // MARK: - Setter
 
 extension WalletManager {
-    #warning("change saving key from username to uid")
-    func setSecurePassword(_ pwd: String, username: String) throws {
-        try set(toBackupKeychain: pwd, forKey: username)
+    func setSecurePassword(_ pwd: String, uid: String) throws {
+        try set(toBackupKeychain: pwd, forKey: uid)
     }
 }
 

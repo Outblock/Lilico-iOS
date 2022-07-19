@@ -149,9 +149,6 @@ struct ManualBackupView: View {
                         .padding(.bottom)
                 }
             }
-            .onAppear {
-                overrideNavigationAppearance()
-            }
             .padding(.horizontal, 30)
             .navigationTitle("double_secure".localized)
             .navigationBarBackButtonHidden(true)

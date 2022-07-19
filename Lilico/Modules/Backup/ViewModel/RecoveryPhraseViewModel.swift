@@ -47,32 +47,12 @@ class RecoveryPhraseViewModel: ViewModel {
     func trigger(_ input: RecoveryPhraseView.Action) {
         switch input {
         case .icloudBackup:
-//            Task {
-//                await MainActor.run {
-//                    state.icloudLoading = true
-//                }
-//                do {
-//                    try BackupManager.shared.setAccountDatatoiCloud()
-//
-//                    await MainActor.run {
-//                        state.icloudLoading = false
-//                        HUD.present(title: "Backup Success")
-//                    }
-//
-//                } catch {
-//                    await MainActor.run {
-//                        state.icloudLoading = false
-//                        HUD.error(title: "Backup Failed")
-//                    }
-//                }
-//            }
-            router?.route(to: \.backupPassword)
+            router?.route(to: \.backupPassword, BackupManager.BackupType.icloud)
         case .googleBackup:
-            router?.route(to: \.createPin)
+            router?.route(to: \.backupPassword, BackupManager.BackupType.googleDrive)
         case .manualBackup:
             router?.route(to: \.manualBackup)
-        case .back:
-            homeRouter?.popToRoot()
+            break
         }
     }
 }
