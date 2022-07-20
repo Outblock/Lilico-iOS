@@ -38,7 +38,7 @@ struct RestoreWalletView: View {
             }, title: "restore_with_icloud".localized)
             VPrimaryButton(model: ButtonStyle.primary,
                            action: {
-                
+                viewModel.restoreWithGoogleDriveAction()
             }, title: "restore_with_gd".localized)
             
             VPrimaryButton(model: ButtonStyle.border,

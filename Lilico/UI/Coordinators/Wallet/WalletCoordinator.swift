@@ -33,7 +33,7 @@ final class WalletCoordinator: NavigationCoordinatable {
         
     }
     
-    private func refreshRoot() {
+    func refreshRoot() {
         self.root(UserManager.shared.isLoggedIn ? \.start : \.empty)
     }
 }

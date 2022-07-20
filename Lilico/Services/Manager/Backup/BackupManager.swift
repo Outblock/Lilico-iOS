@@ -15,7 +15,7 @@ import WalletCore
 
 protocol BackupTarget {
     func uploadMnemonic(password: String) throws
-    func getCurrentDriveItems() -> [BackupManager.DriveItem]
+    func getCurrentDriveItems() async throws -> [BackupManager.DriveItem]
 }
 
 extension BackupManager {
@@ -58,6 +58,34 @@ extension BackupManager {
             break
         }
     }
+    
+    func restore(from type: BackupManager.BackupType) {
+        switch type {
+        case .googleDrive:
+            Task {
+                do {
+                    let fileId = try await gdTarget.testGetFileId()
+                    debugPrint("BackupManager -> fileId = \(fileId)")
+                } catch {
+                    debugPrint("BackupManager -> restore with google drive failed: \(error)")
+                }
+            }
+        case .icloud:
+            break
+        default:
+            break
+        }
+    }
+    
+    func getCloudDriveItems(from type: BackupManager.BackupType) async throws -> [BackupManager.DriveItem] {
+        return []
+    }
+}
+
+class BackupManager: ObservableObject {
+    static let shared = BackupManager()
+    
+    private let gdTarget = BackupGDTarget()
 }
 
 // MARK: - Helper
@@ -141,112 +169,4 @@ extension BackupManager {
         
         return mm
     }
-}
-
-class BackupManager: ObservableObject {
-    static let shared = BackupManager()
-    
-    private let gdTarget = BackupGDTarget()
-
-//    var hasBackup: Bool {
-//        return icloudStore.string(forKey: BackupManager.backupName) != nil
-//    }
-
-//    var icloudStore = NSUbiquitousKeyValueStore()
-
-    init() {
-//        icloudStore.synchronize()
-    }
-
-//    func setAccountDatatoiCloud(password: String) throws {
-//        guard let user = Auth.auth().currentUser,
-//              !user.isAnonymous,
-//              let userInfo = UserManager.shared.userInfo,
-//              let userData = userInfo.username.data(using: .utf8),
-//              let mnemonic = WalletManager.shared.getCurrentMnemonic(),
-//              let data = mnemonic.data(using: .utf8)
-//        else {
-//            throw LLError.missingUserInfoWhilBackup
-//        }
-//
-//        let iv = Hash.sha256(data: userData).hexValue
-//        let encryptData = try WalletManager.encryptionAES(key: password, iv: String(iv.prefix(16)), data: data)
-//        let accountData = AccountData(data: encryptData.base64EncodedString(), username: userInfo.username)
-//
-//        var storedData = loadAccountDataFromiCloud() ?? []
-//        storedData.append(accountData)
-//
-//        let jsonData = try JSONEncoder().encode(storedData)
-//        icloudStore.set(jsonData, forKey: BackupManager.backupName)
-//        icloudStore.synchronize()
-//    }
-
-//    func loadAccountDataFromiCloud() -> [AccountData]? {
-//        guard let data = icloudStore.data(forKey: BackupManager.backupName) else {
-//            return nil
-//        }
-//
-//        do {
-//            let model = try JSONDecoder().decode([AccountData].self, from: data)
-//            return model
-//        } catch {
-//            print(error)
-//        }
-//
-//        return nil
-//    }
-
-    func decryptDriveItem(password: String, item: BackupManager.DriveItem) throws -> String {
-        guard let data = Data(base64Encoded: item.data),
-              let userData = item.username.data(using: .utf8)
-        else {
-            throw LLError.decryptBackupFailed
-        }
-
-        let iv = Hash.sha256(data: userData).hexValue
-        var keyData = try WalletManager.decryptionAES(key: password, iv: String(iv.prefix(16)), data: data)
-        guard var key = String(data: keyData, encoding: .utf8) else {
-            throw LLError.decryptBackupFailed
-        }
-
-        defer {
-            key = ""
-            keyData = Data()
-        }
-
-        return key
-    }
-
-//    func getBackupNameList() -> [String] {
-//        if let storedData = loadAccountDataFromiCloud() {
-//            return storedData.map { $0.username }
-//        }
-//        return []
-//    }
-
-//    func loadAccountDataFromiCloud(username: String) throws {
-//        guard let dataString = icloudStore.string(forKey: BackupManager.backupName) else {
-//            throw LLError.emptyiCloudBackup
-//        }
-//
-//        guard let data = Data(base64Encoded: dataString) else {
-//            throw LLError.decryptBackupFailed
-//        }
-//
-//        let model = try JSONDecoder().decode(StoreData.self, from: data)
-//        guard let index = model.users.firstIndex(of: username),
-//              let storeString = model.data[safe: index],
-//              let storeData = Data(base64Encoded: storeString)
-//        else {
-//            throw LLError.decryptBackupFailed
-//        }
-//
-//        let jsonData = try WalletManager.decryptionAES(key: WalletManager.encryptionKey, data: storeData)
-//        let accountData = try JSONDecoder().decode(AccountData.self, from: jsonData)
-//        let encryptData = try WalletManager.decryptionAES(key: accountData.name, data: Data(hexString: accountData.data) ?? Data())
-//        guard let mnemonic = String(data: encryptData, encoding: .utf8) else {
-//            throw LLError.emptyiCloudBackup
-//        }
-//        try WalletManager.shared.createNewWallet(mnemonic: mnemonic, forceCreate: true)
-//    }
 }

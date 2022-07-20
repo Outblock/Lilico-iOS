@@ -249,3 +249,4 @@
 "sending" = "Sending...";
 "sent_successfully" = "Sent successfully";
 "send_failed" = "Send failed";
+"account_not_found" = "Account not Found";

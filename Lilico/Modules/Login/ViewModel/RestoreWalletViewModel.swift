@@ -6,10 +6,6 @@
 //
 
 import Foundation
-import GoogleAPIClientForREST_Drive
-import GoogleAPIClientForRESTCore
-import GoogleSignIn
-import GTMSessionFetcherCore
 import Stinsen
 
 class RestoreWalletViewModel {
@@ -21,5 +17,9 @@ class RestoreWalletViewModel {
 extension RestoreWalletViewModel {
     func restoreWithManualAction() {
         router?.route(to: \.inputMnemonic)
+    }
+    
+    func restoreWithGoogleDriveAction() {
+        BackupManager.shared.restore(from: .googleDrive)
     }
 }

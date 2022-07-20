@@ -37,4 +37,11 @@ enum BackupError: Error {
     case missingUid
     case hexStringToDataFailed
     case decryptMnemonicFailed
+    case topVCNotFound
+}
+
+enum GoogleBackupError: Error {
+    case missingLoginUser
+    case noDriveScope
+    case queryFileError
 }
