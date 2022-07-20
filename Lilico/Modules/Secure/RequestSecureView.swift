@@ -145,7 +145,7 @@ struct RequestSecureView: View {
                 }
                 .padding(.bottom)
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 28)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: btnBack)

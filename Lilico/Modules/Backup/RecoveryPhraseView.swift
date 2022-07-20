@@ -136,7 +136,7 @@ struct RecoveryPhraseView: View {
                                }, title: "backup_manually".localized)
             }
         }
-        .padding(.horizontal, 30)
+        .padding(.horizontal, 28)
         .navigationTitle("".localized)
         .navigationBarTitleDisplayMode(.inline)
         .addBackBtn {

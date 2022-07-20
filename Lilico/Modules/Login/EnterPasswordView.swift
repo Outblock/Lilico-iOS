@@ -111,7 +111,7 @@ struct EnterPasswordView: View {
 //                }
                     .padding(.bottom)
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 28)
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: btnBack)

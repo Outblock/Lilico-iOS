@@ -118,7 +118,7 @@ struct BackupPasswordView: View {
                            title: "secure_backup".localized)
                 .padding(.bottom)
         }
-        .padding(.horizontal, 30)
+        .padding(.horizontal, 28)
         .navigationTitle("".localized)
         .navigationBarTitleDisplayMode(.inline)
         .addBackBtn {

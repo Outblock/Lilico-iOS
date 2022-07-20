@@ -13,8 +13,7 @@ struct RestoreWalletView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            Spacer()
-            VStack(alignment: .leading, spacing: 18) {
+            VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Text("restore".localized)
                         .foregroundColor(Color.LL.orange)
@@ -28,7 +27,6 @@ struct RestoreWalletView: View {
                 Text("restore_with_words_desc".localized)
                     .font(.LL.body)
                     .foregroundColor(.LL.note)
-                    .padding(.top, 1)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -45,16 +43,17 @@ struct RestoreWalletView: View {
             
             VPrimaryButton(model: ButtonStyle.border,
                            action: {
-                
+                viewModel.restoreWithManualAction()
             }, title: "restore_with_recovery_phrase".localized)
         }
-        .padding(.horizontal, 30)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, 28)
         .navigationTitle("".localized)
         .navigationBarTitleDisplayMode(.inline)
         .addBackBtn {
             router.dismissCoordinator()
         }
-        .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+        .backgroundFill(Color.LL.background)
     }
 }
 

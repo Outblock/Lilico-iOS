@@ -209,7 +209,7 @@
 "buy" = "Buy";
 "swap" = "Swap";
 "restore" = "Restore";
-"restore_with_words_desc" = "Restore your wallet with the 12 word \n recovery phrase that you have written down.";
+"restore_with_words_desc" = "Restore your wallet with the 12 word \nrecovery phrase that you have written down.";
 "restore_with_icloud" = "Restore with iCloud";
 "restore_with_gd" = "Restore with Google Drive";
 "restore_with_recovery_phrase" = "Restore with Recovery Phrase";

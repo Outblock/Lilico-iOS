@@ -97,7 +97,7 @@ struct ConfirmPinCodeView: View {
 //                    self.focuse = true
 //                }
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 28)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: btnBack)

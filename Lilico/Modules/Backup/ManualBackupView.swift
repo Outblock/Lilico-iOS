@@ -149,7 +149,7 @@ struct ManualBackupView: View {
                         .padding(.bottom)
                 }
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 28)
             .navigationTitle("double_secure".localized)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
