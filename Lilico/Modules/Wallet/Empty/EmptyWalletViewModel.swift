@@ -31,13 +31,9 @@ struct CardDataSource: Identifiable {
 }
 
 class EmptyWalletViewModel: ViewModel {
-    @Published
-    private(set) var state: EmptyWalletState
+    @Published private(set) var state: EmptyWalletState
 
-//    @RouterObject
-//    var router: NavigationRouter<HomeCoordinator>!
-
-    var router: WalletCoordinator.Router? = RouterStore.shared.retrieve()
+    @RouterObject var router: WalletCoordinator.Router?
 
     init() {
         let dataSource = [
@@ -64,11 +60,7 @@ class EmptyWalletViewModel: ViewModel {
     func trigger(_ input: EmptyWalletAction) {
         switch input {
         case .signUp:
-//            router?
-//            router.route(to: )
-//            router.coordinator.routeToAuthenticated()
             router?.route(to: \.register)
-//            router?.route(to: \.createSecure)
         case .signIn:
             router?.route(to: \.login)
         }
