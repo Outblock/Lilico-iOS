@@ -45,7 +45,13 @@ class AddCollectionViewModel: ObservableObject {
             !col.currentAddress().isEmpty
         })
         .map({ it in
-            NFTCollectionItem(collection: it, status: NFTCollectionStateManager.share.isTokenAdded(it.currentAddress()) ? .own : .failed)
+            //TODO: handle status
+            var status = NFTCollectionItem.ItemStatus.idle
+            if(NFTCollectionStateManager.share.isTokenAdded(it.currentAddress())) {
+                status = .own
+            }
+            //TODO: fail or pending
+            return NFTCollectionItem(collection: it, status: status)
         })
         
         await MainActor.run {

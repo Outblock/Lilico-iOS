@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import PartialSheet
 
 struct NFTAddCollectionView: View {
     
@@ -20,6 +21,12 @@ struct NFTAddCollectionView: View {
     
     @State private var selectItem: NFTCollectionItem?
     
+    let iPhoneStyle = PSIphoneStyle(
+        background: .solid(Color(uiColor: .systemBackground)),
+        handleBarStyle: .none,
+        cover: .enabled(Color.black.opacity(0.72)),
+        cornerRadius: 10
+    )
     
     var body: some View {
         VStack(spacing: 0) {
@@ -45,20 +52,21 @@ struct NFTAddCollectionView: View {
         .background(Color.LL.Neutrals.background)
         .navigationTitle("add_collection".localized)
         .navigationBarTitleDisplayMode(.inline)
-        
         .addBackBtn {
             viewModel.trigger(.back)
         }
-        
-        .overlay {
-            if let item = self.selectItem  {
-                if(isPresented ) {
-                    withAnimation {
+        .partialSheet(
+            isPresented: $isPresented,
+            iPhoneStyle: iPhoneStyle,
+            content: {
+                if let item = self.selectItem  {
+                    if(isPresented ) {
                         NFTAddCollectionView.NFTCollectionEnableView(item: item, isPresented: $isPresented)
                     }
                 }
             }
-        }
+        )
+        .attachPartialSheetToRoot()
         
     }
 

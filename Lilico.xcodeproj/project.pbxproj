@@ -772,6 +772,7 @@
 		4EC56B2B281D385D00246878 /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B29281D385D00246878 /* FirebaseConfig.swift */; };
 		4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */; };
 		4EC56B31281FC57900246878 /* FlowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC56B2F281FC57900246878 /* FlowQuery.swift */; };
+		4EC7BE3E2888413500F2A45A /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC7BE3D2888413500F2A45A /* PartialSheet */; };
 		4EC97652286A07060066811D /* NFTCollectionEnableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC97651286A07060066811D /* NFTCollectionEnableView.swift */; };
 		4EC97653286A07060066811D /* NFTCollectionEnableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC97651286A07060066811D /* NFTCollectionEnableView.swift */; };
 		4ECA7E66284371CA0039A210 /* NFTBlurImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECA7E64284371CA0039A210 /* NFTBlurImageView.swift */; };
@@ -1456,6 +1457,7 @@
 				157046752793241A00D1747B /* Kingfisher in Frameworks */,
 				6A204C6C2860784B00D0D3A4 /* FirebaseStorage in Frameworks */,
 				1500783428682BF700A00109 /* SPIndicator in Frameworks */,
+				4EC7BE3E2888413500F2A45A /* PartialSheet in Frameworks */,
 				15DE22F1277F133B00B5EE03 /* SkeletonUI in Frameworks */,
 				1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */,
 				6A400927287578FF00A77070 /* QRCode in Frameworks */,
@@ -3287,6 +3289,7 @@
 				6A7C080E286EE95E00020987 /* SwiftUICharts */,
 				6A400926287578FF00A77070 /* QRCode */,
 				6AE1D48D287690E7000FA0B7 /* SwiftUIPager */,
+				4EC7BE3D2888413500F2A45A /* PartialSheet */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -3391,6 +3394,7 @@
 				6AE46060286EE644009C2B96 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 				6A400923287578D400A77070 /* XCRemoteSwiftPackageReference "QRCode" */,
 				6A0454CB28768E9E00A9131C /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				4EC7BE3C2888413500F2A45A /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -5060,6 +5064,14 @@
 				revision = 95c7d6ca2d2ab12a2a832805ff1fbfc8953e27da;
 			};
 		};
+		4EC7BE3C2888413500F2A45A /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		4ED6DD0E285A22A800105133 /* XCRemoteSwiftPackageReference "IrregularGradient" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/joogps/IrregularGradient";
@@ -5334,6 +5346,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
+		};
+		4EC7BE3D2888413500F2A45A /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EC7BE3C2888413500F2A45A /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
 		};
 		4ED6DD0F285A22A800105133 /* IrregularGradient */ = {
 			isa = XCSwiftPackageProductDependency;
