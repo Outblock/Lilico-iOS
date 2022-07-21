@@ -28,12 +28,12 @@ class GoogleDriveAPI {
         
         return try await withCheckedThrowingContinuation { continuation in
             service.executeQuery(query) { ticket, results, error in
-                guard let fileListObject = results as? GTLRDrive_FileList, error == nil else {
-                    continuation.resume(throwing: error ?? GoogleBackupError.queryFileError)
+                if let error = error {
+                    continuation.resume(throwing: error)
                     return
                 }
                 
-                guard let files = fileListObject.files else {
+                guard let fileListObject = results as? GTLRDrive_FileList, let files = fileListObject.files else {
                     continuation.resume(returning: nil)
                     return
                 }
@@ -46,6 +46,26 @@ class GoogleDriveAPI {
                 }
                 
                 continuation.resume(returning: nil)
+            }
+        }
+    }
+    
+    func getFileData(fileId: String) async throws -> Data? {
+        let query = GTLRDriveQuery_FilesGet.queryForMedia(withFileId: fileId)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            service.executeQuery(query) { ticket, file, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                guard let data = (file as? GTLRDataObject)?.data else {
+                    continuation.resume(returning: nil)
+                    return
+                }
+                
+                continuation.resume(returning: data)
             }
         }
     }

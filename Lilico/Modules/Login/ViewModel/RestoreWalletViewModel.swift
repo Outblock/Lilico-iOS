@@ -20,6 +20,25 @@ extension RestoreWalletViewModel {
     }
     
     func restoreWithGoogleDriveAction() {
-        BackupManager.shared.restore(from: .googleDrive)
+        HUD.loading()
+        
+        Task {
+            do {
+                let items = try await BackupManager.shared.getCloudDriveItems(from: .googleDrive)
+                HUD.dismissLoading()
+                
+                if items.isEmpty {
+                    HUD.error(title: "no_x_backup".localized("google_drive".localized))
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.router?.route(to: \.chooseAccount, items)
+                }
+            } catch {
+                HUD.dismissLoading()
+                HUD.error(title: "restore_with_x_failed".localized("google_drive".localized))
+            }
+        }
     }
 }

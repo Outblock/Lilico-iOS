@@ -30,7 +30,6 @@
 "contact_edited" = "Contact edited";
 "contact_deleted" = "Contact deleted";
 "delete_failed" = "Delete failed";
-"no_icloud_backup" = "No backup found in icloud";
 "login_success" = "Login success";
 "login_failed" = "Login failed";
 "success_tips" = "Success !";
@@ -136,7 +135,7 @@
 "almost_there" = "Almost there";
 "choose" = "Choose";
 "account" = "Account";
-"multiple_accounts_found" = "Multiple Accounts found.";
+"multiple_accounts_found" = "%d Accounts found.";
 "choose_account" = "Choose Account";
 "enter" = "Enter";
 "pwd_created_tips" = "The password you created when you backup the wallet.";
@@ -250,3 +249,9 @@
 "sent_successfully" = "Sent successfully";
 "send_failed" = "Send failed";
 "account_not_found" = "Account not Found";
+
+"restore_with_x_failed" = "Restore with %@ failed";
+"no_x_backup" = "No backup found in %@";
+"google_drive" = "Google Drive";
+"icloud" = "icloud";
+"decrypt_failed" = "Decrypt Failed";

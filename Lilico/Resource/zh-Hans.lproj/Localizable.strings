@@ -30,12 +30,20 @@
 "contact_edited" = "Contact edited";
 "contact_deleted" = "Contact deleted";
 "delete_failed" = "Delete failed";
-"no_icloud_backup" = "No backup found in icloud";
 "login_success" = "Login success";
 "login_failed" = "Login failed";
 "success_tips" = "Success !";
 "incorrect_password" = "Incorrect password";
 "words_not_found" = "Oops, words not found.";
+"update_nickname_failed" = "Update nickname failed";
+"update_private_failed" = "Change private status failed";
+"avatar_info_error" = "NFT info error";
+"change_avatar_error" = "Change avatar failed";
+"fetch_wallet_error" = "Fetch wallet data failed";
+"add_token_failed" = "Add token failed";
+"add_token_success" = "Add token success";
+"add_token_timeout" = "Add token timeout";
+"fetch_chart_data_failed" = "Fetch chart data failed";
 
 // NFT
 "x_collections" = "%d Collections";
@@ -56,14 +64,14 @@
 "more" = "More";
 "purchase_price" = "Purchase Price";
 "purchase_date" = "Purchase Date";
-"Trending" = "Trending";
+"trending" = "Trending";
 "collection_list" = "Collection list";
 "add_collection" = "Add Collection";
 "confirmation" = "Confirmation";
 "enable_collection"="Enable Collection";
-"nft_collection_add_failed"="failed";
+"nft_collection_add_failed"="Failed";
 "nft_collection_add_pending"="Pending";
-"search_NFT_collection"="Search NFT Collection";
+"search_NFT_collection" = "Search NFT Collection";
 
 // Account
 "create_a" = "Create a";
@@ -127,7 +135,7 @@
 "almost_there" = "Almost there";
 "choose" = "Choose";
 "account" = "Account";
-"multiple_accounts_found" = "Multiple Accounts found.";
+"multiple_accounts_found" = "%d Accounts found.";
 "choose_account" = "Choose Account";
 "enter" = "Enter";
 "pwd_created_tips" = "The password you created when you backup the wallet.";
@@ -152,6 +160,20 @@
 "notifications" = "Notifications";
 "about" = "About";
 "switch_account" = "Switch Account";
+
+// Profile Edit
+"edit_account" = "Edit Account";
+"edit_avatar" = "Edit Avatar";
+"edit_nickname" = "Edit Nickname";
+"private" = "Private";
+"private_off_desc" = "You can be searched";
+"private_on_desc" = "You can not be searched";
+"visible" = "Visible";
+"unvisible" = "Unvisible";
+
+// Avatar Edit
+"done" = "Done";
+"current_avatar" = "Current Avatar";
 
 // Address Book
 "edit_contact" = "Edit contact";
@@ -183,10 +205,52 @@
 "wallet" = "Wallet";
 "flow" = "Flow";
 "receive" = "Receive";
+"buy" = "Buy";
 "swap" = "Swap";
 "restore" = "Restore";
-"restore_with_words_desc" = "Restore your wallet with the 12 word \n recovery phrase that you have written down.";
+"restore_with_words_desc" = "Restore your wallet with the 12 word \nrecovery phrase that you have written down.";
 "restore_with_icloud" = "Restore with iCloud";
 "restore_with_gd" = "Restore with Google Drive";
 "restore_with_recovery_phrase" = "Restore with Recovery Phrase";
+"x_coins" = "%d Coins";
+"copied" = "Copied";
+"add_token" = "Add Token";
+"enable" = "Enable";
+"send_uppercase" = "SEND";
+"receive_uppercase" = "RECEIVE";
+"recent_price" = "Recent Price";
+"data_from" = "DATA FROM";
+"binance" = "Binance";
+"kraken" = "Kraken";
+"huobi" = "Huobi";
+"qr_code_str" = "QR Code";
+"qr_code_desc" = "Shown your QR code to receive transactions.";
+"wallet_address" = "Wallet Address";
+"copy" = "Copy";
+"recent" = "Recent";
+"send_to" = "Send to";
+"send_search_placeholder" = "Username, address(0x), Find or Flowns";
+"send_user_empty" = "Search to find more users";
+"search_the_id" = "Search the ID:";
+"no_account_found_msg" = "Sorry, We did not find any related account, please check your enter and search it again.";
+"search_failed_msg" = "Search failed. Please try again.";
+"lilico_user" = "Lilico user";
+".find" = ".find";
+".flowns" = ".flowns";
+"transfer_amount" = "Transfer Amount";
+"enter_amount" = "Enter Amount";
+"max" = "Max";
+"insufficient_balance" = "Insufficient Balance";
+"amount_balance" = "Amount Balance";
+"confirmation" = "Confirmation";
+"amount_confirmation" = "Amount Confirmation";
+"format_error" = "Format Error";
+"sending" = "Sending...";
+"sent_successfully" = "Sent successfully";
+"send_failed" = "Send failed";
+"account_not_found" = "Account not Found";
 
+"restore_with_x_failed" = "Restore with %@ failed";
+"no_x_backup" = "No backup found in %@";
+"google_drive" = "Google Drive";
+"icloud" = "icloud";

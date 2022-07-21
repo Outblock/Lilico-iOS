@@ -43,5 +43,4 @@ enum BackupError: Error {
 enum GoogleBackupError: Error {
     case missingLoginUser
     case noDriveScope
-    case queryFileError
 }

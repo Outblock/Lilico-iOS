@@ -30,12 +30,22 @@ extension BackupGDTarget {
     }
     
     func getCurrentDriveItems() async throws -> [BackupManager.DriveItem] {
-        return []
-    }
-    
-    func testGetFileId() async throws -> String? {
         try await prepare()
-        return try await api?.getFileId(fileName: BackupManager.backupFileName)
+        
+        guard let fileId = try await api?.getFileId(fileName: BackupManager.backupFileName) else {
+            return []
+        }
+        
+        guard let data = try await api?.getFileData(fileId: fileId), !data.isEmpty,
+              let hexString = String(data: data, encoding: .utf8)?.trim() else {
+            return []
+        }
+        
+        // Compatible extension problem
+        let quoteSet = CharacterSet(charactersIn: "\"")
+        let fixedHexString = hexString.trimmingCharacters(in: quoteSet)
+        
+        return try BackupManager.shared.decryptHexString(fixedHexString)
     }
 }
 

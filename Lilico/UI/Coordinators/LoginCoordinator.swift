@@ -13,6 +13,8 @@ final class LoginCoordinator: NavigationCoordinatable {
 
     @Root var restore = makeRestore
     @Route(.push) var inputMnemonic = makeInputMnemonic
+    @Route(.push) var chooseAccount = makeChooseAccount
+    @Route(.push) var enterRestorePwd = makeEnterRestorePassword
 
     @ViewBuilder func makeRestore() -> some View {
         RestoreWalletView(viewModel: .init())
@@ -20,5 +22,13 @@ final class LoginCoordinator: NavigationCoordinatable {
 
     @ViewBuilder func makeInputMnemonic() -> some View {
         InputMnemonicView(viewModel: InputMnemonicViewModel())
+    }
+    
+    @ViewBuilder func makeChooseAccount(items: [BackupManager.DriveItem]) -> some View {
+        ChooseAccountView(driveItems: items)
+    }
+    
+    @ViewBuilder func makeEnterRestorePassword(item: BackupManager.DriveItem) -> some View {
+        EnterRestorePasswordView(driveItem: item)
     }
 }

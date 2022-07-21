@@ -59,26 +59,13 @@ extension BackupManager {
         }
     }
     
-    func restore(from type: BackupManager.BackupType) {
+    func getCloudDriveItems(from type: BackupManager.BackupType) async throws -> [BackupManager.DriveItem] {
         switch type {
         case .googleDrive:
-            Task {
-                do {
-                    let fileId = try await gdTarget.testGetFileId()
-                    debugPrint("BackupManager -> fileId = \(fileId)")
-                } catch {
-                    debugPrint("BackupManager -> restore with google drive failed: \(error)")
-                }
-            }
-        case .icloud:
-            break
+            return try await gdTarget.getCurrentDriveItems()
         default:
-            break
+            return []
         }
-    }
-    
-    func getCloudDriveItems(from type: BackupManager.BackupType) async throws -> [BackupManager.DriveItem] {
-        return []
     }
 }
 

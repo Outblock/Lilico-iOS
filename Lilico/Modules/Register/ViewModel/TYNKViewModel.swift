@@ -10,19 +10,10 @@ import Resolver
 import Stinsen
 
 class TYNKViewModel: ViewModel {
-    @Published
-    private(set) var state = TYNKView.ViewState()
-
-    @Injected
-    var walletManager: WalletManager
-
-    var userManager = UserManager.shared
-
+    @Published private(set) var state = TYNKView.ViewState()
     var username: String
-    var router: RegisterCoordinator.Router? = RouterStore.shared.retrieve()
 
-    @RouterObject
-    var homeRouter: WalletCoordinator.Router?
+    @RouterObject var router: WalletCoordinator.Router?
 
     init(username: String) {
         self.username = username
@@ -31,26 +22,27 @@ class TYNKViewModel: ViewModel {
     func trigger(_ input: TYNKView.Action) {
         switch input {
         case .createWallet:
-            Task {
+            registerAction()
+        }
+    }
+    
+    func registerAction() {
+        state.isLoading = true
+        
+        Task {
+            do {
+                try await UserManager.shared.register(username)
                 await MainActor.run {
-                    state.isLoading = true
+                    state.isLoading = false
+                    router?.popToRoot()
+                    router?.coordinator.refreshRoot()
+                    router?.route(to: \.recoveryPhrase)
+                    HUD.success(title: "create_user_success".localized)
                 }
-                do {
-                    try await UserManager.shared.register(username)
-                    await MainActor.run {
-                        // TODO: - Fix the pop back animation
-                        homeRouter?
-                            .popToRoot()
-                            .route(to: \.recoveryPhrase)
-                        HUD.success(title: "create_user_success".localized)
-                        state.isLoading = false
-                    }
-                } catch {
-                    print("error: \(error)")
-                    await MainActor.run {
-                        state.isLoading = false
-                        HUD.error(title: "create_user_failed".localized)
-                    }
+            } catch {
+                await MainActor.run {
+                    state.isLoading = false
+                    HUD.error(title: "create_user_failed".localized)
                 }
             }
         }

@@ -1,4 +1,4 @@
-/* 
+/*
   AppString.strings
   Lilico
 
@@ -30,7 +30,6 @@
 "contact_edited" = "Contact edited";
 "contact_deleted" = "Contact deleted";
 "delete_failed" = "Delete failed";
-"no_icloud_backup" = "No backup found in icloud";
 "login_success" = "Login success";
 "login_failed" = "Login failed";
 "success_tips" = "Success !";
@@ -73,7 +72,6 @@
 "nft_collection_add_failed"="Failed";
 "nft_collection_add_pending"="Pending";
 "search_NFT_collection" = "Search NFT Collection";
-
 
 // Account
 "create_a" = "Create a";
@@ -137,7 +135,7 @@
 "almost_there" = "Almost there";
 "choose" = "Choose";
 "account" = "Account";
-"multiple_accounts_found" = "Multiple Accounts found.";
+"multiple_accounts_found" = "%d Accounts found.";
 "choose_account" = "Choose Account";
 "enter" = "Enter";
 "pwd_created_tips" = "The password you created when you backup the wallet.";
@@ -210,7 +208,7 @@
 "buy" = "Buy";
 "swap" = "Swap";
 "restore" = "Restore";
-"restore_with_words_desc" = "Restore your wallet with the 12 word \n recovery phrase that you have written down.";
+"restore_with_words_desc" = "Restore your wallet with the 12 word \nrecovery phrase that you have written down.";
 "restore_with_icloud" = "Restore with iCloud";
 "restore_with_gd" = "Restore with Google Drive";
 "restore_with_recovery_phrase" = "Restore with Recovery Phrase";
@@ -225,3 +223,34 @@
 "binance" = "Binance";
 "kraken" = "Kraken";
 "huobi" = "Huobi";
+"qr_code_str" = "QR Code";
+"qr_code_desc" = "Shown your QR code to receive transactions.";
+"wallet_address" = "Wallet Address";
+"copy" = "Copy";
+"recent" = "Recent";
+"send_to" = "Send to";
+"send_search_placeholder" = "Username, address(0x), Find or Flowns";
+"send_user_empty" = "Search to find more users";
+"search_the_id" = "Search the ID:";
+"no_account_found_msg" = "Sorry, We did not find any related account, please check your enter and search it again.";
+"search_failed_msg" = "Search failed. Please try again.";
+"lilico_user" = "Lilico user";
+".find" = ".find";
+".flowns" = ".flowns";
+"transfer_amount" = "Transfer Amount";
+"enter_amount" = "Enter Amount";
+"max" = "Max";
+"insufficient_balance" = "Insufficient Balance";
+"amount_balance" = "Amount Balance";
+"confirmation" = "Confirmation";
+"amount_confirmation" = "Amount Confirmation";
+"format_error" = "Format Error";
+"sending" = "Sending...";
+"sent_successfully" = "Sent successfully";
+"send_failed" = "Send failed";
+"account_not_found" = "Account not Found";
+
+"restore_with_x_failed" = "Restore with %@ failed";
+"no_x_backup" = "No backup found in %@";
+"google_drive" = "Google Drive";
+"icloud" = "icloud";
