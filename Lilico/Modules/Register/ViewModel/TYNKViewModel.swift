@@ -32,16 +32,21 @@ class TYNKViewModel: ViewModel {
         Task {
             do {
                 try await UserManager.shared.register(username)
-                await MainActor.run {
-                    state.isLoading = false
-                    router?.popToRoot()
-                    router?.coordinator.refreshRoot()
-                    router?.route(to: \.recoveryPhrase)
-                    HUD.success(title: "create_user_success".localized)
+                HUD.success(title: "create_user_success".localized)
+                
+                DispatchQueue.main.async {
+                    self.state.isLoading = false
+                    self.router?.popToRoot()
+                    self.router?.coordinator.refreshRoot()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        let newWalletCoordinator: WalletCoordinator.Router? = RouterStore.shared.retrieve()
+                        newWalletCoordinator?.route(to: \.recoveryPhrase)
+                    }
                 }
             } catch {
-                await MainActor.run {
-                    state.isLoading = false
+                DispatchQueue.main.async {
+                    self.state.isLoading = false
                     HUD.error(title: "create_user_failed".localized)
                 }
             }

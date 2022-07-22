@@ -99,6 +99,7 @@ struct UsernameView: View {
         .navigationTitle("".localized)
         .navigationBarTitleDisplayMode(.inline)
         .addBackBtn {
+            UIApplication.shared.endEditing()
             router.pop()
         }
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)

@@ -24,9 +24,15 @@ class BackupGDTarget: BackupTarget {
 }
 
 extension BackupGDTarget {
-    func uploadMnemonic(password: String) throws {
-//        let list = try BackupManager.shared.addCurrentMnemonicToList(getCurrentDriveItems(), password: password)
-//        let encrypedString = try BackupManager.shared.encryptList(list)
+    func uploadMnemonic(password: String) async throws {
+        let list = try await getCurrentDriveItems()
+        let newList = try BackupManager.shared.addCurrentMnemonicToList(list, password: password)
+        let encrypedString = try BackupManager.shared.encryptList(newList)
+        guard let data = encrypedString.data(using: .utf8), !data.isEmpty else {
+            throw BackupError.hexStringToDataFailed
+        }
+        
+        try await api?.write(content: data, to: BackupManager.backupFileName)
     }
     
     func getCurrentDriveItems() async throws -> [BackupManager.DriveItem] {

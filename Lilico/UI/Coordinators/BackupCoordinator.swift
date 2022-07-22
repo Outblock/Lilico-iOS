@@ -25,7 +25,7 @@ extension BackupCoordinator {
     }
 
     @ViewBuilder func makeBackupPassword(backupType: BackupManager.BackupType) -> some View {
-        BackupPasswordView(viewModel: BackupPasswordViewModel(backupType: backupType).toAnyViewModel())
+        BackupPasswordView(backupType: backupType)
     }
 
     func makeRequestSecure() -> SecureCoordinator {

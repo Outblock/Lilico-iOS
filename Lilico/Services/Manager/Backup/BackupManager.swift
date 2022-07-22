@@ -14,7 +14,7 @@ import GTMSessionFetcherCore
 import WalletCore
 
 protocol BackupTarget {
-    func uploadMnemonic(password: String) throws
+    func uploadMnemonic(password: String) async throws
     func getCurrentDriveItems() async throws -> [BackupManager.DriveItem]
 }
 
@@ -23,6 +23,17 @@ extension BackupManager {
         case icloud
         case googleDrive
         case manual
+        
+        var descLocalizedString: String {
+            switch self {
+            case .icloud:
+                return "icloud".localized
+            case .googleDrive:
+                return "google_drive".localized
+            case .manual:
+                return "manual"
+            }
+        }
     }
     
     static let backupFileName = "outblock_backup"
@@ -47,11 +58,10 @@ extension BackupManager {
 }
 
 extension BackupManager {
-    func uploadMnemonic(to type: BackupManager.BackupType, password: String) {
+    func uploadMnemonic(to type: BackupManager.BackupType, password: String) async throws {
         switch type {
         case .googleDrive:
-//            gdTarget.uploadMnemonic(password: password)
-            break
+            try await gdTarget.uploadMnemonic(password: password)
         case .icloud:
             break
         default:

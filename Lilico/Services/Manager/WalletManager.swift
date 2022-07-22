@@ -49,7 +49,8 @@ class WalletManager: ObservableObject {
             restoreMnemonicForCurrentUser()
         }
 
-        UserManager.shared.$isLoggedIn.sink { [weak self] _ in
+        UserManager.shared.$isLoggedIn.sink { [weak self] newLoginStatus in
+            debugPrint("WalletManager -> $isLoggedIn is changed: \(newLoginStatus)")
             DispatchQueue.main.async {
                 self?.reloadWalletInfo()
             }
@@ -111,7 +112,12 @@ extension WalletManager {
     /// Request server create wallet address, DO NOT call it multiple times.
     func asyncCreateWalletAddressFromServer() {
         Task {
-            let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.userAddress)
+            do {
+                let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.userAddress)
+                debugPrint("WalletManager -> asyncCreateWalletAddressFromServer success")
+            } catch {
+                debugPrint("WalletManager -> asyncCreateWalletAddressFromServer failed")
+            }
         }
     }
 
@@ -140,6 +146,7 @@ extension WalletManager {
         stopWalletInfoRetryTimer()
 
         if !UserManager.shared.isLoggedIn {
+            debugPrint("WalletManager -> can't reload because isLoggedIn is false")
             return
         }
 
@@ -162,7 +169,7 @@ extension WalletManager {
 
     /// polling wallet info, if wallet address is not exists
     private func pollingWalletInfoIfNeeded() {
-        debugPrint("WalletManager -> pollingWalletInfoIfNeeded, isMainThread: \(Thread.isMainThread)")
+        debugPrint("WalletManager -> pollingWalletInfoIfNeeded")
         let isEmptyBlockChain = walletInfo?.primaryWalletModel?.isEmptyBlockChain ?? true
         if isEmptyBlockChain {
             startWalletInfoRetryTimer()

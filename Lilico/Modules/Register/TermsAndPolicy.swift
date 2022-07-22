@@ -10,7 +10,7 @@ import WalletCore
 
 struct TermsAndPolicy: View {
     @EnvironmentObject var router: RegisterCoordinator.Router
-
+    
     var body: some View {
         VStack {
             Spacer()
@@ -31,7 +31,7 @@ struct TermsAndPolicy: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
-
+            
             VStack(alignment: .leading) {
                 Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
                     Text("terms_of_service".localized)
@@ -41,9 +41,9 @@ struct TermsAndPolicy: View {
                     Image(systemName: "chevron.right")
                         .font(Font.caption2.weight(.bold))
                 }.padding()
-
+                
                 Divider().foregroundColor(Color.LL.outline)
-
+                
                 Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
                     Text("privacy_policy".localized)
                         .font(.LL.body)
@@ -54,19 +54,19 @@ struct TermsAndPolicy: View {
                 }.padding()
             }
             .foregroundColor(Color.LL.text)
-
+            
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.LL.outline,
                             lineWidth: 1)
             )
             .padding(.bottom, 40)
-
+            
             VPrimaryButton(model: ButtonStyle.primary,
                            action: {
-                               router.route(to: \.username)
-                           }, title: "i_accept".localized)
-                .padding(.bottom)
+                router.route(to: \.username)
+            }, title: "i_accept".localized)
+            .padding(.bottom, 20)
         }
         .padding(.horizontal, 28)
         .navigationTitle("")

@@ -5,35 +5,41 @@
 //  Created by Hao Fu on 6/1/22.
 //
 
-import Foundation
+import SwiftUI
 import Stinsen
 
-class BackupPasswordViewModel: ViewModel {
-    @Published
-    private(set) var state: BackupPasswordView.ViewState
-
-    @RouterObject
-    var router: BackupCoordinator.Router?
-
-    @RouterObject
-    var homeRouter: WalletCoordinator.Router?
+class BackupPasswordViewModel: ObservableObject {
+    private var backupType: BackupManager.BackupType
+    @RouterObject var router: WalletCoordinator.Router?
 
     init(backupType: BackupManager.BackupType) {
-        state = .init(backupType: backupType, uid: UserManager.shared.getUid() ?? "unknown_uid")
+        self.backupType = backupType
     }
+    
+    func backupToCloudAction(password: String) {
+        HUD.loading()
 
-    func trigger(_ input: BackupPasswordView.Action) {
-        switch input {
-        case let .secureBackup(password):
-            // TODO: backup to cloud
-            BackupManager.shared.uploadMnemonic(to: state.backupType, password: password)
-            setWebPassword(password: password)
-        default:
-            break
+        Task {
+            do {
+                try await BackupManager.shared.uploadMnemonic(to: backupType, password: password)
+                setWebPassword(password: password)
+
+                HUD.dismissLoading()
+
+                DispatchQueue.main.async {
+                    self.router?.popToRoot()
+                    HUD.success(title: "backup_to_x_succeeded".localized(self.backupType.descLocalizedString))
+                }
+            } catch {
+                HUD.dismissLoading()
+                HUD.error(title: "backup_to_x_failed".localized(self.backupType.descLocalizedString))
+            }
         }
     }
     
     private func setWebPassword(password: String) {
-        try? WalletManager.shared.setSecurePassword(password, uid: state.uid)
+        if let uid = UserManager.shared.getUid(), !uid.isEmpty {
+            try? WalletManager.shared.setSecurePassword(password, uid: uid)
+        }
     }
 }
