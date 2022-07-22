@@ -69,4 +69,60 @@ class GoogleDriveAPI {
             }
         }
     }
+    
+    func write(content: Data, to fileName: String) async throws {
+        guard let fileId = try await getFileId(fileName: fileName) else {
+            debugPrint("GoogleDriveAPI -> write(): fileId is empty")
+            let _ = try await createFile(fileName: fileName, content: content)
+            return
+        }
+        
+        let parameter = GTLRUploadParameters(data: content, mimeType: "application/json")
+        
+        let file = GTLRDrive_File()
+        file.name = fileName
+        
+        let query = GTLRDriveQuery_FilesUpdate.query(withObject: file, fileId: fileId, uploadParameters: parameter)
+        
+        try await withUnsafeThrowingContinuation { (continuation: UnsafeContinuation<Void, Error>) in
+            service.executeQuery(query) { ticket, file, error in
+                if let error = error {
+                    debugPrint("GoogleDriveAPI -> write(): error: \(error)")
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                continuation.resume()
+            }
+        }
+    }
+    
+    private func createFile(fileName: String, content: Data) async throws -> String {
+        let parameter = GTLRUploadParameters(data: content, mimeType: "application/json")
+        
+        let file = GTLRDrive_File()
+        file.name = fileName
+        file.parents = ["appDataFolder"]
+        
+        let query = GTLRDriveQuery_FilesCreate.query(withObject: file, uploadParameters: parameter)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            service.executeQuery(query) { ticket, file, error in
+                if let error = error {
+                    debugPrint("GoogleDriveAPI -> createFile(): error: \(error)")
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                guard let file = file as? GTLRDrive_File, let fileId = file.identifier, !fileId.isEmpty else {
+                    debugPrint("GoogleDriveAPI -> createFile(): fileObject error")
+                    continuation.resume(throwing: GoogleBackupError.createFileError)
+                    return
+                }
+                
+                debugPrint("GoogleDriveAPI -> createFile(): fileId = \(fileId)")
+                continuation.resume(returning: fileId)
+            }
+        }
+    }
 }
