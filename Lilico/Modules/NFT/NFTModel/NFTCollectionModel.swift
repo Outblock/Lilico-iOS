@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Flow
+
 
 final class NFTCollectionConfig {
     static let share = NFTCollectionConfig()
@@ -32,7 +34,14 @@ extension NFTCollectionConfig {
         do {
             let list: [NFTCollection] = try await FirebaseConfig.nftCollections.fetch()
             config.removeAll()
-            config.append(contentsOf: list)
+            
+            config = list.filter{ item in
+                if (LocalUserDefaults.shared.flowNetwork == .testnet) {
+                    return item.secureCadenceCompatible.testnet
+                }
+                return item.secureCadenceCompatible.mainnet
+            }
+            
         } catch {
             fetchLocal()
         }

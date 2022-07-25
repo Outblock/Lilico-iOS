@@ -18,6 +18,7 @@ struct NFTCollection: Codable, Hashable {
     let name: String
     let contractName: String
     let address: ContractAddress
+    let secureCadenceCompatible: SecureCadenceCompatible
     var banner: URL? = nil
     var officialWebsite: String?
     var marketplace: URL?
@@ -50,6 +51,11 @@ struct ContractAddress: Codable, Hashable {
             return mainnet
         }
     }
+}
+
+struct SecureCadenceCompatible: Codable, Hashable {
+    let mainnet: Bool
+    let testnet: Bool
 }
 
 struct ContractPath: Codable, Hashable {

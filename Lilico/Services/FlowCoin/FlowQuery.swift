@@ -253,13 +253,13 @@ extension String {
 extension NFTCollection {
     func formatCadence(script: String, chainId: Flow.ChainID = flow.chainID) -> String {
         return script
-            .replacingOccurrences(of: "<NFT>", with: contractName)
+            .replacingOccurrences(of: "<NFT>", with: contractName.trim())
             .replacingOccurrences(of: "<NFTAddress>", with: address.chooseBy(network: chainId) ?? "")
             .replacingOccurrences(of: "<CollectionStoragePath>", with: path.storagePath)
             .replacingOccurrences(of: "<CollectionPublic>", with: path.publicCollectionName)
             .replacingOccurrences(of: "<CollectionPublicPath>", with: path.publicPath)
-            .replacingOccurrences(of: "<CollectionName>", with: name)
-            .replacingOccurrences(of: "<Token>", with: contractName)
+            .replacingOccurrences(of: "<CollectionName>", with: name.trim())
+            .replacingOccurrences(of: "<Token>", with: contractName.trim())
             .replacingOccurrences(of: "<TokenAddress>", with: address.chooseBy(network: chainId) ?? "")
             .replacingOccurrences(of: "<TokenCollectionStoragePath>", with: path.storagePath)
             .replacingOccurrences(of: "<TokenCollectionPublic>", with: path.publicCollectionName)
@@ -280,3 +280,5 @@ extension TokenModel {
         return cadence.replace(by: dict).replace(by: ScriptAddress.addressMap())
     }
 }
+
+
