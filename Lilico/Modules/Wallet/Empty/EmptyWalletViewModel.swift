@@ -62,7 +62,7 @@ class EmptyWalletViewModel: ViewModel {
         case .signUp:
             router?.route(to: \.register)
         case .signIn:
-            router?.route(to: \.login)
+            Router.route(to: RouteMap.RestoreLogin.root)
         }
     }
 }

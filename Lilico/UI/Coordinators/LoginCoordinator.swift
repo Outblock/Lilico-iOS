@@ -17,11 +17,11 @@ final class LoginCoordinator: NavigationCoordinatable {
     @Route(.push) var enterRestorePwd = makeEnterRestorePassword
 
     @ViewBuilder func makeRestore() -> some View {
-        RestoreWalletView(viewModel: .init())
+        RestoreWalletView()
     }
 
     @ViewBuilder func makeInputMnemonic() -> some View {
-        InputMnemonicView(viewModel: InputMnemonicViewModel())
+        InputMnemonicView()
     }
     
     @ViewBuilder func makeChooseAccount(items: [BackupManager.DriveItem]) -> some View {

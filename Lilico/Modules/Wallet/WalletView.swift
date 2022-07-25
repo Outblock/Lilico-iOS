@@ -47,51 +47,67 @@ struct WalletView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .backgroundFill(.LL.Neutrals.background)
     }
+    
+    /// user is not logged in UI
+    var guestView: some View {
+        EmptyWalletView()
+    }
+    
+    /// user logged in UI
+    var normalView: some View {
+        ZStack {
+            emptyView
+                .visibility(vm.walletState == .noAddress ? .visible : .gone)
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVStack(spacing: 0) {
+                    Section {
+                        VStack(spacing: 32) {
+                            headerView
+                            CardView()
+                            actionView
+                        }
+                        
+                        loadingView
+                            .visibility(vm.walletState == .loading ? .visible : .gone)
+                        errorView
+                            .visibility(vm.walletState == .error ? .visible : .gone)
+                    }
+                    .listRowInsets(.zero)
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.LL.Neutrals.background)
+                    
+                    Section {
+                        coinSectionView
+                        ForEach(vm.coinItems, id: \.token.symbol) { coin in
+                            CoinCell(coin: coin)
+                                .onTapGestureOnBackground {
+                                    router.route(to: \.tokenDetail, coin.token)
+                                }
+                        }
+                    }
+                    .listRowInsets(.zero)
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.LL.Neutrals.background)
+                    .visibility(vm.walletState == .idle ? .visible : .gone)
+                }
+            }
+            .listStyle(.plain)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.horizontal, 18)
+            .backgroundFill(.LL.Neutrals.background)
+            .environmentObject(vm)
+            .visibility(vm.walletState != .noAddress ? .visible : .gone)
+            .preferredColorScheme(themeManager.style)
+        }
+    }
 
     var body: some View {
-        emptyView
-            .visibility(vm.walletState == .noAddress ? .visible : .gone)
-        
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(spacing: 0) {
-                Section {
-                    VStack(spacing: 32) {
-                        headerView
-                        CardView()
-                        actionView
-                    }
-                    
-                    loadingView
-                        .visibility(vm.walletState == .loading ? .visible : .gone)
-                    errorView
-                        .visibility(vm.walletState == .error ? .visible : .gone)
-                }
-                .listRowInsets(.zero)
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.LL.Neutrals.background)
-                
-                Section {
-                    coinSectionView
-                    ForEach(vm.coinItems, id: \.token.symbol) { coin in
-                        CoinCell(coin: coin)
-                            .onTapGestureOnBackground {
-                                router.route(to: \.tokenDetail, coin.token)
-                            }
-                    }
-                }
-                .listRowInsets(.zero)
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.LL.Neutrals.background)
-                .visibility(vm.walletState == .idle ? .visible : .gone)
-            }
+        ZStack {
+            guestView.visibility(UserManager.shared.isLoggedIn ? .gone : .visible)
+            normalView.visibility(UserManager.shared.isLoggedIn ? .visible : .gone)
         }
-        .listStyle(.plain)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 18)
-        .backgroundFill(.LL.Neutrals.background)
-        .environmentObject(vm)
-        .visibility(vm.walletState != .noAddress ? .visible : .gone)
-        .preferredColorScheme(themeManager.style)
+        .navigationBarHidden(true)
     }
 
     var headerView: some View {

@@ -28,7 +28,7 @@ struct EnumeratedForEach<ItemType, ContentView: View>: View {
 
 struct EmptyWalletView: View {
     @StateObject
-    var viewModel: AnyViewModel<EmptyWalletState, EmptyWalletAction>
+    var viewModel: EmptyWalletViewModel = EmptyWalletViewModel()
 
     @StateObject var themeManager = ThemeManager.shared
 
@@ -124,7 +124,7 @@ struct EmptyWalletView: View {
             headerView
                 .padding(.bottom, 10)
 
-            EnumeratedForEach(viewModel.dataSource) { index, dataSource in
+            EnumeratedForEach(viewModel.state.dataSource) { index, dataSource in
                 cardView(dataSource, index: index)
             }
         }
@@ -136,6 +136,6 @@ struct EmptyWalletView: View {
 
 struct EmptyWalletView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyWalletView(viewModel: EmptyWalletViewModel().toAnyViewModel())
+        EmptyWalletView()
     }
 }

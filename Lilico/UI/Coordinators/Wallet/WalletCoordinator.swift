@@ -40,8 +40,7 @@ final class WalletCoordinator: NavigationCoordinatable {
 
 extension WalletCoordinator {
     @ViewBuilder func makeEmptyWallet() -> some View {
-        EmptyWalletView(viewModel: EmptyWalletViewModel().toAnyViewModel())
-            .hideNavigationBar()
+        EmptyWalletView()
     }
 
     @ViewBuilder func makeStart() -> some View {

@@ -16,7 +16,7 @@ class RestoreWalletViewModel {
 
 extension RestoreWalletViewModel {
     func restoreWithManualAction() {
-        router?.route(to: \.inputMnemonic)
+        Router.route(to: RouteMap.RestoreLogin.restoreManual)
     }
     
     func restoreWithGoogleDriveAction() {
