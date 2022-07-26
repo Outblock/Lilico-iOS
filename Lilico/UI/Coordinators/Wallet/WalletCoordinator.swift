@@ -16,8 +16,6 @@ final class WalletCoordinator: NavigationCoordinatable {
 
     @Root var start = makeStart
     @Root var empty = makeEmptyWallet
-    @Route(.push) var register = makeRegister
-    @Route(.push) var login = makeLogin
     @Route(.push) var recoveryPhrase = makeRecoveryPhrase
     @Route(.push) var createSecure = makeCreateSecure
     @Route(.push) var addToken = makeAddToken
@@ -46,18 +44,6 @@ extension WalletCoordinator {
     @ViewBuilder func makeStart() -> some View {
         WalletView()
             .hideNavigationBar()
-    }
-
-    func makeRegister() -> RegisterCoordinator {
-        RegisterCoordinator()
-    }
-
-    func makeLogin() -> LoginCoordinator {
-        LoginCoordinator()
-    }
-
-    func routeToAuthenticated() {
-        route(to: \.register)
     }
 
     func makeRecoveryPhrase() -> BackupCoordinator {

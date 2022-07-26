@@ -23,7 +23,6 @@ extension InputMnemonicView {
 }
 
 struct InputMnemonicView: RouteableView {
-    @EnvironmentObject var router: LoginCoordinator.Router
     @StateObject private var viewModel = InputMnemonicViewModel()
     
     var model: VTextFieldModel = {

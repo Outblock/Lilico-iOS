@@ -21,7 +21,7 @@ final class BackupCoordinator: NavigationCoordinatable {
 
 extension BackupCoordinator {
     @ViewBuilder func createRecoveryPhrase() -> some View {
-        RecoveryPhraseView(viewModel: RecoveryPhraseViewModel().toAnyViewModel())
+        RecoveryPhraseView()
     }
 
     @ViewBuilder func makeBackupPassword(backupType: BackupManager.BackupType) -> some View {

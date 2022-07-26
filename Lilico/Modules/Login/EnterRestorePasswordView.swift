@@ -8,8 +8,13 @@
 import SwiftUI
 import SwiftUIX
 
-struct EnterRestorePasswordView: View {
-    @EnvironmentObject var router: LoginCoordinator.Router
+extension EnterRestorePasswordView {
+    var title: String {
+        return ""
+    }
+}
+
+struct EnterRestorePasswordView: RouteableView {
     @StateObject var vm: EnterRestorePasswordViewModel
     
     @State var text: String = ""
@@ -70,12 +75,8 @@ struct EnterRestorePasswordView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 28)
-        .navigationTitle("".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.pop()
-        }
         .backgroundFill(Color.LL.background)
+        .applyRouteable(self)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 state = .focused

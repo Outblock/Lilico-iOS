@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RestoreWalletView: RouteableView {
-    @EnvironmentObject var router: LoginCoordinator.Router
     private var viewModel = RestoreWalletViewModel()
 
     var body: some View {

@@ -20,8 +20,6 @@ class UsernameViewModel: ViewModel {
     var task: DispatchWorkItem?
     var currentText: String = ""
 
-    var router: RegisterCoordinator.Router? = RouterStore.shared.retrieve()
-
     init() {
         state = .init()
     }
@@ -30,8 +28,7 @@ class UsernameViewModel: ViewModel {
         switch input {
         case .next:
             UIApplication.shared.endEditing()
-            router?.coordinator.name = currentText
-            router?.route(to: \.TYNK)
+            Router.route(to: RouteMap.Register.tynk(currentText))
         case let .onEditingChanged(text):
             currentText = text
             if localCheckUserName(text) {

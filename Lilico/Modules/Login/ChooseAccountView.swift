@@ -13,8 +13,13 @@ private func createFakeItem() -> BackupManager.DriveItem {
     return item
 }
 
-struct ChooseAccountView: View {
-    @EnvironmentObject var router: LoginCoordinator.Router
+extension ChooseAccountView {
+    var title: String {
+        return ""
+    }
+}
+
+struct ChooseAccountView: RouteableView {
     @StateObject var vm: ChooseAccountViewModel
     
     init(driveItems: [BackupManager.DriveItem]) {
@@ -30,12 +35,8 @@ struct ChooseAccountView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 28)
-        .navigationTitle("".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.pop()
-        }
         .backgroundFill(Color.LL.background)
+        .applyRouteable(self)
     }
     
     var headerView: some View {

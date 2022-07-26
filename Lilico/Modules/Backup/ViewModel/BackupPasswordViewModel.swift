@@ -26,10 +26,8 @@ class BackupPasswordViewModel: ObservableObject {
 
                 HUD.dismissLoading()
 
-                DispatchQueue.main.async {
-                    self.router?.popToRoot()
-                    HUD.success(title: "backup_to_x_succeeded".localized(self.backupType.descLocalizedString))
-                }
+                Router.popToRoot()
+                HUD.success(title: "backup_to_x_succeeded".localized(self.backupType.descLocalizedString))
             } catch {
                 HUD.dismissLoading()
                 HUD.error(title: "backup_to_x_failed".localized(self.backupType.descLocalizedString))

@@ -44,9 +44,9 @@ extension AppDelegate {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.LL.Neutrals.text), .font: font!]
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.LL.Neutrals.text), .font: largeFont!]
         
-        let emptyImage = UIImage()
-        UINavigationBar.appearance().backIndicatorImage = emptyImage
-        UINavigationBar.appearance().backIndicatorTransitionMaskImage = emptyImage
+//        let emptyImage = UIImage()
+//        UINavigationBar.appearance().backIndicatorImage = emptyImage
+//        UINavigationBar.appearance().backIndicatorTransitionMaskImage = emptyImage
     }
     
     private func appConfig() {

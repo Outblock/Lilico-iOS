@@ -19,7 +19,6 @@
 		154B8908276A1EEB00780E93 /* ColorBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A55FD27536CD9004BCACC /* ColorBook.swift */; };
 		154B8909276A1EEB00780E93 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C44002751CFA4006D1E8D /* Color.swift */; };
 		154B890D276A1EEB00780E93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B88852765F33400780E93 /* AppDelegate.swift */; };
-		154B8911276A1EEB00780E93 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F985B275CDED0001C5855 /* AppCoordinator.swift */; };
 		154B8913276A1EEB00780E93 /* ImageBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A55FE27536CD9004BCACC /* ImageBook.swift */; };
 		154B8914276A1EEB00780E93 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159A54312753681F004BCACC /* ViewModel.swift */; };
 		154B8916276A1EEB00780E93 /* BackgroundModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C440B27525D04006D1E8D /* BackgroundModifer.swift */; };
@@ -41,7 +40,6 @@
 		155EACD928664DC70088FC0F /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 155EACD828664DC70088FC0F /* Stinsen */; };
 		156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7AA27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive */; };
 		156AC7AD27802FAC00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7AC27802FAC00ED5E3E /* GoogleAPIClientForRESTCore */; };
-		156AC7B427804C2100ED5E3E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
 		156E84AA281CDE7500415896 /* FlowNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84A8281CDE7500415896 /* FlowNetwork.swift */; };
 		156E84AE281CDF4F00415896 /* WalletModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84AC281CDF4F00415896 /* WalletModels.swift */; };
 		156E84B2281CF01000415896 /* EventLoop+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84B0281CF01000415896 /* EventLoop+Future.swift */; };
@@ -348,7 +346,6 @@
 		15C58BC62868A4EE00BD4FC6 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A204C632860236600D0D3A4 /* ViewExtensions.swift */; };
 		15C58BC72868A4EE00BD4FC6 /* StateColors_OOD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC207127819C56000B187A /* StateColors_OOD.swift */; };
 		15C58BC82868A4EE00BD4FC6 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D3D27809F83000B187A /* BackupManager.swift */; };
-		15C58BCA2868A4EE00BD4FC6 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F985B275CDED0001C5855 /* AppCoordinator.swift */; };
 		15C58BCB2868A4EE00BD4FC6 /* StateOpacities_D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206D27819C56000B187A /* StateOpacities_D.swift */; };
 		15C58BCD2868A4EE00BD4FC6 /* SecureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F0E278B1DF400FCF772 /* SecureCoordinator.swift */; };
 		15C58BCE2868A4EE00BD4FC6 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */; };
@@ -388,7 +385,6 @@
 		15C58BF02868A4EE00BD4FC6 /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
 		15C58BF12868A4EE00BD4FC6 /* VMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201627819C56000B187A /* VMenu.swift */; };
 		15C58BF22868A4EE00BD4FC6 /* CreatePinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */; };
-		15C58BF32868A4EE00BD4FC6 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */; };
 		15C58BF42868A4EE00BD4FC6 /* VNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201027819C56000B187A /* VNavigationView.swift */; };
 		15C58BF62868A4EE00BD4FC6 /* OffsetScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECB995E285B738C00F59852 /* OffsetScrollView.swift */; };
 		15C58BF72868A4EE00BD4FC6 /* TYNKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC21EE2781F388000B187A /* TYNKView.swift */; };
@@ -434,7 +430,6 @@
 		15C58C212868A4EE00BD4FC6 /* SnapID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA480285B192800EE5BE3 /* SnapID.swift */; };
 		15C58C222868A4EE00BD4FC6 /* VBaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FA027819C56000B187A /* VBaseButton.swift */; };
 		15C58C232868A4EE00BD4FC6 /* VTextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204327819C56000B187A /* VTextFieldState.swift */; };
-		15C58C242868A4EE00BD4FC6 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */; };
 		15C58C252868A4EE00BD4FC6 /* LilicoAPI+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */; };
 		15C58C262868A4EE00BD4FC6 /* EnterRestorePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22E4277EAFF300B5EE03 /* EnterRestorePasswordView.swift */; };
 		15C58C272868A4EE00BD4FC6 /* LayoutGroup_LTTB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206027819C56000B187A /* LayoutGroup_LTTB.swift */; };
@@ -508,7 +503,6 @@
 		15D57752277C224300045E79 /* LilicoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57750277C224300045E79 /* LilicoAPI.swift */; };
 		15D57759277C23BF00045E79 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 15D57758277C23BF00045E79 /* CombineMoya */; };
 		15D5775B277C23BF00045E79 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 15D5775A277C23BF00045E79 /* Moya */; };
-		15D5775E277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */; };
 		15D9282A278338DB00382226 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D92828278338DB00382226 /* UIApplication.swift */; };
 		15D9282D2783395F00382226 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282B2783395F00382226 /* HUDManager.swift */; };
 		15D9283027843D4900382226 /* ManualBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282E27843D4900382226 /* ManualBackupView.swift */; };
@@ -981,7 +975,6 @@
 		1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+User.swift"; sourceTree = "<group>"; };
 		1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+AddressBook.swift"; sourceTree = "<group>"; };
 		1507C7EE275634C900890C5D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		152F985B275CDED0001C5855 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		1537B3D9277C8DC8008ECD05 /* WalletCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoordinator.swift; sourceTree = "<group>"; };
 		153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
 		153C44002751CFA4006D1E8D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -995,7 +988,6 @@
 		1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinCodeView.swift; sourceTree = "<group>"; };
 		1552DC632787063100EAA7D5 /* PinStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStackView.swift; sourceTree = "<group>"; };
 		156AC7AE2780427900ED5E3E /* Lilico-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lilico-Bridging-Header.h"; sourceTree = "<group>"; };
-		156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		156E84A8281CDE7500415896 /* FlowNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowNetwork.swift; sourceTree = "<group>"; };
 		156E84AC281CDF4F00415896 /* WalletModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModels.swift; sourceTree = "<group>"; };
 		156E84B0281CF01000415896 /* EventLoop+Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventLoop+Future.swift"; sourceTree = "<group>"; };
@@ -1039,7 +1031,6 @@
 		15D57749277C0FFB00045E79 /* UsernameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameViewModel.swift; sourceTree = "<group>"; };
 		15D5774D277C119400045E79 /* NavigateBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateBackButton.swift; sourceTree = "<group>"; };
 		15D57750277C224300045E79 /* LilicoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilicoAPI.swift; sourceTree = "<group>"; };
-		15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
 		15D92827278331FE00382226 /* Lilico-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lilico-dev.entitlements"; sourceTree = "<group>"; };
 		15D92828278338DB00382226 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		15D9282B2783395F00382226 /* HUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDManager.swift; sourceTree = "<group>"; };
@@ -1569,11 +1560,8 @@
 			isa = PBXGroup;
 			children = (
 				6A44B4CB287C0E9400713A12 /* Wallet */,
-				152F985B275CDED0001C5855 /* AppCoordinator.swift */,
 				6A9D7C482834D64800078F63 /* ProfileCoordinator.swift */,
-				15D5775C277C2B0E00045E79 /* RegisterCoordinator.swift */,
 				15F22F0E278B1DF400FCF772 /* SecureCoordinator.swift */,
-				156AC7B227804C2100ED5E3E /* LoginCoordinator.swift */,
 				15D9283427849E6800382226 /* BackupCoordinator.swift */,
 				4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */,
 				6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */,
@@ -3822,7 +3810,6 @@
 				6A204C652860236600D0D3A4 /* ViewExtensions.swift in Sources */,
 				15DC21E927819C57000B187A /* StateColors_OOD.swift in Sources */,
 				15DC1D3F27809F83000B187A /* BackupManager.swift in Sources */,
-				154B8911276A1EEB00780E93 /* AppCoordinator.swift in Sources */,
 				15DC21E127819C56000B187A /* StateOpacities_D.swift in Sources */,
 				15F22F10278B1DF400FCF772 /* SecureCoordinator.swift in Sources */,
 				6A9D7C4A2834D64800078F63 /* ProfileCoordinator.swift in Sources */,
@@ -3865,7 +3852,6 @@
 				4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */,
 				15DC215927819C56000B187A /* VMenu.swift in Sources */,
 				1552DC622786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
-				15D5775E277C2B0E00045E79 /* RegisterCoordinator.swift in Sources */,
 				15DC215127819C56000B187A /* VNavigationView.swift in Sources */,
 				6AC717E3287EA61100AA5040 /* WalletSendAmountViewModel.swift in Sources */,
 				4ECB9960285B739700F59852 /* OffsetScrollView.swift in Sources */,
@@ -3916,7 +3902,6 @@
 				6A8FA49C285B192800EE5BE3 /* SnapID.swift in Sources */,
 				15DC20AB27819C56000B187A /* VBaseButton.swift in Sources */,
 				15DC219D27819C56000B187A /* VTextFieldState.swift in Sources */,
-				156AC7B427804C2100ED5E3E /* LoginCoordinator.swift in Sources */,
 				1505E5FC28363578007B98D8 /* LilicoAPI+User.swift in Sources */,
 				15DE22E6277EAFF300B5EE03 /* EnterRestorePasswordView.swift in Sources */,
 				15DC21C927819C56000B187A /* LayoutGroup_LTTB.swift in Sources */,
@@ -4241,7 +4226,6 @@
 				15C58BC62868A4EE00BD4FC6 /* ViewExtensions.swift in Sources */,
 				15C58BC72868A4EE00BD4FC6 /* StateColors_OOD.swift in Sources */,
 				15C58BC82868A4EE00BD4FC6 /* BackupManager.swift in Sources */,
-				15C58BCA2868A4EE00BD4FC6 /* AppCoordinator.swift in Sources */,
 				15C58BCB2868A4EE00BD4FC6 /* StateOpacities_D.swift in Sources */,
 				15C58BCD2868A4EE00BD4FC6 /* SecureCoordinator.swift in Sources */,
 				15C58BCE2868A4EE00BD4FC6 /* ProfileCoordinator.swift in Sources */,
@@ -4284,7 +4268,6 @@
 				15C58BF02868A4EE00BD4FC6 /* NFTTagsView.swift in Sources */,
 				15C58BF12868A4EE00BD4FC6 /* VMenu.swift in Sources */,
 				15C58BF22868A4EE00BD4FC6 /* CreatePinCodeView.swift in Sources */,
-				15C58BF32868A4EE00BD4FC6 /* RegisterCoordinator.swift in Sources */,
 				15C58BF42868A4EE00BD4FC6 /* VNavigationView.swift in Sources */,
 				6AC717E2287EA61100AA5040 /* WalletSendAmountViewModel.swift in Sources */,
 				15C58BF62868A4EE00BD4FC6 /* OffsetScrollView.swift in Sources */,
@@ -4335,7 +4318,6 @@
 				15C58C212868A4EE00BD4FC6 /* SnapID.swift in Sources */,
 				15C58C222868A4EE00BD4FC6 /* VBaseButton.swift in Sources */,
 				15C58C232868A4EE00BD4FC6 /* VTextFieldState.swift in Sources */,
-				15C58C242868A4EE00BD4FC6 /* LoginCoordinator.swift in Sources */,
 				15C58C252868A4EE00BD4FC6 /* LilicoAPI+User.swift in Sources */,
 				15C58C262868A4EE00BD4FC6 /* EnterRestorePasswordView.swift in Sources */,
 				15C58C272868A4EE00BD4FC6 /* LayoutGroup_LTTB.swift in Sources */,

@@ -11,7 +11,6 @@ import Stinsen
 
 class InputMnemonicViewModel: ViewModel {
     @Published var state: InputMnemonicView.ViewState = .init()
-    @RouterObject var router: LoginCoordinator.Router?
     @RouterObject var walletRouter: WalletCoordinator.Router?
 
     func trigger(_ input: InputMnemonicView.Action) {
@@ -60,8 +59,7 @@ class InputMnemonicViewModel: ViewModel {
                 HUD.dismissLoading()
                 HUD.success(title: "login_success".localized)
                 DispatchQueue.main.async {
-                    self.walletRouter?.popToRoot()
-                    self.walletRouter?.coordinator.refreshRoot()
+                    Router.popToRoot()
                 }
             } catch {
                 HUD.dismissLoading()

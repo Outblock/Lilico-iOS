@@ -16,19 +16,33 @@ protocol RouterTarget {
 
 extension Router {
     static func route(to target: RouterTarget) {
-        if let navi = topNavigationController() {
-            target.onPresent(navi: navi)
+        safeMainThreadCall {
+            if let navi = topNavigationController() {
+                target.onPresent(navi: navi)
+            }
         }
     }
     
     static func pop(animated: Bool = true) {
-        if let navi = topNavigationController() {
-            navi.popViewController(animated: animated)
+        safeMainThreadCall {
+            if let navi = topNavigationController() {
+                navi.popViewController(animated: animated)
+            }
+        }
+    }
+    
+    static func popToRoot(animated: Bool = true) {
+        safeMainThreadCall {
+            if let navi = topNavigationController() {
+                navi.popToRootViewController(animated: animated)
+            }
         }
     }
     
     static func dismiss(animated: Bool = true) {
-        topPresentedController().presentingViewController?.dismiss(animated: animated)
+        safeMainThreadCall {
+            topPresentedController().presentingViewController?.dismiss(animated: animated)
+        }
     }
 }
 
@@ -52,5 +66,15 @@ class Router {
         }
         
         return coordinator.rootNavi
+    }
+    
+    private static func safeMainThreadCall(_ call: @escaping () -> Void) {
+        if Thread.isMainThread {
+            call()
+        } else {
+            DispatchQueue.main.async {
+                call()
+            }
+        }
     }
 }

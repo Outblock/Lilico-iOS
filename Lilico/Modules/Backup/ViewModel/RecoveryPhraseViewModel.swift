@@ -10,8 +10,7 @@ import SPIndicator
 import Stinsen
 
 class RecoveryPhraseViewModel: ViewModel {
-    @Published
-    private(set) var state: RecoveryPhraseView.ViewState
+    @Published private(set) var state: RecoveryPhraseView.ViewState
 
     let mockData = [
         WordListView.WordItem(id: 1, word: "---"),
@@ -28,12 +27,6 @@ class RecoveryPhraseViewModel: ViewModel {
         WordListView.WordItem(id: 12, word: "---"),
     ]
 
-    @RouterObject
-    var homeRouter: WalletCoordinator.Router?
-
-    @RouterObject
-    var router: BackupCoordinator.Router?
-
     init() {
         if let mnemonic = WalletManager.shared.getCurrentMnemonic() {
             state = RecoveryPhraseView.ViewState(dataSource: mnemonic.split(separator: " ").enumerated().map { item in
@@ -47,11 +40,10 @@ class RecoveryPhraseViewModel: ViewModel {
     func trigger(_ input: RecoveryPhraseView.Action) {
         switch input {
         case .icloudBackup:
-            router?.route(to: \.backupPassword, BackupManager.BackupType.icloud)
+            Router.route(to: RouteMap.Backup.backupToCloud(.icloud))
         case .googleBackup:
-            router?.route(to: \.backupPassword, BackupManager.BackupType.googleDrive)
+            Router.route(to: RouteMap.Backup.backupToCloud(.googleDrive))
         case .manualBackup:
-            router?.route(to: \.manualBackup)
             break
         }
     }

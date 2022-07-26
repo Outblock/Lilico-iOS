@@ -36,10 +36,8 @@ class EnterRestorePasswordViewModel: ObservableObject {
                 
                 HUD.dismissLoading()
                 HUD.success(title: "login_success".localized)
-                DispatchQueue.main.async {
-                    self.walletRouter?.popToRoot()
-                    self.walletRouter?.coordinator.refreshRoot()
-                }
+                
+                Router.popToRoot()
             } catch {
                 debugPrint("EnterRestorePasswordViewModel -> login failed: \(error)")
                 HUD.dismissLoading()

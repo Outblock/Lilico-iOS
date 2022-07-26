@@ -27,6 +27,7 @@ private let CoinIconHeight: CGFloat = 43
 
 struct WalletView: View {
     @StateObject var themeManager = ThemeManager.shared
+    @StateObject var um = UserManager.shared
     @StateObject private var vm = WalletViewModel()
     @EnvironmentObject private var router: WalletCoordinator.Router
 
@@ -104,8 +105,8 @@ struct WalletView: View {
 
     var body: some View {
         ZStack {
-            guestView.visibility(UserManager.shared.isLoggedIn ? .gone : .visible)
-            normalView.visibility(UserManager.shared.isLoggedIn ? .visible : .gone)
+            guestView.visibility(um.isLoggedIn ? .gone : .visible)
+            normalView.visibility(um.isLoggedIn ? .visible : .gone)
         }
         .navigationBarHidden(true)
     }
