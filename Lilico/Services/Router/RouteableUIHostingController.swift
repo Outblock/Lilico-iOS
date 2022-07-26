@@ -49,7 +49,7 @@ class RouteableUIHostingController<Content: RouteableView>: UIHostingController<
         navigationItem.title = rootView.title
         
         let backItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(onBackButtonAction))
-        backItem.tintColor = UIColor(Color.LL.Button.color)
+        backItem.tintColor = UIColor(named: "button.color")
         navigationItem.leftBarButtonItem = backItem
     }
     

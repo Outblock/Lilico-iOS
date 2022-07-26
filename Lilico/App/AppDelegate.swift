@@ -41,8 +41,9 @@ extension AppDelegate {
     private func setupNavigationBar() {
         let font = UIFont(name: "Inter", size: 18)?.semibold
         let largeFont = UIFont(name: "Inter", size: 24)?.bold
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.LL.Neutrals.text), .font: font!]
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.LL.Neutrals.text), .font: largeFont!]
+        let color = UIColor(named: "neutrals.text")!
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: color, .font: font!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: color, .font: largeFont!]
         
 //        let emptyImage = UIImage()
 //        UINavigationBar.appearance().backIndicatorImage = emptyImage
