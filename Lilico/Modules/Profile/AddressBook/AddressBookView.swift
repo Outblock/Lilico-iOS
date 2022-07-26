@@ -31,14 +31,17 @@ extension AddressBookView {
     }
 }
 
-struct AddressBookView: View {
-    @EnvironmentObject private var router: AddressBookCoordinator.Router
+struct AddressBookView: RouteableView {
     @StateObject private var vm: AddressBookViewModel
 
     @StateObject private var pendingDeleteModel = PendingDeleteModel()
     @State private var showAlert = false
     
     @State private var mode: Mode
+    
+    var title: String {
+        return "address_book".localized
+    }
     
     init() {
         self.init(mode: .normal)
@@ -64,11 +67,10 @@ struct AddressBookView: View {
         
         if mode == .normal {
             return AnyView(view
-                .navigationTitle("address_book".localized)
-                .navigationBarTitleDisplayMode(.inline)
+                .applyRouteable(self)
                 .navigationBarItems(trailing: HStack(spacing: 20) {
                     Button {
-                        router.route(to: \.add)
+                        Router.route(to: RouteMap.AddressBook.add(vm))
                     } label: {
                         Image("btn-add")
                     }
@@ -79,12 +81,6 @@ struct AddressBookView: View {
                         Image("btn-scan")
                     }
                 })
-                    .addBackBtn {
-                        router.dismissCoordinator()
-                    }
-                .onAppear {
-                    router.coordinator.addressBookVM = vm
-                }
                 .alert("contact_delete_alert".localized, isPresented: $showAlert) {
                     Button("delete".localized, role: .destructive) {
                         if let sectionVM = self.pendingDeleteModel.sectionVM, let contact = self.pendingDeleteModel.contact {

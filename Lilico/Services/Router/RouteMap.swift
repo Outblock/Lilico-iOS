@@ -118,10 +118,13 @@ extension RouteMap.Wallet: RouterTarget {
     }
 }
 
+// MARK: - Profile
+
 extension RouteMap {
     enum Profile {
         case themeChange
         case developer
+        case addressBook
     }
 }
 
@@ -132,6 +135,31 @@ extension RouteMap.Profile: RouterTarget {
             navi.push(content: ThemeChangeView())
         case .developer:
             navi.push(content: DeveloperModeView())
+        case .addressBook:
+            navi.push(content: AddressBookView())
+        }
+    }
+}
+
+// MARK: - AddressBook
+
+extension RouteMap {
+    enum AddressBook {
+        case root
+        case add(AddressBookView.AddressBookViewModel)
+        case edit(Contact, AddressBookView.AddressBookViewModel)
+    }
+}
+
+extension RouteMap.AddressBook: RouterTarget {
+    func onPresent(navi: UINavigationController) {
+        switch self {
+        case .root:
+            navi.push(content: AddressBookView())
+        case .add(let vm):
+            navi.push(content: AddAddressView(addressBookVM: vm))
+        case .edit(let contact, let vm):
+            navi.push(content: AddAddressView(editingContact: contact, addressBookVM: vm))
         }
     }
 }

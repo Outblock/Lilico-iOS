@@ -162,7 +162,7 @@ extension ProfileView {
         var body: some View {
             HStack(alignment: .center, spacing: 0) {
                 ProfileView.InfoActionButton(iconName: "icon-address", title: "addresses".localized) {
-                    router.route(to: \.addressBook)
+                    Router.route(to: RouteMap.Profile.addressBook)
                 }
 
                 ProfileView.InfoActionButton(iconName: "icon-wallet", title: "wallets".localized) {

@@ -7,6 +7,7 @@
 
 import Stinsen
 import SwiftUI
+import Combine
 
 // MARK: - Define
 
@@ -65,15 +66,31 @@ extension AddressBookView {
     class AddressBookViewModel: ViewModel {
         @Published var state: ListState
         @Published var searchText: String = ""
-        @RouterObject var router: AddressBookCoordinator.Router?
         
         var injectSelectAction: ((Contact) -> Void)?
         
         private var rawContacts: [Contact]?
+        private var cancelSets = Set<AnyCancellable>()
 
         init() {
             state = ListState(sections: [AddressBookView.SectionViewModel]())
             trigger(.load)
+            
+            registerNotifications()
+        }
+        
+        private func registerNotifications() {
+            NotificationCenter.default.publisher(for: .addressBookDidAdd).sink { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.trigger(.load)
+                }
+            }.store(in: &cancelSets)
+            
+            NotificationCenter.default.publisher(for: .addressBookDidEdit).sink { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.trigger(.load)
+                }
+            }.store(in: &cancelSets)
         }
 
         func trigger(_ input: AddressBookView.AddressBookInput) {
@@ -115,7 +132,7 @@ extension AddressBookView {
 
         private func editContact(_ contact: Contact) {
             searchText = ""
-            router?.route(to: \.edit, contact)
+            Router.route(to: RouteMap.AddressBook.edit(contact, self))
         }
 
         private func delete(sectionVM: AddressBookView.SectionViewModel, contact: Contact) {

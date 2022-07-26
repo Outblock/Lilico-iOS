@@ -374,7 +374,6 @@
 		15C58BE72868A4EE00BD4FC6 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A164F3E2840A1380026B31E /* TabBarItemView.swift */; };
 		15C58BE82868A4EE00BD4FC6 /* VTextFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC204027819C56000B187A /* VTextFieldType.swift */; };
 		15C58BE92868A4EE00BD4FC6 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE0841F28505887003BEEF0 /* Error.swift */; };
-		15C58BEA2868A4EE00BD4FC6 /* AddressBookCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */; };
 		15C58BEB2868A4EE00BD4FC6 /* VRangeSliderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FE127819C56000B187A /* VRangeSliderState.swift */; };
 		15C58BEC2868A4EE00BD4FC6 /* UsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D57749277C0FFB00045E79 /* UsernameViewModel.swift */; };
 		15C58BED2868A4EE00BD4FC6 /* StateColors_EFSED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206F27819C56000B187A /* StateColors_EFSED.swift */; };
@@ -839,7 +838,6 @@
 		6A8D223E2881499D005A7081 /* RecentListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D223C2881499D005A7081 /* RecentListCache.swift */; };
 		6A8D2A38283C7C790041100E /* AddressBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A36283C7C790041100E /* AddressBookView.swift */; };
 		6A8D2A3B283C7C880041100E /* AddressBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */; };
-		6A8D2A3E283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */; };
 		6A8D2A41283C865F0041100E /* AddressBookInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8D2A3F283C865F0041100E /* AddressBookInfoModel.swift */; };
 		6A8FA496285B192800EE5BE3 /* UIKitIntrospectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA47A285B192800EE5BE3 /* UIKitIntrospectionView.swift */; };
 		6A8FA498285B192800EE5BE3 /* Introspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA47B285B192800EE5BE3 /* Introspect.swift */; };
@@ -1333,7 +1331,6 @@
 		6A8D223C2881499D005A7081 /* RecentListCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentListCache.swift; sourceTree = "<group>"; };
 		6A8D2A36283C7C790041100E /* AddressBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookView.swift; sourceTree = "<group>"; };
 		6A8D2A39283C7C880041100E /* AddressBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookViewModel.swift; sourceTree = "<group>"; };
-		6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookCoordinator.swift; sourceTree = "<group>"; };
 		6A8D2A3F283C865F0041100E /* AddressBookInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookInfoModel.swift; sourceTree = "<group>"; };
 		6A8FA47A285B192800EE5BE3 /* UIKitIntrospectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitIntrospectionView.swift; sourceTree = "<group>"; };
 		6A8FA47B285B192800EE5BE3 /* Introspect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Introspect.swift; sourceTree = "<group>"; };
@@ -1551,7 +1548,6 @@
 				15F22F0E278B1DF400FCF772 /* SecureCoordinator.swift */,
 				15D9283427849E6800382226 /* BackupCoordinator.swift */,
 				4E9E21E3282C077000E1BACD /* PinCodeCoordinator.swift */,
-				6A8D2A3C283C7EBD0041100E /* AddressBookCoordinator.swift */,
 				6ACDD16B285874DC00F406EB /* ProfileEditCoordinator.swift */,
 			);
 			path = Coordinators;
@@ -3817,7 +3813,6 @@
 				6A164F442840A1380026B31E /* TabBarItemView.swift in Sources */,
 				15DC219727819C56000B187A /* VTextFieldType.swift in Sources */,
 				6AE0842128505887003BEEF0 /* Error.swift in Sources */,
-				6A8D2A3E283C7EBD0041100E /* AddressBookCoordinator.swift in Sources */,
 				15DC210F27819C56000B187A /* VRangeSliderState.swift in Sources */,
 				15D5774B277C0FFB00045E79 /* UsernameViewModel.swift in Sources */,
 				15DC21E527819C57000B187A /* StateColors_EFSED.swift in Sources */,
@@ -4229,7 +4224,6 @@
 				15C58BE72868A4EE00BD4FC6 /* TabBarItemView.swift in Sources */,
 				15C58BE82868A4EE00BD4FC6 /* VTextFieldType.swift in Sources */,
 				15C58BE92868A4EE00BD4FC6 /* Error.swift in Sources */,
-				15C58BEA2868A4EE00BD4FC6 /* AddressBookCoordinator.swift in Sources */,
 				15C58BEB2868A4EE00BD4FC6 /* VRangeSliderState.swift in Sources */,
 				15C58BEC2868A4EE00BD4FC6 /* UsernameViewModel.swift in Sources */,
 				15C58BED2868A4EE00BD4FC6 /* StateColors_EFSED.swift in Sources */,

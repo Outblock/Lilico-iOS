@@ -7,16 +7,22 @@
 
 import SwiftUI
 
-struct AddAddressView: View {
-    @EnvironmentObject private var router: AddressBookCoordinator.Router
+struct AddAddressView: RouteableView {
     @StateObject var vm: AddAddressViewModel
+    private let confirmedTitle: String
 
-    init() {
-        _vm = StateObject(wrappedValue: AddAddressViewModel())
+    init(addressBookVM: AddressBookView.AddressBookViewModel) {
+        _vm = StateObject(wrappedValue: AddAddressViewModel(addressBookVM: addressBookVM))
+        confirmedTitle = "add_contact".localized
     }
 
-    init(editingContact: Contact) {
-        _vm = StateObject(wrappedValue: AddAddressViewModel(contact: editingContact))
+    init(editingContact: Contact, addressBookVM: AddressBookView.AddressBookViewModel) {
+        _vm = StateObject(wrappedValue: AddAddressViewModel(contact: editingContact, addressBookVM: addressBookVM))
+        confirmedTitle = "edit_contact".localized
+    }
+    
+    var title: String {
+        return confirmedTitle
     }
 
     var body: some View {
@@ -29,11 +35,6 @@ struct AddAddressView: View {
             .padding(.horizontal, 16)
             .padding(.top, 20)
         }
-        .navigationTitle(vm.state.isEditingMode ? "edit_contact".localized : "add_contact".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.pop()
-        }
         .navigationBarItems(trailing: HStack {
             Button {
                 vm.trigger(.save)
@@ -44,6 +45,7 @@ struct AddAddressView: View {
             .foregroundColor(.LL.Primary.salmonPrimary)
             .disabled(!vm.state.isReadyForSave)
         })
+        .applyRouteable(self)
     }
 
     var nameField: some View {
@@ -96,10 +98,10 @@ struct AddAddressView: View {
     }
 }
 
-struct AddAddressView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            AddAddressView()
-        }
-    }
-}
+//struct AddAddressView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            AddAddressView()
+//        }
+//    }
+//}
