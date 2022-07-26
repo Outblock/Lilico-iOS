@@ -117,3 +117,18 @@ extension RouteMap.Wallet: RouterTarget {
         }
     }
 }
+
+extension RouteMap {
+    enum Profile {
+        case themeChange
+    }
+}
+
+extension RouteMap.Profile: RouterTarget {
+    func onPresent(navi: UINavigationController) {
+        switch self {
+        case .themeChange:
+            navi.push(content: ThemeChangeView())
+        }
+    }
+}

@@ -34,8 +34,6 @@ extension NFTTabScreen {
 }
 
 struct NFTTabScreen: View {
-    @StateObject var themeManager = ThemeManager.shared
-
     @State var listStyle: String = "List"
 
     var isListStyle: Bool {
@@ -97,7 +95,6 @@ struct NFTTabScreen: View {
             }
         }
         .ignoresSafeArea()
-        .preferredColorScheme(themeManager.style)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .environmentObject(viewModel)
     }

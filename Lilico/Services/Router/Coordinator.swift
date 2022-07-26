@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 enum AppTabType {
     case wallet
@@ -24,8 +25,16 @@ final class Coordinator {
     let window: UIWindow
     lazy var rootNavi: UINavigationController? = nil
     
+    private var cancelSets = Set<AnyCancellable>()
+    
     init(window: UIWindow) {
         self.window = window
+        
+        ThemeManager.shared.$style.sink { scheme in
+            DispatchQueue.main.async {
+                self.refreshColorScheme()
+            }
+        }.store(in: &cancelSets)
     }
     
     func showRootView() {
@@ -48,10 +57,14 @@ extension Coordinator {
             AnyView(WalletView())
         }
 
-        let profile = TabBarPageModel<AppTabType>(tag: ProfileCoordinator.tabTag(), iconName: ProfileCoordinator.iconName(), color: ProfileCoordinator.color()) {
-            AnyView(WalletView())
+        let profile = TabBarPageModel<AppTabType>(tag: ProfileView.tabTag(), iconName: ProfileView.iconName(), color: ProfileView.color()) {
+            AnyView(ProfileView())
         }
 
         TabBarView(current: .wallet, pages: [wallet, nft, profile], maxWidth: UIScreen.main.bounds.width)
+    }
+    
+    private func refreshColorScheme() {
+        self.window.overrideUserInterfaceStyle = ThemeManager.shared.getUIKitStyle()
     }
 }

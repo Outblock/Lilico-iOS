@@ -40,7 +40,6 @@ extension WalletView: AppTabBarPageProtocol {
 }
 
 struct WalletView: View {
-    @StateObject var themeManager = ThemeManager.shared
     @StateObject var um = UserManager.shared
     @StateObject private var vm = WalletViewModel()
 
@@ -112,7 +111,6 @@ struct WalletView: View {
             .backgroundFill(.LL.Neutrals.background)
             .environmentObject(vm)
             .visibility(vm.walletState != .noAddress ? .visible : .gone)
-            .preferredColorScheme(themeManager.style)
         }
     }
 

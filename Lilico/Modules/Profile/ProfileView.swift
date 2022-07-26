@@ -8,12 +8,32 @@
 import Kingfisher
 import SwiftUI
 
-struct ProfileView: View {
-    @StateObject var themeManager = ThemeManager.shared
+extension ProfileView: AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType {
+        return .profile
+    }
+
+    static func iconName() -> String {
+        return "house.fill"
+    }
+
+    static func color() -> Color {
+        return .purple
+    }
+}
+
+struct ProfileView: RouteableView {
     @StateObject private var vm = ProfileViewModel()
-    @EnvironmentObject private var router: ProfileCoordinator.Router
     @StateObject private var lud = LocalUserDefaults.shared
     @StateObject private var userManager = UserManager.shared
+    
+    var title: String {
+        return ""
+    }
+    
+    var isNavigationBarHidden: Bool {
+        return true
+    }
 
     var body: some View {
         ZStack {
@@ -39,11 +59,11 @@ struct ProfileView: View {
             .buttonStyle(.plain)
         }
         .padding(.top, 16)
-        .preferredColorScheme(themeManager.style)
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
         .environmentObject(lud)
         .environmentObject(userManager)
+        .applyRouteable(self)
     }
 }
 
@@ -269,7 +289,7 @@ extension ProfileView {
                         ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc(with: vm), toggle: row.toggle)
                             .onTapGestureOnBackground {
                                 if row == .theme {
-                                    router.route(to: \.themeChange)
+                                    Router.route(to: RouteMap.Profile.themeChange)
                                 }
                             }
                         

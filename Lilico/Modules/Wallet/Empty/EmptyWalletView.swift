@@ -30,8 +30,6 @@ struct EmptyWalletView: View {
     @StateObject
     var viewModel: EmptyWalletViewModel = EmptyWalletViewModel()
 
-    @StateObject var themeManager = ThemeManager.shared
-
     @State
     var viewStateArray: [CGSize] = [.zero, .zero]
 
@@ -128,7 +126,6 @@ struct EmptyWalletView: View {
                 cardView(dataSource, index: index)
             }
         }
-        .preferredColorScheme(themeManager.style)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.LL.background.edgesIgnoringSafeArea(.all))
     }

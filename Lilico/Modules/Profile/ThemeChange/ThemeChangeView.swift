@@ -8,10 +8,12 @@
 import Foundation
 import SwiftUI
 
-struct ThemeChangeView: View {
-    @EnvironmentObject private var router: ProfileCoordinator.Router
+struct ThemeChangeView: RouteableView {
     @StateObject private var vm = ThemeChangeViewModel()
-    @StateObject var themeManager = ThemeManager.shared
+    
+    var title: String {
+        return "theme".localized
+    }
 
     var body: some View {
         BaseView {
@@ -24,11 +26,7 @@ struct ThemeChangeView: View {
             .padding(.horizontal, 18)
             .frame(maxHeight: .infinity, alignment: .top)
         }
-        .addBackBtn {
-            router.pop()
-        }
-        .navigationTitle("theme".localized)
-        .navigationBarTitleDisplayMode(.inline)
+        .applyRouteable(self)
     }
 }
 

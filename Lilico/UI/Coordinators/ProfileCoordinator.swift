@@ -44,17 +44,3 @@ extension ProfileCoordinator {
         return ProfileEditCoordinator()
     }
 }
-
-extension ProfileCoordinator: AppTabBarPageProtocol {
-    static func tabTag() -> AppTabType {
-        return .profile
-    }
-
-    static func iconName() -> String {
-        return "house.fill"
-    }
-
-    static func color() -> Color {
-        return .purple
-    }
-}
