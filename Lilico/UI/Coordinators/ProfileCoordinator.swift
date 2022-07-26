@@ -13,14 +13,8 @@ final class ProfileCoordinator: NavigationCoordinatable {
     let stack = NavigationStack(initial: \ProfileCoordinator.start)
 
     @Root var start = makeProfileView
-    @Route(.push) var themeChange = makeThemeChangeView
     @Route(.push) var addressBook = makeAddressBook
-    @Route(.push) var developerMode = makeDeveloperModeView
     @Route(.push) var edit = makeEdit
-
-//    init() {
-//        stack = NavigationStack(initial: \ProfileCoordinator.start)
-//    }
 }
 
 extension ProfileCoordinator {
@@ -28,16 +22,8 @@ extension ProfileCoordinator {
         ProfileView().hideNavigationBar()
     }
 
-    @ViewBuilder func makeThemeChangeView() -> some View {
-        ThemeChangeView()
-    }
-
     func makeAddressBook() -> AddressBookCoordinator {
         return AddressBookCoordinator()
-    }
-
-    func makeDeveloperModeView() -> some View {
-        DeveloperModeView()
     }
 
     func makeEdit() -> ProfileEditCoordinator {

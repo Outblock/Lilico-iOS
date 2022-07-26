@@ -121,6 +121,7 @@ extension RouteMap.Wallet: RouterTarget {
 extension RouteMap {
     enum Profile {
         case themeChange
+        case developer
     }
 }
 
@@ -129,6 +130,8 @@ extension RouteMap.Profile: RouterTarget {
         switch self {
         case .themeChange:
             navi.push(content: ThemeChangeView())
+        case .developer:
+            navi.push(content: DeveloperModeView())
         }
     }
 }

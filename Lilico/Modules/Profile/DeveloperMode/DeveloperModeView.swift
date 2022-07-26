@@ -13,9 +13,13 @@ struct DeveloperModeView_Previews: PreviewProvider {
     }
 }
 
-struct DeveloperModeView: View {
+struct DeveloperModeView: RouteableView {
     @EnvironmentObject private var router: ProfileCoordinator.Router
     @StateObject private var lud = LocalUserDefaults.shared
+    
+    var title: String {
+        return "developer_mode".localized
+    }
 
     var body: some View {
         List {
@@ -39,12 +43,8 @@ struct DeveloperModeView: View {
             .listRowInsets(.zero)
         }
         .backgroundFill(.LL.Neutrals.background)
-        .navigationTitle("developer_mode".localized)
-        .navigationBarTitleDisplayMode(.inline)
         .buttonStyle(.plain)
-        .addBackBtn {
-            router.pop()
-        }
+        .applyRouteable(self)
     }
 }
 

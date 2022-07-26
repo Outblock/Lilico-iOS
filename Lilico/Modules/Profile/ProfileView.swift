@@ -379,7 +379,7 @@ extension ProfileView {
                     let dm = Row.developerMode(lud)
                     ProfileView.SettingItemCell(iconName: dm.iconName, title: dm.title, style: dm.style, desc: dm.desc, toggle: dm.toggle)
                         .onTapGestureOnBackground {
-                            router.route(to: \.developerMode)
+                            Router.route(to: RouteMap.Profile.developer)
                         }
                     
                     Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
