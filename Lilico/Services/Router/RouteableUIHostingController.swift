@@ -55,6 +55,7 @@ class RouteableUIHostingController<Content: RouteableView>: UIHostingController<
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = rootView.navigationBarTitleDisplayMode == .large
         navigationController?.setNavigationBarHidden(rootView.isNavigationBarHidden, animated: true)
     }
     

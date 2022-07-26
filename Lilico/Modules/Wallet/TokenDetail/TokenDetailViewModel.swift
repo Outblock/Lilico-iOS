@@ -95,8 +95,6 @@ extension TokenDetailView {
 }
 
 class TokenDetailViewModel: ObservableObject {
-    @RouterObject var router: WalletCoordinator.Router?
-    
     @Published var token: TokenModel
     @Published var market: QuoteMarket = LocalUserDefaults.shared.market
     @Published var selectedRangeType: TokenDetailView.ChartRangeType = .d1
@@ -170,11 +168,11 @@ extension TokenDetailViewModel {
 extension TokenDetailViewModel {
     func sendAction() {
         LocalUserDefaults.shared.recentToken = token.symbol
-        router?.route(to: \.send)
+        Router.route(to: RouteMap.Wallet.send)
     }
     
     func receiveAction() {
-        router?.route(to: \.receive)
+        Router.route(to: RouteMap.Wallet.receive)
     }
     
     func changeSelectRangeTypeAction(_ type: TokenDetailView.ChartRangeType) {

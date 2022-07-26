@@ -16,9 +16,20 @@ import QRCode
 //    }
 //}
 
-struct WalletReceiveView: View {
-    @EnvironmentObject private var router: WalletReceiveCoordinator.Router
+struct WalletReceiveView: RouteableView {
     @StateObject var vm = WalletReceiveViewModel()
+    
+    var title: String {
+        return "receive".localized
+    }
+    
+    var navigationBarTitleDisplayMode: NavigationBarItem.TitleDisplayMode {
+        return .large
+    }
+    
+    func backButtonAction() {
+        Router.dismiss()
+    }
     
     var body: some View {
         VStack(spacing: -30) {
@@ -29,14 +40,10 @@ struct WalletReceiveView: View {
             
             copyButton
         }
-        .navigationTitle("receive".localized)
-        .navigationBarTitleDisplayMode(.large)
         .interactiveDismissDisabled()
-        .addBackBtn {
-            router.dismissCoordinator()
-        }
         .buttonStyle(.plain)
         .backgroundFill(Color.LL.deepBg)
+        .applyRouteable(self)
     }
     
     var addressView: some View {

@@ -20,13 +20,16 @@ import Kingfisher
 //    }
 //}
 
-struct TokenDetailView: View {
+struct TokenDetailView: RouteableView {
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var vm: TokenDetailViewModel
-    @EnvironmentObject private var router: WalletCoordinator.Router
     
     private let lightGradientColors: [Color] = [.white.opacity(0), Color(hex: "#E6E6E6").opacity(0), Color(hex: "#E6E6E6").opacity(1)]
     private let darkGradientColors: [Color] = [.white.opacity(0), .white.opacity(0), Color(hex: "#282828").opacity(1)]
+    
+    var title: String {
+        return ""
+    }
     
     init(token: TokenModel) {
         _vm = StateObject(wrappedValue: TokenDetailViewModel(token: token))
@@ -42,14 +45,9 @@ struct TokenDetailView: View {
             .padding(.horizontal, 18)
             .padding(.top, 12)
         }
-        .navigationTitle("")
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.pop()
-        }
         .buttonStyle(.plain)
         .backgroundFill(.LL.deepBg)
-//        .backgroundFill(Color.purple)
+        .applyRouteable(self)
     }
     
     var summaryView: some View {

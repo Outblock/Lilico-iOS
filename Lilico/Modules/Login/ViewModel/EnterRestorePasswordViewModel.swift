@@ -9,7 +9,6 @@ import SwiftUI
 import Stinsen
 
 class EnterRestorePasswordViewModel: ObservableObject {
-    @RouterObject var walletRouter: WalletCoordinator.Router?
     private let item: BackupManager.DriveItem
     
     init(driveItem: BackupManager.DriveItem) {

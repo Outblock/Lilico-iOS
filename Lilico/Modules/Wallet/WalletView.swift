@@ -25,11 +25,24 @@ private let CardViewHeight: CGFloat = 214
 private let CoinCellHeight: CGFloat = 73
 private let CoinIconHeight: CGFloat = 43
 
+extension WalletView: AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType {
+        return .wallet
+    }
+
+    static func iconName() -> String {
+        return "house.fill"
+    }
+
+    static func color() -> Color {
+        return .LL.orange
+    }
+}
+
 struct WalletView: View {
     @StateObject var themeManager = ThemeManager.shared
     @StateObject var um = UserManager.shared
     @StateObject private var vm = WalletViewModel()
-    @EnvironmentObject private var router: WalletCoordinator.Router
 
     var emptyView: some View {
         Text("no address")
@@ -83,7 +96,7 @@ struct WalletView: View {
                         ForEach(vm.coinItems, id: \.token.symbol) { coin in
                             CoinCell(coin: coin)
                                 .onTapGestureOnBackground {
-                                    router.route(to: \.tokenDetail, coin.token)
+                                    Router.route(to: RouteMap.Wallet.tokenDetail(coin.token))
                                 }
                         }
                     }
@@ -126,7 +139,7 @@ struct WalletView: View {
     var actionView: some View {
         HStack {
             Button {
-                router.route(to: \.send)
+                Router.route(to: RouteMap.Wallet.send)
             } label: {
                 VStack(spacing: 7) {
                     Image("icon-wallet-send")
@@ -140,7 +153,7 @@ struct WalletView: View {
             Spacer()
 
             Button {
-                router.route(to: \.receive)
+                Router.route(to: RouteMap.Wallet.receive)
             } label: {
                 VStack(spacing: 7) {
                     Image("icon-wallet-receive")
@@ -178,7 +191,7 @@ struct WalletView: View {
             Spacer()
 
             Button {
-                router.route(to: \.addToken)
+                Router.route(to: RouteMap.Wallet.addToken)
             } label: {
                 Image("icon-wallet-coin-add")
                     .renderingMode(.template)

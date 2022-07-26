@@ -11,7 +11,6 @@ import Stinsen
 
 class InputMnemonicViewModel: ViewModel {
     @Published var state: InputMnemonicView.ViewState = .init()
-    @RouterObject var walletRouter: WalletCoordinator.Router?
 
     func trigger(_ input: InputMnemonicView.Action) {
         switch input {

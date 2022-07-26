@@ -51,8 +51,6 @@ extension WalletSendView {
 }
 
 class WalletSendViewModel: ObservableObject {
-    @RouterObject var router: WalletSendCoordinator.Router?
-    
     @Published var status: WalletSendView.ViewStatus = .normal
     @Published var errorType: WalletSendView.ErrorType = .none
     
@@ -253,7 +251,7 @@ extension WalletSendViewModel {
 
 extension WalletSendViewModel {
     func sendToTargetAction(target: Contact) {
-        router?.route(to: \.amount, target)
+        Router.route(to: RouteMap.Wallet.sendAmount(target))
     }
     
     func searchTextDidChangeAction(text: String) {
@@ -281,7 +279,7 @@ extension WalletSendViewModel {
     
     private func sendToAddressAction(_ address: String) {
         let contact = Contact(address: address, avatar: nil, contactName: address, contactType: .external, domain: nil, id: UUID().hashValue, username: nil)
-        router?.route(to: \.amount, contact)
+        Router.route(to: RouteMap.Wallet.sendAmount(contact))
     }
     
     func searchCommitAction() {

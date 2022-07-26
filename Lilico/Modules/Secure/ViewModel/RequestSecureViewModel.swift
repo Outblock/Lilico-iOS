@@ -16,9 +16,6 @@ class RequestSecureViewModel: ViewModel {
     @RouterObject
     var router: SecureCoordinator.Router?
 
-    @RouterObject
-    var homeRouter: WalletCoordinator.Router?
-
     init() {
         if BioMetricAuthenticator.shared.faceIDAvailable() {
             // device supports face id recognition.
@@ -41,7 +38,7 @@ class RequestSecureViewModel: ViewModel {
             BioMetricAuthenticator.authenticateWithBioMetrics(reason: "Need your permission") { result in
                 switch result {
                 case .success:
-                    self.homeRouter?.popToRoot()
+                    Router.popToRoot()
                 case let .failure(error):
                     print("Authentication Failed")
                     print(error)

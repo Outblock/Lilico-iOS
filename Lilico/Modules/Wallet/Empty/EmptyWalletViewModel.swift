@@ -33,8 +33,6 @@ struct CardDataSource: Identifiable {
 class EmptyWalletViewModel: ViewModel {
     @Published private(set) var state: EmptyWalletState
 
-    @RouterObject var router: WalletCoordinator.Router?
-
     init() {
         let dataSource = [
             CardDataSource(title: "create_btn_desc".localized,

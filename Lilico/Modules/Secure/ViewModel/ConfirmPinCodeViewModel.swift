@@ -15,9 +15,6 @@ class ConfirmPinCodeViewModel: ViewModel {
     @RouterObject
     var router: SecureCoordinator.Router?
 
-    @RouterObject
-    var homeRouter: WalletCoordinator.Router?
-
     init(pin: String) {
         state = .init(lastPin: pin)
     }
@@ -26,7 +23,7 @@ class ConfirmPinCodeViewModel: ViewModel {
         switch input {
         case let .match(confirmPIN):
             if state.lastPin == confirmPIN {
-                homeRouter?.popToRoot()
+                Router.popToRoot()
             } else {
                 DispatchQueue.main.async {
                     self.state.mismatch = true

@@ -23,3 +23,11 @@ extension UINavigationController {
         self.pushViewController(vc, animated: animated)
     }
 }
+
+extension UIViewController {
+    func present(content: some RouteableView, animated: Bool = true, wrapWithNavi: Bool = true) {
+        let vc = RouteableUIHostingController(rootView: content)
+        let navi = UINavigationController(rootViewController: vc)
+        self.present(navi, animated: animated)
+    }
+}

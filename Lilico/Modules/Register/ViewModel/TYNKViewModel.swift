@@ -13,8 +13,6 @@ class TYNKViewModel: ViewModel {
     @Published private(set) var state = TYNKView.ViewState()
     var username: String
 
-    @RouterObject var router: WalletCoordinator.Router?
-
     init(username: String) {
         self.username = username
     }

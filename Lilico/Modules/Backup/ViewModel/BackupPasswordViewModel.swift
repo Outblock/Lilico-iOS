@@ -10,7 +10,6 @@ import Stinsen
 
 class BackupPasswordViewModel: ObservableObject {
     private var backupType: BackupManager.BackupType
-    @RouterObject var router: WalletCoordinator.Router?
 
     init(backupType: BackupManager.BackupType) {
         self.backupType = backupType

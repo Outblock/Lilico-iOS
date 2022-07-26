@@ -13,9 +13,6 @@ class ManualBackupViewModel: ViewModel {
     @Published
     private(set) var state: ManualBackupView.ViewState = .initScreen
 
-    @RouterObject
-    var router: WalletCoordinator.Router?
-
     func loadScreen() {
 //        state = .init(
 //            dataSource: [
@@ -65,8 +62,7 @@ class ManualBackupViewModel: ViewModel {
     func trigger(_ input: ManualBackupView.Action) {
         switch input {
         case .backupSuccess:
-//            router?.dismissCoordinator()
-            router?.popToRoot()
+            Router.popToRoot()
         case .loadDataSource:
             loadScreen()
         }

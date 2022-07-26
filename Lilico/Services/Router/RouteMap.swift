@@ -88,3 +88,32 @@ extension RouteMap.Backup: RouterTarget {
         }
     }
 }
+
+// MARK: - Wallet
+
+extension RouteMap {
+    enum Wallet {
+        case addToken
+        case tokenDetail(TokenModel)
+        case receive
+        case send
+        case sendAmount(Contact)
+    }
+}
+
+extension RouteMap.Wallet: RouterTarget {
+    func onPresent(navi: UINavigationController) {
+        switch self {
+        case .addToken:
+            navi.push(content: AddTokenView())
+        case .tokenDetail(let token):
+            navi.push(content: TokenDetailView(token: token))
+        case .receive:
+            navi.present(content: WalletReceiveView())
+        case .send:
+            navi.present(content: WalletSendView())
+        case .sendAmount(let contact):
+            navi.push(content: WalletSendAmountView(target: contact))
+        }
+    }
+}

@@ -8,6 +8,18 @@
 import UIKit
 import SwiftUI
 
+enum AppTabType {
+    case wallet
+    case nft
+    case profile
+}
+
+protocol AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType
+    static func iconName() -> String
+    static func color() -> Color
+}
+
 final class Coordinator {
     let window: UIWindow
     lazy var rootNavi: UINavigationController? = nil
@@ -28,7 +40,7 @@ final class Coordinator {
 
 extension Coordinator {
     @ViewBuilder private func makeTabView() -> some View {
-        let wallet = TabBarPageModel<AppTabType>(tag: WalletCoordinator.tabTag(), iconName: WalletCoordinator.iconName(), color: WalletCoordinator.color()) {
+        let wallet = TabBarPageModel<AppTabType>(tag: WalletView.tabTag(), iconName: WalletView.iconName(), color: WalletView.color()) {
             AnyView(WalletView())
         }
 

@@ -16,9 +16,16 @@ import Combine
 //    }
 //}
 
-struct WalletSendAmountView: View {
-    @EnvironmentObject private var router: WalletSendCoordinator.Router
+struct WalletSendAmountView: RouteableView {
     @StateObject private var vm: WalletSendAmountViewModel
+    
+    var title: String {
+        return "send_to".localized
+    }
+    
+    var navigationBarTitleDisplayMode: NavigationBarItem.TitleDisplayMode {
+        return .large
+    }
     
     init(target: Contact) {
         let symbol = LocalUserDefaults.shared.recentToken ?? "flow"
@@ -42,17 +49,13 @@ struct WalletSendAmountView: View {
             }
         }
         .hideKeyboardWhenTappedAround()
-        .navigationTitle("send_to".localized)
-        .navigationBarTitleDisplayMode(.large)
         .interactiveDismissDisabled()
-        .addBackBtn {
-            router.pop()
-        }
         .buttonStyle(.plain)
         .backgroundFill(Color.LL.deepBg)
         .customBottomSheet(isPresented: $vm.showConfirmView, title: "confirmation".localized, background: { Color.LL.Neutrals.background }) {
             SendConfirmView()
         }
+        .applyRouteable(self)
         .environmentObject(vm)
     }
     
@@ -99,7 +102,7 @@ struct WalletSendAmountView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
             Button {
-                router.pop()
+                Router.pop()
             } label: {
                 Image(systemName: .delete)
                     .foregroundColor(.LL.Neutrals.note)

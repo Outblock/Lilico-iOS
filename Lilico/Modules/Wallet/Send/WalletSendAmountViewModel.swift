@@ -39,8 +39,6 @@ extension WalletSendAmountView {
 }
 
 class WalletSendAmountViewModel: ObservableObject {
-    @RouterObject var router: WalletSendCoordinator.Router?
-    
     @Published var targetContact: Contact
     @Published var token: TokenModel
     @Published var amountBalance: Double = 0
@@ -198,7 +196,7 @@ extension WalletSendAmountViewModel {
                 self.isSending = false
                 HUD.dismissLoading()
                 HUD.success(title: "sent_successfully".localized)
-                self.router?.popToRoot()
+                Router.popToRoot()
                 
                 Task {
                     try? await WalletManager.shared.fetchBalance()
