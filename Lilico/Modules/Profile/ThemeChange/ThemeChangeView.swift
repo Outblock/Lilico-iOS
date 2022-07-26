@@ -52,8 +52,10 @@ extension ThemeChangeView {
     var autoItemView: some View {
         VStack {
             Toggle(isOn: $vm.state.isAuto) {
-                Image(systemName: .sun).font(.system(size: 25)).foregroundColor(.LL.Secondary.mango4)
-                Text("auto".localized).foregroundColor(.LL.Neutrals.text).font(.inter(size: 16, weight: .medium))
+                HStack(spacing: 8) {
+                    Image(systemName: .sun).font(.system(size: 25)).foregroundColor(.LL.Secondary.mango4)
+                    Text("auto".localized).foregroundColor(.LL.Neutrals.text).font(.inter(size: 16, weight: .medium))
+                }
             }
             .tint(.LL.Primary.salmonPrimary)
             .onChange(of: vm.state.isAuto) { value in
