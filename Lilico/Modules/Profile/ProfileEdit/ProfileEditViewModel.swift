@@ -6,7 +6,7 @@
 //
 
 import Combine
-import Stinsen
+
 import SwiftUI
 
 extension ProfileEditViewModel {
@@ -24,7 +24,6 @@ extension ProfileEditViewModel {
 
 class ProfileEditViewModel: ViewModel {
     @Published var state: State
-    @RouterObject var router: ProfileEditCoordinator.Router?
 
     private var cancellableSet = Set<AnyCancellable>()
 
@@ -80,9 +79,7 @@ class ProfileEditViewModel: ViewModel {
     }
 
     private func gotoAvatarEdit(items: [EditAvatarView.AvatarItemModel]) {
-        DispatchQueue.main.async {
-            self.router?.route(to: \.avatarEdit, items)
-        }
+        Router.route(to: RouteMap.Profile.editAvatar(items))
     }
 
     private func changePrivate(_ isPrivate: Bool) {

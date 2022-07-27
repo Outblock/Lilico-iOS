@@ -13,6 +13,20 @@ import Kingfisher
 import SwiftUI
 import WebKit
 
+extension NFTTabScreen: AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType {
+        return .nft
+    }
+
+    static func iconName() -> String {
+        return "house.fill"
+    }
+
+    static func color() -> Color {
+        return .LL.blue
+    }
+}
+
 extension NFTTabScreen {
     struct ViewState {
         var loading: Bool = true
@@ -34,19 +48,14 @@ extension NFTTabScreen {
 }
 
 struct NFTTabScreen: View {
-    @StateObject var themeManager = ThemeManager.shared
-
     @State var listStyle: String = "List"
 
     var isListStyle: Bool {
         return listStyle == "List"
     }
 
-    @StateObject
-    var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
-
-    @StateObject
-    var favoriteStore = NFTFavoriteStore.shared
+    @StateObject var viewModel = NFTTabViewModel()
+    @StateObject var favoriteStore = NFTFavoriteStore.shared
 
     @State var selectedIndex = 0
 
@@ -97,7 +106,6 @@ struct NFTTabScreen: View {
             }
         }
         .ignoresSafeArea()
-        .preferredColorScheme(themeManager.style)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .environmentObject(viewModel)
     }
@@ -105,7 +113,7 @@ struct NFTTabScreen: View {
     var content: some View {
         GeometryReader { _ in
             ZStack(alignment: .top) {
-                if !viewModel.isEmpty {
+                if !viewModel.state.isEmpty {
                     OffsetScrollView(offset: $offset) {
                         //TODO: if no like
                         Color.clear
@@ -164,7 +172,7 @@ extension NFTTabScreen {
         @Binding
         var currentNFTImage: URL?
 
-        @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+        @EnvironmentObject private var viewModel: NFTTabViewModel
         @StateObject
         var favoriteStore = NFTFavoriteStore.shared
         @State var favoriteId: String?
@@ -299,7 +307,7 @@ extension NFTTabScreen {
         @Binding var listStyle: String
         @Binding var offset: CGFloat
 
-        @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+        @EnvironmentObject private var viewModel: NFTTabViewModel
 
         var body: some View {
             HStack {
@@ -351,7 +359,7 @@ extension NFTTabScreen {
         @Binding var listStyle: String
         @Binding var isHorizontal: Bool
         @Binding var selectedIndex: Int
-        @EnvironmentObject var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+        @EnvironmentObject var viewModel: NFTTabViewModel
         
         var body: some View {
             VStack {
@@ -478,7 +486,7 @@ extension NFTTabScreen {
     struct CollectionBody: View {
         @Binding var barStyle: NFTTabScreen.CollectionBar.BarStyle
         @Binding var selectedIndex: Int
-        @EnvironmentObject var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+        @EnvironmentObject var viewModel: NFTTabViewModel
 
         var body: some View {
             VStack {
@@ -525,6 +533,6 @@ extension NFTTabScreen {
 
 struct NFTTabScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NFTTabScreen(viewModel: NFTTabViewModel().toAnyViewModel())
+        NFTTabScreen()
     }
 }

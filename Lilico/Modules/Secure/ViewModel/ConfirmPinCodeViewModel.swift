@@ -6,17 +6,10 @@
 //
 
 import Foundation
-import Stinsen
+
 
 class ConfirmPinCodeViewModel: ViewModel {
-    @Published
-    private(set) var state: ConfirmPinCodeView.ViewState
-
-    @RouterObject
-    var router: SecureCoordinator.Router?
-
-    @RouterObject
-    var homeRouter: WalletCoordinator.Router?
+    @Published private(set) var state: ConfirmPinCodeView.ViewState
 
     init(pin: String) {
         state = .init(lastPin: pin)
@@ -26,7 +19,7 @@ class ConfirmPinCodeViewModel: ViewModel {
         switch input {
         case let .match(confirmPIN):
             if state.lastPin == confirmPIN {
-                homeRouter?.popToRoot()
+                Router.popToRoot()
             } else {
                 DispatchQueue.main.async {
                     self.state.mismatch = true

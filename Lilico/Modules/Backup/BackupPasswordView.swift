@@ -8,8 +8,7 @@
 import SwiftUI
 import SwiftUIX
 
-struct BackupPasswordView: View {
-    @EnvironmentObject var router: BackupCoordinator.Router
+struct BackupPasswordView: RouteableView {
     @StateObject var vm: BackupPasswordViewModel
     
     @State var isTick: Bool = false
@@ -17,6 +16,15 @@ struct BackupPasswordView: View {
     @State var confrimHighlight: VTextFieldHighlight = .none
     @State var text: String = ""
     @State var confrimText: String = ""
+    
+    var title: String {
+        return ""
+    }
+    
+    func backButtonAction() {
+        UIApplication.shared.endEditing()
+        Router.pop()
+    }
     
     var model: VTextFieldModel = {
         var model = TextFieldStyle.primary
@@ -106,13 +114,8 @@ struct BackupPasswordView: View {
             .padding(.bottom, 20)
         }
         .padding(.horizontal, 28)
-        .navigationTitle("".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            UIApplication.shared.endEditing()
-            router.pop()
-        }
         .backgroundFill(Color.LL.background)
+        .applyRouteable(self)
     }
 }
 

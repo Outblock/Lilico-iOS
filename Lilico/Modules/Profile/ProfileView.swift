@@ -8,12 +8,32 @@
 import Kingfisher
 import SwiftUI
 
-struct ProfileView: View {
-    @StateObject var themeManager = ThemeManager.shared
+extension ProfileView: AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType {
+        return .profile
+    }
+
+    static func iconName() -> String {
+        return "house.fill"
+    }
+
+    static func color() -> Color {
+        return .purple
+    }
+}
+
+struct ProfileView: RouteableView {
     @StateObject private var vm = ProfileViewModel()
-    @EnvironmentObject private var router: ProfileCoordinator.Router
     @StateObject private var lud = LocalUserDefaults.shared
     @StateObject private var userManager = UserManager.shared
+    
+    var title: String {
+        return ""
+    }
+    
+    var isNavigationBarHidden: Bool {
+        return true
+    }
 
     var body: some View {
         ZStack {
@@ -39,11 +59,11 @@ struct ProfileView: View {
             .buttonStyle(.plain)
         }
         .padding(.top, 16)
-        .preferredColorScheme(themeManager.style)
         .backgroundFill(.LL.Neutrals.background)
         .environmentObject(vm)
         .environmentObject(lud)
         .environmentObject(userManager)
+        .applyRouteable(self)
     }
 }
 
@@ -108,7 +128,6 @@ extension ProfileView {
 
     struct InfoView: View {
         @EnvironmentObject private var userManager: UserManager
-        @EnvironmentObject private var router: ProfileCoordinator.Router
 
         var body: some View {
             HStack(spacing: 16) {
@@ -126,7 +145,7 @@ extension ProfileView {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Button {
-                    router.route(to: \.edit)
+                    Router.route(to: RouteMap.Profile.edit)
                 } label: {
                     Image("icon-profile-edit")
                 }
@@ -137,12 +156,10 @@ extension ProfileView {
     }
 
     struct InfoActionView: View {
-        @EnvironmentObject private var router: ProfileCoordinator.Router
-
         var body: some View {
             HStack(alignment: .center, spacing: 0) {
                 ProfileView.InfoActionButton(iconName: "icon-address", title: "addresses".localized) {
-                    router.route(to: \.addressBook)
+                    Router.route(to: RouteMap.Profile.addressBook)
                 }
 
                 ProfileView.InfoActionButton(iconName: "icon-wallet", title: "wallets".localized) {
@@ -254,7 +271,6 @@ extension ProfileView.ActionSectionView.Row {
 extension ProfileView {
     struct GeneralSectionView: View {
         @EnvironmentObject private var vm: ProfileViewModel
-        @EnvironmentObject var router: ProfileCoordinator.Router
 
         enum Row: CaseIterable {
             case currency
@@ -269,7 +285,7 @@ extension ProfileView {
                         ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc(with: vm), toggle: row.toggle)
                             .onTapGestureOnBackground {
                                 if row == .theme {
-                                    router.route(to: \.themeChange)
+                                    Router.route(to: RouteMap.Profile.themeChange)
                                 }
                             }
                         
@@ -345,7 +361,6 @@ extension ProfileView.GeneralSectionView.Row {
 
 extension ProfileView {
     struct AboutSectionView: View {
-        @EnvironmentObject var router: ProfileCoordinator.Router
         @EnvironmentObject var lud: LocalUserDefaults
 
         enum Row {
@@ -359,7 +374,7 @@ extension ProfileView {
                     let dm = Row.developerMode(lud)
                     ProfileView.SettingItemCell(iconName: dm.iconName, title: dm.title, style: dm.style, desc: dm.desc, toggle: dm.toggle)
                         .onTapGestureOnBackground {
-                            router.route(to: \.developerMode)
+                            Router.route(to: RouteMap.Profile.developer)
                         }
                     
                     Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)

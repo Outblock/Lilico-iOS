@@ -6,17 +6,17 @@
 //
 
 import Foundation
-import Stinsen
+
 
 class RestoreWalletViewModel {
-    @RouterObject var router: LoginCoordinator.Router?
+    
 }
 
 // MARK: - Action
 
 extension RestoreWalletViewModel {
     func restoreWithManualAction() {
-        router?.route(to: \.inputMnemonic)
+        Router.route(to: RouteMap.RestoreLogin.restoreManual)
     }
     
     func restoreWithGoogleDriveAction() {
@@ -32,9 +32,7 @@ extension RestoreWalletViewModel {
                     return
                 }
                 
-                DispatchQueue.main.async {
-                    self.router?.route(to: \.chooseAccount, items)
-                }
+                Router.route(to: RouteMap.RestoreLogin.chooseAccount(items))
             } catch {
                 HUD.dismissLoading()
                 HUD.error(title: "restore_with_x_failed".localized("google_drive".localized))

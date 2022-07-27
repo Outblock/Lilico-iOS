@@ -17,9 +17,16 @@ struct EditAvatarView_Previews: PreviewProvider {
 private let PreviewContainerSize: CGFloat = 54
 private let PreviewImageSize: CGFloat = 40
 
-struct EditAvatarView: View {
+struct EditAvatarView: RouteableView {
     @StateObject private var vm: EditAvatarViewModel
-    @EnvironmentObject private var router: ProfileEditCoordinator.Router
+    
+    var title: String {
+        return ""
+    }
+    
+    var forceColorScheme: UIUserInterfaceStyle? {
+        return .dark
+    }
 
     init(items: [AvatarItemModel]) {
         _vm = StateObject(wrappedValue: EditAvatarViewModel(items: items))
@@ -52,8 +59,6 @@ struct EditAvatarView: View {
         .buttonStyle(.plain)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .backgroundFill(Color(hex: "#1A1A1A"))
-        .navigationTitle("")
-        .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing: HStack {
             Button {
                 vm.mode = .edit
@@ -68,10 +73,7 @@ struct EditAvatarView: View {
             }
             .visibility(vm.mode == .preview ? .visible : .invisible)
         })
-        .addBackBtn {
-            router.pop()
-        }
-        .environment(\.colorScheme, .dark)
+        .applyRouteable(self)
     }
 }
 

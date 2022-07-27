@@ -6,7 +6,7 @@
 //
 
 import Alamofire
-import Stinsen
+
 import SwiftUI
 
 extension ProfileEditNameViewModel {
@@ -28,8 +28,6 @@ class ProfileEditNameViewModel: ObservableObject {
     }
 
     @Published var status: StatusType = .idle
-
-    @RouterObject var router: ProfileEditCoordinator.Router?
 
     init() {
         name = UserManager.shared.userInfo?.nickname ?? ""
@@ -62,7 +60,7 @@ class ProfileEditNameViewModel: ObservableObject {
             DispatchQueue.main.async {
                 HUD.dismissLoading()
                 UserManager.shared.updateNickname(name)
-                self.router?.pop()
+                Router.pop()
             }
         }
 

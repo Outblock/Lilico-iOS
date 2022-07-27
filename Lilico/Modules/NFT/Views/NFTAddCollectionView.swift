@@ -9,10 +9,10 @@ import SwiftUI
 import Kingfisher
 import PartialSheet
 
-struct NFTAddCollectionView: View {
+struct NFTAddCollectionView: RouteableView {
     
     @State private var offset: CGFloat = 0
-    @EnvironmentObject var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    @StateObject var viewModel: NFTTabViewModel
     
     @State private var isPresented = false
     
@@ -27,6 +27,10 @@ struct NFTAddCollectionView: View {
         cover: .enabled(Color.black.opacity(0.72)),
         cornerRadius: 10
     )
+    
+    var title: String {
+        return "add_collection".localized
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -49,11 +53,7 @@ struct NFTAddCollectionView: View {
             .searchable(text: $addViewModel.searchQuery, prompt: "search_NFT_collection".localized)
         }
         .background(Color.LL.Neutrals.background)
-        .navigationTitle("add_collection".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            viewModel.trigger(.back)
-        }
+        .applyRouteable(self)
         .partialSheet(
             isPresented: $isPresented,
             iPhoneStyle: iPhoneStyle,
@@ -66,6 +66,7 @@ struct NFTAddCollectionView: View {
             }
         )
         .attachPartialSheetToRoot()
+        .environmentObject(viewModel)
         
     }
 
@@ -193,7 +194,7 @@ struct NFTAddCollectionView_Previews: PreviewProvider {
     ]
     static var previews: some View {
         NavigationView {
-            NFTAddCollectionView()
+            NFTAddCollectionView(viewModel: NFTTabViewModel())
         }
     }
 }

@@ -19,14 +19,24 @@ extension UsernameView {
     }
 }
 
-struct UsernameView: View {
-    @EnvironmentObject var router: RegisterCoordinator.Router
-    @StateObject var viewModel: AnyViewModel<ViewState, Action>
+extension UsernameView {
+    var title: String {
+        return ""
+    }
+    
+    func backButtonAction() {
+        UIApplication.shared.endEditing()
+        Router.pop()
+    }
+}
+
+struct UsernameView: RouteableView {
+    @StateObject var viewModel = UsernameViewModel()
     
     @State var text: String = ""
     
     var highlight: VTextFieldHighlight {
-        switch viewModel.status {
+        switch viewModel.state.status {
         case .success:
             return .success
         case .error:
@@ -39,7 +49,7 @@ struct UsernameView: View {
     }
     
     var footerText: String {
-        switch viewModel.status {
+        switch viewModel.state.status {
         case .success:
             return "nice_one".localized
         case let .error(message):
@@ -96,18 +106,13 @@ struct UsernameView: View {
         }
         .dismissKeyboardOnDrag()
         .padding(.horizontal, 28)
-        .navigationTitle("".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            UIApplication.shared.endEditing()
-            router.pop()
-        }
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+        .applyRouteable(self)
     }
 }
 
 struct UsernameView_Previews: PreviewProvider {
     static var previews: some View {
-        UsernameView(viewModel: UsernameViewModel().toAnyViewModel())
+        UsernameView()
     }
 }

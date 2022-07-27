@@ -31,6 +31,14 @@ class ThemeManager: ObservableObject {
 
         reloadStyle()
     }
+    
+    func getUIKitStyle() -> UIUserInterfaceStyle {
+        if let style = style {
+            return style.toUIKitEnum
+        }
+        
+        return .unspecified
+    }
 }
 
 extension ColorScheme {
@@ -53,6 +61,17 @@ extension ColorScheme {
             return "Dark"
         @unknown default:
             return "Light"
+        }
+    }
+    
+    var toUIKitEnum: UIUserInterfaceStyle {
+        switch self {
+        case .light:
+            return .light
+        case .dark:
+            return .dark
+        default:
+            return .unspecified
         }
     }
 

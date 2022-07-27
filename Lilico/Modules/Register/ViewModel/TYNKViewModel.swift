@@ -7,13 +7,11 @@
 
 import Foundation
 import Resolver
-import Stinsen
+
 
 class TYNKViewModel: ViewModel {
     @Published private(set) var state = TYNKView.ViewState()
     var username: String
-
-    @RouterObject var router: WalletCoordinator.Router?
 
     init(username: String) {
         self.username = username
@@ -36,13 +34,7 @@ class TYNKViewModel: ViewModel {
                 
                 DispatchQueue.main.async {
                     self.state.isLoading = false
-                    self.router?.popToRoot()
-                    self.router?.coordinator.refreshRoot()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        let newWalletCoordinator: WalletCoordinator.Router? = RouterStore.shared.retrieve()
-                        newWalletCoordinator?.route(to: \.recoveryPhrase)
-                    }
+                    Router.route(to: RouteMap.Backup.rootWithMnemonic)
                 }
             } catch {
                 DispatchQueue.main.async {

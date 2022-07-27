@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct RestoreWalletView: View {
-    @EnvironmentObject var router: LoginCoordinator.Router
-    var viewModel: RestoreWalletViewModel
+struct RestoreWalletView: RouteableView {
+    private var viewModel = RestoreWalletViewModel()
 
     var body: some View {
         VStack(spacing: 10) {
@@ -48,17 +47,19 @@ struct RestoreWalletView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 28)
-        .navigationTitle("".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.dismissCoordinator()
-        }
         .backgroundFill(Color.LL.background)
+        .applyRouteable(self)
+    }
+}
+
+extension RestoreWalletView {
+    var title: String {
+        return ""
     }
 }
 
 struct RestoreWalletView_Previews: PreviewProvider {
     static var previews: some View {
-        RestoreWalletView(viewModel: RestoreWalletViewModel())
+        RestoreWalletView()
     }
 }

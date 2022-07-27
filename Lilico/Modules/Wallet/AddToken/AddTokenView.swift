@@ -15,25 +15,24 @@ import Kingfisher
 //}
 
 
-struct AddTokenView: View {
+struct AddTokenView: RouteableView {
     @StateObject var vm = AddTokenViewModel()
-    @EnvironmentObject private var router: WalletCoordinator.Router
+    
+    var title: String {
+        return "add_token".localized
+    }
     
     var body: some View {
         ZStack {
             listView
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .navigationTitle("add_token".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.pop()
-        }
         .customBottomSheet(isPresented: $vm.confirmSheetIsPresented, title: "add_token".localized, background: { Color.LL.Neutrals.background }) {
             AddTokenConfirmView(token: vm.pendingActiveToken)
         }
         .environmentObject(vm)
         .disabled(vm.isRequesting)
+        .applyRouteable(self)
     }
     
     var listView: some View {

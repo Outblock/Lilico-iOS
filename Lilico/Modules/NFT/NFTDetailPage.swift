@@ -8,11 +8,19 @@
 import Kingfisher
 import SwiftUI
 
-struct NFTDetailPage: View {
+struct NFTDetailPage: RouteableView {
     static var ShareNFTView: NFTShareView? = nil
+    
+    var title: String {
+        return ""
+    }
+    
+    var isNavigationBarHidden: Bool {
+        return true
+    }
 
     @StateObject
-    var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    var viewModel: NFTTabViewModel
 
     @StateObject
     var favorite = NFTFavoriteStore.shared
@@ -219,6 +227,7 @@ struct NFTDetailPage: View {
         .onAppear {
 //            NFTDetailPage.ShareNFTView = NFTShareView(nft: nft, colors: viewModel.state.colorsMap[nft.image.absoluteString] ?? [])
         }
+        .applyRouteable(self)
     }
 
     var date: some View {
@@ -287,6 +296,6 @@ struct NFTDetailPage: View {
 struct NFTDetailPage_Previews: PreviewProvider {
     static var nft = NFTTabViewModel.testNFT()
     static var previews: some View {
-        NFTDetailPage(viewModel: NFTTabViewModel().toAnyViewModel(), nft: nft)
+        NFTDetailPage(viewModel: NFTTabViewModel(), nft: nft)
     }
 }

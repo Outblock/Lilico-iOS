@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Stinsen
+
 
 extension AddAddressView {
     enum AddressStateType {
@@ -80,21 +80,24 @@ extension AddAddressView {
 
     class AddAddressViewModel: ViewModel {
         @Published var state: AddAddressState
-        @RouterObject var router: AddressBookCoordinator.Router?
+        private var addressBookVM: AddressBookView.AddressBookViewModel
 
         private var addressCheckTask: DispatchWorkItem?
 
-        init() {
-            state = AddAddressState()
+        init(addressBookVM: AddressBookView.AddressBookViewModel) {
+            self.state = AddAddressState()
+            self.addressBookVM = addressBookVM
         }
 
-        init(contact: Contact) {
-            state = AddAddressState()
-            state.isEditingMode = true
-            state.editingContact = contact
-            state.name = contact.contactName ?? ""
-            state.address = contact.address ?? ""
-
+        init(contact: Contact, addressBookVM: AddressBookView.AddressBookViewModel) {
+            self.addressBookVM = addressBookVM
+            
+            self.state = AddAddressState()
+            self.state.isEditingMode = true
+            self.state.editingContact = contact
+            self.state.name = contact.contactName ?? ""
+            self.state.address = contact.address ?? ""
+            
             trigger(.checkAddress)
         }
 
@@ -136,8 +139,8 @@ extension AddAddressView {
             let successAction = {
                 DispatchQueue.main.async {
                     HUD.dismissLoading()
-                    self.router?.coordinator.addressBookVM?.trigger(.load)
-                    self.router?.pop()
+                    NotificationCenter.default.post(name: .addressBookDidAdd, object: nil)
+                    Router.pop()
                     HUD.success(title: "contact_added".localized)
                 }
             }
@@ -174,8 +177,8 @@ extension AddAddressView {
             let successAction = {
                 DispatchQueue.main.async {
                     HUD.dismissLoading()
-                    self.router?.coordinator.addressBookVM?.trigger(.load)
-                    self.router?.pop()
+                    NotificationCenter.default.post(name: .addressBookDidEdit, object: nil)
+                    Router.pop()
                     HUD.success(title: "contact_edited".localized)
                 }
             }
@@ -208,7 +211,7 @@ extension AddAddressView {
             let domain = Contact.Domain(domainType: .unknown, value: "")
             let contact = Contact(address: address, avatar: nil, contactName: contactName, contactType: .external, domain: domain, id: 0, username: "")
 
-            return router?.coordinator.addressBookVM?.contactIsExists(contact) ?? false
+            return addressBookVM.contactIsExists(contact)
         }
 
         private func checkAddressAction() {

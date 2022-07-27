@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Stinsen
+
 import SwiftUI
 import SwiftUIX
 
@@ -33,8 +33,6 @@ struct CardDataSource: Identifiable {
 class EmptyWalletViewModel: ViewModel {
     @Published private(set) var state: EmptyWalletState
 
-    @RouterObject var router: WalletCoordinator.Router?
-
     init() {
         let dataSource = [
             CardDataSource(title: "create_btn_desc".localized,
@@ -60,9 +58,9 @@ class EmptyWalletViewModel: ViewModel {
     func trigger(_ input: EmptyWalletAction) {
         switch input {
         case .signUp:
-            router?.route(to: \.register)
+            Router.route(to: RouteMap.Register.root)
         case .signIn:
-            router?.route(to: \.login)
+            Router.route(to: RouteMap.RestoreLogin.root)
         }
     }
 }

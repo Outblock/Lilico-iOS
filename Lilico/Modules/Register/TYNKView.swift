@@ -18,13 +18,20 @@ extension TYNKView {
     }
 }
 
-struct TYNKView: View {
-    @EnvironmentObject var router: RegisterCoordinator.Router
-    @StateObject var viewModel: AnyViewModel<ViewState, Action>
+struct TYNKView: RouteableView {
+    @StateObject var viewModel: TYNKViewModel
     @State var stateList: [Bool] = [false, false, false]
+    
+    var title: String {
+        return ""
+    }
+    
+    init(username: String) {
+        _viewModel = StateObject(wrappedValue: TYNKViewModel(username: username))
+    }
 
     var buttonState: VPrimaryButtonState {
-        if viewModel.isLoading {
+        if viewModel.state.isLoading {
             return .loading
         }
         return stateList.contains(false) ? .disabled : .enabled
@@ -75,18 +82,14 @@ struct TYNKView: View {
                 .padding(.bottom)
         }
         .padding(.horizontal, 28)
-        .navigationTitle("".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.pop()
-        }
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+        .applyRouteable(self)
     }
 }
 
 struct TYNKView_Previews: PreviewProvider {
     static var previews: some View {
-        TYNKView(viewModel: TYNKViewModel(username: "123").toAnyViewModel())
+        TYNKView(username: "123")
             .previewDevice("iPhone 13 mini")
     }
 }

@@ -10,7 +10,7 @@ import Flow
 import Kingfisher
 import SPConfetti
 import SwiftUI
-import Stinsen
+
 import SwiftUIX
 
 //struct WalletView_Previews: PreviewProvider {
@@ -25,10 +25,23 @@ private let CardViewHeight: CGFloat = 214
 private let CoinCellHeight: CGFloat = 73
 private let CoinIconHeight: CGFloat = 43
 
+extension WalletView: AppTabBarPageProtocol {
+    static func tabTag() -> AppTabType {
+        return .wallet
+    }
+
+    static func iconName() -> String {
+        return "house.fill"
+    }
+
+    static func color() -> Color {
+        return .LL.orange
+    }
+}
+
 struct WalletView: View {
-    @StateObject var themeManager = ThemeManager.shared
+    @StateObject var um = UserManager.shared
     @StateObject private var vm = WalletViewModel()
-    @EnvironmentObject private var router: WalletCoordinator.Router
 
     var emptyView: some View {
         Text("no address")
@@ -47,51 +60,66 @@ struct WalletView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .backgroundFill(.LL.Neutrals.background)
     }
+    
+    /// user is not logged in UI
+    var guestView: some View {
+        EmptyWalletView()
+    }
+    
+    /// user logged in UI
+    var normalView: some View {
+        ZStack {
+            emptyView
+                .visibility(vm.walletState == .noAddress ? .visible : .gone)
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVStack(spacing: 0) {
+                    Section {
+                        VStack(spacing: 32) {
+                            headerView
+                            CardView()
+                            actionView
+                        }
+                        
+                        loadingView
+                            .visibility(vm.walletState == .loading ? .visible : .gone)
+                        errorView
+                            .visibility(vm.walletState == .error ? .visible : .gone)
+                    }
+                    .listRowInsets(.zero)
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.LL.Neutrals.background)
+                    
+                    Section {
+                        coinSectionView
+                        ForEach(vm.coinItems, id: \.token.symbol) { coin in
+                            CoinCell(coin: coin)
+                                .onTapGestureOnBackground {
+                                    Router.route(to: RouteMap.Wallet.tokenDetail(coin.token))
+                                }
+                        }
+                    }
+                    .listRowInsets(.zero)
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.LL.Neutrals.background)
+                    .visibility(vm.walletState == .idle ? .visible : .gone)
+                }
+            }
+            .listStyle(.plain)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.horizontal, 18)
+            .backgroundFill(.LL.Neutrals.background)
+            .environmentObject(vm)
+            .visibility(vm.walletState != .noAddress ? .visible : .gone)
+        }
+    }
 
     var body: some View {
-        emptyView
-            .visibility(vm.walletState == .noAddress ? .visible : .gone)
-        
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(spacing: 0) {
-                Section {
-                    VStack(spacing: 32) {
-                        headerView
-                        CardView()
-                        actionView
-                    }
-                    
-                    loadingView
-                        .visibility(vm.walletState == .loading ? .visible : .gone)
-                    errorView
-                        .visibility(vm.walletState == .error ? .visible : .gone)
-                }
-                .listRowInsets(.zero)
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.LL.Neutrals.background)
-                
-                Section {
-                    coinSectionView
-                    ForEach(vm.coinItems, id: \.token.symbol) { coin in
-                        CoinCell(coin: coin)
-                            .onTapGestureOnBackground {
-                                router.route(to: \.tokenDetail, coin.token)
-                            }
-                    }
-                }
-                .listRowInsets(.zero)
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.LL.Neutrals.background)
-                .visibility(vm.walletState == .idle ? .visible : .gone)
-            }
+        ZStack {
+            guestView.visibility(um.isLoggedIn ? .gone : .visible)
+            normalView.visibility(um.isLoggedIn ? .visible : .gone)
         }
-        .listStyle(.plain)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 18)
-        .backgroundFill(.LL.Neutrals.background)
-        .environmentObject(vm)
-        .visibility(vm.walletState != .noAddress ? .visible : .gone)
-        .preferredColorScheme(themeManager.style)
+        .navigationBarHidden(true)
     }
 
     var headerView: some View {
@@ -109,7 +137,7 @@ struct WalletView: View {
     var actionView: some View {
         HStack {
             Button {
-                router.route(to: \.send)
+                Router.route(to: RouteMap.Wallet.send)
             } label: {
                 VStack(spacing: 7) {
                     Image("icon-wallet-send")
@@ -123,7 +151,7 @@ struct WalletView: View {
             Spacer()
 
             Button {
-                router.route(to: \.receive)
+                Router.route(to: RouteMap.Wallet.receive)
             } label: {
                 VStack(spacing: 7) {
                     Image("icon-wallet-receive")
@@ -161,7 +189,7 @@ struct WalletView: View {
             Spacer()
 
             Button {
-                router.route(to: \.addToken)
+                Router.route(to: RouteMap.Wallet.addToken)
             } label: {
                 Image("icon-wallet-coin-add")
                     .renderingMode(.template)

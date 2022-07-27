@@ -13,14 +13,19 @@ import SwiftUI
 import UIKit
 import WalletCore
 
+@main
 class AppDelegate: NSObject, UIApplicationDelegate {
+    var window: UIWindow?
+    lazy var coordinator = Coordinator(window: window!)
+    
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         appConfig()
-        Resolver.registerAllServices()
         commonConfig()
         flowConfig()
         FirebaseConfig.start()
+        
+        setupUI()
 
         return true
     }
@@ -33,6 +38,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 // MARK: - Config
 
 extension AppDelegate {
+    private func setupNavigationBar() {
+        let font = UIFont(name: "Inter", size: 18)?.semibold
+        let largeFont = UIFont(name: "Inter", size: 24)?.bold
+        let color = UIColor(named: "neutrals.text")!
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: color, .font: font!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: color, .font: largeFont!]
+        
+//        let emptyImage = UIImage()
+//        UINavigationBar.appearance().backIndicatorImage = emptyImage
+//        UINavigationBar.appearance().backIndicatorTransitionMaskImage = emptyImage
+    }
+    
     private func appConfig() {
         _ = UserManager.shared
         _ = WalletManager.shared
@@ -41,6 +58,8 @@ extension AppDelegate {
     }
 
     private func commonConfig() {
+        setupNavigationBar()
+        
         UITableView.appearance().sectionHeaderTopPadding = 0
         UISearchBar.appearance().tintColor = UIColor(Color.LL.Secondary.violetDiscover)
         UINavigationBar.appearance().shadowImage = UIImage()
@@ -52,5 +71,18 @@ extension AppDelegate {
 
     private func flowConfig() {
         FlowNetwork.setup()
+    }
+}
+
+// MARK: - UI
+
+extension AppDelegate {
+    private func setupUI() {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.backgroundColor = .systemBackground
+        
+        coordinator.showRootView()
+        
+        self.window?.makeKeyAndVisible()
     }
 }

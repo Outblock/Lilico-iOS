@@ -22,9 +22,8 @@ extension InputMnemonicView {
     }
 }
 
-struct InputMnemonicView: View {
-    @EnvironmentObject var router: LoginCoordinator.Router
-    @StateObject var viewModel: InputMnemonicViewModel
+struct InputMnemonicView: RouteableView {
+    @StateObject private var viewModel = InputMnemonicViewModel()
     
     var model: VTextFieldModel = {
         var model = TextFieldStyle.primary
@@ -141,18 +140,19 @@ struct InputMnemonicView: View {
             .frame(height: 30, alignment: .leading)
             .padding(.bottom)
         }
-        .navigationTitle("".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.pop()
-        }
         .backgroundFill(Color.LL.background)
+        .applyRouteable(self)
+    }
+}
+
+extension InputMnemonicView {
+    var title: String {
+        return ""
     }
 }
 
 struct InputMnemonicView_Previews: PreviewProvider {
     static var previews: some View {
-        InputMnemonicView(viewModel: InputMnemonicViewModel())
-            .previewDevice("iPhone 13 mini")
+        InputMnemonicView().previewDevice("iPhone 13 mini")
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import Kingfisher
-import Stinsen
+
 import SwiftUI
 
 extension EditAvatarView {
@@ -75,8 +75,6 @@ extension EditAvatarView {
         @Published var selectedItemId: String?
         private var oldAvatarItem: AvatarItemModel?
 
-        @RouterObject var router: ProfileEditCoordinator.Router?
-
         init(items: [AvatarItemModel]) {
             self.items = items
 
@@ -134,7 +132,7 @@ extension EditAvatarView {
                     DispatchQueue.main.async {
                         HUD.dismissLoading()
                         UserManager.shared.updateAvatar(firebaseURL)
-                        self.router?.pop()
+                        Router.pop()
                     }
                 }
             }

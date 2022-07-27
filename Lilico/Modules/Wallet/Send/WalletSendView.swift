@@ -16,10 +16,21 @@ import SwiftUIPager
 //    }
 //}
 
-struct WalletSendView: View {
-    @EnvironmentObject private var router: WalletSendCoordinator.Router
+struct WalletSendView: RouteableView {
     @StateObject private var vm = WalletSendViewModel()
     @FocusState private var searchIsFocused: Bool
+    
+    var title: String {
+        return "send_to".localized
+    }
+    
+    var navigationBarTitleDisplayMode: NavigationBarItem.TitleDisplayMode {
+        return .large
+    }
+    
+    func backButtonAction() {
+        Router.dismiss()
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -35,14 +46,10 @@ struct WalletSendView: View {
                     .visibility(vm.status == .normal ? .gone : .visible)
             }
         }
-        .navigationTitle("send_to".localized)
-        .navigationBarTitleDisplayMode(.large)
         .interactiveDismissDisabled()
-        .addBackBtn {
-            router.dismissCoordinator()
-        }
         .buttonStyle(.plain)
         .backgroundFill(Color.LL.deepBg)
+        .applyRouteable(self)
     }
     
     var switchBar: some View {

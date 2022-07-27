@@ -192,7 +192,7 @@ struct CornerRadiusStyle: ViewModifier {
 // MARK: - NavigationBar back button
 
 extension View {
-    func backBtn(action: @escaping () -> Void) -> some View {
+    private func backBtn(action: @escaping () -> Void) -> some View {
         Button(action: action) {
             VStack {
                 Image(systemName: "arrow.backward")
@@ -202,8 +202,12 @@ extension View {
         }
     }
 
-    @ViewBuilder func addBackBtn(action: @escaping () -> Void) -> some View {
+    @ViewBuilder func addBackBtn(action: (() -> Void)? = nil) -> some View {
+        let defaultAction = {
+            Router.pop()
+        }
+        
         navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: backBtn(action: action))
+            .navigationBarItems(leading: backBtn(action: action == nil ? defaultAction : action!))
     }
 }

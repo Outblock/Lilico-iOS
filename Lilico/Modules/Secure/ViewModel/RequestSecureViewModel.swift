@@ -7,17 +7,11 @@
 
 import BiometricAuthentication
 import Foundation
-import Stinsen
+
 
 class RequestSecureViewModel: ViewModel {
     @Published
     private(set) var state: RequestSecureView.ViewState = .init()
-
-    @RouterObject
-    var router: SecureCoordinator.Router?
-
-    @RouterObject
-    var homeRouter: WalletCoordinator.Router?
 
     init() {
         if BioMetricAuthenticator.shared.faceIDAvailable() {
@@ -41,14 +35,14 @@ class RequestSecureViewModel: ViewModel {
             BioMetricAuthenticator.authenticateWithBioMetrics(reason: "Need your permission") { result in
                 switch result {
                 case .success:
-                    self.homeRouter?.popToRoot()
+                    Router.popToRoot()
                 case let .failure(error):
                     print("Authentication Failed")
                     print(error)
                 }
             }
         case .pin:
-            router?.route(to: \.pinCode)
+            Router.route(to: RouteMap.PinCode.pinCode)
         }
     }
 }

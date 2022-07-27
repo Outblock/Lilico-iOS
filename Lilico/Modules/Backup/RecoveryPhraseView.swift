@@ -20,10 +20,13 @@ extension RecoveryPhraseView {
     }
 }
 
-struct RecoveryPhraseView: View {
-    @EnvironmentObject var router: BackupCoordinator.Router
-    @StateObject var viewModel: AnyViewModel<ViewState, Action>
+struct RecoveryPhraseView: RouteableView {
+    @StateObject var viewModel = RecoveryPhraseViewModel()
     @State var isBlur: Bool = true
+    
+    var title: String {
+        return ""
+    }
 
     var body: some View {
         VStack {
@@ -51,9 +54,9 @@ struct RecoveryPhraseView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        WordListView(data: Array(viewModel.dataSource.prefix(6)))
+                        WordListView(data: Array(viewModel.state.dataSource.prefix(6)))
                         Spacer()
-                        WordListView(data: Array(viewModel.dataSource.suffix(from: 6)))
+                        WordListView(data: Array(viewModel.state.dataSource.suffix(from: 6)))
                         Spacer()
                     }
 
@@ -120,7 +123,7 @@ struct RecoveryPhraseView: View {
                 .padding(.bottom)
 
                 VPrimaryButton(model: ButtonStyle.primary,
-                               state: viewModel.icloudLoading ? .loading : .enabled,
+                               state: viewModel.state.icloudLoading ? .loading : .enabled,
                                action: {
                                    viewModel.trigger(.icloudBackup)
                                }, title: "backup_to_icloud".localized)
@@ -137,18 +140,14 @@ struct RecoveryPhraseView: View {
             }
         }
         .padding(.horizontal, 28)
-        .navigationTitle("".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.dismissCoordinator()
-        }
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+        .applyRouteable(self)
     }
 }
 
 struct RecoveryPhraseView_Previews: PreviewProvider {
     static var previews: some View {
-        RecoveryPhraseView(viewModel: RecoveryPhraseViewModel().toAnyViewModel())
+        RecoveryPhraseView()
     }
 }
 

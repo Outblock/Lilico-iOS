@@ -8,8 +8,10 @@
 import SwiftUI
 import WalletCore
 
-struct TermsAndPolicy: View {
-    @EnvironmentObject var router: RegisterCoordinator.Router
+struct TermsAndPolicy: RouteableView {
+    var title: String {
+        return ""
+    }
     
     var body: some View {
         VStack {
@@ -64,17 +66,13 @@ struct TermsAndPolicy: View {
             
             VPrimaryButton(model: ButtonStyle.primary,
                            action: {
-                router.route(to: \.username)
+                Router.route(to: RouteMap.Register.username)
             }, title: "i_accept".localized)
             .padding(.bottom, 20)
         }
         .padding(.horizontal, 28)
-        .navigationTitle("")
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.dismissCoordinator()
-        }
         .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+        .applyRouteable(self)
     }
 }
 
