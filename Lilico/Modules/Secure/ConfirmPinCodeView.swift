@@ -18,33 +18,22 @@ extension ConfirmPinCodeView {
     }
 }
 
-struct ConfirmPinCodeView: View {
-    @Environment(\.presentationMode)
-    var presentationMode: Binding<PresentationMode>
-
-    @StateObject
-    var viewModel: AnyViewModel<ViewState, Action>
-
-    var btnBack: some View {
-        Button {
-            self.presentationMode.wrappedValue.dismiss()
-        } label: {
-            HStack {
-                Image(systemName: "arrow.backward")
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(Color.LL.rebackground)
-            }
-        }
+struct ConfirmPinCodeView: RouteableView {
+    @StateObject var viewModel: ConfirmPinCodeViewModel
+    
+    init(lastPin: String) {
+        _viewModel = StateObject(wrappedValue: ConfirmPinCodeViewModel(pin: lastPin))
+    }
+    
+    var title: String {
+        return ""
     }
 
-    @State
-    var text: String = ""
-
-    @State
-    var focuse: Bool = false
+    @State var text: String = ""
+    @State var focuse: Bool = false
 
     var wrongAttempt: Bool {
-        if viewModel.mismatch {
+        if viewModel.state.mismatch {
             text = ""
             return true
         }
@@ -52,63 +41,53 @@ struct ConfirmPinCodeView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack(spacing: 15) {
-                Spacer()
-                VStack(alignment: .leading) {
-                    Text("please_confirm".localized)
+        VStack(spacing: 15) {
+            Spacer()
+            VStack(alignment: .leading) {
+                Text("please_confirm".localized)
+                    .bold()
+                    .foregroundColor(Color.LL.text)
+                    .font(.LL.largeTitle)
+                HStack {
+                    Text("your".localized)
                         .bold()
                         .foregroundColor(Color.LL.text)
-                        .font(.LL.largeTitle)
-                    HStack {
-                        Text("your".localized)
-                            .bold()
-                            .foregroundColor(Color.LL.text)
 
-                        Text("pin".localized)
-                            .bold()
-                            .foregroundColor(Color.LL.orange)
-                    }
-                    .font(.LL.largeTitle)
-
-                    Text("no_restore_desc".localized)
-                        .font(.LL.body)
-                        .foregroundColor(.LL.note)
-                        .padding(.top, 1)
+                    Text("pin".localized)
+                        .bold()
+                        .foregroundColor(Color.LL.orange)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.bottom, 30)
+                .font(.LL.largeTitle)
 
-                SecureView(text: $text) { text, complete in
-                    if complete {
-                        viewModel.trigger(.match(text))
-                        if viewModel.state.mismatch {
-                            self.text = ""
-                        }
+                Text("no_restore_desc".localized)
+                    .font(.LL.body)
+                    .foregroundColor(.LL.note)
+                    .padding(.top, 1)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, 30)
+
+            SecureView(text: $text) { text, complete in
+                if complete {
+                    viewModel.trigger(.match(text))
+                    if viewModel.state.mismatch {
+                        self.text = ""
                     }
                 }
-                .offset(x: viewModel.state.mismatch ? -10 : 0)
-                .animation(.easeInOut(duration: 0.08).repeatCount(5), value: viewModel.state.mismatch)
+            }
+            .offset(x: viewModel.state.mismatch ? -10 : 0)
+            .animation(.easeInOut(duration: 0.08).repeatCount(5), value: viewModel.state.mismatch)
 
-                Spacer()
-            }
-            .onAppear {
-//                delay(.milliseconds(500)) {
-//                    self.focuse = true
-//                }
-            }
-            .padding(.horizontal, 28)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: btnBack)
-            .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+            Spacer()
         }
+        .padding(.horizontal, 28)
+        .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+        .applyRouteable(self)
     }
 }
 
 struct ConfirmPinCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmPinCodeView(viewModel: ConfirmPinCodeViewModel(pin: "111111").toAnyViewModel())
-//            .colorScheme(.dark)
+        ConfirmPinCodeView(lastPin: "111111")
     }
 }

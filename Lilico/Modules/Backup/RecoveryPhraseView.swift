@@ -21,7 +21,6 @@ extension RecoveryPhraseView {
 }
 
 struct RecoveryPhraseView: RouteableView {
-    @EnvironmentObject var router: BackupCoordinator.Router
     @StateObject var viewModel = RecoveryPhraseViewModel()
     @State var isBlur: Bool = true
     

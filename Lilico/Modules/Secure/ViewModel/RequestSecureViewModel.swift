@@ -13,9 +13,6 @@ class RequestSecureViewModel: ViewModel {
     @Published
     private(set) var state: RequestSecureView.ViewState = .init()
 
-    @RouterObject
-    var router: SecureCoordinator.Router?
-
     init() {
         if BioMetricAuthenticator.shared.faceIDAvailable() {
             // device supports face id recognition.
@@ -45,7 +42,7 @@ class RequestSecureViewModel: ViewModel {
                 }
             }
         case .pin:
-            router?.route(to: \.pinCode)
+            Router.route(to: RouteMap.PinCode.pinCode)
         }
     }
 }

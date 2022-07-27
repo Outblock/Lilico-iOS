@@ -68,6 +68,7 @@ extension RouteMap {
     enum Backup {
         case rootWithMnemonic
         case backupToCloud(BackupManager.BackupType)
+        case backupManual
     }
 }
 
@@ -85,6 +86,8 @@ extension RouteMap.Backup: RouterTarget {
             navi.setViewControllers(newVCList, animated: true)
         case .backupToCloud(let type):
             navi.push(content: BackupPasswordView(backupType: type))
+        case .backupManual:
+            navi.push(content: ManualBackupView())
         }
     }
 }
@@ -169,6 +172,29 @@ extension RouteMap.AddressBook: RouterTarget {
             navi.push(content: AddAddressView(addressBookVM: vm))
         case .edit(let contact, let vm):
             navi.push(content: AddAddressView(editingContact: contact, addressBookVM: vm))
+        }
+    }
+}
+
+// MARK: - PinCode
+
+extension RouteMap {
+    enum PinCode {
+        case root
+        case pinCode
+        case confirmPinCode(String)
+    }
+}
+
+extension RouteMap.PinCode: RouterTarget {
+    func onPresent(navi: UINavigationController) {
+        switch self {
+        case .root:
+            navi.push(content: RequestSecureView())
+        case .pinCode:
+            navi.push(content: CreatePinCodeView())
+        case .confirmPinCode(let lastPin):
+            navi.push(content: ConfirmPinCodeView(lastPin: lastPin))
         }
     }
 }

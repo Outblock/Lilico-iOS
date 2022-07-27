@@ -44,6 +44,7 @@ class RecoveryPhraseViewModel: ViewModel {
         case .googleBackup:
             Router.route(to: RouteMap.Backup.backupToCloud(.googleDrive))
         case .manualBackup:
+            Router.route(to: RouteMap.Backup.backupManual)
             break
         }
     }

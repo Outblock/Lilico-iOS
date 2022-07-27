@@ -17,88 +17,52 @@ extension CreatePinCodeView {
     }
 }
 
-struct CreatePinCodeView: View {
-    @Environment(\.presentationMode)
-    var presentationMode: Binding<PresentationMode>
-
-    @EnvironmentObject
-    var rounter: SecureCoordinator.Router
-
-    @StateObject
-    var viewModel: AnyViewModel<ViewState, Action>
-
-//    @FocusState
-//    var focusState: Bool
-
-    var btnBack: some View {
-        Button {
-            self.presentationMode.wrappedValue.dismiss()
-        } label: {
-            HStack {
-                Image(systemName: "arrow.backward")
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(Color.LL.rebackground)
-            }
-        }
+struct CreatePinCodeView: RouteableView {
+    @StateObject var viewModel = CreatePinCodeViewModel()
+    @State var text: String = ""
+    @State var focuse: Bool = false
+    
+    var title: String {
+        return ""
     }
 
-    @State
-    var text: String = ""
-
-    @State
-    var focuse: Bool = false
-
     var body: some View {
-        NavigationView {
-            VStack(spacing: 15) {
-                Spacer()
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("create_a".localized)
-                            .bold()
-                            .foregroundColor(Color.LL.text)
+        VStack(spacing: 15) {
+            Spacer()
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("create_a".localized)
+                        .bold()
+                        .foregroundColor(Color.LL.text)
 
-                        Text("pin".localized)
-                            .bold()
-                            .foregroundColor(Color.LL.orange)
-                    }
-                    .font(.LL.largeTitle)
-
-                    Text("no_one_unlock_desc".localized)
-                        .font(.LL.body)
-                        .foregroundColor(.LL.note)
-                        .padding(.top, 1)
+                    Text("pin".localized)
+                        .bold()
+                        .foregroundColor(Color.LL.orange)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.bottom, 30)
+                .font(.LL.largeTitle)
 
-                SecureView(text: $text, maxCount: 6) { text, _ in
-                    viewModel.trigger(.input(text))
-                }
+                Text("no_one_unlock_desc".localized)
+                    .font(.LL.body)
+                    .foregroundColor(.LL.note)
+                    .padding(.top, 1)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, 30)
 
-                Spacer()
+            SecureView(text: $text, maxCount: 6) { text, _ in
+                viewModel.trigger(.input(text))
             }
-            .onAppear {
-//                delay(.milliseconds(500)) {
-//                    self.focuse = true
-//                }
-            }
-            .padding(.horizontal, 28)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: btnBack)
-            .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+
+            Spacer()
         }
+        .padding(.horizontal, 28)
+        .backgroundFill(.LL.background)
+        .applyRouteable(self)
     }
 }
 
 struct CreatePinCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            CreatePinCodeView(viewModel: CreatePinCodeViewModel().toAnyViewModel())
-            CreatePinCodeView(viewModel: CreatePinCodeViewModel().toAnyViewModel())
-                .preferredColorScheme(.dark)
-        }
-//            .colorScheme(.dark)
+        CreatePinCodeView()
     }
 }

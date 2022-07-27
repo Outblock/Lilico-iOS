@@ -9,11 +9,7 @@ import Foundation
 import Stinsen
 
 class ConfirmPinCodeViewModel: ViewModel {
-    @Published
-    private(set) var state: ConfirmPinCodeView.ViewState
-
-    @RouterObject
-    var router: SecureCoordinator.Router?
+    @Published private(set) var state: ConfirmPinCodeView.ViewState
 
     init(pin: String) {
         state = .init(lastPin: pin)

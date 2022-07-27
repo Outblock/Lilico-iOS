@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftUIX
 
 struct BackupPasswordView: RouteableView {
-    @EnvironmentObject var router: BackupCoordinator.Router
     @StateObject var vm: BackupPasswordViewModel
     
     @State var isTick: Bool = false
