@@ -40,7 +40,7 @@ final class Coordinator {
     func showRootView() {
         let rootView = makeTabView()
         let hostingView = UIHostingController(rootView: rootView)
-        let navi = UINavigationController(rootViewController: hostingView)
+        let navi = RouterNavigationController(rootViewController: hostingView)
         navi.setNavigationBarHidden(true, animated: true)
         rootNavi = navi
         window.rootViewController = rootNavi

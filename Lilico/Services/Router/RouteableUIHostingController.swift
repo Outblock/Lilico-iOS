@@ -77,7 +77,10 @@ class RouteableUIHostingController<Content: RouteableView>: UIHostingController<
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.overrideUserInterfaceStyle = .unspecified
+        
+        if let style = rootView.forceColorScheme, style != .unspecified {
+            navigationController?.navigationBar.overrideUserInterfaceStyle = .unspecified
+        }
     }
     
     @objc private func onBackButtonAction() {

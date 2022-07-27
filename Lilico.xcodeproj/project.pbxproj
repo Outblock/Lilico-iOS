@@ -821,6 +821,8 @@
 		6A4EA49D28759554006B74D2 /* WalletSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4EA49B28759554006B74D2 /* WalletSendView.swift */; };
 		6A531C042877CB1C00EEF6C7 /* WalletSendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A531C032877CB1C00EEF6C7 /* WalletSendViewModel.swift */; };
 		6A531C052877CB1C00EEF6C7 /* WalletSendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A531C032877CB1C00EEF6C7 /* WalletSendViewModel.swift */; };
+		6A65690B289128EE007D9BDA /* RouterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A65690A289128EE007D9BDA /* RouterNavigationController.swift */; };
+		6A65690C289128EE007D9BDA /* RouterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A65690A289128EE007D9BDA /* RouterNavigationController.swift */; };
 		6A6BD9D8287D1726009FA262 /* WalletSendAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */; };
 		6A6BD9D9287D1726009FA262 /* WalletSendAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */; };
 		6A6BD9DC287D5066009FA262 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9DB287D5066009FA262 /* ProgressHUD.swift */; };
@@ -1319,6 +1321,7 @@
 		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		6A4EA49B28759554006B74D2 /* WalletSendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendView.swift; sourceTree = "<group>"; };
 		6A531C032877CB1C00EEF6C7 /* WalletSendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendViewModel.swift; sourceTree = "<group>"; };
+		6A65690A289128EE007D9BDA /* RouterNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterNavigationController.swift; sourceTree = "<group>"; };
 		6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendAmountView.swift; sourceTree = "<group>"; };
 		6A6BD9DB287D5066009FA262 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		6A6BD9DE287D5467009FA262 /* PlaceholderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderStyle.swift; sourceTree = "<group>"; };
@@ -2809,6 +2812,7 @@
 				6A115970288E72CC005EF797 /* Coordinator.swift */,
 				6AE8821A288E9FE900ADF36E /* RouteableUIHostingController.swift */,
 				6AE8821D288EB67A00ADF36E /* RouterExtensions.swift */,
+				6A65690A289128EE007D9BDA /* RouterNavigationController.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -3554,6 +3558,7 @@
 				6AF1F35E2869977B0084DF3D /* AddTokenView.swift in Sources */,
 				6A4A235128365B31001F1FDE /* Image.swift in Sources */,
 				1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
+				6A65690C289128EE007D9BDA /* RouterNavigationController.swift in Sources */,
 				15DC20B727819C56000B187A /* VChevronButton.swift in Sources */,
 				6A8FA49E285B192900EE5BE3 /* SnapTiming.swift in Sources */,
 				15DC20E127819C56000B187A /* VListModel.swift in Sources */,
@@ -3963,6 +3968,7 @@
 				6AF1F35D2869977B0084DF3D /* AddTokenView.swift in Sources */,
 				15C58AF42868A4EE00BD4FC6 /* Image.swift in Sources */,
 				15C58AF52868A4EE00BD4FC6 /* GithubEndpoint.swift in Sources */,
+				6A65690B289128EE007D9BDA /* RouterNavigationController.swift in Sources */,
 				15C58AF62868A4EE00BD4FC6 /* VChevronButton.swift in Sources */,
 				15C58AF72868A4EE00BD4FC6 /* SnapTiming.swift in Sources */,
 				15C58AF82868A4EE00BD4FC6 /* VListModel.swift in Sources */,

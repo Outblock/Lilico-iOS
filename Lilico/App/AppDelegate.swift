@@ -79,7 +79,7 @@ extension AppDelegate {
 extension AppDelegate {
     private func setupUI() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = .white
+        self.window?.backgroundColor = .systemBackground
         
         coordinator.showRootView()
         
