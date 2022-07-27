@@ -14,7 +14,7 @@ struct NFTCollectionCard: View {
     let isHorizontal: Bool
     @Binding var selectedIndex: Int
 
-    @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    @EnvironmentObject private var viewModel: NFTTabViewModel
 
     private var iconSize: Double {
         return isHorizontal ? 40 : 48

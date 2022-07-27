@@ -25,9 +25,6 @@ class NFTTabViewModel: ViewModel {
      */
     private var owner: String = "0x01d63aa89238a559"
 
-    @RouterObject
-    var router: NFTCoordinator.Router?
-
     init() {
         Task {
             await refresh()
@@ -122,19 +119,17 @@ class NFTTabViewModel: ViewModel {
     func trigger(_ input: NFTTabScreen.Action) {
         switch input {
         case let .info(model):
-            router?.route(to: \.detail, model)
+            Router.route(to: RouteMap.NFT.detail(self, model))
         case .search:
             break
         case .add:
-            router?.route(to: \.addCollection)
+            Router.route(to: RouteMap.NFT.addCollection(self))
         case let .collection(item):
-            router?.route(to: \.collection, item)
+            Router.route(to: RouteMap.NFT.collection(self, item))
         case let .fetchColors(url):
             fetchColors(from: url)
         case .back:
-            DispatchQueue.main.async {
-                self.router?.popLast()
-            }
+            Router.pop()
         }
     }
 }

@@ -53,8 +53,8 @@ extension Coordinator {
             AnyView(WalletView())
         }
 
-        let nft = TabBarPageModel<AppTabType>(tag: NFTCoordinator.tabTag(), iconName: NFTCoordinator.iconName(), color: NFTCoordinator.color()) {
-            AnyView(WalletView())
+        let nft = TabBarPageModel<AppTabType>(tag: NFTTabScreen.tabTag(), iconName: NFTTabScreen.iconName(), color: NFTTabScreen.color()) {
+            AnyView(NFTTabScreen())
         }
 
         let profile = TabBarPageModel<AppTabType>(tag: ProfileView.tabTag(), iconName: ProfileView.iconName(), color: ProfileView.color()) {

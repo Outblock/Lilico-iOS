@@ -12,7 +12,7 @@ struct NFTListView: View {
     var list: [NFTModel]
     var imageEffect: Namespace.ID
 
-    @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    @EnvironmentObject private var viewModel: NFTTabViewModel
 
     private let nftLayout: [GridItem] = [
         GridItem(.adaptive(minimum: 130), spacing: 18),

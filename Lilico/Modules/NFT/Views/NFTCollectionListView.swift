@@ -8,16 +8,20 @@
 import Kingfisher
 import SwiftUI
 
-struct NFTCollectionListView: View {
+struct NFTCollectionListView: RouteableView {
+    @StateObject var viewModel: NFTTabViewModel
     var collection: CollectionItem
-
-    @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+    
     @State var opacity: Double = 0
 
     @Namespace var imageEffect
-
-    init(collection: CollectionItem) {
-        self.collection = collection
+    
+    var title: String {
+        return ""
+    }
+    
+    var isNavigationBarHidden: Bool {
+        return true
     }
 
     var body: some View {
@@ -40,12 +44,14 @@ struct NFTCollectionListView: View {
                 .ignoresSafeArea()
                 .offset(y: -4)
         )
+        .applyRouteable(self)
+        .environmentObject(viewModel)
     }
 }
 
 extension NFTCollectionListView {
     struct InfoView: View {
-        @EnvironmentObject private var viewModel: AnyViewModel<NFTTabScreen.ViewState, NFTTabScreen.Action>
+        @EnvironmentObject private var viewModel: NFTTabViewModel
 
         var collection: CollectionItem
 
@@ -122,7 +128,6 @@ struct NFTCollectionListView_Previews: PreviewProvider {
     static var item = NFTTabViewModel.testCollection()
 
     static var previews: some View {
-        NFTCollectionListView(collection: item)
-            .environmentObject(NFTTabViewModel().toAnyViewModel())
+        NFTCollectionListView(viewModel: NFTTabViewModel(), collection: item)
     }
 }

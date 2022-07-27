@@ -198,3 +198,26 @@ extension RouteMap.PinCode: RouterTarget {
         }
     }
 }
+
+// MARK: - NFT
+
+extension RouteMap {
+    enum NFT {
+        case detail(NFTTabViewModel, NFTModel)
+        case collection(NFTTabViewModel, CollectionItem)
+        case addCollection(NFTTabViewModel)
+    }
+}
+
+extension RouteMap.NFT: RouterTarget {
+    func onPresent(navi: UINavigationController) {
+        switch self {
+        case .detail(let vm, let nft):
+            navi.push(content: NFTDetailPage(viewModel: vm, nft: nft))
+        case .collection(let vm, let collection):
+            navi.push(content: NFTCollectionListView(viewModel: vm, collection: collection))
+        case .addCollection(let vm):
+            navi.push(content: NFTAddCollectionView(viewModel: vm))
+        }
+    }
+}
