@@ -6,7 +6,7 @@
 //
 
 import Combine
-import Stinsen
+
 import SwiftUI
 
 extension ProfileEditViewModel {

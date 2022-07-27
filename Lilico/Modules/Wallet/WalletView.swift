@@ -10,7 +10,7 @@ import Flow
 import Kingfisher
 import SPConfetti
 import SwiftUI
-import Stinsen
+
 import SwiftUIX
 
 //struct WalletView_Previews: PreviewProvider {

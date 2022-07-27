@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import SwiftUIPager
 import Flow
-import Stinsen
+
 import Combine
 
 extension WalletSendView {

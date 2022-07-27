@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Stinsen
+
 
 class BackupPasswordViewModel: ObservableObject {
     private var backupType: BackupManager.BackupType

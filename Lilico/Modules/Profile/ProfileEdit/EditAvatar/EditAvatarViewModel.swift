@@ -6,7 +6,7 @@
 //
 
 import Kingfisher
-import Stinsen
+
 import SwiftUI
 
 extension EditAvatarView {

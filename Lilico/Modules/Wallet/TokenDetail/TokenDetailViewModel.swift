@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 import SwiftUICharts
-import Stinsen
+
 
 extension TokenDetailView {
     struct Quote: Codable {

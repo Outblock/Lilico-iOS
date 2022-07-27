@@ -7,7 +7,7 @@
 
 import Foundation
 import SPIndicator
-import Stinsen
+
 
 class RecoveryPhraseViewModel: ViewModel {
     @Published private(set) var state: RecoveryPhraseView.ViewState

@@ -8,7 +8,7 @@
 import Foundation
 import Haneke
 import Kingfisher
-import Stinsen
+
 import SwiftUIX
 
 class NFTTabViewModel: ViewModel {

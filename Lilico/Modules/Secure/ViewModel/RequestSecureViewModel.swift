@@ -7,7 +7,7 @@
 
 import BiometricAuthentication
 import Foundation
-import Stinsen
+
 
 class RequestSecureViewModel: ViewModel {
     @Published

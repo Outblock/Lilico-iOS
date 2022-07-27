@@ -36,7 +36,6 @@
 		1552DC622786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */; };
 		1552DC652787063100EAA7D5 /* PinStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC632787063100EAA7D5 /* PinStackView.swift */; };
 		1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 1552DC692787090D00EAA7D5 /* Introspect */; };
-		155EACD928664DC70088FC0F /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 155EACD828664DC70088FC0F /* Stinsen */; };
 		156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7AA27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive */; };
 		156AC7AD27802FAC00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 156AC7AC27802FAC00ED5E3E /* GoogleAPIClientForRESTCore */; };
 		156E84AA281CDE7500415896 /* FlowNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E84A8281CDE7500415896 /* FlowNetwork.swift */; };
@@ -1419,7 +1418,6 @@
 				156AC7AD27802FAC00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */,
 				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				4ED6DD10285A22A800105133 /* IrregularGradient in Frameworks */,
-				155EACD928664DC70088FC0F /* Stinsen in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
@@ -3227,7 +3225,6 @@
 				4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */,
 				4ED6DD0F285A22A800105133 /* IrregularGradient */,
 				6A204C6B2860784B00D0D3A4 /* FirebaseStorage */,
-				155EACD828664DC70088FC0F /* Stinsen */,
 				15832B632867641D0066046D /* GTMSessionFetcherCore */,
 				1500783328682BF700A00109 /* SPIndicator */,
 				6A7C080E286EE95E00020987 /* SwiftUICharts */,
@@ -3333,7 +3330,6 @@
 				1570466227906F7F00D1747B /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */,
 				157046712793237300D1747B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4ED6DD0E285A22A800105133 /* XCRemoteSwiftPackageReference "IrregularGradient" */,
-				155EACD528664DB80088FC0F /* XCRemoteSwiftPackageReference "stinsen" */,
 				1500783028682B8900A00109 /* XCRemoteSwiftPackageReference "SPIndicator" */,
 				6AE46060286EE644009C2B96 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 				6A400923287578D400A77070 /* XCRemoteSwiftPackageReference "QRCode" */,
@@ -4712,14 +4708,6 @@
 				minimumVersion = 0.1.3;
 			};
 		};
-		155EACD528664DB80088FC0F /* XCRemoteSwiftPackageReference "stinsen" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rundfunk47/stinsen";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/google-api-objectivec-client-for-rest";
@@ -5071,11 +5059,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
-		};
-		155EACD828664DC70088FC0F /* Stinsen */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 155EACD528664DB80088FC0F /* XCRemoteSwiftPackageReference "stinsen" */;
-			productName = Stinsen;
 		};
 		156AC7AA27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive */ = {
 			isa = XCSwiftPackageProductDependency;

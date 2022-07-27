@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import Flow
-import Stinsen
+
 import Combine
 
 extension WalletSendAmountView {

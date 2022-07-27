@@ -6,7 +6,7 @@
 //
 
 import Alamofire
-import Stinsen
+
 import SwiftUI
 
 extension ProfileEditNameViewModel {

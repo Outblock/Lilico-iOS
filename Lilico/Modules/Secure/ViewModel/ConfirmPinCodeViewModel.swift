@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Stinsen
+
 
 class ConfirmPinCodeViewModel: ViewModel {
     @Published private(set) var state: ConfirmPinCodeView.ViewState

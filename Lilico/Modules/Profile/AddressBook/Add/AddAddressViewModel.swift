@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Stinsen
+
 
 extension AddAddressView {
     enum AddressStateType {

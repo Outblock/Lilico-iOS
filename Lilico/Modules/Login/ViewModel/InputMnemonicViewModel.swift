@@ -7,7 +7,7 @@
 
 import Foundation
 import WalletCore
-import Stinsen
+
 
 class InputMnemonicViewModel: ViewModel {
     @Published var state: InputMnemonicView.ViewState = .init()
