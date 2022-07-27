@@ -14,9 +14,12 @@ struct ProfileEditView_Previews: PreviewProvider {
     }
 }
 
-struct ProfileEditView: View {
-    @EnvironmentObject private var router: ProfileEditCoordinator.Router
+struct ProfileEditView: RouteableView {
     @StateObject private var vm = ProfileEditViewModel()
+    
+    var title: String {
+        return "edit_account".localized
+    }
 
     var body: some View {
         List {
@@ -29,11 +32,7 @@ struct ProfileEditView: View {
         }
         .buttonStyle(.plain)
         .backgroundFill(.LL.Neutrals.background)
-        .navigationTitle("edit_account".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.dismissCoordinator()
-        }
+        .applyRouteable(self)
     }
 }
 
@@ -71,7 +70,7 @@ extension ProfileEditView {
         }
         .frame(height: 52)
         .onTapGestureOnBackground {
-            router.route(to: \.nameEdit)
+            Router.route(to: RouteMap.Profile.editName)
         }
     }
 

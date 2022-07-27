@@ -125,6 +125,9 @@ extension RouteMap {
         case themeChange
         case developer
         case addressBook
+        case edit
+        case editName
+        case editAvatar([EditAvatarView.AvatarItemModel])
     }
 }
 
@@ -137,6 +140,12 @@ extension RouteMap.Profile: RouterTarget {
             navi.push(content: DeveloperModeView())
         case .addressBook:
             navi.push(content: AddressBookView())
+        case .edit:
+            navi.push(content: ProfileEditView())
+        case .editName:
+            navi.push(content: ProfileEditNameView())
+        case .editAvatar(let items):
+            navi.push(content: EditAvatarView(items: items))
         }
     }
 }

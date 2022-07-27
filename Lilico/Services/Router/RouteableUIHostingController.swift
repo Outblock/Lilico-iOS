@@ -19,6 +19,9 @@ protocol RouterContentDelegate {
     
     var navigationBarTitleDisplayMode: NavigationBarItem.TitleDisplayMode { get }
     
+    /// Set If you want to force the colorScheme of the view
+    var forceColorScheme: UIUserInterfaceStyle? { get }
+    
     /// handle the back button action, default implementation is Router.pop()
     func backButtonAction()
 }
@@ -30,6 +33,10 @@ extension RouterContentDelegate {
     
     var navigationBarTitleDisplayMode: NavigationBarItem.TitleDisplayMode {
         return .inline
+    }
+    
+    var forceColorScheme: UIUserInterfaceStyle? {
+        return nil
     }
     
     func backButtonAction() {
@@ -48,6 +55,10 @@ class RouteableUIHostingController<Content: RouteableView>: UIHostingController<
         navigationItem.hidesBackButton = true
         navigationItem.title = rootView.title
         
+        if let style = rootView.forceColorScheme, style != .unspecified {
+            self.overrideUserInterfaceStyle = style
+        }
+        
         let backItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(onBackButtonAction))
         backItem.tintColor = UIColor(named: "button.color")
         navigationItem.leftBarButtonItem = backItem
@@ -55,12 +66,18 @@ class RouteableUIHostingController<Content: RouteableView>: UIHostingController<
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let style = rootView.forceColorScheme, style != .unspecified {
+            navigationController?.navigationBar.overrideUserInterfaceStyle = style
+        }
+        
         navigationController?.navigationBar.prefersLargeTitles = rootView.navigationBarTitleDisplayMode == .large
         navigationController?.setNavigationBarHidden(rootView.isNavigationBarHidden, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        navigationController?.navigationBar.overrideUserInterfaceStyle = .unspecified
     }
     
     @objc private func onBackButtonAction() {

@@ -14,7 +14,6 @@ struct DeveloperModeView_Previews: PreviewProvider {
 }
 
 struct DeveloperModeView: RouteableView {
-    @EnvironmentObject private var router: ProfileCoordinator.Router
     @StateObject private var lud = LocalUserDefaults.shared
     
     var title: String {

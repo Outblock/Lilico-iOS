@@ -128,7 +128,6 @@ extension ProfileView {
 
     struct InfoView: View {
         @EnvironmentObject private var userManager: UserManager
-        @EnvironmentObject private var router: ProfileCoordinator.Router
 
         var body: some View {
             HStack(spacing: 16) {
@@ -146,7 +145,7 @@ extension ProfileView {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Button {
-                    router.route(to: \.edit)
+                    Router.route(to: RouteMap.Profile.edit)
                 } label: {
                     Image("icon-profile-edit")
                 }
@@ -157,8 +156,6 @@ extension ProfileView {
     }
 
     struct InfoActionView: View {
-        @EnvironmentObject private var router: ProfileCoordinator.Router
-
         var body: some View {
             HStack(alignment: .center, spacing: 0) {
                 ProfileView.InfoActionButton(iconName: "icon-address", title: "addresses".localized) {
@@ -274,7 +271,6 @@ extension ProfileView.ActionSectionView.Row {
 extension ProfileView {
     struct GeneralSectionView: View {
         @EnvironmentObject private var vm: ProfileViewModel
-        @EnvironmentObject var router: ProfileCoordinator.Router
 
         enum Row: CaseIterable {
             case currency
@@ -365,7 +361,6 @@ extension ProfileView.GeneralSectionView.Row {
 
 extension ProfileView {
     struct AboutSectionView: View {
-        @EnvironmentObject var router: ProfileCoordinator.Router
         @EnvironmentObject var lud: LocalUserDefaults
 
         enum Row {

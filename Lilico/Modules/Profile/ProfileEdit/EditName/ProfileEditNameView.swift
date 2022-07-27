@@ -13,9 +13,12 @@ struct ProfileEditNameView_Previews: PreviewProvider {
     }
 }
 
-struct ProfileEditNameView: View {
-    @EnvironmentObject private var router: ProfileEditCoordinator.Router
+struct ProfileEditNameView: RouteableView {
     @StateObject private var vm = ProfileEditNameViewModel()
+    
+    var title: String {
+        return "edit_nickname".localized
+    }
 
     var body: some View {
         BaseView {
@@ -25,11 +28,6 @@ struct ProfileEditNameView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(.horizontal, 16)
             .padding(.top, 20)
-        }
-        .navigationTitle("edit_nickname".localized)
-        .navigationBarTitleDisplayMode(.inline)
-        .addBackBtn {
-            router.pop()
         }
         .navigationBarItems(trailing: HStack {
             Button {
@@ -41,6 +39,7 @@ struct ProfileEditNameView: View {
             .foregroundColor(.LL.Primary.salmonPrimary)
             .disabled(vm.status != .ok)
         })
+        .applyRouteable(self)
     }
 }
 
