@@ -63,7 +63,7 @@ extension BackupManager {
         case .googleDrive:
             try await gdTarget.uploadMnemonic(password: password)
         case .icloud:
-            break
+            try await iCloudTarget.uploadMnemonic(password: password)
         default:
             break
         }
@@ -73,6 +73,8 @@ extension BackupManager {
         switch type {
         case .googleDrive:
             return try await gdTarget.getCurrentDriveItems()
+        case .icloud:
+            return try await iCloudTarget.getCurrentDriveItems()
         default:
             return []
         }
@@ -81,8 +83,9 @@ extension BackupManager {
 
 class BackupManager: ObservableObject {
     static let shared = BackupManager()
-    
+
     private let gdTarget = BackupGDTarget()
+    private let iCloudTarget = BackupiCloudTarget()
 }
 
 // MARK: - Helper

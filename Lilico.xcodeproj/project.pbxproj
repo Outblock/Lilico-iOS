@@ -852,6 +852,10 @@
 		6A9D7C4D2834D7D100078F63 /* ThemeChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */; };
 		6AA591F628854FB300F4B5CA /* BackupGDTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */; };
 		6AA591F728854FB300F4B5CA /* BackupGDTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */; };
+		6AB5FB9F2892652900FA2261 /* BackupiCloudTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */; };
+		6AB5FBA02892652900FA2261 /* BackupiCloudTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */; };
+		6AB5FBA228926C9100FA2261 /* iCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */; };
+		6AB5FBA328926C9100FA2261 /* iCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */; };
 		6ABAE52B2836288400C97AE2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE5292836288400C97AE2 /* Font.swift */; };
 		6ABAE53028362D1100C97AE2 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
 		6AC62AF2286AE92B000876D9 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF1286AE92B000876D9 /* FirebaseDynamicLinks */; };
@@ -1339,6 +1343,8 @@
 		6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeView.swift; sourceTree = "<group>"; };
 		6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupGDTarget.swift; sourceTree = "<group>"; };
+		6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupiCloudTarget.swift; sourceTree = "<group>"; };
+		6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudAPI.swift; sourceTree = "<group>"; };
 		6ABAE5292836288400C97AE2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		6ABAE52E28362D1100C97AE2 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
 		6AC717E1287EA61100AA5040 /* WalletSendAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendAmountViewModel.swift; sourceTree = "<group>"; };
@@ -2907,6 +2913,7 @@
 			isa = PBXGroup;
 			children = (
 				6A6BE740288805130012588F /* GoogleDriveAPI.swift */,
+				6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -3032,6 +3039,7 @@
 			isa = PBXGroup;
 			children = (
 				6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */,
+				6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */,
 			);
 			path = Target;
 			sourceTree = "<group>";
@@ -3770,6 +3778,7 @@
 				15DC219727819C56000B187A /* VTextFieldType.swift in Sources */,
 				6AE0842128505887003BEEF0 /* Error.swift in Sources */,
 				15DC210F27819C56000B187A /* VRangeSliderState.swift in Sources */,
+				6AB5FBA02892652900FA2261 /* BackupiCloudTarget.swift in Sources */,
 				15D5774B277C0FFB00045E79 /* UsernameViewModel.swift in Sources */,
 				15DC21E527819C57000B187A /* StateColors_EFSED.swift in Sources */,
 				15DC218927819C56000B187A /* VRadioButtonState.swift in Sources */,
@@ -3848,6 +3857,7 @@
 				15DC208327819C56000B187A /* VLazyScrollViewModelHorizontal.swift in Sources */,
 				15DC20CB27819C56000B187A /* VNavigationLinkState.swift in Sources */,
 				6AF95B472848C8D70012C837 /* BMChineseUtils.swift in Sources */,
+				6AB5FBA328926C9100FA2261 /* iCloudAPI.swift in Sources */,
 				4EC31183284508F200F711F5 /* NFTListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4176,6 +4186,7 @@
 				15C58BE82868A4EE00BD4FC6 /* VTextFieldType.swift in Sources */,
 				15C58BE92868A4EE00BD4FC6 /* Error.swift in Sources */,
 				15C58BEB2868A4EE00BD4FC6 /* VRangeSliderState.swift in Sources */,
+				6AB5FB9F2892652900FA2261 /* BackupiCloudTarget.swift in Sources */,
 				15C58BEC2868A4EE00BD4FC6 /* UsernameViewModel.swift in Sources */,
 				15C58BED2868A4EE00BD4FC6 /* StateColors_EFSED.swift in Sources */,
 				15C58BEE2868A4EE00BD4FC6 /* VRadioButtonState.swift in Sources */,
@@ -4254,6 +4265,7 @@
 				15C58C372868A4EE00BD4FC6 /* VLazyScrollViewModelHorizontal.swift in Sources */,
 				15C58C382868A4EE00BD4FC6 /* VNavigationLinkState.swift in Sources */,
 				15C58C392868A4EE00BD4FC6 /* BMChineseUtils.swift in Sources */,
+				6AB5FBA228926C9100FA2261 /* iCloudAPI.swift in Sources */,
 				15C58C3B2868A4EE00BD4FC6 /* NFTListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4410,7 +4422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
@@ -4450,7 +4462,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";

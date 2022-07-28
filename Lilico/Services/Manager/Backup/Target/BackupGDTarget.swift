@@ -25,6 +25,8 @@ class BackupGDTarget: BackupTarget {
 
 extension BackupGDTarget {
     func uploadMnemonic(password: String) async throws {
+        try await prepare()
+        
         let list = try await getCurrentDriveItems()
         let newList = try BackupManager.shared.addCurrentMnemonicToList(list, password: password)
         let encrypedString = try BackupManager.shared.encryptList(newList)

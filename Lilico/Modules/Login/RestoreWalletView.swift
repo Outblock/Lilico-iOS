@@ -33,11 +33,11 @@ struct RestoreWalletView: RouteableView {
             
             VPrimaryButton(model: ButtonStyle.primary,
                            action: {
-                
+                viewModel.restoreWithCloudAction(type: .icloud)
             }, title: "restore_with_icloud".localized)
             VPrimaryButton(model: ButtonStyle.primary,
                            action: {
-                viewModel.restoreWithGoogleDriveAction()
+                viewModel.restoreWithCloudAction(type: .googleDrive)
             }, title: "restore_with_gd".localized)
             
             VPrimaryButton(model: ButtonStyle.border,

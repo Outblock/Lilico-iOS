@@ -11,7 +11,7 @@
 1. ```View``` 继承自 ```RouteableView```   
    
 ```
-struct RestoreWalletView: RouteableView {
+struct TestView: RouteableView {
 
 }
 ```
@@ -23,7 +23,7 @@ struct RestoreWalletView: RouteableView {
 2. 选择实现 ```RouterContentDelegate```
 
 ```
-struct RestoreWalletView: RouteableView {
+struct TestView: RouteableView {
     var title: String {
         return "ViewTitle"
     }

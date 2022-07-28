@@ -38,10 +38,22 @@ enum BackupError: Error {
     case hexStringToDataFailed
     case decryptMnemonicFailed
     case topVCNotFound
+    case fileIsNotExistOnCloud
 }
 
 enum GoogleBackupError: Error {
     case missingLoginUser
     case noDriveScope
     case createFileError
+}
+
+enum iCloudBackupError: Error {
+    case initError
+    case invalidLoadData
+    case checkFileUploadedStatusError
+    case openFileError
+    case opendFileDataIsNil
+    case noDataToSave
+    case saveToDataFailed
+    case fileIsNotExist
 }
