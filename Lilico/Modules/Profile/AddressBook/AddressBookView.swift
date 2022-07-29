@@ -166,11 +166,15 @@ extension AddressBookView {
             anyView = AnyView(list)
         }
         
-//        if #available(iOS 16.0, *) {
-//            return anyView.scrollContentBackground(Color.LL.deepBg)
-//        } else {
+#if compiler(>=5.7)
+        if #available(iOS 16.0, *) {
+            return anyView.scrollContentBackground(.hidden)
+        } else {
             return anyView
-//        }
+        }
+#else
+        return anyView
+#endif
     }
 
     @ViewBuilder private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {

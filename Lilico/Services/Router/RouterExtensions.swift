@@ -18,14 +18,14 @@ extension View {
 }
 
 extension UINavigationController {
-    func push(content: some RouteableView, animated: Bool = true) {
+    func push<T: RouteableView>(content: T, animated: Bool = true) {
         let vc = RouteableUIHostingController(rootView: content)
         self.pushViewController(vc, animated: animated)
     }
 }
 
 extension UIViewController {
-    func present(content: some RouteableView, animated: Bool = true, wrapWithNavi: Bool = true) {
+    func present<T: RouteableView>(content: T, animated: Bool = true, wrapWithNavi: Bool = true) {
         let vc = RouteableUIHostingController(rootView: content)
         let navi = RouterNavigationController(rootViewController: vc)
         navi.modalPresentationCapturesStatusBarAppearance = true

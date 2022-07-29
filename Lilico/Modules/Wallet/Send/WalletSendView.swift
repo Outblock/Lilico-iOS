@@ -105,11 +105,11 @@ extension WalletSendView {
         HStack(spacing: 8) {
             Image("icon-search")
             TextField("", text: $vm.searchText)
+                .disableAutocorrection(true)
                 .modifier(PlaceholderStyle(showPlaceHolder: vm.searchText.isEmpty,
                                            placeholder: "send_search_placeholder".localized,
                                            font: .inter(size: 14, weight: .medium),
                                            color: Color.LL.Neutrals.neutrals6))
-                .autocorrectionDisabled()
                 .submitLabel(.search)
                 .onChange(of: vm.searchText) { st in
                     vm.searchTextDidChangeAction(text: st)

@@ -136,12 +136,12 @@ struct WalletSendAmountView: RouteableView {
 
                     // input view
                     TextField("", text: $vm.inputText)
+                        .disableAutocorrection(true)
                         .modifier(PlaceholderStyle(showPlaceHolder: vm.inputText.isEmpty,
                                                    placeholder: "enter_amount".localized,
                                                    font: .inter(size: 14, weight: .medium),
                                                    color: Color.LL.Neutrals.note))
                         .font(.inter(size: 20, weight: .medium))
-                        .autocorrectionDisabled()
                         .onChange(of: vm.inputText) { text in
                             withAnimation {
                                 vm.inputTextDidChangeAction(text: text)
