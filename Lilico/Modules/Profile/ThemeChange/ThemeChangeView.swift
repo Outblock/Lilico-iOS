@@ -16,7 +16,7 @@ struct ThemeChangeView: RouteableView {
     }
 
     var body: some View {
-        BaseView {
+        ZStack {
             VStack {
                 themeItemView.padding(.vertical, 24)
                 BaseDivider()
@@ -26,6 +26,7 @@ struct ThemeChangeView: RouteableView {
             .padding(.horizontal, 18)
             .frame(maxHeight: .infinity, alignment: .top)
         }
+        .backgroundFill(.LL.Neutrals.background)
         .applyRouteable(self)
     }
 }

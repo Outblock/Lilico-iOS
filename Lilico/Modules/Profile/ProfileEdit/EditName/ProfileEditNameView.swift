@@ -21,7 +21,7 @@ struct ProfileEditNameView: RouteableView {
     }
 
     var body: some View {
-        BaseView {
+        ZStack {
             VStack(spacing: 30) {
                 nameField
             }
@@ -39,6 +39,7 @@ struct ProfileEditNameView: RouteableView {
             .foregroundColor(.LL.Primary.salmonPrimary)
             .disabled(vm.status != .ok)
         })
+        .backgroundFill(.LL.Neutrals.background)
         .applyRouteable(self)
     }
 }

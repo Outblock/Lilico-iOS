@@ -23,7 +23,7 @@ struct ManualBackupView: RouteableView {
     @StateObject var viewModel = ManualBackupViewModel()
     
     var title: String {
-        return "double_secure".localized
+        return ""
     }
     
     struct BackupModel: Identifiable {

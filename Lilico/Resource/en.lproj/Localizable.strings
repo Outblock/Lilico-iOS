@@ -258,3 +258,5 @@
 
 "backup_to_x_failed" = "Backup to %@ failed";
 "backup_to_x_succeeded" = "Backup to %@ succeeded";
+
+"cancel" = "Cancel";

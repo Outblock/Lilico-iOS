@@ -26,7 +26,7 @@ struct AddAddressView: RouteableView {
     }
 
     var body: some View {
-        BaseView {
+        ZStack {
             VStack(spacing: 30) {
                 nameField
                 addressField
@@ -45,6 +45,7 @@ struct AddAddressView: RouteableView {
             .foregroundColor(.LL.Primary.salmonPrimary)
             .disabled(!vm.state.isReadyForSave)
         })
+        .backgroundFill(.LL.Neutrals.background)
         .applyRouteable(self)
     }
 
