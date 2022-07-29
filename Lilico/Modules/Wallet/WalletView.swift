@@ -73,10 +73,9 @@ struct WalletView: View {
                 .visibility(vm.walletState == .noAddress ? .visible : .gone)
             
             ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(spacing: 0) {
-                    Section {
+                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                    Section(header: headerView) {
                         VStack(spacing: 32) {
-                            headerView
                             CardView()
                             actionView
                         }

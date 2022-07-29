@@ -51,4 +51,14 @@ extension Encodable {
         guard let data = try? JSONEncoder().encode(self) else { return nil }
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
+    
+    func jsonPrettyPrinted() throws -> String {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try encoder.encode(self)
+        guard let string = String(data: data, encoding: .utf8) else {
+            throw FCLError.decodeFailure
+        }
+        return string
+    }
 }

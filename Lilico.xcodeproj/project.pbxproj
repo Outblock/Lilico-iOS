@@ -50,6 +50,54 @@
 		1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467D2793EBA100D1747B /* GithubEndpoint.swift */; };
 		15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B632867641D0066046D /* GTMSessionFetcherCore */; };
 		15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832D58286816ED0066046D /* FlowAddressRegistor.swift */; };
+		158832CA2894262B00142B35 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 158832C92894262B00142B35 /* WalletConnect */; };
+		158832CC2894267700142B35 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 158832CB2894267700142B35 /* WalletConnect */; };
+		158832CE2894269E00142B35 /* WalletConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832CD2894269E00142B35 /* WalletConnectManager.swift */; };
+		158832CF2894269E00142B35 /* WalletConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832CD2894269E00142B35 /* WalletConnectManager.swift */; };
+		158832D22894273600142B35 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 158832D12894273600142B35 /* Starscream */; };
+		158832D42894277600142B35 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 158832D32894277600142B35 /* Starscream */; };
+		158832D7289427EF00142B35 /* Websocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832D6289427EF00142B35 /* Websocket.swift */; };
+		158832D8289427EF00142B35 /* Websocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832D6289427EF00142B35 /* Websocket.swift */; };
+		158832DA2894287700142B35 /* SessionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832D92894287700142B35 /* SessionItem.swift */; };
+		158832DB2894287700142B35 /* SessionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832D92894287700142B35 /* SessionItem.swift */; };
+		158832DE28942D0400142B35 /* FCLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832DD28942D0400142B35 /* FCLModel.swift */; };
+		158832DF28942D0400142B35 /* FCLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832DD28942D0400142B35 /* FCLModel.swift */; };
+		158832E128942D5800142B35 /* RequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832E028942D5800142B35 /* RequestInfo.swift */; };
+		158832E228942D5800142B35 /* RequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832E028942D5800142B35 /* RequestInfo.swift */; };
+		158832E428942D6300142B35 /* SessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832E328942D6300142B35 /* SessionInfo.swift */; };
+		158832E528942D6300142B35 /* SessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832E328942D6300142B35 /* SessionInfo.swift */; };
+		158832E728942DC600142B35 /* MessageRequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832E628942DC600142B35 /* MessageRequestInfo.swift */; };
+		158832E828942DC600142B35 /* MessageRequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832E628942DC600142B35 /* MessageRequestInfo.swift */; };
+		158832EA28942F8500142B35 /* serviceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832E928942F8500142B35 /* serviceDefinition.swift */; };
+		158832EB28942F8500142B35 /* serviceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832E928942F8500142B35 /* serviceDefinition.swift */; };
+		158832ED28942FCE00142B35 /* Signable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832EC28942FCE00142B35 /* Signable.swift */; };
+		158832EE28942FCE00142B35 /* Signable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832EC28942FCE00142B35 /* Signable.swift */; };
+		158832F1289434EF00142B35 /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F0289434EF00142B35 /* RequestView.swift */; };
+		158832F2289434EF00142B35 /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F0289434EF00142B35 /* RequestView.swift */; };
+		158832F4289435B800142B35 /* RequestMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F3289435B800142B35 /* RequestMessageView.swift */; };
+		158832F5289435B800142B35 /* RequestMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F3289435B800142B35 /* RequestMessageView.swift */; };
+		158832F72894363E00142B35 /* ApproveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F62894363E00142B35 /* ApproveView.swift */; };
+		158832F82894363E00142B35 /* ApproveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F62894363E00142B35 /* ApproveView.swift */; };
+		1588330A28943D1D00142B35 /* SPQRDetailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FB28943D1C00142B35 /* SPQRDetailButton.swift */; };
+		1588330B28943D1D00142B35 /* SPQRDetailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FB28943D1C00142B35 /* SPQRDetailButton.swift */; };
+		1588330C28943D1D00142B35 /* SPQRCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FC28943D1C00142B35 /* SPQRCameraController.swift */; };
+		1588330D28943D1D00142B35 /* SPQRCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FC28943D1C00142B35 /* SPQRCameraController.swift */; };
+		1588330E28943D1D00142B35 /* SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FD28943D1C00142B35 /* SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift */; };
+		1588330F28943D1D00142B35 /* SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FD28943D1C00142B35 /* SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift */; };
+		1588331028943D1D00142B35 /* SPQRFrameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FE28943D1C00142B35 /* SPQRFrameLayer.swift */; };
+		1588331128943D1D00142B35 /* SPQRFrameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FE28943D1C00142B35 /* SPQRFrameLayer.swift */; };
+		1588331228943D1D00142B35 /* SPQRCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FF28943D1C00142B35 /* SPQRCorner.swift */; };
+		1588331328943D1D00142B35 /* SPQRCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FF28943D1C00142B35 /* SPQRCorner.swift */; };
+		1588331828943D1D00142B35 /* SPQRCodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588330528943D1C00142B35 /* SPQRCodeData.swift */; };
+		1588331928943D1D00142B35 /* SPQRCodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588330528943D1C00142B35 /* SPQRCodeData.swift */; };
+		1588331A28943D1D00142B35 /* Texts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588330728943D1C00142B35 /* Texts.swift */; };
+		1588331B28943D1D00142B35 /* Texts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588330728943D1C00142B35 /* Texts.swift */; };
+		1588331C28943D1D00142B35 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588330828943D1C00142B35 /* Images.swift */; };
+		1588331D28943D1D00142B35 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588330828943D1C00142B35 /* Images.swift */; };
+		1588331E28943D1D00142B35 /* SPQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588330928943D1C00142B35 /* SPQRCode.swift */; };
+		1588331F28943D1D00142B35 /* SPQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588330928943D1C00142B35 /* SPQRCode.swift */; };
+		1588332228943F4D00142B35 /* NativeUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1588332128943F4D00142B35 /* NativeUIKit */; };
+		1588332428943F7D00142B35 /* NativeUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1588332328943F7D00142B35 /* NativeUIKit */; };
 		158C9CA027871E030062E0C6 /* ConfirmPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */; };
 		158C9CA42787F6EA0062E0C6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
 		158C9CA92787F7490062E0C6 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
@@ -979,6 +1027,27 @@
 		1570467A2793D60000D1747B /* NFTListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListResponse.swift; sourceTree = "<group>"; };
 		1570467D2793EBA100D1747B /* GithubEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubEndpoint.swift; sourceTree = "<group>"; };
 		15832D58286816ED0066046D /* FlowAddressRegistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowAddressRegistor.swift; sourceTree = "<group>"; };
+		158832CD2894269E00142B35 /* WalletConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectManager.swift; sourceTree = "<group>"; };
+		158832D6289427EF00142B35 /* Websocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Websocket.swift; sourceTree = "<group>"; };
+		158832D92894287700142B35 /* SessionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionItem.swift; sourceTree = "<group>"; };
+		158832DD28942D0400142B35 /* FCLModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCLModel.swift; sourceTree = "<group>"; };
+		158832E028942D5800142B35 /* RequestInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInfo.swift; sourceTree = "<group>"; };
+		158832E328942D6300142B35 /* SessionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfo.swift; sourceTree = "<group>"; };
+		158832E628942DC600142B35 /* MessageRequestInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequestInfo.swift; sourceTree = "<group>"; };
+		158832E928942F8500142B35 /* serviceDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDefinition.swift; sourceTree = "<group>"; };
+		158832EC28942FCE00142B35 /* Signable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signable.swift; sourceTree = "<group>"; };
+		158832F0289434EF00142B35 /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
+		158832F3289435B800142B35 /* RequestMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessageView.swift; sourceTree = "<group>"; };
+		158832F62894363E00142B35 /* ApproveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveView.swift; sourceTree = "<group>"; };
+		158832FB28943D1C00142B35 /* SPQRDetailButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPQRDetailButton.swift; sourceTree = "<group>"; };
+		158832FC28943D1C00142B35 /* SPQRCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPQRCameraController.swift; sourceTree = "<group>"; };
+		158832FD28943D1C00142B35 /* SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift"; sourceTree = "<group>"; };
+		158832FE28943D1C00142B35 /* SPQRFrameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPQRFrameLayer.swift; sourceTree = "<group>"; };
+		158832FF28943D1C00142B35 /* SPQRCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPQRCorner.swift; sourceTree = "<group>"; };
+		1588330528943D1C00142B35 /* SPQRCodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPQRCodeData.swift; sourceTree = "<group>"; };
+		1588330728943D1C00142B35 /* Texts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texts.swift; sourceTree = "<group>"; };
+		1588330828943D1C00142B35 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		1588330928943D1C00142B35 /* SPQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPQRCode.swift; sourceTree = "<group>"; };
 		158C9C9E27871E030062E0C6 /* ConfirmPinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeView.swift; sourceTree = "<group>"; };
 		158C9CA22787F6EA0062E0C6 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -1416,6 +1485,7 @@
 				15185ED8278A73A3006B74A9 /* SPConfetti in Frameworks */,
 				15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */,
 				6A7C080F286EE95E00020987 /* SwiftUICharts in Frameworks */,
+				1588332428943F7D00142B35 /* NativeUIKit in Frameworks */,
 				15D5775B277C23BF00045E79 /* Moya in Frameworks */,
 				15F22F1A278B21B600FCF772 /* BiometricAuthentication in Frameworks */,
 				154B891C276A1EEB00780E93 /* Resolver in Frameworks */,
@@ -1428,6 +1498,7 @@
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
 				154B891F276A1EEB00780E93 /* FirebaseDynamicLinks in Frameworks */,
+				158832CC2894267700142B35 /* WalletConnect in Frameworks */,
 				157046752793241A00D1747B /* Kingfisher in Frameworks */,
 				6A204C6C2860784B00D0D3A4 /* FirebaseStorage in Frameworks */,
 				1500783428682BF700A00109 /* SPIndicator in Frameworks */,
@@ -1437,6 +1508,7 @@
 				6A400927287578FF00A77070 /* QRCode in Frameworks */,
 				154B8920276A1EEB00780E93 /* SwiftUIX in Frameworks */,
 				4E17466F281AF841002A029C /* SwiftProtobuf.xcframework in Frameworks */,
+				158832D42894277600142B35 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1455,6 +1527,7 @@
 				15C58C442868A4EE00BD4FC6 /* SPConfetti in Frameworks */,
 				15C58C452868A4EE00BD4FC6 /* GTMSessionFetcherCore in Frameworks */,
 				6AE46062286EE644009C2B96 /* SwiftUICharts in Frameworks */,
+				1588332228943F4D00142B35 /* NativeUIKit in Frameworks */,
 				15C58C462868A4EE00BD4FC6 /* Moya in Frameworks */,
 				15C58C472868A4EE00BD4FC6 /* BiometricAuthentication in Frameworks */,
 				15C58C482868A4EE00BD4FC6 /* Resolver in Frameworks */,
@@ -1467,6 +1540,7 @@
 				15C58C4F2868A4EE00BD4FC6 /* FirebaseCrashlytics in Frameworks */,
 				15C58C502868A4EE00BD4FC6 /* FirebaseRemoteConfig in Frameworks */,
 				15C58C512868A4EE00BD4FC6 /* CombineMoya in Frameworks */,
+				158832CA2894262B00142B35 /* WalletConnect in Frameworks */,
 				15C58C522868A4EE00BD4FC6 /* FirebaseDynamicLinks in Frameworks */,
 				15C58C532868A4EE00BD4FC6 /* Kingfisher in Frameworks */,
 				15C58C542868A4EE00BD4FC6 /* FirebaseStorage in Frameworks */,
@@ -1476,6 +1550,7 @@
 				6A400925287578D400A77070 /* QRCode in Frameworks */,
 				15C58C582868A4EE00BD4FC6 /* SwiftUIX in Frameworks */,
 				15C58C592868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Frameworks */,
+				158832D22894273600142B35 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1533,6 +1608,7 @@
 		153C440427520811006D1E8D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				158832EF289434D100142B35 /* WalletConnect */,
 				1570466A27930EA500D1747B /* NFT */,
 				15F22F11278B1E7300FCF772 /* Secure */,
 				15B1F6282786A36900847BB5 /* Backup */,
@@ -1628,6 +1704,72 @@
 				4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		158832D5289427D800142B35 /* WalletConnect */ = {
+			isa = PBXGroup;
+			children = (
+				158832DC28942BE800142B35 /* Model */,
+				158832CD2894269E00142B35 /* WalletConnectManager.swift */,
+				158832D6289427EF00142B35 /* Websocket.swift */,
+			);
+			path = WalletConnect;
+			sourceTree = "<group>";
+		};
+		158832DC28942BE800142B35 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				158832D92894287700142B35 /* SessionItem.swift */,
+				158832DD28942D0400142B35 /* FCLModel.swift */,
+				158832E028942D5800142B35 /* RequestInfo.swift */,
+				158832E328942D6300142B35 /* SessionInfo.swift */,
+				158832E628942DC600142B35 /* MessageRequestInfo.swift */,
+				158832E928942F8500142B35 /* serviceDefinition.swift */,
+				158832EC28942FCE00142B35 /* Signable.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		158832EF289434D100142B35 /* WalletConnect */ = {
+			isa = PBXGroup;
+			children = (
+				158832F0289434EF00142B35 /* RequestView.swift */,
+				158832F3289435B800142B35 /* RequestMessageView.swift */,
+				158832F62894363E00142B35 /* ApproveView.swift */,
+			);
+			path = WalletConnect;
+			sourceTree = "<group>";
+		};
+		158832F928943D1C00142B35 /* SPQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				158832FA28943D1C00142B35 /* Interface */,
+				1588330528943D1C00142B35 /* SPQRCodeData.swift */,
+				1588330628943D1C00142B35 /* Data */,
+				1588330928943D1C00142B35 /* SPQRCode.swift */,
+			);
+			path = SPQRCode;
+			sourceTree = "<group>";
+		};
+		158832FA28943D1C00142B35 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				158832FB28943D1C00142B35 /* SPQRDetailButton.swift */,
+				158832FC28943D1C00142B35 /* SPQRCameraController.swift */,
+				158832FD28943D1C00142B35 /* SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift */,
+				158832FE28943D1C00142B35 /* SPQRFrameLayer.swift */,
+				158832FF28943D1C00142B35 /* SPQRCorner.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		1588330628943D1C00142B35 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1588330728943D1C00142B35 /* Texts.swift */,
+				1588330828943D1C00142B35 /* Images.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		158C9CA12787F6BC0062E0C6 /* fonts */ = {
@@ -2592,6 +2734,7 @@
 		15DE22CC277DBDC300B5EE03 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				158832D5289427D800142B35 /* WalletConnect */,
 				6AA591F328854F5900F4B5CA /* Backup */,
 				15DE22CE277DBDF800B5EE03 /* WalletManager.swift */,
 				15DE22D1277DBE0000B5EE03 /* UserManager.swift */,
@@ -3099,6 +3242,7 @@
 		6ABAE52D2836297C00C97AE2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				158832F928943D1C00142B35 /* SPQRCode */,
 				6A6BD9DA287D5057009FA262 /* ProgressHUD */,
 				6A8FA477285B192800EE5BE3 /* Snappable */,
 				6AF95B412848C8D60012C837 /* BMChineseSort */,
@@ -3247,6 +3391,9 @@
 				6A400926287578FF00A77070 /* QRCode */,
 				6AE1D48D287690E7000FA0B7 /* SwiftUIPager */,
 				4EC7BE3D2888413500F2A45A /* PartialSheet */,
+				158832CB2894267700142B35 /* WalletConnect */,
+				158832D32894277600142B35 /* Starscream */,
+				1588332328943F7D00142B35 /* NativeUIKit */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -3296,6 +3443,9 @@
 				6AE46061286EE644009C2B96 /* SwiftUICharts */,
 				6A400924287578D400A77070 /* QRCode */,
 				6A0454CC28768E9E00A9131C /* SwiftUIPager */,
+				158832C92894262B00142B35 /* WalletConnect */,
+				158832D12894273600142B35 /* Starscream */,
+				1588332128943F4D00142B35 /* NativeUIKit */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -3351,6 +3501,9 @@
 				6A400923287578D400A77070 /* XCRemoteSwiftPackageReference "QRCode" */,
 				6A0454CB28768E9E00A9131C /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				4EC7BE3C2888413500F2A45A /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				158832C82894262B00142B35 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */,
+				158832D02894273600142B35 /* XCRemoteSwiftPackageReference "Starscream" */,
+				1588332028943F4D00142B35 /* XCRemoteSwiftPackageReference "NativeUIKit" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -3493,17 +3646,20 @@
 				4ECB9966285B8FF600F59852 /* OffsetScrollViewWithAppBar.swift in Sources */,
 				1570467027931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
 				15DC20EF27819C56000B187A /* VSectionListSection.swift in Sources */,
+				158832CF2894269E00142B35 /* WalletConnectManager.swift in Sources */,
 				6A35EADA2859BD36005A85B8 /* EditAvatarView.swift in Sources */,
 				15DC20C727819C56000B187A /* VCloseButtonState.swift in Sources */,
 				15DC214927819C56000B187A /* VTabNavigationViewModel.swift in Sources */,
 				15DC20FF27819C56000B187A /* VStepperModel.swift in Sources */,
 				6A164F462840A1380026B31E /* TabBarView.swift in Sources */,
+				158832D8289427EF00142B35 /* Websocket.swift in Sources */,
 				154B8903276A1EEB00780E93 /* ProfileView.swift in Sources */,
 				15DC21BD27819C56000B187A /* View.CustomViewFrames.swift in Sources */,
 				15DC213F27819C56000B187A /* VMenuPickerButtonType.swift in Sources */,
 				15DC20BF27819C56000B187A /* VSquareButtonState.swift in Sources */,
 				6A8FA49A285B192800EE5BE3 /* SnapAnchorPreferenceKey.swift in Sources */,
 				15DC217527819C56000B187A /* VDialogButtonModel.swift in Sources */,
+				158832EB28942F8500142B35 /* serviceDefinition.swift in Sources */,
 				156E84AE281CDF4F00415896 /* WalletModels.swift in Sources */,
 				15DC20C527819C56000B187A /* VCloseButton.swift in Sources */,
 				4E8DD9FD282E52110016A931 /* JSONStorage.swift in Sources */,
@@ -3517,8 +3673,10 @@
 				6A531C052877CB1C00EEF6C7 /* WalletSendViewModel.swift in Sources */,
 				15DC21B327819C56000B187A /* Optional.LetBlockTransformation.swift in Sources */,
 				6AF95B452848C8D70012C837 /* BMChineseSort.swift in Sources */,
+				158832E528942D6300142B35 /* SessionInfo.swift in Sources */,
 				15DC1F7327819B74000B187A /* SpinnerStyle.swift in Sources */,
 				15DC20A927819C56000B187A /* VWebLink.swift in Sources */,
+				158832DB2894287700142B35 /* SessionItem.swift in Sources */,
 				15DC207D27819C56000B187A /* VBaseViewSwipeGesture.swift in Sources */,
 				15DC209727819C56000B187A /* VToastType.swift in Sources */,
 				6A9D7C4D2834D7D100078F63 /* ThemeChangeView.swift in Sources */,
@@ -3531,6 +3689,7 @@
 				6ACF0E642851FB2E008E7FA6 /* UserRequests.swift in Sources */,
 				154B8904276A1EEB00780E93 /* OffsetPageTabView.swift in Sources */,
 				158CE8812782BEAA006A8394 /* TYNKViewModel.swift in Sources */,
+				158832E828942DC600142B35 /* MessageRequestInfo.swift in Sources */,
 				4E1E9BC5283E04770028CBBD /* NFTFavoriteStore.swift in Sources */,
 				6A8FA498285B192800EE5BE3 /* Introspect.swift in Sources */,
 				15DC21E727819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
@@ -3538,12 +3697,14 @@
 				6A4A235128365B31001F1FDE /* Image.swift in Sources */,
 				1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
 				6A65690C289128EE007D9BDA /* RouterNavigationController.swift in Sources */,
+				1588331B28943D1D00142B35 /* Texts.swift in Sources */,
 				15DC20B727819C56000B187A /* VChevronButton.swift in Sources */,
 				6A8FA49E285B192900EE5BE3 /* SnapTiming.swift in Sources */,
 				15DC20E127819C56000B187A /* VListModel.swift in Sources */,
 				4E51B4FC2854A76500EDE4FE /* CaptureView.swift in Sources */,
 				15DC213527819C56000B187A /* VSegmentedPicker.swift in Sources */,
 				15DC21D527819C56000B187A /* StateColorsAndOpacities_EPD_PD.swift in Sources */,
+				1588330F28943D1D00142B35 /* SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift in Sources */,
 				15DC210927819C56000B187A /* VSlider.swift in Sources */,
 				6AE0841E284F58F3003BEEF0 /* UserModel.swift in Sources */,
 				15DC21D127819C56000B187A /* VPickableItems.swift in Sources */,
@@ -3588,6 +3749,7 @@
 				15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
 				15DC218727819C56000B187A /* VToggle.swift in Sources */,
 				15DC20A727819C56000B187A /* VWebLinkState.swift in Sources */,
+				158832F5289435B800142B35 /* RequestMessageView.swift in Sources */,
 				15DC218F27819C56000B187A /* VCheckBox.swift in Sources */,
 				6AD900652847175100B65CE6 /* AddAddressView.swift in Sources */,
 				4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */,
@@ -3598,6 +3760,7 @@
 				15DC208527819C56000B187A /* VLazyScrollViewHorizontal.swift in Sources */,
 				15DC211327819C56000B187A /* VPageIndicatorInfinite.swift in Sources */,
 				6A6BD9E0287D5467009FA262 /* PlaceholderStyle.swift in Sources */,
+				1588331128943D1D00142B35 /* SPQRFrameLayer.swift in Sources */,
 				4EF5129A28329ADA0014F4EC /* NFTDetailPage.swift in Sources */,
 				6A4EA49D28759554006B74D2 /* WalletSendView.swift in Sources */,
 				15DC216927819C56000B187A /* VHalfModalNavigationViewCloseButton.swift in Sources */,
@@ -3612,6 +3775,7 @@
 				6ACDD17028587A7700F406EB /* ProfileEditViewModel.swift in Sources */,
 				15DC20AD27819C56000B187A /* VBaseButtonViewRepresentable.swift in Sources */,
 				158CE88C2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */,
+				1588331F28943D1D00142B35 /* SPQRCode.swift in Sources */,
 				154B8906276A1EEB00780E93 /* Lilico_App.swift in Sources */,
 				6A41B6AA2861D06F00999451 /* NotificationDefine.swift in Sources */,
 				15DC20BB27819C56000B187A /* VChevronButtonState.swift in Sources */,
@@ -3638,6 +3802,7 @@
 				15DC219B27819C56000B187A /* VTextFieldActions.swift in Sources */,
 				154B8908276A1EEB00780E93 /* ColorBook.swift in Sources */,
 				15DC212127819C56000B187A /* VSpinnerModelDashed.swift in Sources */,
+				158832F82894363E00142B35 /* ApproveView.swift in Sources */,
 				6AE8821F288EB67A00ADF36E /* RouterExtensions.swift in Sources */,
 				6AD90069284717FC00B65CE6 /* AddAddressViewModel.swift in Sources */,
 				15DC20DB27819C56000B187A /* VPrimaryButtonState.swift in Sources */,
@@ -3648,6 +3813,7 @@
 				154B8909276A1EEB00780E93 /* Color.swift in Sources */,
 				15DC211127819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
 				15DC20C927819C56000B187A /* VNavigationViewBackButtonHidden.swift in Sources */,
+				1588331928943D1D00142B35 /* SPQRCodeData.swift in Sources */,
 				15DC219927819C56000B187A /* VTextFieldModel.swift in Sources */,
 				15DC212B27819C56000B187A /* VProgressBarModel.swift in Sources */,
 				6A164F6E2845F1CB0026B31E /* View+IndexBarBackground.swift in Sources */,
@@ -3707,9 +3873,11 @@
 				15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */,
 				15DC21C527819C56000B187A /* LayoutGroup_LT.swift in Sources */,
 				6ACDD17A28588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */,
+				1588330D28943D1D00142B35 /* SPQRCameraController.swift in Sources */,
 				15DC21A727819C56000B187A /* VBaseTextField.swift in Sources */,
 				15DC210727819C56000B187A /* VSliderState.swift in Sources */,
 				15DC215B27819C56000B187A /* VMenuButtonType.swift in Sources */,
+				158832E228942D5800142B35 /* RequestInfo.swift in Sources */,
 				15DC217F27819C56000B187A /* VActionSheetRow.swift in Sources */,
 				15DC20A127819C56000B187A /* VSecondaryButton.swift in Sources */,
 				15DC1D5927816660000B187A /* Network.swift in Sources */,
@@ -3752,6 +3920,7 @@
 				15DC219527819C56000B187A /* VTextField.swift in Sources */,
 				15DC20A527819C56000B187A /* VWebLinkType.swift in Sources */,
 				6A204C652860236600D0D3A4 /* ViewExtensions.swift in Sources */,
+				158832F2289434EF00142B35 /* RequestView.swift in Sources */,
 				15DC21E927819C57000B187A /* StateColors_OOD.swift in Sources */,
 				15DC1D3F27809F83000B187A /* BackupManager.swift in Sources */,
 				15DC21E127819C56000B187A /* StateOpacities_D.swift in Sources */,
@@ -3770,8 +3939,10 @@
 				4EC31180284503C600F711F5 /* NFTCollectionListView.swift in Sources */,
 				6A8FA4B2285B192900EE5BE3 /* DecelerationRate.swift in Sources */,
 				4EDDAA24285F5DC600EB8AF9 /* NFTAddCollectionView.swift in Sources */,
+				1588331D28943D1D00142B35 /* Images.swift in Sources */,
 				4E8DD9F9282E2FBB0016A931 /* NFTEmptyView.swift in Sources */,
 				154B8914276A1EEB00780E93 /* ViewModel.swift in Sources */,
+				158832DF28942D0400142B35 /* FCLModel.swift in Sources */,
 				6A164F722845F1CB0026B31E /* IndexedList.swift in Sources */,
 				15DC207727819C56000B187A /* VText.swift in Sources */,
 				6A164F642845F1CB0026B31E /* UIView+Extensions.swift in Sources */,
@@ -3798,10 +3969,12 @@
 				4ECB9960285B739700F59852 /* OffsetScrollView.swift in Sources */,
 				15DC21F02781F388000B187A /* TYNKView.swift in Sources */,
 				1505E5FF2836365C007B98D8 /* LilicoAPI+AddressBook.swift in Sources */,
+				158832EE28942FCE00142B35 /* Signable.swift in Sources */,
 				15DC211927819C56000B187A /* VPageIndicatorType.swift in Sources */,
 				15DC20AF27819C56000B187A /* VBaseButtonGestureState.swift in Sources */,
 				6A8FA4A8285B192900EE5BE3 /* DraggingDetector.swift in Sources */,
 				6AE0841B284EFF6D003BEEF0 /* DeveloperModeView.swift in Sources */,
+				1588330B28943D1D00142B35 /* SPQRDetailButton.swift in Sources */,
 				15DE22E9277EDC4700B5EE03 /* WalletView.swift in Sources */,
 				15DC215F27819C56000B187A /* VSideBarModel.swift in Sources */,
 				6ABAE53028362D1100C97AE2 /* Others.swift in Sources */,
@@ -3842,6 +4015,7 @@
 				6A8FA49C285B192800EE5BE3 /* SnapID.swift in Sources */,
 				15DC20AB27819C56000B187A /* VBaseButton.swift in Sources */,
 				15DC219D27819C56000B187A /* VTextFieldState.swift in Sources */,
+				1588331328943D1D00142B35 /* SPQRCorner.swift in Sources */,
 				1505E5FC28363578007B98D8 /* LilicoAPI+User.swift in Sources */,
 				15DE22E6277EAFF300B5EE03 /* EnterRestorePasswordView.swift in Sources */,
 				15DC21C927819C56000B187A /* LayoutGroup_LTTB.swift in Sources */,
@@ -3901,17 +4075,20 @@
 				15C58AC72868A4EE00BD4FC6 /* OffsetScrollViewWithAppBar.swift in Sources */,
 				15C58AC82868A4EE00BD4FC6 /* AlchemyEndpoint.swift in Sources */,
 				15C58AC92868A4EE00BD4FC6 /* VSectionListSection.swift in Sources */,
+				158832CE2894269E00142B35 /* WalletConnectManager.swift in Sources */,
 				15C58ACA2868A4EE00BD4FC6 /* EditAvatarView.swift in Sources */,
 				15C58ACB2868A4EE00BD4FC6 /* VCloseButtonState.swift in Sources */,
 				15C58ACC2868A4EE00BD4FC6 /* VTabNavigationViewModel.swift in Sources */,
 				15C58ACD2868A4EE00BD4FC6 /* VStepperModel.swift in Sources */,
 				15C58ACE2868A4EE00BD4FC6 /* TabBarView.swift in Sources */,
+				158832D7289427EF00142B35 /* Websocket.swift in Sources */,
 				15C58ACF2868A4EE00BD4FC6 /* ProfileView.swift in Sources */,
 				15C58AD02868A4EE00BD4FC6 /* View.CustomViewFrames.swift in Sources */,
 				15C58AD12868A4EE00BD4FC6 /* VMenuPickerButtonType.swift in Sources */,
 				15C58AD22868A4EE00BD4FC6 /* VSquareButtonState.swift in Sources */,
 				15C58AD32868A4EE00BD4FC6 /* SnapAnchorPreferenceKey.swift in Sources */,
 				15C58AD42868A4EE00BD4FC6 /* VDialogButtonModel.swift in Sources */,
+				158832EA28942F8500142B35 /* serviceDefinition.swift in Sources */,
 				15C58AD52868A4EE00BD4FC6 /* WalletModels.swift in Sources */,
 				15C58AD62868A4EE00BD4FC6 /* VCloseButton.swift in Sources */,
 				15C58AD72868A4EE00BD4FC6 /* JSONStorage.swift in Sources */,
@@ -3925,8 +4102,10 @@
 				6A531C042877CB1C00EEF6C7 /* WalletSendViewModel.swift in Sources */,
 				15C58AE12868A4EE00BD4FC6 /* Optional.LetBlockTransformation.swift in Sources */,
 				15C58AE22868A4EE00BD4FC6 /* BMChineseSort.swift in Sources */,
+				158832E428942D6300142B35 /* SessionInfo.swift in Sources */,
 				15C58AE32868A4EE00BD4FC6 /* SpinnerStyle.swift in Sources */,
 				15C58AE42868A4EE00BD4FC6 /* VWebLink.swift in Sources */,
+				158832DA2894287700142B35 /* SessionItem.swift in Sources */,
 				15C58AE52868A4EE00BD4FC6 /* VBaseViewSwipeGesture.swift in Sources */,
 				15C58AE62868A4EE00BD4FC6 /* VToastType.swift in Sources */,
 				15C58AE72868A4EE00BD4FC6 /* ThemeChangeView.swift in Sources */,
@@ -3939,6 +4118,7 @@
 				15C58AEE2868A4EE00BD4FC6 /* UserRequests.swift in Sources */,
 				15C58AEF2868A4EE00BD4FC6 /* OffsetPageTabView.swift in Sources */,
 				15C58AF02868A4EE00BD4FC6 /* TYNKViewModel.swift in Sources */,
+				158832E728942DC600142B35 /* MessageRequestInfo.swift in Sources */,
 				15C58AF12868A4EE00BD4FC6 /* NFTFavoriteStore.swift in Sources */,
 				15C58AF22868A4EE00BD4FC6 /* Introspect.swift in Sources */,
 				15C58AF32868A4EE00BD4FC6 /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
@@ -3946,12 +4126,14 @@
 				15C58AF42868A4EE00BD4FC6 /* Image.swift in Sources */,
 				15C58AF52868A4EE00BD4FC6 /* GithubEndpoint.swift in Sources */,
 				6A65690B289128EE007D9BDA /* RouterNavigationController.swift in Sources */,
+				1588331A28943D1D00142B35 /* Texts.swift in Sources */,
 				15C58AF62868A4EE00BD4FC6 /* VChevronButton.swift in Sources */,
 				15C58AF72868A4EE00BD4FC6 /* SnapTiming.swift in Sources */,
 				15C58AF82868A4EE00BD4FC6 /* VListModel.swift in Sources */,
 				15C58AF92868A4EE00BD4FC6 /* CaptureView.swift in Sources */,
 				15C58AFA2868A4EE00BD4FC6 /* VSegmentedPicker.swift in Sources */,
 				15C58AFB2868A4EE00BD4FC6 /* StateColorsAndOpacities_EPD_PD.swift in Sources */,
+				1588330E28943D1D00142B35 /* SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift in Sources */,
 				15C58AFC2868A4EE00BD4FC6 /* VSlider.swift in Sources */,
 				15C58AFD2868A4EE00BD4FC6 /* UserModel.swift in Sources */,
 				15C58AFE2868A4EE00BD4FC6 /* VPickableItems.swift in Sources */,
@@ -3996,6 +4178,7 @@
 				15C58B242868A4EE00BD4FC6 /* EmptyWalletViewModel.swift in Sources */,
 				15C58B252868A4EE00BD4FC6 /* VToggle.swift in Sources */,
 				15C58B262868A4EE00BD4FC6 /* VWebLinkState.swift in Sources */,
+				158832F4289435B800142B35 /* RequestMessageView.swift in Sources */,
 				15C58B272868A4EE00BD4FC6 /* VCheckBox.swift in Sources */,
 				15C58B282868A4EE00BD4FC6 /* AddAddressView.swift in Sources */,
 				15C58B292868A4EE00BD4FC6 /* AddCollectionViewModel.swift in Sources */,
@@ -4006,6 +4189,7 @@
 				15C58B2C2868A4EE00BD4FC6 /* VLazyScrollViewHorizontal.swift in Sources */,
 				15C58B2D2868A4EE00BD4FC6 /* VPageIndicatorInfinite.swift in Sources */,
 				6A6BD9DF287D5467009FA262 /* PlaceholderStyle.swift in Sources */,
+				1588331028943D1D00142B35 /* SPQRFrameLayer.swift in Sources */,
 				15C58B2E2868A4EE00BD4FC6 /* NFTDetailPage.swift in Sources */,
 				6A4EA49C28759554006B74D2 /* WalletSendView.swift in Sources */,
 				15C58B2F2868A4EE00BD4FC6 /* VHalfModalNavigationViewCloseButton.swift in Sources */,
@@ -4020,6 +4204,7 @@
 				15C58B382868A4EE00BD4FC6 /* ProfileEditViewModel.swift in Sources */,
 				15C58B392868A4EE00BD4FC6 /* VBaseButtonViewRepresentable.swift in Sources */,
 				15C58B3A2868A4EE00BD4FC6 /* RecoveryPhraseViewModel.swift in Sources */,
+				1588331E28943D1D00142B35 /* SPQRCode.swift in Sources */,
 				15C58B3B2868A4EE00BD4FC6 /* Lilico_App.swift in Sources */,
 				15C58B3C2868A4EE00BD4FC6 /* NotificationDefine.swift in Sources */,
 				15C58B3D2868A4EE00BD4FC6 /* VChevronButtonState.swift in Sources */,
@@ -4046,6 +4231,7 @@
 				15C58B522868A4EE00BD4FC6 /* VTextFieldActions.swift in Sources */,
 				15C58B532868A4EE00BD4FC6 /* ColorBook.swift in Sources */,
 				15C58B542868A4EE00BD4FC6 /* VSpinnerModelDashed.swift in Sources */,
+				158832F72894363E00142B35 /* ApproveView.swift in Sources */,
 				6AE8821E288EB67A00ADF36E /* RouterExtensions.swift in Sources */,
 				15C58B552868A4EE00BD4FC6 /* AddAddressViewModel.swift in Sources */,
 				15C58B562868A4EE00BD4FC6 /* VPrimaryButtonState.swift in Sources */,
@@ -4056,6 +4242,7 @@
 				15C58B5B2868A4EE00BD4FC6 /* Color.swift in Sources */,
 				15C58B5C2868A4EE00BD4FC6 /* VPageIndicatorFinite.swift in Sources */,
 				15C58B5D2868A4EE00BD4FC6 /* VNavigationViewBackButtonHidden.swift in Sources */,
+				1588331828943D1D00142B35 /* SPQRCodeData.swift in Sources */,
 				15C58B5F2868A4EE00BD4FC6 /* VTextFieldModel.swift in Sources */,
 				15C58B602868A4EE00BD4FC6 /* VProgressBarModel.swift in Sources */,
 				15C58B612868A4EE00BD4FC6 /* View+IndexBarBackground.swift in Sources */,
@@ -4115,9 +4302,11 @@
 				15C58B982868A4EE00BD4FC6 /* FlowAddressRegistor.swift in Sources */,
 				15C58B992868A4EE00BD4FC6 /* LayoutGroup_LT.swift in Sources */,
 				15C58B9A2868A4EE00BD4FC6 /* LilicoAPI+Profile.swift in Sources */,
+				1588330C28943D1D00142B35 /* SPQRCameraController.swift in Sources */,
 				15C58B9B2868A4EE00BD4FC6 /* VBaseTextField.swift in Sources */,
 				15C58B9C2868A4EE00BD4FC6 /* VSliderState.swift in Sources */,
 				15C58B9D2868A4EE00BD4FC6 /* VMenuButtonType.swift in Sources */,
+				158832E128942D5800142B35 /* RequestInfo.swift in Sources */,
 				15C58B9E2868A4EE00BD4FC6 /* VActionSheetRow.swift in Sources */,
 				15C58B9F2868A4EE00BD4FC6 /* VSecondaryButton.swift in Sources */,
 				15C58BA02868A4EE00BD4FC6 /* Network.swift in Sources */,
@@ -4160,6 +4349,7 @@
 				15C58BC42868A4EE00BD4FC6 /* VTextField.swift in Sources */,
 				15C58BC52868A4EE00BD4FC6 /* VWebLinkType.swift in Sources */,
 				15C58BC62868A4EE00BD4FC6 /* ViewExtensions.swift in Sources */,
+				158832F1289434EF00142B35 /* RequestView.swift in Sources */,
 				15C58BC72868A4EE00BD4FC6 /* StateColors_OOD.swift in Sources */,
 				15C58BC82868A4EE00BD4FC6 /* BackupManager.swift in Sources */,
 				15C58BCB2868A4EE00BD4FC6 /* StateOpacities_D.swift in Sources */,
@@ -4178,8 +4368,10 @@
 				15C58BD82868A4EE00BD4FC6 /* NFTCollectionListView.swift in Sources */,
 				15C58BD92868A4EE00BD4FC6 /* DecelerationRate.swift in Sources */,
 				15C58BDA2868A4EE00BD4FC6 /* NFTAddCollectionView.swift in Sources */,
+				1588331C28943D1D00142B35 /* Images.swift in Sources */,
 				15C58BDB2868A4EE00BD4FC6 /* NFTEmptyView.swift in Sources */,
 				15C58BDC2868A4EE00BD4FC6 /* ViewModel.swift in Sources */,
+				158832DE28942D0400142B35 /* FCLModel.swift in Sources */,
 				15C58BDD2868A4EE00BD4FC6 /* IndexedList.swift in Sources */,
 				15C58BDE2868A4EE00BD4FC6 /* VText.swift in Sources */,
 				15C58BDF2868A4EE00BD4FC6 /* UIView+Extensions.swift in Sources */,
@@ -4206,10 +4398,12 @@
 				15C58BF62868A4EE00BD4FC6 /* OffsetScrollView.swift in Sources */,
 				15C58BF72868A4EE00BD4FC6 /* TYNKView.swift in Sources */,
 				15C58BF82868A4EE00BD4FC6 /* LilicoAPI+AddressBook.swift in Sources */,
+				158832ED28942FCE00142B35 /* Signable.swift in Sources */,
 				15C58BF92868A4EE00BD4FC6 /* VPageIndicatorType.swift in Sources */,
 				15C58BFA2868A4EE00BD4FC6 /* VBaseButtonGestureState.swift in Sources */,
 				15C58BFB2868A4EE00BD4FC6 /* DraggingDetector.swift in Sources */,
 				15C58BFC2868A4EE00BD4FC6 /* DeveloperModeView.swift in Sources */,
+				1588330A28943D1D00142B35 /* SPQRDetailButton.swift in Sources */,
 				15C58BFD2868A4EE00BD4FC6 /* WalletView.swift in Sources */,
 				15C58BFE2868A4EE00BD4FC6 /* VSideBarModel.swift in Sources */,
 				15C58BFF2868A4EE00BD4FC6 /* Others.swift in Sources */,
@@ -4250,6 +4444,7 @@
 				15C58C212868A4EE00BD4FC6 /* SnapID.swift in Sources */,
 				15C58C222868A4EE00BD4FC6 /* VBaseButton.swift in Sources */,
 				15C58C232868A4EE00BD4FC6 /* VTextFieldState.swift in Sources */,
+				1588331228943D1D00142B35 /* SPQRCorner.swift in Sources */,
 				15C58C252868A4EE00BD4FC6 /* LilicoAPI+User.swift in Sources */,
 				15C58C262868A4EE00BD4FC6 /* EnterRestorePasswordView.swift in Sources */,
 				15C58C272868A4EE00BD4FC6 /* LayoutGroup_LTTB.swift in Sources */,
@@ -4760,6 +4955,30 @@
 				minimumVersion = 7.1.2;
 			};
 		};
+		158832C82894262B00142B35 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WalletConnect/WalletConnectSwiftV2";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		158832D02894273600142B35 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		1588332028943F4D00142B35 /* XCRemoteSwiftPackageReference "NativeUIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanvorobei/NativeUIKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		1599F7752789734B0094B196 /* XCRemoteSwiftPackageReference "SPConfetti" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanvorobei/SPConfetti";
@@ -4989,7 +5208,7 @@
 			repositoryURL = "https://github.com/outblock/flow-swift";
 			requirement = {
 				kind = revision;
-				revision = 95c7d6ca2d2ab12a2a832805ff1fbfc8953e27da;
+				revision = 6059a662e93f1e1f6c4af286f48c008c92bf3600;
 			};
 		};
 		4EC7BE3C2888413500F2A45A /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
@@ -5104,6 +5323,36 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 156AC7AF278042DE00ED5E3E /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
 			productName = GTMSessionFetcherCore;
+		};
+		158832C92894262B00142B35 /* WalletConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 158832C82894262B00142B35 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnect;
+		};
+		158832CB2894267700142B35 /* WalletConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 158832C82894262B00142B35 /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
+			productName = WalletConnect;
+		};
+		158832D12894273600142B35 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 158832D02894273600142B35 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+		158832D32894277600142B35 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 158832D02894273600142B35 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+		1588332128943F4D00142B35 /* NativeUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1588332028943F4D00142B35 /* XCRemoteSwiftPackageReference "NativeUIKit" */;
+			productName = NativeUIKit;
+		};
+		1588332328943F7D00142B35 /* NativeUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1588332028943F4D00142B35 /* XCRemoteSwiftPackageReference "NativeUIKit" */;
+			productName = NativeUIKit;
 		};
 		15C58A7F2868A4EE00BD4FC6 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;

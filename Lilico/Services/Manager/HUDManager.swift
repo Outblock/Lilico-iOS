@@ -42,11 +42,10 @@ class HUD {
     }
     
     static func setupProgressHUD() {
-        ProgressHUD.animationType = .circleSpinFade
+        ProgressHUD.animationType = .multipleCirclePulse
         ProgressHUD.colorAnimation = UIColor(Color.LL.Primary.salmonPrimary)
         ProgressHUD.colorStatus = UIColor(Color.LL.Primary.salmonPrimary)
         ProgressHUD.fontStatus = .systemFont(ofSize: 19, weight: .medium)
-        
     }
     
     static func loading(_ title: String = "", interaction: Bool = false) {
