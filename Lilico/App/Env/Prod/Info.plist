@@ -26,5 +26,17 @@
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
+    <key>NSUbiquitousContainers</key>
+    <dict>
+        <key>iCloud.io.outblock.lilico</key>
+        <dict>
+            <key>NSUbiquitousContainerIsDocumentScopePublic</key>
+            <true/>
+            <key>NSUbiquitousContainerSupportedFolderLevels</key>
+            <string>Any</string>
+            <key>NSUbiquitousContainerName</key>
+            <string>Lilico</string>
+        </dict>
+    </dict>
 </dict>
 </plist>

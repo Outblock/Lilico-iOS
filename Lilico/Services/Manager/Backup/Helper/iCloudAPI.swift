@@ -10,7 +10,11 @@ import Combine
 
 class iCloudAPI: UIDocument {
     private(set) var data: Data?
-    private let workingQueue = OperationQueue()
+    private lazy var workingQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
     private var cancelSets = Set<AnyCancellable>()
     
     override func load(fromContents contents: Any, ofType typeName: String?) throws {
@@ -44,7 +48,7 @@ class iCloudAPI: UIDocument {
         query.operationQueue = workingQueue
         query.predicate = NSPredicate(format: "%K == %@", NSMetadataItemFSNameKey, BackupManager.backupFileName)
         query.searchScopes = [
-            NSMetadataQueryUbiquitousDataScope
+            NSMetadataQueryUbiquitousDocumentsScope
         ]
         
         cancelSets.removeAll()

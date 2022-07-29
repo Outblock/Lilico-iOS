@@ -64,7 +64,7 @@ extension BackupiCloudTarget {
             throw iCloudBackupError.initError
         }
         
-        let fileURL = url.appendingPathComponent(BackupManager.backupFileName)
+        let fileURL = url.appendingPathComponent("Documents").appendingPathComponent(BackupManager.backupFileName)
         api = await iCloudAPI(fileURL: fileURL)
         
         // double check if prepared
