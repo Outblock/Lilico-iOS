@@ -43,21 +43,21 @@ extension RouteMap.RestoreLogin: RouterTarget {
 
 extension RouteMap {
     enum Register {
-        case root
-        case username
-        case tynk(String)
+        case root(String?)
+        case username(String?)
+        case tynk(String, String?)
     }
 }
 
 extension RouteMap.Register: RouterTarget {
     func onPresent(navi: UINavigationController) {
         switch self {
-        case .root:
-            navi.push(content: TermsAndPolicy())
-        case .username:
-            navi.push(content: UsernameView())
-        case .tynk(let username):
-            navi.push(content: TYNKView(username: username))
+        case .root(let mnemonic):
+            navi.push(content: TermsAndPolicy(mnemonic: mnemonic))
+        case .username(let mnemonic):
+            navi.push(content: UsernameView(mnemonic: mnemonic))
+        case .tynk(let username, let mnemonic):
+            navi.push(content: TYNKView(username: username, mnemonic: mnemonic))
         }
     }
 }

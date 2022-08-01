@@ -43,16 +43,29 @@ extension AlertView {
     }
 }
 
-struct AlertView: View {
+struct AlertView: ViewModifier {
     @Binding var isPresented: Bool
     let title: String?
     let desc: String?
+    let attributedDesc: NSAttributedString?
     let buttons: [AlertView.ButtonItem]
-}
-
-extension AlertView {
-    var body: some View {
+    let useDefaultCancelButton: Bool
+    
+    let testString: AttributedString = {
+        let normalDict = [NSAttributedString.Key.foregroundColor: UIColor(Color.LL.Neutrals.text)]
+        let highlightDict = [NSAttributedString.Key.foregroundColor: UIColor(Color.LL.Primary.salmonPrimary)]
+        
+        var str = NSMutableAttributedString(string: "this is a ", attributes: normalDict)
+        str.append(NSMutableAttributedString(string: "highlight", attributes: highlightDict))
+        str.append(NSMutableAttributedString(string: " string", attributes: normalDict))
+        
+        return AttributedString(str)
+    }()
+    
+    func body(content: Content) -> some View {
         ZStack {
+            content
+            
             Color.black.opacity(0.8)
                 .ignoresSafeArea()
                 .transition(.opacity)
@@ -60,10 +73,13 @@ extension AlertView {
             
             contentView
                 .padding(.bottom, 45)
+                .visibility(isPresented ? .visible : .gone)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
+}
+
+extension AlertView {
     var contentView: some View {
         VStack(spacing: 27) {
             VStack(alignment: .leading, spacing: 10) {
@@ -73,11 +89,11 @@ extension AlertView {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .visibility(title != nil ? .visible : .gone)
                 
-                Text(desc ?? "")
+                Text(AttributedString(attributedDesc ?? NSAttributedString(string: desc ?? "")))
                     .foregroundColor(Color.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .regular))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .visibility(desc != nil ? .visible : .gone)
+                    .visibility((desc != nil || attributedDesc != nil) ? .visible : .gone)
             }
             
             VStack(spacing: 8) {
@@ -91,6 +107,7 @@ extension AlertView {
                 }
                 
                 defaultCancelButton
+                    .visibility(useDefaultCancelButton ? .visible : .gone)
             }
         }
         .padding(.horizontal, 24)
@@ -100,8 +117,7 @@ extension AlertView {
         .cornerRadius(16)
         .padding(.horizontal, 28)
         .zIndex(.infinity)
-        .transition(.move(edge: .bottom))
-        .visibility(isPresented ? .visible : .gone)
+        .transition(.scale)
     }
     
     var defaultCancelButton: some View {
@@ -127,24 +143,49 @@ extension AlertView {
 
 extension AlertView {
     private func closeAction() {
-        withAnimation(.easeInOut) {
-            self.isPresented = false
+        withAnimation(.alertViewSpring) {
+            isPresented = false
         }
     }
 }
 
-struct AlertViewTestVM {
-    @State var isPresented: Bool = true
+extension View {
+    func customAlertView(isPresented: Binding<Bool>,
+                         title: String? = nil,
+                         desc: String? = nil,
+                         attributedDesc: NSAttributedString? = nil,
+                         buttons: [AlertView.ButtonItem] = [],
+                         useDefaultCancelButton: Bool = true) -> some View {
+        self.modifier(AlertView(isPresented: isPresented, title: title, desc: desc, attributedDesc: attributedDesc, buttons: buttons, useDefaultCancelButton: useDefaultCancelButton))
+    }
 }
 
-struct AlertView_Previews: PreviewProvider {
-    static var previews: some View {
-        let desc = "No account found with the recoveray phrase. Do you want to create a new account with your phrase?"
+struct AlertViewTestView: View {
+    @State var isPresented: Bool = true
+    let desc = "No account found with the recoveray phrase. Do you want to create a new account with your phrase?"
+    
+    var body: some View {
+        Button {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                isPresented = true
+            }
+        } label: {
+            Text("test")
+        }
+        .customAlertView(isPresented: $isPresented, title: "Account not Found", desc: desc, buttons: [confirmBtn])
+    }
+    
+    var confirmBtn: AlertView.ButtonItem {
         let confirmBtn = AlertView.ButtonItem(type: .confirm, title: "Create Wallet") {
             
         }
         
-        let vm = AlertViewTestVM()
-        AlertView(isPresented: vm.$isPresented, title: "Account not Found", desc: desc, buttons: [confirmBtn])
+        return confirmBtn
+    }
+}
+
+struct AlertView_Previews: PreviewProvider {
+    static var previews: some View {
+        AlertViewTestView()
     }
 }

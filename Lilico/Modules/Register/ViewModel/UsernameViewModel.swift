@@ -19,16 +19,18 @@ class UsernameViewModel: ViewModel {
     var lastUpdateTime: Date = .init()
     var task: DispatchWorkItem?
     var currentText: String = ""
+    var mnemonic: String?
 
-    init() {
-        state = .init()
+    init(mnemonic: String?) {
+        self.state = .init()
+        self.mnemonic = mnemonic
     }
 
     func trigger(_ input: UsernameView.Action) {
         switch input {
         case .next:
             UIApplication.shared.endEditing()
-            Router.route(to: RouteMap.Register.tynk(currentText))
+            Router.route(to: RouteMap.Register.tynk(currentText, mnemonic))
         case let .onEditingChanged(text):
             currentText = text
             if localCheckUserName(text) {

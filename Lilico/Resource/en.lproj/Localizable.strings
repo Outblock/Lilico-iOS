@@ -249,6 +249,10 @@
 "sent_successfully" = "Sent successfully";
 "send_failed" = "Send failed";
 "account_not_found" = "Account not Found";
+"account_not_found_prev" = "No account found with the recoveray phrase. Do you want to create a new account with ";
+"account_not_found_highlight" = "your phrase";
+"account_not_found_suff" = "?";
+"create_wallet" = "Create Wallet";
 
 "restore_with_x_failed" = "Restore with %@ failed";
 "no_x_backup" = "No backup found in %@";

@@ -43,8 +43,8 @@ class UserManager: ObservableObject {
 // MARK: - Register
 
 extension UserManager {
-    func register(_ username: String) async throws {
-        guard let hdWallet = WalletManager.shared.createHDWallet() else {
+    func register(_ username: String, mnemonic: String? = nil) async throws {
+        guard let hdWallet = WalletManager.shared.createHDWallet(mnemonic: mnemonic) else {
             HUD.error(title: "empty_wallet_key".localized)
             throw LLError.emptyWallet
         }

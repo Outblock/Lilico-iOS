@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
-import WalletCore
 
 struct TermsAndPolicy: RouteableView {
+    let mnemonic: String?
+    
     var title: String {
         return ""
     }
@@ -66,7 +67,7 @@ struct TermsAndPolicy: RouteableView {
             
             VPrimaryButton(model: ButtonStyle.primary,
                            action: {
-                Router.route(to: RouteMap.Register.username)
+                Router.route(to: RouteMap.Register.username(mnemonic))
             }, title: "i_accept".localized)
             .padding(.bottom, 20)
         }
@@ -78,6 +79,6 @@ struct TermsAndPolicy: RouteableView {
 
 struct TermsAndPolicy_Previews: PreviewProvider {
     static var previews: some View {
-        TermsAndPolicy()
+        TermsAndPolicy(mnemonic: nil)
     }
 }

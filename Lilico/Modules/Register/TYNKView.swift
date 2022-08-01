@@ -26,8 +26,8 @@ struct TYNKView: RouteableView {
         return ""
     }
     
-    init(username: String) {
-        _viewModel = StateObject(wrappedValue: TYNKViewModel(username: username))
+    init(username: String, mnemonic: String?) {
+        _viewModel = StateObject(wrappedValue: TYNKViewModel(username: username, mnemonic: mnemonic))
     }
 
     var buttonState: VPrimaryButtonState {
@@ -89,8 +89,7 @@ struct TYNKView: RouteableView {
 
 struct TYNKView_Previews: PreviewProvider {
     static var previews: some View {
-        TYNKView(username: "123")
-            .previewDevice("iPhone 13 mini")
+        TYNKView(username: "123", mnemonic: nil)
     }
 }
 

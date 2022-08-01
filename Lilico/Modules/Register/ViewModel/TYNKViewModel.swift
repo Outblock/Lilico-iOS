@@ -12,9 +12,11 @@ import Resolver
 class TYNKViewModel: ViewModel {
     @Published private(set) var state = TYNKView.ViewState()
     var username: String
+    var mnemonic: String?
 
-    init(username: String) {
+    init(username: String, mnemonic: String?) {
         self.username = username
+        self.mnemonic = mnemonic
     }
 
     func trigger(_ input: TYNKView.Action) {
@@ -29,7 +31,7 @@ class TYNKViewModel: ViewModel {
         
         Task {
             do {
-                try await UserManager.shared.register(username)
+                try await UserManager.shared.register(username, mnemonic: mnemonic)
                 HUD.success(title: "create_user_success".localized)
                 
                 DispatchQueue.main.async {

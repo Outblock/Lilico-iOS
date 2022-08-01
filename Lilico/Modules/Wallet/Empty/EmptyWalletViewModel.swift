@@ -58,7 +58,7 @@ class EmptyWalletViewModel: ViewModel {
     func trigger(_ input: EmptyWalletAction) {
         switch input {
         case .signUp:
-            Router.route(to: RouteMap.Register.root)
+            Router.route(to: RouteMap.Register.root(nil))
         case .signIn:
             Router.route(to: RouteMap.RestoreLogin.root)
         }

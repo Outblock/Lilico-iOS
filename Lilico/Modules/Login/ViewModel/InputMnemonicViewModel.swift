@@ -7,7 +7,7 @@
 
 import Foundation
 import WalletCore
-
+import SwiftUI
 
 class InputMnemonicViewModel: ViewModel {
     @Published var state: InputMnemonicView.ViewState = .init()
@@ -40,6 +40,8 @@ class InputMnemonicViewModel: ViewModel {
             }
         case .next:
             restoreLogin()
+        case .confirmCreateWallet:
+            createAccountWithCurrentMnemonic()
         }
     }
 
@@ -57,19 +59,27 @@ class InputMnemonicViewModel: ViewModel {
                 
                 HUD.dismissLoading()
                 HUD.success(title: "login_success".localized)
+                Router.popToRoot()
+            } catch LLError.accountNotFound {
+                HUD.dismissLoading()
                 DispatchQueue.main.async {
-                    Router.popToRoot()
+                    self.showCreateWalletAlertView()
                 }
             } catch {
                 HUD.dismissLoading()
-                
-                if let le = error as? LLError, le == .accountNotFound {
-                    HUD.error(title: "account_not_found".localized)
-                    return
-                }
-                
                 HUD.error(title: "login_failed".localized)
             }
         }
+    }
+    
+    private func showCreateWalletAlertView() {
+        withAnimation(.alertViewSpring) {
+            self.state.isAlertViewPresented = true
+        }
+    }
+    
+    private func createAccountWithCurrentMnemonic() {
+        let mnemonic = getRawMnemonic()
+        Router.route(to: RouteMap.Register.root(mnemonic))
     }
 }

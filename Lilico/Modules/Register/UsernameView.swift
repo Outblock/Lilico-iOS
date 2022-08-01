@@ -31,7 +31,11 @@ extension UsernameView {
 }
 
 struct UsernameView: RouteableView {
-    @StateObject var viewModel = UsernameViewModel()
+    @StateObject var viewModel: UsernameViewModel
+    
+    init(mnemonic: String?) {
+        _viewModel = StateObject(wrappedValue: UsernameViewModel(mnemonic: mnemonic))
+    }
     
     @State var text: String = ""
     
@@ -113,6 +117,6 @@ struct UsernameView: RouteableView {
 
 struct UsernameView_Previews: PreviewProvider {
     static var previews: some View {
-        UsernameView()
+        UsernameView(mnemonic: nil)
     }
 }

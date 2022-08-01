@@ -14,11 +14,13 @@ extension InputMnemonicView {
         var hasError: Bool = false
         var suggestions: [String] = []
         var text: String = ""
+        var isAlertViewPresented: Bool = false
     }
     
     enum Action {
         case next
         case onEditingChanged(String)
+        case confirmCreateWallet
     }
 }
 
@@ -30,6 +32,17 @@ struct InputMnemonicView: RouteableView {
         model.colors.clearButtonIcon = .clear
         model.layout.height = 150
         return model
+    }()
+    
+    private var accountNotFoundDesc: NSAttributedString = {
+        let normalDict = [NSAttributedString.Key.foregroundColor: UIColor(Color.LL.Neutrals.text)]
+        let highlightDict = [NSAttributedString.Key.foregroundColor: UIColor(Color.LL.Primary.salmonPrimary)]
+        
+        var str = NSMutableAttributedString(string: "account_not_found_prev".localized, attributes: normalDict)
+        str.append(NSAttributedString(string: "account_not_found_highlight".localized, attributes: highlightDict))
+        str.append(NSAttributedString(string: "account_not_found_suff".localized, attributes: normalDict))
+        
+        return str
     }()
     
     var body: some View {
@@ -142,6 +155,9 @@ struct InputMnemonicView: RouteableView {
         }
         .backgroundFill(Color.LL.background)
         .applyRouteable(self)
+        .customAlertView(isPresented: $viewModel.state.isAlertViewPresented, title: "account_not_found".localized, attributedDesc: accountNotFoundDesc, buttons: [AlertView.ButtonItem(type: .confirm, title: "create_wallet".localized, action: {
+            viewModel.trigger(.confirmCreateWallet)
+        })])
     }
 }
 
