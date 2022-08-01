@@ -51,7 +51,7 @@ extension Router {
 class Router {
     private static var coordinator = (UIApplication.shared.delegate as! AppDelegate).coordinator
     
-    private static func topPresentedController() -> UIViewController {
+    static func topPresentedController() -> UIViewController {
         var vc = coordinator.window.rootViewController
         while vc?.presentedViewController != nil {
             vc = vc?.presentedViewController

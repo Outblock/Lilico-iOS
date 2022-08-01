@@ -27,9 +27,10 @@ struct AddTokenView: RouteableView {
             listView
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .customBottomSheet(isPresented: $vm.confirmSheetIsPresented, title: "add_token".localized, background: { Color.LL.Neutrals.background }) {
+        .halfSheet(showSheet: $vm.confirmSheetIsPresented, sheetView: {
             AddTokenConfirmView(token: vm.pendingActiveToken)
-        }
+                .environmentObject(vm)
+        })
         .environmentObject(vm)
         .disabled(vm.isRequesting)
         .applyRouteable(self)
@@ -125,61 +126,67 @@ extension AddTokenView {
         
         var body: some View {
             VStack {
-                ZStack {
-                    ZStack(alignment: .top) {
-                        Color.LL.Primary.salmon5
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 188)
-                            .cornerRadius(16)
+                SheetHeaderView(title: "add_token".localized)
+                
+                VStack {
+                    Spacer()
+                    
+                    ZStack {
+                        ZStack(alignment: .top) {
+                            Color.LL.Primary.salmon5
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 188)
+                                .cornerRadius(16)
+                            
+                            Text(token?.name ?? "Token Name")
+                                .foregroundColor(.LL.Button.light)
+                                .font(.inter(size: 18, weight: .bold))
+                                .padding(.horizontal, 40)
+                                .frame(height: 45)
+                                .background(Color(hex: "#1A1A1A"))
+                                .cornerRadius([.bottomLeft, .bottomRight], 16)
+                        }
                         
-                        Text(token?.name ?? "Token Name")
-                            .foregroundColor(.LL.Button.light)
-                            .font(.inter(size: 18, weight: .bold))
-                            .padding(.horizontal, 40)
-                            .frame(height: 45)
-                            .background(Color(hex: "#1A1A1A"))
-                            .cornerRadius([.bottomLeft, .bottomRight], 16)
+                        KFImage
+                            .url(token?.icon)
+                            .placeholder({
+                                Image("placeholder")
+                                    .resizable()
+                            })
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 114, height: 114)
+                            .clipShape(Circle())
+                            .padding(.top, 45)
                     }
                     
-                    KFImage
-                        .url(token?.icon)
-                        .placeholder({
-                            Image("placeholder")
-                                .resizable()
-                        })
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 114, height: 114)
-                        .clipShape(Circle())
-                        .padding(.top, 45)
-                }
-                
-                Button {
-                    if let token = token {
-                        vm.confirmActiveTokenAction(token)
+                    Spacer()
+                    
+                    Button {
+                        if let token = token {
+                            vm.confirmActiveTokenAction(token)
+                        }
+                    } label: {
+                        HStack(spacing: 5) {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                                .visibility(vm.isRequesting ? .visible : .gone)
+                            
+                            Text("enable".localized)
+                                .foregroundColor(.LL.Button.light)
+                                .font(.inter(size: 14, weight: .bold))
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 54)
+                        .background(Color.LL.Primary.salmonPrimary)
+                        .cornerRadius(16)
+                        .opacity(vm.isRequesting ? 0.8 : 1)
                     }
-                } label: {
-                    HStack(spacing: 5) {
-                        ProgressView()
-                            .progressViewStyle(.circular)
-                            .visibility(vm.isRequesting ? .visible : .gone)
-                        
-                        Text("enable".localized)
-                            .foregroundColor(.LL.Button.light)
-                            .font(.inter(size: 14, weight: .bold))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 54)
-                    .background(Color.LL.Primary.salmonPrimary)
-                    .cornerRadius(16)
-                    .opacity(vm.isRequesting ? 0.8 : 1)
+                    .disabled(vm.isRequesting)
                 }
-                .padding(.top, 66)
-                .padding(.bottom, 20 + UIView.bottomSafeAreaHeight)
-                .disabled(vm.isRequesting)
+                .padding(.horizontal, 36)
             }
-            .padding(.top, 48)
-            .padding(.horizontal, 36)
+            .backgroundFill(Color.LL.Neutrals.background)
         }
     }
 }

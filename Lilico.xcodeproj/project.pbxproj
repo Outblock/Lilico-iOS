@@ -810,6 +810,8 @@
 		4EE8E49C283626D000DFEF59 /* NFTLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE8E49A283626D000DFEF59 /* NFTLoading.swift */; };
 		4EF5129A28329ADA0014F4EC /* NFTDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */; };
 		4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF5129B28333A230014F4EC /* NFTTagsView.swift */; };
+		6A0137662897E7A0009BEF20 /* HalfSheetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0137652897E7A0009BEF20 /* HalfSheetModal.swift */; };
+		6A0137672897E7A0009BEF20 /* HalfSheetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0137652897E7A0009BEF20 /* HalfSheetModal.swift */; };
 		6A0454CD28768E9E00A9131C /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 6A0454CC28768E9E00A9131C /* SwiftUIPager */; };
 		6A11596B288E710C005EF797 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A11596A288E710C005EF797 /* Router.swift */; };
 		6A11596C288E710C005EF797 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A11596A288E710C005EF797 /* Router.swift */; };
@@ -1347,6 +1349,7 @@
 		4EE8E49A283626D000DFEF59 /* NFTLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTLoading.swift; sourceTree = "<group>"; };
 		4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTDetailPage.swift; sourceTree = "<group>"; };
 		4EF5129B28333A230014F4EC /* NFTTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTagsView.swift; sourceTree = "<group>"; };
+		6A0137652897E7A0009BEF20 /* HalfSheetModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfSheetModal.swift; sourceTree = "<group>"; };
 		6A11596A288E710C005EF797 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		6A11596D288E7134005EF797 /* RouteMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMap.swift; sourceTree = "<group>"; };
 		6A115970288E72CC005EF797 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -2709,6 +2712,7 @@
 		15DDFB932751137E008263A2 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				6A0137652897E7A0009BEF20 /* HalfSheetModal.swift */,
 				6A4BFE2E2893CA4000142113 /* AlertView */,
 				4EB60F8E286825960025DD72 /* ContextMenuPreview.swift */,
 				6A164F3C2840A1380026B31E /* TabBarView */,
@@ -3879,6 +3883,7 @@
 				6ACDD17A28588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */,
 				1588330D28943D1D00142B35 /* SPQRCameraController.swift in Sources */,
 				15DC21A727819C56000B187A /* VBaseTextField.swift in Sources */,
+				6A0137672897E7A0009BEF20 /* HalfSheetModal.swift in Sources */,
 				15DC210727819C56000B187A /* VSliderState.swift in Sources */,
 				15DC215B27819C56000B187A /* VMenuButtonType.swift in Sources */,
 				158832E228942D5800142B35 /* RequestInfo.swift in Sources */,
@@ -4309,6 +4314,7 @@
 				15C58B9A2868A4EE00BD4FC6 /* LilicoAPI+Profile.swift in Sources */,
 				1588330C28943D1D00142B35 /* SPQRCameraController.swift in Sources */,
 				15C58B9B2868A4EE00BD4FC6 /* VBaseTextField.swift in Sources */,
+				6A0137662897E7A0009BEF20 /* HalfSheetModal.swift in Sources */,
 				15C58B9C2868A4EE00BD4FC6 /* VSliderState.swift in Sources */,
 				15C58B9D2868A4EE00BD4FC6 /* VMenuButtonType.swift in Sources */,
 				158832E128942D5800142B35 /* RequestInfo.swift in Sources */,
