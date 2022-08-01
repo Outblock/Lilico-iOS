@@ -24,10 +24,13 @@ struct NFTCollectionCard: View {
         HStack {
             KFImage
                 .url(item.iconURL)
+                .placeholder({
+                    Image("placeholder")
+                        .resizable()
+                })
                 .resizable()
                 .aspectRatio(1, contentMode: .fill)
                 .frame(width: iconSize, height: iconSize)
-                .background(.LL.outline)
                 .cornerRadius(12)
 
             VStack(alignment: .leading, spacing: 3) {

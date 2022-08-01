@@ -18,6 +18,10 @@ struct NFTShareView: View {
             HStack(spacing: 0) {
                 KFImage
                     .url(nft.logoUrl)
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .resizable()
                     .onSuccess { _ in
                     }
@@ -55,6 +59,10 @@ struct NFTShareView: View {
                     HStack(alignment: .center, spacing: 6) {
                         KFImage
                             .url(nft.logoUrl)
+                            .placeholder({
+                                Image("placeholder")
+                                    .resizable()
+                            })
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 20, height: 20, alignment: .center)
@@ -69,6 +77,10 @@ struct NFTShareView: View {
 
                 KFImage
                     .url(nft.image)
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .onSuccess { _ in
 //                        color(from: result.image)
                     }

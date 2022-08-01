@@ -65,6 +65,10 @@ struct WalletSendAmountView: RouteableView {
             ZStack {
                 if let avatar = vm.targetContact.avatar?.convertedAvatarString(), avatar.isEmpty == false {
                     KFImage.url(URL(string: avatar))
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 44, height: 44)
@@ -174,10 +178,13 @@ struct WalletSendAmountView: RouteableView {
                         .visibility(vm.exchangeType == .token ? .visible : .gone)
                     
                     KFImage.url(vm.token.icon)
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 20, height: 20)
-                        .background(Color.LL.Neutrals.note)
                         .clipShape(Circle())
                         .visibility(vm.exchangeType == .dollar ? .visible : .gone)
                     
@@ -213,6 +220,10 @@ struct WalletSendAmountView: RouteableView {
                     vm.changeTokenModelAction(token: token)
                 } label: {
                     KFImage.url(token.icon)
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 32, height: 32)
@@ -223,10 +234,13 @@ struct WalletSendAmountView: RouteableView {
         } label: {
             HStack(spacing: 8) {
                 KFImage.url(vm.token.icon)
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 32, height: 32)
-                    .background(Color.LL.Neutrals.note)
                     .clipShape(Circle())
                 
                 Image("icon-arrow-bottom")
@@ -269,10 +283,13 @@ struct WalletSendAmountView: RouteableView {
             
             HStack {
                 KFImage.url(vm.token.icon)
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 32, height: 32)
-                    .background(.LL.Neutrals.note)
                     .clipShape(Circle())
                 
                 Text("\(vm.amountBalance.currencyString) \(vm.token.symbol?.uppercased() ?? "?")")
@@ -343,6 +360,10 @@ extension WalletSendAmountView {
                 ZStack {
                     if let avatar = contact.avatar?.convertedAvatarString(), avatar.isEmpty == false {
                         KFImage.url(URL(string: avatar))
+                            .placeholder({
+                                Image("placeholder")
+                                    .resizable()
+                            })
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 44, height: 44)
@@ -384,10 +405,13 @@ extension WalletSendAmountView {
                 
                 HStack(spacing: 0) {
                     KFImage.url(vm.token.icon)
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 32, height: 32)
-                        .background(Color.LL.Neutrals.note)
                         .clipShape(Circle())
                     
                     Text(vm.token.name)

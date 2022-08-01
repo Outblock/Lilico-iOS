@@ -77,10 +77,13 @@ struct TokenDetailView: RouteableView {
                     }
                     
                     KFImage.url(vm.token.icon)
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 64, height: 64)
-                        .background(.LL.Neutrals.note)
                         .clipShape(Circle())
                         .padding(.top, -12)
                         .padding(.leading, 18)

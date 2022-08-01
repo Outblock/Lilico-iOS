@@ -261,10 +261,13 @@ extension WalletView {
         var body: some View {
             HStack(spacing: 9) {
                 KFImage.url(coin.token.icon)
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: CoinIconHeight, height: CoinIconHeight)
-                    .background(.LL.Neutrals.note)
                     .clipShape(Circle())
 
                 VStack(spacing: 7) {

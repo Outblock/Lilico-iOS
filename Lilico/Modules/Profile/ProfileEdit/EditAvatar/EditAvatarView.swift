@@ -82,6 +82,10 @@ extension EditAvatarView {
         GeometryReader { geometry in
             ZStack {
                 KFImage.url(URL(string: vm.currentSelectModel()?.getCover() ?? ""))
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: geometry.size.width, height: geometry.size.width)
@@ -157,10 +161,13 @@ extension EditAvatarView {
                     .visibility(isSelected ? .visible : .invisible)
 
                 KFImage.url(URL(string: model.getCover()))
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: PreviewImageSize, height: PreviewImageSize)
-                    .background(.black)
                     .cornerRadius(4)
                     .opacity(isSelected ? 1 : 0.5)
             }

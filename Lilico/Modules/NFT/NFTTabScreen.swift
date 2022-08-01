@@ -199,6 +199,10 @@ extension NFTTabScreen {
                                     .fill(Color.LL.background)
                                 KFImage
                                     .url(nft.image)
+                                    .placeholder({
+                                        Image("placeholder")
+                                            .resizable()
+                                    })
                                     .fade(duration: 0.25)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)

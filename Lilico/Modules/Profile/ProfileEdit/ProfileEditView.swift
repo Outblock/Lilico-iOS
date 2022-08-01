@@ -45,10 +45,13 @@ extension ProfileEditView {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             KFImage.url(URL(string: vm.state.avatar))
+                .placeholder({
+                    Image("placeholder")
+                        .resizable()
+                })
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 40, height: 40)
-                .background(.LL.Neutrals.note)
                 .clipShape(Circle())
         }
         .frame(height: 70)

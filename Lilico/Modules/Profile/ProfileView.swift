@@ -132,10 +132,13 @@ extension ProfileView {
         var body: some View {
             HStack(spacing: 16) {
                 KFImage.url(URL(string: userManager.userInfo?.avatar.convertedAvatarString() ?? ""))
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 82, height: 82)
-                    .background(.LL.Primary.salmonPrimary)
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 8) {

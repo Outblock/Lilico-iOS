@@ -59,6 +59,10 @@ extension NFTCollectionListView {
             HStack(spacing: 0) {
                 KFImage
                     .url(collection.iconURL)
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .onSuccess { _ in
                         viewModel.trigger(.fetchColors(collection.iconURL.absoluteString))
                     }

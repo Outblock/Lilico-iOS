@@ -18,6 +18,10 @@ struct NFTSquareCard: View {
             VStack(alignment: .leading) {
                 KFImage
                     .url(nft.image)
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: geo.size.width, height: geo.size.width, alignment: .center)

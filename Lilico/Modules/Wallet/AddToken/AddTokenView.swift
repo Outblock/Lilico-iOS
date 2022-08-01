@@ -81,10 +81,13 @@ extension AddTokenView {
             } label: {
                 HStack {
                     KFImage.url(token.icon)
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: TokenIconWidth, height: TokenIconWidth)
-                        .background(.LL.Neutrals.note)
                         .clipShape(Circle())
                     
                     VStack(alignment: .leading, spacing: 3) {
@@ -140,10 +143,13 @@ extension AddTokenView {
                     
                     KFImage
                         .url(token?.icon)
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 114, height: 114)
-                        .background(.LL.Neutrals.note)
                         .clipShape(Circle())
                         .padding(.top, 45)
                 }

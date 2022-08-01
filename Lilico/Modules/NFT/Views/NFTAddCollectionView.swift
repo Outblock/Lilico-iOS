@@ -134,6 +134,10 @@ extension NFTAddCollectionView {
                         Spacer()
                         KFImage
                             .url(item.collection.logo)
+                            .placeholder({
+                                Image("placeholder")
+                                    .resizable()
+                            })
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 148,height: 148, alignment: .trailing)

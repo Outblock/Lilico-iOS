@@ -197,6 +197,10 @@ extension AddressBookView {
                 ZStack {
                     if let avatar = contact.avatar?.convertedAvatarString(), avatar.isEmpty == false {
                         KFImage.url(URL(string: avatar))
+                            .placeholder({
+                                Image("placeholder")
+                                    .resizable()
+                            })
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 48, height: 48)

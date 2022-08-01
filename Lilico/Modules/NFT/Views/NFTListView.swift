@@ -33,6 +33,10 @@ struct NFTListView: View {
                     } preview: {
                         KFImage
                             .url(nft.image)
+                            .placeholder({
+                                Image("placeholder")
+                                    .resizable()
+                            })
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     } menu: {
