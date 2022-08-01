@@ -17,6 +17,7 @@ extension RecoveryPhraseView {
         case icloudBackup
         case googleBackup
         case manualBackup
+        case copy
     }
 }
 
@@ -27,10 +28,18 @@ struct RecoveryPhraseView: RouteableView {
     var title: String {
         return ""
     }
+    
+    var copyBtn: some View {
+        Button {
+            viewModel.trigger(.copy)
+        } label: {
+            Image("icon-copy-phrase")
+        }
+    }
 
     var body: some View {
-        VStack {
-            ScrollView(.vertical, showsIndicators: false) {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 0) {
                 VStack(alignment: .leading) {
                     HStack {
                         Text("recovery".localized)
@@ -103,7 +112,12 @@ struct RecoveryPhraseView: RouteableView {
                     .allowsHitTesting(false)
                 }
                 .animation(.linear(duration: 0.2), value: isBlur)
-                .padding(.vertical, 20)
+                .padding(.top, 20)
+                
+                VStack(alignment: .leading) {
+                    copyBtn
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
 
                 VStack(spacing: 10) {
                     Text("not_share_secret_tips".localized)
@@ -120,6 +134,7 @@ struct RecoveryPhraseView: RouteableView {
                     RoundedRectangle(cornerRadius: 12)
                         .foregroundColor(.LL.warning6)
                 }
+                .padding(.top)
                 .padding(.bottom)
 
                 VPrimaryButton(model: ButtonStyle.primary,
@@ -127,20 +142,24 @@ struct RecoveryPhraseView: RouteableView {
                                action: {
                                    viewModel.trigger(.icloudBackup)
                                }, title: "backup_to_icloud".localized)
+                .padding(.top, 20)
 
                 VPrimaryButton(model: ButtonStyle.primary,
                                action: {
                                    viewModel.trigger(.googleBackup)
                                }, title: "backup_to_gd".localized)
+                .padding(.top, 8)
 
                 VPrimaryButton(model: ButtonStyle.border,
                                action: {
                                    viewModel.trigger(.manualBackup)
                                }, title: "backup_manually".localized)
+                .padding(.top, 8)
+                .padding(.bottom, 20)
             }
         }
         .padding(.horizontal, 28)
-        .background(Color.LL.background, ignoresSafeAreaEdges: .all)
+        .backgroundFill(Color.LL.background)
         .applyRouteable(self)
     }
 }

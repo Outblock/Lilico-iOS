@@ -5,9 +5,8 @@
 //  Created by Hao Fu on 3/1/22.
 //
 
-import Foundation
 import SPIndicator
-
+import UIKit
 
 class RecoveryPhraseViewModel: ViewModel {
     @Published private(set) var state: RecoveryPhraseView.ViewState
@@ -45,6 +44,9 @@ class RecoveryPhraseViewModel: ViewModel {
             Router.route(to: RouteMap.Backup.backupToCloud(.googleDrive))
         case .manualBackup:
             Router.route(to: RouteMap.Backup.backupManual)
+        case .copy:
+            UIPasteboard.general.string = WalletManager.shared.getCurrentMnemonic() ?? ""
+            HUD.success(title: "copied".localized)
             break
         }
     }
