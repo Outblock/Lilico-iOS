@@ -98,7 +98,11 @@ extension ProfileView {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                    Image("icon-orange-right-arrow")
+                    Button {
+                        Router.route(to: RouteMap.Register.root(nil))
+                    } label: {
+                        Image("icon-orange-right-arrow")
+                    }
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 16)
@@ -200,21 +204,21 @@ extension ProfileView {
 
 extension ProfileView {
     struct ActionSectionView: View {
-        enum Row: CaseIterable {
-            case backup
+        @EnvironmentObject private var vm: ProfileViewModel
+        
+        enum Row {
+            case backup(ProfileViewModel)
             case security
         }
 
         var body: some View {
             VStack {
                 Section {
-                    ForEach(Row.allCases, id: \.self) {
-                        ProfileView.SettingItemCell(iconName: $0.iconName, title: $0.title, style: $0.style, desc: $0.desc, toggle: $0.toggle)
-                        
-                        if $0 != .security {
-                            Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
-                        }
-                    }
+                    ProfileView.SettingItemCell(iconName: Row.backup(vm).iconName, title: Row.backup(vm).title, style: Row.backup(vm).style, desc: Row.backup(vm).desc, imageName: Row.backup(vm).imageName, sysImageColor: Row.backup(vm).sysImageColor)
+                    
+                    Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
+                    
+                    ProfileView.SettingItemCell(iconName: Row.security.iconName, title: Row.security.title, style: Row.security.style, desc: Row.security.desc)
                 }
             }
             .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
@@ -243,8 +247,15 @@ extension ProfileView.ActionSectionView.Row {
 
     var style: ProfileView.SettingItemCell.Style {
         switch self {
-        case .backup:
-            return .desc
+        case .backup(let vm):
+            switch vm.state.backupFetchingState {
+            case .manually:
+                return .desc
+            case .fetching:
+                return .progress
+            case .synced, .failed:
+                return .sysImage
+            }
         case .security:
             return .arrow
         }
@@ -258,13 +269,38 @@ extension ProfileView.ActionSectionView.Row {
             return ""
         }
     }
-
-    var toggle: Bool {
+    
+    var imageName: String {
         switch self {
-        case .backup:
-            return false
-        case .security:
-            return false
+        case .backup(let vm):
+            switch vm.state.backupFetchingState {
+            case .synced:
+                return .checkmarkSelected
+            case .failed:
+                return .warning
+            default:
+                return ""
+            }
+            
+        default:
+            return ""
+        }
+    }
+    
+    var sysImageColor: Color {
+        switch self {
+        case .backup(let vm):
+            switch vm.state.backupFetchingState {
+            case .synced:
+                return Color.LL.Success.success2
+            case .failed:
+                return Color.LL.Warning.warning2
+            default:
+                return .clear
+            }
+            
+        default:
+            return .clear
         }
     }
 }
@@ -506,6 +542,8 @@ extension ProfileView {
             case arrow
             case toggle
             case image
+            case sysImage
+            case progress
         }
 
         let iconName: String
@@ -516,6 +554,7 @@ extension ProfileView {
         @State var toggle: Bool = false
         var imageName: String? = ""
         var toggleAction: ((Bool) -> Void)? = nil
+        var sysImageColor: Color? = nil
 
         var body: some View {
             HStack {
@@ -535,6 +574,16 @@ extension ProfileView {
 
                 if let imageName = imageName, style == .image {
                     Image(imageName)
+                }
+                
+                if let imageName = imageName, let sysImageColor = sysImageColor, style == .sysImage {
+                    Image(systemName: imageName)
+                        .foregroundColor(sysImageColor)
+                }
+                
+                if style == .progress {
+                    ProgressView()
+                        .progressViewStyle(.circular)
                 }
             }
             .frame(height: 64)

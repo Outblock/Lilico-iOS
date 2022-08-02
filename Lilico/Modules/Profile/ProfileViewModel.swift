@@ -10,10 +10,18 @@ import Foundation
 import SwiftUI
 
 extension ProfileView {
+    enum BackupFetchingState {
+        case manually
+        case fetching
+        case failed
+        case synced
+    }
+    
     struct ProfileState {
         var isLogin: Bool = false
         var currency: String = "USD"
         var colorScheme: ColorScheme?
+        var backupFetchingState: BackupFetchingState = .manually
     }
 
     enum ProfileInput {}
@@ -21,17 +29,56 @@ extension ProfileView {
     class ProfileViewModel: ViewModel {
         @Published var state = ProfileState()
 
-        private var cancellable: AnyCancellable?
+        private var cancelSets = Set<AnyCancellable>()
 
         init() {
-            print("ProfileViewModel init")
             state.colorScheme = ThemeManager.shared.style
 
-            cancellable = ThemeManager.shared.$style.sink(receiveValue: { [weak self] newScheme in
+            ThemeManager.shared.$style.sink(receiveValue: { [weak self] newScheme in
                 self?.state.colorScheme = newScheme
-            })
+            }).store(in: &cancelSets)
+            
+            UserManager.shared.$isLoggedIn.sink { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.refreshBackupState()
+                }
+            }
+            
+            NotificationCenter.default.publisher(for: .backupTypeDidChanged).sink { _ in
+                DispatchQueue.main.async {
+                    self.refreshBackupState()
+                }
+            }.store(in: &cancelSets)
         }
 
         func trigger(_: ProfileInput) {}
+        
+        private func refreshBackupState() {
+            if !UserManager.shared.isLoggedIn {
+                state.backupFetchingState = .manually
+                return
+            }
+            
+            let backupType = LocalUserDefaults.shared.backupType
+            if backupType == .manual {
+                state.backupFetchingState = .manually
+                return
+            }
+            
+            state.backupFetchingState = .fetching
+            
+            Task {
+                do {
+                    let exist = try await BackupManager.shared.isExistOnCloud(backupType)
+                    DispatchQueue.main.async {
+                        self.state.backupFetchingState = exist ? .synced : .failed
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self.state.backupFetchingState = .failed
+                    }
+                }
+            }
+        }
     }
 }

@@ -257,7 +257,7 @@
 "restore_with_x_failed" = "Restore with %@ failed";
 "no_x_backup" = "No backup found in %@";
 "google_drive" = "Google Drive";
-"icloud" = "iCloud";
+"icloud_drive" = "iCloud Drive";
 "decrypt_failed" = "Decrypt Failed";
 
 "backup_to_x_failed" = "Backup to %@ failed";

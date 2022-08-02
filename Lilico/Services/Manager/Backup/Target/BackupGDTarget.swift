@@ -18,8 +18,23 @@ class BackupGDTarget: BackupTarget {
     private let config = GIDConfiguration(clientID: ClientID)
     private var api: GoogleDriveAPI?
     
+    init() {
+        tryToRestoreLogin()
+    }
+    
     var isPrepared: Bool {
         return api != nil
+    }
+    
+    private func tryToRestoreLogin() {
+        Task {
+            do {
+                var user = try await googleRestoreLogin()
+                createGoogleDriveService(user: user)
+            } catch {
+                
+            }
+        }
     }
 }
 
@@ -66,6 +81,21 @@ extension BackupGDTarget {
         var user = try await googleUserLogin()
         user = try await addScopesIfNeeded(user: user)
         createGoogleDriveService(user: user)
+    }
+    
+    private func googleRestoreLogin() async throws -> GIDGoogleUser {
+        return try await withCheckedThrowingContinuation({ continuation in
+            DispatchQueue.main.async {
+                GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                    guard let signInUser = user else {
+                        continuation.resume(throwing: error ?? GoogleBackupError.missingLoginUser)
+                        return
+                    }
+                    
+                    continuation.resume(returning: signInUser)
+                }
+            }
+        })
     }
     
     private func googleUserLogin() async throws -> GIDGoogleUser {

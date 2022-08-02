@@ -27,9 +27,6 @@ class BackupPasswordViewModel: ObservableObject {
                 
                 Router.popToRoot()
                 HUD.success(title: "backup_to_x_succeeded".localized(self.backupType.descLocalizedString))
-            } catch BackupError.fileIsNotExistOnCloud {
-                HUD.dismissLoading()
-                HUD.error(title: "no_x_backup".localized(self.backupType.descLocalizedString))
             } catch {
                 HUD.dismissLoading()
                 HUD.error(title: "backup_to_x_failed".localized(self.backupType.descLocalizedString))

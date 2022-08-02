@@ -16,6 +16,7 @@ extension LocalUserDefaults {
         case quoteMarket
         case coinSummary
         case recentSendByToken
+        case backupType
     }
 
     enum FlowNetworkType: String {
@@ -99,4 +100,10 @@ class LocalUserDefaults: ObservableObject {
     }
     
     @AppStorage(Keys.recentSendByToken.rawValue) var recentToken: String?
+    
+    @AppStorage(Keys.backupType.rawValue) var backupType: BackupManager.BackupType = .manual {
+        didSet {
+            NotificationCenter.default.post(name: .backupTypeDidChanged, object: nil)
+        }
+    }
 }

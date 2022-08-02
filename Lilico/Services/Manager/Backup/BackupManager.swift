@@ -19,19 +19,19 @@ protocol BackupTarget {
 }
 
 extension BackupManager {
-    enum BackupType {
-        case icloud
+    enum BackupType: Int {
+        case icloud = 0
         case googleDrive
         case manual
         
         var descLocalizedString: String {
             switch self {
             case .icloud:
-                return "icloud".localized
+                return "icloud_drive".localized
             case .googleDrive:
                 return "google_drive".localized
             case .manual:
-                return "manual"
+                return "manually".localized
             }
         }
     }
@@ -67,6 +67,8 @@ extension BackupManager {
         default:
             break
         }
+        
+        LocalUserDefaults.shared.backupType = type
     }
     
     func getCloudDriveItems(from type: BackupManager.BackupType) async throws -> [BackupManager.DriveItem] {
@@ -78,6 +80,21 @@ extension BackupManager {
         default:
             return []
         }
+    }
+    
+    func isExistOnCloud(_ type: BackupManager.BackupType) async throws -> Bool {
+        guard let username = UserManager.shared.userInfo?.username else {
+            return false
+        }
+        
+        let items = try await getCloudDriveItems(from: type)
+        for item in items {
+            if item.username == username {
+                return true
+            }
+        }
+        
+        return false
     }
 }
 
