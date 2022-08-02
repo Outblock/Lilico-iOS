@@ -14,11 +14,11 @@ extension ProfileView: AppTabBarPageProtocol {
     }
 
     static func iconName() -> String {
-        return "house.fill"
+        return "profile-tab"
     }
 
     static func color() -> Color {
-        return .purple
+        return .LL.blue
     }
 }
 

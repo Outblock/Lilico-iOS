@@ -17,7 +17,7 @@ struct TabBarItemView<T: Hashable>: View {
             withAnimation(.spring()) { selected = pageModel.tag }
             action()
         }, label: {
-            Image(systemName: pageModel.iconName)
+            Image(pageModel.iconName)
                 .renderingMode(.template)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundColor(selected == pageModel.tag ? pageModel.color : Color.gray)

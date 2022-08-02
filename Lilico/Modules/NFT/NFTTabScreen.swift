@@ -19,11 +19,11 @@ extension NFTTabScreen: AppTabBarPageProtocol {
     }
 
     static func iconName() -> String {
-        return "house.fill"
+        return "NFT-tab"
     }
 
     static func color() -> Color {
-        return .LL.blue
+        return .LL.yellow
     }
 }
 

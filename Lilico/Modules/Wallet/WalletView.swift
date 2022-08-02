@@ -31,7 +31,7 @@ extension WalletView: AppTabBarPageProtocol {
     }
 
     static func iconName() -> String {
-        return "house.fill"
+        return "wallet-tab"
     }
 
     static func color() -> Color {
