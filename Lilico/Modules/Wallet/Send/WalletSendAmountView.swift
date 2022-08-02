@@ -52,9 +52,10 @@ struct WalletSendAmountView: RouteableView {
         .interactiveDismissDisabled()
         .buttonStyle(.plain)
         .backgroundFill(Color.LL.deepBg)
-        .customBottomSheet(isPresented: $vm.showConfirmView, title: "confirmation".localized, background: { Color.LL.Neutrals.background }) {
+        .halfSheet(showSheet: $vm.showConfirmView, sheetView: {
             SendConfirmView()
-        }
+                .environmentObject(vm)
+        })
         .applyRouteable(self)
         .environmentObject(vm)
     }
@@ -329,21 +330,28 @@ extension WalletSendAmountView {
         @EnvironmentObject var vm: WalletSendAmountViewModel
 
         var body: some View {
-            VStack(spacing: 0) {
-                ZStack {
-                    fromToView
-                    WalletSendAmountView.SendConfirmProgressView()
-                        .padding(.bottom, 37)
+            VStack {
+                SheetHeaderView(title: "confirmation".localized)
+                
+                VStack(spacing: 0) {
+                    Spacer()
+                    
+                    ZStack {
+                        fromToView
+                        WalletSendAmountView.SendConfirmProgressView()
+                            .padding(.bottom, 37)
+                    }
+                    
+                    amountDetailView
+                        .padding(.top, 37)
+                    
+                    Spacer()
+                    
+                    sendButton
                 }
-                
-                amountDetailView
-                    .padding(.top, 37)
-                
-                sendButton
-                    .padding(.top, 27)
-                    .padding(.bottom, 20 + UIView.bottomSafeAreaHeight)
+                .padding(.horizontal, 28)
             }
-            .padding(.horizontal, 28)
+            .backgroundFill(Color.LL.Neutrals.background)
         }
 
         var fromToView: some View {
@@ -458,7 +466,6 @@ extension WalletSendAmountView {
                 .frame(maxWidth: .infinity)
                 .background(Color.LL.Button.color)
                 .cornerRadius(16)
-                .padding(.horizontal, 18)
             }
         }
     }

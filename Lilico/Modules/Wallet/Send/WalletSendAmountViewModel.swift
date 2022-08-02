@@ -196,7 +196,11 @@ extension WalletSendAmountViewModel {
                 self.isSending = false
                 HUD.dismissLoading()
                 HUD.success(title: "sent_successfully".localized)
-                Router.popToRoot()
+                self.showConfirmView = false
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    Router.popToRoot()
+                }
                 
                 Task {
                     try? await WalletManager.shared.fetchBalance()

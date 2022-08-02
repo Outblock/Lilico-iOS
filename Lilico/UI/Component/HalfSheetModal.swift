@@ -74,34 +74,28 @@ struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable{
     let controller = UIViewController()
     
     func makeCoordinator() -> Coordinator {
-        
         return Coordinator(parent: self)
     }
     
     func makeUIViewController(context: Context) -> UIViewController {
-        
         controller.view.backgroundColor = .clear
-        
+        controller.view.tag = 0
         return controller
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         
-        if showSheet{
-            
-            if uiViewController.presentedViewController == nil{
-                
-                // presenting Modal View....
-                
+        if showSheet {
+            if uiViewController.view.tag == 0 {
                 let sheetController = CustomHostingController(rootView: sheetView)
                 sheetController.presentationController?.delegate = context.coordinator
                 uiViewController.present(sheetController, animated: true)
+                uiViewController.view.tag = 1
             }
-        }
-        else{
-            // closing view when showSheet toggled again...
-            if uiViewController.presentedViewController != nil{
-                uiViewController.dismiss(animated: true)
+        } else {
+            if uiViewController.view.tag == 1 {
+                uiViewController.presentedViewController?.presentingViewController?.dismiss(animated: true)
+                uiViewController.view.tag = 0
             }
         }
     }
@@ -135,7 +129,7 @@ class CustomHostingController<Content: View>: UIHostingController<Content>{
             ]
             
             // to show grab protion...
-//            presentationController.prefersGrabberVisible = true
+            //            presentationController.prefersGrabberVisible = true
         }
     }
 }
