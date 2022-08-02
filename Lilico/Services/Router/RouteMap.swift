@@ -131,6 +131,7 @@ extension RouteMap {
         case edit
         case editName
         case editAvatar([EditAvatarView.AvatarItemModel])
+        case backupChange
     }
 }
 
@@ -149,6 +150,13 @@ extension RouteMap.Profile: RouterTarget {
             navi.push(content: ProfileEditNameView())
         case .editAvatar(let items):
             navi.push(content: EditAvatarView(items: items))
+        case .backupChange:
+            if let existVC = navi.viewControllers.first { $0.navigationItem.title == "backup".localized } {
+                navi.popToViewController(existVC, animated: true)
+                return
+            }
+            
+            navi.push(content: ProfileBackupView())
         }
     }
 }

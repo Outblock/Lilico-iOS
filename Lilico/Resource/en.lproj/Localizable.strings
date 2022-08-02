@@ -160,6 +160,7 @@
 "notifications" = "Notifications";
 "about" = "About";
 "switch_account" = "Switch Account";
+"btn_sync" = "Sync";
 
 // Profile Edit
 "edit_account" = "Edit Account";

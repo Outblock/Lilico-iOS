@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import UIKit
 
 class BackupPasswordViewModel: ObservableObject {
     private var backupType: BackupManager.BackupType
@@ -25,7 +25,14 @@ class BackupPasswordViewModel: ObservableObject {
                 
                 HUD.dismissLoading()
                 
-                Router.popToRoot()
+                DispatchQueue.main.async {
+                    if let navi = Router.topNavigationController(), let existVC = navi.viewControllers.first { $0.navigationItem.title == "backup".localized } {
+                        Router.route(to: RouteMap.Profile.backupChange)
+                    } else {
+                        Router.popToRoot()
+                    }
+                }
+                
                 HUD.success(title: "backup_to_x_succeeded".localized(self.backupType.descLocalizedString))
             } catch {
                 HUD.dismissLoading()

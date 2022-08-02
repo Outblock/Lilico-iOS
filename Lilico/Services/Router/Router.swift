@@ -60,7 +60,7 @@ class Router {
         return vc!
     }
     
-    private static func topNavigationController() -> UINavigationController? {
+    static func topNavigationController() -> UINavigationController? {
         if let navi = topPresentedController() as? UINavigationController {
             return navi
         }

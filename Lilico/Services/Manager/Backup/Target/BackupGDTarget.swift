@@ -27,9 +27,18 @@ class BackupGDTarget: BackupTarget {
     }
     
     private func tryToRestoreLogin() {
+        if !GIDSignIn.sharedInstance.hasPreviousSignIn() {
+            return
+        }
+        
         Task {
             do {
                 var user = try await googleRestoreLogin()
+                
+                if !checkUserScopes(user: user) {
+                    return
+                }
+                
                 createGoogleDriveService(user: user)
             } catch {
                 
@@ -99,12 +108,9 @@ extension BackupGDTarget {
     }
     
     private func googleUserLogin() async throws -> GIDGoogleUser {
-        guard let topVC = await UIApplication.shared.topMostViewController else {
-            throw BackupError.topVCNotFound
-        }
-        
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.main.async {
+                let topVC = Router.topPresentedController()
                 GIDSignIn.sharedInstance.signIn(with: self.config, presenting: topVC) { user, error in
                     guard let signInUser = user else {
                         continuation.resume(throwing: error ?? GoogleBackupError.missingLoginUser)
@@ -117,15 +123,25 @@ extension BackupGDTarget {
         }
     }
     
+    private func checkUserScopes(user: GIDGoogleUser) -> Bool {
+        let driveScope = kGTLRAuthScopeDriveAppdata
+        if let grantedScopes = user.grantedScopes, grantedScopes.contains(driveScope) {
+            return true
+        }
+        
+        return false
+    }
+    
     private func addScopesIfNeeded(user: GIDGoogleUser) async throws -> GIDGoogleUser {
         guard let topVC = await UIApplication.shared.topMostViewController else {
             throw BackupError.topVCNotFound
         }
         
-        let driveScope = kGTLRAuthScopeDriveAppdata
-        if let grantedScopes = user.grantedScopes, grantedScopes.contains(driveScope) {
+        if checkUserScopes(user: user) {
             return user
         }
+        
+        let driveScope = kGTLRAuthScopeDriveAppdata
         
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.main.async {
