@@ -4576,7 +4576,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -4588,6 +4588,7 @@
 				INFOPLIST_FILE = Lilico/App/Env/Dev/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lilico-dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -4616,7 +4617,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -4625,6 +4626,7 @@
 				INFOPLIST_FILE = Lilico/App/Env/Dev/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lilico-dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -4665,6 +4667,7 @@
 				INFOPLIST_FILE = Lilico/App/Env/Prod/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Lilico;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -4702,6 +4705,7 @@
 				INFOPLIST_FILE = Lilico/App/Env/Prod/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Lilico;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
