@@ -81,7 +81,7 @@ extension RouteMap.Backup: RouterTarget {
             }
             
             var newVCList = [rootVC]
-            let vc = RouteableUIHostingController(rootView: RecoveryPhraseView())
+            let vc = RouteableUIHostingController(rootView: RecoveryPhraseView(backupMode: false))
             newVCList.append(vc)
             navi.setViewControllers(newVCList, animated: true)
         case .backupToCloud(let type):
@@ -132,6 +132,7 @@ extension RouteMap {
         case editName
         case editAvatar([EditAvatarView.AvatarItemModel])
         case backupChange
+        case manualBackup
     }
 }
 
@@ -157,6 +158,8 @@ extension RouteMap.Profile: RouterTarget {
             }
             
             navi.push(content: ProfileBackupView())
+        case .manualBackup:
+            navi.push(content: RecoveryPhraseView(backupMode: true))
         }
     }
 }
