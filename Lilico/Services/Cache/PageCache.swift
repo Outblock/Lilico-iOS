@@ -36,9 +36,10 @@ class PageCache {
 }
 
 extension PageCache {
-    func set(value: Encodable, forKey key: String) {
+    func set<T: Encodable>(value: T, forKey key: String) {
         do {
-            let data = try JSONEncoder().encode(value)
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(value)
             cacheObj.set(value: data, key: key)
         } catch {
             debugPrint("PageCache -> set failed: \(error)")
