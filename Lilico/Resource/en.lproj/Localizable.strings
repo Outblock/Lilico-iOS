@@ -176,6 +176,11 @@
 "done" = "Done";
 "current_avatar" = "Current Avatar";
 
+// Security
+"reset_pin_code" = "Reset PIN Code";
+"face_id" = "Face ID";
+"private_key" = "Private Key";
+
 // Address Book
 "edit_contact" = "Edit contact";
 "add_contact" = "Add contact";

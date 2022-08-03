@@ -565,7 +565,10 @@ extension ProfileView {
                 Text(title).font(.inter()).frame(maxWidth: .infinity, alignment: .leading)
 
                 Text(desc ?? "").font(.inter()).foregroundColor(.LL.Neutrals.note).visibility(style == .desc ? .visible : .gone)
-                Image("icon-black-right-arrow").visibility(style == .arrow ? .visible : .gone)
+                Image("icon-black-right-arrow")
+                    .renderingMode(.template)
+                    .foregroundColor(Color.LL.Button.color)
+                    .visibility(style == .arrow ? .visible : .gone)
                 Toggle(isOn: $toggle) {}
                     .tint(.LL.Primary.salmonPrimary)
                     .visibility(style == .toggle ? .visible : .gone)

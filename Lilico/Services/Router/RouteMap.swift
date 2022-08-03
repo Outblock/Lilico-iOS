@@ -133,6 +133,7 @@ extension RouteMap {
         case editAvatar([EditAvatarView.AvatarItemModel])
         case backupChange
         case manualBackup
+        case security
     }
 }
 
@@ -160,6 +161,8 @@ extension RouteMap.Profile: RouterTarget {
             navi.push(content: ProfileBackupView())
         case .manualBackup:
             navi.push(content: RecoveryPhraseView(backupMode: true))
+        case .security:
+            navi.push(content: ProfileSecureView())
         }
     }
 }
