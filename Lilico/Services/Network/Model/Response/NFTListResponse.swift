@@ -12,7 +12,8 @@ struct NFTListResponse: Codable {
     let ownerAddress: String
     let nfts: [NFTResponse]?
     let chain, network: String
-    let nftCount, offset: Int
+    let nftCount: Int
+    let offset: Int?
 }
 
 // MARK: - Nft
@@ -23,7 +24,7 @@ struct NFTResponse: Codable, Hashable {
     let title: String?
     let description: String?
     let media: [NFTMedia]?
-    let metadata: NFTMetadata
+    let metadata: NFTMetadata?
     let postMedia: NFTPostMedia
 
     func cover() -> String? {
@@ -52,7 +53,7 @@ struct NFTResponse: Codable, Hashable {
 struct NFTContract: Codable, Hashable {
     let name: String?
     let address, externalDomain: String
-    let contractMetadata: NFTContractMetadata
+    let contractMetadata: NFTContractMetadata?
 }
 
 // MARK: - ContractMetadata
@@ -95,7 +96,7 @@ struct NFTMedia: Codable, Hashable {
 // MARK: - Metadata
 
 struct NFTMetadata: Codable, Hashable {
-    let metadata: [NFTMetadatum]
+    let metadata: [NFTMetadatum]?
 }
 
 // MARK: - Metadatum

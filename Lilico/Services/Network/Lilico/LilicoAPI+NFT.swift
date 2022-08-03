@@ -32,7 +32,7 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
     var path: String {
         switch self {
         case .list:
-            return "v2/nft/list"
+            return "v2/nft/detail/list"
         }
     }
 
