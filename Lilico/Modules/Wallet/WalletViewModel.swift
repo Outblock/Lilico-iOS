@@ -140,16 +140,15 @@ class WalletViewModel: ObservableObject {
 
 extension WalletViewModel {
     private func reloadWalletData() {
-        walletState = .loading
-
+        DispatchQueue.main.async {
+            self.walletState = .idle
+        }
+        
         Task {
             do {
                 try await WalletManager.shared.fetchWalletDatas()
-                DispatchQueue.main.async {
-                    self.walletState = .idle
-                }
             } catch {
-                print(error)
+                HUD.error(title: "fetch_wallet_error".localized)
                 DispatchQueue.main.async {
                     self.walletState = .error
                 }

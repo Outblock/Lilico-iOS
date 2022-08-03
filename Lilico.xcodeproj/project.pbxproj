@@ -330,7 +330,6 @@
 		15C58B8A2868A4EE00BD4FC6 /* DashLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED21F43284E5A6700320AD0 /* DashLine.swift */; };
 		15C58B8B2868A4EE00BD4FC6 /* VMenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC201427819C56000B187A /* VMenuState.swift */; };
 		15C58B8C2868A4EE00BD4FC6 /* VRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1FDF27819C56000B187A /* VRangeSlider.swift */; };
-		15C58B8D2868A4EE00BD4FC6 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D5427816605000B187A /* CacheManager.swift */; };
 		15C58B8E2868A4EE00BD4FC6 /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */; };
 		15C58B8F2868A4EE00BD4FC6 /* VLazyScrollViewModelVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8827819C56000B187A /* VLazyScrollViewModelVertical.swift */; };
 		15C58B902868A4EE00BD4FC6 /* VSheetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F8A27819C56000B187A /* VSheetModel.swift */; };
@@ -546,7 +545,6 @@
 		15DC1D4727814A68000B187A /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4527814A68000B187A /* ButtonStyle.swift */; };
 		15DC1D4A27814AD1000B187A /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D4827814AD1000B187A /* TextFieldStyle.swift */; };
 		15DC1D53278165DB000B187A /* Haneke in Frameworks */ = {isa = PBXBuildFile; productRef = 15DC1D52278165DB000B187A /* Haneke */; };
-		15DC1D5627816605000B187A /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D5427816605000B187A /* CacheManager.swift */; };
 		15DC1D5927816660000B187A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D5727816660000B187A /* Network.swift */; };
 		15DC1D5D27816F46000B187A /* MoyaAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1D5B27816F46000B187A /* MoyaAsync.swift */; };
 		15DC1F7327819B74000B187A /* SpinnerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F7127819B74000B187A /* SpinnerStyle.swift */; };
@@ -877,6 +875,8 @@
 		6A6BE741288805130012588F /* GoogleDriveAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BE740288805130012588F /* GoogleDriveAPI.swift */; };
 		6A6BE742288805140012588F /* GoogleDriveAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BE740288805130012588F /* GoogleDriveAPI.swift */; };
 		6A7C080F286EE95E00020987 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 6A7C080E286EE95E00020987 /* SwiftUICharts */; };
+		6A7F650A289A4CE3007188DC /* PageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F6509289A4CE3007188DC /* PageCache.swift */; };
+		6A7F650B289A4CE3007188DC /* PageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F6509289A4CE3007188DC /* PageCache.swift */; };
 		6A7F989F2869A40500282845 /* AddTokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F989E2869A40500282845 /* AddTokenViewModel.swift */; };
 		6A7F98A02869A40500282845 /* AddTokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F989E2869A40500282845 /* AddTokenViewModel.swift */; };
 		6A8C8E7B2897B4A900335DCA /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8C8E7A2897B4A900335DCA /* Animation.swift */; };
@@ -1095,7 +1095,6 @@
 		15DC1D3D27809F83000B187A /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		15DC1D4527814A68000B187A /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		15DC1D4827814AD1000B187A /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
-		15DC1D5427816605000B187A /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		15DC1D5727816660000B187A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		15DC1D5B27816F46000B187A /* MoyaAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaAsync.swift; sourceTree = "<group>"; };
 		15DC1F7127819B74000B187A /* SpinnerStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerStyle.swift; sourceTree = "<group>"; };
@@ -1395,6 +1394,7 @@
 		6A6BD9DB287D5066009FA262 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		6A6BD9DE287D5467009FA262 /* PlaceholderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderStyle.swift; sourceTree = "<group>"; };
 		6A6BE740288805130012588F /* GoogleDriveAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDriveAPI.swift; sourceTree = "<group>"; };
+		6A7F6509289A4CE3007188DC /* PageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCache.swift; sourceTree = "<group>"; };
 		6A7F989E2869A40500282845 /* AddTokenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokenViewModel.swift; sourceTree = "<group>"; };
 		6A8C8E7A2897B4A900335DCA /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		6A8D223C2881499D005A7081 /* RecentListCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentListCache.swift; sourceTree = "<group>"; };
@@ -2749,7 +2749,6 @@
 				6AA591F328854F5900F4B5CA /* Backup */,
 				15DE22CE277DBDF800B5EE03 /* WalletManager.swift */,
 				15DE22D1277DBE0000B5EE03 /* UserManager.swift */,
-				15DC1D5427816605000B187A /* CacheManager.swift */,
 				15D9282B2783395F00382226 /* HUDManager.swift */,
 				6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */,
 				6AE08415284EF667003BEEF0 /* LocalUserDefaults.swift */,
@@ -3023,6 +3022,7 @@
 				6A35EADC2859C20B005A85B8 /* NFTListCache.swift */,
 				6AEF8394286462400081E285 /* CoinRateCache.swift */,
 				6A8D223C2881499D005A7081 /* RecentListCache.swift */,
+				6A7F6509289A4CE3007188DC /* PageCache.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -3676,6 +3676,7 @@
 				158832D8289427EF00142B35 /* Websocket.swift in Sources */,
 				154B8903276A1EEB00780E93 /* ProfileView.swift in Sources */,
 				15DC21BD27819C56000B187A /* View.CustomViewFrames.swift in Sources */,
+				6A7F650B289A4CE3007188DC /* PageCache.swift in Sources */,
 				15DC213F27819C56000B187A /* VMenuPickerButtonType.swift in Sources */,
 				15DC20BF27819C56000B187A /* VSquareButtonState.swift in Sources */,
 				6A8FA49A285B192800EE5BE3 /* SnapAnchorPreferenceKey.swift in Sources */,
@@ -3879,7 +3880,6 @@
 				4ED21F45284E5A6700320AD0 /* DashLine.swift in Sources */,
 				15DC215527819C56000B187A /* VMenuState.swift in Sources */,
 				15DC210B27819C56000B187A /* VRangeSlider.swift in Sources */,
-				15DC1D5627816605000B187A /* CacheManager.swift in Sources */,
 				6ACDD17D28588B7D00F406EB /* ProfileRequests.swift in Sources */,
 				15DC208D27819C56000B187A /* VLazyScrollViewModelVertical.swift in Sources */,
 				15DC208F27819C56000B187A /* VSheetModel.swift in Sources */,
@@ -4108,6 +4108,7 @@
 				158832D7289427EF00142B35 /* Websocket.swift in Sources */,
 				15C58ACF2868A4EE00BD4FC6 /* ProfileView.swift in Sources */,
 				15C58AD02868A4EE00BD4FC6 /* View.CustomViewFrames.swift in Sources */,
+				6A7F650A289A4CE3007188DC /* PageCache.swift in Sources */,
 				15C58AD12868A4EE00BD4FC6 /* VMenuPickerButtonType.swift in Sources */,
 				15C58AD22868A4EE00BD4FC6 /* VSquareButtonState.swift in Sources */,
 				15C58AD32868A4EE00BD4FC6 /* SnapAnchorPreferenceKey.swift in Sources */,
@@ -4311,7 +4312,6 @@
 				15C58B8A2868A4EE00BD4FC6 /* DashLine.swift in Sources */,
 				15C58B8B2868A4EE00BD4FC6 /* VMenuState.swift in Sources */,
 				15C58B8C2868A4EE00BD4FC6 /* VRangeSlider.swift in Sources */,
-				15C58B8D2868A4EE00BD4FC6 /* CacheManager.swift in Sources */,
 				15C58B8E2868A4EE00BD4FC6 /* ProfileRequests.swift in Sources */,
 				15C58B8F2868A4EE00BD4FC6 /* VLazyScrollViewModelVertical.swift in Sources */,
 				15C58B902868A4EE00BD4FC6 /* VSheetModel.swift in Sources */,
