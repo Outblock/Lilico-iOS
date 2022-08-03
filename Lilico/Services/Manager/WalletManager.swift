@@ -21,6 +21,13 @@ extension WalletManager {
     private static let mnemonicStoreKeyPrefix = "lilico.mnemonic"
     private static let mnemonicPwdStoreKey = "lilico.mnemonic.password"
     private static let walletFetchInterval: TimeInterval = 20
+    
+    private enum CacheKeys: String {
+        case walletInfo
+        case supportedCoins
+        case activatedCoins
+        case coinBalances
+    }
 }
 
 class WalletManager: ObservableObject {
@@ -48,6 +55,8 @@ class WalletManager: ObservableObject {
         if UserManager.shared.isLoggedIn {
             restoreMnemonicForCurrentUser()
         }
+        
+        loadCacheData()
 
         UserManager.shared.$isLoggedIn.sink { [weak self] newLoginStatus in
             debugPrint("WalletManager -> $isLoggedIn is changed: \(newLoginStatus)")
@@ -55,6 +64,31 @@ class WalletManager: ObservableObject {
                 self?.reloadWalletInfo()
             }
         }.store(in: &cancellableSet)
+    }
+    
+    private func loadCacheData() {
+        Task {
+            guard let cacheWalletInfo = try? await PageCache.cache.get(forKey: CacheKeys.walletInfo.rawValue, type: UserWalletResponse.self) else {
+                return
+            }
+            
+            let cacheSupportedCoins = try? await PageCache.cache.get(forKey: CacheKeys.supportedCoins.rawValue, type: [TokenModel].self)
+            let cacheActivatedCoins = try? await PageCache.cache.get(forKey: CacheKeys.activatedCoins.rawValue, type: [TokenModel].self)
+            let cacheBalances = try? await PageCache.cache.get(forKey: CacheKeys.coinBalances.rawValue, type: [String: Double].self)
+            
+            DispatchQueue.main.async {
+                self.walletInfo = cacheWalletInfo
+                
+                if let cacheSupportedCoins = cacheSupportedCoins, let cacheActivatedCoins = cacheActivatedCoins {
+                    self.supportedCoins = cacheSupportedCoins
+                    self.activatedCoins = cacheActivatedCoins
+                }
+                
+                if let cacheBalances = cacheBalances {
+                    self.coinBalances = cacheBalances
+                }
+            }
+        }
     }
 }
 
@@ -173,6 +207,11 @@ extension WalletManager {
         let isEmptyBlockChain = walletInfo?.primaryWalletModel?.isEmptyBlockChain ?? true
         if isEmptyBlockChain {
             startWalletInfoRetryTimer()
+        } else {
+            // is valid data, save to page cache
+            if let info = walletInfo {
+                PageCache.cache.set(value: info, forKey: CacheKeys.walletInfo.rawValue)
+            }
         }
     }
 }
@@ -289,6 +328,8 @@ extension WalletManager {
         let coins: [TokenModel] = try await FirebaseConfig.flowCoins.fetch()
         let validCoins = coins.filter { $0.getAddress()?.isEmpty == false }
         supportedCoins = validCoins
+        
+        PageCache.cache.set(value: validCoins, forKey: CacheKeys.supportedCoins.rawValue)
     }
 
     private func fetchActivatedCoins() async throws {
@@ -316,6 +357,8 @@ extension WalletManager {
 
         activatedCoins = list
         preloadActivatedIcons()
+        
+        PageCache.cache.set(value: list, forKey: CacheKeys.activatedCoins.rawValue)
     }
 
     func fetchBalance() async throws {
@@ -345,6 +388,8 @@ extension WalletManager {
         }
 
         coinBalances = newBalanceMap
+        
+        PageCache.cache.set(value: newBalanceMap, forKey: CacheKeys.coinBalances.rawValue)
     }
 }
 

@@ -72,15 +72,6 @@ extension String {
     }
 }
 
-extension String {
-    /// print object memory address
-    static func pointer(_ object: AnyObject?) -> String {
-        guard let object = object else { return "nil" }
-        let opaque: UnsafeMutableRawPointer = Unmanaged.passUnretained(object).toOpaque()
-        return String(describing: opaque)
-    }
-}
-
 // MARK: - Firebase
 
 extension String {
@@ -102,5 +93,16 @@ extension String {
         }
 
         return "\(self)?alt=media"
+    }
+}
+
+// MARK: - Debug
+
+extension String {
+    /// print object memory address
+    static func pointer(_ object: AnyObject?) -> String {
+        guard let object = object else { return "nil" }
+        let opaque: UnsafeMutableRawPointer = Unmanaged.passUnretained(object).toOpaque()
+        return String(describing: opaque)
     }
 }

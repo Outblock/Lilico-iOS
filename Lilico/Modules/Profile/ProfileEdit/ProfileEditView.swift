@@ -96,10 +96,11 @@ extension ProfileEditView {
                 } label: {
                     VStack {
                         ZStack(alignment: .bottomTrailing) {
-                            Circle().foregroundColor(.LL.Secondary.violet4)
+                            Image("icon-visible")
                             Image("icon-selected-small").visibility(vm.state.isPrivate ? .gone : .visible)
+                                .padding(.trailing, -3)
+                                .padding(.bottom, -3)
                         }
-                        .frame(width: 33, height: 33)
 
                         Text("visible".localized)
                             .font(.inter(size: 12))
@@ -112,10 +113,11 @@ extension ProfileEditView {
                 } label: {
                     VStack {
                         ZStack(alignment: .bottomTrailing) {
-                            Circle().foregroundColor(.LL.Neutrals.note)
+                            Image("icon-unvisible")
                             Image("icon-selected-small").visibility(vm.state.isPrivate ? .visible : .gone)
+                                .padding(.trailing, -3)
+                                .padding(.bottom, -3)
                         }
-                        .frame(width: 33, height: 33)
 
                         Text("unvisible".localized)
                             .font(.inter(size: 12))

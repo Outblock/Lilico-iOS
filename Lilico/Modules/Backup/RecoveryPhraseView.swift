@@ -24,6 +24,11 @@ extension RecoveryPhraseView {
 struct RecoveryPhraseView: RouteableView {
     @StateObject var viewModel = RecoveryPhraseViewModel()
     @State var isBlur: Bool = true
+    private var isInBackupMode = false
+    
+    init(backupMode: Bool) {
+        self.isInBackupMode = backupMode
+    }
     
     var title: String {
         return ""
@@ -143,12 +148,14 @@ struct RecoveryPhraseView: RouteableView {
                                    viewModel.trigger(.icloudBackup)
                                }, title: "backup_to_icloud".localized)
                 .padding(.top, 20)
+                .visibility(isInBackupMode ? .gone : .visible)
 
                 VPrimaryButton(model: ButtonStyle.primary,
                                action: {
                                    viewModel.trigger(.googleBackup)
                                }, title: "backup_to_gd".localized)
                 .padding(.top, 8)
+                .visibility(isInBackupMode ? .gone : .visible)
 
                 VPrimaryButton(model: ButtonStyle.border,
                                action: {
@@ -156,6 +163,7 @@ struct RecoveryPhraseView: RouteableView {
                                }, title: "backup_manually".localized)
                 .padding(.top, 8)
                 .padding(.bottom, 20)
+                .visibility(isInBackupMode ? .gone : .visible)
             }
         }
         .padding(.horizontal, 28)
@@ -166,7 +174,7 @@ struct RecoveryPhraseView: RouteableView {
 
 struct RecoveryPhraseView_Previews: PreviewProvider {
     static var previews: some View {
-        RecoveryPhraseView()
+        RecoveryPhraseView(backupMode: false)
     }
 }
 

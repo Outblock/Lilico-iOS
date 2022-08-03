@@ -32,7 +32,8 @@ class ProfileBackupViewModel: ObservableObject {
         }
         
         if type == .manual {
-            // TODO: Backup manual logic
+            Router.route(to: RouteMap.Profile.manualBackup)
+            LocalUserDefaults.shared.backupType = .manual
             return
         }
         
@@ -47,7 +48,10 @@ class ProfileBackupViewModel: ObservableObject {
             do {
                 let exist = try await BackupManager.shared.isExistOnCloud(type)
                 if exist {
-                    LocalUserDefaults.shared.backupType = type
+                    HUD.dismissLoading()
+                    DispatchQueue.main.async {
+                        LocalUserDefaults.shared.backupType = type
+                    }
                     return
                 }
                 

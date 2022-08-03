@@ -119,7 +119,9 @@ extension UserManager {
         }
 
         LocalUserDefaults.shared.userInfo = info
-        userInfo = info
+        DispatchQueue.main.async {
+            self.userInfo = info
+        }
     }
 }
 
