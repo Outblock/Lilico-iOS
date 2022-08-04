@@ -81,7 +81,7 @@ extension AppDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = .systemBackground
         
-        coordinator.showRootView()
+        coordinator.showVerifyView()
         
         self.window?.makeKeyAndVisible()
     }

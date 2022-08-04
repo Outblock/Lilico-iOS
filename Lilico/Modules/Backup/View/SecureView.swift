@@ -37,6 +37,7 @@ struct SecureView: View {
                 }
 
                 TextField("", text: $text)
+                    .disableAutocorrection(true)
                     .foregroundColor(Color.clear)
                     .accentColor(Color.clear)
                     .onChange(of: text) { _ in

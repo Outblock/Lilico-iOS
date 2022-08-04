@@ -40,7 +40,7 @@ class WalletManager: ObservableObject {
 
     private var hdWallet: HDWallet?
 
-    private var mainKeychain = Keychain(service: Bundle.main.bundleIdentifier ?? defaultBundleID)
+    var mainKeychain = Keychain(service: Bundle.main.bundleIdentifier ?? defaultBundleID)
         .label("Lilico app backup")
         .synchronizable(true)
         .accessibility(.whenUnlocked)

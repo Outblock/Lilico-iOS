@@ -45,6 +45,10 @@ final class Coordinator {
         rootNavi = navi
         window.rootViewController = rootNavi
     }
+    
+    func showVerifyView() {
+        window.rootViewController = UIHostingController(rootView: VerifyPinView())
+    }
 }
 
 extension Coordinator {

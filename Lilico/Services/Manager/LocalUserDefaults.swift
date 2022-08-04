@@ -17,6 +17,7 @@ extension LocalUserDefaults {
         case coinSummary
         case recentSendByToken
         case backupType
+        case securityType
     }
 
     enum FlowNetworkType: String {
@@ -106,4 +107,6 @@ class LocalUserDefaults: ObservableObject {
             NotificationCenter.default.post(name: .backupTypeDidChanged, object: nil)
         }
     }
+    
+    @AppStorage(Keys.securityType.rawValue) var securityType: SecurityManager.SecurityType = .none
 }

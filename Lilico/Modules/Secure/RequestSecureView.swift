@@ -70,7 +70,7 @@ struct RequestSecureView: RouteableView {
                     .bold()
                     .font(.LL.largeTitle)
 
-                Text("select_word_by_order".localized)
+                Text("extra_protection_desc".localized)
                     .font(.LL.body)
                     .foregroundColor(.LL.note)
                     .padding(.top, 1)

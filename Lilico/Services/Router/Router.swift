@@ -49,7 +49,7 @@ extension Router {
 // MARK: - Private
 
 class Router {
-    private static var coordinator = (UIApplication.shared.delegate as! AppDelegate).coordinator
+    static var coordinator = (UIApplication.shared.delegate as! AppDelegate).coordinator
     
     static func topPresentedController() -> UIViewController {
         var vc = coordinator.window.rootViewController
