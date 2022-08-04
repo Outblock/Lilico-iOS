@@ -73,7 +73,7 @@ struct WalletView: View {
                 .visibility(vm.walletState == .noAddress ? .visible : .gone)
             
             ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                LazyVStack() {
                     Section(header: headerView) {
                         VStack(spacing: 32) {
                             CardView()
@@ -129,7 +129,11 @@ struct WalletView: View {
 
             Spacer()
 
-            Image("icon-wallet-scan").renderingMode(.template).foregroundColor(.primary)
+            Button{
+                
+            } label: {
+                Image("icon-wallet-scan").renderingMode(.template).foregroundColor(.primary)
+            }
         }
     }
 
