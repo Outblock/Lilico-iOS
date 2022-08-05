@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct VerifyPinView: RouteableView {
-    @StateObject private var vm = VerifyPinViewModel()
+    @StateObject private var vm: VerifyPinViewModel
     @FocusState private var pinCodeViewIsFocus: Bool
+    var callback: VerifyPinViewModel.VerifyCallback? = nil
     
     var title: String {
         return ""
@@ -17,6 +18,12 @@ struct VerifyPinView: RouteableView {
     
     func backButtonAction() {
         Router.dismiss()
+        callback?(false)
+    }
+    
+    init(callback: VerifyPinViewModel.VerifyCallback?) {
+        self.callback = callback
+        _vm = StateObject(wrappedValue: VerifyPinViewModel(callback: callback))
     }
     
     var body: some View {
@@ -29,7 +36,7 @@ struct VerifyPinView: RouteableView {
                     .foregroundColor(Color.LL.Neutrals.text)
                     .visibility(vm.currentVerifyType == .pin ? .visible : .gone)
                 
-                Text("verify_x".localized(vm.supportedBionic.desc))
+                Text("verify_x".localized(SecurityManager.shared.supportedBionic.desc))
                     .font(.inter(size: 24, weight: .bold))
                     .foregroundColor(Color.LL.Neutrals.text)
                     .visibility(vm.currentVerifyType == .bionic ? .visible : .gone)
@@ -52,7 +59,7 @@ struct VerifyPinView: RouteableView {
                 Button {
                     vm.verifyBionicAction()
                 } label: {
-                    Image(vm.supportedBionic == .faceid ? "icon-faceid" : "icon-touchid")
+                    Image(SecurityManager.shared.supportedBionic == .faceid ? "icon-faceid" : "icon-touchid")
                         .renderingMode(.template)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -71,7 +78,7 @@ struct VerifyPinView: RouteableView {
             Button {
                 vm.changeVerifyTypeAction(type: vm.currentVerifyType == .bionic ? .pin : .bionic)
             } label: {
-                Text("switch_to_x".localized(vm.currentVerifyType == .bionic ? "pin_code".localized : vm.supportedBionic.desc))
+                Text("switch_to_x".localized(vm.currentVerifyType == .bionic ? "pin_code".localized : SecurityManager.shared.supportedBionic.desc))
                     .font(.inter(size: 16, weight: .medium))
                     .foregroundColor(Color.LL.Primary.salmonPrimary)
             }
@@ -85,6 +92,6 @@ struct VerifyPinView: RouteableView {
 
 struct VerifyPinView_Previews: PreviewProvider {
     static var previews: some View {
-        VerifyPinView()
+        VerifyPinView(callback: nil)
     }
 }

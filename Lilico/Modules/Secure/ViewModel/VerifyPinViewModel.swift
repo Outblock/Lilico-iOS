@@ -9,50 +9,23 @@ import SwiftUI
 import BiometricAuthentication
 
 extension VerifyPinViewModel {
+    typealias VerifyCallback = (Bool) -> ()
+    
     enum VerifyType {
         case pin
         case bionic
     }
-    
-    enum BionicType {
-        case none
-        case faceid
-        case touchid
-        
-        var desc: String {
-            switch self {
-            case .none:
-                return ""
-            case .faceid:
-                return "face_id".localized
-            case .touchid:
-                return "touch_id".localized
-            }
-        }
-    }
 }
-
-typealias VerifyCallback = (Bool) -> ()
 
 class VerifyPinViewModel: ObservableObject {
     @Published var currentVerifyType: VerifyPinViewModel.VerifyType = .pin
     @Published var inputPin: String = ""
     @Published var pinCodeErrorTimes: Int = 0
-    var callback: VerifyCallback?
+    var callback: VerifyCallback? = nil
     
-    var supportedBionic: BionicType {
-        if BioMetricAuthenticator.shared.faceIDAvailable() {
-            return .faceid
-        }
-
-        if BioMetricAuthenticator.shared.touchIDAvailable() {
-            return .touchid
-        }
-
-        return .none
-    }
-    
-    init() {
+    init(callback: VerifyCallback?) {
+        self.callback = callback
+        
         let type = SecurityManager.shared.securityType
         switch type {
         case .both, .bionic:
@@ -73,6 +46,16 @@ extension VerifyPinViewModel {
     }
     
     func verifyPinAction() {
+        let result = SecurityManager.shared.authPinCode(inputPin)
+        if !result {
+            pinVerifyFailed()
+            return
+        }
+        
+        verifySuccess()
+    }
+    
+    private func pinVerifyFailed() {
         inputPin = ""
         withAnimation(.default) {
             pinCodeErrorTimes += 1
@@ -80,13 +63,12 @@ extension VerifyPinViewModel {
     }
     
     func verifyBionicAction() {
-        BioMetricAuthenticator.authenticateWithBioMetrics(reason: "") { result in
-            switch result {
-            case .success:
-                self.verifySuccess()
-            case .failure(let error):
-                debugPrint("bionic error: \(error)")
-                BionicErrorHandler.handleError(error)
+        Task {
+            let result = await SecurityManager.shared.authBionic()
+            DispatchQueue.main.async {
+                if result {
+                    self.verifySuccess()
+                }
             }
         }
     }
@@ -94,9 +76,6 @@ extension VerifyPinViewModel {
     private func verifySuccess() {
         if let customCallback = callback {
             customCallback(true)
-            return
         }
-        
-        Router.coordinator.showRootView()
     }
 }

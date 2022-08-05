@@ -10,7 +10,8 @@ import SwiftUI
 extension ConfirmPinCodeView {
     struct ViewState {
         let lastPin: String
-        var mismatch: Bool = false
+        var pinCodeErrorTimes: Int = 0
+        var text: String = ""
     }
 
     enum Action {
@@ -20,6 +21,7 @@ extension ConfirmPinCodeView {
 
 struct ConfirmPinCodeView: RouteableView {
     @StateObject var viewModel: ConfirmPinCodeViewModel
+    @FocusState private var pinCodeViewIsFocus: Bool
     
     init(lastPin: String) {
         _viewModel = StateObject(wrappedValue: ConfirmPinCodeViewModel(pin: lastPin))
@@ -27,17 +29,6 @@ struct ConfirmPinCodeView: RouteableView {
     
     var title: String {
         return ""
-    }
-
-    @State var text: String = ""
-    @State var focuse: Bool = false
-
-    var wrongAttempt: Bool {
-        if viewModel.state.mismatch {
-            text = ""
-            return true
-        }
-        return false
     }
 
     var body: some View {
@@ -66,17 +57,20 @@ struct ConfirmPinCodeView: RouteableView {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 30)
-
-            SecureView(text: $text) { text, complete in
-                if complete {
-                    viewModel.trigger(.match(text))
-                    if viewModel.state.mismatch {
-                        self.text = ""
+            
+            PinCodeTextField(text: $viewModel.state.text)
+                .keyboardType(.numberPad)
+                .fixedSize()
+                .modifier(Shake(animatableData: CGFloat(viewModel.state.pinCodeErrorTimes)))
+                .focused($pinCodeViewIsFocus)
+                .onAppear {
+                    pinCodeViewIsFocus = true
+                }
+                .onChange(of: viewModel.state.text) { value in
+                    if value.count == 6 {
+                        viewModel.trigger(.match(value))
                     }
                 }
-            }
-            .offset(x: viewModel.state.mismatch ? -10 : 0)
-            .animation(.easeInOut(duration: 0.08).repeatCount(5), value: viewModel.state.mismatch)
 
             Spacer()
         }

@@ -133,7 +133,7 @@ extension RouteMap {
         case editAvatar([EditAvatarView.AvatarItemModel])
         case backupChange
         case manualBackup
-        case security
+        case security(Bool)
     }
 }
 
@@ -153,7 +153,7 @@ extension RouteMap.Profile: RouterTarget {
         case .editAvatar(let items):
             navi.push(content: EditAvatarView(items: items))
         case .backupChange:
-            if let existVC = navi.viewControllers.first { $0.navigationItem.title == "backup".localized } {
+            if let existVC = navi.viewControllers.first(where: { $0.navigationItem.title == "backup".localized }) {
                 navi.popToViewController(existVC, animated: true)
                 return
             }
@@ -161,8 +161,13 @@ extension RouteMap.Profile: RouterTarget {
             navi.push(content: ProfileBackupView())
         case .manualBackup:
             navi.push(content: RecoveryPhraseView(backupMode: true))
-        case .security:
-            navi.push(content: ProfileSecureView())
+        case .security(let animated):
+            if let existVC = Router.coordinator.rootNavi?.viewControllers.first(where: { $0.navigationItem.title == "security".localized }) {
+                navi.popToViewController(existVC, animated: animated)
+                return
+            }
+            
+            Router.coordinator.rootNavi?.push(content: ProfileSecureView(), animated: animated)
         }
     }
 }
@@ -197,6 +202,7 @@ extension RouteMap {
         case root
         case pinCode
         case confirmPinCode(String)
+        case verify(Bool, Bool, VerifyPinViewModel.VerifyCallback)
     }
 }
 
@@ -209,6 +215,17 @@ extension RouteMap.PinCode: RouterTarget {
             navi.push(content: CreatePinCodeView())
         case .confirmPinCode(let lastPin):
             navi.push(content: ConfirmPinCodeView(lastPin: lastPin))
+        case .verify(let animated, let needNavi, let callback):
+            let vc = RouteableUIHostingController(rootView: VerifyPinView(callback: callback))
+            vc.modalPresentationStyle = .fullScreen
+            if needNavi {
+                let contentNavi = RouterNavigationController(rootViewController: vc)
+                contentNavi.modalPresentationCapturesStatusBarAppearance = true
+                contentNavi.modalPresentationStyle = .fullScreen
+                navi.present(contentNavi, animated: animated)
+            } else {
+                navi.present(vc, animated: animated)
+            }
         }
     }
 }

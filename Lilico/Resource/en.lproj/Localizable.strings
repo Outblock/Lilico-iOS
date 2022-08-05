@@ -185,8 +185,13 @@
 "current_avatar" = "Current Avatar";
 
 // Security
-"reset_pin_code" = "Reset PIN Code";
+"disable_pin_code" = "Disable PIN Code";
+"enable_pin_code" = "Enable PIN Code";
 "private_key" = "Private Key";
+"disable_pin_code_failed" = "Disable PIN Code failed";
+"pin_code_disabled" = "PIN Code disabled";
+"pin_code_enabled" = "PIN Code enabled";
+"enable_pin_code_failed" = "Enable PIN Code failed";
 
 // Address Book
 "edit_contact" = "Edit contact";
