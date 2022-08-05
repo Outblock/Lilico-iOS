@@ -55,6 +55,7 @@ extension AppDelegate {
         _ = WalletManager.shared
         _ = BackupManager.shared
         _ = NFTListCache.cache
+        _ = SecurityManager.shared
     }
 
     private func commonConfig() {
@@ -82,7 +83,14 @@ extension AppDelegate {
         self.window?.backgroundColor = .systemBackground
         
         coordinator.showRootView()
+        coordinator.rootNavi?.view.alpha = 0
         
         self.window?.makeKeyAndVisible()
+        
+        SecurityManager.shared.lockAppIfNeeded()
+        
+        UIView.animate(withDuration: 0.2, delay: 0.1) {
+            self.coordinator.rootNavi?.view.alpha = 1
+        }
     }
 }

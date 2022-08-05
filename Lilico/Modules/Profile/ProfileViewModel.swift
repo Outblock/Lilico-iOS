@@ -82,3 +82,19 @@ extension ProfileView {
         }
     }
 }
+
+extension ProfileView.ProfileViewModel {
+    func securityAction() {
+        if SecurityManager.shared.securityType == .none {
+            Router.route(to: RouteMap.Profile.security(true))
+            return
+        }
+        
+        Task {
+            let result = await SecurityManager.shared.inAppVerify()
+            if result {
+                Router.route(to: RouteMap.Profile.security(false))
+            }
+        }
+    }
+}

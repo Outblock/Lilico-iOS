@@ -222,6 +222,9 @@ extension ProfileView {
                     Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
                     
                     ProfileView.SettingItemCell(iconName: Row.security.iconName, title: Row.security.title, style: Row.security.style, desc: Row.security.desc)
+                        .onTapGestureOnBackground {
+                            vm.securityAction()
+                        }
                 }
             }
             .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))

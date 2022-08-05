@@ -84,11 +84,14 @@
 "protection" = "Protection";
 "to" = "to";
 "your_wallet" = "Your Wallet";
+"extra_protection_desc" = "Unlock with PIN Code and Biometrics to allow extra wallet security.";
 "select_word_by_order" = "Please select the word one by one refering to its order.";
+"switch_to_x" = "Switch to %@";
 "face_id" = "Face ID";
 "touch_id" = "Touch ID";
 "recommend" = "Recommend";
 "pin_code" = "PIN Code";
+"verify_x" = "Verify %@";
 "recovery" = "Recovery";
 "phrase" = "Phrase";
 "words_save_tips" = "Write down or copy these words in the right order and save them somewhere safe.";
@@ -145,6 +148,11 @@
 "phrase_you_created_desc" = "This is a 12 word phrase you were given when you created your previous wallet.";
 "enter_rp_placeholder" = "Enter your Recovery Phrase (12 words)";
 
+// Auth Error
+"bionic_not_support" = "Not support biometric authentication";
+"no_bionic_enrolled" = "No biometry enrolled, Please register in the system settings first";
+"bionic_too_many_failed" = "Too many failed attempts";
+
 // Profile
 "switch_network" = "Switch Network";
 "developer_mode" = "Developer Mode";
@@ -177,9 +185,15 @@
 "current_avatar" = "Current Avatar";
 
 // Security
-"reset_pin_code" = "Reset PIN Code";
-"face_id" = "Face ID";
+"disable_pin_code" = "Disable PIN Code";
+"enable_pin_code" = "Enable PIN Code";
 "private_key" = "Private Key";
+"disable_pin_code_failed" = "Disable PIN Code failed";
+"pin_code_disabled" = "PIN Code disabled";
+"pin_code_enabled" = "PIN Code enabled";
+"enable_pin_code_failed" = "Enable PIN Code failed";
+"lock_on_exit" = "Lock on exit";
+"verify_failed" = "Verification failed";
 
 // Address Book
 "edit_contact" = "Edit contact";

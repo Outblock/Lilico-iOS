@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileSecureView: RouteableView {
+    @StateObject private var vm = ProfileSecureViewModel()
+    
     var title: String {
         return "security".localized
     }
@@ -15,10 +17,27 @@ struct ProfileSecureView: RouteableView {
     var body: some View {
         VStack(spacing: 16) {
             VStack(spacing: 0) {
-                ProfileSecureView.ItemCell(title: "reset_pin_code".localized, style: .arrow, isOn: false, toggleAction: nil)
+                Button {
+                    vm.resetPinCodeAction()
+                } label: {
+                    ProfileSecureView.ItemCell(title: vm.isPinCodeEnabled ? "disable_pin_code".localized : "enable_pin_code".localized, style: .arrow, isOn: false, toggleAction: nil)
+                        .contentShape(Rectangle())
+                        .onAppear {
+                            vm.refreshPinCodeStatusAction()
+                        }
+                }
+                
                 Divider().foregroundColor(.LL.Neutrals.background)
-                ProfileSecureView.ItemCell(title: "face_id".localized, style: .toggle, isOn: false) { value in
-                    
+                
+                ProfileSecureView.ItemCell(title: SecurityManager.shared.supportedBionic == .touchid ? "touch_id".localized : "face_id".localized, style: .toggle, isOn: vm.isBionicEnabled) { value in
+                    vm.changeBionicAction(value)
+                }
+                .disabled(SecurityManager.shared.supportedBionic == .none)
+                
+                Divider().foregroundColor(.LL.Neutrals.background)
+                
+                ProfileSecureView.ItemCell(title: "lock_on_exit".localized, style: .toggle, isOn: vm.isLockOnExit) { value in
+                    vm.changeLockOnExitAction(value)
                 }
             }
             .padding(.horizontal, 16)
@@ -27,7 +46,14 @@ struct ProfileSecureView: RouteableView {
             VStack(spacing: 0) {
                 ProfileSecureView.ItemCell(title: "private_key".localized, style: .arrow, isOn: false, toggleAction: nil)
                 Divider().foregroundColor(.LL.Neutrals.background)
-                ProfileSecureView.ItemCell(title: "recovery_phrase".localized, style: .arrow, isOn: false, toggleAction: nil)
+                
+                Button {
+                    vm.showRecoveryPhrasesAction()
+                } label: {
+                    ProfileSecureView.ItemCell(title: "recovery_phrase".localized, style: .arrow, isOn: false, toggleAction: nil)
+                        .contentShape(Rectangle())
+                }
+                
             }
             .padding(.horizontal, 16)
             .roundedBg()

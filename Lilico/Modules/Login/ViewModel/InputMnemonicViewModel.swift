@@ -50,6 +50,8 @@ class InputMnemonicViewModel: ViewModel {
     }
 
     private func restoreLogin() {
+        UIApplication.shared.endEditing()
+        
         HUD.loading()
         
         let mnemonic = getRawMnemonic()

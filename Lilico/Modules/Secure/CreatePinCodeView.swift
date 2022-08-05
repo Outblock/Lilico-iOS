@@ -21,6 +21,7 @@ struct CreatePinCodeView: RouteableView {
     @StateObject var viewModel = CreatePinCodeViewModel()
     @State var text: String = ""
     @State var focuse: Bool = false
+    @FocusState private var pinCodeViewIsFocus: Bool
     
     var title: String {
         return ""
@@ -48,10 +49,19 @@ struct CreatePinCodeView: RouteableView {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 30)
-
-            SecureView(text: $text, maxCount: 6) { text, _ in
-                viewModel.trigger(.input(text))
-            }
+            
+            PinCodeTextField(text: $text)
+                .keyboardType(.numberPad)
+                .fixedSize()
+                .focused($pinCodeViewIsFocus)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        pinCodeViewIsFocus = true
+                    }
+                }
+                .onChange(of: text) { value in
+                    viewModel.trigger(.input(value))
+                }
 
             Spacer()
         }
