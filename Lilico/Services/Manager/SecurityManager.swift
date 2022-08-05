@@ -59,7 +59,19 @@ class SecurityManager {
 // MARK: - Lock
 
 extension SecurityManager {
+    var isLockOnExitEnabled: Bool {
+        return LocalUserDefaults.shared.lockOnExit
+    }
+    
+    func changeLockOnExistStatus(_ lock: Bool) {
+        LocalUserDefaults.shared.lockOnExit = lock
+    }
+    
     func lockAppIfNeeded() {
+        if !isLockOnExitEnabled {
+            return
+        }
+        
         if isLocked {
             return
         }

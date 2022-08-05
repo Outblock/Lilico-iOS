@@ -28,10 +28,17 @@ struct ProfileSecureView: RouteableView {
                 }
                 
                 Divider().foregroundColor(.LL.Neutrals.background)
+                
                 ProfileSecureView.ItemCell(title: SecurityManager.shared.supportedBionic == .touchid ? "touch_id".localized : "face_id".localized, style: .toggle, isOn: vm.isBionicEnabled) { value in
                     vm.changeBionicAction(value)
                 }
                 .disabled(SecurityManager.shared.supportedBionic == .none)
+                
+                Divider().foregroundColor(.LL.Neutrals.background)
+                
+                ProfileSecureView.ItemCell(title: "lock_on_exit".localized, style: .toggle, isOn: vm.isLockOnExit) { value in
+                    vm.changeLockOnExitAction(value)
+                }
             }
             .padding(.horizontal, 16)
             .roundedBg()
@@ -39,7 +46,14 @@ struct ProfileSecureView: RouteableView {
             VStack(spacing: 0) {
                 ProfileSecureView.ItemCell(title: "private_key".localized, style: .arrow, isOn: false, toggleAction: nil)
                 Divider().foregroundColor(.LL.Neutrals.background)
-                ProfileSecureView.ItemCell(title: "recovery_phrase".localized, style: .arrow, isOn: false, toggleAction: nil)
+                
+                Button {
+                    vm.showRecoveryPhrasesAction()
+                } label: {
+                    ProfileSecureView.ItemCell(title: "recovery_phrase".localized, style: .arrow, isOn: false, toggleAction: nil)
+                        .contentShape(Rectangle())
+                }
+                
             }
             .padding(.horizontal, 16)
             .roundedBg()

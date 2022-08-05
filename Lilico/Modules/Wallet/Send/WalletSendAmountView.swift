@@ -455,7 +455,7 @@ extension WalletSendAmountView {
         
         var sendButton: some View {
             Button {
-                vm.sendAction()
+                vm.sendWithVerifyAction()
             } label: {
                 ZStack {
                     Text("send".localized)

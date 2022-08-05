@@ -181,12 +181,35 @@ extension WalletSendAmountViewModel {
     func nextAction() {
         UIApplication.shared.endEditing()
         
+        if showConfirmView {
+            showConfirmView = false
+        }
+        
         withAnimation(.easeInOut(duration: 0.2)) {
             showConfirmView = true
         }
     }
     
-    func sendAction() {
+    func sendWithVerifyAction() {
+        if SecurityManager.shared.securityType == .none {
+            doSend()
+            return
+        }
+        
+        Task {
+            let result = await SecurityManager.shared.inAppVerify()
+            if !result {
+                HUD.error(title: "verify_failed".localized)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.doSend()
+            }
+        }
+    }
+    
+    private func doSend() {
         if isSending {
             return
         }

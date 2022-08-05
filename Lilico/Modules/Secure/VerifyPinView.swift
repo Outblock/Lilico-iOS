@@ -47,7 +47,9 @@ struct VerifyPinView: RouteableView {
                     .modifier(Shake(animatableData: CGFloat(vm.pinCodeErrorTimes)))
                     .focused($pinCodeViewIsFocus)
                     .onAppear {
-                        pinCodeViewIsFocus = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            pinCodeViewIsFocus = true
+                        }
                     }
                     .onChange(of: vm.inputPin) { value in
                         if value.count == 6 {

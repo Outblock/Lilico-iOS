@@ -192,6 +192,8 @@
 "pin_code_disabled" = "PIN Code disabled";
 "pin_code_enabled" = "PIN Code enabled";
 "enable_pin_code_failed" = "Enable PIN Code failed";
+"lock_on_exit" = "Lock on exit";
+"verify_failed" = "Verification failed";
 
 // Address Book
 "edit_contact" = "Edit contact";

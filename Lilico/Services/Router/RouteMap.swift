@@ -222,9 +222,9 @@ extension RouteMap.PinCode: RouterTarget {
                 let contentNavi = RouterNavigationController(rootViewController: vc)
                 contentNavi.modalPresentationCapturesStatusBarAppearance = true
                 contentNavi.modalPresentationStyle = .fullScreen
-                navi.present(contentNavi, animated: animated)
+                Router.topPresentedController().present(contentNavi, animated: animated)
             } else {
-                navi.present(vc, animated: animated)
+                Router.topPresentedController().present(vc, animated: animated)
             }
         }
     }

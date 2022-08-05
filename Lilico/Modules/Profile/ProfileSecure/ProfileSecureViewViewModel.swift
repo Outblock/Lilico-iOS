@@ -10,6 +10,7 @@ import SwiftUI
 class ProfileSecureViewModel: ObservableObject {
     @Published var isBionicEnabled: Bool = SecurityManager.shared.isBionicEnabled
     @Published var isPinCodeEnabled: Bool = SecurityManager.shared.isPinCodeEnabled
+    @Published var isLockOnExit: Bool = SecurityManager.shared.isLockOnExitEnabled
     
     func changeBionicAction(_ isEnabled: Bool) {
         if SecurityManager.shared.isBionicEnabled == isEnabled {
@@ -52,7 +53,16 @@ class ProfileSecureViewModel: ObservableObject {
         Router.route(to: RouteMap.PinCode.pinCode)
     }
     
+    func changeLockOnExitAction(_ lock: Bool) {
+        isLockOnExit = lock
+        SecurityManager.shared.changeLockOnExistStatus(lock)
+    }
+    
     func refreshPinCodeStatusAction() {
         isPinCodeEnabled = SecurityManager.shared.isPinCodeEnabled
+    }
+    
+    func showRecoveryPhrasesAction() {
+        Router.route(to: RouteMap.Profile.manualBackup)
     }
 }

@@ -18,6 +18,7 @@ extension LocalUserDefaults {
         case recentSendByToken
         case backupType
         case securityType
+        case lockOnExit
     }
 
     enum FlowNetworkType: String {
@@ -109,4 +110,5 @@ class LocalUserDefaults: ObservableObject {
     }
     
     @AppStorage(Keys.securityType.rawValue) var securityType: SecurityManager.SecurityType = .none
+    @AppStorage(Keys.lockOnExit.rawValue) var lockOnExit: Bool = false
 }
