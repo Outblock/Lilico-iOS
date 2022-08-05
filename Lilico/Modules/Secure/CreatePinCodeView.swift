@@ -55,7 +55,9 @@ struct CreatePinCodeView: RouteableView {
                 .fixedSize()
                 .focused($pinCodeViewIsFocus)
                 .onAppear {
-                    pinCodeViewIsFocus = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        pinCodeViewIsFocus = true
+                    }
                 }
                 .onChange(of: text) { value in
                     viewModel.trigger(.input(value))

@@ -920,6 +920,8 @@
 		6A8FA4B9285B1FEB00EE5BE3 /* EditAvatarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA4B7285B1FEB00EE5BE3 /* EditAvatarViewModel.swift */; };
 		6A9D7C472833B45500078F63 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */; };
 		6A9D7C4D2834D7D100078F63 /* ThemeChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */; };
+		6AA2E75A289D28EC00B4DD96 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */; };
+		6AA2E75B289D28EC00B4DD96 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */; };
 		6AA591F628854FB300F4B5CA /* BackupGDTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */; };
 		6AA591F728854FB300F4B5CA /* BackupGDTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */; };
 		6AB5FB9F2892652900FA2261 /* BackupiCloudTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */; };
@@ -1446,6 +1448,7 @@
 		6A8FA4B7285B1FEB00EE5BE3 /* EditAvatarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvatarViewModel.swift; sourceTree = "<group>"; };
 		6A9D7C3D2833AC9700078F63 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		6A9D7C4B2834D7D100078F63 /* ThemeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeView.swift; sourceTree = "<group>"; };
+		6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupGDTarget.swift; sourceTree = "<group>"; };
 		6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupiCloudTarget.swift; sourceTree = "<group>"; };
 		6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudAPI.swift; sourceTree = "<group>"; };
@@ -2739,6 +2742,7 @@
 				6AEF83A0286594280081E285 /* Double.swift */,
 				6A43BCFD2872D19C003E9D16 /* Date.swift */,
 				6A8C8E7A2897B4A900335DCA /* Animation.swift */,
+				6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -3811,6 +3815,7 @@
 				15D574CA277816F200045E79 /* UsernameView.swift in Sources */,
 				6ACDD16A2858688700F406EB /* ProfileEditView.swift in Sources */,
 				15DC218127819C56000B187A /* VActionSheet.swift in Sources */,
+				6AA2E75B289D28EC00B4DD96 /* DispatchQueue.swift in Sources */,
 				15DC20D327819C56000B187A /* VPlainButton.swift in Sources */,
 				15DC20ED27819C56000B187A /* VSectionListModel.swift in Sources */,
 				15DC218D27819C56000B187A /* VRadioButton.swift in Sources */,
@@ -4251,6 +4256,7 @@
 				15C58B132868A4EE00BD4FC6 /* UsernameView.swift in Sources */,
 				15C58B142868A4EE00BD4FC6 /* ProfileEditView.swift in Sources */,
 				15C58B152868A4EE00BD4FC6 /* VActionSheet.swift in Sources */,
+				6AA2E75A289D28EC00B4DD96 /* DispatchQueue.swift in Sources */,
 				15C58B162868A4EE00BD4FC6 /* VPlainButton.swift in Sources */,
 				15C58B172868A4EE00BD4FC6 /* VSectionListModel.swift in Sources */,
 				15C58B182868A4EE00BD4FC6 /* VRadioButton.swift in Sources */,

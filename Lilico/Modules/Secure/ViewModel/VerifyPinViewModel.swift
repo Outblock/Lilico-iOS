@@ -7,6 +7,7 @@
 
 import SwiftUI
 import BiometricAuthentication
+import UIKit
 
 extension VerifyPinViewModel {
     typealias VerifyCallback = (Bool) -> ()
@@ -22,6 +23,13 @@ class VerifyPinViewModel: ObservableObject {
     @Published var inputPin: String = ""
     @Published var pinCodeErrorTimes: Int = 0
     var callback: VerifyCallback? = nil
+    private lazy var generator: UINotificationFeedbackGenerator = {
+        let obj = UINotificationFeedbackGenerator()
+        return obj
+    }()
+    
+    private var isBionicVerifing: Bool = false
+    private var canVerifyBionicAutomatically = true
     
     init(callback: VerifyCallback?) {
         self.callback = callback
@@ -34,6 +42,14 @@ class VerifyPinViewModel: ObservableObject {
             currentVerifyType = .pin
         default:
             break
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    @objc private func onAppBecomeActive() {
+        if currentVerifyType == .bionic, isBionicVerifing == false, canVerifyBionicAutomatically == true {
+            verifyBionicAction()
         }
     }
 }
@@ -56,6 +72,8 @@ extension VerifyPinViewModel {
     }
     
     private func pinVerifyFailed() {
+        generator.notificationOccurred(.error)
+        
         inputPin = ""
         withAnimation(.default) {
             pinCodeErrorTimes += 1
@@ -63,9 +81,22 @@ extension VerifyPinViewModel {
     }
     
     func verifyBionicAction() {
+        if isBionicVerifing {
+            return
+        }
+        
+        if UIApplication.shared.applicationState != .active {
+            return
+        }
+        
+        isBionicVerifing = true
+        canVerifyBionicAutomatically = false
+        
         Task {
             let result = await SecurityManager.shared.authBionic()
             DispatchQueue.main.async {
+                self.isBionicVerifing = false
+                
                 if result {
                     self.verifySuccess()
                 }

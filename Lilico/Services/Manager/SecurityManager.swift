@@ -164,7 +164,10 @@ extension SecurityManager {
             return false
         }
         
-        appendSecurity(type: .bionic)
+        DispatchQueue.syncOnMain {
+            appendSecurity(type: .bionic)
+        }
+        
         return true
     }
     
