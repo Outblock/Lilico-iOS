@@ -107,6 +107,7 @@ struct NFTTabScreen: View {
         }
         .ignoresSafeArea()
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .navigationBarHidden(true)
         .environmentObject(viewModel)
     }
 
