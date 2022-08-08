@@ -50,6 +50,8 @@
 		1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467D2793EBA100D1747B /* GithubEndpoint.swift */; };
 		15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B632867641D0066046D /* GTMSessionFetcherCore */; };
 		15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832D58286816ED0066046D /* FlowAddressRegistor.swift */; };
+		1586873A28A170330037635B /* FadeAnimationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1586873928A170330037635B /* FadeAnimationBackground.swift */; };
+		1586873B28A170330037635B /* FadeAnimationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1586873928A170330037635B /* FadeAnimationBackground.swift */; };
 		158832CA2894262B00142B35 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 158832C92894262B00142B35 /* WalletConnect */; };
 		158832CC2894267700142B35 /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 158832CB2894267700142B35 /* WalletConnect */; };
 		158832CE2894269E00142B35 /* WalletConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832CD2894269E00142B35 /* WalletConnectManager.swift */; };
@@ -1055,6 +1057,7 @@
 		1570467A2793D60000D1747B /* NFTListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListResponse.swift; sourceTree = "<group>"; };
 		1570467D2793EBA100D1747B /* GithubEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubEndpoint.swift; sourceTree = "<group>"; };
 		15832D58286816ED0066046D /* FlowAddressRegistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowAddressRegistor.swift; sourceTree = "<group>"; };
+		1586873928A170330037635B /* FadeAnimationBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeAnimationBackground.swift; sourceTree = "<group>"; };
 		158832CD2894269E00142B35 /* WalletConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectManager.swift; sourceTree = "<group>"; };
 		158832D6289427EF00142B35 /* Websocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Websocket.swift; sourceTree = "<group>"; };
 		158832D92894287700142B35 /* SessionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionItem.swift; sourceTree = "<group>"; };
@@ -1981,6 +1984,7 @@
 			children = (
 				15BCFF1327770D76000B7863 /* EmptyWalletView.swift */,
 				15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */,
+				1586873928A170330037635B /* FadeAnimationBackground.swift */,
 			);
 			path = Empty;
 			sourceTree = "<group>";
@@ -4086,6 +4090,7 @@
 				6AE0842A2851E7B3003BEEF0 /* Published.swift in Sources */,
 				158CE87E27829E68006A8394 /* RecoveryPhraseView.swift in Sources */,
 				4EC482D1284A3D75000A7E1B /* ColorThief.swift in Sources */,
+				1586873B28A170330037635B /* FadeAnimationBackground.swift in Sources */,
 				15DC217727819C56000B187A /* _VDialog.swift in Sources */,
 				15DC20DF27819C56000B187A /* VListLayoutType.swift in Sources */,
 				154B8916276A1EEB00780E93 /* BackgroundModifer.swift in Sources */,
@@ -4528,6 +4533,7 @@
 				15C58C052868A4EE00BD4FC6 /* Published.swift in Sources */,
 				15C58C062868A4EE00BD4FC6 /* RecoveryPhraseView.swift in Sources */,
 				15C58C072868A4EE00BD4FC6 /* ColorThief.swift in Sources */,
+				1586873A28A170330037635B /* FadeAnimationBackground.swift in Sources */,
 				15C58C082868A4EE00BD4FC6 /* _VDialog.swift in Sources */,
 				15C58C092868A4EE00BD4FC6 /* VListLayoutType.swift in Sources */,
 				15C58C0B2868A4EE00BD4FC6 /* BackgroundModifer.swift in Sources */,
@@ -4667,7 +4673,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -4708,7 +4714,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
