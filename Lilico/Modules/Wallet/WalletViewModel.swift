@@ -164,4 +164,8 @@ extension WalletViewModel {
     func toggleHiddenStatusAction() {
         LocalUserDefaults.shared.walletHidden = !isHidden
     }
+    
+    func scanAction() {
+        ScanHandler.scan()
+    }
 }

@@ -24,6 +24,7 @@ import SparrowKit
 import AVKit
 import NativeUIKit
 import SwiftUI
+import SnapKit
 
 open class SPQRCameraController: SPController {
     
@@ -32,7 +33,12 @@ open class SPQRCameraController: SPController {
 
     internal var updateTimer: Timer?
     internal lazy var captureSession: AVCaptureSession = makeCaptureSession()
-    internal var qrCodeData: SPQRCodeData? { didSet { self.updateInterface() }}
+    internal var qrCodeData: SPQRCodeData? {
+        didSet {
+            self.updateInterface()
+            self.didTapHandledButton()
+        }
+    }
     
     // MARK: - Views
     
@@ -49,6 +55,10 @@ open class SPQRCameraController: SPController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    open override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     // MARK: - Lifecycle
     
     open override func viewDidLoad() {
@@ -62,7 +72,15 @@ open class SPQRCameraController: SPController {
         
         view.addSubview(detailView)
         
+        addBackButton()
+        
         updateInterface()
+    }
+    
+    func stopRunning() {
+        if captureSession.isRunning {
+            captureSession.stopRunning()
+        }
     }
     
     // MARK: - Actions
@@ -78,20 +96,32 @@ open class SPQRCameraController: SPController {
     
     // MARK: - Layout
     
-//    open override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//
-//        cancelButton.setXCenter()
-//        cancelButton.frame.setMaxY(view.frame.height - view.safeAreaInsets.bottom - NativeLayout.Spaces.default_more)
-//
-//
-//        previewLayer.frame = .init(
-//            x: .zero, y: .zero,
-//            width: view.layer.bounds.width,
-//            height: handleButton.frame.origin.y - NativeLayout.Spaces.default_more
-//        )
-//    }
-//
+    private func addBackButton() {
+        let image = UIImage(systemName: "arrow.backward")
+        let backButton = UIButton(type: .custom)
+        backButton.setImage(image, for: .normal)
+        backButton.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
+        backButton.tintColor = .white
+        backButton.sizeToFit()
+        view.addSubview(backButton)
+        
+        backButton.snp.makeConstraints { make in
+            make.width.height.equalTo(44)
+            make.left.equalTo(0)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
+        }
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        previewLayer.frame = .init(
+            x: .zero, y: .zero,
+            width: view.layer.bounds.width,
+            height: view.layer.bounds.height
+        )
+    }
+
     // MARK: - Internal
     
     internal func updateInterface() {

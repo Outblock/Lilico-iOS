@@ -101,6 +101,7 @@ extension RouteMap {
         case receive
         case send
         case sendAmount(Contact)
+        case scan((SPQRCodeData, SPQRCameraController)->Void)
     }
 }
 
@@ -117,6 +118,9 @@ extension RouteMap.Wallet: RouterTarget {
             navi.present(content: WalletSendView())
         case .sendAmount(let contact):
             navi.push(content: WalletSendAmountView(target: contact))
+        case .scan(let handler):
+            let rootVC = Router.topPresentedController()
+            SPQRCode.scanning(handled: handler, on: rootVC)
         }
     }
 }
@@ -249,6 +253,29 @@ extension RouteMap.NFT: RouterTarget {
             navi.push(content: NFTCollectionListView(viewModel: vm, collection: collection))
         case .addCollection(let vm):
             navi.push(content: NFTAddCollectionView(viewModel: vm))
+        }
+    }
+}
+
+// MARK: - WalletConnect
+
+extension RouteMap {
+    enum WalletConnect {
+        case approve(SessionInfo, () -> (), () -> ())
+        case request(RequestInfo, () -> (), () -> ())
+        case requestMessage(RequestMessageInfo, () -> (), () -> ())
+    }
+}
+
+extension RouteMap.WalletConnect: RouterTarget {
+    func onPresent(navi: UINavigationController) {
+        switch self {
+        case .approve(let info, let approve, let reject):
+            Router.topPresentedController().present(content: ApproveView(session: info, approve: approve, reject: reject))
+        case .request(let info, let approve, let reject):
+            Router.topPresentedController().present(content: RequestView(request: info, approve: approve, reject: reject))
+        case .requestMessage(let info, let approve, let reject):
+            Router.topPresentedController().present(content: RequestMessageView(request: info, approve: approve, reject: reject))
         }
     }
 }

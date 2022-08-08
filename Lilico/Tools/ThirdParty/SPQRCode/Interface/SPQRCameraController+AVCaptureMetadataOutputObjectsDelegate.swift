@@ -52,6 +52,9 @@ extension SPQRCameraController: AVCaptureMetadataOutputObjectsDelegate {
             case .flowWallet(let address):
                 detailView.setTitle(data.prefix + splitter + address)
                 detailView.setImage(data.iconImage)
+            case .walletConnect(let text):
+                detailView.setTitle(data.prefix + splitter + text)
+                detailView.setImage(data.iconImage)
             }
         }
         
@@ -91,17 +94,21 @@ extension SPQRCameraController: AVCaptureMetadataOutputObjectsDelegate {
         // Timer
         
         updateTimer?.invalidate()
-        updateTimer = Timer(fire: Date(timeIntervalSinceNow: 0.8), interval: 1, repeats: false, block: { _ in
-            self.qrCodeData = nil
-            self.frameLayer.dissapear()
+        updateTimer = Timer(fire: Date(timeIntervalSinceNow: 0.8), interval: 1, repeats: false, block: { [weak self] _ in
+            self?.qrCodeData = nil
+            self?.frameLayer.dissapear()
         })
         
         RunLoop.main.add(updateTimer!, forMode: .default)
     }
     
-    open func convert(object: AVMetadataMachineReadableCodeObject) -> SPQRCodeData? {
+    public func convert(object: AVMetadataMachineReadableCodeObject) -> SPQRCodeData? {
         
         guard let string = object.stringValue else { return nil }
+        
+        if string.lowercased().hasPrefix("wc:") {
+            return .walletConnect(string)
+        }
         
         if let components = URLComponents(string: string), components.scheme != nil {
             if let url = components.url {

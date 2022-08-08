@@ -29,6 +29,7 @@ public enum SPQRCodeData {
     case text(String)
     case ethWallet(String)
     case flowWallet(String)
+    case walletConnect(String)
     
     var prefix: String {
         switch self {
@@ -40,6 +41,8 @@ public enum SPQRCodeData {
             return Texts.qr_code_data_eth_wallet_prefix
         case .flowWallet(_):
             return Texts.qr_code_data_flow_wallet_prefix
+        case .walletConnect(_):
+            return Texts.qr_code_data_wallet_connect_prefix
         }
     }
     
@@ -52,6 +55,8 @@ public enum SPQRCodeData {
         case .ethWallet(_):
             return Images.detail_eth_wallet()
         case .flowWallet(_):
+            return Images.detail_flow_wallet()
+        case .walletConnect(_):
             return Images.detail_flow_wallet()
         }
     }

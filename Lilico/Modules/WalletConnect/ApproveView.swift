@@ -8,7 +8,15 @@
 import SwiftUI
 import WalletConnectSign
 
-struct ApproveView: View {
+struct ApproveView: RouteableView {
+    
+    var title: String {
+        return "Approve"
+    }
+    
+    func backButtonAction() {
+        reject?()
+    }
     
     let session: SessionInfo
     
@@ -79,6 +87,7 @@ struct ApproveView: View {
             }
             .padding(.horizontal)
         }
+        .interactiveDismissDisabled()
     }
 }
 

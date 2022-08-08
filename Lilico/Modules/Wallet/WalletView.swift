@@ -129,8 +129,8 @@ struct WalletView: View {
 
             Spacer()
 
-            Button{
-                
+            Button {
+                vm.scanAction()
             } label: {
                 Image("icon-wallet-scan").renderingMode(.template).foregroundColor(.primary)
             }

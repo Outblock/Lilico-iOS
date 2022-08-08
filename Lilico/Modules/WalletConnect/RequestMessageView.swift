@@ -8,7 +8,15 @@
 import SwiftUI
 import WalletConnectSign
 
-struct RequestMessageView: View {
+struct RequestMessageView: RouteableView {
+    
+    var title: String {
+        return "Request Message"
+    }
+    
+    func backButtonAction() {
+        reject?()
+    }
     
     let request: RequestMessageInfo
     
@@ -69,6 +77,7 @@ struct RequestMessageView: View {
             }
             .padding(.horizontal)
         }
+        .interactiveDismissDisabled()
     }
 }
 

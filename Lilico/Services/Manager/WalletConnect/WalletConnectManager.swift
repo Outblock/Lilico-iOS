@@ -12,9 +12,10 @@ import WalletConnectRelay
 import Flow
 import Starscream
 import Combine
+import WalletCore
 
 class WalletConnectManager: ObservableObject {
-    static let shared = WalletManager()
+    static let shared = WalletConnectManager()
     
     @Published
     var sessionItems: [ActiveSessionItem] = []
@@ -43,6 +44,7 @@ class WalletConnectManager: ObservableObject {
     }
     
     func connect(link: String) {
+        debugPrint("WalletConnectManager -> connect(), Thread: \(Thread.isMainThread)")
         print("[RESPONDER] Pairing to: \(link)")
         Task {
             do {
@@ -101,11 +103,11 @@ class WalletConnectManager: ObservableObject {
                     pendingRequests: [],
                     data: "")
                 self?.currentSessionInfo = info
-//                DispatchQueue.main.async {
-//                    self?.showPopUp = true
-//                }
-                
-//                    self?.showSessionProposal(Proposal(proposal: sessionProposal)) // FIXME: Remove mock
+                Router.route(to: RouteMap.WalletConnect.approve(info, {
+                    self?.approveSession(proposal: sessionProposal)
+                }, {
+                    self?.rejectSession(proposal: sessionProposal)
+                }))
             }.store(in: &publishers)
 
         Sign.instance.sessionSettlePublisher
@@ -151,12 +153,15 @@ class WalletConnectManager: ObservableObject {
                         let data = jsonString[0].data(using: .utf8)!
                         let model = try JSONDecoder().decode(Signable.self, from: data)
 
-                        if let session = self?.sessionItems.first{ $0.topic == sessionRequest.topic } {
+                        if let session = self?.sessionItems.first(where: { $0.topic == sessionRequest.topic }) {
                             let request = RequestInfo(cadence: model.cadence ?? "", agrument: model.args, name: session.dappName, descriptionText: session.dappURL, dappURL: session.dappURL, iconURL: session.iconURL, chains: Set(arrayLiteral: sessionRequest.chainId), methods: nil, pendingRequests: [], message: model.message)
                             self?.currentRequestInfo = request
-//                            DispatchQueue.main.async {
-//                                self?.showRequestPopUp = true
-//                            }
+                            
+                            Router.route(to: RouteMap.WalletConnect.request(request, {
+                                self?.approveRequest(request: sessionRequest, requestInfo: request)
+                            }, {
+                                self?.rejectRequest(request: sessionRequest)
+                            }))
                         }
                         
                     } catch {
@@ -178,14 +183,16 @@ class WalletConnectManager: ObservableObject {
                         let jsonString = try sessionRequest.params.get([String].self)
                         let data = jsonString[0].data(using: .utf8)!
                         let model = try JSONDecoder().decode(SignableMessage.self, from: data)
-                        if let session = self?.sessionItems.first{ $0.topic == sessionRequest.topic } {
+                        if let session = self?.sessionItems.first(where: { $0.topic == sessionRequest.topic }) {
                             let request = RequestMessageInfo(name: session.dappName, descriptionText: session.dappURL, dappURL: session.dappURL, iconURL: session.iconURL, chains: Set(arrayLiteral: sessionRequest.chainId), methods: nil, pendingRequests: [], message: model.message)
                             self?.currentMessageInfo = request
-//                            DispatchQueue.main.async {
-//                                self?.showRequestMessagePopUp = true
-//                            }
+                            
+                            Router.route(to: RouteMap.WalletConnect.requestMessage(request, {
+                                self?.approveRequestMessage(request: sessionRequest, requestInfo: request)
+                            }, {
+                                self?.rejectRequest(request: sessionRequest)
+                            }))
                         }
-                        
                     } catch {
                         print(error)
                         
@@ -229,5 +236,139 @@ class WalletConnectManager: ObservableObject {
                 print("[RESPONDER] WC: sessionUpdatePublisher")
 //                self?.showSessionRequest(sessionRequest)
             }.store(in: &publishers)
+    }
+}
+
+// MARK: - Action
+
+extension WalletConnectManager {
+    private func approveSession(proposal: Session.Proposal) {
+        Router.dismiss()
+        
+        guard let account = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        var sessionNamespaces = [String: SessionNamespace]()
+        proposal.requiredNamespaces.forEach {
+            let caip2Namespace = $0.key
+            let proposalNamespace = $0.value
+            let accounts = Set(proposalNamespace.chains.compactMap { WalletConnectSign.Account($0.absoluteString + ":\(account)") } )
+            
+            let extensions: [SessionNamespace.Extension]? = proposalNamespace.extensions?.map { element in
+                let accounts = Set(element.chains.compactMap { WalletConnectSign.Account($0.absoluteString + ":\(account)") } )
+                return SessionNamespace.Extension(accounts: accounts, methods: element.methods, events: element.events)
+            }
+            let sessionNamespace = SessionNamespace(accounts: accounts, methods: proposalNamespace.methods, events: proposalNamespace.events, extensions: extensions)
+            sessionNamespaces[caip2Namespace] = sessionNamespace
+        }
+        
+        let namespaces = sessionNamespaces
+        
+        Task {
+            do {
+                try await Sign.instance.approve(proposalId: proposal.id, namespaces: namespaces)
+                HUD.success(title: "approved".localized)
+            } catch {
+                debugPrint("WalletConnectManager -> approveSession failed: \(error)")
+                HUD.error(title: "approve_failed".localized)
+            }
+        }
+    }
+    
+    private func rejectSession(proposal: Session.Proposal) {
+        Router.dismiss()
+        
+        Task {
+            do {
+                try await Sign.instance.reject(proposalId: proposal.id, reason: .disapprovedChains)
+                HUD.success(title: "rejected".localized)
+            } catch {
+                HUD.error(title: "reject_failed".localized)
+            }
+        }
+    }
+    
+    private func approveRequest(request: Request, requestInfo: RequestInfo) {
+        Router.dismiss()
+        
+        guard let account = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        Task {
+            do {
+                let data = Data(requestInfo.message.hexValue)
+                let signedData = try await WalletManager.shared.sign(signableData: data)
+                let signature = signedData.hexValue
+                let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
+                                           data: AuthnData(addr: account, fType: "CompositeSignature", fVsn: "1.0.0", services: nil, keyId: 0, signature: signature),
+                                           reason: nil,
+                                           compositeSignature: nil)
+                let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(result))
+                try await Sign.instance.respond(topic: request.topic, response: .response(response))
+                
+                HUD.success(title: "approved".localized)
+            } catch {
+                debugPrint("WalletConnectManager -> approveRequest failed: \(error)")
+                HUD.error(title: "approve_failed".localized)
+                
+                do {
+                    try await Sign.instance.respond(topic: request.topic, response: .error(.init(id: 0, error: .init(code: 0, message: error.localizedDescription))))
+                } catch {
+                    debugPrint("WalletConnectManager -> approveRequest, report error failed: \(error)")
+                }
+            }
+        }
+    }
+    
+    private func rejectRequest(request: Request) {
+        Router.dismiss()
+        
+        let reason = "User reject request"
+        let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(reason))
+        
+        Task {
+            do {
+                try await Sign.instance.respond(topic: request.topic, response: .response(response))
+                HUD.success(title: "rejected".localized)
+            } catch {
+                debugPrint("WalletConnectManager -> rejectRequest failed: \(error)")
+                HUD.error(title: "reject_failed".localized)
+            }
+        }
+    }
+    
+    private func approveRequestMessage(request: Request, requestInfo: RequestMessageInfo) {
+        Router.dismiss()
+        
+        guard let account = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        Task {
+            do {
+                let data = Flow.DomainTag.user.normalize + Data(requestInfo.message.hexValue)
+                let signedData = try await WalletManager.shared.sign(signableData: data)
+                let signature = signedData.hexValue
+                let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
+                                           data: AuthnData(addr: account, fType: "CompositeSignature", fVsn: "1.0.0", services: nil, keyId: 0, signature: signature),
+                                           reason: nil,
+                                           compositeSignature: nil)
+                let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(result))
+                try await Sign.instance.respond(topic: request.topic, response: .response(response))
+                
+                HUD.success(title: "approved".localized)
+            } catch {
+                debugPrint("WalletConnectManager -> approveRequestMessage failed: \(error)")
+                HUD.error(title: "approve_failed".localized)
+                
+                do {
+                    try await Sign.instance.respond(topic: request.topic, response: .error(.init(id: 0, error: .init(code: 0, message: error.localizedDescription))))
+                } catch {
+                    debugPrint("WalletConnectManager -> approveRequestMessage, report error failed: \(error)")
+                }
+            }
+        }
     }
 }

@@ -70,6 +70,15 @@ extension String {
     var isAddress: Bool {
         return !isEmpty && self.hasPrefix("0x") && self.count == 18
     }
+    
+    var hexValue: [UInt8] {
+        var startIndex = self.startIndex
+        return (0 ..< count / 2).compactMap { _ in
+            let endIndex = index(after: startIndex)
+            defer { startIndex = index(after: endIndex) }
+            return UInt8(self[startIndex ... endIndex], radix: 16)
+        }
+    }
 }
 
 // MARK: - Firebase

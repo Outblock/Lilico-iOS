@@ -56,6 +56,7 @@ extension AppDelegate {
         _ = BackupManager.shared
         _ = NFTListCache.cache
         _ = SecurityManager.shared
+        _ = WalletConnectManager.shared
     }
 
     private func commonConfig() {
