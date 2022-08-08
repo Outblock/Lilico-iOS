@@ -12,6 +12,16 @@
 				<string>com.googleusercontent.apps.246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>io.outblock.lilico.dev</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>lilico-dev</string>
+			</array>
+		</dict>
 	</array>
 	<key>NSUbiquitousContainers</key>
 	<dict>
