@@ -119,8 +119,8 @@ extension RouteMap.Wallet: RouterTarget {
         case .sendAmount(let contact):
             navi.push(content: WalletSendAmountView(target: contact))
         case .scan(let handler):
-            let rootVC = Router.topPresentedController()
-            SPQRCode.scanning(handled: handler, on: rootVC)
+//            let rootVC = Router.topPresentedController()
+            SPQRCode.scanning(handled: handler, on: navi)
         }
     }
 }

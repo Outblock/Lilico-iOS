@@ -34,6 +34,7 @@ public class SPQRCode {
             qrController.detectQRCodeData = detect
         }
         qrController.handledQRCodeData = handled
+        qrController.modalPresentationStyle = .formSheet
         controller.present(qrController)
     }
 }
