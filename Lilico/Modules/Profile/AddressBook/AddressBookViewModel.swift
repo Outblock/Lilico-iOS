@@ -71,9 +71,12 @@ extension AddressBookView {
         
         private var rawContacts: [Contact]?
         private var cancelSets = Set<AnyCancellable>()
+        private let cacheKey = "AddressBookViewContacts"
 
         init() {
             state = ListState(sections: [AddressBookView.SectionViewModel]())
+            
+            loadFromCache()
             trigger(.load)
             
             registerNotifications()
@@ -157,6 +160,7 @@ extension AddressBookView {
                     HUD.dismissLoading()
                     realSectionVM.state.list.remove(at: index)
                     self.trimListModels()
+                    self.saveCurrentGroupedListToCache()
                     HUD.success(title: "contact_deleted".localized)
                 }
             }
@@ -198,11 +202,18 @@ extension AddressBookView {
                     let response: AddressListBookResponse = try await Network.request(LilicoAPI.AddressBook.fetchList)
                     DispatchQueue.main.async {
                         self.rawContacts = response.contacts
+                        self.saveToCache(contacts: response.contacts)
+                        
                         self.regroup(response.contacts)
                         self.state.stateType = .idle
                     }
                 } catch {
                     DispatchQueue.main.async {
+                        if self.state.stateType == .idle {
+                            HUD.error(title: "request_failed".localized)
+                            return
+                        }
+                        
                         self.state.stateType = .error
                     }
                 }
@@ -231,6 +242,40 @@ extension AddressBookView {
                 self.state.sections = sections
             }
         }
+    }
+}
+
+// MARK: - Cache
+
+extension AddressBookView.AddressBookViewModel {
+    private func saveToCache(contacts: [Contact]?) {
+        if let contacts = contacts {
+            PageCache.cache.set(value: contacts, forKey: cacheKey)
+        } else {
+            PageCache.cache.set(value: [Contact](), forKey: cacheKey)
+        }
+    }
+    
+    private func loadFromCache() {
+        Task {
+            if let cacheContacts = try? await PageCache.cache.get(forKey: cacheKey, type: [Contact].self), !cacheContacts.isEmpty {
+                DispatchQueue.main.async {
+                    self.rawContacts = cacheContacts
+                    self.regroup(cacheContacts)
+                    self.state.stateType = .idle
+                }
+            }
+        }
+    }
+    
+    private func saveCurrentGroupedListToCache() {
+        var contacts = [Contact]()
+        
+        for section in state.sections {
+            contacts.append(contentsOf: section.state.list)
+        }
+        
+        saveToCache(contacts: contacts)
     }
 }
 
@@ -322,6 +367,9 @@ extension AddressBookView.AddressBookViewModel {
     
     func appendNewContact(contact: Contact) {
         rawContacts?.append(contact)
+        
+        saveToCache(contacts: rawContacts)
+        
         regroup(rawContacts)
         state.stateType = .idle
     }

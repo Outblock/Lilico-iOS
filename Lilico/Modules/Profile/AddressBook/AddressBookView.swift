@@ -38,6 +38,7 @@ struct AddressBookView: RouteableView {
     @State private var showAlert = false
     
     @State private var mode: Mode
+    @State private var opacity: Double = 0
     
     var title: String {
         return "address_book".localized
@@ -85,6 +86,14 @@ struct AddressBookView: RouteableView {
                     Button("delete".localized, role: .destructive) {
                         if let sectionVM = self.pendingDeleteModel.sectionVM, let contact = self.pendingDeleteModel.contact {
                             self.vm.trigger(.delete(sectionVM, contact))
+                        }
+                    }
+                }
+                .opacity(opacity)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        withAnimation {
+                            opacity = 1
                         }
                     }
                 }
