@@ -100,7 +100,7 @@ extension RouteMap {
         case tokenDetail(TokenModel)
         case receive
         case send
-        case sendAmount(Contact)
+        case sendAmount(Contact, TokenModel)
         case scan((SPQRCodeData, SPQRCameraController)->Void)
     }
 }
@@ -116,8 +116,8 @@ extension RouteMap.Wallet: RouterTarget {
             navi.present(content: WalletReceiveView())
         case .send:
             navi.present(content: WalletSendView())
-        case .sendAmount(let contact):
-            navi.push(content: WalletSendAmountView(target: contact))
+        case .sendAmount(let contact, let token):
+            navi.push(content: WalletSendAmountView(target: contact, token: token))
         case .scan(let handler):
 //            let rootVC = Router.topPresentedController()
             SPQRCode.scanning(handled: handler, on: navi)

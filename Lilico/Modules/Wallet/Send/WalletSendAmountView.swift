@@ -27,12 +27,7 @@ struct WalletSendAmountView: RouteableView {
         return .large
     }
     
-    init(target: Contact) {
-        let symbol = LocalUserDefaults.shared.recentToken ?? "flow"
-        guard let token = WalletManager.shared.getToken(bySymbol: symbol) else {
-            assert(false, "token should not be nil")
-        }
-        
+    init(target: Contact, token: TokenModel) {
         _vm = StateObject(wrappedValue: WalletSendAmountViewModel(target: target, token: token))
     }
     

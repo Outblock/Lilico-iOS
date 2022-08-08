@@ -251,7 +251,12 @@ extension WalletSendViewModel {
 
 extension WalletSendViewModel {
     func sendToTargetAction(target: Contact) {
-        Router.route(to: RouteMap.Wallet.sendAmount(target))
+        let symbol = LocalUserDefaults.shared.recentToken ?? "flow"
+        guard let token = WalletManager.shared.getToken(bySymbol: symbol) else {
+            return
+        }
+
+        Router.route(to: RouteMap.Wallet.sendAmount(target, token))
     }
     
     func searchTextDidChangeAction(text: String) {
@@ -279,7 +284,12 @@ extension WalletSendViewModel {
     
     private func sendToAddressAction(_ address: String) {
         let contact = Contact(address: address, avatar: nil, contactName: address, contactType: .external, domain: nil, id: UUID().hashValue, username: nil)
-        Router.route(to: RouteMap.Wallet.sendAmount(contact))
+        let symbol = LocalUserDefaults.shared.recentToken ?? "flow"
+        guard let token = WalletManager.shared.getToken(bySymbol: symbol) else {
+            
+            return
+        }
+        Router.route(to: RouteMap.Wallet.sendAmount(contact, token))
     }
     
     func searchCommitAction() {
