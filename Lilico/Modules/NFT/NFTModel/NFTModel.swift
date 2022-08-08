@@ -106,7 +106,11 @@ struct NFTModel: Codable, Hashable, Identifiable {
     }
 
     var tags: [NFTMetadatum] {
-        return response.metadata.metadata.filter { meta in
+        guard let metadata = response.metadata?.metadata else {
+            return []
+        }
+        
+        return metadata.filter { meta in
             !filterMetadata.contains(meta.name.lowercased()) && !meta.value.isEmpty && !meta.value.hasPrefix("https://")
         }
     }
