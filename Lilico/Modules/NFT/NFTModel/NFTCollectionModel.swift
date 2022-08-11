@@ -13,14 +13,14 @@ final class NFTCollectionConfig {
     static let share = NFTCollectionConfig()
     private init() {}
 
-    var config: [NFTCollection] = []
+    var config: [NFTCollectionInfo] = []
 
     func reload() async {
         
         await fetchData()
     }
 
-    func get(from address: String) async -> NFTCollection? {
+    func get(from address: String) async -> NFTCollectionInfo? {
         if config.isEmpty {
             await fetchData()
         }
@@ -32,7 +32,7 @@ final class NFTCollectionConfig {
 extension NFTCollectionConfig {
     private func fetchData() async {
         do {
-            let list: [NFTCollection] = try await FirebaseConfig.nftCollections.fetch()
+            let list: [NFTCollectionInfo] = try await FirebaseConfig.nftCollections.fetch()
             config.removeAll()
             
             config = list.filter{ item in

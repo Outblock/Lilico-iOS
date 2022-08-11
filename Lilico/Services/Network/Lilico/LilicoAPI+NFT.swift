@@ -8,15 +8,11 @@
 import Foundation
 import Moya
 
-struct NFTRequest: Codable {
-    var address: String = "0x050aa60ac445a061"
-    var offset: Int = 0
-    var limit: Int = 25
-}
-
 extension LilicoAPI {
     enum NFT {
-        case list(NFTRequest)
+        case collections(String)
+        case collectionDetailList(NFTCollectionDetailListRequest)
+        case gridDetailList(NFTGridDetailListRequest)
     }
 }
 
@@ -31,22 +27,30 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
 
     var path: String {
         switch self {
-        case .list:
+        case .gridDetailList:
             return "v2/nft/detail/list"
+        case .collections:
+            return "v2/nft/collections"
+        case .collectionDetailList:
+            return "v2/nft/single"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .list:
+        case .collections, .collectionDetailList, .gridDetailList:
             return .get
         }
     }
 
     var task: Task {
         switch self {
-        case let .list(nftListRequest):
-            return .requestParameters(parameters: nftListRequest.dictionary ?? [:], encoding: URLEncoding())
+        case let .gridDetailList(request):
+            return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
+        case let .collectionDetailList(request):
+            return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
+        case let .collections(address):
+            return .requestParameters(parameters: ["address": address], encoding: URLEncoding())
         }
     }
 

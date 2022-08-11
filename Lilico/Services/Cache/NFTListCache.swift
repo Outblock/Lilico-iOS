@@ -18,9 +18,9 @@ class NFTListCache {
     private var cancelSet = Set<AnyCancellable>()
 
     init() {
-        UserManager.shared.$isLoggedIn.sink { _ in
-            self.refresh()
-        }.store(in: &cancelSet)
+//        UserManager.shared.$isLoggedIn.sink { _ in
+//            self.refresh()
+//        }.store(in: &cancelSet)
     }
 
     func refresh() {
@@ -112,13 +112,14 @@ extension NFTListCache {
     }
 
     private func fetchNFTList(from offset: Int = 0, limit: Int = 25) async throws -> [NFTResponse] {
-        #warning("Debug Only, need replace to real user address")
-        let request = NFTRequest(address: testOwner, offset: offset, limit: limit)
-        let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.list(request))
-        guard let nfts = response.data?.nfts else {
-            return []
-        }
-
-        return nfts
+        return []
+//        #warning("Debug Only, need replace to real user address")
+//        let request = NFTRequest(address: testOwner, offset: offset, limit: limit)
+//        let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.list(request))
+//        guard let nfts = response.data?.nfts else {
+//            return []
+//        }
+//
+//        return nfts
     }
 }

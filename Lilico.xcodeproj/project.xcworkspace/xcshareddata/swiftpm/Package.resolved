@@ -198,6 +198,15 @@
       }
     },
     {
+      "identity" : "mjrefresh",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CoderMJLee/MJRefresh",
+      "state" : {
+        "revision" : "f9db27ea41c7e3f5002be57bbf8fd5bf30f7346e",
+        "version" : "3.7.5"
+      }
+    },
+    {
       "identity" : "moya",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Moya/Moya",

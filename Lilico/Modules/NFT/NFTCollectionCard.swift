@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NFTCollectionCard: View {
     let index: Int
-    let item: CollectionItem
+    var item: CollectionItem
     let isHorizontal: Bool
     @Binding var selectedIndex: Int
 

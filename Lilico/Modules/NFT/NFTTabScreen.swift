@@ -27,26 +27,6 @@ extension NFTTabScreen: AppTabBarPageProtocol {
     }
 }
 
-extension NFTTabScreen {
-    struct ViewState {
-        var loading: Bool = true
-        var items: [CollectionItem] = []
-        var colorsMap: [String: [Color]] = [:]
-        var isEmpty: Bool {
-            return !loading && items.count == 0
-        }
-    }
-
-    enum Action {
-        case search
-        case add
-        case info(NFTModel)
-        case collection(CollectionItem)
-        case fetchColors(String)
-        case back
-    }
-}
-
 struct NFTTabScreen: View {
     @State var listStyle: String = "List"
 
@@ -57,8 +37,6 @@ struct NFTTabScreen: View {
     @StateObject var viewModel = NFTTabViewModel()
     @StateObject var favoriteStore = NFTFavoriteStore.shared
 
-    @State var selectedIndex = 0
-
     @State private var favoriteId: String?
     @State private var currentNFTImage: URL?
 
@@ -68,10 +46,11 @@ struct NFTTabScreen: View {
 
     var currentNFTs: [NFTModel] {
         if isListStyle {
-            if viewModel.state.items.isEmpty {
+            if let collectionItem = viewModel.currentCollectionItem() {
+                return collectionItem.nfts
+            } else {
                 return []
             }
-            return viewModel.state.items[selectedIndex].nfts
         } else {
             return viewModel.state.items.flatMap { $0.nfts }
         }
@@ -115,7 +94,11 @@ struct NFTTabScreen: View {
         GeometryReader { _ in
             ZStack(alignment: .top) {
                 if !viewModel.state.isEmpty {
-                    OffsetScrollView(offset: $offset) {
+                    OffsetScrollView(offset: $offset, refreshEnabled: true, loadMoreEnabled: true, refreshCallback: {
+                        viewModel.refreshCollectionAction(isFromCache: false)
+                    }, loadMoreCallback: {
+                        viewModel.loadCurrentCollectionItemMoreDataAction()
+                    }, isNoData: viewModel.currentCollectionItem()?.isEnd ?? true) {
                         //TODO: if no like
                         Color.clear
                             .frame(height: statusHeight)
@@ -131,7 +114,7 @@ struct NFTTabScreen: View {
                                             
                                     }
                                 } header: {
-                                    NFTTabScreen.CollectionSection(listStyle: $listStyle, isHorizontal: $isHorizontalCollection, selectedIndex: $selectedIndex)
+                                    NFTTabScreen.CollectionSection(listStyle: $listStyle, isHorizontal: $isHorizontalCollection, selectedIndex: $viewModel.state.selectedIndex)
                                 }
                             } else {
                                 NFTListView(list: currentNFTs, imageEffect: NFTImageEffect)
@@ -395,8 +378,8 @@ extension NFTTabScreen {
                                                showsIndicators: false,
                                                content: {
                                                    LazyHStack(alignment: .center, spacing: 12, content: {
-                                                       ForEach(viewModel.state.items, id: \.self) { item in
-                                                           let index = viewModel.state.items.firstIndex(of: item)!
+                                                       ForEach(viewModel.state.items, id: \.id) { item in
+                                                           let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
                                                            NFTCollectionCard(index: index, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
                                                                .id(index)
                                                                .onChange(of: selectedIndex) { value in
@@ -414,8 +397,9 @@ extension NFTTabScreen {
                                 }
                             } else {
                                 LazyVStack(alignment: .center, spacing: 12, content: {
-                                    ForEach(viewModel.state.items, id: \.self) { item in
-                                        NFTCollectionCard(index: viewModel.state.items.firstIndex(of: item)!, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
+                                    ForEach(viewModel.state.items, id: \.id) { item in
+                                        let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
+                                        NFTCollectionCard(index: index, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
                                     }
                                 })
                                 .padding(.horizontal, 18)
@@ -501,8 +485,8 @@ extension NFTTabScreen {
                                    showsIndicators: false,
                                    content: {
                                        LazyHStack(alignment: .center, spacing: 12, content: {
-                                           ForEach(viewModel.state.items, id: \.self) { item in
-                                               let index = viewModel.state.items.firstIndex(of: item)!
+                                           ForEach(viewModel.state.items, id: \.id) { item in
+                                               let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
                                                NFTCollectionCard(index: index, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
                                                    .id(index)
                                                    .onChange(of: selectedIndex) { value in
@@ -520,8 +504,9 @@ extension NFTTabScreen {
                     }
                 } else {
                     LazyVStack(alignment: .center, spacing: 12, content: {
-                        ForEach(viewModel.state.items, id: \.self) { item in
-                            NFTCollectionCard(index: viewModel.state.items.firstIndex(of: item)!, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
+                        ForEach(viewModel.state.items, id: \.id) { item in
+                            let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
+                            NFTCollectionCard(index: index, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
                         }
                     })
                     .padding(.horizontal, 18)

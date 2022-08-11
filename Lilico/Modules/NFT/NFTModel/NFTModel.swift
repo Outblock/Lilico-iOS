@@ -13,15 +13,21 @@ let placeholder: String = "https://lilico.app/placeholder.png"
 // TODO: which filter?
 let filterMetadata = ["uri", "img", "description"]
 
-struct NFTCollection: Codable, Hashable {
-    let logo: URL?
+struct NFTCollection: Codable {
+    let collection: NFTCollectionInfo
+    let count: Int
+    let ids: [Int]?
+}
+
+struct NFTCollectionInfo: Codable, Hashable {
+    let logo: String?
     let name: String
     let contractName: String
     let address: ContractAddress
     let secureCadenceCompatible: SecureCadenceCompatible
-    var banner: URL? = nil
+    var banner: String?
     var officialWebsite: String?
-    var marketplace: URL?
+    var marketplace: String?
     var description: String?
     var path: ContractPath
     
@@ -34,6 +40,14 @@ struct NFTCollection: Codable, Hashable {
             }
         }
         return address.mainnet
+    }
+    
+    var logoURL: URL {
+        if let logoString = logo {
+            return URL(string: logoString) ?? URL(string: placeholder)!
+        }
+        
+        return URL(string: placeholder)!
     }
 }
 
@@ -75,9 +89,9 @@ struct NFTModel: Codable, Hashable, Identifiable {
     let subtitle: String
 
     let response: NFTResponse
-    let collection: NFTCollection?
+    let collection: NFTCollectionInfo?
 
-    init(_ response: NFTResponse, in collection: NFTCollection?) {
+    init(_ response: NFTResponse, in collection: NFTCollectionInfo?) {
         if let imgUrl = response.postMedia.image, let url = URL(string: imgUrl) {
             image = url
         } else {
@@ -102,7 +116,11 @@ struct NFTModel: Codable, Hashable, Identifiable {
     }
 
     var logoUrl: URL {
-        return collection?.logo ?? URL(string: placeholder)!
+        if let logoString = collection?.logo {
+            return URL(string: logoString) ?? URL(string: placeholder)!
+        }
+        
+        return URL(string: placeholder)!
     }
 
     var tags: [NFTMetadatum] {
@@ -116,18 +134,81 @@ struct NFTModel: Codable, Hashable, Identifiable {
     }
 }
 
-struct CollectionItem: Hashable, Identifiable {
+class CollectionItem: Identifiable {
+    var address: String = ""
     var id = UUID()
-    var name: String
-    var count: Int
-    var collection: NFTCollection?
+    var name: String = ""
+    var count: Int = 0
+    var collection: NFTCollectionInfo?
     var nfts: [NFTModel] = []
+    var loadCallback: ((Bool) -> ())? = nil
+    
+    var isEnd: Bool = false
+    var isRequesting: Bool = false
 
     var showName: String {
         return collection?.name ?? ""
     }
 
     var iconURL: URL {
-        return collection?.logo ?? URL(string: placeholder)!
+        if let logoString = collection?.logo {
+            return URL(string: logoString) ?? URL(string: placeholder)!
+        }
+        
+        return URL(string: placeholder)!
+    }
+    
+    func load() {
+        if isRequesting || isEnd {
+            return
+        }
+        
+        isRequesting = true
+        
+        let limit = 24
+        Task {
+            do {
+                let response = try await requestCollectionListDetail(offset: nfts.count, limit: limit)
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    
+                    guard let list = response.nfts, !list.isEmpty else {
+                        self.isEnd = true
+                        return
+                    }
+                    
+                    let nftModels = list.map { NFTModel($0, in: self.collection) }
+                    self.appendNFTsNoDuplicated(nftModels)
+                    
+                    if list.count != limit {
+                        self.isEnd = true
+                    }
+                    
+                    self.loadCallback?(true)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    HUD.error(title: "request_failed".localized)
+                    self.loadCallback?(false)
+                }
+            }
+        }
+    }
+    
+    private func appendNFTsNoDuplicated(_ newNFTs: [NFTModel]) {
+        for nft in newNFTs {
+            let exist = nfts.first { $0.id == nft.id }
+            
+            if exist == nil {
+                nfts.append(nft)
+            }
+        }
+    }
+    
+    private func requestCollectionListDetail(offset: Int, limit: Int = 24) async throws -> NFTListResponse {
+        let request = NFTCollectionDetailListRequest(address: address, contractName: name, offset: offset, limit: limit)
+        let response: NFTListResponse = try await Network.request(LilicoAPI.NFT.collectionDetailList(request))
+        return response
     }
 }
