@@ -976,6 +976,21 @@
 		6AE8821E288EB67A00ADF36E /* RouterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE8821D288EB67A00ADF36E /* RouterExtensions.swift */; };
 		6AE8821F288EB67A00ADF36E /* RouterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE8821D288EB67A00ADF36E /* RouterExtensions.swift */; };
 		6AEA374028A49DBE004545D4 /* MJRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 6AEA373F28A49DBE004545D4 /* MJRefresh */; };
+		6AEA374328A4AD20004545D4 /* NFTUIKitListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374228A4AD20004545D4 /* NFTUIKitListViewController.swift */; };
+		6AEA374428A4AD20004545D4 /* NFTUIKitListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374228A4AD20004545D4 /* NFTUIKitListViewController.swift */; };
+		6AEA374628A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374528A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift */; };
+		6AEA374728A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374528A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift */; };
+		6AEA374A28A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374928A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift */; };
+		6AEA374B28A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374928A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift */; };
+		6AEA374D28A4E3FD004545D4 /* NFTUIKitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374C28A4E3FD004545D4 /* NFTUIKitListView.swift */; };
+		6AEA374E28A4E3FD004545D4 /* NFTUIKitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374C28A4E3FD004545D4 /* NFTUIKitListView.swift */; };
+		6AEA375028A4FA52004545D4 /* NFTUIKitCollectionPinnedSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374F28A4FA52004545D4 /* NFTUIKitCollectionPinnedSectionHeader.swift */; };
+		6AEA375128A4FA52004545D4 /* NFTUIKitCollectionPinnedSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA374F28A4FA52004545D4 /* NFTUIKitCollectionPinnedSectionHeader.swift */; };
+		6AEA375328A4FD2C004545D4 /* NFTUIKitItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA375228A4FD2C004545D4 /* NFTUIKitItemCell.swift */; };
+		6AEA375428A4FD2C004545D4 /* NFTUIKitItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA375228A4FD2C004545D4 /* NFTUIKitItemCell.swift */; };
+		6AEA375728A5152E004545D4 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA375628A5152E004545D4 /* UIScrollView.swift */; };
+		6AEA375828A5152E004545D4 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA375628A5152E004545D4 /* UIScrollView.swift */; };
+		6AEA375A28A51792004545D4 /* MJRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 6AEA375928A51792004545D4 /* MJRefresh */; };
 		6AEE39ED28A24DDB00F3C56E /* NFTRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE39EC28A24DDB00F3C56E /* NFTRequests.swift */; };
 		6AEE39EE28A24DDB00F3C56E /* NFTRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE39EC28A24DDB00F3C56E /* NFTRequests.swift */; };
 		6AEF4278287537E5000A77D7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B1F63B2786B89800847BB5 /* Localizable.strings */; };
@@ -1484,6 +1499,13 @@
 		6AE4605D286ED142009C2B96 /* TokenDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailViewModel.swift; sourceTree = "<group>"; };
 		6AE8821A288E9FE900ADF36E /* RouteableUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteableUIHostingController.swift; sourceTree = "<group>"; };
 		6AE8821D288EB67A00ADF36E /* RouterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterExtensions.swift; sourceTree = "<group>"; };
+		6AEA374228A4AD20004545D4 /* NFTUIKitListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitListViewController.swift; sourceTree = "<group>"; };
+		6AEA374528A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitCollectionItemCell.swift; sourceTree = "<group>"; };
+		6AEA374928A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitCollectionHContainerView.swift; sourceTree = "<group>"; };
+		6AEA374C28A4E3FD004545D4 /* NFTUIKitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitListView.swift; sourceTree = "<group>"; };
+		6AEA374F28A4FA52004545D4 /* NFTUIKitCollectionPinnedSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitCollectionPinnedSectionHeader.swift; sourceTree = "<group>"; };
+		6AEA375228A4FD2C004545D4 /* NFTUIKitItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitItemCell.swift; sourceTree = "<group>"; };
+		6AEA375628A5152E004545D4 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		6AEE39EC28A24DDB00F3C56E /* NFTRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTRequests.swift; sourceTree = "<group>"; };
 		6AEF42792875381E000A77D7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6AEF8394286462400081E285 /* CoinRateCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRateCache.swift; sourceTree = "<group>"; };
@@ -1530,6 +1552,7 @@
 				4E9BFF5D2867631300601339 /* UIKit.framework in Frameworks */,
 				6AE1D48E287690E7000FA0B7 /* SwiftUIPager in Frameworks */,
 				4E17466C281AF840002A029C /* WalletCore.xcframework in Frameworks */,
+				6AEA375A28A51792004545D4 /* MJRefresh in Frameworks */,
 				15185ED8278A73A3006B74A9 /* SPConfetti in Frameworks */,
 				15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */,
 				6A7C080F286EE95E00020987 /* SwiftUICharts in Frameworks */,
@@ -1732,6 +1755,7 @@
 		1570466A27930EA500D1747B /* NFT */ = {
 			isa = PBXGroup;
 			children = (
+				6AEA374128A4ACF9004545D4 /* UIKit */,
 				4ED2D7742850DD9400B9A572 /* Helper */,
 				4ECA7E632843719F0039A210 /* Views */,
 				4E1E9BC2283E045E0028CBBD /* Store */,
@@ -2756,6 +2780,7 @@
 				6A43BCFD2872D19C003E9D16 /* Date.swift */,
 				6A8C8E7A2897B4A900335DCA /* Animation.swift */,
 				6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */,
+				6AEA375628A5152E004545D4 /* UIScrollView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -3387,6 +3412,35 @@
 			path = DeveloperMode;
 			sourceTree = "<group>";
 		};
+		6AEA374128A4ACF9004545D4 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				6AEA374828A4DDE2004545D4 /* View */,
+				6AEA374228A4AD20004545D4 /* NFTUIKitListViewController.swift */,
+				6AEA374C28A4E3FD004545D4 /* NFTUIKitListView.swift */,
+				6AEA375228A4FD2C004545D4 /* NFTUIKitItemCell.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		6AEA374828A4DDE2004545D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6AEA375528A4FD35004545D4 /* Collection */,
+				6AEA374F28A4FA52004545D4 /* NFTUIKitCollectionPinnedSectionHeader.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6AEA375528A4FD35004545D4 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				6AEA374528A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift */,
+				6AEA374928A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
 		6AF1F35B286997690084DF3D /* AddToken */ = {
 			isa = PBXGroup;
 			children = (
@@ -3493,6 +3547,7 @@
 				158832D32894277600142B35 /* Starscream */,
 				1588332328943F7D00142B35 /* NativeUIKit */,
 				6AC1AE6A289BAD0600F76C7A /* SnapKit */,
+				6AEA375928A51792004545D4 /* MJRefresh */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -3897,6 +3952,7 @@
 				6ACDD17728587FF800F406EB /* ProfileEditNameViewModel.swift in Sources */,
 				15DC211F27819C56000B187A /* VSpinnerType.swift in Sources */,
 				15DC207F27819C56000B187A /* VBaseViewNavigationBarLeading.swift in Sources */,
+				6AEA374728A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift in Sources */,
 				15DC207B27819C56000B187A /* VBaseView.swift in Sources */,
 				15D9283327843DAD00382226 /* ManualBackupViewModel.swift in Sources */,
 				15DC208927819C56000B187A /* VLazyScrollView.swift in Sources */,
@@ -3941,6 +3997,7 @@
 				15DC21A527819C56000B187A /* VBaseTextFieldState.swift in Sources */,
 				4E51B4FF2854BEB600EDE4FE /* ImageSaver.swift in Sources */,
 				15F22F1D278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift in Sources */,
+				6AEA375128A4FA52004545D4 /* NFTUIKitCollectionPinnedSectionHeader.swift in Sources */,
 				15DC213127819C56000B187A /* VWheelPickerModel.swift in Sources */,
 				15DC20B127819C56000B187A /* VBaseButtonState.swift in Sources */,
 				15D9282D2783395F00382226 /* HUDManager.swift in Sources */,
@@ -3993,6 +4050,7 @@
 				15DC217F27819C56000B187A /* VActionSheetRow.swift in Sources */,
 				15DC20A127819C56000B187A /* VSecondaryButton.swift in Sources */,
 				15DC1D5927816660000B187A /* Network.swift in Sources */,
+				6AEA375828A5152E004545D4 /* UIScrollView.swift in Sources */,
 				15DC214527819C56000B187A /* VTabNavigationPageItem.swift in Sources */,
 				15DC20C127819C56000B187A /* VSquareButton.swift in Sources */,
 				6A4009162875699E00A77070 /* WalletReceiveViewModel.swift in Sources */,
@@ -4021,6 +4079,7 @@
 				15DC21EB27819C57000B187A /* StateOpacities_P.swift in Sources */,
 				15DC21D727819C56000B187A /* StateColors_ED.swift in Sources */,
 				15DC21D327819C56000B187A /* StateColors_EFSEPD.swift in Sources */,
+				6AEA374E28A4E3FD004545D4 /* NFTUIKitListView.swift in Sources */,
 				1570466D27930EB200D1747B /* NFTTabScreen.swift in Sources */,
 				15DC217B27819C56000B187A /* VModalModel.swift in Sources */,
 				15D57752277C224300045E79 /* LilicoAPI.swift in Sources */,
@@ -4054,6 +4113,7 @@
 				4EDDAA24285F5DC600EB8AF9 /* NFTAddCollectionView.swift in Sources */,
 				1588331D28943D1D00142B35 /* Images.swift in Sources */,
 				4E8DD9F9282E2FBB0016A931 /* NFTEmptyView.swift in Sources */,
+				6AEA374428A4AD20004545D4 /* NFTUIKitListViewController.swift in Sources */,
 				6A8C8E7C2897B4A900335DCA /* Animation.swift in Sources */,
 				154B8914276A1EEB00780E93 /* ViewModel.swift in Sources */,
 				158832DF28942D0400142B35 /* FCLModel.swift in Sources */,
@@ -4116,6 +4176,7 @@
 				15DC21DD27819C56000B187A /* StateOpacities_PD.swift in Sources */,
 				6A4BFE312893CA5500142113 /* AlertView.swift in Sources */,
 				6A11596C288E710C005EF797 /* Router.swift in Sources */,
+				6AEA375428A4FD2C004545D4 /* NFTUIKitItemCell.swift in Sources */,
 				6A8FA4A0285B192900EE5BE3 /* CoordinateSpaceNameEnvironmentKey.swift in Sources */,
 				6A8FA496285B192800EE5BE3 /* UIKitIntrospectionView.swift in Sources */,
 				154B8918276A1EEB00780E93 /* Endpoint.swift in Sources */,
@@ -4129,6 +4190,7 @@
 				6AE4605F286ED142009C2B96 /* TokenDetailViewModel.swift in Sources */,
 				15DC209327819C56000B187A /* VToast.swift in Sources */,
 				15DC21CD27819C56000B187A /* SliderHelpers.swift in Sources */,
+				6AEA374B28A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift in Sources */,
 				6A8FA49C285B192800EE5BE3 /* SnapID.swift in Sources */,
 				15DC20AB27819C56000B187A /* VBaseButton.swift in Sources */,
 				15DC219D27819C56000B187A /* VTextFieldState.swift in Sources */,
@@ -4341,6 +4403,7 @@
 				15C58B432868A4EE00BD4FC6 /* ProfileEditNameViewModel.swift in Sources */,
 				15C58B442868A4EE00BD4FC6 /* VSpinnerType.swift in Sources */,
 				15C58B452868A4EE00BD4FC6 /* VBaseViewNavigationBarLeading.swift in Sources */,
+				6AEA374628A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift in Sources */,
 				15C58B462868A4EE00BD4FC6 /* VBaseView.swift in Sources */,
 				15C58B472868A4EE00BD4FC6 /* ManualBackupViewModel.swift in Sources */,
 				15C58B482868A4EE00BD4FC6 /* VLazyScrollView.swift in Sources */,
@@ -4385,6 +4448,7 @@
 				15C58B6B2868A4EE00BD4FC6 /* VBaseTextFieldState.swift in Sources */,
 				15C58B6C2868A4EE00BD4FC6 /* ImageSaver.swift in Sources */,
 				15C58B6D2868A4EE00BD4FC6 /* ConfirmPinCodeViewModel.swift in Sources */,
+				6AEA375028A4FA52004545D4 /* NFTUIKitCollectionPinnedSectionHeader.swift in Sources */,
 				15C58B6E2868A4EE00BD4FC6 /* VWheelPickerModel.swift in Sources */,
 				15C58B6F2868A4EE00BD4FC6 /* VBaseButtonState.swift in Sources */,
 				15C58B702868A4EE00BD4FC6 /* HUDManager.swift in Sources */,
@@ -4437,6 +4501,7 @@
 				15C58B9E2868A4EE00BD4FC6 /* VActionSheetRow.swift in Sources */,
 				15C58B9F2868A4EE00BD4FC6 /* VSecondaryButton.swift in Sources */,
 				15C58BA02868A4EE00BD4FC6 /* Network.swift in Sources */,
+				6AEA375728A5152E004545D4 /* UIScrollView.swift in Sources */,
 				15C58BA12868A4EE00BD4FC6 /* VTabNavigationPageItem.swift in Sources */,
 				15C58BA22868A4EE00BD4FC6 /* VSquareButton.swift in Sources */,
 				6A4009152875699D00A77070 /* WalletReceiveViewModel.swift in Sources */,
@@ -4465,6 +4530,7 @@
 				15C58BB72868A4EE00BD4FC6 /* StateOpacities_P.swift in Sources */,
 				15C58BB82868A4EE00BD4FC6 /* StateColors_ED.swift in Sources */,
 				15C58BB92868A4EE00BD4FC6 /* StateColors_EFSEPD.swift in Sources */,
+				6AEA374D28A4E3FD004545D4 /* NFTUIKitListView.swift in Sources */,
 				15C58BBA2868A4EE00BD4FC6 /* NFTTabScreen.swift in Sources */,
 				15C58BBB2868A4EE00BD4FC6 /* VModalModel.swift in Sources */,
 				15C58BBC2868A4EE00BD4FC6 /* LilicoAPI.swift in Sources */,
@@ -4498,6 +4564,7 @@
 				15C58BDA2868A4EE00BD4FC6 /* NFTAddCollectionView.swift in Sources */,
 				1588331C28943D1D00142B35 /* Images.swift in Sources */,
 				15C58BDB2868A4EE00BD4FC6 /* NFTEmptyView.swift in Sources */,
+				6AEA374328A4AD20004545D4 /* NFTUIKitListViewController.swift in Sources */,
 				6A8C8E7B2897B4A900335DCA /* Animation.swift in Sources */,
 				15C58BDC2868A4EE00BD4FC6 /* ViewModel.swift in Sources */,
 				158832DE28942D0400142B35 /* FCLModel.swift in Sources */,
@@ -4560,6 +4627,7 @@
 				15C58C152868A4EE00BD4FC6 /* StateOpacities_PD.swift in Sources */,
 				6A4BFE302893CA5500142113 /* AlertView.swift in Sources */,
 				6A11596B288E710C005EF797 /* Router.swift in Sources */,
+				6AEA375328A4FD2C004545D4 /* NFTUIKitItemCell.swift in Sources */,
 				15C58C172868A4EE00BD4FC6 /* CoordinateSpaceNameEnvironmentKey.swift in Sources */,
 				15C58C182868A4EE00BD4FC6 /* UIKitIntrospectionView.swift in Sources */,
 				15C58C192868A4EE00BD4FC6 /* Endpoint.swift in Sources */,
@@ -4573,6 +4641,7 @@
 				6AE4605E286ED142009C2B96 /* TokenDetailViewModel.swift in Sources */,
 				15C58C1F2868A4EE00BD4FC6 /* VToast.swift in Sources */,
 				15C58C202868A4EE00BD4FC6 /* SliderHelpers.swift in Sources */,
+				6AEA374A28A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift in Sources */,
 				15C58C212868A4EE00BD4FC6 /* SnapID.swift in Sources */,
 				15C58C222868A4EE00BD4FC6 /* VBaseButton.swift in Sources */,
 				15C58C232868A4EE00BD4FC6 /* VTextFieldState.swift in Sources */,
@@ -5773,6 +5842,11 @@
 			productName = SwiftUICharts;
 		};
 		6AEA373F28A49DBE004545D4 /* MJRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AEA373E28A49DBD004545D4 /* XCRemoteSwiftPackageReference "MJRefresh" */;
+			productName = MJRefresh;
+		};
+		6AEA375928A51792004545D4 /* MJRefresh */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6AEA373E28A49DBD004545D4 /* XCRemoteSwiftPackageReference "MJRefresh" */;
 			productName = MJRefresh;

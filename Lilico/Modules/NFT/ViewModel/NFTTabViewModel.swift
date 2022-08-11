@@ -12,7 +12,14 @@ import Kingfisher
 import SwiftUIX
 
 extension NFTTabScreen {
+    enum ViewStyle {
+        case normal
+        case collectionList
+        case grid
+    }
+    
     struct ViewState {
+        var style: NFTTabScreen.ViewStyle = .normal
         var selectedIndex = 0
         var loading: Bool = false
         var collections: [NFTCollection] = []
@@ -79,7 +86,6 @@ extension NFTTabViewModel {
             return
         }
         
-        cleanForRefresh()
         state.loading = true
         
         Task {
@@ -127,33 +133,6 @@ extension NFTTabViewModel {
     
     func changeSelectIndexAction(index: Int) {
         state.selectedIndex = index
-        
-        if let currentItem = currentCollectionItem() {
-            if currentItem.nfts.isEmpty {
-                currentItem.loadCallback = { [weak self] result in
-                    if let self = self {
-                        self.state.items = self.state.items
-                    }
-                }
-                currentItem.load()
-            }
-        }
-    }
-    
-    func loadCurrentCollectionItemMoreDataAction() {
-        if let currentItem = currentCollectionItem() {
-            if currentItem.isEnd || currentItem.isRequesting {
-                return
-            }
-            
-            currentItem.loadCallback = { [weak self] result in
-                if let self = self {
-                    self.state.items = self.state.items
-                }
-            }
-            
-            currentItem.load()
-        }
     }
     
     func currentCollectionItem() -> CollectionItem? {
@@ -162,12 +141,6 @@ extension NFTTabViewModel {
         }
         
         return state.items[state.selectedIndex]
-    }
-    
-    private func cleanForRefresh() {
-        for item in state.items {
-            item.loadCallback = nil
-        }
     }
     
     private func requestCollections() async throws -> [NFTCollection] {

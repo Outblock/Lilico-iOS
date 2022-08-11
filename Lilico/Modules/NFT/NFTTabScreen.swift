@@ -74,66 +74,71 @@ struct NFTTabScreen: View {
     }
 
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack {
             if viewModel.state.loading {
                 NFTLoading()
             } else if viewModel.state.isEmpty {
                 NFTEmptyView()
             } else {
                 content
-//                    .clipped()
             }
         }
-        .ignoresSafeArea()
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .backgroundFill(Color.LL.Neutrals.background)
         .navigationBarHidden(true)
         .environmentObject(viewModel)
     }
 
     var content: some View {
-        GeometryReader { _ in
-            ZStack(alignment: .top) {
-                if !viewModel.state.isEmpty {
-                    OffsetScrollView(offset: $offset, refreshEnabled: true, loadMoreEnabled: true, refreshCallback: {
-                        viewModel.refreshCollectionAction(isFromCache: false)
-                    }, loadMoreCallback: {
-                        viewModel.loadCurrentCollectionItemMoreDataAction()
-                    }, isNoData: viewModel.currentCollectionItem()?.isEnd ?? true) {
-                        //TODO: if no like
-                        Color.clear
-                            .frame(height: statusHeight)
-                        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                            if isListStyle {
-                                if canShowFavorite {
-                                    NFTTabScreen.FavoriteView(currentNFTImage: $currentNFTImage)
-                                }
-                                
-                                Section {
-                                    if isHorizontalCollection {
-                                        NFTListView(list: currentNFTs, imageEffect: NFTImageEffect)
-                                            
-                                    }
-                                } header: {
-                                    NFTTabScreen.CollectionSection(listStyle: $listStyle, isHorizontal: $isHorizontalCollection, selectedIndex: $viewModel.state.selectedIndex)
-                                }
-                            } else {
-                                NFTListView(list: currentNFTs, imageEffect: NFTImageEffect)
-                                    .padding(.top,  44)
-                            }
-                        }
-                    }
-                    .overlay(
-                        NFTTabScreen.TopBar(listStyle: $listStyle, offset: $offset)
-                            .frame(maxHeight: .infinity, alignment: .top)
-                            .padding(.top, statusHeight)
-                    )
-                    .background(
-                        Color.LL.Neutrals.background
-                    )
-                }
-            }
-            
+        VStack {
+            NFTUIKitListView(items: viewModel.state.items, selectedCollectionIndex: $viewModel.state.selectedIndex)
+                .visibility(viewModel.state.isEmpty ? .gone : .visible)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        
+//        GeometryReader { _ in
+//            ZStack(alignment: .top) {
+//                if !viewModel.state.isEmpty {
+//                    OffsetScrollView(offset: $offset, refreshEnabled: true, loadMoreEnabled: true, refreshCallback: {
+//                        viewModel.refreshCollectionAction(isFromCache: false)
+//                    }, loadMoreCallback: {
+//                        viewModel.loadCurrentCollectionItemMoreDataAction()
+//                    }, isNoData: viewModel.currentCollectionItem()?.isEnd ?? true) {
+//                        //TODO: if no like
+//                        Color.clear
+//                            .frame(height: statusHeight)
+//                        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+//                            if isListStyle {
+//                                if canShowFavorite {
+//                                    NFTTabScreen.FavoriteView(currentNFTImage: $currentNFTImage)
+//                                }
+//
+//                                Section {
+//                                    if isHorizontalCollection {
+//                                        NFTListView(list: currentNFTs, imageEffect: NFTImageEffect)
+//
+//                                    }
+//                                } header: {
+//                                    NFTTabScreen.CollectionSection(listStyle: $listStyle, isHorizontal: $isHorizontalCollection, selectedIndex: $viewModel.state.selectedIndex)
+//                                }
+//                            } else {
+//                                NFTListView(list: currentNFTs, imageEffect: NFTImageEffect)
+//                                    .padding(.top,  44)
+//                            }
+//                        }
+//                    }
+//                    .overlay(
+//                        NFTTabScreen.TopBar(listStyle: $listStyle, offset: $offset)
+//                            .frame(maxHeight: .infinity, alignment: .top)
+//                            .padding(.top, statusHeight)
+//                    )
+//                    .background(
+//                        Color.LL.Neutrals.background
+//                    )
+//                }
+//            }
+//
+//        }
     }
 
     var statusHeight: CGFloat {

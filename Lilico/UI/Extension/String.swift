@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension String {
     var localized: String {
@@ -77,6 +78,19 @@ extension String {
             let endIndex = index(after: startIndex)
             defer { startIndex = index(after: endIndex) }
             return UInt8(self[startIndex ... endIndex], radix: 16)
+        }
+    }
+    
+    func width(withFont font: UIFont, maxWidth: CGFloat? = nil) -> CGFloat {
+        let string = self as NSString
+        let attr = [NSAttributedString.Key.font: font]
+        let rect = string.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: attr, context: nil)
+        let width = ceil(rect.size.width)
+        
+        if let maxWidth = maxWidth {
+            return min(width, maxWidth)
+        } else {
+            return width
         }
     }
 }
