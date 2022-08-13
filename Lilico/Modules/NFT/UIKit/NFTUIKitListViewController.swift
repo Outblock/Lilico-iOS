@@ -15,6 +15,18 @@ class NFTUIKitListViewController: UIViewController {
     var collectionItems: [CollectionItem] = []
     var style: NFTTabScreen.ViewStyle = .normal
     var selectedCollectionIndex: Int = 0
+    var vm: NFTTabViewModel?
+    
+    private lazy var collectionTitleView: NFTUIKitListTitleView = {
+        let view = NFTUIKitListTitleView()
+        view.snp.makeConstraints { make in
+            make.height.equalTo(32)
+        }
+        
+        view.switchButton.addTarget(self, action: #selector(onSwitchButtonClick), for: .touchUpInside)
+        
+        return view
+    }()
     
     private lazy var collectionHContainer: NFTUIKitCollectionHContainerView = {
         let view = NFTUIKitCollectionHContainerView()
@@ -31,13 +43,10 @@ class NFTUIKitListViewController: UIViewController {
         view.showsVerticalScrollIndicator = false
         view.register(NFTUIKitCollectionPinnedSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "NFTUIKitCollectionPinnedSectionHeader")
         view.register(NFTUIKitItemCell.self, forCellWithReuseIdentifier: "NFTUIKitItemCell")
+        view.register(NFTUIKitCollectionRegularItemCell.self, forCellWithReuseIdentifier: "NFTUIKitCollectionRegularItemCell")
         
-        view.setRefreshingAction {
-            
-        }
-        
-        view.setLoadingAction { [weak self] in
-            self?.loadMoreAction()
+        view.setRefreshingAction { [weak self] in
+            self?.vm?.refreshCollectionAction()
         }
         
         return view
@@ -58,9 +67,15 @@ class NFTUIKitListViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = UIColor(Color.LL.Neutrals.background)
         
+        view.addSubview(collectionTitleView)
+        collectionTitleView.snp.makeConstraints { make in
+            make.left.right.top.equalToSuperview()
+        }
+        
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(collectionTitleView.snp.bottom)
         }
     }
     
@@ -73,12 +88,27 @@ class NFTUIKitListViewController: UIViewController {
         collectionView.stopRefreshing()
         collectionView.stopLoading()
         
+        setupLoadingActionIfNeeded()
+        
         removeAllLoadCallback()
         loadNFTsIfNeeded()
     }
 }
 
 extension NFTUIKitListViewController {
+    private func setupLoadingActionIfNeeded() {
+        switch style {
+        case .normal, .grid:
+            if collectionView.mj_footer == nil {
+                collectionView.setLoadingAction { [weak self] in
+                    self?.loadMoreAction()
+                }
+            }
+        case .collectionList:
+            collectionView.removeLoadingAction()
+        }
+    }
+    
     private func currentSelectedCollectionItem() -> CollectionItem? {
         if selectedCollectionIndex > collectionItems.count {
             return nil
@@ -131,6 +161,18 @@ extension NFTUIKitListViewController {
         
         collectionItem.load()
     }
+    
+    @objc private func onSwitchButtonClick() {
+        collectionView.scrollToTop(animated: false)
+        
+        if style == .collectionList {
+            style = .normal
+        } else {
+            style = .collectionList
+        }
+        
+        reloadViews()
+    }
 }
 
 extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -138,6 +180,8 @@ extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UIColl
         switch style {
         case .normal:
             return currentSelectedCollectionItem()?.nfts.count ?? 0
+        case .collectionList:
+            return collectionItems.count
         default:
             return 0
         }
@@ -154,6 +198,11 @@ extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UIColl
             } else {
                 return UICollectionViewCell()
             }
+        case .collectionList:
+            let collection = collectionItems[indexPath.item]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NFTUIKitCollectionRegularItemCell", for: indexPath) as! NFTUIKitCollectionRegularItemCell
+            cell.config(collection)
+            return cell
         default:
             return UICollectionViewCell()
         }
@@ -163,6 +212,8 @@ extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UIColl
         switch style {
         case .normal:
             return NFTUIKitItemCell.calculateSize()
+        case .collectionList:
+            return NFTUIKitCollectionRegularItemCell.calculateSize()
         default:
             return .zero
         }
@@ -172,6 +223,8 @@ extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UIColl
         switch style {
         case .normal:
             return CGSize(width: 0, height: PinnedHeaderHeight)
+        case .collectionList:
+            return .zero
         default:
             return .zero
         }
@@ -194,6 +247,8 @@ extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UIColl
             } else {
                 return UICollectionReusableView()
             }
+        case .collectionList:
+            return UICollectionReusableView()
         default:
             return UICollectionReusableView()
         }
@@ -203,6 +258,8 @@ extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UIColl
         switch style {
         case .normal:
             return 18
+        case .collectionList:
+            return 12
         default:
             return .zero
         }
@@ -212,6 +269,8 @@ extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UIColl
         switch style {
         case .normal:
             return 18
+        case .collectionList:
+            return 12
         default:
             return .zero
         }

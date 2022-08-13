@@ -872,6 +872,10 @@
 		6A4BFE312893CA5500142113 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4BFE2F2893CA5500142113 /* AlertView.swift */; };
 		6A4EA49C28759554006B74D2 /* WalletSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4EA49B28759554006B74D2 /* WalletSendView.swift */; };
 		6A4EA49D28759554006B74D2 /* WalletSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4EA49B28759554006B74D2 /* WalletSendView.swift */; };
+		6A5006D228A7892D007FE3F5 /* NFTUIKitCollectionRegularItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5006D128A7892D007FE3F5 /* NFTUIKitCollectionRegularItemCell.swift */; };
+		6A5006D328A7892D007FE3F5 /* NFTUIKitCollectionRegularItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5006D128A7892D007FE3F5 /* NFTUIKitCollectionRegularItemCell.swift */; };
+		6A5006D528A78CC8007FE3F5 /* NFTUIKitListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5006D428A78CC8007FE3F5 /* NFTUIKitListTitleView.swift */; };
+		6A5006D628A78CC8007FE3F5 /* NFTUIKitListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5006D428A78CC8007FE3F5 /* NFTUIKitListTitleView.swift */; };
 		6A531C042877CB1C00EEF6C7 /* WalletSendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A531C032877CB1C00EEF6C7 /* WalletSendViewModel.swift */; };
 		6A531C052877CB1C00EEF6C7 /* WalletSendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A531C032877CB1C00EEF6C7 /* WalletSendViewModel.swift */; };
 		6A65690B289128EE007D9BDA /* RouterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A65690A289128EE007D9BDA /* RouterNavigationController.swift */; };
@@ -1435,6 +1439,8 @@
 		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		6A4BFE2F2893CA5500142113 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		6A4EA49B28759554006B74D2 /* WalletSendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendView.swift; sourceTree = "<group>"; };
+		6A5006D128A7892D007FE3F5 /* NFTUIKitCollectionRegularItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitCollectionRegularItemCell.swift; sourceTree = "<group>"; };
+		6A5006D428A78CC8007FE3F5 /* NFTUIKitListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitListTitleView.swift; sourceTree = "<group>"; };
 		6A531C032877CB1C00EEF6C7 /* WalletSendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendViewModel.swift; sourceTree = "<group>"; };
 		6A65690A289128EE007D9BDA /* RouterNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterNavigationController.swift; sourceTree = "<group>"; };
 		6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendAmountView.swift; sourceTree = "<group>"; };
@@ -3428,6 +3434,7 @@
 			children = (
 				6AEA375528A4FD35004545D4 /* Collection */,
 				6AEA374F28A4FA52004545D4 /* NFTUIKitCollectionPinnedSectionHeader.swift */,
+				6A5006D428A78CC8007FE3F5 /* NFTUIKitListTitleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3437,6 +3444,7 @@
 			children = (
 				6AEA374528A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift */,
 				6AEA374928A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift */,
+				6A5006D128A7892D007FE3F5 /* NFTUIKitCollectionRegularItemCell.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -3975,10 +3983,12 @@
 				6A9D7C472833B45500078F63 /* ThemeManager.swift in Sources */,
 				6A382E22289BD3B000163564 /* BionicErrorHandler.swift in Sources */,
 				4ED21F42284E4C0A00320AD0 /* NFTShareView.swift in Sources */,
+				6A5006D328A7892D007FE3F5 /* NFTUIKitCollectionRegularItemCell.swift in Sources */,
 				15B1F6332786B1BB00847BB5 /* CheckboxStyle.swift in Sources */,
 				6A164F762845F1CB0026B31E /* IndexedScrollView.swift in Sources */,
 				154B8909276A1EEB00780E93 /* Color.swift in Sources */,
 				15DC211127819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
+				6A5006D628A78CC8007FE3F5 /* NFTUIKitListTitleView.swift in Sources */,
 				15DC20C927819C56000B187A /* VNavigationViewBackButtonHidden.swift in Sources */,
 				1588331928943D1D00142B35 /* SPQRCodeData.swift in Sources */,
 				15DC219927819C56000B187A /* VTextFieldModel.swift in Sources */,
@@ -4426,10 +4436,12 @@
 				15C58B572868A4EE00BD4FC6 /* ThemeManager.swift in Sources */,
 				6A382E21289BD3B000163564 /* BionicErrorHandler.swift in Sources */,
 				15C58B582868A4EE00BD4FC6 /* NFTShareView.swift in Sources */,
+				6A5006D228A7892D007FE3F5 /* NFTUIKitCollectionRegularItemCell.swift in Sources */,
 				15C58B592868A4EE00BD4FC6 /* CheckboxStyle.swift in Sources */,
 				15C58B5A2868A4EE00BD4FC6 /* IndexedScrollView.swift in Sources */,
 				15C58B5B2868A4EE00BD4FC6 /* Color.swift in Sources */,
 				15C58B5C2868A4EE00BD4FC6 /* VPageIndicatorFinite.swift in Sources */,
+				6A5006D528A78CC8007FE3F5 /* NFTUIKitListTitleView.swift in Sources */,
 				15C58B5D2868A4EE00BD4FC6 /* VNavigationViewBackButtonHidden.swift in Sources */,
 				1588331828943D1D00142B35 /* SPQRCodeData.swift in Sources */,
 				15C58B5F2868A4EE00BD4FC6 /* VTextFieldModel.swift in Sources */,

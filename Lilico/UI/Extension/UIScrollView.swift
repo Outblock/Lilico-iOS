@@ -47,6 +47,10 @@ extension UIScrollView {
         self.mj_footer = footer
     }
     
+    public func removeLoadingAction() {
+        self.mj_footer = nil
+    }
+    
     public func stopLoading() {
         self.mj_footer?.endRefreshing()
     }
@@ -62,5 +66,13 @@ extension UIScrollView {
         }
         
         self.mj_footer?.resetNoMoreData()
+    }
+}
+
+extension UIScrollView {
+    public func scrollToTop(animated: Bool = true) {
+        var off = self.contentOffset
+        off.y = 0 - self.contentInset.top
+        self.setContentOffset(off, animated: animated)
     }
 }

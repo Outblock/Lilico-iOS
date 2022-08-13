@@ -91,7 +91,7 @@ struct NFTTabScreen: View {
 
     var content: some View {
         VStack {
-            NFTUIKitListView(items: viewModel.state.items, selectedCollectionIndex: $viewModel.state.selectedIndex)
+            NFTUIKitListView(items: viewModel.state.items, selectedCollectionIndex: $viewModel.state.selectedIndex, vm: viewModel)
                 .visibility(viewModel.state.isEmpty ? .gone : .visible)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

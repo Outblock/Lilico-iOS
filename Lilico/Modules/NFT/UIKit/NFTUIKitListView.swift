@@ -10,9 +10,12 @@ import SwiftUI
 struct NFTUIKitListView: UIViewControllerRepresentable {
     @State var items: [CollectionItem]
     @Binding var selectedCollectionIndex: Int
+    var vm: NFTTabViewModel
     
     func makeUIViewController(context: Context) -> NFTUIKitListViewController {
-        return NFTUIKitListViewController()
+        let vc = NFTUIKitListViewController()
+        vc.vm = vm
+        return vc
     }
     
     func updateUIViewController(_ uiViewController: NFTUIKitListViewController, context: Context) {
