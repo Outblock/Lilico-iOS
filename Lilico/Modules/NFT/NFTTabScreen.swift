@@ -90,7 +90,9 @@ struct NFTTabScreen: View {
     }
 
     var content: some View {
-        VStack {
+        VStack(spacing: 0) {
+            NFTTabScreen.TopBar(listStyle: $listStyle, offset: $offset)
+            
             NFTUIKitListView(items: viewModel.state.items, selectedCollectionIndex: $viewModel.state.selectedIndex, vm: viewModel)
                 .visibility(viewModel.state.isEmpty ? .gone : .visible)
         }
@@ -291,11 +293,6 @@ extension NFTTabScreen {
 // MARK: TopBar
 
 extension NFTTabScreen {
-    enum ListStyle: String, CaseIterable, Identifiable {
-        case list, grid
-        var id: Self { self }
-    }
-
     struct TopBar: View {
         @Binding var listStyle: String
         @Binding var offset: CGFloat
@@ -303,26 +300,13 @@ extension NFTTabScreen {
         @EnvironmentObject private var viewModel: NFTTabViewModel
 
         var body: some View {
-            HStack {
+            VStack(spacing: 0) {
+                Spacer()
+                
                 HStack(alignment: .center) {
-                    if !viewModel.state.isEmpty {
-                        NFTSegmentControl(currentTab: $listStyle, titles: ["List", "Grid"])
-                    }
+                    NFTSegmentControl(currentTab: $listStyle, titles: ["List", "Grid"])
+                    
                     Spacer()
-
-                    //                if(!viewModel.state.isEmpty) {
-                    //                    Button {
-                    //                        viewModel.trigger(.search)
-                    //                    } label: {
-                    //                        Image(systemName: "magnifyingglass")
-                    //                            .foregroundColor(.white)
-                    //                            .padding(8)
-                    //                            .background {
-                    //                                Circle()
-                    //                                    .foregroundColor(.LL.outline.opacity(0.8))
-                    //                            }
-                    //                    }
-                    //                }
 
                     Button {
                         viewModel.trigger(.add)
@@ -336,9 +320,12 @@ extension NFTTabScreen {
                             }
                     }
                 }
+                .frame(height: 44, alignment: .center)
                 .padding(.horizontal, 18)
                 .padding(.bottom, 4)
             }
+            .frame(maxWidth: .infinity)
+            .frame(height: 44)
             .background(
                 Color.LL.Shades.front.opacity(offset < 0 ? abs(offset / 100.0) : 0)
             )

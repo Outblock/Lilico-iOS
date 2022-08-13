@@ -34,7 +34,7 @@ class NFTUIKitListTitleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .clear
+        backgroundColor = UIColor(Color.LL.Neutrals.background)
         
         addSubview(iconImageView)
         iconImageView.snp.makeConstraints { make in

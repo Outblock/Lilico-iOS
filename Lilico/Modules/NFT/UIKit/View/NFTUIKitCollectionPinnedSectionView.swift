@@ -1,5 +1,5 @@
 //
-//  NFTUIKitCollectionPinnedSectionHeader.swift
+//  NFTUIKitCollectionPinnedSectionView.swift
 //  Lilico
 //
 //  Created by Selina on 11/8/2022.
@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class NFTUIKitCollectionPinnedSectionHeader: UICollectionReusableView {
+class NFTUIKitCollectionPinnedSectionView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(Color.LL.Neutrals.background)

@@ -9,7 +9,15 @@ import UIKit
 import SnapKit
 import SwiftUI
 
-private let PinnedHeaderHeight: CGFloat = 56
+private let PinnedHeaderHeight: CGFloat = 80
+private let CollecitonTitleViewHeight: CGFloat = 32
+
+extension NFTUIKitListViewController {
+    enum Section: Int {
+        case other
+        case nft
+    }
+}
 
 class NFTUIKitListViewController: UIViewController {
     var collectionItems: [CollectionItem] = []
@@ -19,10 +27,6 @@ class NFTUIKitListViewController: UIViewController {
     
     private lazy var collectionTitleView: NFTUIKitListTitleView = {
         let view = NFTUIKitListTitleView()
-        view.snp.makeConstraints { make in
-            make.height.equalTo(32)
-        }
-        
         view.switchButton.addTarget(self, action: #selector(onSwitchButtonClick), for: .touchUpInside)
         
         return view
@@ -41,9 +45,12 @@ class NFTUIKitListViewController: UIViewController {
         view.dataSource = self
         view.showsHorizontalScrollIndicator = false
         view.showsVerticalScrollIndicator = false
-        view.register(NFTUIKitCollectionPinnedSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "NFTUIKitCollectionPinnedSectionHeader")
+        view.register(NFTUIKitCollectionPinnedSectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "PinHeader")
+        view.register(NFTUIKitCollectionPinnedSectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PinFooter")
         view.register(NFTUIKitItemCell.self, forCellWithReuseIdentifier: "NFTUIKitItemCell")
         view.register(NFTUIKitCollectionRegularItemCell.self, forCellWithReuseIdentifier: "NFTUIKitCollectionRegularItemCell")
+        
+//        view.contentInset = UIEdgeInsets(top: CollecitonTitleViewHeight, left: 0, bottom: 0, right: 0)
         
         view.setRefreshingAction { [weak self] in
             self?.vm?.refreshCollectionAction()
@@ -67,15 +74,9 @@ class NFTUIKitListViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = UIColor(Color.LL.Neutrals.background)
         
-        view.addSubview(collectionTitleView)
-        collectionTitleView.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview()
-        }
-        
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(collectionTitleView.snp.bottom)
+            make.top.left.right.bottom.equalToSuperview()
         }
     }
     
@@ -173,10 +174,39 @@ extension NFTUIKitListViewController {
         
         reloadViews()
     }
+    
+    private func onScrollOffsetChanged(y: CGFloat) {
+//        let insetTop = collectionView.contentInset.top
+//
+//        switch style {
+//        case .normal:
+//            if y < insetTop {
+//                collectionTitleView.transform = .identity
+//            } else {
+//                collectionTitleView.transform = CGAffineTransformMakeTranslation(0, max(-200, -y))
+//            }
+//        case .collectionList:
+//            collectionTitleView.transform = .identity
+//        default:
+//            break
+//        }
+    }
 }
 
 extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        onScrollOffsetChanged(y: scrollView.contentOffset.y)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == Section.other.rawValue {
+            return 0
+        }
+        
         switch style {
         case .normal:
             return currentSelectedCollectionItem()?.nfts.count ?? 0
@@ -220,38 +250,74 @@ extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == Section.other.rawValue {
+            return .zero
+        }
+        
         switch style {
         case .normal:
             return CGSize(width: 0, height: PinnedHeaderHeight)
         case .collectionList:
-            return .zero
+            return CGSize(width: 0, height: CollecitonTitleViewHeight)
         default:
             return .zero
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if section == Section.other.rawValue, style == .normal {
+            return CGSize(width: 0, height: CollecitonTitleViewHeight)
+        }
+        
+        return .zero
+    }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch style {
-        case .normal:
-            if kind == UICollectionView.elementKindSectionHeader {
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "NFTUIKitCollectionPinnedSectionHeader", for: indexPath)
-                if collectionHContainer.superview != header {
-                    collectionHContainer.removeFromSuperview()
-                    header.addSubview(collectionHContainer)
-                    collectionHContainer.snp.makeConstraints { make in
+        if indexPath.section == Section.other.rawValue {
+            if style == .normal, kind == UICollectionView.elementKindSectionFooter {
+                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "PinFooter", for: indexPath)
+                if collectionTitleView.superview != footer {
+                    collectionTitleView.removeFromSuperview()
+                    footer.addSubview(collectionTitleView)
+                    collectionTitleView.snp.makeConstraints { make in
                         make.left.right.top.bottom.equalToSuperview()
                     }
                 }
                 
+                return footer
+            }
+        }
+        
+        switch style {
+        case .normal:
+            if kind == UICollectionView.elementKindSectionHeader {
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "PinHeader", for: indexPath)
+                header.removeSubviews()
+                collectionHContainer.removeFromSuperview()
+                header.addSubview(collectionHContainer)
+                collectionHContainer.snp.makeConstraints { make in
+                    make.left.right.top.bottom.equalToSuperview()
+                }
+                
                 return header
-            } else {
-                return UICollectionReusableView()
             }
         case .collectionList:
-            return UICollectionReusableView()
+            if kind == UICollectionView.elementKindSectionHeader {
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "PinHeader", for: indexPath)
+                header.removeSubviews()
+                collectionTitleView.removeFromSuperview()
+                header.addSubview(collectionTitleView)
+                collectionTitleView.snp.makeConstraints { make in
+                    make.left.right.top.bottom.equalToSuperview()
+                }
+                
+                return header
+            }
         default:
-            return UICollectionReusableView()
+            break
         }
+        
+        return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -277,6 +343,10 @@ extension NFTUIKitListViewController: UICollectionViewDelegateFlowLayout, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if section == Section.other.rawValue {
+            return .zero
+        }
+        
         return UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
     }
 }
