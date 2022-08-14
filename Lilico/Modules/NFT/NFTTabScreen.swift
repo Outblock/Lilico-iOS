@@ -28,12 +28,6 @@ extension NFTTabScreen: AppTabBarPageProtocol {
 }
 
 struct NFTTabScreen: View {
-    @State var listStyle: String = "List"
-
-    var isListStyle: Bool {
-        return listStyle == "List"
-    }
-
     @StateObject var viewModel = NFTTabViewModel()
     @StateObject var favoriteStore = NFTFavoriteStore.shared
 
@@ -44,20 +38,8 @@ struct NFTTabScreen: View {
 
     @Namespace var NFTImageEffect
 
-    var currentNFTs: [NFTModel] {
-        if isListStyle {
-            if let collectionItem = viewModel.currentCollectionItem() {
-                return collectionItem.nfts
-            } else {
-                return []
-            }
-        } else {
-            return viewModel.state.items.flatMap { $0.nfts }
-        }
-    }
-
     var canShowFavorite: Bool {
-        return (favoriteStore.isNotEmpty && isListStyle)
+        return favoriteStore.isNotEmpty
     }
 
     @State private var isHorizontalCollection = true
@@ -91,9 +73,9 @@ struct NFTTabScreen: View {
 
     var content: some View {
         VStack(spacing: 0) {
-            NFTTabScreen.TopBar(listStyle: $listStyle, offset: $offset)
+            NFTTabScreen.TopBar(listStyle: $viewModel.state.style, offset: $offset)
             
-            NFTUIKitListView(items: viewModel.state.items, selectedCollectionIndex: $viewModel.state.selectedIndex, vm: viewModel)
+            NFTUIKitListView(items: viewModel.state.items, gridItems: viewModel.state.gridNFTs, selectedCollectionIndex: $viewModel.state.selectedIndex, style: $viewModel.state.style, vm: viewModel)
                 .visibility(viewModel.state.isEmpty ? .gone : .visible)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -294,7 +276,7 @@ extension NFTTabScreen {
 
 extension NFTTabScreen {
     struct TopBar: View {
-        @Binding var listStyle: String
+        @Binding var listStyle: NFTTabScreen.ViewStyle
         @Binding var offset: CGFloat
 
         @EnvironmentObject private var viewModel: NFTTabViewModel
@@ -304,7 +286,7 @@ extension NFTTabScreen {
                 Spacer()
                 
                 HStack(alignment: .center) {
-                    NFTSegmentControl(currentTab: $listStyle, titles: ["List", "Grid"])
+                    NFTSegmentControl(currentTab: $listStyle, styles: [.normal, .grid])
                     
                     Spacer()
 

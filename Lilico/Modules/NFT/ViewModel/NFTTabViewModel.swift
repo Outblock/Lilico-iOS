@@ -16,6 +16,17 @@ extension NFTTabScreen {
         case normal
         case collectionList
         case grid
+        
+        var desc: String {
+            switch self {
+            case .normal:
+                return "List"
+            case .grid:
+                return "Grid"
+            default:
+                return ""
+            }
+        }
     }
     
     struct ViewState {
@@ -24,6 +35,12 @@ extension NFTTabScreen {
         var loading: Bool = false
         var collections: [NFTCollection] = []
         var items: [CollectionItem] = []
+        
+        var gridNFTs: [NFTModel] = []
+        var gridIsEnd: Bool = false
+        var gridIsLoading: Bool = false
+        var gridInitRequested: Bool = false
+        
         var colorsMap: [String: [Color]] = [:]
         var isEmpty: Bool {
             return !loading && items.count == 0
@@ -87,6 +104,8 @@ extension NFTTabViewModel {
         }
         
         state.loading = true
+        state.style = .normal
+        changeSelectIndexAction(index: 0)
         
         Task {
             do {
@@ -110,21 +129,16 @@ extension NFTTabViewModel {
                     items.append(item)
                 }
                 
-                DispatchQueue.syncOnMain {
+                DispatchQueue.main.async {
                     self.state.collections = collecitons
                     self.state.items = items
                     self.state.loading = false
-                }
-                
-                DispatchQueue.main.async {
-                    self.changeSelectIndexAction(index: 0)
                 }
             } catch {
                 DispatchQueue.main.async {
                     self.state.loading = false
                 }
                 
-                debugPrint("fuck: \(error)")
                 // TODO: - Error View
                 HUD.error(title: "request_failed".localized)
             }
@@ -149,6 +163,92 @@ extension NFTTabViewModel {
             return list
         } else {
             return []
+        }
+    }
+}
+
+// MARK: - Grid Style
+
+extension NFTTabViewModel {
+    private func requestGrid(offset: Int, limit: Int = 24) async throws -> [NFTModel] {
+        let request = NFTGridDetailListRequest(address: owner, offset: offset, limit: limit)
+        let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.gridDetailList(request))
+        
+        guard let nfts = response.data?.nfts else {
+            return []
+        }
+        
+        let models = nfts.map { NFTModel($0, in: nil) }
+        return models
+    }
+    
+    func refreshGridAction(isFromCache: Bool = false, completion: @escaping (Bool) -> ()) {
+        if state.gridIsLoading {
+            return
+        }
+        
+        state.gridInitRequested = true
+        state.gridIsLoading = true
+        
+        Task {
+            do {
+                let nfts = try await requestGrid(offset: 0)
+                DispatchQueue.main.async {
+                    self.state.gridNFTs.removeAll()
+                    self.appendNFTsNoDuplicated(nfts)
+                    self.state.gridIsEnd = false
+                    self.state.gridIsLoading = false
+                    completion(true)
+                }
+            } catch {
+                // TODO: - Error View
+                HUD.error(title: "request_failed".localized)
+                DispatchQueue.main.async {
+                    self.state.gridIsLoading = false
+                    completion(false)
+                }
+            }
+        }
+    }
+    
+    func loadMoreGridAction(completion: @escaping (Bool) -> ()) {
+        if state.gridIsLoading {
+            return
+        }
+        
+        state.gridIsLoading = true
+        
+        Task {
+            do {
+                let offset = self.state.gridNFTs.count
+                let limit = 24
+                let nfts = try await requestGrid(offset: offset, limit: limit)
+                
+                let isEnd = nfts.count < limit
+                
+                DispatchQueue.main.async {
+                    self.appendNFTsNoDuplicated(nfts)
+                    self.state.gridIsEnd = isEnd
+                    self.state.gridIsLoading = false
+                    completion(true)
+                }
+            } catch {
+                HUD.error(title: "request_failed".localized)
+                DispatchQueue.main.async {
+                    self.state.gridIsLoading = false
+                    completion(false)
+                }
+            }
+        }
+    }
+    
+    private func appendNFTsNoDuplicated(_ newNFTs: [NFTModel]) {
+        for nft in newNFTs {
+            let exist = state.gridNFTs.first { $0.id == nft.id }
+            
+            if exist == nil {
+                state.gridNFTs.append(nft)
+            }
         }
     }
 }

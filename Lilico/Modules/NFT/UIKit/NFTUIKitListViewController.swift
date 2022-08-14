@@ -21,9 +21,12 @@ extension NFTUIKitListViewController {
 
 class NFTUIKitListViewController: UIViewController {
     var collectionItems: [CollectionItem] = []
+    var gridItems: [NFTModel] = []
     var style: NFTTabScreen.ViewStyle = .normal
     var selectedCollectionIndex: Int = 0
     var vm: NFTTabViewModel?
+    
+    var styleDidChangedCallback: ((NFTTabScreen.ViewStyle) -> ())?
     
     private lazy var collectionTitleView: NFTUIKitListTitleView = {
         let view = NFTUIKitListTitleView()
@@ -53,7 +56,16 @@ class NFTUIKitListViewController: UIViewController {
 //        view.contentInset = UIEdgeInsets(top: CollecitonTitleViewHeight, left: 0, bottom: 0, right: 0)
         
         view.setRefreshingAction { [weak self] in
-            self?.vm?.refreshCollectionAction()
+            guard let self = self else {
+                return
+            }
+            
+            if self.collectionView.isLoading() {
+                self.collectionView.stopRefreshing()
+                return
+            }
+            
+            self.refreshAction()
         }
         
         return view
@@ -88,6 +100,7 @@ class NFTUIKitListViewController: UIViewController {
         collectionView.reloadData()
         collectionView.stopRefreshing()
         collectionView.stopLoading()
+        collectionView.setNoMoreData(false)
         
         setupLoadingActionIfNeeded()
         
@@ -102,7 +115,16 @@ extension NFTUIKitListViewController {
         case .normal, .grid:
             if collectionView.mj_footer == nil {
                 collectionView.setLoadingAction { [weak self] in
-                    self?.loadMoreAction()
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    if self.collectionView.isRefreshing() {
+                        self.collectionView.stopLoading()
+                        return
+                    }
+                    
+                    self.loadMoreAction()
                 }
             }
         case .collectionList:
@@ -127,16 +149,65 @@ extension NFTUIKitListViewController {
     private func loadNFTsIfNeeded() {
         switch style {
         case .normal:
-            if let collectionItem = currentSelectedCollectionItem(), !collectionItem.isEnd, collectionItem.nfts.isEmpty {
+            if let collectionItem = currentSelectedCollectionItem(), !collectionItem.isEnd, collectionItem.nfts.isEmpty, collectionItem.initRequested == false {
                 loadMoreAction()
             }
+        case .grid:
+            if vm?.state.gridInitRequested == false, gridItems.isEmpty, vm?.state.gridIsEnd == false, vm?.state.gridIsLoading == false {
+                collectionView.beginRefreshing()
+            }
+            break
         default:
             break
         }
     }
     
+    private func refreshAction() {
+        switch style {
+        case .normal, .collectionList:
+            self.vm?.refreshCollectionAction()
+        case .grid:
+            self.vm?.refreshGridAction(completion: { [weak self] result in
+                if !result {
+                    self?.collectionView.stopRefreshing()
+                }
+            })
+        }
+    }
+    
     private func loadMoreAction() {
+        switch style {
+        case .normal:
+            normalLoadMore()
+        case .grid:
+            gridLoadMore()
+        default:
+            collectionView.stopLoading()
+        }
+    }
+    
+    private func gridLoadMore() {
+        if let vm = vm, vm.state.gridIsEnd {
+            collectionView.stopLoading()
+            collectionView.setNoMoreData(true)
+            return
+        }
+        
+        vm?.loadMoreGridAction(completion: { [weak self] result in
+            if !result {
+                self?.collectionView.stopLoading()
+            }
+        })
+    }
+    
+    private func normalLoadMore() {
         guard let collectionItem = currentSelectedCollectionItem() else {
+            return
+        }
+        
+        if collectionItem.isEnd {
+            self.collectionView.stopLoading()
+            self.collectionView.setNoMoreData(true)
             return
         }
         
@@ -173,6 +244,8 @@ extension NFTUIKitListViewController {
         }
         
         reloadViews()
+        
+        styleDidChangedCallback?(style)
     }
     
     private func onScrollOffsetChanged(y: CGFloat) {

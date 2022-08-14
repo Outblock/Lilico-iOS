@@ -80,7 +80,7 @@ struct ContractPath: Codable, Hashable {
 
 struct NFTModel: Codable, Hashable, Identifiable {
     var id: String {
-        return (response.contract.name ?? "") + " #" + response.id.tokenID
+        return response.contract.address + "." + (response.contract.name ?? "") + "-" + response.id.tokenID
     }
 
     let image: URL
@@ -145,6 +145,7 @@ class CollectionItem: Identifiable {
     
     var isEnd: Bool = false
     var isRequesting: Bool = false
+    var initRequested: Bool = false
 
     var showName: String {
         return collection?.name ?? ""
@@ -164,6 +165,7 @@ class CollectionItem: Identifiable {
         }
         
         isRequesting = true
+        initRequested = true
         
         let limit = 24
         Task {
