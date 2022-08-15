@@ -51,6 +51,10 @@ extension UIScrollView {
         self.mj_footer = nil
     }
     
+    public func beginLoading() {
+        self.mj_footer?.beginRefreshing()
+    }
+    
     public func stopLoading() {
         self.mj_footer?.endRefreshing()
     }

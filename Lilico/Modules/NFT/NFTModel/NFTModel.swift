@@ -191,7 +191,6 @@ class CollectionItem: Identifiable {
             } catch {
                 DispatchQueue.main.async {
                     self.isRequesting = false
-                    HUD.error(title: "request_failed".localized)
                     self.loadCallback?(false)
                 }
             }

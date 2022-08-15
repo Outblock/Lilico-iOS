@@ -57,13 +57,7 @@ struct NFTTabScreen: View {
 
     var body: some View {
         ZStack {
-            if viewModel.state.loading {
-                NFTLoading()
-            } else if viewModel.state.isEmpty {
-                NFTEmptyView()
-            } else {
-                content
-            }
+            content
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .backgroundFill(Color.LL.Neutrals.background)
@@ -73,10 +67,8 @@ struct NFTTabScreen: View {
 
     var content: some View {
         VStack(spacing: 0) {
-            NFTTabScreen.TopBar(listStyle: $viewModel.state.style, offset: $offset)
-            
-            NFTUIKitListView(items: viewModel.state.items, gridItems: viewModel.state.gridNFTs, selectedCollectionIndex: $viewModel.state.selectedIndex, style: $viewModel.state.style, vm: viewModel)
-                .visibility(viewModel.state.isEmpty ? .gone : .visible)
+//            NFTTabScreen.TopBar(listStyle: $viewModel.state.style, offset: $offset)
+            NFTUIKitListView()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         
@@ -316,78 +308,78 @@ extension NFTTabScreen {
 }
 
 extension NFTTabScreen {
-    struct CollectionSection: View {
-        
-        @Binding var listStyle: String
-        @Binding var isHorizontal: Bool
-        @Binding var selectedIndex: Int
-        @EnvironmentObject var viewModel: NFTTabViewModel
-        
-        var body: some View {
-            VStack {
-                if listStyle == "List" {
-                    VStack {
-                        HStack {
-                            Image(.Image.Logo.collection3D)
-                            Text("collections".localized)
-                                .font(.LL.largeTitle2)
-                                .semibold()
-
-                            Spacer()
-                            Button {
-                                isHorizontal.toggle()
-                            } label: {
-                                Image( isHorizontal ? .Image.Logo.gridHLayout : .Image.Logo.gridHLayout)
-                            }
-                        }
-                        .foregroundColor(.LL.text)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 16)
-                        .padding(.top, 22)
-                        
-                        VStack {
-                            if isHorizontal {
-                                ScrollViewReader { proxy in
-                                    ScrollView(.horizontal,
-                                               showsIndicators: false,
-                                               content: {
-                                                   LazyHStack(alignment: .center, spacing: 12, content: {
-                                                       ForEach(viewModel.state.items, id: \.id) { item in
-                                                           let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
-                                                           NFTCollectionCard(index: index, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
-                                                               .id(index)
-                                                               .onChange(of: selectedIndex) { value in
-                                                                   withAnimation {
-                                                                       proxy.scrollTo(value, anchor: .center)
-                                                                   }
-                                                               }
-                                                       }
-                                                   })
-                                                   .frame(height: 56)
-                                                   .padding(.leading, 18)
-                                                   .padding(.bottom, 12)
-
-                                               })
-                                }
-                            } else {
-                                LazyVStack(alignment: .center, spacing: 12, content: {
-                                    ForEach(viewModel.state.items, id: \.id) { item in
-                                        let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
-                                        NFTCollectionCard(index: index, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
-                                    }
-                                })
-                                .padding(.horizontal, 18)
-                            }
-                        }
-                    }
-                    
-                }
-            }
-            .background(
-                Color.LL.Neutrals.background
-            )
-        }
-    }
+//    struct CollectionSection: View {
+//
+//        @Binding var listStyle: String
+//        @Binding var isHorizontal: Bool
+//        @Binding var selectedIndex: Int
+//        @EnvironmentObject var viewModel: NFTTabViewModel
+//
+//        var body: some View {
+//            VStack {
+//                if listStyle == "List" {
+//                    VStack {
+//                        HStack {
+//                            Image(.Image.Logo.collection3D)
+//                            Text("collections".localized)
+//                                .font(.LL.largeTitle2)
+//                                .semibold()
+//
+//                            Spacer()
+//                            Button {
+//                                isHorizontal.toggle()
+//                            } label: {
+//                                Image( isHorizontal ? .Image.Logo.gridHLayout : .Image.Logo.gridHLayout)
+//                            }
+//                        }
+//                        .foregroundColor(.LL.text)
+//                        .padding(.horizontal, 20)
+//                        .padding(.vertical, 16)
+//                        .padding(.top, 22)
+//
+//                        VStack {
+//                            if isHorizontal {
+//                                ScrollViewReader { proxy in
+//                                    ScrollView(.horizontal,
+//                                               showsIndicators: false,
+//                                               content: {
+//                                                   LazyHStack(alignment: .center, spacing: 12, content: {
+//                                                       ForEach(viewModel.state.items, id: \.id) { item in
+//                                                           let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
+//                                                           NFTCollectionCard(index: index, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
+//                                                               .id(index)
+//                                                               .onChange(of: selectedIndex) { value in
+//                                                                   withAnimation {
+//                                                                       proxy.scrollTo(value, anchor: .center)
+//                                                                   }
+//                                                               }
+//                                                       }
+//                                                   })
+//                                                   .frame(height: 56)
+//                                                   .padding(.leading, 18)
+//                                                   .padding(.bottom, 12)
+//
+//                                               })
+//                                }
+//                            } else {
+//                                LazyVStack(alignment: .center, spacing: 12, content: {
+//                                    ForEach(viewModel.state.items, id: \.id) { item in
+//                                        let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
+//                                        NFTCollectionCard(index: index, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
+//                                    }
+//                                })
+//                                .padding(.horizontal, 18)
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            }
+//            .background(
+//                Color.LL.Neutrals.background
+//            )
+//        }
+//    }
 }
 
 // MARK: Collection Bar
@@ -446,51 +438,51 @@ extension NFTTabScreen {
 // MARK: Collection Section
 
 extension NFTTabScreen {
-    struct CollectionBody: View {
-        @Binding var barStyle: NFTTabScreen.CollectionBar.BarStyle
-        @Binding var selectedIndex: Int
-        @EnvironmentObject var viewModel: NFTTabViewModel
-
-        var body: some View {
-            VStack {
-                if barStyle == .horizontal {
-                    ScrollViewReader { proxy in
-                        ScrollView(.horizontal,
-                                   showsIndicators: false,
-                                   content: {
-                                       LazyHStack(alignment: .center, spacing: 12, content: {
-                                           ForEach(viewModel.state.items, id: \.id) { item in
-                                               let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
-                                               NFTCollectionCard(index: index, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
-                                                   .id(index)
-                                                   .onChange(of: selectedIndex) { value in
-                                                       withAnimation {
-                                                           proxy.scrollTo(value, anchor: .center)
-                                                       }
-                                                   }
-                                           }
-                                       })
-                                       .frame(height: 56)
-                                       .padding(.leading, 18)
-                                       .padding(.bottom, 12)
-
-                                   })
-                    }
-                } else {
-                    LazyVStack(alignment: .center, spacing: 12, content: {
-                        ForEach(viewModel.state.items, id: \.id) { item in
-                            let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
-                            NFTCollectionCard(index: index, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
-                        }
-                    })
-                    .padding(.horizontal, 18)
-                }
-            }
-            .background(
-                Color.LL.Neutrals.background
-            )
-        }
-    }
+//    struct CollectionBody: View {
+//        @Binding var barStyle: NFTTabScreen.CollectionBar.BarStyle
+//        @Binding var selectedIndex: Int
+//        @EnvironmentObject var viewModel: NFTTabViewModel
+//
+//        var body: some View {
+//            VStack {
+//                if barStyle == .horizontal {
+//                    ScrollViewReader { proxy in
+//                        ScrollView(.horizontal,
+//                                   showsIndicators: false,
+//                                   content: {
+//                                       LazyHStack(alignment: .center, spacing: 12, content: {
+//                                           ForEach(viewModel.state.items, id: \.id) { item in
+//                                               let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
+//                                               NFTCollectionCard(index: index, item: item, isHorizontal: true, selectedIndex: $selectedIndex)
+//                                                   .id(index)
+//                                                   .onChange(of: selectedIndex) { value in
+//                                                       withAnimation {
+//                                                           proxy.scrollTo(value, anchor: .center)
+//                                                       }
+//                                                   }
+//                                           }
+//                                       })
+//                                       .frame(height: 56)
+//                                       .padding(.leading, 18)
+//                                       .padding(.bottom, 12)
+//
+//                                   })
+//                    }
+//                } else {
+//                    LazyVStack(alignment: .center, spacing: 12, content: {
+//                        ForEach(viewModel.state.items, id: \.id) { item in
+//                            let index = viewModel.state.items.firstIndex(where: {$0.id == item.id})!
+//                            NFTCollectionCard(index: index, item: item, isHorizontal: false, selectedIndex: $selectedIndex)
+//                        }
+//                    })
+//                    .padding(.horizontal, 18)
+//                }
+//            }
+//            .background(
+//                Color.LL.Neutrals.background
+//            )
+//        }
+//    }
 }
 
 // MARK: Preview

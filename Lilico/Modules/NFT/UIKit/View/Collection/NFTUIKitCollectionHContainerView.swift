@@ -13,6 +13,8 @@ class NFTUIKitCollectionHContainerView: UIView {
     var items: [CollectionItem] = []
     var selectedIndex: Int = 0
     
+    var didSelectIndexCallback: ((Int) -> ())?
+    
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.bounces = false
@@ -79,5 +81,7 @@ extension NFTUIKitCollectionHContainerView: UICollectionViewDelegateFlowLayout, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.item
         collectionView.reloadData()
+        
+        didSelectIndexCallback?(selectedIndex)
     }
 }

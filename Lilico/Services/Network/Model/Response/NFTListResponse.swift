@@ -90,7 +90,8 @@ struct NFTTokenMetadata: Codable, Hashable {
 // MARK: - Media
 
 struct NFTMedia: Codable, Hashable {
-    let uri, mimeType: String
+    let uri: String
+    let mimeType: String?
 }
 
 // MARK: - Metadata
