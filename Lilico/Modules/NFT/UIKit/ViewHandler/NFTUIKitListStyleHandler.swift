@@ -38,6 +38,7 @@ class NFTUIKitListStyleHandler: NSObject {
     
     private lazy var collectionHContainer: NFTUIKitCollectionHContainerView = {
         let view = NFTUIKitCollectionHContainerView()
+        view.items = dataModel.items
         view.didSelectIndexCallback = { [weak self] newIndex in
             guard let self = self else {
                 return
@@ -45,6 +46,8 @@ class NFTUIKitListStyleHandler: NSObject {
             
             self.changeSelectCollectionIndexAction(newIndex)
         }
+        
+        view.reloadViews()
         return view
     }()
     

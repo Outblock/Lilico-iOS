@@ -8,10 +8,18 @@
 import UIKit
 
 class NFTUIKitListGridDataModel {
+    // TODO: Use real address
     private var owner: String = "0x01d63aa89238a559"
     var nfts: [NFTModel] = []
     var isEnd: Bool = false
     var isRequesting: Bool = false
+    
+    init() {
+        if let cachedNFTs = NFTUIKitCache.cache.getGridNFTs() {
+            let models = cachedNFTs.map { NFTModel($0, in: nil) }
+            self.nfts = models
+        }
+    }
     
     func requestGridAction(offset: Int) async throws {
         if isRequesting {
@@ -30,6 +38,7 @@ class NFTUIKitListGridDataModel {
             self.appendGridNFTsNoDuplicated(nfts)
             self.isEnd = nfts.count < limit
             self.isRequesting = false
+            self.saveToCache()
         }
     }
     
@@ -54,14 +63,47 @@ class NFTUIKitListGridDataModel {
             }
         }
     }
+    
+    private func saveToCache() {
+        let array = nfts.map { $0.response }
+        NFTUIKitCache.cache.saveGridToCache(array)
+    }
 }
 
 class NFTUIKitListNormalDataModel {
+    // TODO: Use real address
     private var owner: String = "0x01d63aa89238a559"
     var items: [CollectionItem] = []
     var selectedIndex = 0
     var isRequesting: Bool = false
     var isCollectionListStyle: Bool = false
+    
+    init() {
+        if var cachedCollections = NFTUIKitCache.cache.getCollections() {
+            cachedCollections.sort {
+                if $0.count == $1.count {
+                    return $0.collection.contractName < $1.collection.contractName
+                }
+                
+                return $0.count > $1.count
+            }
+            
+            var items = [CollectionItem]()
+            for collection in cachedCollections {
+                let item = CollectionItem()
+                item.address = owner
+                item.name = collection.collection.contractName
+                item.count = collection.count
+                item.collection = collection.collection
+                
+                item.loadFromCache()
+                
+                items.append(item)
+            }
+            
+            self.items = items
+        }
+    }
     
     var selectedCollectionItem: CollectionItem? {
         if selectedIndex >= items.count {
@@ -79,6 +121,9 @@ class NFTUIKitListNormalDataModel {
         isRequesting = true
         
         var collecitons = try await requestCollections()
+        
+        removeAllCache()
+        
         collecitons.sort {
             if $0.count == $1.count {
                 return $0.collection.contractName < $1.collection.contractName
@@ -86,6 +131,8 @@ class NFTUIKitListNormalDataModel {
             
             return $0.count > $1.count
         }
+        
+        NFTUIKitCache.cache.saveCollectionToCache(collecitons)
         
         var items = [CollectionItem]()
         for collection in collecitons {
@@ -111,5 +158,10 @@ class NFTUIKitListNormalDataModel {
         } else {
             return []
         }
+    }
+    
+    private func removeAllCache() {
+        NFTUIKitCache.cache.removeCollectionCache()
+        NFTUIKitCache.cache.removeAllNFTs()
     }
 }

@@ -75,6 +75,8 @@ class NFTUIKitGridStyleHandler: NSObject {
         collectionView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
         }
+        
+        collectionView.reloadData()
     }
     
     private func reloadViews() {

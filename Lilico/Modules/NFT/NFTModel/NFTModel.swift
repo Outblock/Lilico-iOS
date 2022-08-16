@@ -145,7 +145,6 @@ class CollectionItem: Identifiable {
     
     var isEnd: Bool = false
     var isRequesting: Bool = false
-    var initRequested: Bool = false
 
     var showName: String {
         return collection?.name ?? ""
@@ -159,13 +158,19 @@ class CollectionItem: Identifiable {
         return URL(string: placeholder)!
     }
     
+    func loadFromCache() {
+        if let cachedNFTs = NFTUIKitCache.cache.getNFTs(contractName: name) {
+            let models = cachedNFTs.map { NFTModel($0, in: self.collection) }
+            self.nfts = models
+        }
+    }
+    
     func load() {
         if isRequesting || isEnd {
             return
         }
         
         isRequesting = true
-        initRequested = true
         
         let limit = 24
         Task {
@@ -185,6 +190,8 @@ class CollectionItem: Identifiable {
                     if list.count != limit {
                         self.isEnd = true
                     }
+                    
+                    self.saveNFTsToCache()
                     
                     self.loadCallback?(true)
                 }
@@ -211,5 +218,10 @@ class CollectionItem: Identifiable {
         let request = NFTCollectionDetailListRequest(address: address, contractName: name, offset: offset, limit: limit)
         let response: NFTListResponse = try await Network.request(LilicoAPI.NFT.collectionDetailList(request))
         return response
+    }
+    
+    private func saveNFTsToCache() {
+        let models = nfts.map { $0.response }
+        NFTUIKitCache.cache.saveNFTsToCache(models, contractName: name)
     }
 }
