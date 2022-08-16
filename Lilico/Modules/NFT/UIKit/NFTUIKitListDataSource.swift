@@ -29,6 +29,7 @@ class NFTUIKitListGridDataModel {
 
             self.appendGridNFTsNoDuplicated(nfts)
             self.isEnd = nfts.count < limit
+            self.isRequesting = false
         }
     }
     

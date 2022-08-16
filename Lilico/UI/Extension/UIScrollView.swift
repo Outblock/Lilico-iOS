@@ -13,7 +13,19 @@ extension UIScrollView {
     // refreshing
     
     public func setRefreshingAction(_ action: @escaping () -> Void) {
-        let header = MJRefreshNormalHeader(refreshingBlock: action)
+        let header = MJRefreshGifHeader(refreshingBlock: action)
+        
+        var images: [UIImage] = []
+        for i in 0...95 {
+            let image = UIImage(named: "refresh-header-seq-\(i)")!
+            images.append(image)
+        }
+        
+        let duration: TimeInterval = 1.6
+        header.setImages([images.first!], duration: duration, for: .idle)
+        header.setImages(images, duration: duration, for: .pulling)
+        header.setImages(images, duration: duration, for: .refreshing)
+        
         header.lastUpdatedTimeLabel?.isHidden = true
         header.stateLabel?.isHidden = true
         header.isAutomaticallyChangeAlpha = true
@@ -38,10 +50,10 @@ extension UIScrollView {
         let footer = MJRefreshAutoStateFooter(refreshingBlock: action)
         footer.stateLabel?.textColor = UIColor(hex: "#888888")
         footer.stateLabel?.font = UIFont.systemFont(ofSize: 14)
-        footer.setTitle("上拉加载更多", for: .idle)
-        footer.setTitle("松开开始加载", for: .pulling)
-        footer.setTitle("正在加载", for: .refreshing)
-        footer.setTitle(noMoreDataLabelEnabled ? "已显示全部内容" : "", for: .noMoreData)
+        footer.setTitle("pull_up_load_more".localized, for: .idle)
+        footer.setTitle("release_load_more".localized, for: .pulling)
+        footer.setTitle("loading_more".localized, for: .refreshing)
+        footer.setTitle(noMoreDataLabelEnabled ? "no_more_data".localized : "", for: .noMoreData)
         footer.triggerAutomaticallyRefreshPercent = 1
         footer.isAutomaticallyChangeAlpha = true
         self.mj_footer = footer

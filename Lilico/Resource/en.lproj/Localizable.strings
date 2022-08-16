@@ -73,6 +73,8 @@
 "nft_collection_add_failed"="Failed";
 "nft_collection_add_pending"="Pending";
 "search_NFT_collection" = "Search NFT Collection";
+"seg_list" = "List";
+"seg_grid" = "Grid";
 
 // Account
 "create_a" = "Create a";
@@ -299,3 +301,9 @@
 "reject_failed" = "Reject failed";
 "approved" = "Approved";
 "rejected" = "Rejected";
+
+// Other
+"pull_up_load_more" = "Pull up to load more";
+"release_load_more" = "Release to start loading";
+"loading_more" = "Loading...";
+"no_more_data" = "No more data";
