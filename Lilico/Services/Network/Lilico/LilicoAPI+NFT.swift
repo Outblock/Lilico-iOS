@@ -13,6 +13,9 @@ extension LilicoAPI {
         case collections(String)
         case collectionDetailList(NFTCollectionDetailListRequest)
         case gridDetailList(NFTGridDetailListRequest)
+        case favList(String)
+        case addFav(NFTAddFavRequest)
+        case updateFav(NFTUpdateFavRequest)
     }
 }
 
@@ -33,13 +36,19 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
             return "v2/nft/collections"
         case .collectionDetailList:
             return "v2/nft/single"
+        case .favList, .addFav, .updateFav:
+            return "v2/nft/favorite"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .collections, .collectionDetailList, .gridDetailList:
+        case .collections, .collectionDetailList, .gridDetailList, .favList:
             return .get
+        case .addFav:
+            return .put
+        case .updateFav:
+            return .post
         }
     }
 
@@ -51,6 +60,12 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
             return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
         case let .collections(address):
             return .requestParameters(parameters: ["address": address], encoding: URLEncoding())
+        case let .favList(address):
+            return .requestParameters(parameters: ["address": address], encoding: URLEncoding())
+        case let .addFav(request):
+            return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
+        case let .updateFav(request):
+            return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
         }
     }
 
