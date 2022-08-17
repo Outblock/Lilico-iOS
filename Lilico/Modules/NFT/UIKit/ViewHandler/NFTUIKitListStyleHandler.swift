@@ -20,6 +20,7 @@ extension NFTUIKitListStyleHandler {
 }
 
 class NFTUIKitListStyleHandler: NSObject {
+    var vm: NFTTabViewModel?
     var dataModel: NFTUIKitListNormalDataModel = NFTUIKitListNormalDataModel()
     private var isInitRequested: Bool = false
     
@@ -313,7 +314,7 @@ extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        if section == Section.other.rawValue, !dataModel.isCollectionListStyle {
+        if section == Section.other.rawValue, !dataModel.isCollectionListStyle, !dataModel.items.isEmpty {
             return CGSize(width: 0, height: CollecitonTitleViewHeight)
         }
         
@@ -385,5 +386,26 @@ extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
         }
         
         return UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section != Section.nft.rawValue {
+            return
+        }
+        
+        guard let vm = vm else {
+            return
+        }
+        
+        if !dataModel.isCollectionListStyle, let nftList = dataModel.selectedCollectionItem?.nfts, indexPath.item < nftList.count {
+            let nft = nftList[indexPath.item]
+            Router.route(to: RouteMap.NFT.detail(vm, nft))
+            return
+        }
+        
+        if dataModel.isCollectionListStyle, indexPath.item < dataModel.items.count {
+            let collectionItem = dataModel.items[indexPath.item]
+            Router.route(to: RouteMap.NFT.collection(vm, collectionItem))
+        }
     }
 }

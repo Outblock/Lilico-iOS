@@ -240,7 +240,7 @@ extension RouteMap {
     enum NFT {
         case detail(NFTTabViewModel, NFTModel)
         case collection(NFTTabViewModel, CollectionItem)
-        case addCollection(NFTTabViewModel)
+        case addCollection
     }
 }
 
@@ -251,8 +251,8 @@ extension RouteMap.NFT: RouterTarget {
             navi.push(content: NFTDetailPage(viewModel: vm, nft: nft))
         case .collection(let vm, let collection):
             navi.push(content: NFTCollectionListView(viewModel: vm, collection: collection))
-        case .addCollection(let vm):
-            navi.push(content: NFTAddCollectionView(viewModel: vm))
+        case .addCollection:
+            navi.push(content: NFTAddCollectionView())
         }
     }
 }

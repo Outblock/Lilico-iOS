@@ -10,6 +10,7 @@ import SwiftUI
 import SnapKit
 
 class NFTUIKitGridStyleHandler: NSObject {
+    var vm: NFTTabViewModel?
     var dataModel: NFTUIKitListGridDataModel = NFTUIKitListGridDataModel()
     private var isInitRequested: Bool = false
     
@@ -213,5 +214,17 @@ extension NFTUIKitGridStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let vm = vm else {
+            return
+        }
+        
+        if indexPath.item < dataModel.nfts.count {
+            let nft = dataModel.nfts[indexPath.item]
+            Router.route(to: RouteMap.NFT.detail(vm, nft))
+            return
+        }
     }
 }

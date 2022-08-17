@@ -65,6 +65,25 @@ class NFTUIKitListViewController: UIViewController {
         return view
     }()
     
+    private lazy var addButton: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "icon-nft-add"), for: .normal)
+        
+        let bgColor = UIColor(Color.LL.Neutrals.neutrals3).withAlphaComponent(0.24)
+        btn.setBackgroundImage(UIImage.image(withColor: bgColor), for: .normal)
+        
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 16
+        
+        btn.snp.makeConstraints { make in
+            make.width.height.equalTo(32)
+        }
+        
+        btn.addTarget(self, action: #selector(onAddButtonClick), for: .touchUpInside)
+        
+        return btn
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -103,6 +122,12 @@ class NFTUIKitListViewController: UIViewController {
             make.left.equalTo(18)
             make.centerY.equalToSuperview()
         }
+        
+        headerContentView.addSubview(addButton)
+        addButton.snp.makeConstraints { make in
+            make.right.equalTo(-18)
+            make.centerY.equalToSuperview()
+        }
     }
     
     func reloadViews() {
@@ -130,5 +155,9 @@ class NFTUIKitListViewController: UIViewController {
                 gridStyleHandler.requestDataIfNeeded()
             }
         }
+    }
+    
+    @objc private func onAddButtonClick() {
+        Router.route(to: RouteMap.NFT.addCollection)
     }
 }

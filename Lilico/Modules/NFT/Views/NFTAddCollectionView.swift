@@ -12,8 +12,6 @@ import PartialSheet
 struct NFTAddCollectionView: RouteableView {
     
     @State private var offset: CGFloat = 0
-    @StateObject var viewModel: NFTTabViewModel
-    
     @State private var isPresented = false
     
     @StateObject
@@ -66,8 +64,6 @@ struct NFTAddCollectionView: RouteableView {
             }
         )
         .attachPartialSheetToRoot()
-        .environmentObject(viewModel)
-        
     }
 
     private func title(title: String) -> some View {
@@ -198,7 +194,7 @@ struct NFTAddCollectionView_Previews: PreviewProvider {
     ]
     static var previews: some View {
         NavigationView {
-            NFTAddCollectionView(viewModel: NFTTabViewModel())
+            NFTAddCollectionView()
         }
     }
 }

@@ -68,7 +68,7 @@ struct NFTTabScreen: View {
     var content: some View {
         VStack(spacing: 0) {
 //            NFTTabScreen.TopBar(listStyle: $viewModel.state.style, offset: $offset)
-            NFTUIKitListView()
+            NFTUIKitListView(vm: viewModel)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         
