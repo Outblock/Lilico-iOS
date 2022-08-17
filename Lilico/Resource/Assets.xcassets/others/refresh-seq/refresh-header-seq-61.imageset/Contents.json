@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "refresh-header-seq-61.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "refresh-header-seq-61@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
