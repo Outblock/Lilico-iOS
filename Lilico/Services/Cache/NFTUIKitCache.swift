@@ -261,9 +261,12 @@ extension NFTUIKitCache {
     }
     
     func addFav(nft: NFTModel) {
-        guard let contractName = nft.response.contract.name else {
+        guard var address = WalletManager.shared.getPrimaryWalletAddress(), let contractName = nft.response.contract.name else {
             return
         }
+        
+        // TODO: Test
+        address = "0x01d63aa89238a559"
         
         if let _ = favList.firstIndex(where: { $0.id == nft.id }) {
             return
@@ -272,7 +275,6 @@ extension NFTUIKitCache {
         favList.insert(nft, at: 0)
         saveCurrentFavToCache()
         
-        let address = nft.response.contract.address
         let tokenId = nft.response.id.tokenID
         
         let request = NFTAddFavRequest(address: address, contract: contractName, ids: tokenId)
@@ -324,6 +326,9 @@ extension NFTUIKitCache {
         guard var address = WalletManager.shared.getPrimaryWalletAddress() else {
             return
         }
+        
+        // TODO: Test
+        address = "0x01d63aa89238a559"
         
         favIsRequesting = true
         
