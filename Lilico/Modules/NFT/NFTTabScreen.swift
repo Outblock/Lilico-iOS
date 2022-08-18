@@ -29,25 +29,10 @@ extension NFTTabScreen: AppTabBarPageProtocol {
 
 struct NFTTabScreen: View {
     @StateObject var viewModel = NFTTabViewModel()
-    @StateObject var favoriteStore = NFTFavoriteStore.shared
-
-    @State private var favoriteId: String?
-    @State private var currentNFTImage: URL?
 
     @State var offset: CGFloat = 0
 
     @Namespace var NFTImageEffect
-
-    var canShowFavorite: Bool {
-        return favoriteStore.isNotEmpty
-    }
-
-    @State private var isHorizontalCollection = true
-
-    /// show the collection by vertical layout
-    var onlyShowCollection: Bool {
-        return !isHorizontalCollection
-    }
 
     let modifier = AnyModifier { request in
         var r = request
@@ -133,135 +118,135 @@ extension NFTTabScreen {
 // MARK: FavoriteView
 
 extension NFTTabScreen {
-    struct FavoriteView: View {
-        @Binding
-        var currentNFTImage: URL?
-
-        @EnvironmentObject private var viewModel: NFTTabViewModel
-        @StateObject
-        var favoriteStore = NFTFavoriteStore.shared
-        @State var favoriteId: String?
-
-        var body: some View {
-            VStack(spacing: 0) {
-                if favoriteStore.favorites.count > 0 {
-                    VStack(alignment: .center, spacing: 0) {
-                        HStack(spacing: 8) {
-                            Image(systemName: "star.fill")
-                            Text("top_selection".localized)
-                                .font(.LL.largeTitle2)
-                                .semibold()
-
-                            Spacer()
-                        }
-                        .frame(height: 32)
-                        .padding(.horizontal, 18)
-                        .foregroundColor(.LL.Shades.front)
-
-                        StackPageView(favoriteStore.favorites, selection: $favoriteId) { nft in
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 16)
-                                    .fill(Color.LL.background)
-                                KFImage
-                                    .url(nft.image)
-                                    .placeholder({
-                                        Image("placeholder")
-                                            .resizable()
-                                    })
-                                    .fade(duration: 0.25)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: imageHeight,
-                                           height: imageHeight)
-                                    .cornerRadius(8)
-                                    .clipped()
-                            }
-                            .frame(width: imageHeight + 24,
-                                   height: imageHeight + 24)
-                            .onTapGesture {
-                                onTapNFT()
-                            }
-                        }
-                        .options(options)
-                        .pagePadding(
-                            top: .absolute(0),
-                            left: .absolute(18),
-                            bottom: .absolute(0),
-                            right: .fractionalWidth(0.24)
-                        )
-                        .frame(width: screenWidth,
-                               height: imageHeight + 12, alignment: .center)
-                        .padding(.top, 16)
-                    }
-                    .padding(.top, 48)
-                    .background(
-                        ZStack {
-                            if let url = currentNFTImage?.absoluteString, let colors = viewModel.state.colorsMap[url] {
-                                if colors.count > 0 {
-                                    NFTBlurImageView(colors: colors)
-//                                        .irregularGradient(colors: colors)
-                                }
-                            }
-                        }
-                    )
-                    .onChange(of: favoriteId) { _ in
-                        guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
-                            let model = favoriteStore.favorites.first
-                            currentNFTImage = model?.image
-                            return
-                        }
-                        currentNFTImage = nft.image
-                        if let url = currentNFTImage?.absoluteString {
-                            viewModel.trigger(.fetchColors(url))
-                        }
-                    }
-                }
-            }
-
-            .onAppear {
-                if favoriteId == nil {
-                    favoriteId = favoriteStore.favorites.first?.id
-                }
-            }
-        }
-
-        var imageHeight: CGFloat {
-            return (screenWidth * 0.76 - 18 - 24)
-        }
-
-        var options = StackTransformViewOptions(
-            scaleFactor: 0.10,
-            minScale: 0.0,
-            maxScale: 0.95,
-            maxStackSize: 6,
-            spacingFactor: 0.1,
-            maxSpacing: nil,
-            alphaFactor: 0.00,
-            bottomStackAlphaSpeedFactor: 0.90,
-            topStackAlphaSpeedFactor: 0.30,
-            perspectiveRatio: 0.30,
-            shadowEnabled: true,
-            shadowColor: Color.LL.rebackground.toUIColor()!,
-            shadowOpacity: 0.10,
-            shadowOffset: .zero,
-            shadowRadius: 5.00,
-            stackRotateAngel: 0.00,
-            popAngle: 0.31,
-            popOffsetRatio: .init(width: -1.45, height: 0.30),
-            stackPosition: .init(x: 1.00, y: 0.00),
-            reverse: false,
-            blurEffectEnabled: false,
-            maxBlurEffectRadius: 0.00,
-            blurEffectStyle: .light
-        )
-
-        func onTapNFT() {
-            guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
-                return
-            }
-            viewModel.trigger(.info(nft))
-        }
-    }
+//    struct FavoriteView: View {
+//        @Binding
+//        var currentNFTImage: URL?
+//
+//        @EnvironmentObject private var viewModel: NFTTabViewModel
+//        @StateObject
+//        var favoriteStore = NFTFavoriteStore.shared
+//        @State var favoriteId: String?
+//
+//        var body: some View {
+//            VStack(spacing: 0) {
+//                if favoriteStore.favorites.count > 0 {
+//                    VStack(alignment: .center, spacing: 0) {
+//                        HStack(spacing: 8) {
+//                            Image(systemName: "star.fill")
+//                            Text("top_selection".localized)
+//                                .font(.LL.largeTitle2)
+//                                .semibold()
+//
+//                            Spacer()
+//                        }
+//                        .frame(height: 32)
+//                        .padding(.horizontal, 18)
+//                        .foregroundColor(.LL.Shades.front)
+//
+//                        StackPageView(favoriteStore.favorites, selection: $favoriteId) { nft in
+//                            ZStack {
+//                                RoundedRectangle(cornerRadius: 16)
+//                                    .fill(Color.LL.background)
+//                                KFImage
+//                                    .url(nft.image)
+//                                    .placeholder({
+//                                        Image("placeholder")
+//                                            .resizable()
+//                                    })
+//                                    .fade(duration: 0.25)
+//                                    .resizable()
+//                                    .aspectRatio(contentMode: .fill)
+//                                    .frame(width: imageHeight,
+//                                           height: imageHeight)
+//                                    .cornerRadius(8)
+//                                    .clipped()
+//                            }
+//                            .frame(width: imageHeight + 24,
+//                                   height: imageHeight + 24)
+//                            .onTapGesture {
+//                                onTapNFT()
+//                            }
+//                        }
+//                        .options(options)
+//                        .pagePadding(
+//                            top: .absolute(0),
+//                            left: .absolute(18),
+//                            bottom: .absolute(0),
+//                            right: .fractionalWidth(0.24)
+//                        )
+//                        .frame(width: screenWidth,
+//                               height: imageHeight + 12, alignment: .center)
+//                        .padding(.top, 16)
+//                    }
+//                    .padding(.top, 48)
+//                    .background(
+//                        ZStack {
+//                            if let url = currentNFTImage?.absoluteString, let colors = viewModel.state.colorsMap[url] {
+//                                if colors.count > 0 {
+//                                    NFTBlurImageView(colors: colors)
+////                                        .irregularGradient(colors: colors)
+//                                }
+//                            }
+//                        }
+//                    )
+//                    .onChange(of: favoriteId) { _ in
+//                        guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
+//                            let model = favoriteStore.favorites.first
+//                            currentNFTImage = model?.image
+//                            return
+//                        }
+//                        currentNFTImage = nft.image
+//                        if let url = currentNFTImage?.absoluteString {
+//                            viewModel.trigger(.fetchColors(url))
+//                        }
+//                    }
+//                }
+//            }
+//
+//            .onAppear {
+//                if favoriteId == nil {
+//                    favoriteId = favoriteStore.favorites.first?.id
+//                }
+//            }
+//        }
+//
+//        var imageHeight: CGFloat {
+//            return (screenWidth * 0.76 - 18 - 24)
+//        }
+//
+//        var options = StackTransformViewOptions(
+//            scaleFactor: 0.10,
+//            minScale: 0.0,
+//            maxScale: 0.95,
+//            maxStackSize: 6,
+//            spacingFactor: 0.1,
+//            maxSpacing: nil,
+//            alphaFactor: 0.00,
+//            bottomStackAlphaSpeedFactor: 0.90,
+//            topStackAlphaSpeedFactor: 0.30,
+//            perspectiveRatio: 0.30,
+//            shadowEnabled: true,
+//            shadowColor: Color.LL.rebackground.toUIColor()!,
+//            shadowOpacity: 0.10,
+//            shadowOffset: .zero,
+//            shadowRadius: 5.00,
+//            stackRotateAngel: 0.00,
+//            popAngle: 0.31,
+//            popOffsetRatio: .init(width: -1.45, height: 0.30),
+//            stackPosition: .init(x: 1.00, y: 0.00),
+//            reverse: false,
+//            blurEffectEnabled: false,
+//            maxBlurEffectRadius: 0.00,
+//            blurEffectStyle: .light
+//        )
+//
+//        func onTapNFT() {
+//            guard let favoriteId = favoriteId, let nft = favoriteStore.find(with: favoriteId) else {
+//                return
+//            }
+//            viewModel.trigger(.info(nft))
+//        }
+//    }
 }
 
 // MARK: TopBar

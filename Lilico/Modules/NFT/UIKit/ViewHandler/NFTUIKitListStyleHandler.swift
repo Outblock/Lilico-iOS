@@ -52,6 +52,11 @@ class NFTUIKitListStyleHandler: NSObject {
         return view
     }()
     
+    private lazy var favContainerView: NFTUIKitFavContainerView = {
+        let view = NFTUIKitFavContainerView()
+        return view
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.contentInsetAdjustmentBehavior = .never
@@ -64,6 +69,7 @@ class NFTUIKitListStyleHandler: NSObject {
         view.register(NFTUIKitCollectionPinnedSectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PinFooter")
         view.register(NFTUIKitItemCell.self, forCellWithReuseIdentifier: "NFTUIKitItemCell")
         view.register(NFTUIKitCollectionRegularItemCell.self, forCellWithReuseIdentifier: "NFTUIKitCollectionRegularItemCell")
+        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCell")
         
         view.setRefreshingAction { [weak self] in
             guard let self = self else {
@@ -135,6 +141,8 @@ extension NFTUIKitListStyleHandler {
     
     private func refreshAction() {
         hideErrorView()
+        
+        NFTUIKitCache.cache.requestFav()
         
         Task {
             do {
@@ -265,7 +273,7 @@ extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == Section.other.rawValue {
-            return 0
+            return 1
         }
         
         if dataModel.isCollectionListStyle {
@@ -276,6 +284,20 @@ extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == Section.other.rawValue {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)
+            cell.contentView.backgroundColor = .lightGray
+            
+            if favContainerView.superview != cell.contentView {
+                cell.contentView.addSubview(favContainerView)
+                favContainerView.snp.makeConstraints { make in
+                    make.left.right.top.bottom.equalToSuperview()
+                }
+            }
+            
+            return cell
+        }
+        
         if dataModel.isCollectionListStyle {
             let collection = dataModel.items[indexPath.item]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NFTUIKitCollectionRegularItemCell", for: indexPath) as! NFTUIKitCollectionRegularItemCell
@@ -294,6 +316,10 @@ extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.section == Section.other.rawValue {
+            return CGSize(width: collectionView.bounds.size.width, height: NFTUIKitFavContainerView.calculateViewHeight())
+        }
+        
         if dataModel.isCollectionListStyle {
             return NFTUIKitCollectionRegularItemCell.calculateSize()
         }

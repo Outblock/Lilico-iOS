@@ -139,8 +139,20 @@ open class CardsCollectionViewLayout: UICollectionViewLayout {
 fileprivate extension CardsCollectionViewLayout {
     
     private func scale(at index: Int) -> CGFloat {
-        let translatedCoefficient = CGFloat(index) - CGFloat(self.maximumVisibleItems) / 2
-        return CGFloat(pow(0.95, translatedCoefficient))
+        switch index {
+        case 0:
+            return 1
+        case 1:
+            return 0.9
+        case 2:
+            return 0.8
+        case 3:
+            return 0.7
+        default:
+            return 0.6
+        }
+//        let translatedCoefficient = CGFloat(index) - CGFloat(self.maximumVisibleItems) / 2
+//        return CGFloat(pow(0.95, translatedCoefficient))
     }
     
     private func transform(atCurrentVisibleIndex visibleIndex: Int, percentageOffset: CGFloat) -> CGAffineTransform {

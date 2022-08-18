@@ -181,7 +181,6 @@
 		15C58AEE2868A4EE00BD4FC6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */; };
 		15C58AEF2868A4EE00BD4FC6 /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */; };
 		15C58AF02868A4EE00BD4FC6 /* TYNKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */; };
-		15C58AF12868A4EE00BD4FC6 /* NFTFavoriteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1E9BC3283E04770028CBBD /* NFTFavoriteStore.swift */; };
 		15C58AF22868A4EE00BD4FC6 /* Introspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FA47B285B192800EE5BE3 /* Introspect.swift */; };
 		15C58AF32868A4EE00BD4FC6 /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC207027819C56000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift */; };
 		15C58AF42868A4EE00BD4FC6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A234F28365B31001F1FDE /* Image.swift */; };
@@ -765,7 +764,6 @@
 		4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E17466F281AF841002A029C /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
 		4E174670281AF841002A029C /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4E1E9BC5283E04770028CBBD /* NFTFavoriteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1E9BC3283E04770028CBBD /* NFTFavoriteStore.swift */; };
 		4E344480282EC1C40040E5A4 /* NFTCollectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */; };
 		4E3E5BE32875DC2000A5FA65 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E5BE22875DC2000A5FA65 /* SearchBar.swift */; };
 		4E3E5BE42875DC2000A5FA65 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E5BE22875DC2000A5FA65 /* SearchBar.swift */; };
@@ -977,6 +975,8 @@
 		6ACDD17A28588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17828588B3F00F406EB /* LilicoAPI+Profile.swift */; };
 		6ACDD17D28588B7D00F406EB /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */; };
 		6ACF0E642851FB2E008E7FA6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */; };
+		6AD0B27128AE121200D03822 /* NFTUIKitFavItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0B27028AE121200D03822 /* NFTUIKitFavItemCell.swift */; };
+		6AD0B27228AE121200D03822 /* NFTUIKitFavItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0B27028AE121200D03822 /* NFTUIKitFavItemCell.swift */; };
 		6AD900652847175100B65CE6 /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD900632847175100B65CE6 /* AddAddressView.swift */; };
 		6AD90069284717FC00B65CE6 /* AddAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD90067284717FC00B65CE6 /* AddAddressViewModel.swift */; };
 		6AD9EC25286C4E4C0062A9CE /* Cadences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD9EC24286C4E4C0062A9CE /* Cadences.swift */; };
@@ -1373,7 +1373,6 @@
 		15F43D112753B4F6004F6F49 /* PageIndictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndictor.swift; sourceTree = "<group>"; };
 		4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCollectionViewModel.swift; sourceTree = "<group>"; };
 		4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = Lilico/Library/SwiftProtobuf.xcframework; sourceTree = "<group>"; };
-		4E1E9BC3283E04770028CBBD /* NFTFavoriteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTFavoriteStore.swift; sourceTree = "<group>"; };
 		4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionCard.swift; sourceTree = "<group>"; };
 		4E3E5BE22875DC2000A5FA65 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		4E4F794A2831FCB700ED027C /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
@@ -1517,6 +1516,7 @@
 		6ACDD17828588B3F00F406EB /* LilicoAPI+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+Profile.swift"; sourceTree = "<group>"; };
 		6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequests.swift; sourceTree = "<group>"; };
 		6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
+		6AD0B27028AE121200D03822 /* NFTUIKitFavItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitFavItemCell.swift; sourceTree = "<group>"; };
 		6AD900632847175100B65CE6 /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
 		6AD90067284717FC00B65CE6 /* AddAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewModel.swift; sourceTree = "<group>"; };
 		6AD9EC24286C4E4C0062A9CE /* Cadences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cadences.swift; sourceTree = "<group>"; };
@@ -1788,7 +1788,6 @@
 				6AEA374128A4ACF9004545D4 /* UIKit */,
 				4ED2D7742850DD9400B9A572 /* Helper */,
 				4ECA7E632843719F0039A210 /* Views */,
-				4E1E9BC2283E045E0028CBBD /* Store */,
 				4EE8E4932834DC5C00DFEF59 /* NFTModel */,
 				157046762793242100D1747B /* ViewModel */,
 				1570466B27930EB200D1747B /* NFTTabScreen.swift */,
@@ -2940,14 +2939,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		4E1E9BC2283E045E0028CBBD /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				4E1E9BC3283E04770028CBBD /* NFTFavoriteStore.swift */,
-			);
-			path = Store;
-			sourceTree = "<group>";
-		};
 		4E4F79492831FC5500ED027C /* MaterialMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -3204,6 +3195,7 @@
 			children = (
 				6A62123228ACE0C9002046CA /* CardsCollectionViewLayout.swift */,
 				6A62122F28ACE029002046CA /* NFTUIKitFavContainerView.swift */,
+				6AD0B27028AE121200D03822 /* NFTUIKitFavItemCell.swift */,
 			);
 			path = Fav;
 			sourceTree = "<group>";
@@ -3907,7 +3899,6 @@
 				154B8904276A1EEB00780E93 /* OffsetPageTabView.swift in Sources */,
 				158CE8812782BEAA006A8394 /* TYNKViewModel.swift in Sources */,
 				158832E828942DC600142B35 /* MessageRequestInfo.swift in Sources */,
-				4E1E9BC5283E04770028CBBD /* NFTFavoriteStore.swift in Sources */,
 				6A8FA498285B192800EE5BE3 /* Introspect.swift in Sources */,
 				15DC21E727819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
 				6A62122D28ACC592002046CA /* UIImage.swift in Sources */,
@@ -4000,6 +3991,7 @@
 				154B8906276A1EEB00780E93 /* Lilico_App.swift in Sources */,
 				6A41B6AA2861D06F00999451 /* NotificationDefine.swift in Sources */,
 				15DC20BB27819C56000B187A /* VChevronButtonState.swift in Sources */,
+				6AD0B27228AE121200D03822 /* NFTUIKitFavItemCell.swift in Sources */,
 				6A7F6515289A85B2007188DC /* VerifyPinViewModel.swift in Sources */,
 				154B8907276A1EEB00780E93 /* View.swift in Sources */,
 				6A8FA4AE285B192900EE5BE3 /* SnapAlignment.swift in Sources */,
@@ -4368,7 +4360,6 @@
 				15C58AEF2868A4EE00BD4FC6 /* OffsetPageTabView.swift in Sources */,
 				15C58AF02868A4EE00BD4FC6 /* TYNKViewModel.swift in Sources */,
 				158832E728942DC600142B35 /* MessageRequestInfo.swift in Sources */,
-				15C58AF12868A4EE00BD4FC6 /* NFTFavoriteStore.swift in Sources */,
 				15C58AF22868A4EE00BD4FC6 /* Introspect.swift in Sources */,
 				15C58AF32868A4EE00BD4FC6 /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
 				6A62122C28ACC592002046CA /* UIImage.swift in Sources */,
@@ -4461,6 +4452,7 @@
 				15C58B3B2868A4EE00BD4FC6 /* Lilico_App.swift in Sources */,
 				15C58B3C2868A4EE00BD4FC6 /* NotificationDefine.swift in Sources */,
 				15C58B3D2868A4EE00BD4FC6 /* VChevronButtonState.swift in Sources */,
+				6AD0B27128AE121200D03822 /* NFTUIKitFavItemCell.swift in Sources */,
 				6A7F6514289A85B2007188DC /* VerifyPinViewModel.swift in Sources */,
 				15C58B3E2868A4EE00BD4FC6 /* View.swift in Sources */,
 				15C58B3F2868A4EE00BD4FC6 /* SnapAlignment.swift in Sources */,

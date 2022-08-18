@@ -78,6 +78,8 @@ class NFTUIKitListNormalDataModel {
     var isRequesting: Bool = false
     var isCollectionListStyle: Bool = false
     
+    var favNFTs: [NFTModel] = []
+    
     init() {
         if var cachedCollections = NFTUIKitCache.cache.getCollections() {
             cachedCollections.sort {

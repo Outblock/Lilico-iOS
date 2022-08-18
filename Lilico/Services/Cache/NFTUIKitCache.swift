@@ -20,8 +20,17 @@ class NFTUIKitCache {
     private lazy var gridFolder = rootFolder.appendingPathComponent("grid")
     private lazy var gridCacheFile = gridFolder.appendingPathComponent("grid_cache_file")
     
+    private lazy var favFolder = rootFolder.appendingPathComponent("fav")
+    private lazy var favCacheFile = gridFolder.appendingPathComponent("fav_cache_file")
+    
+    private(set) var favList: [NFTModel] = []
+    private var favIsRequesting: Bool = false
+    
     init() {
         createFolderIfNeeded()
+        // TODO: Test
+        removeFavCache()
+        loadFavCache()
     }
     
     private func createFolderIfNeeded() {
@@ -40,6 +49,10 @@ class NFTUIKitCache {
             
             if !FileManager.default.fileExists(atPath: gridFolder.relativePath) {
                 try FileManager.default.createDirectory(at: gridFolder, withIntermediateDirectories: true)
+            }
+            
+            if !FileManager.default.fileExists(atPath: favFolder.relativePath) {
+                try FileManager.default.createDirectory(at: favFolder, withIntermediateDirectories: true)
             }
         } catch {
             debugPrint("NFTUIKitCache -> createFolderIfNeeded error: \(error)")
@@ -199,3 +212,132 @@ extension NFTUIKitCache {
     }
 }
 
+// MARK: - Fav
+
+extension NFTUIKitCache {
+    private func loadFavCache() {
+        if !FileManager.default.fileExists(atPath: favCacheFile.relativePath) {
+            return
+        }
+        
+        do {
+            let data = try Data(contentsOf: favCacheFile)
+            let nfts = try JSONDecoder().decode([NFTModel].self, from: data)
+            favList = nfts
+        } catch {
+            debugPrint("NFTUIKitCache -> loadFavCache error: \(error)")
+        }
+    }
+    
+    private func saveCurrentFavToCache() {
+        do {
+            let data = try JSONEncoder().encode(favList)
+            try data.write(to: favCacheFile)
+        } catch {
+            debugPrint("NFTUIKitCache -> saveCurrentFavToCache error: \(error)")
+        }
+    }
+    
+    func removeFavCache() {
+        if !FileManager.default.fileExists(atPath: favCacheFile.relativePath) {
+            return
+        }
+        
+        do {
+            try FileManager.default.removeItem(at: favCacheFile)
+        } catch {
+            debugPrint("NFTUIKitCache -> removeFavCache error: \(error)")
+        }
+    }
+    
+    func isFav(id: String) -> Bool {
+        for nft in favList {
+            if nft.id == id {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func addFav(nft: NFTModel) {
+        guard let contractName = nft.response.contract.name else {
+            return
+        }
+        
+        if let _ = favList.firstIndex(where: { $0.id == nft.id }) {
+            return
+        }
+        
+        favList.insert(nft, at: 0)
+        saveCurrentFavToCache()
+        
+        let address = nft.response.contract.address
+        let tokenId = nft.response.id.tokenID
+        
+        let request = NFTAddFavRequest(address: address, contract: contractName, ids: tokenId)
+        Task {
+            do {
+                let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.addFav(request))
+            } catch {
+                debugPrint("NFTUIKitCache -> addFav error: \(error)")
+            }
+        }
+        
+    }
+    
+    func removeFav(id: String) {
+        if let index = favList.firstIndex(where: { $0.id == id }) {
+            favList.remove(at: index)
+            saveCurrentFavToCache()
+            
+            let ids = generateFavUpdateStrings()
+            Task {
+                do {
+                    let request = NFTUpdateFavRequest(ids: ids)
+                    let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.updateFav(request))
+                } catch {
+                    debugPrint("NFTUIKitCache -> removeFav error: \(error)")
+                }
+            }
+        }
+    }
+    
+    private func generateFavUpdateStrings() -> String {
+        var array = [String]()
+        for nft in favList {
+            if let contractName = nft.response.contract.name {
+                let tokenId = nft.response.id.tokenID
+                array.append("\(contractName)-\(tokenId)")
+            }
+        }
+        
+        let str = array.joined(separator: ",")
+        return str
+    }
+    
+    func requestFav() {
+        if favIsRequesting {
+            return
+        }
+        
+        guard var address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        favIsRequesting = true
+        
+        Task {
+            do {
+                let request: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.favList(address))
+                if request.httpCode == 404 {
+                    // empty
+                    debugPrint("NFTUIKitCache -> requestFav is empty")
+                    return
+                }
+            } catch {
+                debugPrint("NFTUIKitCache -> requestFav error: \(error)")
+            }
+        }
+    }
+}
