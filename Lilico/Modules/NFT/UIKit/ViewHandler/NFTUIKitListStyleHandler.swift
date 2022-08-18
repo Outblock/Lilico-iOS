@@ -24,6 +24,12 @@ class NFTUIKitListStyleHandler: NSObject {
     var dataModel: NFTUIKitListNormalDataModel = NFTUIKitListNormalDataModel()
     private var isInitRequested: Bool = false
     
+    private lazy var emptyView: NFTUIKitListStyleHandler.EmptyView = {
+        let view = NFTUIKitListStyleHandler.EmptyView()
+        view.button.addTarget(self, action: #selector(onAddButtonClick), for: .touchUpInside)
+        return view
+    }()
+    
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(Color.LL.Neutrals.background)
@@ -99,6 +105,12 @@ class NFTUIKitListStyleHandler: NSObject {
         collectionView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
         }
+        
+        containerView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.top.left.right.bottom.equalToSuperview()
+        }
+        emptyView.isHidden = true
     }
     
     private func reloadViews() {
@@ -129,6 +141,10 @@ class NFTUIKitListStyleHandler: NSObject {
                 self.loadMoreAction()
             }
         }
+    }
+    
+    @objc private func onAddButtonClick() {
+        Router.route(to: RouteMap.NFT.addCollection)
     }
 }
 
@@ -250,11 +266,11 @@ extension NFTUIKitListStyleHandler {
     }
     
     private func showEmptyView() {
-        
+        self.emptyView.isHidden = false
     }
     
     private func hideEmptyView() {
-        
+        self.emptyView.isHidden = true
     }
     
     private func showErrorView() {
@@ -432,6 +448,95 @@ extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
         if dataModel.isCollectionListStyle, indexPath.item < dataModel.items.count {
             let collectionItem = dataModel.items[indexPath.item]
             Router.route(to: RouteMap.NFT.collection(vm, collectionItem))
+        }
+    }
+}
+
+extension NFTUIKitListStyleHandler {
+    class EmptyView: UIView {
+        private lazy var bgImageView: UIImageView = {
+            let view = UIImageView(image: UIImage(named: "nft_empty_bg"))
+            view.contentMode = .scaleAspectFill
+            view.clipsToBounds = true
+            return view
+        }()
+        
+        private lazy var iconImageView: UIImageView = {
+            let view = UIImageView(image: UIImage(named: "icon-empty"))
+            return view
+        }()
+        
+        private lazy var titleLabel: UILabel = {
+            let view = UILabel()
+            view.font = .montserratBold(size: 16)
+            view.textColor = UIColor(Color.LL.Neutrals.neutrals3)
+            view.text = "nft_empty".localized
+            return view
+        }()
+        
+        private lazy var descLabel: UILabel = {
+            let view = UILabel()
+            view.font = .inter(size: 14)
+            view.textColor = UIColor(Color.LL.Neutrals.neutrals8)
+            view.text = "nft_empty_discovery".localized
+            return view
+        }()
+        
+        lazy var button: UIButton = {
+            let btn = UIButton(type: .custom)
+            let bg = UIImage.image(withColor: UIColor(Color.LL.Secondary.mango4).withAlphaComponent(0.08))
+            btn.setBackgroundImage(bg, for: .normal)
+            
+            btn.setTitle("get_new_nft".localized, for: .normal)
+            btn.setTitleColor(UIColor(Color.LL.Secondary.mangoNFT), for: .normal)
+            btn.titleLabel?.font = .interSemiBold(size: 14)
+            
+            btn.contentEdgeInsets = UIEdgeInsets(top: 10, left: 43, bottom: 10, right: 43)
+            
+            btn.clipsToBounds = true
+            btn.layer.cornerRadius = 12
+            
+            return btn
+        }()
+        
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            setup()
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("")
+        }
+        
+        private func setup() {
+            addSubview(bgImageView)
+            bgImageView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+            
+            addSubview(iconImageView)
+            iconImageView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-70)
+            }
+            
+            addSubview(titleLabel)
+            titleLabel.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(iconImageView.snp.bottom).offset(16)
+            }
+            
+            addSubview(descLabel)
+            descLabel.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            }
+            
+            addSubview(button)
+            button.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(descLabel.snp.bottom).offset(36)
+            }
         }
     }
 }

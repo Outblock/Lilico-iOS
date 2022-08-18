@@ -330,12 +330,16 @@ extension NFTUIKitCache {
         Task {
             do {
                 let request: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.favList(address))
+                
+                self.favIsRequesting = false
+                
                 if request.httpCode == 404 {
                     // empty
                     debugPrint("NFTUIKitCache -> requestFav is empty")
                     return
                 }
             } catch {
+                self.favIsRequesting = false
                 debugPrint("NFTUIKitCache -> requestFav error: \(error)")
             }
         }
