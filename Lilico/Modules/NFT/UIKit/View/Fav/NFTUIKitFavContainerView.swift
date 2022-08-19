@@ -9,6 +9,8 @@ import UIKit
 import CollectionViewPagingLayout
 
 class NFTUIKitFavContainerView: UIView {
+    var vm: NFTTabViewModel?
+    
     private lazy var headerView: NFTUIKitTopSelectionHeaderView = {
         let view = NFTUIKitTopSelectionHeaderView()
         return view
@@ -82,6 +84,11 @@ extension NFTUIKitFavContainerView: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let vm = vm else {
+            return
+        }
         
+        let item = NFTUIKitCache.cache.favList[indexPath.item]
+        Router.route(to: RouteMap.NFT.detail(vm, item))
     }
 }

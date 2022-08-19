@@ -20,7 +20,11 @@ extension NFTUIKitListStyleHandler {
 }
 
 class NFTUIKitListStyleHandler: NSObject {
-    var vm: NFTTabViewModel?
+    var vm: NFTTabViewModel? {
+        didSet {
+            favContainerView.vm = vm
+        }
+    }
     var dataModel: NFTUIKitListNormalDataModel = NFTUIKitListNormalDataModel()
     private var isInitRequested: Bool = false
     

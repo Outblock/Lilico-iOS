@@ -12,14 +12,14 @@ class NFTUIKitTopSelectionHeaderView: UIView {
     private lazy var iconImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "icon-nft-top-selection")?.withRenderingMode(.alwaysTemplate)
-        view.tintColor = UIColor(Color.LL.frontColor)
+        view.tintColor = .white
         return view
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .montserratBold(size: 22)
-        label.textColor = UIColor(Color.LL.frontColor)
+        label.textColor = .white
         label.text = "top_selection".localized
         return label
     }()

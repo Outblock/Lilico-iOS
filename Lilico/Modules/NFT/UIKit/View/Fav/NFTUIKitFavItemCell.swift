@@ -15,7 +15,13 @@ private let Padding: CGFloat = 12
 class NFTUIKitFavItemCell: UICollectionViewCell {
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(Color.LL.background)
+        view.backgroundColor = UIColor(dynamicProvider: { trait in
+            if trait.userInterfaceStyle == .dark {
+                return UIColor.white.withAlphaComponent(0.48)
+            } else {
+                return UIColor.white.withAlphaComponent(0.8)
+            }
+        })
         view.layer.cornerRadius = 16
         return view
     }()
@@ -25,6 +31,7 @@ class NFTUIKitFavItemCell: UICollectionViewCell {
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 8
+        view.backgroundColor = UIColor(Color.LL.Neutrals.background)
         return view
     }()
     

@@ -37,7 +37,7 @@ class NFTUIKitListViewController: UIViewController {
     
     private lazy var headerBgView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemRed
+        view.backgroundColor = UIColor(Color.LL.Neutrals.background)
         view.isUserInteractionEnabled = false
         return view
     }()

@@ -25,17 +25,23 @@ class NFTUIKitSegmentControl: UIView {
     
     private lazy var selectBgView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(dynamicProvider: { trait in
+            if trait.userInterfaceStyle == .dark {
+                return .black
+            } else {
+                return .white
+            }
+        })
         view.layer.cornerRadius = ButtonHeight * 0.5
         return view
     }()
     
     private var unselectColor: UIColor {
-        return .white.withAlphaComponent(0.8)
+        return UIColor(Color.LL.frontColor)
     }
     
     private var selectedColor: UIColor {
-        return UIColor(hex: "#333333")
+        return UIColor(Color.LL.Neutrals.text)
     }
     
     required init(names: [String]) {
