@@ -98,7 +98,7 @@ class NFTUIKitCollectionItemCell: UICollectionViewCell {
         self.item = item
         self.isSelectItem = isSelectItem
         
-        iconImageView.kf.setImage(with: item.iconURL)
+        iconImageView.kf.setImage(with: item.iconURL, placeholder: UIImage(named: "placeholder"))
         titleLabel.text = item.showName
         descLabel.text = "x_collections".localized(item.count)
         

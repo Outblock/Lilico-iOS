@@ -292,7 +292,7 @@ extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == Section.other.rawValue {
-            return 1
+            return NFTUIKitCache.cache.favList.isEmpty ? 0 : 1
         }
         
         if dataModel.isCollectionListStyle {

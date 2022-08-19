@@ -28,8 +28,8 @@ class NFTUIKitCache {
     
     init() {
         createFolderIfNeeded()
-        // TODO: Test
-        removeFavCache()
+//        // TODO: Test
+//        removeFavCache()
         loadFavCache()
     }
     
@@ -233,6 +233,8 @@ extension NFTUIKitCache {
         do {
             let data = try JSONEncoder().encode(favList)
             try data.write(to: favCacheFile)
+            
+            NotificationCenter.default.post(name: .nftFavDidChanged, object: nil)
         } catch {
             debugPrint("NFTUIKitCache -> saveCurrentFavToCache error: \(error)")
         }
@@ -280,7 +282,7 @@ extension NFTUIKitCache {
         let request = NFTAddFavRequest(address: address, contract: contractName, ids: tokenId)
         Task {
             do {
-                let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.addFav(request))
+                let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.addFav(request))
             } catch {
                 debugPrint("NFTUIKitCache -> addFav error: \(error)")
             }
@@ -297,7 +299,7 @@ extension NFTUIKitCache {
             Task {
                 do {
                     let request = NFTUpdateFavRequest(ids: ids)
-                    let response: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.updateFav(request))
+                    let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.updateFav(request))
                 } catch {
                     debugPrint("NFTUIKitCache -> removeFav error: \(error)")
                 }
@@ -335,18 +337,28 @@ extension NFTUIKitCache {
         
         Task {
             do {
-                let request: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.favList(fAddress))
+                let request: Network.Response<NFTFavListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.favList(fAddress))
                 
-                self.favIsRequesting = false
-                
-                if request.httpCode == 404 {
-                    // empty
-                    debugPrint("NFTUIKitCache -> requestFav is empty")
-                    return
+                DispatchQueue.main.async {
+                    self.favIsRequesting = false
+                    
+                    guard let nfts = request.data?.nfts, request.httpCode == 200 else {
+                        // empty
+                        debugPrint("NFTUIKitCache -> requestFav is empty")
+                        self.favList.removeAll()
+                        self.saveCurrentFavToCache()
+                        return
+                    }
+                    
+                    let models = nfts.map { NFTModel($0, in: nil) }
+                    self.favList = models
+                    self.saveCurrentFavToCache()
                 }
             } catch {
-                self.favIsRequesting = false
-                debugPrint("NFTUIKitCache -> requestFav error: \(error)")
+                DispatchQueue.main.async {
+                    self.favIsRequesting = false
+                    debugPrint("NFTUIKitCache -> requestFav error: \(error)")
+                }
             }
         }
     }

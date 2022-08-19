@@ -14,4 +14,5 @@ public extension Notification.Name {
     static let addressBookDidAdd = Notification.Name("addressBookDidAdd")
     static let addressBookDidEdit = Notification.Name("addressBookDidEdit")
     static let backupTypeDidChanged = Notification.Name("backupTypeDidChanged")
+    static let nftFavDidChanged = Notification.Name("nftFavDidChanged")
 }
