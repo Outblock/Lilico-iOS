@@ -329,12 +329,13 @@ extension NFTUIKitCache {
         
         // TODO: Test
         address = "0x01d63aa89238a559"
+        let fAddress = address
         
         favIsRequesting = true
         
         Task {
             do {
-                let request: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.favList(address))
+                let request: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.favList(fAddress))
                 
                 self.favIsRequesting = false
                 

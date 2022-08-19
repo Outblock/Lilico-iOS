@@ -107,8 +107,10 @@ extension NFTUIKitGridStyleHandler {
                 try await dataModel.requestGridAction(offset: 0)
                 DispatchQueue.syncOnMain {
                     self.isInitRequested = true
-                    
                     self.reloadViews()
+                }
+                
+                DispatchQueue.main.async {
                     self.collectionView.stopRefreshing()
                 }
             } catch {
@@ -133,6 +135,9 @@ extension NFTUIKitGridStyleHandler {
                 try await dataModel.requestGridAction(offset: offset)
                 DispatchQueue.syncOnMain {
                     self.reloadViews()
+                }
+                
+                DispatchQueue.main.async {
                     self.collectionView.stopLoading()
                 }
             } catch {

@@ -165,13 +165,16 @@ extension NFTUIKitListStyleHandler {
                 try await dataModel.refreshCollectionAction()
                 DispatchQueue.syncOnMain {
                     self.isInitRequested = true
-                    self.collectionView.stopRefreshing()
                     
                     if !self.dataModel.items.isEmpty {
                         self.changeSelectCollectionIndexAction(0)
                     } else {
                         self.reloadViews()
                     }
+                }
+                
+                DispatchQueue.main.async {
+                    self.collectionView.stopRefreshing()
                 }
             } catch {
                 DispatchQueue.main.async {
