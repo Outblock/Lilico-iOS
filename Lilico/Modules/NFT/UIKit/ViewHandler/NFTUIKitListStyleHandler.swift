@@ -44,7 +44,7 @@ class NFTUIKitListStyleHandler: NSObject {
     
     lazy var blurBgView: UIView = {
         let view = UIView()
-        view.backgroundColor = .orange
+        view.backgroundColor = .systemGray
         return view
     }()
     
