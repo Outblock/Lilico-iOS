@@ -30,8 +30,15 @@ class NFTUIKitListViewController: UIViewController {
         view.backgroundColor = .clear
         
         view.snp.makeConstraints { make in
-            make.height.equalTo(44)
+            make.height.equalTo(Router.coordinator.window.safeAreaInsets.top + 44)
         }
+        return view
+    }()
+    
+    private lazy var headerBgView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemRed
+        view.isUserInteractionEnabled = false
         return view
     }()
     
@@ -103,13 +110,30 @@ class NFTUIKitListViewController: UIViewController {
         listStyleHandler.setup()
         gridStyleHandler.setup()
         
+        listStyleHandler.offsetCallback = { [weak self] offset in
+            self?.offsetDidChanged(offset)
+        }
+        
+        view.bringSubviewToFront(headerContainerView)
+        
         reloadViews()
+    }
+    
+    private func offsetDidChanged(_ offset: CGFloat) {
+        let alpha = max(0, min(1, offset / 50.0))
+        headerBgView.alpha = alpha
     }
     
     private func setupHeaderView() {
         view.addSubview(headerContainerView)
         headerContainerView.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(-Router.coordinator.window.safeAreaInsets.top)
+        }
+        
+        headerContainerView.addSubview(headerBgView)
+        headerBgView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         headerContainerView.addSubview(headerContentView)
@@ -128,6 +152,8 @@ class NFTUIKitListViewController: UIViewController {
             make.right.equalTo(-18)
             make.centerY.equalToSuperview()
         }
+        
+        offsetDidChanged(0)
     }
     
     func reloadViews() {
@@ -143,6 +169,8 @@ class NFTUIKitListViewController: UIViewController {
                 
                 listStyleHandler.requestDataIfNeeded()
             }
+            
+            offsetDidChanged(max(0.0, listStyleHandler.collectionView.contentOffset.y))
         case .grid:
             listStyleHandler.containerView.removeFromSuperview()
             
@@ -154,6 +182,8 @@ class NFTUIKitListViewController: UIViewController {
                 
                 gridStyleHandler.requestDataIfNeeded()
             }
+            
+            offsetDidChanged(0)
         }
     }
     

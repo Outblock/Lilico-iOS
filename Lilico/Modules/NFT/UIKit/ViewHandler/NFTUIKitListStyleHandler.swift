@@ -24,6 +24,8 @@ class NFTUIKitListStyleHandler: NSObject {
     var dataModel: NFTUIKitListNormalDataModel = NFTUIKitListNormalDataModel()
     private var isInitRequested: Bool = false
     
+    var offsetCallback: ((CGFloat) -> ())?
+    
     private lazy var emptyView: NFTUIKitListStyleHandler.EmptyView = {
         let view = NFTUIKitListStyleHandler.EmptyView()
         view.button.addTarget(self, action: #selector(onAddButtonClick), for: .touchUpInside)
@@ -33,6 +35,12 @@ class NFTUIKitListStyleHandler: NSObject {
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(Color.LL.Neutrals.background)
+        return view
+    }()
+    
+    lazy var blurBgView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .orange
         return view
     }()
     
@@ -63,7 +71,7 @@ class NFTUIKitListStyleHandler: NSObject {
         return view
     }()
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.contentInsetAdjustmentBehavior = .never
         view.backgroundColor = .clear
@@ -101,6 +109,15 @@ class NFTUIKitListStyleHandler: NSObject {
     }()
     
     func setup() {
+        let offset = Router.coordinator.window.safeAreaInsets.top + 44.0
+        
+        containerView.addSubview(blurBgView)
+        blurBgView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(-offset)
+            make.height.equalTo(offset + NFTUIKitFavContainerView.calculateViewHeight())
+        }
+        
         containerView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
@@ -111,6 +128,9 @@ class NFTUIKitListStyleHandler: NSObject {
             make.top.left.right.bottom.equalToSuperview()
         }
         emptyView.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadBgView), name: .nftFavDidChanged, object: nil)
+        reloadBgView()
     }
     
     private func reloadViews() {
@@ -120,10 +140,16 @@ class NFTUIKitListStyleHandler: NSObject {
             hideEmptyView()
         }
         
+        reloadBgView()
+        
         collectionView.reloadData()
         collectionView.setNoMoreData(dataModel.selectedCollectionItem?.isEnd ?? true)
         
         setupLoadingActionIfNeeded()
+    }
+    
+    @objc private func reloadBgView() {
+        blurBgView.isHidden = NFTUIKitCache.cache.favList.isEmpty
     }
     
     private func setupLoadingActionIfNeeded() {
@@ -286,6 +312,17 @@ extension NFTUIKitListStyleHandler {
 }
 
 extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var offsetY = scrollView.contentOffset.y
+        if offsetY <= 0 {
+            offsetY = 0
+        }
+        
+        blurBgView.transform = CGAffineTransform.init(translationX: 0, y: -offsetY)
+        
+        offsetCallback?(offsetY)
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
@@ -305,7 +342,7 @@ extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == Section.other.rawValue {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)
-            cell.contentView.backgroundColor = .lightGray
+            cell.contentView.backgroundColor = .clear
             
             if favContainerView.superview != cell.contentView {
                 cell.contentView.addSubview(favContainerView)
