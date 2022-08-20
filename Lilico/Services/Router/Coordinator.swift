@@ -8,10 +8,12 @@
 import UIKit
 import SwiftUI
 import Combine
+//import Lottie
 
 enum AppTabType {
     case wallet
     case nft
+    case explore
     case profile
 }
 
@@ -56,12 +58,16 @@ extension Coordinator {
         let nft = TabBarPageModel<AppTabType>(tag: NFTTabScreen.tabTag(), iconName: NFTTabScreen.iconName(), color: NFTTabScreen.color()) {
             AnyView(NFTTabScreen())
         }
+        
+        let explore = TabBarPageModel<AppTabType>(tag: ExploreTabScreen.tabTag(), iconName: ExploreTabScreen.iconName(), color: ExploreTabScreen.color()) {
+            AnyView(ExploreTabScreen())
+        }
 
         let profile = TabBarPageModel<AppTabType>(tag: ProfileView.tabTag(), iconName: ProfileView.iconName(), color: ProfileView.color()) {
             AnyView(ProfileView())
         }
 
-        TabBarView(current: .wallet, pages: [wallet, nft, profile], maxWidth: UIScreen.main.bounds.width)
+        TabBarView(current: .wallet, pages: [wallet, nft, explore, profile], maxWidth: UIScreen.main.bounds.width)
     }
     
     private func refreshColorScheme() {

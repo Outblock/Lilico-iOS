@@ -94,3 +94,4 @@ iOSInjectionProject/
 Lilico.xcodeproj/xcuserdata/**/*
 Lilico.xcodeproj/xcshareddata/**/*
 *.xcscheme
+*.xcbkptlist

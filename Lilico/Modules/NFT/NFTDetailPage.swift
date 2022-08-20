@@ -22,9 +22,6 @@ struct NFTDetailPage: RouteableView {
     @StateObject
     var viewModel: NFTTabViewModel
 
-    @StateObject
-    var favorite = NFTFavoriteStore.shared
-
     var nft: NFTModel
 
     @State var opacity: Double = 0
@@ -112,14 +109,16 @@ struct NFTDetailPage: RouteableView {
                             }
 
                             Button {
-                                if NFTFavoriteStore.shared.isFavorite(with: nft) {
-                                    NFTFavoriteStore.shared.removeFavorite(nft)
+                                if NFTUIKitCache.cache.isFav(id: nft.id) {
+                                    NFTUIKitCache.cache.removeFav(id: nft.id)
+                                    isFavorited = false
                                 } else {
-                                    NFTFavoriteStore.shared.addFavorite(nft)
+                                    NFTUIKitCache.cache.addFav(nft: nft)
+                                    isFavorited = true
                                 }
                             } label: {
                                 ZStack(alignment: .center) {
-                                    if favorite.isFavorite(with: nft) {
+                                    if isFavorited {
                                         Image("nft_logo_circle_fill")
                                         Image("nft_logo_star_fill")
                                             .frame(width: 20, height: 20)
@@ -132,9 +131,6 @@ struct NFTDetailPage: RouteableView {
                                 }
                                 .frame(width: 44, height: 44)
                                 .foregroundColor(theColor)
-                                .onChange(of: favorite.favorites) { _ in
-                                    print("Favorite Did change")
-                                }
                             }
                             .padding(.horizontal, 6)
                         }
@@ -233,7 +229,7 @@ struct NFTDetailPage: RouteableView {
             .padding(.trailing, 18)
         })
         .onAppear {
-//            NFTDetailPage.ShareNFTView = NFTShareView(nft: nft, colors: viewModel.state.colorsMap[nft.image.absoluteString] ?? [])
+            isFavorited = NFTUIKitCache.cache.isFav(id: nft.id)
         }
         .applyRouteable(self)
     }

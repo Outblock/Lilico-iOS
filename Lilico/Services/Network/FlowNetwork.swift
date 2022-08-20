@@ -83,7 +83,7 @@ extension FlowNetwork {
 // MARK: - NFT
 
 extension FlowNetwork {
-    static func checkCollectionEnable(address: Flow.Address, list: [NFTCollection]) async throws -> [Bool] {
+    static func checkCollectionEnable(address: Flow.Address, list: [NFTCollectionInfo]) async throws -> [Bool] {
         let cadence = NFTCadence.collectionListCheckEnabled(with: list, on: flow.chainID)
         return try await fetch(at: address, by: cadence)
     }

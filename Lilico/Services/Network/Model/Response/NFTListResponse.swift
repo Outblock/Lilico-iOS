@@ -7,13 +7,20 @@
 
 import Foundation
 
-//// MARK: - NFTListResponse
+// MARK: - NFTListResponse
 struct NFTListResponse: Codable {
-    let ownerAddress: String
+    let ownerAddress: String?
     let nfts: [NFTResponse]?
     let chain, network: String
     let nftCount: Int
     let offset: Int?
+}
+
+// MARK: - NFTFavListResponse
+struct NFTFavListResponse: Codable {
+    let nfts: [NFTResponse]?
+    let chain, network: String
+    let nftcount: Int
 }
 
 // MARK: - Nft
@@ -90,7 +97,8 @@ struct NFTTokenMetadata: Codable, Hashable {
 // MARK: - Media
 
 struct NFTMedia: Codable, Hashable {
-    let uri, mimeType: String
+    let uri: String
+    let mimeType: String?
 }
 
 // MARK: - Metadata

@@ -80,7 +80,7 @@ struct NFTCollectionItem: Hashable {
         case failed
     }
     
-    var collection: NFTCollection
+    var collection: NFTCollectionInfo
     var status: ItemStatus = .idle
     
     func processName() -> String {

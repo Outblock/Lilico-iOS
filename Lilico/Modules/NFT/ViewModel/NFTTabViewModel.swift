@@ -11,9 +11,39 @@ import Kingfisher
 
 import SwiftUIX
 
+extension NFTTabScreen {
+    enum ViewStyle {
+        case normal
+        case grid
+        
+        var desc: String {
+            switch self {
+            case .normal:
+                return "List"
+            case .grid:
+                return "Grid"
+            default:
+                return ""
+            }
+        }
+    }
+    
+    struct ViewState {
+        var colorsMap: [String: [Color]] = [:]
+    }
+
+    enum Action {
+        case search
+        case add
+        case info(NFTModel)
+        case collection(CollectionItem)
+        case fetchColors(String)
+        case back
+    }
+}
+
 class NFTTabViewModel: ViewModel {
-    @Published
-    private(set) var state: NFTTabScreen.ViewState = .init()
+    @Published var state: NFTTabScreen.ViewState = .init()
 
     /*
      0x2b06c41f44a05656
@@ -26,94 +56,7 @@ class NFTTabViewModel: ViewModel {
     private var owner: String = "0x01d63aa89238a559"
 
     init() {
-        Task {
-            await refresh()
-        }
-    }
-
-    /*
-     1. fetch all nft,
-     2. fetch collection
-     3. group
-     */
-    func refresh() async {
-        Task {
-            print("============== refresh NFT")
-            do {
-                await NFTFavoriteStore.shared.loadFavorite()
-                let crudeNFTList = try await handleNFTList()
-                let collectionList: [NFTCollection] = try await FirebaseConfig.nftCollections.fetch()
-                let nftGroup = Dictionary(grouping: crudeNFTList) { $0.contract.address }
-                let allCollectionKeys = collectionList.map { $0.address.mainnet }
-                let result = nftGroup.filter { nft in
-                    allCollectionKeys.contains(nft.key)
-                }
-                .map { group -> CollectionItem in
-                    let nft = group.value.first
-                    let col = collectionList.first { col in col.address.mainnet == group.key }
-                    let nfts = group.value.map { NFTModel($0, in: col) }
-                    return CollectionItem(name: nft!.contract.name ?? "", count: group.value.count, collection: col, nfts: nfts)
-                }
-                .sorted { $0.count > $1.count }
-                // if the favorite NFT is not in the NFT list,remove it.
-                let favoriteList = NFTFavoriteStore.shared.favorites.filter { model in
-                    crudeNFTList.first { res in
-                        res.id.tokenID == model.response.id.tokenID
-                    } != nil
-                }
-
-                await MainActor.run {
-                    NFTFavoriteStore.shared.favorites = favoriteList
-                    state.items = result
-                    state.loading = false
-                }
-            } catch {
-                print(error)
-                await MainActor.run {
-                    state.loading = false
-                }
-                HUD.debugError(title: "fetch_nft_error".localized)
-            }
-        }
-    }
-
-    /// fetch all nft first.
-    private func handleNFTList() async throws -> [NFTResponse] {
-        var totalCount = 0
-        var currentCount = 0
-        var offset = 0
-        let limit = 25
-        var allCrudeNFTs: [NFTResponse] = []
-        repeat {
-            do {
-                let result = try await fetchNFTList(from: offset, limit: limit)
-                allCrudeNFTs.append(contentsOf: result.1)
-                totalCount = result.0
-                currentCount = allCrudeNFTs.count
-                offset = currentCount
-            } catch {
-                print(error)
-                HUD.debugError(title: "fetch_nft_error".localized)
-                break
-            }
-            print("获取的NFT数量：\(totalCount) | \(currentCount)")
-        } while false
-//        while ( totalCount > currentCount)
-        return allCrudeNFTs
-    }
-
-    private func fetchNFTList(from offset: Int = 0, limit: Int = 25) async throws -> (Int, [NFTResponse]) {
-        do {
-            let request = NFTRequest(address: owner, offset: offset, limit: limit)
-            let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.list(request))
-            guard let count = response.data?.nftCount, let nfts = response.data?.nfts else {
-                return (0, [])
-            }
-
-            return (count, nfts)
-        } catch {
-            throw error
-        }
+        
     }
 
     func trigger(_ input: NFTTabScreen.Action) {
@@ -123,7 +66,7 @@ class NFTTabViewModel: ViewModel {
         case .search:
             break
         case .add:
-            Router.route(to: RouteMap.NFT.addCollection(self))
+            Router.route(to: RouteMap.NFT.addCollection)
         case let .collection(item):
             Router.route(to: RouteMap.NFT.collection(self, item))
         case let .fetchColors(url):
@@ -186,7 +129,7 @@ struct NullEncodable<T>: Encodable where T: Encodable {
 extension NFTTabViewModel {
     static func testCollection() -> CollectionItem {
         let nftModel = testNFT()
-        let model = CollectionItem(name: "测试", count: 10, collection: nftModel.collection, nfts: [nftModel])
+        let model = CollectionItem()
         return model
     }
 
@@ -262,7 +205,7 @@ extension NFTTabViewModel {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         let response = try! jsonDecoder.decode(NFTResponse.self, from: nftJsonData)
-        let collModel = try! jsonDecoder.decode(NFTCollection.self, from: collJsonData)
+        let collModel = try! jsonDecoder.decode(NFTCollectionInfo.self, from: collJsonData)
         return NFTModel(response, in: collModel)
     }
 }

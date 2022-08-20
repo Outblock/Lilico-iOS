@@ -144,7 +144,7 @@ extension LLCadence {
 
 extension LLCadence where T == LLCadenceAction.nft {
     
-    static func collectionListCheckEnabled(with list: [NFTCollection], on network: Flow.ChainID) -> String {
+    static func collectionListCheckEnabled(with list: [NFTCollectionInfo], on network: Flow.ChainID) -> String {
         let tokenImports = list.map {
             $0.formatCadence(script: "import <Token> from <TokenAddress>")
         }.joined(separator: "\r\n")
@@ -189,7 +189,7 @@ extension LLCadence where T == LLCadenceAction.nft {
         return cadence
     }
     
-    static func collectionListIdCheck(with list: [NFTCollection], on network: Flow.ChainID) -> String {
+    static func collectionListIdCheck(with list: [NFTCollectionInfo], on network: Flow.ChainID) -> String {
         let tokenImports = list.map {
             $0.formatCadence(script: "import <NFT> from <NFTAddress>")
         }.joined(separator: "\r\n")
@@ -250,7 +250,7 @@ extension String {
     }
 }
 
-extension NFTCollection {
+extension NFTCollectionInfo {
     func formatCadence(script: String, chainId: Flow.ChainID = flow.chainID) -> String {
         return script
             .replacingOccurrences(of: "<NFT>", with: contractName.trim())

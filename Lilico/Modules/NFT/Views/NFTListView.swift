@@ -8,6 +8,67 @@
 import SwiftUI
 import Kingfisher
 
+struct RefreshableView<Content: View>: View {
+    
+    var content: () -> Content
+    
+    @Environment(\.refresh) private var refresh   // << refreshable injected !!
+    @State private var isRefreshing = false
+
+    var body: some View {
+        VStack {
+            if isRefreshing {
+                MyProgress()    // ProgressView() ?? - no, it's boring :)
+                    .transition(.scale)
+            }
+            content()
+        }
+        .animation(.default, value: isRefreshing)
+        .background(GeometryReader {
+            // detect Pull-to-refresh
+            Color.clear.preference(key: ViewOffsetKey.self, value: -$0.frame(in: .global).origin.y)
+        })
+        .onPreferenceChange(ViewOffsetKey.self) {
+            if $0 < -80 && !isRefreshing {   // << any creteria we want !!
+                isRefreshing = true
+                Task {
+                    await refresh?()           // << call refreshable !!
+                    await MainActor.run {
+                        isRefreshing = false
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct MyProgress: View {
+    @State private var isProgress = false
+    var body: some View {
+        HStack{
+             ForEach(0...4, id: \.self){index in
+                  Circle()
+                        .frame(width:10,height:10)
+                        .foregroundColor(.red)
+                        .scaleEffect(self.isProgress ? 1:0.01)
+                        .animation(self.isProgress ? Animation.linear(duration:0.6).repeatForever().delay(0.2*Double(index)) :
+                             .default
+                        , value: isProgress)
+             }
+        }
+        .onAppear { isProgress = true }
+        .padding()
+    }
+}
+
+private struct ViewOffsetKey: PreferenceKey {
+    public typealias Value = CGFloat
+    public static var defaultValue = CGFloat.zero
+    public static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
+    }
+}
+
 struct NFTListView: View {
     var list: [NFTModel]
     var imageEffect: Namespace.ID
@@ -21,50 +82,50 @@ struct NFTListView: View {
 
     var body: some View {
         VStack {
-            LazyVGrid(columns: nftLayout, alignment: .center) {
-                ForEach(list, id: \.self) { nft in
-                    
-                    
-                    ContextMenuPreview {
-                        NFTSquareCard(nft: nft, imageEffect: imageEffect) { model in
-                            viewModel.trigger(.info(model))
-                        }
-                        .frame(height: ceil((screenWidth - 18 * 3) / 2 + 50))
-                    } preview: {
-                        KFImage
-                            .url(nft.image)
-                            .placeholder({
-                                Image("placeholder")
-                                    .resizable()
-                            })
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } menu: {
-                        let isFavorite =  NFTFavoriteStore.shared.isFavorite(with: nft)
-                        let imageName = isFavorite ? "nft_btn_selection_s" : "nft_btn_selection";
-                        let like = UIAction(title: "top_selection".localized, image: UIImage(named: imageName)) { _ in
-                            if isFavorite {
-                                NFTFavoriteStore.shared.removeFavorite(nft)
-                            }else {
-                                NFTFavoriteStore.shared.addFavorite(nft)
-                            }
-                        }
-                        
-                        let share = UIAction(title: "share".localized, image: UIImage(named: "nft_btn_share")) { _ in
-                            //TODO: share action
-                        }
-                        
-                        let send = UIAction(title: "send".localized, image: UIImage(named: "nft_btn_send")) { _ in
-                            //TODO: send NFT
-                        }
-                        
-                        return UIMenu(title: "", children: [like, share,send])
-                    } onEnd: {
-                        
-                    }
-                }
-            }
-            .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
+//            LazyVGrid(columns: nftLayout, alignment: .center) {
+//                ForEach(list, id: \.self) { nft in
+//                    
+//                    
+//                    ContextMenuPreview {
+//                        NFTSquareCard(nft: nft, imageEffect: imageEffect) { model in
+//                            viewModel.trigger(.info(model))
+//                        }
+//                        .frame(height: ceil((screenWidth - 18 * 3) / 2 + 50))
+//                    } preview: {
+//                        KFImage
+//                            .url(nft.image)
+//                            .placeholder({
+//                                Image("placeholder")
+//                                    .resizable()
+//                            })
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                    } menu: {
+//                        let isFavorite =  NFTFavoriteStore.shared.isFavorite(with: nft)
+//                        let imageName = isFavorite ? "nft_btn_selection_s" : "nft_btn_selection";
+//                        let like = UIAction(title: "top_selection".localized, image: UIImage(named: imageName)) { _ in
+//                            if isFavorite {
+//                                NFTFavoriteStore.shared.removeFavorite(nft)
+//                            }else {
+//                                NFTFavoriteStore.shared.addFavorite(nft)
+//                            }
+//                        }
+//                        
+//                        let share = UIAction(title: "share".localized, image: UIImage(named: "nft_btn_share")) { _ in
+//                            //TODO: share action
+//                        }
+//                        
+//                        let send = UIAction(title: "send".localized, image: UIImage(named: "nft_btn_send")) { _ in
+//                            //TODO: send NFT
+//                        }
+//                        
+//                        return UIMenu(title: "", children: [like, share,send])
+//                    } onEnd: {
+//                        
+//                    }
+//                }
+//            }
+//            .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
         }
         .background(
             Color.LL.Shades.front

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NFTCollectionCard: View {
     let index: Int
-    let item: CollectionItem
+    var item: CollectionItem
     let isHorizontal: Bool
     @Binding var selectedIndex: Int
 
@@ -78,18 +78,18 @@ struct NFTCollectionCard: View {
     }
 }
 
-struct NFTCollectionCard_Previews: PreviewProvider {
-    @State static var selectedIndex: Int = 0
-
-    static var previews: some View {
-        VStack {
-            NFTCollectionCard(index: 0, item: NFTTabViewModel().state.items.first!,
-                              isHorizontal: true,
-                              selectedIndex: $selectedIndex)
-            NFTCollectionCard(index: 0,
-                              item: NFTTabViewModel().state.items.first!,
-                              isHorizontal: false,
-                              selectedIndex: $selectedIndex)
-        }
-    }
-}
+//struct NFTCollectionCard_Previews: PreviewProvider {
+//    @State static var selectedIndex: Int = 0
+//
+//    static var previews: some View {
+//        VStack {
+//            NFTCollectionCard(index: 0, item: NFTTabViewModel().state.items.first!,
+//                              isHorizontal: true,
+//                              selectedIndex: $selectedIndex)
+//            NFTCollectionCard(index: 0,
+//                              item: NFTTabViewModel().state.items.first!,
+//                              isHorizontal: false,
+//                              selectedIndex: $selectedIndex)
+//        }
+//    }
+//}

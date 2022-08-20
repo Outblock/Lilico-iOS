@@ -177,7 +177,8 @@ extension AddressBookView {
         
 #if compiler(>=5.7)
         if #available(iOS 16.0, *) {
-            return anyView.scrollContentBackground(.hidden)
+//            return anyView.scrollContentBackground(.hidden)
+            return anyView
         } else {
             return anyView
         }

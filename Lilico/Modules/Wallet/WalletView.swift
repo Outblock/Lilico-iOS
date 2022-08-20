@@ -10,15 +10,7 @@ import Flow
 import Kingfisher
 import SPConfetti
 import SwiftUI
-
 import SwiftUIX
-
-//struct WalletView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WalletView()
-////        WalletView.CoinCell()
-//    }
-//}
 
 private let ActionViewHeight: CGFloat = 76
 private let CardViewHeight: CGFloat = 214
@@ -31,11 +23,11 @@ extension WalletView: AppTabBarPageProtocol {
     }
 
     static func iconName() -> String {
-        return "wallet-tab"
+        "CoinHover"
     }
 
     static func color() -> Color {
-        return .LL.orange
+        return .LL.Primary.salmonPrimary
     }
 }
 
