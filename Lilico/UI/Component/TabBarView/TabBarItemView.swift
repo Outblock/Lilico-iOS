@@ -27,20 +27,12 @@ struct TabBarItemView<T: Hashable>: View {
             withAnimation(.spring()) { selected = pageModel.tag }
             action()
         }, label: {
-//            Image(pageModel.iconName)
-//                .renderingMode(.template)
-//                .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                .foregroundColor(selected == pageModel.tag ? pageModel.color : Color.gray)
-            
             animationView
-            
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onChange(of: selected, perform: { value in
             if value == pageModel.tag {
-                pageModel.lottieView.play { _ in
-                    // TODO
-                }
+                pageModel.lottieView.play()
             }
         })
         .contextMenu {

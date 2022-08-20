@@ -20,12 +20,11 @@ extension NFTTabScreen: AppTabBarPageProtocol {
     }
 
     static func iconName() -> String {
-//        return "NFT-tab"
         "Grid"
     }
 
     static func color() -> SwiftUI.Color {
-        return .yellow
+        return .LL.Secondary.mangoNFT
     }
 }
 

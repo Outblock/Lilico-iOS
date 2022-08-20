@@ -15,12 +15,11 @@ extension ProfileView: AppTabBarPageProtocol {
     }
 
     static func iconName() -> String {
-//        return "profile-tab"
-        "Account"
+        "Avatar"
     }
 
     static func color() -> Color {
-        return .LL.blue
+        return .LL.Secondary.navyWallet
     }
 }
 
