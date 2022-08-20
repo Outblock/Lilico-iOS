@@ -19,7 +19,7 @@ extension ProfileView: AppTabBarPageProtocol {
     }
 
     static func color() -> Color {
-        return .LL.Secondary.navyWallet
+        return .LL.Secondary.navy3
     }
 }
 

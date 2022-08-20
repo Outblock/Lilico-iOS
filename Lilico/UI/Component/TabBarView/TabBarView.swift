@@ -76,22 +76,11 @@ struct TabBarView<T: Hashable>: View {
     }
 
     private func getCurrentPageModel() -> TabBarPageModel<T>? {
-        for page in pages {
-            if page.tag == current {
-                return page
-            }
-        }
-
-        return nil
+        pages.first{ $0.tag == current }
     }
 
     private func getCurrentPageIndex() -> Int {
-        for (index, page) in pages.enumerated() {
-            if page.tag == current {
-                return index
-            }
-        }
-        return 0
+        pages.firstIndex{ $0.tag == current }  ?? 0
     }
 }
 
