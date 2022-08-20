@@ -10,7 +10,6 @@ import Flow
 import Kingfisher
 import SPConfetti
 import SwiftUI
-
 import SwiftUIX
 
 //struct WalletView_Previews: PreviewProvider {
@@ -31,7 +30,8 @@ extension WalletView: AppTabBarPageProtocol {
     }
 
     static func iconName() -> String {
-        return "wallet-tab"
+//        return "wallet-tab"
+        "CoinHover"
     }
 
     static func color() -> Color {

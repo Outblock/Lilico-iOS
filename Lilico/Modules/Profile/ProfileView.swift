@@ -9,12 +9,14 @@ import Kingfisher
 import SwiftUI
 
 extension ProfileView: AppTabBarPageProtocol {
+    
     static func tabTag() -> AppTabType {
         return .profile
     }
 
     static func iconName() -> String {
-        return "profile-tab"
+//        return "profile-tab"
+        "Account"
     }
 
     static func color() -> Color {

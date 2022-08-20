@@ -105,7 +105,7 @@ extension NFTUIKitGridStyleHandler {
         Task {
             do {
                 try await dataModel.requestGridAction(offset: 0)
-                DispatchQueue.syncOnMain {
+                DispatchQueue.main.async {
                     self.isInitRequested = true
                     self.reloadViews()
                 }
@@ -133,7 +133,7 @@ extension NFTUIKitGridStyleHandler {
             do {
                 let offset = dataModel.nfts.count
                 try await dataModel.requestGridAction(offset: offset)
-                DispatchQueue.syncOnMain {
+                DispatchQueue.main.async {
                     self.reloadViews()
                 }
                 

@@ -193,7 +193,7 @@ extension NFTUIKitListStyleHandler {
         Task {
             do {
                 try await dataModel.refreshCollectionAction()
-                DispatchQueue.syncOnMain {
+                DispatchQueue.main.async {
                     self.isInitRequested = true
                     
                     if !self.dataModel.items.isEmpty {

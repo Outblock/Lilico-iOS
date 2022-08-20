@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Combine
+//import Lottie
 
 enum AppTabType {
     case wallet
@@ -19,6 +20,7 @@ protocol AppTabBarPageProtocol {
     static func tabTag() -> AppTabType
     static func iconName() -> String
     static func color() -> Color
+//    static func lottieView() -> AnimationView
 }
 
 final class Coordinator {

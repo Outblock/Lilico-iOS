@@ -12,6 +12,7 @@ import IrregularGradient
 import Kingfisher
 import SwiftUI
 import WebKit
+import Lottie
 
 extension NFTTabScreen: AppTabBarPageProtocol {
     static func tabTag() -> AppTabType {
@@ -19,11 +20,12 @@ extension NFTTabScreen: AppTabBarPageProtocol {
     }
 
     static func iconName() -> String {
-        return "NFT-tab"
+//        return "NFT-tab"
+        "Grid"
     }
 
-    static func color() -> Color {
-        return .LL.yellow
+    static func color() -> SwiftUI.Color {
+        return .yellow
     }
 }
 
