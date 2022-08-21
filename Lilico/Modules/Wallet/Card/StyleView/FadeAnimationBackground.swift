@@ -10,6 +10,7 @@ import SwiftUIX
 
 struct FadeAnimationBackground: View {
     
+    var image: Image
     var itemPerRow = 8
     @State
     var isAnimating = false
@@ -21,7 +22,7 @@ struct FadeAnimationBackground: View {
                 ForEach(0..<getNumberOfRows(geometry)) { _ in
                     HStack(spacing: 0) {
                         ForEach(0..<itemPerRow + 7) { _ in
-                            Image("flow-line")
+                            image
                                 .renderingMode(.template)
 //                                .resizable()
                                 .aspectRatio(1, contentMode: .fit)
@@ -68,7 +69,7 @@ struct FadeAnimationBackground: View {
 
 struct FadeAnimationBackground_Previews: PreviewProvider {
     static var previews: some View {
-        FadeAnimationBackground()
+        FadeAnimationBackground(image: Image("flow-line"))
         
 //        NewEmptyWalletBackgroundView().colorScheme(.dark)
     }
