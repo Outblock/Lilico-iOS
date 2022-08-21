@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 enum CardBackground {
-    case image(image: Image)
-    case fade(image: Image)
+    case image(image: SwiftUI.Image)
+    case fade(image: SwiftUI.Image)
     case fluid
     
     @ViewBuilder

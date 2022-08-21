@@ -44,16 +44,20 @@ struct TabBarItemView<T: Hashable>: View {
 }
 
 struct WalletView_Previews: PreviewProvider {
+    
+    static let animation = AnimationView(name: "Copy", bundle: .main)
+    
     static var previews: some View {
-            ResizableLottieView(lottieView: AnimationView(name: "Coin", bundle: .main),
+            ResizableLottieView(lottieView: animation,
                                 color: Color.gray)
 //        LottieView(name: "Coin2", loopMode: .loop)
             .aspectRatio(contentMode: .fit)
             .frame(width: 300, height: 300)
             .frame(maxWidth: .infinity)
-//            .contentShape(Rectangle())
             .onAppear{
-                
+                animation.play()
+            }.onTapGesture {
+                animation.play()
             }
     }
 }

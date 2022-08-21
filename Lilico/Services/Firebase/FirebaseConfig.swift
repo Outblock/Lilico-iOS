@@ -18,6 +18,7 @@ enum FirebaseConfig: String {
     case all
     case flowCoins = "flow_coins"
     case nftCollections = "nft_collections"
+    case dapp
 
     static func start() {
         Task {

@@ -222,11 +222,10 @@ extension WalletView {
                         Text(vm.isHidden ? "******************" : vm.address)
                             .foregroundColor(Color(hex: "#FDFBF9"))
                             .font(.inter(size: 15, weight: .bold))
-                        Button {
+                        
+                        LottieButton(iconName: "Copy-soild") {
                             vm.copyAddressAction()
-                        } label: {
-                            Image("icon-address-copy")
-                        }
+                        } 
 
                         Spacer()
 

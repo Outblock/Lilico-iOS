@@ -92,6 +92,10 @@
 		1575A72B28B26B9600ADC513 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 1575A72328B26B9600ADC513 /* script.js */; };
 		1575A73028B26F3400ADC513 /* CardBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A72F28B26F3400ADC513 /* CardBackground.swift */; };
 		1575A73128B26F3400ADC513 /* CardBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A72F28B26F3400ADC513 /* CardBackground.swift */; };
+		1575A73428B286DA00ADC513 /* LottieButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A73328B286DA00ADC513 /* LottieButton.swift */; };
+		1575A73528B286DA00ADC513 /* LottieButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A73328B286DA00ADC513 /* LottieButton.swift */; };
+		1575A73728B28D3300ADC513 /* LDR_LLL1_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1575A73628B28D3300ADC513 /* LDR_LLL1_0.png */; };
+		1575A73828B28D3300ADC513 /* LDR_LLL1_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1575A73628B28D3300ADC513 /* LDR_LLL1_0.png */; };
 		15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B632867641D0066046D /* GTMSessionFetcherCore */; };
 		15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832D58286816ED0066046D /* FlowAddressRegistor.swift */; };
 		1586873A28A170330037635B /* FadeAnimationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1586873928A170330037635B /* FadeAnimationBackground.swift */; };
@@ -1159,6 +1163,8 @@
 		1575A72228B26B9600ADC513 /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
 		1575A72328B26B9600ADC513 /* script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
 		1575A72F28B26F3400ADC513 /* CardBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBackground.swift; sourceTree = "<group>"; };
+		1575A73328B286DA00ADC513 /* LottieButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieButton.swift; sourceTree = "<group>"; };
+		1575A73628B28D3300ADC513 /* LDR_LLL1_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LDR_LLL1_0.png; sourceTree = "<group>"; };
 		15832D58286816ED0066046D /* FlowAddressRegistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowAddressRegistor.swift; sourceTree = "<group>"; };
 		1586873928A170330037635B /* FadeAnimationBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeAnimationBackground.swift; sourceTree = "<group>"; };
 		158832CD2894269E00142B35 /* WalletConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectManager.swift; sourceTree = "<group>"; };
@@ -1912,6 +1918,7 @@
 		1575A72028B26B9600ADC513 /* Fluid */ = {
 			isa = PBXGroup;
 			children = (
+				1575A73628B28D3300ADC513 /* LDR_LLL1_0.png */,
 				1575A72128B26B9600ADC513 /* index.html */,
 				1575A72228B26B9600ADC513 /* dat.gui.min.js */,
 				1575A72328B26B9600ADC513 /* script.js */,
@@ -3269,6 +3276,7 @@
 				152BB09728AE91A600B2A2AA /* ResizableLottieView.swift */,
 				1565FB8E28B15D890086A652 /* LottieView.swift */,
 				6A382E1D289BC93400163564 /* Shake.swift */,
+				1575A73328B286DA00ADC513 /* LottieButton.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -3869,6 +3877,7 @@
 				158C9CAD2787F7490062E0C6 /* Montserrat-Regular.ttf in Resources */,
 				6AEF4278287537E5000A77D7 /* Localizable.strings in Resources */,
 				1575A72728B26B9600ADC513 /* index.html in Resources */,
+				1575A73828B28D3300ADC513 /* LDR_LLL1_0.png in Resources */,
 				154B8922276A1EEB00780E93 /* Preview Assets.xcassets in Resources */,
 				1565FB6828B14F140086A652 /* Account.json in Resources */,
 				1565FB9F28B16B580086A652 /* CoinHover.json in Resources */,
@@ -3904,6 +3913,7 @@
 				15C58C5B2868A4EE00BD4FC6 /* Montserrat-Regular.ttf in Resources */,
 				15C58C5C2868A4EE00BD4FC6 /* Preview Assets.xcassets in Resources */,
 				1575A72628B26B9600ADC513 /* index.html in Resources */,
+				1575A73728B28D3300ADC513 /* LDR_LLL1_0.png in Resources */,
 				15C58C5D2868A4EE00BD4FC6 /* remote_config_defaults.plist in Resources */,
 				1565FB6728B14F140086A652 /* Account.json in Resources */,
 				1565FB9E28B16B580086A652 /* CoinHover.json in Resources */,
@@ -4262,6 +4272,7 @@
 				1588330D28943D1D00142B35 /* SPQRCameraController.swift in Sources */,
 				15DC21A727819C56000B187A /* VBaseTextField.swift in Sources */,
 				6A0137672897E7A0009BEF20 /* HalfSheetModal.swift in Sources */,
+				1575A73528B286DA00ADC513 /* LottieButton.swift in Sources */,
 				15DC210727819C56000B187A /* VSliderState.swift in Sources */,
 				15DC215B27819C56000B187A /* VMenuButtonType.swift in Sources */,
 				158832E228942D5800142B35 /* RequestInfo.swift in Sources */,
@@ -4728,6 +4739,7 @@
 				1588330C28943D1D00142B35 /* SPQRCameraController.swift in Sources */,
 				15C58B9B2868A4EE00BD4FC6 /* VBaseTextField.swift in Sources */,
 				6A0137662897E7A0009BEF20 /* HalfSheetModal.swift in Sources */,
+				1575A73428B286DA00ADC513 /* LottieButton.swift in Sources */,
 				15C58B9C2868A4EE00BD4FC6 /* VSliderState.swift in Sources */,
 				15C58B9D2868A4EE00BD4FC6 /* VMenuButtonType.swift in Sources */,
 				158832E128942D5800142B35 /* RequestInfo.swift in Sources */,
