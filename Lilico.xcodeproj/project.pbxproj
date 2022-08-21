@@ -82,6 +82,16 @@
 		157046792793243400D1747B /* NFTTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157046772793243400D1747B /* NFTTabViewModel.swift */; };
 		1570467C2793D60000D1747B /* NFTListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467A2793D60000D1747B /* NFTListResponse.swift */; };
 		1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570467D2793EBA100D1747B /* GithubEndpoint.swift */; };
+		1575A71428B25EE800ADC513 /* FluidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A71328B25EE800ADC513 /* FluidView.swift */; };
+		1575A71528B25EE800ADC513 /* FluidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A71328B25EE800ADC513 /* FluidView.swift */; };
+		1575A72628B26B9600ADC513 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 1575A72128B26B9600ADC513 /* index.html */; };
+		1575A72728B26B9600ADC513 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 1575A72128B26B9600ADC513 /* index.html */; };
+		1575A72828B26B9600ADC513 /* dat.gui.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1575A72228B26B9600ADC513 /* dat.gui.min.js */; };
+		1575A72928B26B9600ADC513 /* dat.gui.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1575A72228B26B9600ADC513 /* dat.gui.min.js */; };
+		1575A72A28B26B9600ADC513 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 1575A72328B26B9600ADC513 /* script.js */; };
+		1575A72B28B26B9600ADC513 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 1575A72328B26B9600ADC513 /* script.js */; };
+		1575A73028B26F3400ADC513 /* CardBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A72F28B26F3400ADC513 /* CardBackground.swift */; };
+		1575A73128B26F3400ADC513 /* CardBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A72F28B26F3400ADC513 /* CardBackground.swift */; };
 		15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B632867641D0066046D /* GTMSessionFetcherCore */; };
 		15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832D58286816ED0066046D /* FlowAddressRegistor.swift */; };
 		1586873A28A170330037635B /* FadeAnimationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1586873928A170330037635B /* FadeAnimationBackground.swift */; };
@@ -1144,6 +1154,11 @@
 		157046772793243400D1747B /* NFTTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTTabViewModel.swift; sourceTree = "<group>"; };
 		1570467A2793D60000D1747B /* NFTListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTListResponse.swift; sourceTree = "<group>"; };
 		1570467D2793EBA100D1747B /* GithubEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubEndpoint.swift; sourceTree = "<group>"; };
+		1575A71328B25EE800ADC513 /* FluidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidView.swift; sourceTree = "<group>"; };
+		1575A72128B26B9600ADC513 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		1575A72228B26B9600ADC513 /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
+		1575A72328B26B9600ADC513 /* script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
+		1575A72F28B26F3400ADC513 /* CardBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBackground.swift; sourceTree = "<group>"; };
 		15832D58286816ED0066046D /* FlowAddressRegistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowAddressRegistor.swift; sourceTree = "<group>"; };
 		1586873928A170330037635B /* FadeAnimationBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeAnimationBackground.swift; sourceTree = "<group>"; };
 		158832CD2894269E00142B35 /* WalletConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectManager.swift; sourceTree = "<group>"; };
@@ -1737,6 +1752,7 @@
 		1507C7EA2755FCB100890C5D /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				1575A72E28B26F2100ADC513 /* Card */,
 				6A4EA49A2875953E006B74D2 /* Send */,
 				6A4009102875614700A77070 /* Receive */,
 				6A15C1FD286D913100C2EBA2 /* TokenDetail */,
@@ -1893,6 +1909,34 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		1575A72028B26B9600ADC513 /* Fluid */ = {
+			isa = PBXGroup;
+			children = (
+				1575A72128B26B9600ADC513 /* index.html */,
+				1575A72228B26B9600ADC513 /* dat.gui.min.js */,
+				1575A72328B26B9600ADC513 /* script.js */,
+			);
+			path = Fluid;
+			sourceTree = "<group>";
+		};
+		1575A72E28B26F2100ADC513 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				1575A73228B2701300ADC513 /* StyleView */,
+				1575A72F28B26F3400ADC513 /* CardBackground.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		1575A73228B2701300ADC513 /* StyleView */ = {
+			isa = PBXGroup;
+			children = (
+				1575A71328B25EE800ADC513 /* FluidView.swift */,
+				1586873928A170330037635B /* FadeAnimationBackground.swift */,
+			);
+			path = StyleView;
+			sourceTree = "<group>";
+		};
 		158832D5289427D800142B35 /* WalletConnect */ = {
 			isa = PBXGroup;
 			children = (
@@ -2040,6 +2084,7 @@
 		159A5437275368BF004BCACC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1575A72028B26B9600ADC513 /* Fluid */,
 				1565FB5D28B14F140086A652 /* Lottie */,
 				4EA820C128634A9700DF36A8 /* Json */,
 				15EC9DF7274FD1FD00F70CD9 /* Preview Content */,
@@ -2125,7 +2170,6 @@
 			children = (
 				15BCFF1327770D76000B7863 /* EmptyWalletView.swift */,
 				15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */,
-				1586873928A170330037635B /* FadeAnimationBackground.swift */,
 			);
 			path = Empty;
 			sourceTree = "<group>";
@@ -3824,12 +3868,14 @@
 				1565FB6A28B14F140086A652 /* Notification.json in Resources */,
 				158C9CAD2787F7490062E0C6 /* Montserrat-Regular.ttf in Resources */,
 				6AEF4278287537E5000A77D7 /* Localizable.strings in Resources */,
+				1575A72728B26B9600ADC513 /* index.html in Resources */,
 				154B8922276A1EEB00780E93 /* Preview Assets.xcassets in Resources */,
 				1565FB6828B14F140086A652 /* Account.json in Resources */,
 				1565FB9F28B16B580086A652 /* CoinHover.json in Resources */,
 				4EA820C7286354E200DF36A8 /* remote_config_defaults.plist in Resources */,
 				154B8923276A1EEB00780E93 /* Assets.xcassets in Resources */,
 				158C9CB02787F7660062E0C6 /* Montserrat-SemiBold.ttf in Resources */,
+				1575A72928B26B9600ADC513 /* dat.gui.min.js in Resources */,
 				1565FB6428B14F140086A652 /* Chat.json in Resources */,
 				158C9CAB2787F7490062E0C6 /* Montserrat-Italic.ttf in Resources */,
 				1565FBA528B16FD70086A652 /* Category.json in Resources */,
@@ -3840,6 +3886,7 @@
 				1565FBAC28B171BB0086A652 /* Avatar.json in Resources */,
 				1565FB6C28B14F140086A652 /* Home.json in Resources */,
 				15DE22FD27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */,
+				1575A72B28B26B9600ADC513 /* script.js in Resources */,
 				1565FBB428B171BB0086A652 /* Copy-soild.json in Resources */,
 				1565FBB228B171BB0086A652 /* Copy.json in Resources */,
 				1565FB6628B14F140086A652 /* Saved.json in Resources */,
@@ -3856,12 +3903,14 @@
 				1565FB6928B14F140086A652 /* Notification.json in Resources */,
 				15C58C5B2868A4EE00BD4FC6 /* Montserrat-Regular.ttf in Resources */,
 				15C58C5C2868A4EE00BD4FC6 /* Preview Assets.xcassets in Resources */,
+				1575A72628B26B9600ADC513 /* index.html in Resources */,
 				15C58C5D2868A4EE00BD4FC6 /* remote_config_defaults.plist in Resources */,
 				1565FB6728B14F140086A652 /* Account.json in Resources */,
 				1565FB9E28B16B580086A652 /* CoinHover.json in Resources */,
 				15C58C5E2868A4EE00BD4FC6 /* Localizable.strings in Resources */,
 				15C58C5F2868A4EE00BD4FC6 /* Assets.xcassets in Resources */,
 				15C58C602868A4EE00BD4FC6 /* Montserrat-SemiBold.ttf in Resources */,
+				1575A72828B26B9600ADC513 /* dat.gui.min.js in Resources */,
 				1565FB6328B14F140086A652 /* Chat.json in Resources */,
 				15C58C612868A4EE00BD4FC6 /* Montserrat-Italic.ttf in Resources */,
 				1565FBA428B16FD70086A652 /* Category.json in Resources */,
@@ -3872,6 +3921,7 @@
 				1565FBAB28B171BB0086A652 /* Avatar.json in Resources */,
 				1565FB6B28B14F140086A652 /* Home.json in Resources */,
 				15C58C642868A4EE00BD4FC6 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */,
+				1575A72A28B26B9600ADC513 /* script.js in Resources */,
 				1565FBB328B171BB0086A652 /* Copy-soild.json in Resources */,
 				1565FBB128B171BB0086A652 /* Copy.json in Resources */,
 				1565FB6528B14F140086A652 /* Saved.json in Resources */,
@@ -4111,6 +4161,7 @@
 				6A8FA4A4285B192900EE5BE3 /* CGPoint+Distance.swift in Sources */,
 				15DC211727819C56000B187A /* VPageIndicatorAuto.swift in Sources */,
 				15DE22D3277DBE0000B5EE03 /* UserManager.swift in Sources */,
+				1575A71528B25EE800ADC513 /* FluidView.swift in Sources */,
 				6ACDD17728587FF800F406EB /* ProfileEditNameViewModel.swift in Sources */,
 				15DC211F27819C56000B187A /* VSpinnerType.swift in Sources */,
 				15DC207F27819C56000B187A /* VBaseViewNavigationBarLeading.swift in Sources */,
@@ -4144,6 +4195,7 @@
 				6A164F762845F1CB0026B31E /* IndexedScrollView.swift in Sources */,
 				154B8909276A1EEB00780E93 /* Color.swift in Sources */,
 				15DC211127819C56000B187A /* VPageIndicatorFinite.swift in Sources */,
+				1575A73128B26F3400ADC513 /* CardBackground.swift in Sources */,
 				6A5006D628A78CC8007FE3F5 /* NFTUIKitListTitleView.swift in Sources */,
 				15DC20C927819C56000B187A /* VNavigationViewBackButtonHidden.swift in Sources */,
 				1588331928943D1D00142B35 /* SPQRCodeData.swift in Sources */,
@@ -4575,6 +4627,7 @@
 				15C58B402868A4EE00BD4FC6 /* CGPoint+Distance.swift in Sources */,
 				15C58B412868A4EE00BD4FC6 /* VPageIndicatorAuto.swift in Sources */,
 				15C58B422868A4EE00BD4FC6 /* UserManager.swift in Sources */,
+				1575A71428B25EE800ADC513 /* FluidView.swift in Sources */,
 				15C58B432868A4EE00BD4FC6 /* ProfileEditNameViewModel.swift in Sources */,
 				15C58B442868A4EE00BD4FC6 /* VSpinnerType.swift in Sources */,
 				15C58B452868A4EE00BD4FC6 /* VBaseViewNavigationBarLeading.swift in Sources */,
@@ -4608,6 +4661,7 @@
 				15C58B5A2868A4EE00BD4FC6 /* IndexedScrollView.swift in Sources */,
 				15C58B5B2868A4EE00BD4FC6 /* Color.swift in Sources */,
 				15C58B5C2868A4EE00BD4FC6 /* VPageIndicatorFinite.swift in Sources */,
+				1575A73028B26F3400ADC513 /* CardBackground.swift in Sources */,
 				6A5006D528A78CC8007FE3F5 /* NFTUIKitListTitleView.swift in Sources */,
 				15C58B5D2868A4EE00BD4FC6 /* VNavigationViewBackButtonHidden.swift in Sources */,
 				1588331828943D1D00142B35 /* SPQRCodeData.swift in Sources */,
