@@ -239,9 +239,10 @@ extension WalletView {
                 }
                 .padding(18)
                 .background {
-                    Image("bg-wallet-card")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+//                    Image("bg-wallet-card")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
+                    FadeAnimationBackground()
                 }
                 .cornerRadius(16)
             }

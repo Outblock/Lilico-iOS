@@ -52,7 +52,7 @@ struct FadeAnimationBackground: View {
         .overlay {
             Color(hex: "#000000", alpha: 0.2)
         }
-//        .background(Color.LL.background)
+        .background(Color(hex: "#121212", alpha: 0.9))
 //        .ignoresSafeArea()
     }
     
