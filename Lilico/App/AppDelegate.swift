@@ -99,7 +99,7 @@ extension AppDelegate {
 extension AppDelegate {
     private func setupUI() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = .systemBackground
+        self.window?.backgroundColor = UIColor(Color.LL.deepBg)
         
         coordinator.showRootView()
         coordinator.rootNavi?.view.alpha = 0
