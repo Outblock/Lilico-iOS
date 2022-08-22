@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import SwiftUI
+import Kingfisher
 
 private let PinnedHeaderHeight: CGFloat = 80
 private let CollecitonTitleViewHeight: CGFloat = 32
@@ -42,10 +43,32 @@ class NFTUIKitListStyleHandler: NSObject {
         return view
     }()
     
-    lazy var blurBgView: UIView = {
+    private lazy var blurBgView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray
+        view.backgroundColor = .clear
+        view.isUserInteractionEnabled = false
         return view
+    }()
+    
+    private lazy var bgImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
+        return imageView
+    }()
+    
+    private lazy var blurEffectView: UIVisualEffectView = {
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        return view
+    }()
+    
+    private lazy var blurMaskLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
+        layer.startPoint = CGPoint(x: 0.5, y: 0)
+        layer.endPoint = CGPoint(x: 0.5, y: 1)
+        return layer
     }()
     
     private lazy var collectionTitleView: NFTUIKitListTitleView = {
@@ -72,6 +95,9 @@ class NFTUIKitListStyleHandler: NSObject {
     
     private lazy var favContainerView: NFTUIKitFavContainerView = {
         let view = NFTUIKitFavContainerView()
+        view.pageChangeCallback = { [weak self] index in
+            self?.reloadBgView()
+        }
         return view
     }()
     
@@ -113,14 +139,7 @@ class NFTUIKitListStyleHandler: NSObject {
     }()
     
     func setup() {
-        let offset = Router.coordinator.window.safeAreaInsets.top + 44.0
-        
-        containerView.addSubview(blurBgView)
-        blurBgView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(-offset)
-            make.height.equalTo(offset + NFTUIKitFavContainerView.calculateViewHeight())
-        }
+        setupBlurBgView()
         
         containerView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -133,11 +152,35 @@ class NFTUIKitListStyleHandler: NSObject {
         }
         emptyView.isHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadBgView), name: .nftFavDidChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadViews), name: .nftFavDidChanged, object: nil)
         reloadBgView()
     }
     
-    private func reloadViews() {
+    private func setupBlurBgView() {
+        let offset = Router.coordinator.window.safeAreaInsets.top + 44.0
+        
+        containerView.addSubview(blurBgView)
+        blurBgView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(-offset)
+            make.height.equalTo(offset + NFTUIKitFavContainerView.calculateViewHeight())
+        }
+        
+        blurBgView.addSubview(bgImageView)
+        bgImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        blurBgView.addSubview(blurEffectView)
+        blurEffectView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        blurMaskLayer.frame = CGRect(x: 0, y: 0, width: Router.coordinator.window.bounds.size.width, height: offset + NFTUIKitFavContainerView.calculateViewHeight())
+        blurBgView.layer.mask = blurMaskLayer
+    }
+    
+    @objc private func reloadViews() {
         if dataModel.items.isEmpty {
             showEmptyView()
         } else {
@@ -152,8 +195,13 @@ class NFTUIKitListStyleHandler: NSObject {
         setupLoadingActionIfNeeded()
     }
     
-    @objc private func reloadBgView() {
+    private func reloadBgView() {
         blurBgView.isHidden = NFTUIKitCache.cache.favList.isEmpty
+        
+        if !blurBgView.isHidden, favContainerView.currentIndex < NFTUIKitCache.cache.favList.count {
+            let model = NFTUIKitCache.cache.favList[favContainerView.currentIndex]
+            bgImageView.kf.setImage(with: model.image, placeholder: UIImage(named: "placeholder"), options: [.transition(.fade(0.25)), .forceTransition])
+        }
     }
     
     private func setupLoadingActionIfNeeded() {

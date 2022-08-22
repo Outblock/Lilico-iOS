@@ -11,6 +11,12 @@ import CollectionViewPagingLayout
 class NFTUIKitFavContainerView: UIView {
     var vm: NFTTabViewModel?
     
+    var currentIndex: Int {
+        return layout.currentPage
+    }
+    
+    var pageChangeCallback: ((Int) -> ())?
+    
     private lazy var headerView: NFTUIKitTopSelectionHeaderView = {
         let view = NFTUIKitTopSelectionHeaderView()
         return view
@@ -19,6 +25,7 @@ class NFTUIKitFavContainerView: UIView {
     private lazy var layout: CollectionViewPagingLayout = {
         let viewLayout = CollectionViewPagingLayout()
         viewLayout.numberOfVisibleItems = 8
+        viewLayout.delegate = self
         return viewLayout
     }()
     
@@ -43,6 +50,15 @@ class NFTUIKitFavContainerView: UIView {
         fatalError("")
     }
     
+    static func calculateViewHeight() -> CGFloat {
+        let maxWidth = CGFloat(Router.coordinator.window.bounds.size.width - 18 * 2)
+        let itemWidth = floor(264.0/339.0 * maxWidth)
+        
+        return itemWidth + 32
+    }
+}
+
+extension NFTUIKitFavContainerView {
     @objc private func onDataSourceChanged() {
         layout.invalidateLayoutInBatchUpdate(invalidateOffset: true)
         collectionView.reloadData()
@@ -62,16 +78,9 @@ class NFTUIKitFavContainerView: UIView {
             make.top.equalTo(headerView.snp.bottom)
         }
     }
-    
-    static func calculateViewHeight() -> CGFloat {
-        let maxWidth = CGFloat(Router.coordinator.window.bounds.size.width - 18 * 2)
-        let itemWidth = floor(264.0/339.0 * maxWidth)
-        
-        return itemWidth + 32
-    }
 }
 
-extension NFTUIKitFavContainerView: UICollectionViewDataSource, UICollectionViewDelegate {
+extension NFTUIKitFavContainerView: UICollectionViewDataSource, UICollectionViewDelegate, CollectionViewPagingLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return NFTUIKitCache.cache.favList.count
     }
@@ -90,5 +99,9 @@ extension NFTUIKitFavContainerView: UICollectionViewDataSource, UICollectionView
         
         let item = NFTUIKitCache.cache.favList[indexPath.item]
         Router.route(to: RouteMap.NFT.detail(vm, item))
+    }
+    
+    func onCurrentPageChanged(layout: CollectionViewPagingLayout, currentPage: Int) {
+        pageChangeCallback?(currentPage)
     }
 }
