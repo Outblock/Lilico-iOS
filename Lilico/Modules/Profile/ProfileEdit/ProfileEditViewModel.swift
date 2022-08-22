@@ -50,36 +50,11 @@ class ProfileEditViewModel: ViewModel {
     }
 
     private func editAvatarAction() {
-        Task {
-            do {
-                var items = [EditAvatarView.AvatarItemModel]()
-
-                let nfts = try await NFTListCache.cache.getNFTList()
-                if let currentAvatar = UserManager.shared.userInfo?.avatar {
-                    items.append(EditAvatarView.AvatarItemModel(type: .string, avatarString: currentAvatar))
-                }
-
-                for nft in nfts {
-                    items.append(EditAvatarView.AvatarItemModel(type: .nft, nft: nft))
-                }
-
-                if items.isEmpty {
-                    HUD.error(title: "nft_empty".localized)
-                    return
-                }
-
-                gotoAvatarEdit(items: items)
-            } catch {
-                DispatchQueue.main.async {
-                    HUD.error(title: "fetch_nft_error".localized)
-                    NFTListCache.cache.refresh()
-                }
-            }
-        }
+        gotoAvatarEdit()
     }
 
-    private func gotoAvatarEdit(items: [EditAvatarView.AvatarItemModel]) {
-        Router.route(to: RouteMap.Profile.editAvatar(items))
+    private func gotoAvatarEdit() {
+        Router.route(to: RouteMap.Profile.editAvatar)
     }
 
     private func changePrivate(_ isPrivate: Bool) {

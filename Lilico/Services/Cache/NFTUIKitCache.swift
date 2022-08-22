@@ -29,7 +29,9 @@ class NFTUIKitCache {
     init() {
         createFolderIfNeeded()
 //        // TODO: Test
-//        removeFavCache()
+        removeFavCache()
+        removeGridCache()
+        
         loadFavCache()
     }
     
@@ -249,6 +251,15 @@ extension NFTUIKitCache {
             try FileManager.default.removeItem(at: favCacheFile)
         } catch {
             debugPrint("NFTUIKitCache -> removeFavCache error: \(error)")
+        }
+        
+        Task {
+            do {
+                let request = NFTUpdateFavRequest(ids: "")
+                let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.updateFav(request))
+            } catch {
+                debugPrint("NFTUIKitCache -> removeFav error: \(error)")
+            }
         }
     }
     

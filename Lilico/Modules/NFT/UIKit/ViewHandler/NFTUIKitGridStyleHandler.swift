@@ -13,6 +13,7 @@ class NFTUIKitGridStyleHandler: NSObject {
     var vm: NFTTabViewModel?
     var dataModel: NFTUIKitListGridDataModel = NFTUIKitListGridDataModel()
     private var isInitRequested: Bool = false
+    private var isRequesting: Bool = false
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -94,27 +95,33 @@ class NFTUIKitGridStyleHandler: NSObject {
 
 extension NFTUIKitGridStyleHandler {
     func requestDataIfNeeded() {
-        if dataModel.nfts.isEmpty, !dataModel.isRequesting, !isInitRequested {
+        if dataModel.nfts.isEmpty, !isRequesting, !isInitRequested {
             collectionView.beginRefreshing()
         }
     }
     
     private func refreshAction() {
+        if isRequesting {
+            collectionView.stopRefreshing()
+            return
+        }
+        
+        isRequesting = true
+        
         hideErrorView()
         
         Task {
             do {
                 try await dataModel.requestGridAction(offset: 0)
                 DispatchQueue.main.async {
+                    self.isRequesting = false
                     self.isInitRequested = true
-                    self.reloadViews()
-                }
-                
-                DispatchQueue.main.async {
                     self.collectionView.stopRefreshing()
+                    self.reloadViews()
                 }
             } catch {
                 DispatchQueue.main.async {
+                    self.isRequesting = false
                     self.isInitRequested = true
                     self.collectionView.stopRefreshing()
                     
@@ -134,11 +141,11 @@ extension NFTUIKitGridStyleHandler {
                 let offset = dataModel.nfts.count
                 try await dataModel.requestGridAction(offset: offset)
                 DispatchQueue.main.async {
+                    if self.collectionView.isLoading() {
+                        self.collectionView.stopLoading()
+                    }
+                    
                     self.reloadViews()
-                }
-                
-                DispatchQueue.main.async {
-                    self.collectionView.stopLoading()
                 }
             } catch {
                 DispatchQueue.main.async {

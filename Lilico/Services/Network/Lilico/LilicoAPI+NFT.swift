@@ -65,7 +65,7 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
         case let .addFav(request):
             return .requestJSONEncodable(request)
         case let .updateFav(request):
-            return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
+            return .requestJSONEncodable(request)
         }
     }
 

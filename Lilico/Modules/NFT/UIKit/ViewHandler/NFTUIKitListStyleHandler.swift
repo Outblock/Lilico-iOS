@@ -28,6 +28,7 @@ class NFTUIKitListStyleHandler: NSObject {
     }
     var dataModel: NFTUIKitListNormalDataModel = NFTUIKitListNormalDataModel()
     private var isInitRequested: Bool = false
+    private var isRequesting: Bool = false
     
     var offsetCallback: ((CGFloat) -> ())?
     
@@ -228,12 +229,19 @@ class NFTUIKitListStyleHandler: NSObject {
 
 extension NFTUIKitListStyleHandler {
     func requestDataIfNeeded() {
-        if dataModel.items.isEmpty, !dataModel.isRequesting, !isInitRequested {
+        if dataModel.items.isEmpty, !isRequesting, !isInitRequested {
             collectionView.beginRefreshing()
         }
     }
     
     private func refreshAction() {
+        if isRequesting {
+            collectionView.stopRefreshing()
+            return
+        }
+        
+        isRequesting = true
+        
         hideErrorView()
         
         NFTUIKitCache.cache.requestFav()
@@ -242,7 +250,12 @@ extension NFTUIKitListStyleHandler {
             do {
                 try await dataModel.refreshCollectionAction()
                 DispatchQueue.main.async {
+                    self.isRequesting = false
                     self.isInitRequested = true
+                    
+                    if self.collectionView.isRefreshing() {
+                        self.collectionView.stopRefreshing()
+                    }
                     
                     if !self.dataModel.items.isEmpty {
                         self.changeSelectCollectionIndexAction(0)
@@ -250,14 +263,14 @@ extension NFTUIKitListStyleHandler {
                         self.reloadViews()
                     }
                 }
-                
-                DispatchQueue.main.async {
-                    self.collectionView.stopRefreshing()
-                }
             } catch {
                 DispatchQueue.main.async {
+                    self.isRequesting = false
                     self.isInitRequested = true
-                    self.collectionView.stopRefreshing()
+                    
+                    if self.collectionView.isRefreshing() {
+                        self.collectionView.stopRefreshing()
+                    }
                     
                     if self.dataModel.items.isEmpty {
                         self.showErrorView()
@@ -275,7 +288,10 @@ extension NFTUIKitListStyleHandler {
         }
         
         if collectionItem.isEnd {
-            self.collectionView.stopLoading()
+            if self.collectionView.isLoading() {
+                self.collectionView.stopLoading()
+            }
+            
             self.collectionView.setNoMoreData(true)
             return
         }
@@ -296,7 +312,9 @@ extension NFTUIKitListStyleHandler {
                 return
             }
             
-            self.collectionView.stopLoading()
+            if self.collectionView.isLoading() {
+                self.collectionView.stopLoading()
+            }
             
             if result {
                 self.reloadViews()

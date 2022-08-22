@@ -18,7 +18,7 @@ private let PreviewContainerSize: CGFloat = 54
 private let PreviewImageSize: CGFloat = 40
 
 struct EditAvatarView: RouteableView {
-    @StateObject private var vm: EditAvatarViewModel
+    @StateObject private var vm: EditAvatarViewModel = EditAvatarViewModel()
     
     var title: String {
         return ""
@@ -26,10 +26,6 @@ struct EditAvatarView: RouteableView {
     
     var forceColorScheme: UIUserInterfaceStyle? {
         return .dark
-    }
-
-    init(items: [AvatarItemModel]) {
-        _vm = StateObject(wrappedValue: EditAvatarViewModel(items: items))
     }
 
     var body: some View {
@@ -129,6 +125,7 @@ extension EditAvatarView {
             .snappable(alignment: .center, mode: .afterScrolling(decelerationRate: .fast)) { snapID in
                 if let selectedId = snapID as? String, selectedId != vm.selectedItemId {
                     vm.selectedItemId = selectedId
+                    vm.loadMoreAvatarIfNeededAction()
                 }
             }
             .visibility(vm.mode == .preview ? .invisible : .visible)

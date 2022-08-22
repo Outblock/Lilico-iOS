@@ -23,9 +23,9 @@ extension EditAvatarView {
 
         var type: ItemType
         var avatarString: String?
-        var nft: NFTResponse?
+        var nft: NFTModel?
 
-        init(type: ItemType, avatarString: String? = nil, nft: NFTResponse? = nil) {
+        init(type: ItemType, avatarString: String? = nil, nft: NFTModel? = nil) {
             self.type = type
             self.avatarString = avatarString
             self.nft = nft
@@ -36,7 +36,7 @@ extension EditAvatarView {
                 return avatarString
             }
 
-            if let tokenID = nft?.id.tokenID {
+            if let tokenID = nft?.id {
                 return tokenID
             } else {
                 assert(false, "tokenID should not be nil")
@@ -51,8 +51,8 @@ extension EditAvatarView {
                 return avatarString.convertedAvatarString()
             }
 
-            if let nftCover = nft?.cover() {
-                return nftCover
+            if let nftCover = nft?.image {
+                return nftCover.absoluteString.convertedAvatarString()
             }
 
             return ""
@@ -63,7 +63,7 @@ extension EditAvatarView {
                 return "current_avatar".localized
             }
 
-            return nft?.name() ?? " "
+            return nft?.title ?? " "
         }
     }
 }
@@ -71,17 +71,39 @@ extension EditAvatarView {
 extension EditAvatarView {
     class EditAvatarViewModel: ObservableObject {
         @Published var mode: Mode = .preview
-        @Published var items: [AvatarItemModel]
+        @Published var items: [AvatarItemModel] = []
         @Published var selectedItemId: String?
+        
         private var oldAvatarItem: AvatarItemModel?
+        
+        private var isEnd: Bool = false
+        private var isRequesting: Bool = false
+        
+        // TODO: Use real address
+        private var owner: String = "0x01d63aa89238a559"
 
-        init(items: [AvatarItemModel]) {
-            self.items = items
-
+        init() {
+            var cachedItems = [AvatarItemModel]()
+            
+            if let currentAvatar = UserManager.shared.userInfo?.avatar {
+                cachedItems.append(EditAvatarView.AvatarItemModel(type: .string, avatarString: currentAvatar))
+            }
+            
+            if let cachedNFTs = NFTUIKitCache.cache.getGridNFTs() {
+                for nft in cachedNFTs {
+                    let model = NFTModel(nft, in: nil)
+                    cachedItems.append(EditAvatarView.AvatarItemModel(type: .nft, avatarString: nil, nft: model))
+                }
+            }
+            
+            items = cachedItems
+            
             if let first = items.first, first.type == .string {
                 selectedItemId = first.id
                 oldAvatarItem = first
             }
+            
+            loadMoreAvatarIfNeededAction()
         }
 
         func currentSelectModel() -> AvatarItemModel? {
@@ -167,5 +189,76 @@ extension EditAvatarView {
                 return false
             }
         }
+    }
+}
+
+extension EditAvatarView.EditAvatarViewModel {
+    func loadMoreAvatarIfNeededAction() {
+        if let lastItem = items.last, let selectId = selectedItemId, lastItem.id == selectId, isRequesting == false, isEnd == false {
+            isRequesting = true
+            
+            Task {
+                var currentCount = items.count
+                if items.first?.type == .string {
+                    currentCount -= 1
+                }
+                
+                do {
+                    try await requestGridAction(offset: currentCount)
+                    DispatchQueue.main.async {
+                        self.isRequesting = false
+                    }
+                } catch {
+                    debugPrint("EditAvatarViewModel -> loadMoreAvatarIfNeededAction request failed: \(error)")
+                    DispatchQueue.main.async {
+                        self.isRequesting = false
+                    }
+                }
+            }
+        }
+    }
+    
+    private func requestGridAction(offset: Int) async throws {
+        let limit = 24
+        let nfts = try await requestGrid(offset: offset, limit: limit)
+        DispatchQueue.main.async {
+            self.appendGridNFTsNoDuplicated(nfts)
+            self.isEnd = nfts.count < limit
+            self.saveToCache()
+        }
+    }
+    
+    private func requestGrid(offset: Int, limit: Int = 24) async throws -> [NFTModel] {
+        let request = NFTGridDetailListRequest(address: owner, offset: offset, limit: limit)
+        let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.gridDetailList(request))
+        
+        guard let nfts = response.data?.nfts else {
+            return []
+        }
+        
+        let models = nfts.map { NFTModel($0, in: nil) }
+        return models
+    }
+    
+    private func appendGridNFTsNoDuplicated(_ newNFTs: [NFTModel]) {
+        for nft in newNFTs {
+            let exist = items.first { $0.type == .nft && $0.nft?.id == nft.id }
+            
+            if exist == nil {
+                items.append(EditAvatarView.AvatarItemModel(type: .nft, avatarString: nil, nft: nft))
+            }
+        }
+    }
+    
+    private func saveToCache() {
+        var nfts = [NFTResponse]()
+        
+        for item in items {
+            if item.type == .nft, let nft = item.nft {
+                nfts.append(nft.response)
+            }
+        }
+        
+        NFTUIKitCache.cache.saveGridToCache(nfts)
     }
 }

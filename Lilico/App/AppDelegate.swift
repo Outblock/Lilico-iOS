@@ -72,7 +72,6 @@ extension AppDelegate {
         _ = UserManager.shared
         _ = WalletManager.shared
         _ = BackupManager.shared
-        _ = NFTListCache.cache
         _ = SecurityManager.shared
         _ = WalletConnectManager.shared
     }

@@ -134,7 +134,7 @@ extension RouteMap {
         case addressBook
         case edit
         case editName
-        case editAvatar([EditAvatarView.AvatarItemModel])
+        case editAvatar
         case backupChange
         case manualBackup
         case security(Bool)
@@ -154,8 +154,8 @@ extension RouteMap.Profile: RouterTarget {
             navi.push(content: ProfileEditView())
         case .editName:
             navi.push(content: ProfileEditNameView())
-        case .editAvatar(let items):
-            navi.push(content: EditAvatarView(items: items))
+        case .editAvatar:
+            navi.push(content: EditAvatarView())
         case .backupChange:
             if let existVC = navi.viewControllers.first(where: { $0.navigationItem.title == "backup".localized }) {
                 navi.popToViewController(existVC, animated: true)

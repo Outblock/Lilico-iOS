@@ -12,7 +12,6 @@ class NFTUIKitListGridDataModel {
     private var owner: String = "0x01d63aa89238a559"
     var nfts: [NFTModel] = []
     var isEnd: Bool = false
-    var isRequesting: Bool = false
     
     init() {
         if let cachedNFTs = NFTUIKitCache.cache.getGridNFTs() {
@@ -22,12 +21,6 @@ class NFTUIKitListGridDataModel {
     }
     
     func requestGridAction(offset: Int) async throws {
-        if isRequesting {
-            return
-        }
-        
-        isRequesting = true
-        
         let limit = 24
         let nfts = try await requestGrid(offset: offset, limit: limit)
         DispatchQueue.syncOnMain {
@@ -37,7 +30,6 @@ class NFTUIKitListGridDataModel {
 
             self.appendGridNFTsNoDuplicated(nfts)
             self.isEnd = nfts.count < limit
-            self.isRequesting = false
             self.saveToCache()
         }
     }
@@ -75,7 +67,6 @@ class NFTUIKitListNormalDataModel {
     private var owner: String = "0x01d63aa89238a559"
     var items: [CollectionItem] = []
     var selectedIndex = 0
-    var isRequesting: Bool = false
     var isCollectionListStyle: Bool = false
     
     var favNFTs: [NFTModel] = []
@@ -116,12 +107,6 @@ class NFTUIKitListNormalDataModel {
     }
     
     func refreshCollectionAction() async throws {
-        if isRequesting {
-            return
-        }
-        
-        isRequesting = true
-        
         var collecitons = try await requestCollections()
         
         removeAllCache()
@@ -149,7 +134,6 @@ class NFTUIKitListNormalDataModel {
         
         DispatchQueue.syncOnMain {
             self.items = items
-            self.isRequesting = false
         }
     }
     
