@@ -81,6 +81,7 @@ extension NFTUIKitCollectionHContainerView: UICollectionViewDelegateFlowLayout, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.item
         collectionView.reloadData()
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         
         didSelectIndexCallback?(selectedIndex)
     }
