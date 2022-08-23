@@ -7,6 +7,45 @@
 
 import SwiftUI
 
+private struct PaginatedScrollViewKey {
+    
+    enum Direction {
+        case top, bottom
+    }
+    
+    struct PreData: Equatable {
+        static var fraction = CGFloat(0.001)
+        
+        let top: CGFloat
+        let bottom: CGFloat
+        
+        private var abTop: CGFloat { abs(min(0, top)) }
+        private var abBottom: CGFloat { abs(max(0, bottom)) }
+        
+        var position: Direction {
+            return abTop > abBottom ? .bottom : .top
+        }
+    
+        var isAtTop: Bool {
+            return top > PreData.fraction
+        }
+        
+        var isAtBottom: Bool {
+            let percentage = (bottom / contentHeight)
+            return percentage < PreData.fraction
+        }
+        
+        private var contentHeight: CGFloat {
+            abs(top - bottom)
+        }
+    }
+    
+    struct PreKey: PreferenceKey {
+        static var defaultValue: PreData? = nil
+        static func reduce(value: inout PreData?, nextValue: () -> PreData?) {}
+    }
+}
+
 private let RefreshOffset: CGFloat = 70
 
 struct OffsetScrollView<Content: View>: View {
@@ -45,7 +84,7 @@ struct OffsetScrollView<Content: View>: View {
                     }
                     .frame(width: 0, height: 0)
                     
-                    LazyVStack(spacing: 0) {
+                    VStack(spacing: 0) {
                         content
                         if loadMoreEnabled {
                             loadMoreView
