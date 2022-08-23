@@ -269,7 +269,7 @@ extension NFTTabScreen {
                     Spacer()
 
                     Button {
-                        viewModel.trigger(.add)
+                        
                     } label: {
                         Image(systemName: "plus")
                             .foregroundColor(.white)

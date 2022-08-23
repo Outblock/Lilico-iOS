@@ -34,9 +34,7 @@ extension NFTTabScreen {
 
     enum Action {
         case search
-        case add
         case info(NFTModel)
-        case collection(CollectionItem)
         case fetchColors(String)
         case back
     }
@@ -65,10 +63,6 @@ class NFTTabViewModel: ViewModel {
             Router.route(to: RouteMap.NFT.detail(self, model))
         case .search:
             break
-        case .add:
-            Router.route(to: RouteMap.NFT.addCollection)
-        case let .collection(item):
-            Router.route(to: RouteMap.NFT.collection(self, item))
         case let .fetchColors(url):
             fetchColors(from: url)
         case .back:

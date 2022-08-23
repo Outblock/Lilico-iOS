@@ -36,49 +36,44 @@ struct OffsetScrollView<Content: View>: View {
 
     var body: some View {
         ZStack {
-            ScrollView(showsIndicators: false) {
-                GeometryReader { geo in
-                    Color.clear
-                        .preference(key: NavigationScrollPreferenKey.self,
-                                    value: geo.frame(in: .named("ScrollView")).minY)
-                }
-                .frame(width: 0, height: 0)
-                
-                LazyVStack(spacing: 0) {
-                    content
-                    if loadMoreEnabled {
-                        loadMoreView
-                            .onAppear {
-                                debugPrint("trigger a load more")
-                                
-                                if isNoData {
-                                    debugPrint("trigger a load more - no data")
-                                    return
-                                }
-                                
-                                debugPrint("trigger a load more - sent")
-                                DispatchQueue.main.async {
-                                    loadMoreCallback?()
-                                }
-                            }
+            GeometryReader { geometry in
+                ScrollView(showsIndicators: false) {
+                    GeometryReader { geo in
+                        Color.clear
+                            .preference(key: NavigationScrollPreferenKey.self,
+                                        value: geo.frame(in: .named("ScrollView")).minY)
+                    }
+                    .frame(width: 0, height: 0)
+                    
+                    LazyVStack(spacing: 0) {
+                        content
+                        if loadMoreEnabled {
+                            loadMoreView
+                        }
+                    }
+                    .anchorPreference(key: PaginatedScrollViewKey.PreKey.self, value: .bounds) {
+                        let frame = geometry[$0]
+                        let top = frame.minY
+                        let bottom = frame.maxY - geometry.size.height
+                        return PaginatedScrollViewKey.PreData(top: top, bottom: bottom)
                     }
                 }
-            }
-            .frame(alignment: .top)
-            .coordinateSpace(name: "ScrollView")
-            .onPreferenceChange(NavigationScrollPreferenKey.self) { value in
-                self.offset = value
-                
-                if value > RefreshOffset, refreshEnabled {
-                    DispatchQueue.main.async {
-                        refreshCallback?()
+                .frame(alignment: .top)
+                .coordinateSpace(name: "ScrollView")
+                .onPreferenceChange(NavigationScrollPreferenKey.self) { value in
+                    self.offset = value
+                }
+                .onPreferenceChange(PaginatedScrollViewKey.PreKey.self) { data in
+                    guard let data = data else { return }
+                    if data.bottom == 0 && loadMoreEnabled && !isNoData {
+                        loadMoreCallback?()
                     }
                 }
-            }
-            
-            if refreshEnabled {
-                refreshView
-                    .opacity(refreshOpacity)
+                
+//                if refreshEnabled {
+//                    refreshView
+//                        .opacity(refreshOpacity)
+//                }
             }
         }
     }
@@ -104,7 +99,7 @@ struct OffsetScrollView<Content: View>: View {
     
     var loadMoreView: some View {
         VStack {
-            Text(isNoData ? "no_more_data".localized : "loading".localized)
+            Text(isNoData ? "no_more_data".localized : "loading_more".localized)
                 .font(.inter(size: 14))
                 .foregroundColor(Color.LL.Neutrals.note)
         }

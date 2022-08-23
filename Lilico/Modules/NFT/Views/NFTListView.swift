@@ -82,51 +82,17 @@ struct NFTListView: View {
 
     var body: some View {
         VStack {
-//            LazyVGrid(columns: nftLayout, alignment: .center) {
-//                ForEach(list, id: \.self) { nft in
-//                    
-//                    
-//                    ContextMenuPreview {
-//                        NFTSquareCard(nft: nft, imageEffect: imageEffect) { model in
-//                            viewModel.trigger(.info(model))
-//                        }
-//                        .frame(height: ceil((screenWidth - 18 * 3) / 2 + 50))
-//                    } preview: {
-//                        KFImage
-//                            .url(nft.image)
-//                            .placeholder({
-//                                Image("placeholder")
-//                                    .resizable()
-//                            })
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fit)
-//                    } menu: {
-//                        let isFavorite =  NFTFavoriteStore.shared.isFavorite(with: nft)
-//                        let imageName = isFavorite ? "nft_btn_selection_s" : "nft_btn_selection";
-//                        let like = UIAction(title: "top_selection".localized, image: UIImage(named: imageName)) { _ in
-//                            if isFavorite {
-//                                NFTFavoriteStore.shared.removeFavorite(nft)
-//                            }else {
-//                                NFTFavoriteStore.shared.addFavorite(nft)
-//                            }
-//                        }
-//                        
-//                        let share = UIAction(title: "share".localized, image: UIImage(named: "nft_btn_share")) { _ in
-//                            //TODO: share action
-//                        }
-//                        
-//                        let send = UIAction(title: "send".localized, image: UIImage(named: "nft_btn_send")) { _ in
-//                            //TODO: send NFT
-//                        }
-//                        
-//                        return UIMenu(title: "", children: [like, share,send])
-//                    } onEnd: {
-//                        
-//                    }
-//                }
-//            }
-//            .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
+            LazyVGrid(columns: nftLayout, alignment: .center) {
+                ForEach(list, id: \.self) { nft in
+                    NFTSquareCard(nft: nft, imageEffect: imageEffect) { model in
+                        viewModel.trigger(.info(model))
+                    }
+                    .frame(height: ceil((screenWidth - 18 * 3) / 2 + 50))
+                }
+            }
+            .padding(EdgeInsets(top: 12, leading: 18, bottom: 30, trailing: 18))
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             Color.LL.Shades.front
         )

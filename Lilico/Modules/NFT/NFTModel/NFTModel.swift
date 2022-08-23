@@ -135,14 +135,15 @@ struct NFTModel: Codable, Hashable, Identifiable {
     }
 }
 
-class CollectionItem: Identifiable {
+class CollectionItem: Identifiable, ObservableObject {
     var address: String = ""
     var id = UUID()
     var name: String = ""
     var count: Int = 0
     var collection: NFTCollectionInfo?
-    var nfts: [NFTModel] = []
+    @Published var nfts: [NFTModel] = []
     var loadCallback: ((Bool) -> ())? = nil
+    var loadCallback2: ((Bool) -> ())? = nil
     
     var isEnd: Bool = false
     var isRequesting: Bool = false
@@ -195,11 +196,13 @@ class CollectionItem: Identifiable {
                     self.saveNFTsToCache()
                     
                     self.loadCallback?(true)
+                    self.loadCallback2?(true)
                 }
             } catch {
                 DispatchQueue.main.async {
                     self.isRequesting = false
                     self.loadCallback?(false)
+                    self.loadCallback2?(false)
                 }
             }
         }

@@ -71,7 +71,7 @@ struct NFTCollectionCard: View {
             if isHorizontal {
                 selectedIndex = index
             } else {
-                viewModel.trigger(.collection(item))
+                
             }
         }
         .frame(height: isHorizontal ? 56 : 64)

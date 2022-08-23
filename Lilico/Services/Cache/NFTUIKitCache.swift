@@ -29,8 +29,9 @@ class NFTUIKitCache {
     init() {
         createFolderIfNeeded()
 //        // TODO: Test
-        removeFavCache()
-        removeGridCache()
+//        removeAllNFTs()
+//        removeFavCache()
+//        removeGridCache()
         
         loadFavCache()
     }
@@ -253,6 +254,7 @@ extension NFTUIKitCache {
             debugPrint("NFTUIKitCache -> removeFavCache error: \(error)")
         }
         
+        // TODO: Test
         Task {
             do {
                 let request = NFTUpdateFavRequest(ids: "")

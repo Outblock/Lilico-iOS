@@ -8,12 +8,48 @@
 import Kingfisher
 import SwiftUI
 
+class NFTCollectionListViewViewModel: ObservableObject {
+    @Published var collection: CollectionItem
+    @Published var nfts: [NFTModel]
+    
+    private var proxy: ScrollViewProxy?
+    
+    init(collection: CollectionItem) {
+        self.collection = collection
+        self.nfts = collection.nfts
+        
+        collection.loadCallback2 = { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            
+            if result {
+                if let proxy = self.proxy {
+                    proxy.scrollTo(999, anchor: .bottom)
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    self.nfts = self.collection.nfts
+                }
+            }
+        }
+        
+        if collection.nfts.isEmpty {
+            collection.load()
+        }
+    }
+    
+    func loadMoreAction(proxy: ScrollViewProxy) {
+        self.proxy = proxy
+        collection.load()
+    }
+}
+
 struct NFTCollectionListView: RouteableView {
     @StateObject var viewModel: NFTTabViewModel
-    var collection: CollectionItem
+    @StateObject var vm: NFTCollectionListViewViewModel
     
     @State var opacity: Double = 0
-
     @Namespace var imageEffect
     
     var title: String {
@@ -23,24 +59,38 @@ struct NFTCollectionListView: RouteableView {
     var isNavigationBarHidden: Bool {
         return true
     }
+    
+    init(viewModel: NFTTabViewModel, collection: CollectionItem) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        _vm = StateObject(wrappedValue: NFTCollectionListViewViewModel(collection: collection))
+    }
 
     var body: some View {
         ZStack {
-            OffsetScrollViewWithAppBar(title: collection.showName) {
-                Spacer()
-                    .frame(height: 64)
+            ScrollViewReader { proxy in
+                OffsetScrollViewWithAppBar(title: vm.collection.showName, loadMoreEnabled: true, loadMoreCallback: {
+                    if vm.collection.isRequesting || vm.collection.isEnd {
+                        return
+                    }
+                    
+                    vm.loadMoreAction(proxy: proxy)
+                }, isNoData: vm.collection.isEnd) {
+                    Spacer()
+                        .frame(height: 64)
 
-                InfoView(collection: collection)
-                    .padding(.bottom, 24)
-                NFTListView(list: collection.nfts, imageEffect: imageEffect)
-            } appBar: {
-                BackAppBar {
-                    viewModel.trigger(.back)
+                    InfoView(collection: vm.collection)
+                        .padding(.bottom, 24)
+                    NFTListView(list: vm.nfts, imageEffect: imageEffect)
+                        .id(999)
+                } appBar: {
+                    BackAppBar {
+                        viewModel.trigger(.back)
+                    }
                 }
             }
         }
         .background(
-            NFTBlurImageView(colors: viewModel.state.colorsMap[collection.iconURL.absoluteString] ?? [])
+            NFTBlurImageView(colors: viewModel.state.colorsMap[vm.collection.iconURL.absoluteString] ?? [])
                 .ignoresSafeArea()
                 .offset(y: -4)
         )
