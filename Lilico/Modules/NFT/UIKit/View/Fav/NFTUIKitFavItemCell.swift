@@ -51,7 +51,7 @@ class NFTUIKitFavItemCell: UICollectionViewCell {
         contentView.addSubview(containerView)
         containerView.snp.makeConstraints { make in
             make.width.height.equalTo(height)
-            make.center.equalToSuperview()
+            make.left.equalTo(18)
         }
         
         containerView.addSubview(imageView)
@@ -79,10 +79,10 @@ extension NFTUIKitFavItemCell: StackTransformView {
     var options: StackTransformViewOptions {
         return StackTransformViewOptions(
             scaleFactor: 0.10,
-            minScale: 0.20,
-            maxScale: 0.95,
-            maxStackSize: 6,
-            spacingFactor: 0.1,
+            minScale: 0.6,
+            maxScale: 1,
+            maxStackSize: 4,
+            spacingFactor: 0.2,
             maxSpacing: nil,
             alphaFactor: 0.00,
             bottomStackAlphaSpeedFactor: 0.90,
@@ -96,7 +96,7 @@ extension NFTUIKitFavItemCell: StackTransformView {
             stackRotateAngel: 0.00,
             popAngle: 0.31,
             popOffsetRatio: .init(width: -1.45, height: 0.30),
-            stackPosition: .init(x: 1.00, y: 0.00),
+            stackPosition: .init(x: 0.8, y: 0.00),
             reverse: false,
             blurEffectEnabled: false,
             maxBlurEffectRadius: 0.00,

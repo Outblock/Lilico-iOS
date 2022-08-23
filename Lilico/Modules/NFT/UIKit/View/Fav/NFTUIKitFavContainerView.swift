@@ -54,7 +54,7 @@ class NFTUIKitFavContainerView: UIView {
         let maxWidth = CGFloat(Router.coordinator.window.bounds.size.width - 18 * 2)
         let itemWidth = floor(264.0/339.0 * maxWidth)
         
-        return itemWidth + 32
+        return itemWidth + 40
     }
 }
 
@@ -69,7 +69,7 @@ extension NFTUIKitFavContainerView {
         addSubview(headerView)
         headerView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
-            make.height.equalTo(32)
+            make.height.equalTo(40)
         }
         
         addSubview(collectionView)
