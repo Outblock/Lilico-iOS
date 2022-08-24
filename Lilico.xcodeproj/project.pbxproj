@@ -994,6 +994,8 @@
 		6AA591F728854FB300F4B5CA /* BackupGDTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */; };
 		6AA78E0328A0BF2C00FF6CF9 /* ScanHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA78E0228A0BF2C00FF6CF9 /* ScanHandler.swift */; };
 		6AA78E0428A0BF2C00FF6CF9 /* ScanHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA78E0228A0BF2C00FF6CF9 /* ScanHandler.swift */; };
+		6AA947E828B5F84100591880 /* SVGCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA947E728B5F84100591880 /* SVGCache.swift */; };
+		6AA947E928B5F84100591880 /* SVGCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA947E728B5F84100591880 /* SVGCache.swift */; };
 		6AB5FB9F2892652900FA2261 /* BackupiCloudTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */; };
 		6AB5FBA02892652900FA2261 /* BackupiCloudTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */; };
 		6AB5FBA228926C9100FA2261 /* iCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */; };
@@ -1576,6 +1578,7 @@
 		6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupGDTarget.swift; sourceTree = "<group>"; };
 		6AA78E0228A0BF2C00FF6CF9 /* ScanHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHandler.swift; sourceTree = "<group>"; };
+		6AA947E728B5F84100591880 /* SVGCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGCache.swift; sourceTree = "<group>"; };
 		6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupiCloudTarget.swift; sourceTree = "<group>"; };
 		6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudAPI.swift; sourceTree = "<group>"; };
 		6ABAE5292836288400C97AE2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -3278,6 +3281,7 @@
 				6A8D223C2881499D005A7081 /* RecentListCache.swift */,
 				6A7F6509289A4CE3007188DC /* PageCache.swift */,
 				6A9C34FA28AB939600AA41A5 /* NFTUIKitCache.swift */,
+				6AA947E728B5F84100591880 /* SVGCache.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -4441,6 +4445,7 @@
 				15DC21CD27819C56000B187A /* SliderHelpers.swift in Sources */,
 				6AEA374B28A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift in Sources */,
 				6A8FA49C285B192800EE5BE3 /* SnapID.swift in Sources */,
+				6AA947E928B5F84100591880 /* SVGCache.swift in Sources */,
 				15DC20AB27819C56000B187A /* VBaseButton.swift in Sources */,
 				15DC219D27819C56000B187A /* VTextFieldState.swift in Sources */,
 				1588331328943D1D00142B35 /* SPQRCorner.swift in Sources */,
@@ -4909,6 +4914,7 @@
 				15C58C202868A4EE00BD4FC6 /* SliderHelpers.swift in Sources */,
 				6AEA374A28A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift in Sources */,
 				15C58C212868A4EE00BD4FC6 /* SnapID.swift in Sources */,
+				6AA947E828B5F84100591880 /* SVGCache.swift in Sources */,
 				15C58C222868A4EE00BD4FC6 /* VBaseButton.swift in Sources */,
 				15C58C232868A4EE00BD4FC6 /* VTextFieldState.swift in Sources */,
 				1588331228943D1D00142B35 /* SPQRCorner.swift in Sources */,

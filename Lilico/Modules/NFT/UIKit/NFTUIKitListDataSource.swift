@@ -9,7 +9,7 @@ import UIKit
 
 class NFTUIKitListGridDataModel {
     // TODO: Use real address
-    private var owner: String = "0x01d63aa89238a559"
+    private var owner: String = "0x95601dba5c2506eb"
     var nfts: [NFTModel] = []
     var isEnd: Bool = false
     
@@ -64,7 +64,7 @@ class NFTUIKitListGridDataModel {
 
 class NFTUIKitListNormalDataModel {
     // TODO: Use real address
-    private var owner: String = "0x01d63aa89238a559"
+    private var owner: String = "0x95601dba5c2506eb"
     var items: [CollectionItem] = []
     var selectedIndex = 0
     var isCollectionListStyle: Bool = false

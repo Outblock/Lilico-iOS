@@ -122,6 +122,14 @@ extension String {
 
         return "\(self)?alt=media"
     }
+    
+    func convertedSVGURL() -> URL? {
+        guard let encodedString = self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return nil
+        }
+        
+        return URL(string: "https://lilico.app/api/svg2png?url=\(encodedString)")
+    }
 }
 
 // MARK: - Debug
