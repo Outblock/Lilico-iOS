@@ -25,6 +25,14 @@ class NFTDetailPageViewModel: ObservableObject {
             }
         }
     }
+    
+    func sendNFTAction() {
+        Router.route(to: RouteMap.AddressBook.pick({ contact in
+            Router.dismiss(animated: true) {
+                debugPrint("did picked contact")
+            }
+        }))
+    }
 }
 
 struct NFTDetailPage: RouteableView {
@@ -213,7 +221,9 @@ struct NFTDetailPage: RouteableView {
         .safeAreaInset(edge: .bottom, content: {
             HStack(spacing: 8) {
                 Spacer()
-                Button {} label: {
+                Button {
+                    vm.sendNFTAction()
+                } label: {
                     HStack {
                         Image(systemName: "paperplane")
                             .font(.system(size: 16))

@@ -16,9 +16,17 @@ import SwiftUIPager
 //    }
 //}
 
+extension WalletSendView {
+    typealias WalletSendViewSelectTargetCallback = (Contact) -> ()
+}
+
 struct WalletSendView: RouteableView {
-    @StateObject private var vm = WalletSendViewModel()
+    @StateObject private var vm: WalletSendViewModel
     @FocusState private var searchIsFocused: Bool
+    
+    init(callback: WalletSendView.WalletSendViewSelectTargetCallback? = nil) {
+        _vm = StateObject(wrappedValue: WalletSendViewModel(selectCallback: callback))
+    }
     
     var title: String {
         return "send_to".localized

@@ -39,9 +39,9 @@ extension Router {
         }
     }
     
-    static func dismiss(animated: Bool = true) {
+    static func dismiss(animated: Bool = true, completion: (() -> ())? = nil) {
         safeMainThreadCall {
-            topPresentedController().presentingViewController?.dismiss(animated: animated)
+            topPresentedController().presentingViewController?.dismiss(animated: animated, completion: completion)
         }
     }
 }

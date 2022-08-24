@@ -183,6 +183,7 @@ extension RouteMap {
         case root
         case add(AddressBookView.AddressBookViewModel)
         case edit(Contact, AddressBookView.AddressBookViewModel)
+        case pick(WalletSendView.WalletSendViewSelectTargetCallback)
     }
 }
 
@@ -195,6 +196,8 @@ extension RouteMap.AddressBook: RouterTarget {
             navi.push(content: AddAddressView(addressBookVM: vm))
         case .edit(let contact, let vm):
             navi.push(content: AddAddressView(editingContact: contact, addressBookVM: vm))
+        case .pick(let callback):
+            navi.present(content: WalletSendView(callback: callback))
         }
     }
 }

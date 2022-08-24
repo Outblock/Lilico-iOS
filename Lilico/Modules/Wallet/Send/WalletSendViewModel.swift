@@ -68,7 +68,11 @@ class WalletSendViewModel: ObservableObject {
     
     private var cancelSets = Set<AnyCancellable>()
     
-    init() {
+    private var selectCallback: WalletSendView.WalletSendViewSelectTargetCallback?
+    
+    init(selectCallback: WalletSendView.WalletSendViewSelectTargetCallback? = nil) {
+        self.selectCallback = selectCallback
+        
         addressBookVM.injectSelectAction = { [weak self] contact in
             guard let self = self else {
                 return
@@ -251,6 +255,11 @@ extension WalletSendViewModel {
 
 extension WalletSendViewModel {
     func sendToTargetAction(target: Contact) {
+        if let callback = selectCallback {
+            callback(target)
+            return
+        }
+        
         let symbol = LocalUserDefaults.shared.recentToken ?? "flow"
         guard let token = WalletManager.shared.getToken(bySymbol: symbol) else {
             return
