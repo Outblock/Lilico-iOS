@@ -19,7 +19,7 @@
 			<string>io.outblock.lilico.dev</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>lilico-dev</string>
+				<string>lilico</string>
 			</array>
 		</dict>
 	</array>
