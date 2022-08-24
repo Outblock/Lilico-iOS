@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import Flow
 
 class AddCollectionViewModel: ObservableObject {
     
     @Published var searchQuery = ""
+    @Published var isAddingCollection: Bool = false
+    @Published var isConfirmSheetPresented: Bool = false
 
     var liveList: [NFTCollectionItem] {
         if searchQuery.isEmpty {
@@ -58,7 +61,6 @@ class AddCollectionViewModel: ObservableObject {
             self.searchQuery = ""
         }
     }
-    
 }
 
 extension AddCollectionViewModel {
@@ -67,6 +69,59 @@ extension AddCollectionViewModel {
         return false
     }
     
+    func addCollectionAction(item: NFTCollectionItem) {
+        if isAddingCollection {
+            return
+        }
+        
+        isAddingCollection = true
+        
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        let successBlock = {
+            DispatchQueue.main.async {
+                self.isAddingCollection = false
+                self.isConfirmSheetPresented = false
+                HUD.success(title: "add_collection_success".localized)
+                
+                NotificationCenter.default.post(name: .nftCollectionsDidChanged, object: nil)
+                
+                Task {
+                    await self.load()
+                }
+            }
+        }
+        
+        let failedBlock = {
+            DispatchQueue.main.async {
+                self.isAddingCollection = false
+                HUD.error(title: "add_collection_failed".localized)
+            }
+        }
+        
+        Task {
+            do {
+                let transactionId = try await FlowNetwork.addCollection(at: Flow.Address(hex: address), collection: item.collection)
+                let result = try await transactionId.onceSealed()
+                
+                if result.isFailed {
+                    debugPrint("AddCollectionViewModel -> addCollectionAction result failed errorMessage: \(result.errorMessage)")
+                    failedBlock()
+                    return
+                }
+                
+                if result.isComplete {
+                    successBlock()
+                    return
+                }
+            } catch {
+                debugPrint("AddCollectionViewModel -> addCollectionAction error: \(error)")
+                failedBlock()
+            }
+        }
+    }
 }
 
 

@@ -12,19 +12,11 @@ import PartialSheet
 struct NFTAddCollectionView: RouteableView {
     
     @State private var offset: CGFloat = 0
-    @State private var isPresented = false
     
     @StateObject
     var addViewModel: AddCollectionViewModel = AddCollectionViewModel()
     
     @State private var selectItem: NFTCollectionItem?
-    
-    let iPhoneStyle = PSIphoneStyle(
-        background: .solid(Color(uiColor: .systemBackground)),
-        handleBarStyle: .none,
-        cover: .enabled(Color.black.opacity(0.72)),
-        cornerRadius: 10
-    )
     
     var title: String {
         return "add_collection".localized
@@ -42,7 +34,7 @@ struct NFTAddCollectionView: RouteableView {
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
                             self.selectItem = item
                             if (self.selectItem != nil) {
-                                isPresented.toggle()
+                                addViewModel.isConfirmSheetPresented.toggle()
                             }
                         }       
                     }
@@ -52,18 +44,12 @@ struct NFTAddCollectionView: RouteableView {
         }
         .background(Color.LL.Neutrals.background)
         .applyRouteable(self)
-        .partialSheet(
-            isPresented: $isPresented,
-            iPhoneStyle: iPhoneStyle,
-            content: {
-                if let item = self.selectItem  {
-                    if(isPresented ) {
-                        NFTAddCollectionView.NFTCollectionEnableView(item: item, isPresented: $isPresented)
-                    }
-                }
+        .halfSheet(showSheet: $addViewModel.isConfirmSheetPresented, sheetView: {
+            if let item = self.selectItem {
+                NFTAddCollectionView.NFTCollectionEnableView(item: item)
+                    .environmentObject(addViewModel)
             }
-        )
-        .attachPartialSheetToRoot()
+        })
     }
 
     private func title(title: String) -> some View {

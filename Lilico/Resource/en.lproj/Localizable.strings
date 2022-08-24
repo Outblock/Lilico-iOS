@@ -75,6 +75,8 @@
 "search_NFT_collection" = "Search NFT Collection";
 "seg_list" = "List";
 "seg_grid" = "Grid";
+"add_collection_success" = "Add Collection successfully";
+"add_collection_failed" = "Add Collection failed";
 
 // Account
 "create_a" = "Create a";

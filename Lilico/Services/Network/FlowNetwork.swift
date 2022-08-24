@@ -87,6 +87,24 @@ extension FlowNetwork {
         let cadence = NFTCadence.collectionListCheckEnabled(with: list, on: flow.chainID)
         return try await fetch(at: address, by: cadence)
     }
+    
+    static func addCollection(at address: Flow.Address, collection: NFTCollectionInfo) async throws -> Flow.ID {
+        let cadenceString = collection.formatCadence(script: Cadences.nftCollectionEnable)
+        
+        return try await flow.sendTransaction(signers: [WalletManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+        })
+    }
 }
 
 // MARK: - Search

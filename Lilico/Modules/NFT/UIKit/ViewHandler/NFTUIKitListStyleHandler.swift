@@ -147,14 +147,18 @@ class NFTUIKitListStyleHandler: NSObject {
             make.top.left.right.bottom.equalToSuperview()
         }
         
+        let offset = Router.coordinator.window.safeAreaInsets.top + 44.0
         containerView.addSubview(emptyView)
         emptyView.snp.makeConstraints { make in
-            make.top.left.right.bottom.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(-offset)
         }
         emptyView.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadViews), name: .nftFavDidChanged, object: nil)
         reloadBgView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onCollectionsDidChanged), name: .nftCollectionsDidChanged, object: nil)
     }
     
     private func setupBlurBgView() {
@@ -179,6 +183,10 @@ class NFTUIKitListStyleHandler: NSObject {
         
         blurMaskLayer.frame = CGRect(x: 0, y: 0, width: Router.coordinator.window.bounds.size.width, height: offset + NFTUIKitFavContainerView.calculateViewHeight())
         blurBgView.layer.mask = blurMaskLayer
+    }
+    
+    @objc private func onCollectionsDidChanged() {
+        collectionView.beginRefreshing()
     }
     
     @objc private func reloadViews() {

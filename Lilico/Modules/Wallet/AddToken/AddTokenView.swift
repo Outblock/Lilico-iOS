@@ -126,7 +126,9 @@ extension AddTokenView {
         
         var body: some View {
             VStack {
-                SheetHeaderView(title: "add_token".localized)
+                SheetHeaderView(title: "add_token".localized) {
+                    vm.confirmSheetIsPresented = false
+                }
                 
                 VStack {
                     Spacer()
