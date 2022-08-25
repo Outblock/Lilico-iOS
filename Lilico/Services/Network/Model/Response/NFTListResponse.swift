@@ -74,7 +74,7 @@ struct NFTPostMedia: Codable, Hashable {
     let image: String?
     let description: String?
     let video: String?
-    let isSVG: Bool?
+    let isSVG: String?
 }
 
 // MARK: - ID
