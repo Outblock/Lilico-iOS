@@ -77,6 +77,9 @@
 "seg_grid" = "Grid";
 "add_collection_success" = "Add Collection successfully";
 "add_collection_failed" = "Add Collection failed";
+"send_nft" = "Send NFT";
+"send_nft_success" = "Send NFT successfully";
+"send_nft_failed" = "Send NFT failed";
 
 // Account
 "create_a" = "Create a";

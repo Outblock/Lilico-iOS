@@ -27,9 +27,12 @@ class NFTDetailPageViewModel: ObservableObject {
     }
     
     func sendNFTAction() {
-        Router.route(to: RouteMap.AddressBook.pick({ contact in
+        Router.route(to: RouteMap.AddressBook.pick({ [weak self] contact in
             Router.dismiss(animated: true) {
-                debugPrint("did picked contact")
+                guard let self = self else {
+                    return
+                }
+                Router.route(to: RouteMap.NFT.send(self.nft, contact))
             }
         }))
     }

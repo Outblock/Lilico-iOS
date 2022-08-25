@@ -80,7 +80,7 @@ extension EditAvatarView {
         private var isRequesting: Bool = false
         
         // TODO: Use real address
-        private var owner: String = "0x01d63aa89238a559"
+        private var owner: String = "0x85fa94a5aec10607"
 
         init() {
             var cachedItems = [AvatarItemModel]()

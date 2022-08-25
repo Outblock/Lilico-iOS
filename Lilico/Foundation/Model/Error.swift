@@ -57,3 +57,8 @@ enum iCloudBackupError: Error {
     case saveToDataFailed
     case fileIsNotExist
 }
+
+enum NFTError: Error {
+    case noCollectionInfo
+    case invalidTokenId
+}

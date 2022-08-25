@@ -244,6 +244,7 @@ extension RouteMap {
         case detail(NFTTabViewModel, NFTModel)
         case collection(NFTTabViewModel, CollectionItem)
         case addCollection
+        case send(NFTModel, Contact)
     }
 }
 
@@ -256,6 +257,9 @@ extension RouteMap.NFT: RouterTarget {
             navi.push(content: NFTCollectionListView(viewModel: vm, collection: collection))
         case .addCollection:
             navi.push(content: NFTAddCollectionView())
+        case .send(let nft, let contact):
+            let vc = CustomHostingController(rootView: NFTTransferView(nft: nft, target: contact))
+            Router.topPresentedController().present(vc, animated: true, completion: nil)
         }
     }
 }

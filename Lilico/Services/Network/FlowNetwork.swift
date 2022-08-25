@@ -105,6 +105,44 @@ extension FlowNetwork {
             }
         })
     }
+    
+    static func transferNFT(to address: Flow.Address, nft: NFTModel) async throws -> Flow.ID {
+        guard let collection = nft.collection else {
+            throw NFTError.noCollectionInfo
+        }
+        
+        guard let fromAddress = WalletManager.shared.getPrimaryWalletAddress() else {
+            throw LLError.invalidAddress
+        }
+        
+        guard let tokenIdInt = UInt64(nft.response.id.tokenID) else {
+            throw NFTError.invalidTokenId
+        }
+        
+        let cadenceString = collection.formatCadence(script: Cadences.nftTransfer)
+        
+        return try await flow.sendTransaction(signers: [WalletManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            proposer {
+                Flow.Address(hex: fromAddress)
+            }
+            
+            authorizers {
+                Flow.Address(hex: fromAddress)
+            }
+            
+            arguments {
+                [.address(address), .uint64(tokenIdInt)]
+            }
+            
+            gasLimit {
+                9999
+            }
+        })
+    }
 }
 
 // MARK: - Search
