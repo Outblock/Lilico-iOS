@@ -20,6 +20,20 @@ class NFTTransferViewModel: ObservableObject {
     }
     
     func sendAction() {
+        if SecurityManager.shared.securityType == .none {
+            sendLogic()
+            return
+        }
+        
+        Task {
+            let result = await SecurityManager.shared.inAppVerify()
+            if result {
+                sendLogic()
+            }
+        }
+    }
+    
+    func sendLogic() {
         if isRequesting {
             return
         }
