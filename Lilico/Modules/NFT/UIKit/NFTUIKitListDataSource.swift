@@ -11,7 +11,8 @@ class NFTUIKitListGridDataModel {
     // TODO: Use real address
     // "0x95601dba5c2506eb" svg test
     // "0x85fa94a5aec10607" real on testnet
-    private var owner: String = "0x95601dba5c2506eb"
+    // "0x01d63aa89238a559" test
+    private var owner: String = "0x01d63aa89238a559"
     var nfts: [NFTModel] = []
     var isEnd: Bool = false
     
@@ -66,7 +67,7 @@ class NFTUIKitListGridDataModel {
 
 class NFTUIKitListNormalDataModel {
     // TODO: Use real address
-    private var owner: String = "0x95601dba5c2506eb"
+    private var owner: String = "0x01d63aa89238a559"
     var items: [CollectionItem] = []
     var selectedIndex = 0
     var isCollectionListStyle: Bool = false

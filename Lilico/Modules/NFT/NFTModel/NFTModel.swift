@@ -97,7 +97,13 @@ struct NFTModel: Codable, Hashable, Identifiable {
                 image = imgUrl.convertedSVGURL() ?? URL(string: placeholder)!
                 isSVG = true
             } else {
-                image = url
+                if imgUrl.hasPrefix("https://lilico.infura-ipfs.io/ipfs/") {
+                    let newImgURL = imgUrl.replace(by: ["https://lilico.infura-ipfs.io/ipfs/": "https://lilico.app/api/ipfs/"])
+                    image = URL(string: newImgURL)!
+                } else {
+                    image = url
+                }
+                
                 isSVG = false
             }
         } else {
