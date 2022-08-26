@@ -254,15 +254,15 @@ extension NFTUIKitCache {
             debugPrint("NFTUIKitCache -> removeFavCache error: \(error)")
         }
         
-        // TODO: Test
-        Task {
-            do {
-                let request = NFTUpdateFavRequest(ids: "")
-                let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.updateFav(request))
-            } catch {
-                debugPrint("NFTUIKitCache -> removeFav error: \(error)")
-            }
-        }
+//        // TODO: Test
+//        Task {
+//            do {
+//                let request = NFTUpdateFavRequest(ids: "")
+//                let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.updateFav(request))
+//            } catch {
+//                debugPrint("NFTUIKitCache -> removeFav error: \(error)")
+//            }
+//        }
     }
     
     func isFav(id: String) -> Bool {
