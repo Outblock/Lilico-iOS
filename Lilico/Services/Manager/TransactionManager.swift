@@ -24,7 +24,7 @@ extension TransactionManager {
     }
     
     class TransactionHolder: Codable {
-        var id: Flow.ID
+        var transactionId: Flow.ID
         var createTime: TimeInterval
         var status: Flow.Transaction.Status
         var internalStatus: TransactionManager.InternalStatus
@@ -35,7 +35,7 @@ extension TransactionManager {
         private var retryTimes: Int = 0
         
         enum CodingKeys: String, CodingKey {
-            case id
+            case transactionId
             case createTime
             case status
             case type
@@ -67,7 +67,7 @@ extension TransactionManager {
         @objc private func onCheck() {
             Task {
                 do {
-                    let result = try await FlowNetwork.getTransactionResult(by: id.hex)
+                    let result = try await FlowNetwork.getTransactionResult(by: transactionId.hex)
                     DispatchQueue.main.async {
                         if result.status == self.status {
                             self.startTimer()
@@ -125,7 +125,7 @@ class TransactionManager {
             return
         }
         
-        removeTransaction(id: holder.id.hex)
+        removeTransaction(id: holder.transactionId.hex)
     }
     
     private func startCheckIfNeeded() {
@@ -151,7 +151,7 @@ extension TransactionManager {
     }
     
     func removeTransaction(id: String) {
-        holders.removeAll { $0.id.hex == id }
+        holders.removeAll { $0.transactionId.hex == id }
         saveHoldersToCache()
         postDidChangedNotification()
     }

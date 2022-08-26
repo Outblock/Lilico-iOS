@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import SnapKit
+import Flow
 
 private let PanelHolderViewWidth: CGFloat = 48
 private let ProgressViewWidth: CGFloat = 32
@@ -200,7 +201,7 @@ class TransactionHolderView: UIView {
     }
     
     @objc private func onHolderStatusChanged(noti: Notification) {
-        guard let holder = noti.object as? TransactionManager.TransactionHolder, model.id.hex == holder.id.hex else {
+        guard let holder = noti.object as? TransactionManager.TransactionHolder, let current = model, current.transactionId.hex == holder.transactionId.hex else {
             return
         }
         
@@ -234,7 +235,7 @@ extension TransactionHolderView {
     }
     
     func config(model: TransactionManager.TransactionHolder) {
-        if let current = self.model, current.id.hex == model.id.hex {
+        if let current = self.model, current.transactionId.hex == model.transactionId.hex {
             return
         }
         
