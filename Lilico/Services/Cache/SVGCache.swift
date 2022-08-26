@@ -7,6 +7,7 @@
 
 import Foundation
 import Kingfisher
+import Alamofire
 
 class SVGCache {
     static let cache = SVGCache()
@@ -21,22 +22,17 @@ class SVGCache {
             }
             
             return try await withCheckedThrowingContinuation { continuation in
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    if let error = error {
-                        continuation.resume(throwing: error)
-                        return
-                    }
-                    
-                    guard let data = data else {
-                        continuation.resume(throwing: LLError.unknown)
-                        return
-                    }
-                    
-                    do {
-                        try ImageCache.default.diskStorage.store(value: data, forKey: key)
-                        let string = String(data: data, encoding: .utf8)
-                        continuation.resume(returning: string)
-                    } catch {
+                AF.download(url).responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        do {
+                            try ImageCache.default.diskStorage.store(value: data, forKey: key)
+                            let string = String(data: data, encoding: .utf8)
+                            continuation.resume(returning: string)
+                        } catch {
+                            continuation.resume(throwing: error)
+                        }
+                    case .failure(let error):
                         continuation.resume(throwing: error)
                     }
                 }

@@ -16,8 +16,12 @@ class NFTDetailPageViewModel: ObservableObject {
         self.nft = nft
         
         if nft.isSVG {
+            guard let rawSVGURL = nft.response.postMedia.image, let rawSVGURL = URL(string: rawSVGURL) else {
+                return
+            }
+            
             Task {
-                if let svg = await SVGCache.cache.getSVG(nft.image) {
+                if let svg = await SVGCache.cache.getSVG(rawSVGURL) {
                     DispatchQueue.main.async {
                         self.svgString = svg
                     }
@@ -91,9 +95,8 @@ struct NFTDetailPage: RouteableView {
                     VStack(spacing: 0) {
                         if vm.nft.isSVG {
                             SVGWebView(svg: vm.svgString)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(alignment: .center)
-                                .cornerRadius(8)
+                                .aspectRatio(1.0, contentMode: .fit)
+                                .clipShape(RoundedRectangle(cornerRadius: 18))
                                 .padding(.horizontal, 18)
                         } else {
                             KFImage
