@@ -7,6 +7,7 @@
 
 import Flow
 import SwiftUI
+import UIKit
 
 extension LocalUserDefaults {
     enum Keys: String {
@@ -19,6 +20,7 @@ extension LocalUserDefaults {
         case backupType
         case securityType
         case lockOnExit
+        case panelHolderFrame
     }
 
     enum FlowNetworkType: String {
@@ -111,4 +113,22 @@ class LocalUserDefaults: ObservableObject {
     
     @AppStorage(Keys.securityType.rawValue) var securityType: SecurityManager.SecurityType = .none
     @AppStorage(Keys.lockOnExit.rawValue) var lockOnExit: Bool = false
+    
+    var panelHolderFrame: CGRect? {
+        set {
+            if let value = newValue {
+                let str = NSCoder.string(for: value)
+                UserDefaults.standard.set(str, forKey: Keys.panelHolderFrame.rawValue)
+            } else {
+                UserDefaults.standard.removeObject(forKey: Keys.panelHolderFrame.rawValue)
+            }
+        }
+        get {
+            if let str = UserDefaults.standard.string(forKey: Keys.panelHolderFrame.rawValue) {
+                return NSCoder.cgRect(for: str)
+            } else {
+                return nil
+            }
+        }
+    }
 }

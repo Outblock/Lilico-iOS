@@ -16,4 +16,7 @@ public extension Notification.Name {
     static let backupTypeDidChanged = Notification.Name("backupTypeDidChanged")
     static let nftFavDidChanged = Notification.Name("nftFavDidChanged")
     static let nftCollectionsDidChanged = Notification.Name("nftCollectionsDidChanged")
+    
+    static let transactionManagerDidChanged = Notification.Name("transactionManagerDidChanged")
+    static let transactionStatusDidChanged = Notification.Name("transactionStatusDidChanged")
 }
