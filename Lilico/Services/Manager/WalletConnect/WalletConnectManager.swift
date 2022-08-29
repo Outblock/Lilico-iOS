@@ -37,7 +37,7 @@ class WalletConnectManager: ObservableObject {
             name: "Lilico",
             description: "A crypto wallet on Flow built for Explorers, Collectors and Gamers",
             url: "https://link.lilico.app/wc",
-            icons: ["https://lilico.app/logo-no-padding.png"])
+            icons: ["https://lilico.app/logo.png"])
         Sign.configure(metadata: metadata, projectId: "29b38ec12be4bd19bf03d7ccef29aaa6", socketFactory: SocketFactory())
         reloadActiveSessions()
         setUpAuthSubscribing()
