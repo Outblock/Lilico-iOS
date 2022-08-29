@@ -214,21 +214,8 @@ extension WalletSendAmountViewModel {
             return
         }
         
-        let successBlock = {
-            DispatchQueue.main.async {
-                self.isSending = false
-                HUD.dismissLoading()
-                HUD.success(title: "sent_successfully".localized)
-                self.showConfirmView = false
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    Router.popToRoot()
-                }
-                
-                Task {
-                    try? await WalletManager.shared.fetchBalance()
-                }
-            }
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
         }
         
         let failureBlock = {
@@ -247,17 +234,23 @@ extension WalletSendAmountViewModel {
         Task {
             do {
                 let id = try await FlowNetwork.transferToken(to: Flow.Address(hex: targetContact.address ?? "0x"), amount: inputTokenNum)
-                let result = try await id.onceSealed()
                 
-                if result.isFailed {
-                    debugPrint("WalletSendAmountViewModel -> sendAction result failed: \(result.errorMessage)")
-                    failureBlock()
-                    return
-                }
-                
-                if result.isComplete {
-                    successBlock()
-                    return
+                DispatchQueue.main.async {
+                    let obj = CoinTransferModel(amount: self.inputTokenNum, symbol: self.token.symbol ?? "", target: self.targetContact, from: address)
+                    guard let data = try? JSONEncoder().encode(obj) else {
+                        debugPrint("WalletSendAmountViewModel -> obj encode failed")
+                        return
+                    }
+                    
+                    self.isSending = false
+                    HUD.dismissLoading()
+                    self.showConfirmView = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        Router.popToRoot()
+                    }
+                    
+                    let holder = TransactionManager.TransactionHolder(id: id, type: .transferCoin, data: data)
+                    TransactionManager.shared.newTransaction(holder: holder)
                 }
             } catch {
                 debugPrint("WalletSendAmountViewModel -> sendAction error: \(error)")

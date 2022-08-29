@@ -48,8 +48,7 @@ final class Coordinator {
         window.rootViewController = rootNavi
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            // TODO: test
-            TransactionUIHandler.shared.showPanelHolder()
+            TransactionUIHandler.shared.refreshPanelHolder()
         }
     }
 }

@@ -9,10 +9,9 @@ import UIKit
 import SwiftUI
 import SnapKit
 import Flow
+import Kingfisher
 
 private let PanelHolderViewWidth: CGFloat = 48
-private let ProgressViewWidth: CGFloat = 32
-private let IconImageViewWidth: CGFloat = 26
 
 extension TransactionHolderView {
     enum Status {
@@ -36,54 +35,14 @@ class TransactionHolderView: UIView {
         return layer
     }()
     
-    private lazy var progressBgLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.path = UIBezierPath(arcCenter: CGPoint(x: ProgressViewWidth/2.0, y: ProgressViewWidth/2.0), radius: ProgressViewWidth/2.0, startAngle: 0, endAngle: Double.pi * 2, clockwise: true).cgPath
-        layer.fillColor = UIColor.clear.cgColor
-        layer.strokeColor = UIColor(hex: "#F4F4F7").cgColor
-        layer.lineWidth = 4
-        layer.lineCap = .round
-        return layer
+    private lazy var progressView: TransactionProgressView = {
+        let view = TransactionProgressView()
+        return view
     }()
     
-    private lazy var progressLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        let startAngle = -Double.pi / 2.0
-        layer.path = UIBezierPath(arcCenter: CGPoint(x: ProgressViewWidth/2.0, y: ProgressViewWidth/2.0), radius: ProgressViewWidth/2.0, startAngle: startAngle, endAngle: Double.pi * 2 + startAngle, clockwise: true).cgPath
-        layer.fillColor = UIColor.clear.cgColor
-        layer.strokeColor = UIColor(Color.LL.Primary.salmonPrimary).cgColor
-        layer.lineWidth = 4
-        layer.lineCap = .round
-        layer.strokeEnd = 0.5
-        return layer
-    }()
-    
-    private lazy var iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "flow")
-        
-        imageView.snp.makeConstraints { make in
-            make.width.height.equalTo(IconImageViewWidth)
-        }
-        
-        return imageView
-    }()
-    
-    private lazy var progressContainerView: UIView = {
+    private lazy var contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
-        
-        view.layer.addSublayer(progressBgLayer)
-        view.layer.addSublayer(progressLayer)
-        
-        view.addSubviews(iconImageView)
-        iconImageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-     
-        view.snp.makeConstraints { make in
-            make.width.height.equalTo(ProgressViewWidth)
-        }
+        view.backgroundColor = .white
         return view
     }()
     
@@ -108,12 +67,19 @@ class TransactionHolderView: UIView {
     }
     
     private func setup() {
-        backgroundColor = .white
+        backgroundColor = .clear
+        layer.shadowColor = UIColor.black.withAlphaComponent(0.08).cgColor
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize(width: 0, height: 4)
         
-        layer.mask = bgMaskLayer
+        addSubviews(contentView)
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        contentView.layer.mask = bgMaskLayer
         
-        addSubviews(progressContainerView)
-        progressContainerView.snp.makeConstraints { make in
+        contentView.addSubviews(progressView)
+        progressView.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         
@@ -153,7 +119,7 @@ class TransactionHolderView: UIView {
     }
     
     @objc private func onTap() {
-        dismiss()
+        TransactionUIHandler.shared.showListView()
     }
     
     @objc private func onPanelHolderPan(gesture: UIPanGestureRecognizer) {
@@ -209,7 +175,13 @@ class TransactionHolderView: UIView {
     }
     
     private func refreshView() {
+        if let iconURL = model?.icon() {
+            progressView.iconImageView.kf.setImage(with: iconURL, placeholder: UIImage(named: "placeholder"))
+        } else {
+            progressView.iconImageView.image = UIImage(named: "flow")
+        }
         
+        progressView.progress = model?.flowStatus.progressPercent ?? 0
     }
 }
 

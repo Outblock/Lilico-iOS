@@ -5,8 +5,25 @@
 //  Created by Selina on 25/8/2022.
 //
 
-import Foundation
+import UIKit
 import Flow
+
+extension Flow.Transaction.Status {
+    var progressPercent: CGFloat {
+        switch self {
+        case .pending, .unknown:
+            return 0.25
+        case .finalized:
+            return 0.5
+        case .executed:
+            return 0.75
+        case .sealed:
+            return 1.0
+        default:
+            return 0
+        }
+    }
+}
 
 extension TransactionManager {
     enum TransactionType: Int, Codable {
@@ -26,13 +43,17 @@ extension TransactionManager {
     class TransactionHolder: Codable {
         var transactionId: Flow.ID
         var createTime: TimeInterval
-        var status: Flow.Transaction.Status
-        var internalStatus: TransactionManager.InternalStatus
+        var status: Int = Flow.Transaction.Status.pending.rawValue
+        var internalStatus: TransactionManager.InternalStatus = .pending
         var type: TransactionManager.TransactionType
         var data: Data
         
         private var timer: Timer?
         private var retryTimes: Int = 0
+        
+        var flowStatus: Flow.Transaction.Status {
+            return Flow.Transaction.Status(status)
+        }
         
         enum CodingKeys: String, CodingKey {
             case transactionId
@@ -41,6 +62,36 @@ extension TransactionManager {
             case type
             case data
             case internalStatus
+        }
+        
+        init(id: Flow.ID, createTime: TimeInterval = Date().timeIntervalSince1970, type: TransactionManager.TransactionType, data: Data) {
+            self.transactionId = id
+            self.createTime = createTime
+            self.type = type
+            self.data = data
+        }
+        
+        func decodedObject<T: Decodable>(_ type: T.Type) -> T? {
+            return try? JSONDecoder().decode(type, from: data)
+        }
+        
+        func icon() -> URL? {
+            switch type {
+            case .transferCoin:
+                guard let model = decodedObject(CoinTransferModel.self), let token = WalletManager.shared.getToken(bySymbol: model.symbol) else {
+                    return nil
+                }
+                
+                return token.icon
+            case .addToken:
+                return decodedObject(TokenModel.self)?.icon
+            case .addCollection:
+                return decodedObject(NFTCollectionInfo.self)?.logoURL
+            case .transferNFT:
+                return decodedObject(NFTTransferModel.self)?.nft.logoUrl
+            default:
+                return nil
+            }
         }
         
         func startTimer() {
@@ -55,26 +106,33 @@ extension TransactionManager {
             let timer = Timer(timeInterval: 2, target: self, selector: #selector(onCheck), userInfo: nil, repeats: false)
             RunLoop.main.add(timer, forMode: .common)
             self.timer = timer
+            
+            debugPrint("TransactionHolder -> startTimer")
         }
         
         func stopTimer() {
             if let timer = timer {
                 timer.invalidate()
                 self.timer = nil
+                debugPrint("TransactionHolder -> stopTimer")
             }
         }
         
         @objc private func onCheck() {
+            debugPrint("TransactionHolder -> onCheck")
+            
             Task {
                 do {
                     let result = try await FlowNetwork.getTransactionResult(by: transactionId.hex)
+                    debugPrint("TransactionHolder -> onCheck status: \(result.status)")
+                    
                     DispatchQueue.main.async {
-                        if result.status == self.status {
+                        if result.status == self.flowStatus {
                             self.startTimer()
                             return
                         }
                         
-                        self.status = result.status
+                        self.status = result.status.rawValue
                         if result.isFailed {
                             self.internalStatus = .failed
                         } else if result.isComplete {
@@ -87,6 +145,7 @@ extension TransactionManager {
                         self.postNotification()
                     }
                 } catch {
+                    debugPrint("TransactionHolder -> onCheck failed: \(error)")
                     DispatchQueue.main.async {
                         self.retryTimes += 1
                         self.startTimer()
@@ -96,6 +155,7 @@ extension TransactionManager {
         }
         
         private func postNotification() {
+            debugPrint("TransactionHolder -> postNotification status: \(status)")
             NotificationCenter.default.post(name: .transactionStatusDidChanged, object: self)
         }
     }
@@ -125,7 +185,28 @@ class TransactionManager {
             return
         }
         
+        if holder.internalStatus == .pending {
+            return
+        }
+        
+        if holder.internalStatus == .failed {
+            removeTransaction(id: holder.transactionId.hex)
+            HUD.error(title: "transaction_failed".localized)
+            return
+        }
+        
+        HUD.success(title: "transaction_success".localized)
+        
         removeTransaction(id: holder.transactionId.hex)
+        
+        switch holder.type {
+        case .transferCoin:
+            Task {
+                try? await WalletManager.shared.fetchBalance()
+            }
+        default:
+            break
+        }
     }
     
     private func startCheckIfNeeded() {
@@ -148,9 +229,17 @@ extension TransactionManager {
         holders.insert(holder, at: 0)
         saveHoldersToCache()
         postDidChangedNotification()
+        
+        holder.startTimer()
     }
     
     func removeTransaction(id: String) {
+        for holder in holders {
+            if holder.transactionId.hex == id {
+                holder.stopTimer()
+            }
+        }
+        
         holders.removeAll { $0.transactionId.hex == id }
         saveHoldersToCache()
         postDidChangedNotification()

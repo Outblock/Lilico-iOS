@@ -312,3 +312,8 @@
 "release_load_more" = "Release to start loading";
 "loading_more" = "Loading...";
 "no_more_data" = "No more data";
+
+// Transaction
+"pending_transaction" = "Pending Transaction";
+"transaction_failed" = "Transaction process failed";
+"transaction_success" = "Transaction process successd";
