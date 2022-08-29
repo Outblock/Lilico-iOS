@@ -242,7 +242,10 @@ extension WalletView {
 //                        .resizable()
 //                        .aspectRatio(contentMode: .fill)
 //                    FadeAnimationBackground()
-                    FluidView()
+//                    FluidView()
+                    CardBackground
+                        .fade(image: Image("flow-line"))
+                        .renderView()
                 }
                 .cornerRadius(16)
             }

@@ -184,7 +184,7 @@ struct NFTTransferView: View {
                     .lineLimit(1)
                 
                 HStack(spacing: 6) {
-                    KFImage.url(vm.nft.collection?.logoURL)
+                    KFImage.url(vm.nft.collection?.logo)
                         .placeholder({
                             Image("placeholder")
                                 .resizable()
