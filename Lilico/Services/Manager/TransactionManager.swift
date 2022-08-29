@@ -133,8 +133,9 @@ extension TransactionManager {
                         }
                         
                         self.status = result.status.rawValue
-                        if result.isFailed {
+                        if result.isFailed && !result.errorMessage.hasPrefix("[Error Code: 1007]") {
                             self.internalStatus = .failed
+                            debugPrint("TransactionHolder -> onCheck result failed: \(result.errorMessage)")
                         } else if result.isComplete {
                             self.internalStatus = .success
                         } else {
