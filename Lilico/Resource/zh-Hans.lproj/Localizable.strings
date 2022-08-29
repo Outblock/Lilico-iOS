@@ -155,6 +155,7 @@
 "device" = "Device";
 "backup" = "Backup";
 "security" = "Security";
+"walletconnect" = "Wallet Connect";
 "manually" = "Manually";
 "currency" = "Currency";
 "notifications" = "Notifications";

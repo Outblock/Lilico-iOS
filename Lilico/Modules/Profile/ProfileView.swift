@@ -43,6 +43,7 @@ struct ProfileView: RouteableView {
                     if userManager.isLoggedIn {
                         InfoContainerView()
                         ActionSectionView()
+                        WalletConnectView()
                     } else {
                         NoLoginTipsView()
                     }
@@ -232,6 +233,61 @@ extension ProfileView {
         }
     }
 }
+
+extension ProfileView {
+    struct WalletConnectView: View {
+        
+        enum Row {
+            case walletConnect
+        }
+        
+        var body: some View {
+            VStack {
+                Section {
+                    ProfileView.SettingItemCell(
+                        iconName: Row.walletConnect.iconName,
+                        title: Row.walletConnect.title,
+                        style: Row.walletConnect.style,
+                        desc: Row.walletConnect.desc,
+                        imageName: Row.walletConnect.imageName,
+                        sysImageColor: Row.walletConnect.sysImageColor)
+                        .onTapGestureOnBackground {
+                            Router.route(to: RouteMap.Profile.backupChange)
+                        }
+                }
+                .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
+            }
+        }
+    }
+}
+
+extension ProfileView.WalletConnectView.Row {
+    var iconName: String {
+        "walletconnect"
+    }
+    
+    var title: String {
+        "walletconnect".localized
+    }
+    
+    var style: ProfileView.SettingItemCell.Style {
+        return .arrow
+    }
+    
+    var desc: String {
+        ""
+    }
+    
+    var sysImageColor: Color {
+        .clear
+    }
+    
+    var imageName: String {
+        ""
+    }
+}
+    
+    
 
 extension ProfileView.ActionSectionView.Row {
     var iconName: String {

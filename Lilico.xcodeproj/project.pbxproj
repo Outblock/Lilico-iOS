@@ -1788,6 +1788,7 @@
 		1507C7ED275634BC00890C5D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				15D4F9AC28BD026A00E0CADF /* WalletConnect */,
 				6A7F650C289A709F007188DC /* ProfileSecure */,
 				6A49C1992899125B00C8FF05 /* ProfileBackup */,
 				6ACDD1672858687700F406EB /* ProfileEdit */,
@@ -2223,6 +2224,13 @@
 				15D4F9A928BCC5AF00E0CADF /* ExploreTabViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		15D4F9AC28BD026A00E0CADF /* WalletConnect */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WalletConnect;
 			sourceTree = "<group>";
 		};
 		15D57748277C0FED00045E79 /* ViewModel */ = {
