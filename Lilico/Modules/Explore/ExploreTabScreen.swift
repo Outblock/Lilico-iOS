@@ -31,7 +31,7 @@ struct ExploreTabScreen: View {
     
     var body: some View {
         
-        VStack {
+        ZStack {
             ScrollView {
                 Section {
                     HStack {
@@ -39,14 +39,31 @@ struct ExploreTabScreen: View {
                     }
                 }.padding(12)
                 
-                
-                Image("meow_banner")
-                    .resizable()
-                    .padding(.horizontal, 12)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 92)
-                
-                LazyVStack {
+                LazyVStack(spacing: 18) {
+                    
+                    Image("meow_banner")
+                        .resizable()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 92)
+                    
+                    HStack {
+                        Image(systemName: "square.grid.2x2.fill")
+                            .font(.LL.caption)
+                        Text("dApps")
+                            .bold()
+                        Spacer()
+                        Button {
+                            
+                        } label: {
+                            Text("All")
+                                .font(.LL.footnote)
+                                .foregroundColor(.LL.Secondary.violetDiscover)
+                            Image(systemName: "arrow.right")
+                                .foregroundColor(.LL.Secondary.violet4)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
                     ForEach(vm.state.list, id: \.name) { dApp in
                         HStack(alignment: .top) {
                             KFImage
@@ -83,11 +100,11 @@ struct ExploreTabScreen: View {
                         .padding(10)
                         .background(Color.LL.deepBg)
                         .cornerRadius(16)
-                        .padding(.horizontal, 18)
                     }
                 }
                 .background(.LL.Neutrals.background)
                 .padding(.bottom, 18)
+                .padding(.horizontal, 18)
             }
             .background(.LL.Neutrals.background)
             .listStyle(.plain)
