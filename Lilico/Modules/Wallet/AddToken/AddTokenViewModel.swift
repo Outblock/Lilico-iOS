@@ -124,6 +124,15 @@ extension AddTokenViewModel {
             return
         }
         
+        guard let symbol = token.symbol else {
+            return
+        }
+        
+        if TransactionManager.shared.isTokenEnabling(symbol: symbol) {
+            // TODO: show processing bottom view
+            return
+        }
+        
         pendingActiveToken = token
         withAnimation(.easeInOut(duration: 0.2)) {
             confirmSheetIsPresented = true
@@ -155,12 +164,14 @@ extension AddTokenViewModel {
                     return
                 }
                 
-                self.isRequesting = false
-                self.confirmSheetIsPresented = false
-                HUD.dismissLoading()
-                
-                let holder = TransactionManager.TransactionHolder(id: transactionId, type: .addToken, data: data)
-                TransactionManager.shared.newTransaction(holder: holder)
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    self.confirmSheetIsPresented = false
+                    HUD.dismissLoading()
+                    
+                    let holder = TransactionManager.TransactionHolder(id: transactionId, type: .addToken, data: data)
+                    TransactionManager.shared.newTransaction(holder: holder)
+                }
             } catch {
                 debugPrint("AddTokenViewModel -> confirmActiveTokenAction error: \(error)")
                 failedBlock()

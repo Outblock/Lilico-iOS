@@ -249,6 +249,16 @@ extension TransactionManager {
         saveHoldersToCache()
         postDidChangedNotification()
     }
+    
+    func isTokenEnabling(symbol: String) -> Bool {
+        for holder in holders {
+            if holder.type == .addToken, let token = holder.decodedObject(TokenModel.self), token.symbol == symbol {
+                return true
+            }
+        }
+        
+        return false
+    }
 }
 
 // MARK: - Cache
