@@ -239,6 +239,7 @@ extension WalletSendAmountViewModel {
                     let obj = CoinTransferModel(amount: self.inputTokenNum, symbol: self.token.symbol ?? "", target: self.targetContact, from: address)
                     guard let data = try? JSONEncoder().encode(obj) else {
                         debugPrint("WalletSendAmountViewModel -> obj encode failed")
+                        failureBlock()
                         return
                     }
                     

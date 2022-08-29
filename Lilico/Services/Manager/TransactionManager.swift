@@ -205,6 +205,10 @@ class TransactionManager {
             Task {
                 try? await WalletManager.shared.fetchBalance()
             }
+        case .addToken:
+            Task {
+                try? await WalletManager.shared.fetchWalletDatas()
+            }
         default:
             break
         }
