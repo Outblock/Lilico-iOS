@@ -124,6 +124,15 @@ extension AddTokenViewModel {
             return
         }
         
+        guard let symbol = token.symbol else {
+            return
+        }
+        
+        if TransactionManager.shared.isTokenEnabling(symbol: symbol) {
+            // TODO: show processing bottom view
+            return
+        }
+        
         pendingActiveToken = token
         withAnimation(.easeInOut(duration: 0.2)) {
             confirmSheetIsPresented = true
@@ -135,40 +144,33 @@ extension AddTokenViewModel {
             return
         }
         
-        let successBlock = {
-            DispatchQueue.main.async {
-                self.isRequesting = false
-                self.confirmSheetIsPresented = false
-                HUD.success(title: "add_token_success".localized)
-                
-                Task {
-                    try? await WalletManager.shared.fetchWalletDatas()
-                }
-            }
-        }
-        
         let failedBlock = {
             DispatchQueue.main.async {
                 self.isRequesting = false
+                HUD.dismissLoading()
                 HUD.error(title: "add_token_failed".localized)
             }
         }
         
         isRequesting = true
+        HUD.loading("loading".localized)
+        
         Task {
             do {
                 let transactionId = try await FlowNetwork.enableToken(at: Flow.Address(hex: address), token: token)
-                let result = try await transactionId.onceSealed()
                 
-                if result.isFailed {
-                    debugPrint("AddTokenViewModel -> confirmActiveTokenAction result failed errorMessage: \(result.errorMessage)")
+                guard let data = try? JSONEncoder().encode(token) else {
                     failedBlock()
                     return
                 }
                 
-                if result.isComplete {
-                    successBlock()
-                    return
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    self.confirmSheetIsPresented = false
+                    HUD.dismissLoading()
+                    
+                    let holder = TransactionManager.TransactionHolder(id: transactionId, type: .addToken, data: data)
+                    TransactionManager.shared.newTransaction(holder: holder)
                 }
             } catch {
                 debugPrint("AddTokenViewModel -> confirmActiveTokenAction error: \(error)")
