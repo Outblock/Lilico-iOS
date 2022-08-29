@@ -46,6 +46,10 @@ final class Coordinator {
         navi.setNavigationBarHidden(true, animated: true)
         rootNavi = navi
         window.rootViewController = rootNavi
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            TransactionUIHandler.shared.refreshPanelHolder()
+        }
     }
 }
 
