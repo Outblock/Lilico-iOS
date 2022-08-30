@@ -557,7 +557,6 @@
 		15C58C4B2868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A942868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore */; };
 		15C58C4C2868A4EE00BD4FC6 /* CollectionViewPagingLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A9D2868A4EE00BD4FC6 /* CollectionViewPagingLayout */; };
 		15C58C4D2868A4EE00BD4FC6 /* IrregularGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AA32868A4EE00BD4FC6 /* IrregularGradient */; };
-		15C58C4E2868A4EE00BD4FC6 /* Stinsen in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AA62868A4EE00BD4FC6 /* Stinsen */; };
 		15C58C4F2868A4EE00BD4FC6 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A872868A4EE00BD4FC6 /* FirebaseCrashlytics */; };
 		15C58C502868A4EE00BD4FC6 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AA12868A4EE00BD4FC6 /* FirebaseRemoteConfig */; };
 		15C58C512868A4EE00BD4FC6 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A892868A4EE00BD4FC6 /* CombineMoya */; };
@@ -1745,7 +1744,6 @@
 				15C58C4B2868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */,
 				15C58C4C2868A4EE00BD4FC6 /* CollectionViewPagingLayout in Frameworks */,
 				15C58C4D2868A4EE00BD4FC6 /* IrregularGradient in Frameworks */,
-				15C58C4E2868A4EE00BD4FC6 /* Stinsen in Frameworks */,
 				15C58C4F2868A4EE00BD4FC6 /* FirebaseCrashlytics in Frameworks */,
 				15C58C502868A4EE00BD4FC6 /* FirebaseRemoteConfig in Frameworks */,
 				15C58C512868A4EE00BD4FC6 /* CombineMoya in Frameworks */,
@@ -3860,7 +3858,6 @@
 				15C58AA12868A4EE00BD4FC6 /* FirebaseRemoteConfig */,
 				15C58AA32868A4EE00BD4FC6 /* IrregularGradient */,
 				15C58AA52868A4EE00BD4FC6 /* FirebaseStorage */,
-				15C58AA62868A4EE00BD4FC6 /* Stinsen */,
 				15C58AA82868A4EE00BD4FC6 /* GTMSessionFetcherCore */,
 				15C58AAA2868A4EE00BD4FC6 /* SPIndicator */,
 				6AE46061286EE644009C2B96 /* SwiftUICharts */,
@@ -5696,14 +5693,6 @@
 				kind = branch;
 			};
 		};
-		15C58AA72868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "stinsen" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rundfunk47/stinsen";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		15C58AA92868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/gtm-session-fetcher";
@@ -6062,11 +6051,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15C58AA22868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		15C58AA62868A4EE00BD4FC6 /* Stinsen */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15C58AA72868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "stinsen" */;
-			productName = Stinsen;
 		};
 		15C58AA82868A4EE00BD4FC6 /* GTMSessionFetcherCore */ = {
 			isa = XCSwiftPackageProductDependency;
