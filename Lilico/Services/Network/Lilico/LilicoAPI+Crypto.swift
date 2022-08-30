@@ -21,15 +21,19 @@ extension LilicoAPI.Crypto: TargetType, AccessTokenAuthorizable {
     }
 
     var baseURL: URL {
-        .init(string: "https://dev.lilico.app/v1")!
+#if LILICOPROD
+        .init(string: "https://api.lilico.app")!
+#else
+        .init(string: "https://dev.lilico.app")!
+#endif
     }
 
     var path: String {
         switch self {
         case .summary:
-            return "/crypto/summary"
+            return "/v1/crypto/summary"
         case .history:
-            return "/crypto/history"
+            return "/v1/crypto/history"
         }
     }
 

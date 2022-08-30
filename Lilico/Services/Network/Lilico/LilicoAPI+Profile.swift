@@ -21,15 +21,19 @@ extension LilicoAPI.Profile: TargetType, AccessTokenAuthorizable {
     }
 
     var baseURL: URL {
-        .init(string: "https://dev.lilico.app/v1")!
+#if LILICOPROD
+        .init(string: "https://api.lilico.app")!
+#else
+        .init(string: "https://dev.lilico.app")!
+#endif
     }
 
     var path: String {
         switch self {
         case .updateInfo:
-            return "/profile"
+            return "/v1/profile"
         case .updatePrivate:
-            return "/profile/preference"
+            return "/v1/profile/preference"
         }
     }
 

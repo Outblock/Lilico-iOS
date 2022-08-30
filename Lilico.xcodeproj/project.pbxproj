@@ -575,9 +575,7 @@
 		15C58C5F2868A4EE00BD4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF5274FD1FD00F70CD9 /* Assets.xcassets */; };
 		15C58C602868A4EE00BD4FC6 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CAE2787F7610062E0C6 /* Montserrat-SemiBold.ttf */; };
 		15C58C612868A4EE00BD4FC6 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA62787F7490062E0C6 /* Montserrat-Italic.ttf */; };
-		15C58C622868A4EE00BD4FC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154B88832765EBF700780E93 /* GoogleService-Info.plist */; };
 		15C58C632868A4EE00BD4FC6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
-		15C58C642868A4EE00BD4FC6 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DE22FC27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist */; };
 		15C58C652868A4EE00BD4FC6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E9E21DC282A68CB00E1BACD /* Colors.xcassets */; };
 		15C58C662868A4EE00BD4FC6 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
 		15C58C682868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -906,6 +904,8 @@
 		6A2D35BA283B6AD7008293D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */; };
 		6A2D35BE283B6B5A008293D9 /* ThemeChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */; };
 		6A35EADA2859BD36005A85B8 /* EditAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35EAD82859BD36005A85B8 /* EditAvatarView.swift */; };
+		6A37AD9428BDAA310047E5F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A37AD9328BDAA300047E5F7 /* GoogleService-Info.plist */; };
+		6A37AD9528BDAB560047E5F7 /* QRCode in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 6A400924287578D400A77070 /* QRCode */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6A382E1E289BC93400163564 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A382E1D289BC93400163564 /* Shake.swift */; };
 		6A382E1F289BC93400163564 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A382E1D289BC93400163564 /* Shake.swift */; };
 		6A382E21289BD3B000163564 /* BionicErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A382E20289BD3B000163564 /* BionicErrorHandler.swift */; };
@@ -1131,6 +1131,7 @@
 			files = (
 				15C58C682868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Embed Frameworks */,
 				15C58C692868A4EE00BD4FC6 /* WalletCore.xcframework in Embed Frameworks */,
+				6A37AD9528BDAB560047E5F7 /* QRCode in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1151,7 +1152,6 @@
 		154B88832765EBF700780E93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		154B88852765F33400780E93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		154B8928276A1EEB00780E93 /* Lilico-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lilico-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		154B892E276A1FD700780E93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1552DC5D2786EBA100EAA7D5 /* RequestSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSecureView.swift; sourceTree = "<group>"; };
 		1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinCodeView.swift; sourceTree = "<group>"; };
 		1552DC632787063100EAA7D5 /* PinStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStackView.swift; sourceTree = "<group>"; };
@@ -1541,6 +1541,7 @@
 		6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeViewModel.swift; sourceTree = "<group>"; };
 		6A35EAD82859BD36005A85B8 /* EditAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvatarView.swift; sourceTree = "<group>"; };
+		6A37AD9328BDAA300047E5F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6A382E1D289BC93400163564 /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
 		6A382E20289BD3B000163564 /* BionicErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BionicErrorHandler.swift; sourceTree = "<group>"; };
 		6A382E23289BDAFF00163564 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
@@ -1869,7 +1870,7 @@
 			children = (
 				15DDFB8F2750D03E008263A2 /* Info.plist */,
 				158CE88D27830889006A8394 /* Lilico.entitlements */,
-				154B892E276A1FD700780E93 /* GoogleService-Info.plist */,
+				6A37AD9328BDAA300047E5F7 /* GoogleService-Info.plist */,
 			);
 			path = Prod;
 			sourceTree = "<group>";
@@ -4003,15 +4004,14 @@
 				15C58C602868A4EE00BD4FC6 /* Montserrat-SemiBold.ttf in Resources */,
 				1575A72828B26B9600ADC513 /* dat.gui.min.js in Resources */,
 				1565FB6328B14F140086A652 /* Chat.json in Resources */,
+				6A37AD9428BDAA310047E5F7 /* GoogleService-Info.plist in Resources */,
 				15C58C612868A4EE00BD4FC6 /* Montserrat-Italic.ttf in Resources */,
 				1565FBA428B16FD70086A652 /* Category.json in Resources */,
 				1565FB9828B1677F0086A652 /* Grid.json in Resources */,
 				1565FBA228B16FD70086A652 /* Compass.json in Resources */,
-				15C58C622868A4EE00BD4FC6 /* GoogleService-Info.plist in Resources */,
 				15C58C632868A4EE00BD4FC6 /* Inter.ttf in Resources */,
 				1565FBAB28B171BB0086A652 /* Avatar.json in Resources */,
 				1565FB6B28B14F140086A652 /* Home.json in Resources */,
-				15C58C642868A4EE00BD4FC6 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */,
 				1575A72A28B26B9600ADC513 /* script.js in Resources */,
 				1565FBB328B171BB0086A652 /* Copy-soild.json in Resources */,
 				1565FBB128B171BB0086A652 /* Copy.json in Resources */,
@@ -5214,6 +5214,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.outblock.lilico;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG LILICOPROD";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lilico/App/Lilico-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -5252,6 +5253,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.outblock.lilico;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = LILICOPROD;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lilico/App/Lilico-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

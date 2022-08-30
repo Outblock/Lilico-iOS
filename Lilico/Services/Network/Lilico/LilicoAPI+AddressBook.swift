@@ -23,15 +23,19 @@ extension LilicoAPI.AddressBook: TargetType, AccessTokenAuthorizable {
     }
 
     var baseURL: URL {
-        .init(string: "https://dev.lilico.app/v1")!
+#if LILICOPROD
+        .init(string: "https://api.lilico.app")!
+#else
+        .init(string: "https://dev.lilico.app")!
+#endif
     }
 
     var path: String {
         switch self {
         case .addExternal:
-            return "/addressbook/external"
+            return "/v1/addressbook/external"
         case .fetchList, .delete, .edit:
-            return "/addressbook/contact"
+            return "/v1/addressbook/contact"
         }
     }
 

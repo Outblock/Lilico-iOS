@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>614043574152-9q2riq7qr4mdck68ppnk2pc6emikgi2r.apps.googleusercontent.com</string>
+	<string>556216024625-sqgk4gaou6fc01qlv9ku9fr5i5o9bpif.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.614043574152-9q2riq7qr4mdck68ppnk2pc6emikgi2r</string>
+	<string>com.googleusercontent.apps.556216024625-sqgk4gaou6fc01qlv9ku9fr5i5o9bpif</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>556216024625-58d357dv23m4inq7mp4vog7463hjj2cc.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDQkoA064-u08xPSgofAETcjRUevAHPgjg</string>
+	<string>AIzaSyCf5Yk6kkd0mzuFcNaMi6TTajRLJYLVy4M</string>
 	<key>GCM_SENDER_ID</key>
-	<string>614043574152</string>
+	<string>556216024625</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>io.outblock.lilico</string>
 	<key>PROJECT_ID</key>
-	<string>lilico</string>
+	<string>lilico-334404</string>
 	<key>STORAGE_BUCKET</key>
-	<string>lilico.appspot.com</string>
+	<string>lilico-334404.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:614043574152:ios:041a6865c827f3b242243d</string>
+	<string>1:556216024625:ios:4a9556b48b148793a61f10</string>
 </dict>
 </plist>
