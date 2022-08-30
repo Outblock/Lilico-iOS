@@ -7,8 +7,10 @@
 
 import Foundation
 import Flow
+import Combine
 
 class AddCollectionViewModel: ObservableObject {
+    private var cancelSets = Set<AnyCancellable>()
     
     @Published var searchQuery = ""
     @Published var isAddingCollection: Bool = false
@@ -38,6 +40,16 @@ class AddCollectionViewModel: ObservableObject {
         Task {
             await load()
         }
+        
+        NotificationCenter.default.publisher(for: .nftCollectionsDidChanged).sink { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            
+            Task {
+                await self.load()
+            }
+        }.store(in: &cancelSets)
     }
     
     func load() async {
@@ -74,24 +86,13 @@ extension AddCollectionViewModel {
             return
         }
         
-        isAddingCollection = true
-        
         guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
             return
         }
         
-        let successBlock = {
-            DispatchQueue.main.async {
-                self.isAddingCollection = false
-                self.isConfirmSheetPresented = false
-                HUD.success(title: "add_collection_success".localized)
-                
-                NotificationCenter.default.post(name: .nftCollectionsDidChanged, object: nil)
-                
-                Task {
-                    await self.load()
-                }
-            }
+        if TransactionManager.shared.isCollectionEnabling(contractName: item.collection.contractName) {
+            // TODO: show add collection bottom sheet
+            return
         }
         
         let failedBlock = {
@@ -101,20 +102,25 @@ extension AddCollectionViewModel {
             }
         }
         
+        isAddingCollection = true
+        HUD.loading()
+        
         Task {
             do {
                 let transactionId = try await FlowNetwork.addCollection(at: Flow.Address(hex: address), collection: item.collection)
-                let result = try await transactionId.onceSealed()
                 
-                if result.isFailed {
-                    debugPrint("AddCollectionViewModel -> addCollectionAction result failed errorMessage: \(result.errorMessage)")
+                guard let data = try? JSONEncoder().encode(item.collection) else {
                     failedBlock()
                     return
                 }
                 
-                if result.isComplete {
-                    successBlock()
-                    return
+                DispatchQueue.main.async {
+                    HUD.dismissLoading()
+                    self.isAddingCollection = false
+                    self.isConfirmSheetPresented = false
+                    
+                    let holder = TransactionManager.TransactionHolder(id: transactionId, type: .addCollection, data: data)
+                    TransactionManager.shared.newTransaction(holder: holder)
                 }
             } catch {
                 debugPrint("AddCollectionViewModel -> addCollectionAction error: \(error)")

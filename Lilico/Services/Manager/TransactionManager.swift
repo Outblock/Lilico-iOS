@@ -209,6 +209,8 @@ class TransactionManager {
             Task {
                 try? await WalletManager.shared.fetchWalletDatas()
             }
+        case .addCollection:
+            NotificationCenter.default.post(name: .nftCollectionsDidChanged, object: nil)
         default:
             break
         }
@@ -253,6 +255,26 @@ extension TransactionManager {
     func isTokenEnabling(symbol: String) -> Bool {
         for holder in holders {
             if holder.type == .addToken, let token = holder.decodedObject(TokenModel.self), token.symbol == symbol {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func isCollectionEnabling(contractName: String) -> Bool {
+        for holder in holders {
+            if holder.type == .addCollection, let collection = holder.decodedObject(NFTCollectionInfo.self), collection.contractName == contractName {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func isNFTTransfering(id: String) -> Bool {
+        for holder in holders {
+            if holder.type == .transferNFT, let model = holder.decodedObject(NFTTransferModel.self), model.nft.id == id {
                 return true
             }
         }

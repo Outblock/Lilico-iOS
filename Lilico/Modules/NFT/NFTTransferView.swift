@@ -20,6 +20,11 @@ class NFTTransferViewModel: ObservableObject {
     }
     
     func sendAction() {
+        if TransactionManager.shared.isNFTTransfering(id: nft.id) {
+            // TODO: show bottom sheet
+            return
+        }
+        
         if SecurityManager.shared.securityType == .none {
             sendLogic()
             return
@@ -38,18 +43,8 @@ class NFTTransferViewModel: ObservableObject {
             return
         }
         
-        guard let toAddress = targetContact.address else {
+        guard let toAddress = targetContact.address, let fromAddress = WalletManager.shared.getPrimaryWalletAddress() else {
             return
-        }
-        
-        isRequesting = true
-        
-        let successBlock = {
-            DispatchQueue.main.async {
-                self.isRequesting = false
-                Router.dismiss()
-                HUD.success(title: "send_nft_success".localized)
-            }
         }
         
         let failedBlock = {
@@ -62,17 +57,19 @@ class NFTTransferViewModel: ObservableObject {
         Task {
             do {
                 let tid = try await FlowNetwork.transferNFT(to: Flow.Address(hex: toAddress), nft: nft)
-                let result = try await tid.onceSealed()
                 
-                if result.isFailed {
-                    debugPrint("NFTTransferViewModel -> sendAction result failed errorMessage: \(result.errorMessage)")
+                let model = NFTTransferModel(nft: nft, target: self.targetContact, from: fromAddress)
+                guard let data = try? JSONEncoder().encode(model) else {
                     failedBlock()
                     return
                 }
                 
-                if result.isComplete {
-                    successBlock()
-                    return
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    Router.dismiss()
+                    
+                    let holder = TransactionManager.TransactionHolder(id: tid, type: .transferNFT, data: data)
+                    TransactionManager.shared.newTransaction(holder: holder)
                 }
             } catch {
                 debugPrint("NFTTransferViewModel -> sendAction error: \(error)")
