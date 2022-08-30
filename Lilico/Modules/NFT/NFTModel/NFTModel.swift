@@ -20,12 +20,12 @@ struct NFTCollection: Codable {
 }
 
 struct NFTCollectionInfo: Codable, Hashable {
-    let logo: URL?
+    let logo: String?
     let name: String
     let contractName: String
     let address: ContractAddress
     let secureCadenceCompatible: SecureCadenceCompatible
-    var banner: URL?
+    var banner: String?
     var officialWebsite: String?
     var marketplace: String?
     var description: String?
@@ -42,13 +42,13 @@ struct NFTCollectionInfo: Codable, Hashable {
         return address.mainnet
     }
     
-//    var logoURL: URL {
-//        if let logoString = logo {
-//            return URL(string: logoString) ?? URL(string: placeholder)!
-//        }
-//
-//        return URL(string: placeholder)!
-//    }
+    var logoURL: URL {
+        if let logoString = logo {
+            return URL(string: logoString) ?? URL(string: placeholder)!
+        }
+
+        return URL(string: placeholder)!
+    }
 }
 
 struct ContractAddress: Codable, Hashable {
@@ -129,7 +129,7 @@ struct NFTModel: Codable, Hashable, Identifiable {
 
     var logoUrl: URL {
         if let logoString = collection?.logo {
-            return logoString
+            return URL(string: logoString) ?? URL(string: placeholder)!
         }
         
         return URL(string: placeholder)!
@@ -165,7 +165,7 @@ class CollectionItem: Identifiable, ObservableObject {
 
     var iconURL: URL {
         if let logoString = collection?.logo {
-            return logoString
+            return URL(string: logoString) ?? URL(string: placeholder)!
         }
         
         return URL(string: placeholder)!

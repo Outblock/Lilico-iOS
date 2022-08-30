@@ -86,7 +86,7 @@ extension TransactionManager {
             case .addToken:
                 return decodedObject(TokenModel.self)?.icon
             case .addCollection:
-                return decodedObject(NFTCollectionInfo.self)?.logo
+                return decodedObject(NFTCollectionInfo.self)?.logoURL
             case .transferNFT:
                 return decodedObject(NFTTransferModel.self)?.nft.logoUrl
             default:
