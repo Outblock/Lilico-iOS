@@ -318,3 +318,6 @@
 "pending_transaction" = "Pending Transaction";
 "transaction_failed" = "Transaction process failed";
 "transaction_success" = "Transaction process successd";
+"process_pending_text" = "Pending";
+"process_success_text" = "Success";
+"process_failed_text" = "Failed";

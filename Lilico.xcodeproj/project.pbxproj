@@ -906,6 +906,10 @@
 		6A35EADA2859BD36005A85B8 /* EditAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A35EAD82859BD36005A85B8 /* EditAvatarView.swift */; };
 		6A37AD9428BDAA310047E5F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A37AD9328BDAA300047E5F7 /* GoogleService-Info.plist */; };
 		6A37AD9528BDAB560047E5F7 /* QRCode in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 6A400924287578D400A77070 /* QRCode */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6A37AD9728BE0DE40047E5F7 /* TransactionProcessStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A37AD9628BE0DE40047E5F7 /* TransactionProcessStatusView.swift */; };
+		6A37AD9828BE0DE40047E5F7 /* TransactionProcessStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A37AD9628BE0DE40047E5F7 /* TransactionProcessStatusView.swift */; };
+		6A37AD9B28BE15700047E5F7 /* SendAmountTransactionProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A37AD9A28BE15700047E5F7 /* SendAmountTransactionProcessView.swift */; };
+		6A37AD9C28BE15700047E5F7 /* SendAmountTransactionProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A37AD9A28BE15700047E5F7 /* SendAmountTransactionProcessView.swift */; };
 		6A382E1E289BC93400163564 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A382E1D289BC93400163564 /* Shake.swift */; };
 		6A382E1F289BC93400163564 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A382E1D289BC93400163564 /* Shake.swift */; };
 		6A382E21289BD3B000163564 /* BionicErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A382E20289BD3B000163564 /* BionicErrorHandler.swift */; };
@@ -1542,6 +1546,8 @@
 		6A2D35BC283B6B5A008293D9 /* ThemeChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangeViewModel.swift; sourceTree = "<group>"; };
 		6A35EAD82859BD36005A85B8 /* EditAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvatarView.swift; sourceTree = "<group>"; };
 		6A37AD9328BDAA300047E5F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6A37AD9628BE0DE40047E5F7 /* TransactionProcessStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionProcessStatusView.swift; sourceTree = "<group>"; };
+		6A37AD9A28BE15700047E5F7 /* SendAmountTransactionProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendAmountTransactionProcessView.swift; sourceTree = "<group>"; };
 		6A382E1D289BC93400163564 /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
 		6A382E20289BD3B000163564 /* BionicErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BionicErrorHandler.swift; sourceTree = "<group>"; };
 		6A382E23289BDAFF00163564 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
@@ -3032,6 +3038,7 @@
 				4ED21F36284E2E6E00320AD0 /* ShareSheet.swift */,
 				4ED21F43284E5A6700320AD0 /* DashLine.swift */,
 				6AC1AE6C289BAD3500F76C7A /* PinCodeTextField.swift */,
+				6A37AD9628BE0DE40047E5F7 /* TransactionProcessStatusView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -3314,6 +3321,7 @@
 		6A16F18E28B8B0BF0055936E /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
+				6A37AD9928BE15580047E5F7 /* ProcessView */,
 				6A16F18F28B8B0D80055936E /* TransactionUIHandler.swift */,
 				6A16F19228B8B1AC0055936E /* TransactionHolderView.swift */,
 				6AAD4E6B28BC91DF00AEAB1F /* TransactionProgressView.swift */,
@@ -3350,6 +3358,14 @@
 				6AA947E728B5F84100591880 /* SVGCache.swift */,
 			);
 			path = Cache;
+			sourceTree = "<group>";
+		};
+		6A37AD9928BE15580047E5F7 /* ProcessView */ = {
+			isa = PBXGroup;
+			children = (
+				6A37AD9A28BE15700047E5F7 /* SendAmountTransactionProcessView.swift */,
+			);
+			path = ProcessView;
 			sourceTree = "<group>";
 		};
 		6A382E1C289BC8BB00163564 /* Animation */ = {
@@ -4225,6 +4241,7 @@
 				6AA591F728854FB300F4B5CA /* BackupGDTarget.swift in Sources */,
 				6A8D223E2881499D005A7081 /* RecentListCache.swift in Sources */,
 				15DC20D127819C56000B187A /* VNavigationLinkType.swift in Sources */,
+				6A37AD9C28BE15700047E5F7 /* SendAmountTransactionProcessView.swift in Sources */,
 				4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */,
 				15DC208527819C56000B187A /* VLazyScrollViewHorizontal.swift in Sources */,
 				15DC211327819C56000B187A /* VPageIndicatorInfinite.swift in Sources */,
@@ -4516,6 +4533,7 @@
 				6AE4605F286ED142009C2B96 /* TokenDetailViewModel.swift in Sources */,
 				15DC209327819C56000B187A /* VToast.swift in Sources */,
 				15DC21CD27819C56000B187A /* SliderHelpers.swift in Sources */,
+				6A37AD9828BE0DE40047E5F7 /* TransactionProcessStatusView.swift in Sources */,
 				6AEA374B28A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift in Sources */,
 				6A8FA49C285B192800EE5BE3 /* SnapID.swift in Sources */,
 				15D4F9A728BCC22300E0CADF /* DAppModel.swift in Sources */,
@@ -4703,6 +4721,7 @@
 				6AA591F628854FB300F4B5CA /* BackupGDTarget.swift in Sources */,
 				6A8D223D2881499D005A7081 /* RecentListCache.swift in Sources */,
 				15C58B2A2868A4EE00BD4FC6 /* VNavigationLinkType.swift in Sources */,
+				6A37AD9B28BE15700047E5F7 /* SendAmountTransactionProcessView.swift in Sources */,
 				15C58B2B2868A4EE00BD4FC6 /* WalletViewModel.swift in Sources */,
 				15C58B2C2868A4EE00BD4FC6 /* VLazyScrollViewHorizontal.swift in Sources */,
 				15C58B2D2868A4EE00BD4FC6 /* VPageIndicatorInfinite.swift in Sources */,
@@ -4994,6 +5013,7 @@
 				6AE4605E286ED142009C2B96 /* TokenDetailViewModel.swift in Sources */,
 				15C58C1F2868A4EE00BD4FC6 /* VToast.swift in Sources */,
 				15C58C202868A4EE00BD4FC6 /* SliderHelpers.swift in Sources */,
+				6A37AD9728BE0DE40047E5F7 /* TransactionProcessStatusView.swift in Sources */,
 				6AEA374A28A4DE10004545D4 /* NFTUIKitCollectionHContainerView.swift in Sources */,
 				15C58C212868A4EE00BD4FC6 /* SnapID.swift in Sources */,
 				15D4F9A628BCC22300E0CADF /* DAppModel.swift in Sources */,
