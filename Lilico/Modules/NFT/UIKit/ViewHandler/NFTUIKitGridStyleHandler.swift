@@ -11,7 +11,15 @@ import SnapKit
 
 class NFTUIKitGridStyleHandler: NSObject {
     var vm: NFTTabViewModel?
-    var dataModel: NFTUIKitListGridDataModel = NFTUIKitListGridDataModel()
+    lazy var dataModel: NFTUIKitListGridDataModel = {
+        let dm = NFTUIKitListGridDataModel()
+        dm.reloadCallback = { [weak self] in
+            self?.reloadViews()
+        }
+        
+        return dm
+    }()
+    
     private var isInitRequested: Bool = false
     private var isRequesting: Bool = false
     

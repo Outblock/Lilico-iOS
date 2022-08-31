@@ -233,6 +233,10 @@ class TransactionManager {
             }
         case .addCollection:
             NotificationCenter.default.post(name: .nftCollectionsDidChanged, object: nil)
+        case .transferNFT:
+            if let model = holder.decodedObject(NFTTransferModel.self) {
+                NFTUIKitCache.cache.transferedNFT(model.nft.response)
+            }
         default:
             break
         }

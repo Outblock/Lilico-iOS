@@ -15,11 +15,24 @@ class NFTUIKitListGridDataModel {
     private var owner: String = "0x01d63aa89238a559"
     var nfts: [NFTModel] = []
     var isEnd: Bool = false
+    var reloadCallback: (() -> ())?
     
     init() {
+        loadCache()
+        NotificationCenter.default.addObserver(self, selector: #selector(onCacheChanged), name: .nftCacheDidChanged, object: nil)
+    }
+    
+    @objc private func onCacheChanged() {
+        loadCache()
+        reloadCallback?()
+    }
+    
+    private func loadCache() {
         if let cachedNFTs = NFTUIKitCache.cache.getGridNFTs() {
             let models = cachedNFTs.map { NFTModel($0, in: nil) }
             self.nfts = models
+        } else {
+            self.nfts = []
         }
     }
     
@@ -71,10 +84,26 @@ class NFTUIKitListNormalDataModel {
     var items: [CollectionItem] = []
     var selectedIndex = 0
     var isCollectionListStyle: Bool = false
-    
-    var favNFTs: [NFTModel] = []
+    var reloadCallback: (() -> ())?
     
     init() {
+        loadCache()
+        NotificationCenter.default.addObserver(self, selector: #selector(onCacheChanged), name: .nftCacheDidChanged, object: nil)
+    }
+    
+    @objc private func onCacheChanged() {
+        loadCache()
+        
+        if items.isEmpty {
+            selectedIndex = 0
+        } else if selectedIndex >= items.count {
+            selectedIndex -= 1
+        }
+        
+        reloadCallback?()
+    }
+    
+    private func loadCache() {
         if var cachedCollections = NFTUIKitCache.cache.getCollections() {
             cachedCollections.sort {
                 if $0.count == $1.count {
@@ -98,6 +127,8 @@ class NFTUIKitListNormalDataModel {
             }
             
             self.items = items
+        } else {
+            items = []
         }
     }
     

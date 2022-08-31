@@ -26,7 +26,15 @@ class NFTUIKitListStyleHandler: NSObject {
             favContainerView.vm = vm
         }
     }
-    var dataModel: NFTUIKitListNormalDataModel = NFTUIKitListNormalDataModel()
+    lazy var dataModel: NFTUIKitListNormalDataModel = {
+        let dm = NFTUIKitListNormalDataModel()
+        dm.reloadCallback = { [weak self] in
+            self?.reloadViews()
+        }
+        
+        return dm
+    }()
+    
     private var isInitRequested: Bool = false
     private var isRequesting: Bool = false
     
@@ -118,11 +126,6 @@ class NFTUIKitListStyleHandler: NSObject {
         
         view.setRefreshingAction { [weak self] in
             guard let self = self else {
-                return
-            }
-            
-            if self.collectionView.isLoading() {
-                self.collectionView.stopRefreshing()
                 return
             }
             

@@ -33,6 +33,10 @@ struct NFTResponse: Codable, Hashable {
     let media: [NFTMedia]?
     let metadata: NFTMetadata?
     let postMedia: NFTPostMedia
+    
+    var uniqueId: String {
+        return contract.address + "." + (contract.name ?? "") + "-" + id.tokenID
+    }
 
     func cover() -> String? {
         return postMedia.image ?? postMedia.video

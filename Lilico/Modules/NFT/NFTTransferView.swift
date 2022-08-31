@@ -54,6 +54,9 @@ class NFTTransferViewModel: ObservableObject {
             }
         }
         
+        self.isRequesting = true
+        HUD.loading()
+        
         Task {
             do {
                 let tid = try await FlowNetwork.transferNFT(to: Flow.Address(hex: toAddress), nft: nft)
@@ -65,6 +68,7 @@ class NFTTransferViewModel: ObservableObject {
                 }
                 
                 DispatchQueue.main.async {
+                    HUD.dismissLoading()
                     self.isRequesting = false
                     Router.dismiss()
                     

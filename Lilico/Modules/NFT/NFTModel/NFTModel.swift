@@ -15,8 +15,8 @@ let filterMetadata = ["uri", "img", "description"]
 
 struct NFTCollection: Codable {
     let collection: NFTCollectionInfo
-    let count: Int
-    let ids: [Int]?
+    var count: Int
+    var ids: [Int]?
 }
 
 struct NFTCollectionInfo: Codable, Hashable {

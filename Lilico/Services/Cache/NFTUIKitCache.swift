@@ -376,3 +376,52 @@ extension NFTUIKitCache {
         }
     }
 }
+
+// MARK: - Modify
+
+extension NFTUIKitCache {
+    func transferedNFT(_ nft: NFTResponse) {
+        guard let contractName = nft.contract.name else {
+            return
+        }
+        
+        // check gird cache
+        if var gridCache = getGridNFTs() {
+            gridCache.removeAll { $0.uniqueId == nft.uniqueId }
+            saveGridToCache(gridCache)
+        }
+        
+        // check list cache
+        if var listNFTs = getNFTs(contractName: contractName) {
+            listNFTs.removeAll { $0.uniqueId == nft.uniqueId }
+            saveNFTsToCache(listNFTs, contractName: contractName)
+            
+            // remove collection if needed
+            if var collections = getCollections(), let index = collections.firstIndex(where: { $0.collection.contractName == contractName }) {
+                if listNFTs.isEmpty {
+                    collections.removeAll { $0.collection.contractName == contractName }
+                } else {
+                    var collection = collections[index]
+                    collection.count -= 1
+                    if var ids = collection.ids, let thisId = Int(nft.id.tokenID) {
+                        ids.removeAll { $0 == thisId }
+                        collection.ids = ids
+                    }
+                    
+                    collections.remove(at: index)
+                    collections.insert(collection, at: index)
+                }
+                
+                saveCollectionToCache(collections)
+            }
+        }
+        
+        // check fav cache
+        if isFav(id: nft.uniqueId) {
+            favList.removeAll { $0.id == nft.uniqueId }
+            saveCurrentFavToCache()
+        }
+        
+        NotificationCenter.default.post(name: .nftCacheDidChanged, object: nil)
+    }
+}
