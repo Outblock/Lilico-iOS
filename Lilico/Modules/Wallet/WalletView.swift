@@ -12,7 +12,7 @@ import SPConfetti
 import SwiftUI
 import SwiftUIX
 
-private let ActionViewHeight: CGFloat = 76
+private let ActionViewHeight: CGFloat = 48
 private let CardViewHeight: CGFloat = 214
 private let CoinCellHeight: CGFloat = 73
 private let CoinIconHeight: CGFloat = 43
@@ -130,49 +130,61 @@ struct WalletView: View {
     }
 
     var actionView: some View {
-        HStack {
-            Button {
-                Router.route(to: RouteMap.Wallet.send)
-            } label: {
-                VStack(spacing: 7) {
-                    Image("icon-wallet-send")
-                    Text("send".localized)
-                        .foregroundColor(.LL.Neutrals.note)
-                        .font(.inter(size: 12, weight: .semibold))
+        VStack{
+            HStack(spacing: 13) {
+                Button {
+                    Router.route(to: RouteMap.Wallet.send)
+                } label: {
+                    HStack(spacing: 7) {
+                        Image("wallet-send-stroke")
+                        Text("send".localized)
+                            .foregroundColor(.LL.text)
+                            .textCase(.uppercase)
+                            .font(.inter(size: 14, weight: .semibold))
+                    }
                 }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-            Spacer()
-
-            Button {
-                Router.route(to: RouteMap.Wallet.receive)
-            } label: {
-                VStack(spacing: 7) {
-                    Image("icon-wallet-receive")
-                    Text("receive".localized)
-                        .foregroundColor(.LL.Neutrals.note)
-                        .font(.inter(size: 12, weight: .semibold))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .buttonStyle(.plain)
+                .frame(height: ActionViewHeight)
+                .background(.LL.Shades.front)
+                .cornerRadius(12)
+                
+                Spacer()
+                
+                Button {
+                    Router.route(to: RouteMap.Wallet.receive)
+                } label: {
+                    HStack(spacing: 7) {
+                        Image("wallet-receive-stroke")
+                        Text("receive".localized)
+                            .foregroundColor(.LL.text)
+                            .textCase(.uppercase)
+                            .font(.inter(size: 14, weight: .semibold))
+                    }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .buttonStyle(.plain)
+                .frame(height: ActionViewHeight)
+                .background(.LL.Shades.front)
+                .cornerRadius(12)
+                
+                //            Spacer()
+                
+                //            Button {} label: {
+                //                VStack(spacing: 7) {
+                //                    Image("icon-wallet-buy")
+                //                    Text("buy".localized)
+                //                        .foregroundColor(.LL.Neutrals.note)
+                //                        .font(.inter(size: 12, weight: .semibold))
+                //                }
+                //            }
+                //            .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-            Spacer()
-
-            Button {} label: {
-                VStack(spacing: 7) {
-                    Image("icon-wallet-buy")
-                    Text("buy".localized)
-                        .foregroundColor(.LL.Neutrals.note)
-                        .font(.inter(size: 12, weight: .semibold))
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            Divider()
+                .foregroundColor(.LL.Neutrals.neutrals4)
+                .padding(.top, 12)
         }
-        .buttonStyle(.plain)
-        .frame(height: ActionViewHeight)
-        .background(.LL.Shades.front)
-        .cornerRadius(16)
     }
 
     var coinSectionView: some View {
@@ -303,5 +315,14 @@ extension WalletView {
             }
             .frame(height: CoinCellHeight)
         }
+    }
+}
+
+// MARK: - Helper
+
+private struct ViewOffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }

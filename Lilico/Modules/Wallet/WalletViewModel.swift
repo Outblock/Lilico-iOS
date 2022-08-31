@@ -139,7 +139,7 @@ class WalletViewModel: ObservableObject {
 // MARK: - Action
 
 extension WalletViewModel {
-    private func reloadWalletData() {
+    func reloadWalletData() {
         DispatchQueue.main.async {
             self.walletState = .idle
         }
