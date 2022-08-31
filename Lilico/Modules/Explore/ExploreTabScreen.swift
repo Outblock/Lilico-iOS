@@ -65,41 +65,46 @@ struct ExploreTabScreen: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     ForEach(vm.state.list, id: \.name) { dApp in
-                        HStack(alignment: .top) {
-                            KFImage
-                                .url(dApp.logo)
-                                .placeholder({
-                                    Image("placeholder")
-                                        .resizable()
-                                })
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 44, height: 44, alignment: .center)
-                                .cornerRadius(22)
-                                .clipped()
-                                .padding(.leading, 8)
-                                .padding(.trailing, 16)
-                            VStack(alignment: .leading) {
-                                Text(dApp.name)
-                                    .bold()
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(.LL.text)
-                                
-                                Text(dApp.url.host ?? "")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(.LL.text)
-                                
-                                Spacer(minLength: 5)
-                                
-                                Text(dApp.description)
-                                    .font(.LL.footnote)
-                                    .lineLimit(2)
-                                    .foregroundColor(.LL.Neutrals.neutrals7)
+                        
+                        Button {
+                            //TODO: Open Browser
+                        } label: {
+                            HStack(alignment: .top) {
+                                KFImage
+                                    .url(dApp.logo)
+                                    .placeholder({
+                                        Image("placeholder")
+                                            .resizable()
+                                    })
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 44, height: 44, alignment: .center)
+                                    .cornerRadius(22)
+                                    .clipped()
+                                    .padding(.leading, 8)
+                                    .padding(.trailing, 16)
+                                VStack(alignment: .leading) {
+                                    Text(dApp.name)
+                                        .bold()
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .foregroundColor(.LL.text)
+                                    
+                                    Text(dApp.url.host ?? "")
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .foregroundColor(.LL.text)
+                                    
+                                    Spacer(minLength: 5)
+                                    
+                                    Text(dApp.description)
+                                        .font(.LL.footnote)
+                                        .lineLimit(2)
+                                        .foregroundColor(.LL.Neutrals.neutrals7)
+                                }
                             }
+                            .padding(10)
+                            .background(Color.LL.deepBg)
+                            .cornerRadius(16)
                         }
-                        .padding(10)
-                        .background(Color.LL.deepBg)
-                        .cornerRadius(16)
                     }
                 }
                 .background(.LL.Neutrals.background)
