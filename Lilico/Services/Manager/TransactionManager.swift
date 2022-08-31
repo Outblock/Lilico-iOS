@@ -7,6 +7,7 @@
 
 import UIKit
 import Flow
+import SwiftUI
 
 extension Flow.Transaction.Status {
     var progressPercent: CGFloat {
@@ -25,6 +26,16 @@ extension Flow.Transaction.Status {
     }
 }
 
+extension Flow.ID {
+    var transactionFlowScanURL: URL? {
+        if LocalUserDefaults.shared.flowNetwork == .testnet {
+            return URL(string: "https://testnet.flowscan.org/transaction/\(self.hex)")
+        } else {
+            return URL(string: "https://flowscan.org/transaction/\(self.hex)")
+        }
+    }
+}
+
 extension TransactionManager {
     enum TransactionType: Int, Codable {
         case common
@@ -38,6 +49,17 @@ extension TransactionManager {
         case pending
         case success
         case failed
+        
+        var statusColor: UIColor {
+            switch self {
+            case .pending:
+                return UIColor(Color.LL.Primary.salmonPrimary)
+            case .success:
+                return UIColor(Color.LL.Success.success3)
+            case .failed:
+                return UIColor(Color.LL.Warning.warning3)
+            }
+        }
     }
     
     class TransactionHolder: Codable {

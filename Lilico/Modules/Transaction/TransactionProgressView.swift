@@ -83,4 +83,8 @@ class TransactionProgressView: UIView {
     private func refreshProgress() {
         progressLayer.strokeEnd = min(1, max(0, progress))
     }
+    
+    func changeProgressColor(_ color: UIColor) {
+        progressLayer.strokeColor = color.cgColor
+    }
 }

@@ -100,6 +100,15 @@ class TransactionListCell: UIView {
         }
         
         addNotification()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        addGestureRecognizer(tap)
+    }
+    
+    @objc private func onTap() {
+        if let id = model?.transactionId {
+            Router.route(to: RouteMap.Transaction.detail(id))
+        }
     }
     
     private func addNotification() {
@@ -138,7 +147,15 @@ class TransactionListCell: UIView {
             progressView.iconImageView.image = UIImage(named: "flow")
         }
         
-        progressView.progress = model?.flowStatus.progressPercent ?? 0
+        if model?.internalStatus == .failed {
+            progressView.progress = 1
+        } else {
+            progressView.progress = model?.flowStatus.progressPercent ?? 0
+        }
+        
+        if let strokeColor = model?.internalStatus.statusColor {
+            progressView.changeProgressColor(strokeColor)
+        }
     }
 }
 

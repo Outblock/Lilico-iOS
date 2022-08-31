@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import SwiftUIX
+import Flow
 
 enum RouteMap {
     
@@ -283,6 +284,25 @@ extension RouteMap.WalletConnect: RouterTarget {
             Router.topPresentedController().present(content: RequestView(request: info, approve: approve, reject: reject))
         case .requestMessage(let info, let approve, let reject):
             Router.topPresentedController().present(content: RequestMessageView(request: info, approve: approve, reject: reject))
+        }
+    }
+}
+
+// MARK: - Transaction
+
+extension RouteMap {
+    enum Transaction {
+        case detail(Flow.ID)
+    }
+}
+
+extension RouteMap.Transaction: RouterTarget {
+    func onPresent(navi: UINavigationController) {
+        switch self {
+        case .detail(let transactionId):
+            if let url = transactionId.transactionFlowScanURL {
+                UIApplication.shared.open(url)
+            }
         }
     }
 }
