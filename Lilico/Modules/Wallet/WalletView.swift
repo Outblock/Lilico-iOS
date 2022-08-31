@@ -146,7 +146,7 @@ struct WalletView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .buttonStyle(.plain)
                 .frame(height: ActionViewHeight)
-                .background(.LL.Shades.front)
+                .background(.LL.bgForIcon)
                 .cornerRadius(12)
                 
                 Spacer()
@@ -165,7 +165,7 @@ struct WalletView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .buttonStyle(.plain)
                 .frame(height: ActionViewHeight)
-                .background(.LL.Shades.front)
+                .background(.LL.bgForIcon)
                 .cornerRadius(12)
                 
                 //            Spacer()
