@@ -229,7 +229,7 @@ extension WalletSendAmountViewModel {
         saveToRecentLlist()
         
         isSending = true
-        HUD.loading("sending".localized)
+//        HUD.loading("sending".localized)
         
         Task {
             do {
@@ -247,7 +247,7 @@ extension WalletSendAmountViewModel {
                     HUD.dismissLoading()
                     self.showConfirmView = false
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        Router.popToRoot()
+                        Router.dismiss()
                     }
                     
                     let holder = TransactionManager.TransactionHolder(id: id, type: .transferCoin, data: data)
