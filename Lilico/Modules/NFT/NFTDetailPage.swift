@@ -243,6 +243,7 @@ struct NFTDetailPage: RouteableView {
                 .cornerRadius(12)
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
                 .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 16)
+                .visibility(vm.nft.isDomain ? .gone : .visible)
 
                 Menu {
                     Button {} label: {

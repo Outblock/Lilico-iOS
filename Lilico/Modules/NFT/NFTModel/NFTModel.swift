@@ -144,6 +144,14 @@ struct NFTModel: Codable, Hashable, Identifiable {
             !filterMetadata.contains(meta.name.lowercased()) && !meta.value.isEmpty && !meta.value.hasPrefix("https://")
         }
     }
+    
+    var isDomain: Bool {
+        if response.media?.first(where: { $0.uri.contains("flowns.org") && $0.uri.contains(".meow") }) != nil {
+            return true
+        }
+                                 
+        return false
+    }
 }
 
 class CollectionItem: Identifiable, ObservableObject {
@@ -194,6 +202,8 @@ class CollectionItem: Identifiable, ObservableObject {
                     
                     guard let list = response.nfts, !list.isEmpty else {
                         self.isEnd = true
+                        self.loadCallback?(true)
+                        self.loadCallback2?(true)
                         return
                     }
                     
