@@ -68,7 +68,8 @@ struct ExploreTabScreen: View {
                         
                         Button {
                             //TODO: Open Browser
-                            Router.route(to: RouteMap.Explore.browser)
+                            let url = URL(string: "https://www.baidu.com")!
+                            Router.route(to: RouteMap.Explore.browser(url))
                         } label: {
                             HStack(alignment: .top) {
                                 KFImage

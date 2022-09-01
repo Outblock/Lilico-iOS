@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-private let BarHeight: CGFloat = 60
+let BrowserActionBarViewHeight: CGFloat = 60
 private let BtnWidth: CGFloat = 60
 private let BtnHeight: CGFloat = 40
 private let ProgressViewHeight: CGFloat = 4
@@ -34,7 +34,7 @@ class BrowserActionBarView: UIView {
         return view
     }()
     
-    private lazy var backBtn: UIButton = {
+    lazy var backBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "icon-btn-back"))
         
@@ -45,7 +45,7 @@ class BrowserActionBarView: UIView {
         return btn
     }()
     
-    private lazy var homeBtn: UIButton = {
+    lazy var homeBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "icon-btn-home"))
         
@@ -56,14 +56,14 @@ class BrowserActionBarView: UIView {
         return btn
     }()
     
-    private lazy var reloadBtn: UIButton = {
+    lazy var reloadBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "icon-btn-reload"))
         
         return btn
     }()
     
-    private lazy var addressBarContainer: UIView = {
+    lazy var addressBarContainer: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
         return view
@@ -76,10 +76,11 @@ class BrowserActionBarView: UIView {
         view.layer.borderColor = UIColor.white.withAlphaComponent(0.24).cgColor
         view.layer.cornerRadius = 12
         view.alpha = 0.8
+        view.isUserInteractionEnabled = false
         return view
     }()
     
-    private lazy var addressLabel: UILabel = {
+    lazy var addressLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .interSemiBold(size: 14)
@@ -87,7 +88,7 @@ class BrowserActionBarView: UIView {
         return label
     }()
     
-    private lazy var progressView: BrowserProgressView = {
+    lazy var progressView: BrowserProgressView = {
         let view = BrowserProgressView()
         view.progress = 0.5
         
@@ -110,7 +111,7 @@ class BrowserActionBarView: UIView {
         backgroundColor = .clear
         
         self.snp.makeConstraints { make in
-            make.height.equalTo(BarHeight)
+            make.height.equalTo(BrowserActionBarViewHeight)
         }
         
         addSubview(contentView)
@@ -153,7 +154,7 @@ class BrowserActionBarView: UIView {
         addressLabel.snp.makeConstraints { make in
             make.left.equalTo(12)
             make.centerY.equalToSuperview()
-            make.right.equalTo(reloadBtn.snp.left).offset(-5)
+            make.right.equalTo(reloadBtn.snp.left)
         }
     }
 }

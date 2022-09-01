@@ -11,6 +11,9 @@ import SnapKit
 import WebKit
 
 class BrowserViewController: UIViewController {
+    private var baseURL: URL?
+    private var observation: NSKeyValueObservation?
+    private var actionBarIsHiddenFlag: Bool = false
     
     private lazy var contentView: UIView = {
         let view = UIView()
@@ -30,7 +33,7 @@ class BrowserViewController: UIViewController {
     
     private lazy var webView: WKWebView = {
         let view = WKWebView(frame: .zero, configuration: webViewConfig)
-        view.backgroundColor = .orange
+        view.navigationDelegate = self
         return view
     }()
     
@@ -39,14 +42,24 @@ class BrowserViewController: UIViewController {
         return view
     }()
     
+    deinit {
+        observation = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        reloadBgPaths()
     }
     
     private func setup() {
@@ -60,22 +73,41 @@ class BrowserViewController: UIViewController {
         
         contentView.layer.mask = bgMaskLayer
         
+        setupWebView()
+        setupActionBarView()
+    }
+    
+    private func setupWebView() {
         contentView.addSubview(webView)
         webView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
+        webView.scrollView.delegate = self
+    }
+    
+    private func setupActionBarView() {
         contentView.addSubview(actionBarView)
         actionBarView.snp.makeConstraints { make in
             make.left.equalTo(18)
             make.right.equalTo(-18)
             make.bottom.equalTo(contentView.safeAreaLayoutGuide.snp.bottomMargin).offset(-20)
         }
+        
+        actionBarView.backBtn.addTarget(self, action: #selector(onBackBtnClick), for: .touchUpInside)
+        actionBarView.homeBtn.addTarget(self, action: #selector(onHomeBtnClick), for: .touchUpInside)
+        actionBarView.reloadBtn.addTarget(self, action: #selector(onReloadBtnClick), for: .touchUpInside)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onAddressBarClick))
+        actionBarView.addressBarContainer.addGestureRecognizer(tapGesture)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        reloadBgPaths()
+    private func setupObserver() {
+        observation = webView.observe(\.estimatedProgress, options: .new, changeHandler: { [weak self] _, _ in
+            DispatchQueue.main.async {
+                self?.reloadActionBarView()
+            }
+        })
     }
     
     private func reloadBgPaths() {
@@ -83,5 +115,112 @@ class BrowserViewController: UIViewController {
         
         let path = UIBezierPath(roundedRect: contentView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 24.0, height: 24.0))
         bgMaskLayer.path = path.cgPath
+    }
+}
+
+// MARK: - Load
+
+extension BrowserViewController {
+    func loadURL(_ url: URL) {
+        baseURL = url
+        let request = URLRequest(url: url)
+        webView.load(request)
+    }
+}
+
+// MARK: - Action Bar
+
+extension BrowserViewController {
+    private func reloadActionBarView() {
+        actionBarView.addressLabel.text = webView.title
+        
+        actionBarView.progressView.isHidden = webView.isLoading
+        
+        if webView.isLoading {
+            actionBarView.progressView.progress = max(0.3, webView.estimatedProgress)
+        }
+    }
+    
+    private func hideActionBarView() {
+        if actionBarIsHiddenFlag {
+            return
+        }
+        
+        actionBarIsHiddenFlag = true
+        
+        UIView.animate(withDuration: 0.25) {
+            let y = Router.coordinator.window.safeAreaInsets.bottom + 20 + BrowserActionBarViewHeight
+            self.actionBarView.transform = CGAffineTransform(translationX: 0, y: y)
+        }
+    }
+    
+    private func showActionBarView() {
+        if !actionBarIsHiddenFlag {
+            return
+        }
+        
+        actionBarIsHiddenFlag = false
+        
+        UIView.animate(withDuration: 0.25) {
+            self.actionBarView.transform = .identity
+        }
+    }
+    
+    @objc private func onBackBtnClick() {
+        if webView.canGoBack {
+            webView.goBack()
+            return
+        }
+        
+        onHomeBtnClick()
+    }
+    
+    @objc private func onHomeBtnClick() {
+        Router.pop()
+    }
+    
+    @objc private func onReloadBtnClick() {
+        webView.reload()
+    }
+    
+    @objc private func onAddressBarClick() {
+        debugPrint("onAddressBarClick")
+    }
+}
+
+// MARK: - Delegate
+
+extension BrowserViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        reloadActionBarView()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        reloadActionBarView()
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        reloadActionBarView()
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        reloadActionBarView()
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        decisionHandler(.allow)
+        reloadActionBarView()
+    }
+}
+
+extension BrowserViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        
+        if translation.y >= 0 {
+            showActionBarView()
+        } else {
+            hideActionBarView()
+        }
     }
 }

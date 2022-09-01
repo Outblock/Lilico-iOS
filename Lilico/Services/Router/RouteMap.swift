@@ -311,15 +311,16 @@ extension RouteMap.Transaction: RouterTarget {
 
 extension RouteMap {
     enum Explore {
-        case browser
+        case browser(URL)
     }
 }
 
 extension RouteMap.Explore: RouterTarget {
     func onPresent(navi: UINavigationController) {
         switch self {
-        case .browser:
+        case .browser(let url):
             let vc = BrowserViewController()
+            vc.loadURL(url)
             navi.pushViewController(vc, animated: true)
         }
     }

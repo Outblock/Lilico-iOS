@@ -8,7 +8,7 @@
 import UIKit
 
 class BrowserProgressView: UIView {
-    var progress: CGFloat = 0 {
+    var progress: Double = 0 {
         didSet {
             reloadView()
         }
