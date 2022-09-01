@@ -39,8 +39,20 @@ class BrowserViewController: UIViewController {
     
     private lazy var actionBarView: BrowserActionBarView = {
         let view = BrowserActionBarView()
+        
+        view.backBtn.addTarget(self, action: #selector(onBackBtnClick), for: .touchUpInside)
+        view.homeBtn.addTarget(self, action: #selector(onHomeBtnClick), for: .touchUpInside)
+        view.reloadBtn.addTarget(self, action: #selector(onReloadBtnClick), for: .touchUpInside)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onAddressBarClick))
+        view.addressBarContainer.addGestureRecognizer(tapGesture)
+        
         return view
     }()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     deinit {
         observation = nil
@@ -93,13 +105,6 @@ class BrowserViewController: UIViewController {
             make.right.equalTo(-18)
             make.bottom.equalTo(contentView.safeAreaLayoutGuide.snp.bottomMargin).offset(-20)
         }
-        
-        actionBarView.backBtn.addTarget(self, action: #selector(onBackBtnClick), for: .touchUpInside)
-        actionBarView.homeBtn.addTarget(self, action: #selector(onHomeBtnClick), for: .touchUpInside)
-        actionBarView.reloadBtn.addTarget(self, action: #selector(onReloadBtnClick), for: .touchUpInside)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onAddressBarClick))
-        actionBarView.addressBarContainer.addGestureRecognizer(tapGesture)
     }
     
     private func setupObserver() {
@@ -137,7 +142,7 @@ extension BrowserViewController {
         actionBarView.progressView.isHidden = webView.isLoading
         
         if webView.isLoading {
-            actionBarView.progressView.progress = max(0.3, webView.estimatedProgress)
+            actionBarView.progressView.progress = max(0.2, webView.estimatedProgress)
         }
     }
     
@@ -184,7 +189,8 @@ extension BrowserViewController {
     }
     
     @objc private func onAddressBarClick() {
-        debugPrint("onAddressBarClick")
+        let inputVC = BrowserSearchInputViewController()
+        self.show(childViewController: inputVC)
     }
 }
 
