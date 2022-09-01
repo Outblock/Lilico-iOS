@@ -306,3 +306,21 @@ extension RouteMap.Transaction: RouterTarget {
         }
     }
 }
+
+// MARK: - Explore
+
+extension RouteMap {
+    enum Explore {
+        case browser
+    }
+}
+
+extension RouteMap.Explore: RouterTarget {
+    func onPresent(navi: UINavigationController) {
+        switch self {
+        case .browser:
+            let vc = BrowserViewController()
+            navi.pushViewController(vc, animated: true)
+        }
+    }
+}

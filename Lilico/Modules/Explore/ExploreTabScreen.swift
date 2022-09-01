@@ -68,6 +68,7 @@ struct ExploreTabScreen: View {
                         
                         Button {
                             //TODO: Open Browser
+                            Router.route(to: RouteMap.Explore.browser)
                         } label: {
                             HStack(alignment: .top) {
                                 KFImage
