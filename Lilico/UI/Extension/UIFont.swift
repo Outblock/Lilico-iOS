@@ -32,6 +32,10 @@ extension UIFont {
 // Montserrat Font names: ["Montserrat-Regular", "Montserrat-Italic", "Montserrat-Bold"]
 
 extension UIFont {
+    static func interMedium(size: CGFloat) -> UIFont {
+        return UIFont(name: "Inter-Regular_Medium", size: size)!
+    }
+    
     static func interSemiBold(size: CGFloat) -> UIFont {
         return UIFont(name: "Inter-Regular_SemiBold", size: size)!
     }

@@ -19,8 +19,10 @@ class BrowserSearchInputViewController: UIViewController {
     
     private lazy var inputBar: BrowserSearchInputBar = {
         let view = BrowserSearchInputBar()
-        
         view.cancelBtn.addTarget(self, action: #selector(onCancelBtnClick), for: .touchUpInside)
+        view.textDidChangedCallback = { [weak self] text in
+            self?.searchTextDidChanged(text)
+        }
         
         return view
     }()
@@ -37,14 +39,13 @@ class BrowserSearchInputViewController: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor(hex: "#F4F4F7")
+        view.layer.cornerRadius = 24
+        view.clipsToBounds = true
         view.delegate = self
         view.dataSource = self
+        
+        view.register(BrowserSearchItemCell.self, forCellWithReuseIdentifier: "BrowserSearchItemCell")
         return view
-    }()
-    
-    private lazy var collectionViewBgMaskLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        return layer
     }()
     
     private lazy var contentViewBgMaskLayer: CAShapeLayer = {
@@ -62,14 +63,15 @@ class BrowserSearchInputViewController: UIViewController {
         
         view.addSubview(contentView)
         contentView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
+            make.bottom.equalToSuperview()
         }
         
         contentView.addSubview(inputBar)
         inputBar.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(contentView.safeAreaLayoutGuide.snp.bottomMargin)
+            make.bottom.equalTo(contentView.keyboardLayoutGuide.snp.top)
         }
         
         contentView.layer.mask = contentViewBgMaskLayer
@@ -79,8 +81,6 @@ class BrowserSearchInputViewController: UIViewController {
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(inputBar.snp.top)
         }
-        
-        collectionView.layer.mask = collectionViewBgMaskLayer
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,14 +89,16 @@ class BrowserSearchInputViewController: UIViewController {
     }
     
     private func reloadBgPaths() {
-        collectionViewBgMaskLayer.frame = collectionView.bounds
-        
-        let path = UIBezierPath(roundedRect: collectionView.bounds, byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 24.0, height: 24.0))
-        collectionViewBgMaskLayer.path = path.cgPath
-        
         contentViewBgMaskLayer.frame = contentView.bounds
         let cPath = UIBezierPath(roundedRect: contentView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 24.0, height: 24.0))
         contentViewBgMaskLayer.path = cPath.cgPath
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !inputBar.textField.isFirstResponder {
+            inputBar.textField.becomeFirstResponder()
+        }
     }
 }
 
@@ -108,12 +110,20 @@ extension BrowserSearchInputViewController {
     }
 }
 
+extension BrowserSearchInputViewController {
+    private func searchTextDidChanged(_ text: String) {
+        let trimString = text.trim()
+        debugPrint("str = \(trimString)")
+    }
+}
+
 extension BrowserSearchInputViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrowserSearchItemCell", for: indexPath) as! BrowserSearchItemCell
+        return cell
     }
 }

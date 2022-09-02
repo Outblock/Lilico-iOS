@@ -14,6 +14,8 @@ private let DividerWidth: CGFloat = 2
 private let DividerHeight: CGFloat = 8
 
 class BrowserSearchInputBar: UIView {
+    var textDidChangedCallback: ((String) -> ())?
+    
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -27,7 +29,7 @@ class BrowserSearchInputBar: UIView {
         return view
     }()
     
-    private lazy var textField: UITextField = {
+    lazy var textField: UITextField = {
         let view = UITextField()
         view.borderStyle = .none
         view.backgroundColor = .clear
@@ -83,6 +85,8 @@ class BrowserSearchInputBar: UIView {
             make.height.equalTo(ContentViewHeight)
         }
         
+        btn.addTarget(self, action: #selector(onClearBtnClick), for: .touchUpInside)
+        
         return btn
     }()
     
@@ -129,5 +133,28 @@ class BrowserSearchInputBar: UIView {
             make.left.equalTo(12)
             make.right.equalTo(clearBtn.snp.left)
         }
+        
+        reloadView()
+        NotificationCenter.default.addObserver(self, selector: #selector(onTextFieldDidChanged(noti:)), name: UITextField.textDidChangeNotification, object: nil)
+    }
+    
+    private func reloadView() {
+        let isEmpty = textField.text?.isEmpty ?? true
+        clearBtn.isHidden = isEmpty
+    }
+}
+
+extension BrowserSearchInputBar {
+    @objc private func onTextFieldDidChanged(noti: Notification) {
+        if noti.object as? UITextField == textField {
+            reloadView()
+            textDidChangedCallback?(textField.text ?? "")
+        }
+    }
+    
+    @objc private func onClearBtnClick() {
+        textField.text = ""
+        reloadView()
+        textDidChangedCallback?("")
     }
 }
