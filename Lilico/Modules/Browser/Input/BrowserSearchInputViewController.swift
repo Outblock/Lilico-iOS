@@ -11,6 +11,13 @@ import SnapKit
 private let CellHeight: CGFloat = 50
 
 class BrowserSearchInputViewController: UIViewController {
+    var selectTextCallback: ((String) -> ())?
+    
+    private var recommendArray: [RecommendItemModel] = []
+    private var searchingText: String = ""
+    
+    private var timer: Timer?
+    
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -22,6 +29,10 @@ class BrowserSearchInputViewController: UIViewController {
         view.cancelBtn.addTarget(self, action: #selector(onCancelBtnClick), for: .touchUpInside)
         view.textDidChangedCallback = { [weak self] text in
             self?.searchTextDidChanged(text)
+        }
+        view.textDidReturnCallback = { [weak self] text in
+            self?.selectTextCallback?(text)
+            self?.close()
         }
         
         return view
@@ -104,6 +115,10 @@ class BrowserSearchInputViewController: UIViewController {
 
 extension BrowserSearchInputViewController {
     @objc private func onCancelBtnClick() {
+        close()
+    }
+    
+    private func close() {
         if self.parent != nil {
             self.removeFromParentViewController()
         }
@@ -112,18 +127,86 @@ extension BrowserSearchInputViewController {
 
 extension BrowserSearchInputViewController {
     private func searchTextDidChanged(_ text: String) {
+        clearCurrentRecommend()
+        
         let trimString = text.trim()
-        debugPrint("str = \(trimString)")
+        if trimString.isEmpty {
+            return
+        }
+        
+        searchingText = trimString
+        startTimer()
+    }
+    
+    private func doSearch() {
+        debugPrint("doSearch")
+        let currentText = self.searchingText
+        
+        Task {
+            do {
+                let result: [RecommendItemModel] = try await Network.requestWithRawModel(LilicoAPI.Browser.recommend(currentText))
+                
+                if self.searchingText != currentText {
+                    // outdate result
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.recommendArray = result
+                    self.collectionView.reloadData()
+                }
+            } catch {
+                if self.searchingText != currentText {
+                    // outdate result
+                    return
+                }
+                
+                HUD.error(title: "browser_search_failed".localized)
+            }
+        }
+    }
+    
+    private func startTimer() {
+        stopTimer()
+        
+        let t = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(onTimer), userInfo: nil, repeats: false)
+        RunLoop.main.add(t, forMode: .common)
+        self.timer = t
+    }
+    
+    private func stopTimer() {
+        if let timer = timer {
+            timer.invalidate()
+            self.timer = nil
+        }
+    }
+    
+    @objc private func onTimer() {
+        doSearch()
+    }
+    
+    private func clearCurrentRecommend() {
+        self.searchingText = ""
+        recommendArray.removeAll()
+        collectionView.reloadData()
     }
 }
 
 extension BrowserSearchInputViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return recommendArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let model = recommendArray[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrowserSearchItemCell", for: indexPath) as! BrowserSearchItemCell
+        cell.config(model, inputText: searchingText)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = recommendArray[indexPath.item]
+        selectTextCallback?(model.phrase)
+        close()
     }
 }

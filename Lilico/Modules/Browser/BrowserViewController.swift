@@ -11,7 +11,6 @@ import SnapKit
 import WebKit
 
 class BrowserViewController: UIViewController {
-    private var baseURL: URL?
     private var observation: NSKeyValueObservation?
     private var actionBarIsHiddenFlag: Bool = false
     
@@ -127,7 +126,6 @@ class BrowserViewController: UIViewController {
 
 extension BrowserViewController {
     func loadURL(_ url: URL) {
-        baseURL = url
         let request = URLRequest(url: url)
         webView.load(request)
     }
@@ -139,11 +137,11 @@ extension BrowserViewController {
     private func reloadActionBarView() {
         actionBarView.addressLabel.text = webView.title
         
-        actionBarView.progressView.isHidden = webView.isLoading
         
-        if webView.isLoading {
-            actionBarView.progressView.progress = max(0.2, webView.estimatedProgress)
-        }
+        actionBarView.reloadBtn.isSelected = webView.isLoading
+        
+        actionBarView.progressView.isHidden = !webView.isLoading
+        actionBarView.progressView.progress = webView.isLoading ? webView.estimatedProgress : 0
     }
     
     private func hideActionBarView() {
@@ -189,7 +187,20 @@ extension BrowserViewController {
     }
     
     @objc private func onAddressBarClick() {
+        showSearchInputView()
+    }
+}
+
+// MARK: - Search Recommend
+
+extension BrowserViewController {
+    private func showSearchInputView() {
         let inputVC = BrowserSearchInputViewController()
+        inputVC.selectTextCallback = { [weak self] text in
+            if let url = text.toSearchURL {
+                self?.loadURL(url)
+            }
+        }
         self.show(childViewController: inputVC)
     }
 }

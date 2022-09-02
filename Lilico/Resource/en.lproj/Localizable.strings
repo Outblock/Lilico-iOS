@@ -321,3 +321,6 @@
 "process_pending_text" = "Pending";
 "process_success_text" = "Success";
 "process_failed_text" = "Failed";
+
+// Browser
+"browser_search_failed" = "Search failed. Please try again.";

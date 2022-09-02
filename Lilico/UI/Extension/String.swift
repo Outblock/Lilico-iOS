@@ -98,6 +98,14 @@ extension String {
     var md5: String {
         return Insecure.MD5.hash(data: self.data(using: .utf8)!).map { String(format: "%02hhx", $0) }.joined()
     }
+    
+    func ranges(of substring: String, options: CompareOptions = [], locale: Locale? = nil) -> [Range<Index>] {
+        var ranges: [Range<Index>] = []
+        while let range = range(of: substring, options: options, range: (ranges.last?.upperBound ?? self.startIndex)..<self.endIndex, locale: locale) {
+            ranges.append(range)
+        }
+        return ranges
+    }
 }
 
 // MARK: - Firebase
@@ -140,5 +148,35 @@ extension String {
         guard let object = object else { return "nil" }
         let opaque: UnsafeMutableRawPointer = Unmanaged.passUnretained(object).toOpaque()
         return String(describing: opaque)
+    }
+}
+
+// MARK: - Browser
+
+extension String {
+    var canOpenUrl: Bool {
+        guard let url = URL(string: self), UIApplication.shared.canOpenURL(url) else { return false }
+        let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+        return predicate.evaluate(with: self)
+    }
+    
+    var toSearchURL: URL? {
+        var asURL = self
+        if self.hasPrefix("http://") || self.hasPrefix("https://") {
+            
+        } else {
+            asURL = "https://\(self)"
+        }
+        
+        if let url = URL(string: asURL), asURL.canOpenUrl {
+            return url
+        }
+        
+        guard let encodedString = self.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return nil
+        }
+        
+        return URL(string: "https://www.google.com/search?q=\(encodedString)")
     }
 }

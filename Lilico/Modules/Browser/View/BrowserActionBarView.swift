@@ -35,8 +35,9 @@ class BrowserActionBarView: UIView {
     }()
     
     lazy var backBtn: UIButton = {
-        let btn = UIButton(type: .custom)
+        let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "icon-btn-back"))
+        btn.tintColor = .white
         
         btn.snp.makeConstraints { make in
             make.width.equalTo(BtnWidth)
@@ -46,8 +47,9 @@ class BrowserActionBarView: UIView {
     }()
     
     lazy var homeBtn: UIButton = {
-        let btn = UIButton(type: .custom)
+        let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "icon-btn-home"))
+        btn.tintColor = .white
         
         btn.snp.makeConstraints { make in
             make.width.equalTo(BtnWidth)
@@ -58,7 +60,9 @@ class BrowserActionBarView: UIView {
     
     lazy var reloadBtn: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setImage(UIImage(named: "icon-btn-reload"))
+        btn.setImage(UIImage(named: "icon-btn-reload"), for: .normal)
+        btn.setImage(UIImage(named: "icon-btn-reload-stop")?.withRenderingMode(.alwaysTemplate), for: .selected)
+        btn.tintColor = .white
         
         return btn
     }()
