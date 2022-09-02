@@ -16,6 +16,9 @@ private let DividerHeight: CGFloat = 8
 class BrowserSearchInputBar: UIView {
     var textDidChangedCallback: ((String) -> ())?
     
+    /// tap go button directly
+    var textDidReturnCallback: ((String) -> ())?
+    
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -37,6 +40,9 @@ class BrowserSearchInputBar: UIView {
         view.font = .interSemiBold(size: 16)
         view.tintColor = UIColor(Color.LL.Primary.salmonPrimary)
         view.clearButtonMode = .never
+        view.returnKeyType = .go
+        view.autocorrectionType = .no
+        view.delegate = self
         
         view.snp.makeConstraints { make in
             make.height.equalTo(ContentViewHeight)
@@ -144,7 +150,7 @@ class BrowserSearchInputBar: UIView {
     }
 }
 
-extension BrowserSearchInputBar {
+extension BrowserSearchInputBar: UITextFieldDelegate {
     @objc private func onTextFieldDidChanged(noti: Notification) {
         if noti.object as? UITextField == textField {
             reloadView()
@@ -156,5 +162,12 @@ extension BrowserSearchInputBar {
         textField.text = ""
         reloadView()
         textDidChangedCallback?("")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        let text = textField.text?.trim() ?? ""
+        textDidReturnCallback?(text)
+        return true
     }
 }

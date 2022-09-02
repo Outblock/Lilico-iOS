@@ -60,4 +60,19 @@ class BrowserSearchItemCell: UICollectionViewCell {
             make.right.equalTo(-30)
         }
     }
+    
+    func config(_ model: RecommendItemModel, inputText: String) {
+        let normalAttr: [NSAttributedString.Key: Any] = [.font: titleLabel.font!, .foregroundColor: UIColor(hex: "#333333")]
+        let highlightAttr: [NSAttributedString.Key: Any] = [.font: titleLabel.font!, .foregroundColor: UIColor(hex: "#BFBFBF")]
+        
+        let str = NSMutableAttributedString(string: model.phrase, attributes: normalAttr)
+        
+        let ranges = model.phrase.ranges(of: inputText, options: [.caseInsensitive])
+        for range in ranges {
+            let convertedRange = NSRange(range, in: model.phrase)
+            str.setAttributes(highlightAttr, range: convertedRange)
+        }
+        
+        titleLabel.attributedText = str
+    }
 }
