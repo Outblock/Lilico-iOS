@@ -44,7 +44,7 @@ struct ExploreTabScreen: View {
                     Image("meow_banner")
                         .resizable()
                         .frame(maxWidth: .infinity)
-                        .frame(height: 92)
+                        .aspectRatio(CGSize(width: 339, height: 92), contentMode: .fit)
                     
                     HStack {
                         Image(systemName: "square.grid.2x2.fill")
@@ -100,10 +100,13 @@ struct ExploreTabScreen: View {
                                     Text(dApp.description)
                                         .font(.LL.footnote)
                                         .lineLimit(2)
+                                        .multilineTextAlignment(.leading)
                                         .foregroundColor(.LL.Neutrals.neutrals7)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
                             .padding(10)
+                            .padding(.vertical, 5)
                             .background(Color.LL.deepBg)
                             .cornerRadius(16)
                         }
@@ -121,6 +124,7 @@ struct ExploreTabScreen: View {
         }
         .background(.LL.Neutrals.background)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationBarHidden(true)
     }
 }
 
