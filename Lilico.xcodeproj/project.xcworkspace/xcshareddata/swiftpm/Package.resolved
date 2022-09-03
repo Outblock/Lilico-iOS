@@ -64,6 +64,15 @@
       }
     },
     {
+      "identity" : "colorkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Boris-Em/ColorKit",
+      "state" : {
+        "revision" : "d9c3a546c40f31b5f2c624603fa03f56904e2dc2",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "firebase-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
@@ -446,6 +455,15 @@
       "state" : {
         "branch" : "master",
         "revision" : "29ca44720c6157c0d3dc25c3b0338d204d970b9b"
+      }
+    },
+    {
+      "identity" : "viewanimator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/marcosgriselli/ViewAnimator",
+      "state" : {
+        "revision" : "55f1c46241b181c3e0b68d70edb6d87926c7d183",
+        "version" : "3.1.0"
       }
     },
     {

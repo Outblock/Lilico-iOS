@@ -586,6 +586,10 @@
 		15D3BA6528C393CB009AEA6E /* MatrixRainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3BA6328C393CB009AEA6E /* MatrixRainView.swift */; };
 		15D3BA6728C39454009AEA6E /* Matrix Code NFI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15D3BA6628C39454009AEA6E /* Matrix Code NFI.ttf */; };
 		15D3BA6828C39454009AEA6E /* Matrix Code NFI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15D3BA6628C39454009AEA6E /* Matrix Code NFI.ttf */; };
+		15D3BA6B28C3B1EE009AEA6E /* ColorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA6A28C3B1EE009AEA6E /* ColorKit */; };
+		15D3BA6D28C3B217009AEA6E /* ColorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA6C28C3B217009AEA6E /* ColorKit */; };
+		15D3BA7028C3B8E3009AEA6E /* ViewAnimator in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA6F28C3B8E3009AEA6E /* ViewAnimator */; };
+		15D3BA7228C3B90A009AEA6E /* ViewAnimator in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7128C3B90A009AEA6E /* ViewAnimator */; };
 		15D4F9A628BCC22300E0CADF /* DAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A528BCC22300E0CADF /* DAppModel.swift */; };
 		15D4F9A728BCC22300E0CADF /* DAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A528BCC22300E0CADF /* DAppModel.swift */; };
 		15D4F9AA28BCC5AF00E0CADF /* ExploreTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A928BCC5AF00E0CADF /* ExploreTabViewModel.swift */; };
@@ -1750,9 +1754,11 @@
 				157046752793241A00D1747B /* Kingfisher in Frameworks */,
 				6A204C6C2860784B00D0D3A4 /* FirebaseStorage in Frameworks */,
 				1500783428682BF700A00109 /* SPIndicator in Frameworks */,
+				15D3BA6D28C3B217009AEA6E /* ColorKit in Frameworks */,
 				4EC7BE3E2888413500F2A45A /* PartialSheet in Frameworks */,
 				15DE22F1277F133B00B5EE03 /* SkeletonUI in Frameworks */,
 				1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */,
+				15D3BA7228C3B90A009AEA6E /* ViewAnimator in Frameworks */,
 				6A400927287578FF00A77070 /* QRCode in Frameworks */,
 				154B8920276A1EEB00780E93 /* SwiftUIX in Frameworks */,
 				6AC1AE6B289BAD0600F76C7A /* SnapKit in Frameworks */,
@@ -1768,7 +1774,9 @@
 				15C58C3D2868A4EE00BD4FC6 /* GoogleAPIClientForREST_Drive in Frameworks */,
 				15C58C3E2868A4EE00BD4FC6 /* Flow in Frameworks */,
 				15C58C3F2868A4EE00BD4FC6 /* GoogleSignIn in Frameworks */,
+				15D3BA6B28C3B1EE009AEA6E /* ColorKit in Frameworks */,
 				15C58C402868A4EE00BD4FC6 /* FirebaseAuth in Frameworks */,
+				15D3BA7028C3B8E3009AEA6E /* ViewAnimator in Frameworks */,
 				15C58C412868A4EE00BD4FC6 /* AuthenticationServices.framework in Frameworks */,
 				15C58C422868A4EE00BD4FC6 /* UIKit.framework in Frameworks */,
 				6A0454CD28768E9E00A9131C /* SwiftUIPager in Frameworks */,
@@ -3912,6 +3920,8 @@
 				6AC1AE6A289BAD0600F76C7A /* SnapKit */,
 				6AEA375928A51792004545D4 /* MJRefresh */,
 				152BB09528AE900C00B2A2AA /* Lottie */,
+				15D3BA6C28C3B217009AEA6E /* ColorKit */,
+				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -3966,6 +3976,8 @@
 				6AC1AE68289BACDF00F76C7A /* SnapKit */,
 				6AEA373F28A49DBE004545D4 /* MJRefresh */,
 				152BB09328AE8FD100B2A2AA /* Lottie */,
+				15D3BA6A28C3B1EE009AEA6E /* ColorKit */,
+				15D3BA6F28C3B8E3009AEA6E /* ViewAnimator */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -4027,6 +4039,8 @@
 				6AC1AE67289BACDF00F76C7A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				6AEA373E28A49DBD004545D4 /* XCRemoteSwiftPackageReference "MJRefresh" */,
 				152BB09228AE8FD100B2A2AA /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				15D3BA6928C3B1ED009AEA6E /* XCRemoteSwiftPackageReference "ColorKit" */,
+				15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -5835,6 +5849,22 @@
 				revision = f9676f1d56239b1836587794923cb89cec8ae18a;
 			};
 		};
+		15D3BA6928C3B1ED009AEA6E /* XCRemoteSwiftPackageReference "ColorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Boris-Em/ColorKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marcosgriselli/ViewAnimator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -6187,6 +6217,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15C58AAB2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SPIndicator" */;
 			productName = SPIndicator;
+		};
+		15D3BA6A28C3B1EE009AEA6E /* ColorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D3BA6928C3B1ED009AEA6E /* XCRemoteSwiftPackageReference "ColorKit" */;
+			productName = ColorKit;
+		};
+		15D3BA6C28C3B217009AEA6E /* ColorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D3BA6928C3B1ED009AEA6E /* XCRemoteSwiftPackageReference "ColorKit" */;
+			productName = ColorKit;
+		};
+		15D3BA6F28C3B8E3009AEA6E /* ViewAnimator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */;
+			productName = ViewAnimator;
+		};
+		15D3BA7128C3B90A009AEA6E /* ViewAnimator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */;
+			productName = ViewAnimator;
 		};
 		15D57758277C23BF00045E79 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;

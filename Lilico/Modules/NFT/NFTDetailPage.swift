@@ -63,8 +63,8 @@ struct NFTDetailPage: RouteableView {
     @State var opacity: Double = 0
 
     var theColor: Color {
-        if let color = viewModel.state.colorsMap[vm.nft.image.absoluteString]?.first {
-            return color
+        if let color = viewModel.state.colorsMap[vm.nft.image.absoluteString]?[safe: 1] {
+            return color.adjustbyTheme()
         }
         return Color.LL.Primary.salmonPrimary
     }
