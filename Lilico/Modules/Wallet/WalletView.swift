@@ -217,6 +217,9 @@ extension WalletView {
     struct CardView: View {
         @EnvironmentObject var vm: WalletViewModel
 
+        @AppStorage("WalletCardBackrgound")
+        private var walletCardBackrgound: String = "fade:0"
+        
         var body: some View {
             ZStack {
                 VStack {
@@ -238,10 +241,13 @@ extension WalletView {
                         Text(vm.isHidden ? "******************" : vm.address)
                             .foregroundColor(Color(hex: "#FDFBF9"))
                             .font(.inter(size: 15, weight: .bold))
-                        
-                        LottieButton(iconName: "Copy-soild") {
+                                                
+                        Button {
                             vm.copyAddressAction()
-                        } 
+                        } label: {
+                            Image("icon-address-copy")
+                                .frame(width: 25, height: 25)
+                        }
 
                         Spacer()
 
@@ -253,15 +259,8 @@ extension WalletView {
                     }
                 }
                 .padding(18)
-                .background {
-//                    Image("bg-wallet-card")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                    FadeAnimationBackground()
-//                    FluidView()
-                    CardBackground
-                        .fade(image: Image("flow-line"))
-                        .renderView()
+                .background {                    
+                    CardBackground(value: walletCardBackrgound).renderView()
                 }
                 .cornerRadius(16)
             }

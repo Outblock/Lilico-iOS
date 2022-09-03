@@ -32,6 +32,9 @@ final class LilicoTests: XCTestCase {
         measure {
             // Put the code you want to measure the time of here.
         }
+        let value = "color"
+        let list = value.split(separator: ":", omittingEmptySubsequences: true)
+        print(list)
     }
     
     func testBackupEncrypt() throws {

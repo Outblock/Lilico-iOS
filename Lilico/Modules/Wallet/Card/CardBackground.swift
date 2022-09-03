@@ -8,22 +8,120 @@
 import Foundation
 import SwiftUI
 
-enum CardBackground {
-    case image(image: SwiftUI.Image)
-    case fade(image: SwiftUI.Image)
+enum CardBackground: CaseIterable {
+    static var allCases: [CardBackground] = [
+        .fluid,
+        .matrix,
+        .color(color: Color.LL.Primary.salmonPrimary.toUIColor() ?? UIColor(hex:"#FC814A")),
+        .fade(imageIndex: 0)]
+    
+    case color(color: UIColor)
+    case image(imageIndex: Int)
+    case fade(imageIndex: Int)
     case fluid
+    case matrix
     
     @ViewBuilder
     func renderView() -> some View {
         switch self {
         case .fluid:
             FluidView()
-        case let .fade(image):
-            FadeAnimationBackground(image: image)
-        case let .image(image):
-             image
+        case .matrix:
+            MatrixRainView()
+        case let .color(color):
+            ZStack {
+                Color(color)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                Image("bg-circles")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            }
+        case let .fade(imageIndex):
+            FadeAnimationBackground(image: fadeList[safe: imageIndex] ?? fadeList[0])
+        case let .image(imageIndex):
+            (imageList[safe: imageIndex] ?? imageList[0])
                 .resizable()
                 .aspectRatio(contentMode: .fill)
+        }
+    }
+    
+    var imageList: [Image] {
+        return [Image("bg-wallet-card")]
+    }
+    
+    var fadeList: [Image] {
+        return [Image("flow-line")]
+    }
+    
+    var rawValue: String {
+        switch self {
+        case let .color(color):
+            return identify + ":" + color.hex
+        case let .image(imageIndex):
+            return identify + ":" + String(imageIndex)
+        case let .fade(imageIndex):
+            return identify + ":" + String(imageIndex)
+        case .fluid:
+            return identify
+        case .matrix:
+            return identify
+        }
+    }
+    
+    var identify: String {
+        switch self {
+        case .color:
+            return "color"
+        case .image:
+            return "image"
+        case .fade:
+            return "fade"
+        case .fluid:
+            return "fluid"
+        case .matrix:
+            return "matrix"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case let .color(color):
+            return Color(color)
+        default:
+            return Color.LL.Primary.salmonPrimary
+        }
+    }
+    
+    init(value: String) {
+        let list = value.split(separator: ":", omittingEmptySubsequences: true)
+        switch list[0] {
+        case CardBackground.fluid.identify:
+            self = .fluid
+        case CardBackground.matrix.identify:
+            self = .matrix
+        case CardBackground.color(color: .clear).identify:
+            guard let hex = list[safe: 1] else {
+                self = .color(color: Color.LL.bgForIcon.toUIColor() ?? UIColor(hex: "#333333"))
+                return
+            }
+            self = .color(color: UIColor(hex: String(hex)))
+            
+        case CardBackground.fade(imageIndex: 0).identify:
+            guard let imageString = list[safe: 1], let index = Int(imageString) else {
+                self = .fade(imageIndex: 0)
+                return
+            }
+            self = .fade(imageIndex: index)
+            
+        case CardBackground.image(imageIndex: 0).identify:
+            guard let imageString = list[safe: 1], let index = Int(imageString) else {
+                self = .image(imageIndex: 0)
+                return
+            }
+            self = .image(imageIndex: index)
+        default:
+            self = .fade(imageIndex: 0)
         }
     }
     
