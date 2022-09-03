@@ -22,7 +22,9 @@ struct ThemeChangeView: RouteableView {
                 BaseDivider()
                 autoItemView
             }
-            .roundedBg()
+//            .roundedBg(cornerRadius: 16, fillColor: .LL.bgForIcon)
+            .background(.LL.bgForIcon)
+            .cornerRadius(16)
             .padding(.horizontal, 18)
             .frame(maxHeight: .infinity, alignment: .top)
         }

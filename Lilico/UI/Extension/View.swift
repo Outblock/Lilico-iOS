@@ -146,7 +146,7 @@ extension View {
         }
     }
 
-    @ViewBuilder func roundedBg(cornerRadius: CGFloat = 16, fillColor: Color = .LL.deepBg, strokeColor: Color? = nil, strokeLineWidth: CGFloat? = nil) -> some View {
+    @ViewBuilder func roundedBg(cornerRadius: CGFloat = 16, fillColor: Color = .LL.bgForIcon, strokeColor: Color? = nil, strokeLineWidth: CGFloat? = nil) -> some View {
         let fillBg = RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).fill(fillColor)
 
         if let strokeColor = strokeColor, let lineWidth = strokeLineWidth {

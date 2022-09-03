@@ -84,10 +84,14 @@ struct WalletView: View {
                     Section {
                         coinSectionView
                         ForEach(vm.coinItems, id: \.token.symbol) { coin in
-                            CoinCell(coin: coin)
-                                .onTapGestureOnBackground {
-                                    Router.route(to: RouteMap.Wallet.tokenDetail(coin.token))
-                                }
+                            Button {
+                                Router.route(to: RouteMap.Wallet.tokenDetail(coin.token))
+                            } label: {
+                                CoinCell(coin: coin)
+                                    .contentShape(Rectangle())
+                            }
+                            .buttonStyle(ScaleButtonStyle())
+                            
                         }
                     }
                     .listRowInsets(.zero)

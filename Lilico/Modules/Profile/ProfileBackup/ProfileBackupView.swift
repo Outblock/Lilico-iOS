@@ -62,8 +62,8 @@ extension ProfileBackupView {
             HStack(spacing: 0) {
                 Image(icon)
                     .frame(width: 32, height: 32)
-                    .background(Color.LL.Secondary.navy5)
-                    .clipShape(Circle())
+//                    .background(Color.LL.Secondary.navy5)
+//                    .clipShape(Circle())
                     .padding(.trailing, 15)
                 
                 Text(title)

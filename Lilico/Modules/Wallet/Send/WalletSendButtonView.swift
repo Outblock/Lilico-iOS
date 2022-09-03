@@ -38,7 +38,7 @@ struct WalletSendButtonView: View {
                                     lineWidth: 4
                                 )
                             Circle()
-                                .trim(from: 0, to: isLoading ? loadingProgress : loadingProgress)
+                                .trim(from: 0, to: animation.progress)
                                 .stroke(
                                     Color.LL.outline,
                                     style: StrokeStyle(
@@ -46,9 +46,9 @@ struct WalletSendButtonView: View {
                                         lineCap: .round
                                     )
                                 )
-                                .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
-                                .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: isLoading)
-//                                .rotationEffect(.degrees(-90))
+//                                .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
+//                                .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: isLoading)
+                                .rotationEffect(.degrees(-90))
                             // 1
                                 .animation(.easeOut, value: animation.progress)
                             
@@ -82,10 +82,10 @@ struct WalletSendButtonView: View {
                 .cornerRadius(12)
             }
             .buttonStyle(ScaleButtonStyle())
-            .animation(.easeInOut, value: animation.progress)
-            .onAppear() {
-                self.isLoading = true
-            }
+//            .animation(.easeInOut, value: animation.progress)
+//            .onAppear() {
+//                self.isLoading = true
+//            }
     }
 }
 
@@ -125,5 +125,6 @@ struct ScaleButtonStyle: SwiftUI.ButtonStyle {
 struct WalletSendButtonView_Previews: PreviewProvider {
     static var previews: some View {
         WalletSendButtonView()
+            .previewLayout(.sizeThatFits)
     }
 }

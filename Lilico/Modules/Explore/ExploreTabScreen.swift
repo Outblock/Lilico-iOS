@@ -67,9 +67,12 @@ struct ExploreTabScreen: View {
                     ForEach(vm.state.list, id: \.name) { dApp in
                         
                         Button {
+                            
+                            let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
+                                feedbackGenerator.impactOccurred()
+                            
                             //TODO: Open Browser
-                            let url = URL(string: "https://www.baidu.com")!
-                            Router.route(to: RouteMap.Explore.browser(url))
+                            Router.route(to: RouteMap.Explore.browser(dApp.url))
                         } label: {
                             HStack(alignment: .top) {
                                 KFImage
@@ -107,9 +110,10 @@ struct ExploreTabScreen: View {
                             }
                             .padding(10)
                             .padding(.vertical, 5)
-                            .background(Color.LL.deepBg)
+                            .background(Color.LL.bgForIcon)
                             .cornerRadius(16)
                         }
+                        .buttonStyle(ScaleButtonStyle())
                     }
                 }
                 .background(.LL.Neutrals.background)
@@ -122,7 +126,9 @@ struct ExploreTabScreen: View {
         .task {
             vm.trigger(.fetchList)
         }
-        .background(.LL.Neutrals.background)
+        .background(
+            Color.LL.Neutrals.background.ignoresSafeArea()
+        )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarHidden(true)
     }

@@ -19,30 +19,42 @@ struct DeveloperModeView: RouteableView {
     var title: String {
         return "developer_mode".localized
     }
-
+    
     var body: some View {
-        List {
-            Section {
-                let isMainnet = lud.flowNetwork == .mainnet
-                Cell(sysImageTuple: (isMainnet ? .checkmarkSelected : .checkmarkUnselected, isMainnet ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: "Mainnet", desc: isMainnet ? "Selected" : "")
-                    .onTapGestureOnBackground {
-                        if lud.flowNetwork != .mainnet {
-                            lud.flowNetwork = .mainnet
-                        }
-                    }
-                Cell(sysImageTuple: (isMainnet ? .checkmarkUnselected : .checkmarkSelected, isMainnet ? .LL.Neutrals.neutrals1 : .LL.Primary.salmonPrimary), title: "Testnet", desc: isMainnet ? "" : "Selected")
-                    .onTapGestureOnBackground {
-                        if lud.flowNetwork != .testnet {
-                            lud.flowNetwork = .testnet
-                        }
-                    }
-            } header: {
+        
+        ScrollView {
+            
+            VStack {
                 Text("switch_network".localized)
+                    .font(.LL.footnote)
+                    .foregroundColor(.LL.Neutrals.neutrals6)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(spacing: 0) {
+                    Section {
+                        let isMainnet = lud.flowNetwork == .mainnet
+                        Cell(sysImageTuple: (isMainnet ? .checkmarkSelected : .checkmarkUnselected, isMainnet ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: "Mainnet", desc: isMainnet ? "Selected" : "")
+                            .onTapGestureOnBackground {
+                                if lud.flowNetwork != .mainnet {
+                                    lud.flowNetwork = .mainnet
+                                }
+                            }
+                        Divider()
+                        Cell(sysImageTuple: (isMainnet ? .checkmarkUnselected : .checkmarkSelected, isMainnet ? .LL.Neutrals.neutrals1 : .LL.Primary.salmonPrimary), title: "Testnet", desc: isMainnet ? "" : "Selected")
+                            .onTapGestureOnBackground {
+                                if lud.flowNetwork != .testnet {
+                                    lud.flowNetwork = .testnet
+                                }
+                            }
+                    }
+                    .background(.LL.bgForIcon)
+                }
+                .cornerRadius(16)
             }
-            .listRowInsets(.zero)
+            .padding(.horizontal, 18)
         }
-        .backgroundFill(.LL.Neutrals.background)
-        .buttonStyle(.plain)
+        .background(
+            Color.LL.Neutrals.background.ignoresSafeArea()
+        )
         .applyRouteable(self)
     }
 }
@@ -52,7 +64,7 @@ extension DeveloperModeView {
         let sysImageTuple: (String, Color)
         let title: String
         let desc: String
-
+        
         var body: some View {
             HStack {
                 Image(systemName: sysImageTuple.0).foregroundColor(sysImageTuple.1)

@@ -79,6 +79,7 @@ extension AppDelegate {
     private func commonConfig() {
         setupNavigationBar()
         
+        UITableView.appearance().backgroundColor = .clear
         UITableView.appearance().sectionHeaderTopPadding = 0
         UISearchBar.appearance().tintColor = UIColor(Color.LL.Secondary.violetDiscover)
         UINavigationBar.appearance().shadowImage = UIImage()

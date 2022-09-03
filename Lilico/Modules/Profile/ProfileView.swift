@@ -69,16 +69,16 @@ struct ProfileView: RouteableView {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-//        ProfileView.NoLoginTipsView()
-//        ProfileView.GeneralSectionView()
-        let model = ProfileView.ProfileViewModel()
-        ProfileView().environmentObject(model)
-//        ProfileView.InfoView()
-//        ProfileView.InfoActionView()
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        ProfileView.NoLoginTipsView()
+////        ProfileView.GeneralSectionView()
+//        let model = ProfileView.ProfileViewModel()
+//        ProfileView().environmentObject(model)
+////        ProfileView.InfoView()
+////        ProfileView.InfoActionView()
+//    }
+//}
 
 // MARK: - Section login tips
 
@@ -180,7 +180,8 @@ extension ProfileView {
                 }
             }
             .padding(.vertical, 20)
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
+            .background(RoundedRectangle(cornerRadius: 16)
+                .fill(Color.LL.bgForIcon))
         }
     }
 
@@ -229,7 +230,8 @@ extension ProfileView {
                         }
                 }
             }
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
+            .background(RoundedRectangle(cornerRadius: 16)
+                .fill(Color.LL.bgForIcon))
         }
     }
 }
@@ -244,18 +246,24 @@ extension ProfileView {
         var body: some View {
             VStack {
                 Section {
-                    ProfileView.SettingItemCell(
-                        iconName: Row.walletConnect.iconName,
-                        title: Row.walletConnect.title,
-                        style: Row.walletConnect.style,
-                        desc: Row.walletConnect.desc,
-                        imageName: Row.walletConnect.imageName,
-                        sysImageColor: Row.walletConnect.sysImageColor)
-                        .onTapGestureOnBackground {
-                            Router.route(to: RouteMap.Profile.backupChange)
-                        }
+                    
+                    Button {
+                        Router.route(to: RouteMap.Profile.backupChange)
+                    } label: {
+                        ProfileView.SettingItemCell(
+                            iconName: Row.walletConnect.iconName,
+                            title: Row.walletConnect.title,
+                            style: Row.walletConnect.style,
+                            desc: Row.walletConnect.desc,
+                            imageName: Row.walletConnect.imageName,
+                            sysImageColor: Row.walletConnect.sysImageColor)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(ScaleButtonStyle())
+                    
                 }
-                .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
+                .background(RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.LL.bgForIcon))
             }
         }
     }
@@ -397,7 +405,8 @@ extension ProfileView {
                     }
                 }
             }
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
+            .background(RoundedRectangle(cornerRadius: 16)
+                .fill(Color.LL.bgForIcon))
         }
     }
 }
@@ -485,7 +494,8 @@ extension ProfileView {
                         .onTapGestureOnBackground {}
                 }
             }
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
+            .background(RoundedRectangle(cornerRadius: 16)
+                .fill(Color.LL.bgForIcon))
         }
     }
 }
@@ -553,7 +563,8 @@ extension ProfileView {
                     }
                 }
             }
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color.secondarySystemGroupedBackground))
+            .background(RoundedRectangle(cornerRadius: 16)
+                .fill(Color.LL.bgForIcon))
         }
     }
 }
