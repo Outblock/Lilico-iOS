@@ -25,7 +25,7 @@ struct WalletConnectView: RouteableView {
                 ForEach(manager.activeSessions, id: \.topic) { session in
                     
                     Menu {
-                        Button {
+                        Button {  
                             Task {
                                 await WalletConnectManager.shared.disconnect(topic: session.topic)
                             }
@@ -47,11 +47,16 @@ struct WalletConnectView: RouteableView {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(.horizontal, 18)
         }
-//        .onReceive(WalletConnectManager.shared.activeSessions, perform: { result in
-//            sessions = result
-//        })
+        .navigationBarItems(trailing:
+            Button {
+                ScanHandler.scan()
+            } label: {
+                Image("icon-wallet-scan").renderingMode(.template).foregroundColor(.primary)
+            }
+        )
         .backgroundFill(Color.LL.Neutrals.background)
         .applyRouteable(self)
+        
     }
 }
 
