@@ -115,7 +115,8 @@ extension WalletConnectView {
                     .font(.LL.title2)
                     .fontWeight(.bold)
                 
-                Text("WalletConnect is an open protocol to communicate securely between Wallets and Dapps")
+                Text("With WalletConnect, you can connect your wallet with hundreds of apps")
+                    .font(.LL.callout)
                     .foregroundColor(.LL.Neutrals.neutrals6)
                     .multilineTextAlignment(.center)
                 
@@ -132,6 +133,7 @@ extension WalletConnectView {
                         .background(Color(hex: "#3496FF"))
                         .cornerRadius(12)
                 }
+                .padding(.top, 12)
                 
                 Spacer()
             }
