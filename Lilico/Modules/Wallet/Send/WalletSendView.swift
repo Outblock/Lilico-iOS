@@ -56,7 +56,7 @@ struct WalletSendView: RouteableView {
         }
         .interactiveDismissDisabled()
         .buttonStyle(.plain)
-        .backgroundFill(Color.LL.deepBg)
+        .backgroundFill(Color.LL.background)
         .applyRouteable(self)
     }
     
@@ -152,7 +152,7 @@ extension WalletSendView {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.top, 27)
-        .backgroundFill(Color.LL.deepBg)
+        .backgroundFill(Color.LL.background)
     }
     
     var searchLocalView: some View {

@@ -55,7 +55,7 @@ struct AddTokenView: RouteableView {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .listStyle(.plain)
-        .background(Color.LL.deepBg)
+        .background(Color.LL.background)
         .searchable(text: $vm.searchText)
     }
     

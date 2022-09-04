@@ -56,6 +56,7 @@ struct AddressBookView: RouteableView {
         } else {
             _vm = StateObject(wrappedValue: AddressBookViewModel())
         }
+        UITableView.appearance().backgroundColor = Color.LL.background.toUIColor() ?? .clear
     }
 
     var body: some View {
@@ -162,7 +163,7 @@ extension AddressBookView {
                 sectionHeader(sectionVM)
                     .id(sectionVM.id)
             }
-            .listRowBackground(Color.LL.deepBg)
+            .listRowBackground(Color.LL.background)
         }
         .frame(maxHeight: .infinity)
         .listStyle(.plain)
@@ -179,13 +180,16 @@ extension AddressBookView {
         if #available(iOS 16.0, *) {
 //            return anyView.scrollContentBackground(.hidden)
             return anyView
+                .backgroundFill(.LL.background)
         } else {
             return anyView
+                .backgroundFill(.LL.background)
         }
 #else
         return anyView
 #endif
     }
+
 
     @ViewBuilder private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {
         let sectionName = sectionVM.state.sectionName

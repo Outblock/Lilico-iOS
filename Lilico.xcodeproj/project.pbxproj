@@ -592,6 +592,10 @@
 		15D3BA7228C3B90A009AEA6E /* ViewAnimator in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7128C3B90A009AEA6E /* ViewAnimator */; };
 		15D3BA7528C45EFF009AEA6E /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7428C45EFF009AEA6E /* Hero */; };
 		15D3BA7728C45F21009AEA6E /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7628C45F21009AEA6E /* Hero */; };
+		15D3BA7A28C4D2A4009AEA6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D3BA7928C4D2A4009AEA6E /* LaunchScreen.storyboard */; };
+		15D3BA7B28C4D2A4009AEA6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D3BA7928C4D2A4009AEA6E /* LaunchScreen.storyboard */; };
+		15D3BA7E28C4D8AC009AEA6E /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7D28C4D8AC009AEA6E /* Pow */; };
+		15D3BA8028C4D8CC009AEA6E /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7F28C4D8CC009AEA6E /* Pow */; };
 		15D4F9A628BCC22300E0CADF /* DAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A528BCC22300E0CADF /* DAppModel.swift */; };
 		15D4F9A728BCC22300E0CADF /* DAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A528BCC22300E0CADF /* DAppModel.swift */; };
 		15D4F9AA28BCC5AF00E0CADF /* ExploreTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A928BCC5AF00E0CADF /* ExploreTabViewModel.swift */; };
@@ -1277,6 +1281,7 @@
 		15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		15D3BA6328C393CB009AEA6E /* MatrixRainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixRainView.swift; sourceTree = "<group>"; };
 		15D3BA6628C39454009AEA6E /* Matrix Code NFI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Matrix Code NFI.ttf"; sourceTree = "<group>"; };
+		15D3BA7928C4D2A4009AEA6E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15D4F9A528BCC22300E0CADF /* DAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAppModel.swift; sourceTree = "<group>"; };
 		15D4F9A928BCC5AF00E0CADF /* ExploreTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTabViewModel.swift; sourceTree = "<group>"; };
 		15D574C8277816F200045E79 /* UsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameView.swift; sourceTree = "<group>"; };
@@ -1741,6 +1746,7 @@
 				6A7C080F286EE95E00020987 /* SwiftUICharts in Frameworks */,
 				1588332428943F7D00142B35 /* NativeUIKit in Frameworks */,
 				15D5775B277C23BF00045E79 /* Moya in Frameworks */,
+				15D3BA8028C4D8CC009AEA6E /* Pow in Frameworks */,
 				15F22F1A278B21B600FCF772 /* BiometricAuthentication in Frameworks */,
 				154B891C276A1EEB00780E93 /* Resolver in Frameworks */,
 				15DE22DB277DF2F600B5EE03 /* KeychainAccess in Frameworks */,
@@ -1796,6 +1802,7 @@
 				15C58C482868A4EE00BD4FC6 /* Resolver in Frameworks */,
 				15C58C492868A4EE00BD4FC6 /* KeychainAccess in Frameworks */,
 				15C58C4A2868A4EE00BD4FC6 /* Haneke in Frameworks */,
+				15D3BA7E28C4D8AC009AEA6E /* Pow in Frameworks */,
 				15C58C4B2868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */,
 				15C58C4C2868A4EE00BD4FC6 /* CollectionViewPagingLayout in Frameworks */,
 				15C58C4D2868A4EE00BD4FC6 /* IrregularGradient in Frameworks */,
@@ -1876,6 +1883,7 @@
 		153C440427520811006D1E8D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				15D3BA7828C4D293009AEA6E /* LaunchScreen */,
 				6AE69E9028C082BF004D4709 /* Browser */,
 				6A16F18E28B8B0BF0055936E /* Transaction */,
 				1565FBB528B1737F0086A652 /* Explore */,
@@ -2285,6 +2293,14 @@
 				15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */,
 			);
 			path = Empty;
+			sourceTree = "<group>";
+		};
+		15D3BA7828C4D293009AEA6E /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				15D3BA7928C4D2A4009AEA6E /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		15D4F9A428BCC21300E0CADF /* Model */ = {
@@ -3927,6 +3943,7 @@
 				15D3BA6C28C3B217009AEA6E /* ColorKit */,
 				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
 				15D3BA7628C45F21009AEA6E /* Hero */,
+				15D3BA7F28C4D8CC009AEA6E /* Pow */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -3984,6 +4001,7 @@
 				15D3BA6A28C3B1EE009AEA6E /* ColorKit */,
 				15D3BA6F28C3B8E3009AEA6E /* ViewAnimator */,
 				15D3BA7428C45EFF009AEA6E /* Hero */,
+				15D3BA7D28C4D8AC009AEA6E /* Pow */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -4048,6 +4066,7 @@
 				15D3BA6928C3B1ED009AEA6E /* XCRemoteSwiftPackageReference "ColorKit" */,
 				15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */,
 				15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */,
+				15D3BA7C28C4D8AC009AEA6E /* XCRemoteSwiftPackageReference "Pow" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -4089,6 +4108,7 @@
 				1565FBA528B16FD70086A652 /* Category.json in Resources */,
 				1565FB9928B1677F0086A652 /* Grid.json in Resources */,
 				1565FBA328B16FD70086A652 /* Compass.json in Resources */,
+				15D3BA7B28C4D2A4009AEA6E /* LaunchScreen.storyboard in Resources */,
 				154B8929276A1F4600780E93 /* GoogleService-Info.plist in Resources */,
 				158C9CA42787F6EA0062E0C6 /* Inter.ttf in Resources */,
 				1565FBAC28B171BB0086A652 /* Avatar.json in Resources */,
@@ -4112,6 +4132,7 @@
 				1565FB6928B14F140086A652 /* Notification.json in Resources */,
 				15C58C5B2868A4EE00BD4FC6 /* Montserrat-Regular.ttf in Resources */,
 				15C58C5C2868A4EE00BD4FC6 /* Preview Assets.xcassets in Resources */,
+				15D3BA7A28C4D2A4009AEA6E /* LaunchScreen.storyboard in Resources */,
 				1575A72628B26B9600ADC513 /* index.html in Resources */,
 				1575A73728B28D3300ADC513 /* LDR_LLL1_0.png in Resources */,
 				15C58C5D2868A4EE00BD4FC6 /* remote_config_defaults.plist in Resources */,
@@ -5270,6 +5291,7 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5308,6 +5330,7 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5349,6 +5372,7 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5388,6 +5412,7 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5880,6 +5905,14 @@
 				minimumVersion = 1.6.2;
 			};
 		};
+		15D3BA7C28C4D8AC009AEA6E /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/movingparts-io/Pow";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -6262,6 +6295,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */;
 			productName = Hero;
+		};
+		15D3BA7D28C4D8AC009AEA6E /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D3BA7C28C4D8AC009AEA6E /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
+		15D3BA7F28C4D8CC009AEA6E /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D3BA7C28C4D8AC009AEA6E /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
 		};
 		15D57758277C23BF00045E79 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;

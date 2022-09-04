@@ -46,7 +46,7 @@ struct WalletSendAmountView: RouteableView {
         .hideKeyboardWhenTappedAround()
         .interactiveDismissDisabled()
         .buttonStyle(.plain)
-        .backgroundFill(Color.LL.deepBg)
+        .backgroundFill(Color.LL.background)
         .halfSheet(showSheet: $vm.showConfirmView, sheetView: {
             SendConfirmView()
                 .environmentObject(vm)

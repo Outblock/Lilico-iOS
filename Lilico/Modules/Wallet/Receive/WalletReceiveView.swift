@@ -42,7 +42,7 @@ struct WalletReceiveView: RouteableView {
         }
         .interactiveDismissDisabled()
         .buttonStyle(.plain)
-        .backgroundFill(Color.LL.deepBg)
+        .backgroundFill(Color.LL.background)
         .applyRouteable(self)
     }
     
