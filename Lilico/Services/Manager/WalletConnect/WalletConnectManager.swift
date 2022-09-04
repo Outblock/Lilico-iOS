@@ -18,7 +18,7 @@ class WalletConnectManager: ObservableObject {
     static let shared = WalletConnectManager()
     
     @Published
-    var sessionItems: [ActiveSessionItem] = []
+    var activeSessions: [Session] = []
     
     @Published
     var activePairings: [Pairing] = []
@@ -40,6 +40,7 @@ class WalletConnectManager: ObservableObject {
             icons: ["https://lilico.app/logo.png"])
         Sign.configure(metadata: metadata, projectId: "29b38ec12be4bd19bf03d7ccef29aaa6", socketFactory: SocketFactory())
         reloadActiveSessions()
+        reloadPairing()
         setUpAuthSubscribing()
     }
     
@@ -59,13 +60,24 @@ class WalletConnectManager: ObservableObject {
     
     func reloadActiveSessions() {
         let settledSessions = Sign.instance.getSessions()
-        sessionItems = settledSessions.map { session -> ActiveSessionItem in
-            let app = session.peer
-            return ActiveSessionItem(
-                dappName: app.name,
-                dappURL: app.url,
-                iconURL: app.icons.first ?? "",
-                topic: session.topic)
+        activeSessions = settledSessions
+//        sessionItems = settledSessions.map { session -> ActiveSessionItem in
+//            let app = session.peer
+//            return ActiveSessionItem(
+//                dappName: app.name,
+//                dappURL: app.url,
+//                iconURL: app.icons.first ?? "",
+//                topic: session.topic)
+//        }
+    }
+    
+    func disconnect(topic: String) async {
+        do {
+            try await Sign.instance.disconnect(topic: topic)
+            reloadActiveSessions()
+        } catch {
+            print(error)
+            HUD.error(title: "Disconnect failed")
         }
     }
     
@@ -153,8 +165,8 @@ class WalletConnectManager: ObservableObject {
                         let data = jsonString[0].data(using: .utf8)!
                         let model = try JSONDecoder().decode(Signable.self, from: data)
 
-                        if let session = self?.sessionItems.first(where: { $0.topic == sessionRequest.topic }) {
-                            let request = RequestInfo(cadence: model.cadence ?? "", agrument: model.args, name: session.dappName, descriptionText: session.dappURL, dappURL: session.dappURL, iconURL: session.iconURL, chains: Set(arrayLiteral: sessionRequest.chainId), methods: nil, pendingRequests: [], message: model.message)
+                        if let session = self?.activeSessions.first(where: { $0.topic == sessionRequest.topic }) {
+                            let request = RequestInfo(cadence: model.cadence ?? "", agrument: model.args, name: session.peer.name, descriptionText: session.peer.description, dappURL: session.peer.url, iconURL: session.peer.icons.first ?? "", chains: Set(arrayLiteral: sessionRequest.chainId), methods: nil, pendingRequests: [], message: model.message)
                             self?.currentRequestInfo = request
                             
                             Router.route(to: RouteMap.WalletConnect.request(request, {
@@ -183,8 +195,8 @@ class WalletConnectManager: ObservableObject {
                         let jsonString = try sessionRequest.params.get([String].self)
                         let data = jsonString[0].data(using: .utf8)!
                         let model = try JSONDecoder().decode(SignableMessage.self, from: data)
-                        if let session = self?.sessionItems.first(where: { $0.topic == sessionRequest.topic }) {
-                            let request = RequestMessageInfo(name: session.dappName, descriptionText: session.dappURL, dappURL: session.dappURL, iconURL: session.iconURL, chains: Set(arrayLiteral: sessionRequest.chainId), methods: nil, pendingRequests: [], message: model.message)
+                        if let session = self?.activeSessions.first(where: { $0.topic == sessionRequest.topic }) {
+                            let request = RequestMessageInfo(name: session.peer.name, descriptionText: session.peer.description, dappURL: session.peer.url, iconURL: session.peer.icons.first ?? "", chains: Set(arrayLiteral: sessionRequest.chainId), methods: nil, pendingRequests: [], message: model.message)
                             self?.currentMessageInfo = request
                             
                             Router.route(to: RouteMap.WalletConnect.requestMessage(request, {

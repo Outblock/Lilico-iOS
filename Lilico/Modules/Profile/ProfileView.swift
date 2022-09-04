@@ -250,9 +250,8 @@ extension ProfileView {
         var body: some View {
             VStack {
                 Section {
-                    
                     Button {
-                        Router.route(to: RouteMap.Profile.backupChange)
+                        Router.route(to: RouteMap.Profile.walletConnect)
                     } label: {
                         ProfileView.SettingItemCell(
                             iconName: Row.walletConnect.iconName,
@@ -264,7 +263,6 @@ extension ProfileView {
                         .contentShape(Rectangle())
                     }
                     .buttonStyle(ScaleButtonStyle())
-                    
                 }
                 .background(RoundedRectangle(cornerRadius: 16)
                     .fill(Color.LL.bgForIcon))

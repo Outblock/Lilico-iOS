@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import RiveRuntime
+//import RiveRuntime
 
 struct NFTEmptyView: View {
     var body: some View {
@@ -18,11 +18,11 @@ struct NFTEmptyView: View {
             Color.LL.background
                 .ignoresSafeArea()
             
-            RiveViewModel(fileName: "shapes").view()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea()
-                .blur(radius: 30)
-                .blendMode(.hardLight)
+//            RiveViewModel(fileName: "shapes").view()
+//                .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                .ignoresSafeArea()
+//                .blur(radius: 30)
+//                .blendMode(.hardLight)
             
             Image("Spline")
                 .blur(radius: 50)
@@ -53,8 +53,8 @@ struct NFTEmptyView: View {
     }
 }
 
-struct EmptyNFTView_Previews: PreviewProvider {
-    static var previews: some View {
-        NFTEmptyView()
-    }
-}
+//struct EmptyNFTView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NFTEmptyView()
+//    }
+//}

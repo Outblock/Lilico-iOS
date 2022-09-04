@@ -583,7 +583,6 @@
 		15C58C682868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15C58C692868A4EE00BD4FC6 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15CC8A6128C4E0FD001D2696 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 15CC8A6028C4E0FD001D2696 /* RiveRuntime */; };
-		15CC8A6328C4E11D001D2696 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 15CC8A6228C4E11D001D2696 /* RiveRuntime */; };
 		15CC8A6928C4EA63001D2696 /* shapes.riv in Resources */ = {isa = PBXBuildFile; fileRef = 15CC8A6828C4EA63001D2696 /* shapes.riv */; };
 		15CC8A6A28C4EA63001D2696 /* shapes.riv in Resources */ = {isa = PBXBuildFile; fileRef = 15CC8A6828C4EA63001D2696 /* shapes.riv */; };
 		15D3BA6428C393CB009AEA6E /* MatrixRainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3BA6328C393CB009AEA6E /* MatrixRainView.swift */; };
@@ -598,8 +597,6 @@
 		15D3BA7728C45F21009AEA6E /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7628C45F21009AEA6E /* Hero */; };
 		15D3BA7A28C4D2A4009AEA6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D3BA7928C4D2A4009AEA6E /* LaunchScreen.storyboard */; };
 		15D3BA7B28C4D2A4009AEA6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D3BA7928C4D2A4009AEA6E /* LaunchScreen.storyboard */; };
-		15D3BA7E28C4D8AC009AEA6E /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7D28C4D8AC009AEA6E /* Pow */; };
-		15D3BA8028C4D8CC009AEA6E /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7F28C4D8CC009AEA6E /* Pow */; };
 		15D4F9A628BCC22300E0CADF /* DAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A528BCC22300E0CADF /* DAppModel.swift */; };
 		15D4F9A728BCC22300E0CADF /* DAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A528BCC22300E0CADF /* DAppModel.swift */; };
 		15D4F9AA28BCC5AF00E0CADF /* ExploreTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A928BCC5AF00E0CADF /* ExploreTabViewModel.swift */; };
@@ -824,6 +821,10 @@
 		15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 15DE22FA277FF56F00B5EE03 /* GoogleSignIn */; };
 		15DE22FD27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DE22FC27801ADE00B5EE03 /* client_246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com.plist */; };
 		15DE23012780208300B5EE03 /* RestoreWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22FF2780208300B5EE03 /* RestoreWalletViewModel.swift */; };
+		15ECAE3928C4FCE600B79453 /* WalletConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A6B28C4F817001D2696 /* WalletConnectView.swift */; };
+		15ECAE3A28C4FCE700B79453 /* WalletConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A6B28C4F817001D2696 /* WalletConnectView.swift */; };
+		15ECAE3B28C4FCEB00B79453 /* WalletConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A6C28C4F836001D2696 /* WalletConnectViewModel.swift */; };
+		15ECAE3C28C4FCEB00B79453 /* WalletConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A6C28C4F836001D2696 /* WalletConnectViewModel.swift */; };
 		15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */; };
 		15F22F0A278B009200FCF772 /* ChooseAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F08278B009200FCF772 /* ChooseAccountViewModel.swift */; };
 		15F22F0D278B13EB00FCF772 /* EnterRestorePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F0B278B13EB00FCF772 /* EnterRestorePasswordViewModel.swift */; };
@@ -1284,6 +1285,8 @@
 		15C58C6D2868A4EE00BD4FC6 /* Lilico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lilico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		15CC8A6828C4EA63001D2696 /* shapes.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = shapes.riv; sourceTree = "<group>"; };
+		15CC8A6B28C4F817001D2696 /* WalletConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectView.swift; sourceTree = "<group>"; };
+		15CC8A6C28C4F836001D2696 /* WalletConnectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectViewModel.swift; sourceTree = "<group>"; };
 		15D3BA6328C393CB009AEA6E /* MatrixRainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixRainView.swift; sourceTree = "<group>"; };
 		15D3BA6628C39454009AEA6E /* Matrix Code NFI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Matrix Code NFI.ttf"; sourceTree = "<group>"; };
 		15D3BA7928C4D2A4009AEA6E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1738,7 +1741,6 @@
 			files = (
 				156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */,
 				154B891A276A1EEB00780E93 /* Flow in Frameworks */,
-				15CC8A6328C4E11D001D2696 /* RiveRuntime in Frameworks */,
 				15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */,
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
 				15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */,
@@ -1752,7 +1754,6 @@
 				6A7C080F286EE95E00020987 /* SwiftUICharts in Frameworks */,
 				1588332428943F7D00142B35 /* NativeUIKit in Frameworks */,
 				15D5775B277C23BF00045E79 /* Moya in Frameworks */,
-				15D3BA8028C4D8CC009AEA6E /* Pow in Frameworks */,
 				15F22F1A278B21B600FCF772 /* BiometricAuthentication in Frameworks */,
 				154B891C276A1EEB00780E93 /* Resolver in Frameworks */,
 				15DE22DB277DF2F600B5EE03 /* KeychainAccess in Frameworks */,
@@ -1808,7 +1809,6 @@
 				15C58C482868A4EE00BD4FC6 /* Resolver in Frameworks */,
 				15C58C492868A4EE00BD4FC6 /* KeychainAccess in Frameworks */,
 				15C58C4A2868A4EE00BD4FC6 /* Haneke in Frameworks */,
-				15D3BA7E28C4D8AC009AEA6E /* Pow in Frameworks */,
 				15CC8A6128C4E0FD001D2696 /* RiveRuntime in Frameworks */,
 				15C58C4B2868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */,
 				15C58C4C2868A4EE00BD4FC6 /* CollectionViewPagingLayout in Frameworks */,
@@ -2338,6 +2338,8 @@
 		15D4F9AC28BD026A00E0CADF /* WalletConnect */ = {
 			isa = PBXGroup;
 			children = (
+				15CC8A6C28C4F836001D2696 /* WalletConnectViewModel.swift */,
+				15CC8A6B28C4F817001D2696 /* WalletConnectView.swift */,
 			);
 			path = WalletConnect;
 			sourceTree = "<group>";
@@ -3959,8 +3961,6 @@
 				15D3BA6C28C3B217009AEA6E /* ColorKit */,
 				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
 				15D3BA7628C45F21009AEA6E /* Hero */,
-				15D3BA7F28C4D8CC009AEA6E /* Pow */,
-				15CC8A6228C4E11D001D2696 /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -4018,7 +4018,6 @@
 				15D3BA6A28C3B1EE009AEA6E /* ColorKit */,
 				15D3BA6F28C3B8E3009AEA6E /* ViewAnimator */,
 				15D3BA7428C45EFF009AEA6E /* Hero */,
-				15D3BA7D28C4D8AC009AEA6E /* Pow */,
 				15CC8A6028C4E0FD001D2696 /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
@@ -4084,7 +4083,6 @@
 				15D3BA6928C3B1ED009AEA6E /* XCRemoteSwiftPackageReference "ColorKit" */,
 				15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */,
 				15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */,
-				15D3BA7C28C4D8AC009AEA6E /* XCRemoteSwiftPackageReference "Pow" */,
 				15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
@@ -4444,6 +4442,7 @@
 				6A16F19428B8B1AC0055936E /* TransactionHolderView.swift in Sources */,
 				154B8908276A1EEB00780E93 /* ColorBook.swift in Sources */,
 				1565FB9028B15D890086A652 /* LottieView.swift in Sources */,
+				15ECAE3C28C4FCEB00B79453 /* WalletConnectViewModel.swift in Sources */,
 				15DC212127819C56000B187A /* VSpinnerModelDashed.swift in Sources */,
 				158832F82894363E00142B35 /* ApproveView.swift in Sources */,
 				6AE8821F288EB67A00ADF36E /* RouterExtensions.swift in Sources */,
@@ -4508,6 +4507,7 @@
 				6AEE39EE28A24DDB00F3C56E /* NFTRequests.swift in Sources */,
 				4ED21F45284E5A6700320AD0 /* DashLine.swift in Sources */,
 				15DC215527819C56000B187A /* VMenuState.swift in Sources */,
+				15ECAE3A28C4FCE700B79453 /* WalletConnectView.swift in Sources */,
 				15DC210B27819C56000B187A /* VRangeSlider.swift in Sources */,
 				6ACDD17D28588B7D00F406EB /* ProfileRequests.swift in Sources */,
 				15DC208D27819C56000B187A /* VLazyScrollViewModelVertical.swift in Sources */,
@@ -4935,6 +4935,7 @@
 				6A16F19328B8B1AC0055936E /* TransactionHolderView.swift in Sources */,
 				15C58B532868A4EE00BD4FC6 /* ColorBook.swift in Sources */,
 				1565FB8F28B15D890086A652 /* LottieView.swift in Sources */,
+				15ECAE3B28C4FCEB00B79453 /* WalletConnectViewModel.swift in Sources */,
 				15C58B542868A4EE00BD4FC6 /* VSpinnerModelDashed.swift in Sources */,
 				158832F72894363E00142B35 /* ApproveView.swift in Sources */,
 				6AE8821E288EB67A00ADF36E /* RouterExtensions.swift in Sources */,
@@ -4999,6 +5000,7 @@
 				6AEE39ED28A24DDB00F3C56E /* NFTRequests.swift in Sources */,
 				15C58B8A2868A4EE00BD4FC6 /* DashLine.swift in Sources */,
 				15C58B8B2868A4EE00BD4FC6 /* VMenuState.swift in Sources */,
+				15ECAE3928C4FCE600B79453 /* WalletConnectView.swift in Sources */,
 				15C58B8C2868A4EE00BD4FC6 /* VRangeSlider.swift in Sources */,
 				15C58B8E2868A4EE00BD4FC6 /* ProfileRequests.swift in Sources */,
 				15C58B8F2868A4EE00BD4FC6 /* VLazyScrollViewModelVertical.swift in Sources */,
@@ -5934,14 +5936,6 @@
 				minimumVersion = 1.6.2;
 			};
 		};
-		15D3BA7C28C4D8AC009AEA6E /* XCRemoteSwiftPackageReference "Pow" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/movingparts-io/Pow";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -6300,11 +6294,6 @@
 			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
 			productName = RiveRuntime;
 		};
-		15CC8A6228C4E11D001D2696 /* RiveRuntime */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
-			productName = RiveRuntime;
-		};
 		15D3BA6A28C3B1EE009AEA6E /* ColorKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 15D3BA6928C3B1ED009AEA6E /* XCRemoteSwiftPackageReference "ColorKit" */;
@@ -6334,16 +6323,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */;
 			productName = Hero;
-		};
-		15D3BA7D28C4D8AC009AEA6E /* Pow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15D3BA7C28C4D8AC009AEA6E /* XCRemoteSwiftPackageReference "Pow" */;
-			productName = Pow;
-		};
-		15D3BA7F28C4D8CC009AEA6E /* Pow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15D3BA7C28C4D8AC009AEA6E /* XCRemoteSwiftPackageReference "Pow" */;
-			productName = Pow;
 		};
 		15D57758277C23BF00045E79 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;

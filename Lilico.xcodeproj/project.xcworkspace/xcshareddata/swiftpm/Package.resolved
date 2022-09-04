@@ -270,15 +270,6 @@
       }
     },
     {
-      "identity" : "pow",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/movingparts-io/Pow",
-      "state" : {
-        "branch" : "main",
-        "revision" : "04d247d210e75afe3caf5d588d0acfac2579c9a9"
-      }
-    },
-    {
       "identity" : "promises",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/promises.git",

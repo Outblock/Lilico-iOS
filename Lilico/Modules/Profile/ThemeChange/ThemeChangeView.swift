@@ -63,12 +63,11 @@ struct ThemeChangeView: RouteableView {
                                             .onChange(of: cardColor, perform: { color in
                                                 walletCardBackrgound = CardBackground.color(color: color.toUIColor() ?? UIColor(hex: "#FC814A")).rawValue
                                             })
-                                        .onTapGestureOnBackground {
-                                            walletCardBackrgound = card.rawValue
-                                        }
+                                    }
+                                    .onTapGestureOnBackground {
+                                        walletCardBackrgound = card.rawValue
                                     }
                                 } else {
-                                    
                                     Cell(isSelected: CardBackground(value: walletCardBackrgound).identify == card.identify, title: card.identify.capitalized){}
                                         .onTapGestureOnBackground {
                                             walletCardBackrgound = card.rawValue
