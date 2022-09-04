@@ -12,8 +12,8 @@ struct WalletConnectView: RouteableView {
     @StateObject
     private var vm = WalletConnectViewModel()
     
-    @State
-    var sessions = WalletConnectManager.shared.activeSessions
+    @StateObject
+    var manager = WalletConnectManager.shared
     
     var title: String {
         return "walletconnect".localized
@@ -22,7 +22,7 @@ struct WalletConnectView: RouteableView {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                ForEach(sessions, id: \.topic) { session in
+                ForEach(manager.activeSessions, id: \.topic) { session in
                     
                     Menu {
                         Button {
@@ -47,6 +47,9 @@ struct WalletConnectView: RouteableView {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(.horizontal, 18)
         }
+//        .onReceive(WalletConnectManager.shared.activeSessions, perform: { result in
+//            sessions = result
+//        })
         .backgroundFill(Color.LL.Neutrals.background)
         .applyRouteable(self)
     }

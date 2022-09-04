@@ -23,6 +23,8 @@ class WalletConnectManager: ObservableObject {
     @Published
     var activePairings: [Pairing] = []
     
+    var onClientConnected: (() -> Void)?
+    
     private var publishers = [AnyCancellable]()
     
     
@@ -55,12 +57,15 @@ class WalletConnectManager: ObservableObject {
                 HUD.error(title: "Connect failed")
             }
         }
+        onClientConnected = nil
     }
     
     
     func reloadActiveSessions() {
         let settledSessions = Sign.instance.getSessions()
-        activeSessions = settledSessions
+        DispatchQueue.main.async {
+            self.activeSessions = settledSessions
+        }
 //        sessionItems = settledSessions.map { session -> ActiveSessionItem in
 //            let app = session.peer
 //            return ActiveSessionItem(
@@ -91,7 +96,7 @@ class WalletConnectManager: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] status in
                 if status == .connected {
-//                    self?.onClientConnected?()
+                    self?.onClientConnected?()
                     print("Client connected")
                 }
             }.store(in: &publishers)
