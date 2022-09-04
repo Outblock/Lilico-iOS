@@ -120,8 +120,6 @@ extension WalletConnectView {
                     .foregroundColor(.LL.Neutrals.neutrals6)
                     .multilineTextAlignment(.center)
                 
-                
-                
                 Button {
                     ScanHandler.scan()
                 } label: {

@@ -18,6 +18,8 @@ struct WalletSendButtonView: View {
     @State
     var isLoading: Bool = false
     
+    var action: () -> ()
+    
     var body: some View {
         HStack {
             ZStack {
@@ -75,6 +77,7 @@ struct WalletSendButtonView: View {
                 .onEnded { value in
                     self.press.toggle()
                     self.isLoading = true
+                    action()
                 }
         )
         .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0))
@@ -118,7 +121,7 @@ struct ScaleButtonStyle: SwiftUI.ButtonStyle {
 
 struct WalletSendButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        WalletSendButtonView()
+        WalletSendButtonView{}
             .previewLayout(.sizeThatFits)
     }
 }

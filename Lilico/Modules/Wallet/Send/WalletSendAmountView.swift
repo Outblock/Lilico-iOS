@@ -449,18 +449,22 @@ extension WalletSendAmountView {
         }
         
         var sendButton: some View {
-            Button {
+//            Button {
+//                vm.sendWithVerifyAction()
+//            } label: {
+//                ZStack {
+//                    Text("send".localized)
+//                        .foregroundColor(Color.LL.Button.text)
+//                        .font(.inter(size: 14, weight: .bold))
+//                }
+//                .frame(height: 54)
+//                .frame(maxWidth: .infinity)
+//                .background(Color.LL.Button.color)
+//                .cornerRadius(16)
+//            }
+            
+            WalletSendButtonView {
                 vm.sendWithVerifyAction()
-            } label: {
-                ZStack {
-                    Text("send".localized)
-                        .foregroundColor(Color.LL.Button.text)
-                        .font(.inter(size: 14, weight: .bold))
-                }
-                .frame(height: 54)
-                .frame(maxWidth: .infinity)
-                .background(Color.LL.Button.color)
-                .cornerRadius(16)
             }
         }
     }
