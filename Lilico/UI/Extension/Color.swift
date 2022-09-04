@@ -62,7 +62,7 @@ extension UIColor {
 
 extension Color {
     func adjustbyTheme(by percentage: CGFloat = 30.0) -> Color {
-        return Color(toUIColor()?.adjustbyTheme(by: percentage) ?? UIColor(hex:"#FC814A")) ?? self
+        return Color(UIColor(self).adjustbyTheme(by: percentage))
     }
 }
 

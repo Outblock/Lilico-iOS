@@ -12,7 +12,7 @@ enum CardBackground: CaseIterable {
     static var allCases: [CardBackground] = [
         .fluid,
         .matrix,
-        .color(color: Color.LL.Primary.salmonPrimary.toUIColor() ?? UIColor(hex:"#FC814A")),
+        .color(color: UIColor(Color.LL.Primary.salmonPrimary)),
         .fade(imageIndex: 0)]
     
     case color(color: UIColor)
@@ -102,7 +102,7 @@ enum CardBackground: CaseIterable {
             self = .matrix
         case CardBackground.color(color: .clear).identify:
             guard let hex = list[safe: 1] else {
-                self = .color(color: Color.LL.bgForIcon.toUIColor() ?? UIColor(hex: "#333333"))
+                self = .color(color: UIColor(Color.LL.bgForIcon))
                 return
             }
             self = .color(color: UIColor(hex: String(hex)))

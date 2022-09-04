@@ -89,7 +89,7 @@ extension NFTUIKitFavItemCell: StackTransformView {
             topStackAlphaSpeedFactor: 0.30,
             perspectiveRatio: 0.30,
             shadowEnabled: true,
-            shadowColor: Color.LL.rebackground.toUIColor()!,
+            shadowColor: UIColor(Color.LL.rebackground),
             shadowOpacity: 0.10,
             shadowOffset: .zero,
             shadowRadius: 5.00,

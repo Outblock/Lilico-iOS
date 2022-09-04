@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import SwiftUI
+import Hero
 
 class NFTUIKitListViewController: UIViewController {
     var style: NFTTabScreen.ViewStyle = .normal {
@@ -67,6 +68,9 @@ class NFTUIKitListViewController: UIViewController {
                 break
             }
             
+            let feedbackGenerator = UIImpactFeedbackGenerator(style: .rigid)
+            feedbackGenerator.impactOccurred()
+            
             self.reloadViews()
         }
         return view
@@ -98,7 +102,7 @@ class NFTUIKitListViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = UIColor(Color.LL.Neutrals.background)
-        
+        self.hero.isEnabled = true
         setupHeaderView()
         
         view.addSubview(contentView)

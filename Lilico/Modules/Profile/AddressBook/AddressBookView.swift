@@ -56,7 +56,7 @@ struct AddressBookView: RouteableView {
         } else {
             _vm = StateObject(wrappedValue: AddressBookViewModel())
         }
-        UITableView.appearance().backgroundColor = Color.LL.background.toUIColor() ?? .clear
+        UITableView.appearance().backgroundColor = UIColor(Color.LL.background)
     }
 
     var body: some View {

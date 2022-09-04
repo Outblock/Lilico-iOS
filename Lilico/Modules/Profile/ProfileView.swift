@@ -19,7 +19,11 @@ extension ProfileView: AppTabBarPageProtocol {
     }
 
     static func color() -> Color {
-        return .LL.Secondary.navy3
+        // When convert from color to UIColor, it will ignore dark mode color :/
+        // Hence, we manually set the color here
+//        return .LL.Secondary.navy3
+        //        UIScreen.main.traitCollection.userInterfaceStyle == .dark ? Color(hex: "#0B59BF") :
+        return Color(hex: "#579AF2")
     }
 }
 
