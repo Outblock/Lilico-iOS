@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Lottie
 
 struct WalletConnectView: RouteableView {
     @StateObject
@@ -20,45 +21,130 @@ struct WalletConnectView: RouteableView {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                ForEach(manager.activeSessions, id: \.topic) { session in
-                    
-                    Menu {
-                        Button {  
-                            Task {
-                                await WalletConnectManager.shared.disconnect(topic: session.topic)
+        if manager.activeSessions.count > 0 {
+            ScrollView {
+                VStack(spacing: 0) {
+                    ForEach(manager.activeSessions, id: \.topic) { session in
+                        Menu {
+                            Button {
+                                Task {
+                                    await WalletConnectManager.shared.disconnect(topic: session.topic)
+                                }
+                            } label: {
+                                Label("Disconnect", systemImage: "xmark.circle")
+                                    .foregroundColor(.LL.warning2)
                             }
                         } label: {
-                            Label("Disconnect", systemImage: "xmark.circle")
-                                .foregroundColor(.LL.warning2)
+                            ItemCell(title: session.peer.name,
+                                     url: session.peer.url,
+                                     network: String(session.namespaces.values.first?.accounts.first?.reference ?? ""),
+                                     icon: session.peer.icons.first ?? "https://lilico.app/placeholder.png")
+                            .buttonStyle(ScaleButtonStyle())
                         }
-                    } label: {
-                        ItemCell(title: session.peer.name,
-                                 url: session.peer.url,
-                                 network: String(session.namespaces.values.first?.accounts.first?.reference ?? ""),
-                                 icon: session.peer.icons.first ?? "https://lilico.app/placeholder.png")
-                        .buttonStyle(ScaleButtonStyle())
                     }
                 }
+                .padding(.horizontal, 16)
+                .roundedBg()
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .padding(.horizontal, 18)
             }
-            .padding(.horizontal, 16)
-            .roundedBg()
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding(.horizontal, 18)
-        }
-        .navigationBarItems(trailing:
-            Button {
+            .navigationBarItems(center: HStack {
+                Image("walletconnect")
+                    .frame(width: 24, height: 24)
+                Text("walletconnect".localized)
+                    .font(.LL.body)
+                    .fontWeight(.semibold)
+            },
+                                trailing:
+                                    Button {
                 ScanHandler.scan()
             } label: {
-                Image("icon-wallet-scan").renderingMode(.template).foregroundColor(.primary)
+                Image("icon-wallet-scan")
+                    .renderingMode(.template)
+                    .foregroundColor(.primary)
             }
-        )
-        .backgroundFill(Color.LL.Neutrals.background)
-        .applyRouteable(self)
+            )
+            .backgroundFill(Color.LL.Neutrals.background)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(navigationBarTitleDisplayMode)
+            .navigationBarHidden(isNavigationBarHidden)
+        } else {
+            WalletConnectView.EmptyView()
+                .backgroundFill(Color.LL.Neutrals.background)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarTitleDisplayMode(navigationBarTitleDisplayMode)
+                .navigationBarHidden(isNavigationBarHidden)
+                .navigationBarItems(center: HStack {
+                    Image("walletconnect")
+                        .frame(width: 24, height: 24)
+                    Text("walletconnect".localized)
+                        .font(.LL.body)
+                        .fontWeight(.semibold)
+                },
+                                    trailing:
+                                        Button {
+                    ScanHandler.scan()
+                } label: {
+                    Image("icon-wallet-scan")
+                        .renderingMode(.template)
+                        .foregroundColor(.primary)
+                }
+                )
+        }
         
     }
 }
+
+extension WalletConnectView {
+    struct EmptyView: View {
+        
+        let animationView = AnimationView(name: "QRScan", bundle: .main)
+        
+        var body: some View {
+            VStack(alignment: .center, spacing: 18) {
+                Spacer()
+                ResizableLottieView(lottieView: animationView,
+                                    color: Color(hex: "#3496FF"))
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 120, height: 120)
+                .frame(maxWidth: .infinity)
+                .contentShape(Rectangle())
+                
+                Text("Scan to Connect")
+                    .foregroundColor(.LL.text)
+                    .font(.LL.title2)
+                    .fontWeight(.bold)
+                
+                Text("WalletConnect is an open protocol to communicate securely between Wallets and Dapps")
+                    .foregroundColor(.LL.Neutrals.neutrals6)
+                    .multilineTextAlignment(.center)
+                
+                
+                
+                Button {
+                    ScanHandler.scan()
+                } label: {
+                    Text("New Connection")
+                        .font(.LL.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color.white)
+                        .padding(15)
+                        .background(Color(hex: "#3496FF"))
+                        .cornerRadius(12)
+                }
+                
+                Spacer()
+            }
+            .padding(.horizontal, 24)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onAppear{
+                animationView.play(toProgress: .infinity, loopMode: .loop)
+            }
+        }
+    }
+}
+
+
 
 extension WalletConnectView {
     struct ItemCell: View {
@@ -80,7 +166,7 @@ extension WalletConnectView {
                     .frame(width: 45, height: 45)
                     .cornerRadius(8)
                     .padding(.trailing, 15)
-                    
+                
                 
                 VStack {
                     Text(title)
@@ -120,10 +206,12 @@ extension WalletConnectView {
 
 struct Previews_WalletConnectView_Previews: PreviewProvider {
     static var previews: some View {
-        WalletConnectView.ItemCell(title: "NBA Top",
-                                   url: "https://google.com",
-                                   network: "mainnet",
-                                   icon: "https://lilico.app/placeholder.png")
-        .previewLayout(.sizeThatFits)
+        //        WalletConnectView.ItemCell(title: "NBA Top",
+        //                                   url: "https://google.com",
+        //                                   network: "mainnet",
+        //                                   icon: "https://lilico.app/placeholder.png")
+        //        .previewLayout(.sizeThatFits)
+        
+        WalletConnectView.EmptyView()
     }
 }
