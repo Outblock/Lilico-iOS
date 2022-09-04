@@ -32,7 +32,7 @@ struct NFTResponse: Codable, Hashable {
     let description: String?
     let media: [NFTMedia]?
     let metadata: NFTMetadata?
-    let postMedia: NFTPostMedia
+    var postMedia: NFTPostMedia
     
     var uniqueId: String {
         return contract.address + "." + (contract.name ?? "") + "-" + id.tokenID
@@ -75,7 +75,7 @@ struct NFTContractMetadata: Codable, Hashable {
 
 struct NFTPostMedia: Codable, Hashable {
     let title: String?
-    let image: String?
+    var image: String?
     let description: String?
     let video: String?
     let isSVG: String?

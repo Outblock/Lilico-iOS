@@ -9,9 +9,10 @@ import SwiftUI
 
 struct WalletSendButtonView: View {
     
-    @ObservedObject var animation = MyAnimations()
-    
     @GestureState
+    var tap = false
+    
+    @State
     var press = false
     
     @State
@@ -20,16 +21,10 @@ struct WalletSendButtonView: View {
     @State
     var loadingProgress: Double = 0.3
     
+    @State
+    var toggle = false
+    
     var body: some View {
-        
-            Button {
-                
-                if !press {
-                    animation.stop()
-                    animation.progress = 0
-                }
-                
-            } label: {
                     HStack {
                         ZStack {
                             Circle()
@@ -38,7 +33,8 @@ struct WalletSendButtonView: View {
                                     lineWidth: 4
                                 )
                             Circle()
-                                .trim(from: 0, to: animation.progress)
+//                                .trim(from: 0, to: animation.progress)
+                                .trim(from: tap ? 0.001 : 1, to: 1)
                                 .stroke(
                                     Color.LL.outline,
                                     style: StrokeStyle(
@@ -46,46 +42,50 @@ struct WalletSendButtonView: View {
                                         lineCap: .round
                                     )
                                 )
-//                                .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
-//                                .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: isLoading)
                                 .rotationEffect(.degrees(-90))
-                            // 1
-                                .animation(.easeOut, value: animation.progress)
+                                .rotation3DEffect(Angle(degrees: -180), axis: (x: 0, y: 1, z: 0))
+                                .animation(.easeInOut)
+                                .visible(!isLoading)
+                            
+                            Circle()
+                                .trim(from: 0, to: 0.3)
+                                .stroke(
+                                    Color.LL.outline,
+                                    style: StrokeStyle(
+                                        lineWidth: 4,
+                                        lineCap: .round
+                                    )
+                                )
+                                .rotationEffect(.degrees(-90))
+                                .rotation3DEffect(Angle(degrees: -180), axis: (x: 0, y: 1, z: 0))
+                                .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
+                                .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: isLoading)
+                                .visible(isLoading)
                             
                         }
-                        .frame(width: 20, height: 20)
-                        .allowsHitTesting(false)
-                        
+                        .frame(width: 25, height: 25)
                         Text("send".localized)
                             .foregroundColor(Color.LL.Button.text)
                             .font(.inter(size: 14, weight: .bold))
                             .allowsHitTesting(false)
                     }
-//                .simultaneousGesture(
-//                    LongPressGesture(minimumDuration: 0.1)
-//                        .updating($press, body: { currentState, gestureState, transaction in
-//
-////                            if animation.progress == 0 {
-//                                animation.createDisplayLink()
-////                            }
-//
-//                        })
-//                        .onEnded({ value in
-//                            animation.stop()
-//                            animation.progress = 0
-//                        })
-//                )
-                .animation(.easeInOut, value: animation.progress)
                 .frame(height: 54)
                 .frame(maxWidth: .infinity)
                 .background(Color.LL.Button.color)
                 .cornerRadius(12)
-            }
-            .buttonStyle(ScaleButtonStyle())
-//            .animation(.easeInOut, value: animation.progress)
-//            .onAppear() {
-//                self.isLoading = true
-//            }
+                .scaleEffect(tap ? 0.95 : 1)
+            .gesture(
+                LongPressGesture().updating($tap) { currentState, gestureState, transaction in
+                    gestureState = currentState
+                }
+                .onEnded { value in
+                    self.press.toggle()
+                    self.isLoading = true
+                }
+        )
+            .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0))
+//            .buttonStyle(ScaleButtonStyle())
+            
     }
 }
 

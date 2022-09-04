@@ -16,7 +16,8 @@ class NFTDetailPageViewModel: ObservableObject {
         self.nft = nft
         
         if nft.isSVG {
-            guard let rawSVGURL = nft.response.postMedia.image, let rawSVGURL = URL(string: rawSVGURL) else {
+            guard let rawSVGURL = nft.response.postMedia.image,
+                  let rawSVGURL = URL(string: rawSVGURL.replacingOccurrences(of: "https://lilico.app/api/svg2png?url=", with: "")) else {
                 return
             }
             
@@ -24,6 +25,11 @@ class NFTDetailPageViewModel: ObservableObject {
                 if let svg = await SVGCache.cache.getSVG(rawSVGURL) {
                     DispatchQueue.main.async {
                         self.svgString = svg
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.nft.isSVG = false
+                        self.nft.response.postMedia.image = self.nft.response.postMedia.image?.convertedSVGURL()?.absoluteString
                     }
                 }
             }
@@ -135,7 +141,7 @@ struct NFTDetailPage: RouteableView {
                                         .frame(width: 20, height: 20, alignment: .center)
                                         .cornerRadius(20)
                                         .clipped()
-                                    Text(vm.nft.subtitle)
+                                    Text(vm.nft.collectionName)
                                         .font(.LL.body)
                                         .fontWeight(.w400)
                                         .lineLimit(1)

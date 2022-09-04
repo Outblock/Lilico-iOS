@@ -88,13 +88,13 @@ struct NFTModel: Codable, Hashable, Identifiable {
     let title: String
     let subtitle: String
     var isSVG: Bool = false
-    let response: NFTResponse
+    var response: NFTResponse
     let collection: NFTCollectionInfo?
 
     init(_ response: NFTResponse, in collection: NFTCollectionInfo?) {
         if let imgUrl = response.postMedia.image, let url = URL(string: imgUrl) {
             if response.postMedia.isSVG == "true" {
-                image = imgUrl.convertedSVGURL() ?? URL(string: placeholder)!
+                image = URL(string: imgUrl) ?? URL(string: placeholder)!
                 isSVG = true
             } else {
                 if imgUrl.hasPrefix("https://lilico.infura-ipfs.io/ipfs/") {
@@ -133,6 +133,14 @@ struct NFTModel: Codable, Hashable, Identifiable {
         }
         
         return URL(string: placeholder)!
+    }
+    
+    var collectionName: String {
+        if let name = collection?.name {
+            return name
+        }
+        
+        return ""
     }
 
     var tags: [NFTMetadatum] {

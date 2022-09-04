@@ -590,6 +590,8 @@
 		15D3BA6D28C3B217009AEA6E /* ColorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA6C28C3B217009AEA6E /* ColorKit */; };
 		15D3BA7028C3B8E3009AEA6E /* ViewAnimator in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA6F28C3B8E3009AEA6E /* ViewAnimator */; };
 		15D3BA7228C3B90A009AEA6E /* ViewAnimator in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7128C3B90A009AEA6E /* ViewAnimator */; };
+		15D3BA7528C45EFF009AEA6E /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7428C45EFF009AEA6E /* Hero */; };
+		15D3BA7728C45F21009AEA6E /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 15D3BA7628C45F21009AEA6E /* Hero */; };
 		15D4F9A628BCC22300E0CADF /* DAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A528BCC22300E0CADF /* DAppModel.swift */; };
 		15D4F9A728BCC22300E0CADF /* DAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A528BCC22300E0CADF /* DAppModel.swift */; };
 		15D4F9AA28BCC5AF00E0CADF /* ExploreTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4F9A928BCC5AF00E0CADF /* ExploreTabViewModel.swift */; };
@@ -1753,6 +1755,7 @@
 				158832CC2894267700142B35 /* WalletConnect in Frameworks */,
 				157046752793241A00D1747B /* Kingfisher in Frameworks */,
 				6A204C6C2860784B00D0D3A4 /* FirebaseStorage in Frameworks */,
+				15D3BA7728C45F21009AEA6E /* Hero in Frameworks */,
 				1500783428682BF700A00109 /* SPIndicator in Frameworks */,
 				15D3BA6D28C3B217009AEA6E /* ColorKit in Frameworks */,
 				4EC7BE3E2888413500F2A45A /* PartialSheet in Frameworks */,
@@ -1789,6 +1792,7 @@
 				1588332228943F4D00142B35 /* NativeUIKit in Frameworks */,
 				15C58C462868A4EE00BD4FC6 /* Moya in Frameworks */,
 				15C58C472868A4EE00BD4FC6 /* BiometricAuthentication in Frameworks */,
+				15D3BA7528C45EFF009AEA6E /* Hero in Frameworks */,
 				15C58C482868A4EE00BD4FC6 /* Resolver in Frameworks */,
 				15C58C492868A4EE00BD4FC6 /* KeychainAccess in Frameworks */,
 				15C58C4A2868A4EE00BD4FC6 /* Haneke in Frameworks */,
@@ -3922,6 +3926,7 @@
 				152BB09528AE900C00B2A2AA /* Lottie */,
 				15D3BA6C28C3B217009AEA6E /* ColorKit */,
 				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
+				15D3BA7628C45F21009AEA6E /* Hero */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -3978,6 +3983,7 @@
 				152BB09328AE8FD100B2A2AA /* Lottie */,
 				15D3BA6A28C3B1EE009AEA6E /* ColorKit */,
 				15D3BA6F28C3B8E3009AEA6E /* ViewAnimator */,
+				15D3BA7428C45EFF009AEA6E /* Hero */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -4041,6 +4047,7 @@
 				152BB09228AE8FD100B2A2AA /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				15D3BA6928C3B1ED009AEA6E /* XCRemoteSwiftPackageReference "ColorKit" */,
 				15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */,
+				15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -5865,6 +5872,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HeroTransitions/Hero";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.2;
+			};
+		};
 		15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -6237,6 +6252,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */;
 			productName = ViewAnimator;
+		};
+		15D3BA7428C45EFF009AEA6E /* Hero */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */;
+			productName = Hero;
+		};
+		15D3BA7628C45F21009AEA6E /* Hero */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */;
+			productName = Hero;
 		};
 		15D57758277C23BF00045E79 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
