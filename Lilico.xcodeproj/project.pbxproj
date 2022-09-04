@@ -582,6 +582,10 @@
 		15C58C662868A4EE00BD4FC6 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
 		15C58C682868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15C58C692868A4EE00BD4FC6 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15CC8A6128C4E0FD001D2696 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 15CC8A6028C4E0FD001D2696 /* RiveRuntime */; };
+		15CC8A6328C4E11D001D2696 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 15CC8A6228C4E11D001D2696 /* RiveRuntime */; };
+		15CC8A6928C4EA63001D2696 /* shapes.riv in Resources */ = {isa = PBXBuildFile; fileRef = 15CC8A6828C4EA63001D2696 /* shapes.riv */; };
+		15CC8A6A28C4EA63001D2696 /* shapes.riv in Resources */ = {isa = PBXBuildFile; fileRef = 15CC8A6828C4EA63001D2696 /* shapes.riv */; };
 		15D3BA6428C393CB009AEA6E /* MatrixRainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3BA6328C393CB009AEA6E /* MatrixRainView.swift */; };
 		15D3BA6528C393CB009AEA6E /* MatrixRainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3BA6328C393CB009AEA6E /* MatrixRainView.swift */; };
 		15D3BA6728C39454009AEA6E /* Matrix Code NFI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15D3BA6628C39454009AEA6E /* Matrix Code NFI.ttf */; };
@@ -1279,6 +1283,7 @@
 		15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletViewModel.swift; sourceTree = "<group>"; };
 		15C58C6D2868A4EE00BD4FC6 /* Lilico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lilico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		15CC8A6828C4EA63001D2696 /* shapes.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = shapes.riv; sourceTree = "<group>"; };
 		15D3BA6328C393CB009AEA6E /* MatrixRainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixRainView.swift; sourceTree = "<group>"; };
 		15D3BA6628C39454009AEA6E /* Matrix Code NFI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Matrix Code NFI.ttf"; sourceTree = "<group>"; };
 		15D3BA7928C4D2A4009AEA6E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1733,6 +1738,7 @@
 			files = (
 				156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */,
 				154B891A276A1EEB00780E93 /* Flow in Frameworks */,
+				15CC8A6328C4E11D001D2696 /* RiveRuntime in Frameworks */,
 				15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */,
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
 				15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */,
@@ -1803,6 +1809,7 @@
 				15C58C492868A4EE00BD4FC6 /* KeychainAccess in Frameworks */,
 				15C58C4A2868A4EE00BD4FC6 /* Haneke in Frameworks */,
 				15D3BA7E28C4D8AC009AEA6E /* Pow in Frameworks */,
+				15CC8A6128C4E0FD001D2696 /* RiveRuntime in Frameworks */,
 				15C58C4B2868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */,
 				15C58C4C2868A4EE00BD4FC6 /* CollectionViewPagingLayout in Frameworks */,
 				15C58C4D2868A4EE00BD4FC6 /* IrregularGradient in Frameworks */,
@@ -2205,6 +2212,7 @@
 		159A5437275368BF004BCACC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				15CC8A6428C4E204001D2696 /* Rive */,
 				1575A72028B26B9600ADC513 /* Fluid */,
 				1565FB5D28B14F140086A652 /* Lottie */,
 				4EA820C128634A9700DF36A8 /* Json */,
@@ -2293,6 +2301,14 @@
 				15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */,
 			);
 			path = Empty;
+			sourceTree = "<group>";
+		};
+		15CC8A6428C4E204001D2696 /* Rive */ = {
+			isa = PBXGroup;
+			children = (
+				15CC8A6828C4EA63001D2696 /* shapes.riv */,
+			);
+			path = Rive;
 			sourceTree = "<group>";
 		};
 		15D3BA7828C4D293009AEA6E /* LaunchScreen */ = {
@@ -3944,6 +3960,7 @@
 				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
 				15D3BA7628C45F21009AEA6E /* Hero */,
 				15D3BA7F28C4D8CC009AEA6E /* Pow */,
+				15CC8A6228C4E11D001D2696 /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -4002,6 +4019,7 @@
 				15D3BA6F28C3B8E3009AEA6E /* ViewAnimator */,
 				15D3BA7428C45EFF009AEA6E /* Hero */,
 				15D3BA7D28C4D8AC009AEA6E /* Pow */,
+				15CC8A6028C4E0FD001D2696 /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -4067,6 +4085,7 @@
 				15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */,
 				15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */,
 				15D3BA7C28C4D8AC009AEA6E /* XCRemoteSwiftPackageReference "Pow" */,
+				15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -4104,6 +4123,7 @@
 				158C9CB02787F7660062E0C6 /* Montserrat-SemiBold.ttf in Resources */,
 				1575A72928B26B9600ADC513 /* dat.gui.min.js in Resources */,
 				1565FB6428B14F140086A652 /* Chat.json in Resources */,
+				15CC8A6A28C4EA63001D2696 /* shapes.riv in Resources */,
 				158C9CAB2787F7490062E0C6 /* Montserrat-Italic.ttf in Resources */,
 				1565FBA528B16FD70086A652 /* Category.json in Resources */,
 				1565FB9928B1677F0086A652 /* Grid.json in Resources */,
@@ -4138,6 +4158,7 @@
 				15C58C5D2868A4EE00BD4FC6 /* remote_config_defaults.plist in Resources */,
 				1565FB6728B14F140086A652 /* Account.json in Resources */,
 				1565FB9E28B16B580086A652 /* CoinHover.json in Resources */,
+				15CC8A6928C4EA63001D2696 /* shapes.riv in Resources */,
 				15C58C5E2868A4EE00BD4FC6 /* Localizable.strings in Resources */,
 				15C58C5F2868A4EE00BD4FC6 /* Assets.xcassets in Resources */,
 				15C58C602868A4EE00BD4FC6 /* Montserrat-SemiBold.ttf in Resources */,
@@ -5881,6 +5902,14 @@
 				revision = f9676f1d56239b1836587794923cb89cec8ae18a;
 			};
 		};
+		15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		15D3BA6928C3B1ED009AEA6E /* XCRemoteSwiftPackageReference "ColorKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Boris-Em/ColorKit";
@@ -6265,6 +6294,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15C58AAB2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SPIndicator" */;
 			productName = SPIndicator;
+		};
+		15CC8A6028C4E0FD001D2696 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+		15CC8A6228C4E11D001D2696 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
 		};
 		15D3BA6A28C3B1EE009AEA6E /* ColorKit */ = {
 			isa = XCSwiftPackageProductDependency;
