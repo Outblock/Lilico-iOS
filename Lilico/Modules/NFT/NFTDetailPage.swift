@@ -87,6 +87,14 @@ struct NFTDetailPage: RouteableView {
     @State var image: Image?
     @State var rect: CGRect = .zero
     
+    @State var viewState = CGSize.zero
+    @State var isDragging = false
+    
+    @State
+    var showImageViewer = false
+    
+    @Namespace var heroAnimation: Namespace.ID
+    
     init(viewModel: NFTTabViewModel, nft: NFTModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
         _vm = StateObject(wrappedValue: NFTDetailPageViewModel(nft: nft))
@@ -120,6 +128,27 @@ struct NFTDetailPage: RouteableView {
                                 .cornerRadius(8)
                                 .padding(.horizontal, 18)
                                 .clipped()
+                                .scaleEffect(isDragging ? 0.9 : 1)
+                                .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8), value: isDragging)
+
+                                .rotation3DEffect(Angle(degrees: 5), axis: (x: viewState.width, y: viewState.height, z: 0))
+                                .modifier(DragGestureViewModifier(onStart: nil, onUpdate: { value in
+                                    self.viewState = value.translation
+                                    self.isDragging = true
+                                }, onEnd: {
+                                    self.viewState = .zero
+                                    self.isDragging = false
+                                }, onCancel: {
+                                    self.viewState = .zero
+                                    self.isDragging = false
+                                }))
+                                .coordinateSpace(name: "NFTImage")
+                                .onTapGesture {
+                                    showImageViewer.toggle()
+                                }
+                                .matchedGeometryEffect(id: "imageView", in: heroAnimation)
+                                .visible(!showImageViewer)
+
                         }
 
                         HStack(alignment: .center, spacing: 0) {
@@ -288,6 +317,12 @@ struct NFTDetailPage: RouteableView {
         .onAppear {
             isFavorited = NFTUIKitCache.cache.isFav(id: vm.nft.id)
         }
+        .overlay(ImageViewer(imageURL: vm.nft.image.absoluteString,
+                             viewerShown: self.$showImageViewer,
+                             backgroundColor: viewModel.state.colorsMap[vm.nft.image.absoluteString]?.first ?? .LL.background,
+                             heroAnimation: heroAnimation)
+                 )
+        .animation(.spring(), value: self.showImageViewer)
         .applyRouteable(self)
     }
 
