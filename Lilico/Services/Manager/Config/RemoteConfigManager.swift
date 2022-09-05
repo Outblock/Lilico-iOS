@@ -43,7 +43,7 @@ class RemoteConfigManager {
     init() {
         Task {
             do {
-                let config: Config = try await FirebaseConfig.config.fetch()
+                let config: Config = try await FirebaseConfig.config.fetch(decoder: JSONDecoder())
                 self.config = config
             } catch {
                 do {
@@ -77,7 +77,7 @@ extension RemoteConfigManager: FlowSigner {
     
     func sign(transaction: Flow.Transaction, signableData: Data) async throws -> Data {
         let request = SignPayerRequest(transaction: transaction.voucher, message: .init(envelopeMessage: signableData.hexValue))
-        let signature:SignPayerResponse = try await Network.request(FirebaseAPI.signAsPayer(request))
+        let signature:SignPayerResponse = try await Network.requestWithRawModel(FirebaseAPI.signAsPayer(request))
         return Data(hex: signature.envelopeSigs.sig)
     }
 }

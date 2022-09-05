@@ -38,16 +38,15 @@ enum FirebaseConfig: String {
 }
 
 extension FirebaseConfig {
-    func fetch<T: Codable>() async throws -> T {
+    func fetch<T: Codable>(decoder:JSONDecoder = LilicoAPI.jsonDecoder ) async throws -> T {
         let remoteConfig = RemoteConfig.remoteConfig()
         let json = remoteConfig.configValue(forKey: rawValue)
         do {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
             let collections = try decoder.decode(T.self, from: json.dataValue)
             return collections
 
         } catch {
+            debugPrint(error)
             throw FirebaseConfigError.decode
         }
     }
@@ -63,6 +62,7 @@ extension FirebaseConfig {
             let collections = try decoder.decode(T.self, from: json.dataValue)
             return collections
         } catch {
+            print(error)
             throw FirebaseConfigError.decode
         }
     }

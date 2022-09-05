@@ -23,15 +23,16 @@ struct FCLVoucher: Codable {
     let cadence: Flow.Script
     let payer: Flow.Address
     let refBlock: Flow.ID
+    let arguments: [Flow.Argument]
     let proposalKey: ProposalKey
-    let computeLimit: BigUInt
+    let computeLimit: UInt64
     let authorizers: [Flow.Address]
     let payloadSigs: [Signature]
     
     struct ProposalKey: Codable {
         let address: Flow.Address
         let keyId: Int
-        let sequenceNum: BigInt
+        let sequenceNum: UInt64
     }
     
     struct Signature: Codable {
@@ -64,10 +65,11 @@ extension Flow.Transaction {
         FCLVoucher(cadence: script,
                    payer: payer,
                    refBlock: referenceBlockId,
+                   arguments: arguments,
                    proposalKey: FCLVoucher.ProposalKey(address: proposalKey.address,
                                                        keyId: proposalKey.keyIndex,
-                                                       sequenceNum: proposalKey.sequenceNumber),
-                   computeLimit: gasLimit,
+                                                       sequenceNum: UInt64(proposalKey.sequenceNumber)),
+                   computeLimit: UInt64(gasLimit),
                    authorizers: authorizers,
                    payloadSigs: payloadSignatures.compactMap{
             FCLVoucher.Signature(address: $0.address,
@@ -109,9 +111,9 @@ extension FirebaseAPI: TargetType, AccessTokenAuthorizable {
     var task: Task {
         switch self {
         case let .moonPay(request):
-            return .requestCustomJSONEncodable(request, encoder: JSONEncoder())
+            return .requestJSONEncodable(request)
         case let .signAsPayer(request):
-            return .requestCustomJSONEncodable(request, encoder: JSONEncoder())
+            return .requestJSONEncodable(request)
         }
     }
 
