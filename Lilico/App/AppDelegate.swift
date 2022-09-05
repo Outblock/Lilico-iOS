@@ -13,6 +13,10 @@ import SwiftUI
 import UIKit
 import WalletCore
 
+#if DEBUG
+import Atlantis
+#endif
+
 @main
 class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
@@ -26,6 +30,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseConfig.start()
         
         setupUI()
+        
+        #if DEBUG
+            Atlantis.start()
+        #endif
 
         return true
     }

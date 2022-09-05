@@ -846,6 +846,8 @@
 		15F22F1A278B21B600FCF772 /* BiometricAuthentication in Frameworks */ = {isa = PBXBuildFile; productRef = 15F22F19278B21B600FCF772 /* BiometricAuthentication */; };
 		15F22F1D278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F1B278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift */; };
 		15F22F20278B33EE00FCF772 /* CreatePinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F1E278B33EE00FCF772 /* CreatePinCodeViewModel.swift */; };
+		15F517FB28C6574C00504FDC /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 15F517FA28C6574C00504FDC /* Atlantis */; };
+		15F517FD28C6577000504FDC /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 15F517FC28C6577000504FDC /* Atlantis */; };
 		4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */; };
 		4E17466C281AF840002A029C /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
 		4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1788,6 +1790,7 @@
 				154B891A276A1EEB00780E93 /* Flow in Frameworks */,
 				15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */,
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
+				15F517FD28C6577000504FDC /* Atlantis in Frameworks */,
 				15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */,
 				4E9BFF5D2867631300601339 /* UIKit.framework in Frameworks */,
 				6AE1D48E287690E7000FA0B7 /* SwiftUIPager in Frameworks */,
@@ -1836,6 +1839,7 @@
 				15C58C3E2868A4EE00BD4FC6 /* Flow in Frameworks */,
 				15C58C3F2868A4EE00BD4FC6 /* GoogleSignIn in Frameworks */,
 				15D3BA6B28C3B1EE009AEA6E /* ColorKit in Frameworks */,
+				15F517FB28C6574C00504FDC /* Atlantis in Frameworks */,
 				15C58C402868A4EE00BD4FC6 /* FirebaseAuth in Frameworks */,
 				15D3BA7028C3B8E3009AEA6E /* ViewAnimator in Frameworks */,
 				15C58C412868A4EE00BD4FC6 /* AuthenticationServices.framework in Frameworks */,
@@ -4053,6 +4057,7 @@
 				15D3BA6C28C3B217009AEA6E /* ColorKit */,
 				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
 				15D3BA7628C45F21009AEA6E /* Hero */,
+				15F517FC28C6577000504FDC /* Atlantis */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -4111,6 +4116,7 @@
 				15D3BA6F28C3B8E3009AEA6E /* ViewAnimator */,
 				15D3BA7428C45EFF009AEA6E /* Hero */,
 				15CC8A6028C4E0FD001D2696 /* RiveRuntime */,
+				15F517FA28C6574C00504FDC /* Atlantis */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -4176,6 +4182,7 @@
 				15D3BA6E28C3B8E3009AEA6E /* XCRemoteSwiftPackageReference "ViewAnimator" */,
 				15D3BA7328C45EFF009AEA6E /* XCRemoteSwiftPackageReference "Hero" */,
 				15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */,
+				15F517F928C6574C00504FDC /* XCRemoteSwiftPackageReference "atlantis" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -5419,7 +5426,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5433,6 +5440,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -5461,7 +5469,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5472,6 +5480,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -5500,7 +5509,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5514,6 +5523,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -5543,7 +5553,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5554,6 +5564,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -6122,6 +6133,15 @@
 				revision = 4ee311572e815a494ce5440a6a5f8956d97d8c2e;
 			};
 		};
+		15F517F928C6574C00504FDC /* XCRemoteSwiftPackageReference "atlantis" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ProxymanApp/atlantis";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 2.0.0;
+				minimumVersion = 1.0.0;
+			};
+		};
 		4EC7BE3C2888413500F2A45A /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
@@ -6480,6 +6500,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15F22F16278B20A800FCF772 /* XCRemoteSwiftPackageReference "BiometricAuthentication" */;
 			productName = BiometricAuthentication;
+		};
+		15F517FA28C6574C00504FDC /* Atlantis */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15F517F928C6574C00504FDC /* XCRemoteSwiftPackageReference "atlantis" */;
+			productName = Atlantis;
+		};
+		15F517FC28C6577000504FDC /* Atlantis */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15F517F928C6574C00504FDC /* XCRemoteSwiftPackageReference "atlantis" */;
+			productName = Atlantis;
 		};
 		4EC56B2C281D3ED000246878 /* FirebaseRemoteConfig */ = {
 			isa = XCSwiftPackageProductDependency;

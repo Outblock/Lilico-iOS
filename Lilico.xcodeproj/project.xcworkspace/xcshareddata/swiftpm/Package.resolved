@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "atlantis",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ProxymanApp/atlantis",
+      "state" : {
+        "revision" : "2b26bf7fe2c5751335dca015b9e77514210d28d4",
+        "version" : "1.18.2"
+      }
+    },
+    {
       "identity" : "bigint",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/attaswift/BigInt.git",
@@ -220,8 +229,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios",
       "state" : {
-        "revision" : "4ca8023b820b7d5d5ae1e2637c046e3dab0f45d0",
-        "version" : "3.4.2"
+        "revision" : "314537ec697719fa33a9d48210f4d06a463286d3",
+        "version" : "3.4.3"
       }
     },
     {
