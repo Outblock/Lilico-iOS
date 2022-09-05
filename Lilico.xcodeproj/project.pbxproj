@@ -613,6 +613,10 @@
 		15D874E128C5C7290072C6EA /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874DF28C5C7290072C6EA /* ImageViewer.swift */; };
 		15D874E328C5D37F0072C6EA /* MatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874E228C5D37F0072C6EA /* MatrixView.swift */; };
 		15D874E428C5D37F0072C6EA /* MatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874E228C5D37F0072C6EA /* MatrixView.swift */; };
+		15D874E728C623770072C6EA /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874E628C623770072C6EA /* RemoteConfig.swift */; };
+		15D874E828C623770072C6EA /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874E628C623770072C6EA /* RemoteConfig.swift */; };
+		15D874EA28C629430072C6EA /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874E928C629430072C6EA /* FirebaseAPI.swift */; };
+		15D874EB28C629430072C6EA /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874E928C629430072C6EA /* FirebaseAPI.swift */; };
 		15D9282A278338DB00382226 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D92828278338DB00382226 /* UIApplication.swift */; };
 		15D9282D2783395F00382226 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282B2783395F00382226 /* HUDManager.swift */; };
 		15D9283027843D4900382226 /* ManualBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9282E27843D4900382226 /* ManualBackupView.swift */; };
@@ -1103,8 +1107,8 @@
 		6AE0842A2851E7B3003BEEF0 /* Published.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE084282851E7B3003BEEF0 /* Published.swift */; };
 		6AE1817328C59B57009ADDDB /* JSModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817228C59B57009ADDDB /* JSModels.swift */; };
 		6AE1817428C59B57009ADDDB /* JSModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817228C59B57009ADDDB /* JSModels.swift */; };
-		6AE1817628C5A2E6009ADDDB /* GasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817528C5A2E6009ADDDB /* GasManager.swift */; };
-		6AE1817728C5A2E6009ADDDB /* GasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817528C5A2E6009ADDDB /* GasManager.swift */; };
+		6AE1817628C5A2E6009ADDDB /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817528C5A2E6009ADDDB /* RemoteConfigManager.swift */; };
+		6AE1817728C5A2E6009ADDDB /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817528C5A2E6009ADDDB /* RemoteConfigManager.swift */; };
 		6AE1817928C5A457009ADDDB /* FCLScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817828C5A457009ADDDB /* FCLScripts.swift */; };
 		6AE1817A28C5A457009ADDDB /* FCLScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817828C5A457009ADDDB /* FCLScripts.swift */; };
 		6AE1817C28C5D654009ADDDB /* FCLAuthnResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817B28C5D654009ADDDB /* FCLAuthnResponse.swift */; };
@@ -1325,6 +1329,8 @@
 		15D874DB28C5C3740072C6EA /* DragGestureViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragGestureViewModifier.swift; sourceTree = "<group>"; };
 		15D874DF28C5C7290072C6EA /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		15D874E228C5D37F0072C6EA /* MatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixView.swift; sourceTree = "<group>"; };
+		15D874E628C623770072C6EA /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
+		15D874E928C629430072C6EA /* FirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		15D92827278331FE00382226 /* Lilico-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lilico-dev.entitlements"; sourceTree = "<group>"; };
 		15D92828278338DB00382226 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		15D9282B2783395F00382226 /* HUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDManager.swift; sourceTree = "<group>"; };
@@ -1719,7 +1725,7 @@
 		6AE084222851D481003BEEF0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6AE084282851E7B3003BEEF0 /* Published.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Published.swift; sourceTree = "<group>"; };
 		6AE1817228C59B57009ADDDB /* JSModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSModels.swift; sourceTree = "<group>"; };
-		6AE1817528C5A2E6009ADDDB /* GasManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasManager.swift; sourceTree = "<group>"; };
+		6AE1817528C5A2E6009ADDDB /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		6AE1817828C5A457009ADDDB /* FCLScripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCLScripts.swift; sourceTree = "<group>"; };
 		6AE1817B28C5D654009ADDDB /* FCLAuthnResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCLAuthnResponse.swift; sourceTree = "<group>"; };
 		6AE1817E28C5D69A009ADDDB /* FCLAuthzResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCLAuthzResponse.swift; sourceTree = "<group>"; };
@@ -1884,6 +1890,7 @@
 		1505E5F928363554007B98D8 /* Lilico */ = {
 			isa = PBXGroup;
 			children = (
+				15DC1D4B27814F38000B187A /* Model */,
 				15D57750277C224300045E79 /* LilicoAPI.swift */,
 				1505E5FA28363578007B98D8 /* LilicoAPI+User.swift */,
 				1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */,
@@ -2274,12 +2281,12 @@
 			isa = PBXGroup;
 			children = (
 				1505E5F928363554007B98D8 /* Lilico */,
-				15DC1D4B27814F38000B187A /* Model */,
 				159A560127536E4E004BCACC /* Endpoint.swift */,
 				1570466E27931F5100D1747B /* AlchemyEndpoint.swift */,
 				1570467D2793EBA100D1747B /* GithubEndpoint.swift */,
 				15DC1D5727816660000B187A /* Network.swift */,
 				156E84A8281CDE7500415896 /* FlowNetwork.swift */,
+				15D874E928C629430072C6EA /* FirebaseAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2403,6 +2410,15 @@
 				15D874DF28C5C7290072C6EA /* ImageViewer.swift */,
 			);
 			path = ImageViewer;
+			sourceTree = "<group>";
+		};
+		15D874E528C623460072C6EA /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				6AE1817528C5A2E6009ADDDB /* RemoteConfigManager.swift */,
+				15D874E628C623770072C6EA /* RemoteConfig.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		15DC1D4B27814F38000B187A /* Model */ = {
@@ -3198,6 +3214,7 @@
 		15DE22CC277DBDC300B5EE03 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				15D874E528C623460072C6EA /* Config */,
 				6AA78E0128A0BF2100FF6CF9 /* Scan */,
 				158832D5289427D800142B35 /* WalletConnect */,
 				6AA591F328854F5900F4B5CA /* Backup */,
@@ -3208,7 +3225,6 @@
 				6AE08415284EF667003BEEF0 /* LocalUserDefaults.swift */,
 				6A382E23289BDAFF00163564 /* SecurityManager.swift */,
 				6A95CFB328B7747F00267F86 /* TransactionManager.swift */,
-				6AE1817528C5A2E6009ADDDB /* GasManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -4521,6 +4537,7 @@
 				15DC21C127819C56000B187A /* DerivedButtonType.swift in Sources */,
 				15DC217927819C56000B187A /* VModal.swift in Sources */,
 				15DC21A127819C56000B187A /* UIKitTextFieldRepresentable.swift in Sources */,
+				15D874EB28C629430072C6EA /* FirebaseAPI.swift in Sources */,
 				15DC20BD27819C56000B187A /* VSquareButtonModel.swift in Sources */,
 				4EC482D3284A3D75000A7E1B /* MMCQ.swift in Sources */,
 				15DC21AB27819C56000B187A /* FocusableTextField.swift in Sources */,
@@ -4721,6 +4738,7 @@
 				4EF5129D28333A230014F4EC /* NFTTagsView.swift in Sources */,
 				15DC215927819C56000B187A /* VMenu.swift in Sources */,
 				1552DC622786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */,
+				15D874E828C623770072C6EA /* RemoteConfig.swift in Sources */,
 				15DC215127819C56000B187A /* VNavigationView.swift in Sources */,
 				6AC717E3287EA61100AA5040 /* WalletSendAmountViewModel.swift in Sources */,
 				4ECB9960285B739700F59852 /* OffsetScrollView.swift in Sources */,
@@ -4729,7 +4747,7 @@
 				158832EE28942FCE00142B35 /* Signable.swift in Sources */,
 				15DC211927819C56000B187A /* VPageIndicatorType.swift in Sources */,
 				15DC20AF27819C56000B187A /* VBaseButtonGestureState.swift in Sources */,
-				6AE1817728C5A2E6009ADDDB /* GasManager.swift in Sources */,
+				6AE1817728C5A2E6009ADDDB /* RemoteConfigManager.swift in Sources */,
 				6A8FA4A8285B192900EE5BE3 /* DraggingDetector.swift in Sources */,
 				6AE0841B284EFF6D003BEEF0 /* DeveloperModeView.swift in Sources */,
 				1588330B28943D1D00142B35 /* SPQRDetailButton.swift in Sources */,
@@ -5025,6 +5043,7 @@
 				15C58B4C2868A4EE00BD4FC6 /* DerivedButtonType.swift in Sources */,
 				15C58B4D2868A4EE00BD4FC6 /* VModal.swift in Sources */,
 				15C58B4E2868A4EE00BD4FC6 /* UIKitTextFieldRepresentable.swift in Sources */,
+				15D874EA28C629430072C6EA /* FirebaseAPI.swift in Sources */,
 				15C58B4F2868A4EE00BD4FC6 /* VSquareButtonModel.swift in Sources */,
 				15C58B502868A4EE00BD4FC6 /* MMCQ.swift in Sources */,
 				15C58B512868A4EE00BD4FC6 /* FocusableTextField.swift in Sources */,
@@ -5225,6 +5244,7 @@
 				15C58BF02868A4EE00BD4FC6 /* NFTTagsView.swift in Sources */,
 				15C58BF12868A4EE00BD4FC6 /* VMenu.swift in Sources */,
 				15C58BF22868A4EE00BD4FC6 /* CreatePinCodeView.swift in Sources */,
+				15D874E728C623770072C6EA /* RemoteConfig.swift in Sources */,
 				15C58BF42868A4EE00BD4FC6 /* VNavigationView.swift in Sources */,
 				6AC717E2287EA61100AA5040 /* WalletSendAmountViewModel.swift in Sources */,
 				15C58BF62868A4EE00BD4FC6 /* OffsetScrollView.swift in Sources */,
@@ -5233,7 +5253,7 @@
 				158832ED28942FCE00142B35 /* Signable.swift in Sources */,
 				15C58BF92868A4EE00BD4FC6 /* VPageIndicatorType.swift in Sources */,
 				15C58BFA2868A4EE00BD4FC6 /* VBaseButtonGestureState.swift in Sources */,
-				6AE1817628C5A2E6009ADDDB /* GasManager.swift in Sources */,
+				6AE1817628C5A2E6009ADDDB /* RemoteConfigManager.swift in Sources */,
 				15C58BFB2868A4EE00BD4FC6 /* DraggingDetector.swift in Sources */,
 				15C58BFC2868A4EE00BD4FC6 /* DeveloperModeView.swift in Sources */,
 				1588330A28943D1D00142B35 /* SPQRDetailButton.swift in Sources */,
@@ -6099,7 +6119,7 @@
 			repositoryURL = "https://github.com/outblock/flow-swift";
 			requirement = {
 				kind = revision;
-				revision = 6059a662e93f1e1f6c4af286f48c008c92bf3600;
+				revision = 4ee311572e815a494ce5440a6a5f8956d97d8c2e;
 			};
 		};
 		4EC7BE3C2888413500F2A45A /* XCRemoteSwiftPackageReference "PartialSheet" */ = {

@@ -15,7 +15,7 @@ func serviceDefinition(address: String, keyId: Int, type: FCLServiceType) -> Ser
                           type: type,
                           method: .none,
                           endpoint: nil,
-                          uid: "flow-wallet#" + type.rawValue,
+                          uid: "https://link.lilico.app/wc",
                           id: nil,
                           identity: nil,
                           provider: nil, params: nil)

@@ -38,13 +38,13 @@ extension FlowNetwork {
     static func enableToken(at address: Flow.Address, token: TokenModel) async throws -> Flow.ID {
         let cadenceString = token.formatCadence(cadence: Cadences.addToken)
         
-        return try await flow.sendTransaction(signers: [WalletManager.shared]) {
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared]) {
             cadence {
                 cadenceString
             }
             
             payer {
-                GasManager.shared.payer
+                RemoteConfigManager.shared.payer
             }
             
             proposer {
@@ -60,13 +60,13 @@ extension FlowNetwork {
     static func transferToken(to address: Flow.Address, amount: Double) async throws -> Flow.ID {
         let cadenceString = Cadences.transferToken.replace(by: ScriptAddress.addressMap())
         
-        return try await flow.sendTransaction(signers: [WalletManager.shared], builder: {
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
                 cadenceString
             }
             
             payer {
-                GasManager.shared.payer
+                RemoteConfigManager.shared.payer
             }
             
             proposer {
@@ -95,13 +95,13 @@ extension FlowNetwork {
     static func addCollection(at address: Flow.Address, collection: NFTCollectionInfo) async throws -> Flow.ID {
         let cadenceString = collection.formatCadence(script: Cadences.nftCollectionEnable)
         
-        return try await flow.sendTransaction(signers: [WalletManager.shared], builder: {
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
                 cadenceString
             }
             
             payer {
-                GasManager.shared.payer
+                RemoteConfigManager.shared.payer
             }
             
             proposer {
@@ -129,13 +129,13 @@ extension FlowNetwork {
         
         let cadenceString = collection.formatCadence(script: Cadences.nftTransfer)
         
-        return try await flow.sendTransaction(signers: [WalletManager.shared], builder: {
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
                 cadenceString
             }
             
             payer {
-                GasManager.shared.payer
+                RemoteConfigManager.shared.payer
             }
             
             proposer {

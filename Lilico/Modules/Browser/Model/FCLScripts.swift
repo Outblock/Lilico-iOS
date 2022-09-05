@@ -88,7 +88,7 @@ class FCLScripts {
 
 extension FCLScripts {
     static func generatePreAuthzResponse(address: String) -> String {
-        let dict = [AddressReplacement: address, PayerAddressReplacement: GasManager.shared.payer]
+        let dict = [AddressReplacement: address, PayerAddressReplacement: RemoteConfigManager.shared.payer]
         return FCLScripts.preAuthzResponse.replace(by: dict)
     }
     

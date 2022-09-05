@@ -86,7 +86,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/outblock/flow-swift",
       "state" : {
-        "revision" : "6059a662e93f1e1f6c4af286f48c008c92bf3600"
+        "revision" : "4ee311572e815a494ce5440a6a5f8956d97d8c2e"
       }
     },
     {

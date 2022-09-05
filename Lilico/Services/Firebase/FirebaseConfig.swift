@@ -18,6 +18,7 @@ enum FirebaseConfig: String {
     case all
     case flowCoins = "flow_coins"
     case nftCollections = "nft_collections"
+    case config = "free_gas_config"
     case dapp
 
     static func start() {
@@ -46,6 +47,21 @@ extension FirebaseConfig {
             let collections = try decoder.decode(T.self, from: json.dataValue)
             return collections
 
+        } catch {
+            throw FirebaseConfigError.decode
+        }
+    }
+    
+    func fetchLocal<T: Codable>() async throws -> T {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        guard let json = remoteConfig.defaultValue(forKey: rawValue) else {
+            throw FirebaseConfigError.decode
+        }
+        do {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let collections = try decoder.decode(T.self, from: json.dataValue)
+            return collections
         } catch {
             throw FirebaseConfigError.decode
         }

@@ -92,6 +92,7 @@ extension AppDelegate {
         _ = BackupManager.shared
         _ = SecurityManager.shared
         _ = WalletConnectManager.shared
+        _ = RemoteConfigManager.shared
     }
 
     private func commonConfig() {

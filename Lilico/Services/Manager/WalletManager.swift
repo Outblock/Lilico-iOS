@@ -493,18 +493,45 @@ extension WalletManager: FlowSigner {
         0
     }
     
+    public func sign(transaction: Flow.Transaction, signableData: Data) async throws -> Data {
+        guard let hdWallet = hdWallet else {
+            throw LLError.emptyWallet
+        }
+        
+        var privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        let hashedData = Hash.sha256(data: signableData)
+        
+        defer {
+            privateKey = PrivateKey()
+        }
+        
+        guard var signature = privateKey.sign(digest: hashedData, curve: .secp256k1) else {
+            throw LLError.signFailed
+        }
+        
+        signature.removeLast()
+        
+        return signature
+    }
+    
     public func sign(signableData: Data) async throws -> Data {
         guard let hdWallet = hdWallet else {
             throw LLError.emptyWallet
         }
         
-        let privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        var privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
         let hashedData = Hash.sha256(data: signableData)
+        
+        defer {
+            privateKey = PrivateKey()
+        }
         
         guard var signature = privateKey.sign(digest: hashedData, curve: .secp256k1) else {
             throw LLError.signFailed
         }
+        
         signature.removeLast()
+        
         return signature
     }
     
@@ -513,8 +540,12 @@ extension WalletManager: FlowSigner {
             return nil
         }
         
-        let privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        var privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
         let hashedData = Hash.sha256(data: signableData)
+        
+        defer {
+            privateKey = PrivateKey()
+        }
         
         guard var signature = privateKey.sign(digest: hashedData, curve: .secp256k1) else {
             return nil
@@ -546,7 +577,12 @@ extension HDWallet {
     }
 
     func sign(_ data: Data) -> String? {
-        let privateKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        var privateKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        
+        defer {
+            privateKey = PrivateKey()
+        }
+        
         let hashedData = Hash.sha256(data: data)
         guard var signature = privateKey.sign(digest: hashedData, curve: .secp256k1) else {
             return nil

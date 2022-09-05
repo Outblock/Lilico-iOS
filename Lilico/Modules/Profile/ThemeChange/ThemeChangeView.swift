@@ -35,6 +35,7 @@ struct ThemeChangeView: RouteableView {
                         themeItemView.padding(.vertical, 24)
                         BaseDivider()
                         autoItemView
+                            .hoverEffect(.lift)
                     }
         //            .roundedBg(cornerRadius: 16, fillColor: .LL.bgForIcon)
                     .background(.LL.bgForIcon)
