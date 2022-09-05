@@ -25,15 +25,16 @@ class BrowserViewController: UIViewController {
         return layer
     }()
     
-    private lazy var webViewConfig: WKWebViewConfiguration = {
-        let config = WKWebViewConfiguration()
-        return config
-    }()
-    
-    private lazy var webView: WKWebView = {
-        let view = WKWebView(frame: .zero, configuration: webViewConfig)
+    lazy var webView: WKWebView = {
+        let view = WKWebView(frame: .zero, configuration: generateWebViewConfiguration())
         view.navigationDelegate = self
         return view
+    }()
+    
+    lazy var jsHandler: JSMessageHandler = {
+        let obj = JSMessageHandler()
+        obj.webVC = self
+        return obj
     }()
     
     private lazy var actionBarView: BrowserActionBarView = {

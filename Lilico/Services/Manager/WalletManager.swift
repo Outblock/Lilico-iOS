@@ -508,7 +508,20 @@ extension WalletManager: FlowSigner {
         return signature
     }
     
-    
+    public func signSync(signableData: Data) -> Data? {
+        guard let hdWallet = hdWallet else {
+            return nil
+        }
+        
+        let privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        let hashedData = Hash.sha256(data: signableData)
+        
+        guard var signature = privateKey.sign(digest: hashedData, curve: .secp256k1) else {
+            return nil
+        }
+        signature.removeLast()
+        return signature
+    }
 }
 
 extension HDWallet {

@@ -324,3 +324,4 @@
 
 // Browser
 "browser_search_failed" = "Search failed. Please try again.";
+"browser_not_login" = "You are not logged in.";

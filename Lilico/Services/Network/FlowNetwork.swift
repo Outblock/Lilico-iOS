@@ -43,6 +43,10 @@ extension FlowNetwork {
                 cadenceString
             }
             
+            payer {
+                GasManager.shared.payer
+            }
+            
             proposer {
                 address
             }
@@ -62,7 +66,7 @@ extension FlowNetwork {
             }
             
             payer {
-                WalletManager.shared.getPrimaryWalletAddress() ?? ""
+                GasManager.shared.payer
             }
             
             proposer {
@@ -96,6 +100,10 @@ extension FlowNetwork {
                 cadenceString
             }
             
+            payer {
+                GasManager.shared.payer
+            }
+            
             proposer {
                 address
             }
@@ -124,6 +132,10 @@ extension FlowNetwork {
         return try await flow.sendTransaction(signers: [WalletManager.shared], builder: {
             cadence {
                 cadenceString
+            }
+            
+            payer {
+                GasManager.shared.payer
             }
             
             proposer {

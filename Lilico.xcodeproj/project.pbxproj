@@ -965,6 +965,8 @@
 		6A45898A28C1DF0000B1024B /* LilicoAPI+Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A45898828C1DF0000B1024B /* LilicoAPI+Browser.swift */; };
 		6A45898C28C1E05100B1024B /* BrowserResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A45898B28C1E05100B1024B /* BrowserResponses.swift */; };
 		6A45898D28C1E05100B1024B /* BrowserResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A45898B28C1E05100B1024B /* BrowserResponses.swift */; };
+		6A45898F28C20CA400B1024B /* BrowserViewController+JS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A45898E28C20CA300B1024B /* BrowserViewController+JS.swift */; };
+		6A45899028C20CA400B1024B /* BrowserViewController+JS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A45898E28C20CA300B1024B /* BrowserViewController+JS.swift */; };
 		6A49C19B2899126B00C8FF05 /* ProfileBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49C19A2899126B00C8FF05 /* ProfileBackupView.swift */; };
 		6A49C19C2899126B00C8FF05 /* ProfileBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49C19A2899126B00C8FF05 /* ProfileBackupView.swift */; };
 		6A49C19E2899364100C8FF05 /* ProfileBackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49C19D2899364100C8FF05 /* ProfileBackupViewModel.swift */; };
@@ -994,6 +996,8 @@
 		6A6BD9E0287D5467009FA262 /* PlaceholderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9DE287D5467009FA262 /* PlaceholderStyle.swift */; };
 		6A6BE741288805130012588F /* GoogleDriveAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BE740288805130012588F /* GoogleDriveAPI.swift */; };
 		6A6BE742288805140012588F /* GoogleDriveAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BE740288805130012588F /* GoogleDriveAPI.swift */; };
+		6A73BF5228C59028004B836A /* JSMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73BF5128C59028004B836A /* JSMessageHandler.swift */; };
+		6A73BF5328C59029004B836A /* JSMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73BF5128C59028004B836A /* JSMessageHandler.swift */; };
 		6A7C080F286EE95E00020987 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 6A7C080E286EE95E00020987 /* SwiftUICharts */; };
 		6A7F650A289A4CE3007188DC /* PageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F6509289A4CE3007188DC /* PageCache.swift */; };
 		6A7F650B289A4CE3007188DC /* PageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F6509289A4CE3007188DC /* PageCache.swift */; };
@@ -1097,6 +1101,18 @@
 		6AE0842128505887003BEEF0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE0841F28505887003BEEF0 /* Error.swift */; };
 		6AE084242851D481003BEEF0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE084222851D481003BEEF0 /* Logger.swift */; };
 		6AE0842A2851E7B3003BEEF0 /* Published.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE084282851E7B3003BEEF0 /* Published.swift */; };
+		6AE1817328C59B57009ADDDB /* JSModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817228C59B57009ADDDB /* JSModels.swift */; };
+		6AE1817428C59B57009ADDDB /* JSModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817228C59B57009ADDDB /* JSModels.swift */; };
+		6AE1817628C5A2E6009ADDDB /* GasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817528C5A2E6009ADDDB /* GasManager.swift */; };
+		6AE1817728C5A2E6009ADDDB /* GasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817528C5A2E6009ADDDB /* GasManager.swift */; };
+		6AE1817928C5A457009ADDDB /* FCLScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817828C5A457009ADDDB /* FCLScripts.swift */; };
+		6AE1817A28C5A457009ADDDB /* FCLScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817828C5A457009ADDDB /* FCLScripts.swift */; };
+		6AE1817C28C5D654009ADDDB /* FCLAuthnResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817B28C5D654009ADDDB /* FCLAuthnResponse.swift */; };
+		6AE1817D28C5D654009ADDDB /* FCLAuthnResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817B28C5D654009ADDDB /* FCLAuthnResponse.swift */; };
+		6AE1817F28C5D69A009ADDDB /* FCLAuthzResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817E28C5D69A009ADDDB /* FCLAuthzResponse.swift */; };
+		6AE1818028C5D69A009ADDDB /* FCLAuthzResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1817E28C5D69A009ADDDB /* FCLAuthzResponse.swift */; };
+		6AE1818228C5E296009ADDDB /* FCLSignMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1818128C5E296009ADDDB /* FCLSignMessageResponse.swift */; };
+		6AE1818328C5E296009ADDDB /* FCLSignMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1818128C5E296009ADDDB /* FCLSignMessageResponse.swift */; };
 		6AE1D48E287690E7000FA0B7 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 6AE1D48D287690E7000FA0B7 /* SwiftUIPager */; };
 		6AE4605E286ED142009C2B96 /* TokenDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4605D286ED142009C2B96 /* TokenDetailViewModel.swift */; };
 		6AE4605F286ED142009C2B96 /* TokenDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4605D286ED142009C2B96 /* TokenDetailViewModel.swift */; };
@@ -1620,6 +1636,7 @@
 		6A45898528C1A70200B1024B /* BrowserSearchItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserSearchItemCell.swift; sourceTree = "<group>"; };
 		6A45898828C1DF0000B1024B /* LilicoAPI+Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+Browser.swift"; sourceTree = "<group>"; };
 		6A45898B28C1E05100B1024B /* BrowserResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserResponses.swift; sourceTree = "<group>"; };
+		6A45898E28C20CA300B1024B /* BrowserViewController+JS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowserViewController+JS.swift"; sourceTree = "<group>"; };
 		6A49C19A2899126B00C8FF05 /* ProfileBackupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBackupView.swift; sourceTree = "<group>"; };
 		6A49C19D2899364100C8FF05 /* ProfileBackupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBackupViewModel.swift; sourceTree = "<group>"; };
 		6A4A234F28365B31001F1FDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -1635,6 +1652,7 @@
 		6A6BD9DB287D5066009FA262 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		6A6BD9DE287D5467009FA262 /* PlaceholderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderStyle.swift; sourceTree = "<group>"; };
 		6A6BE740288805130012588F /* GoogleDriveAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDriveAPI.swift; sourceTree = "<group>"; };
+		6A73BF5128C59028004B836A /* JSMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSMessageHandler.swift; sourceTree = "<group>"; };
 		6A7F6509289A4CE3007188DC /* PageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCache.swift; sourceTree = "<group>"; };
 		6A7F650D289A70D6007188DC /* ProfileSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSecureView.swift; sourceTree = "<group>"; };
 		6A7F6510289A8391007188DC /* VerifyPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPinView.swift; sourceTree = "<group>"; };
@@ -1700,6 +1718,12 @@
 		6AE0841F28505887003BEEF0 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		6AE084222851D481003BEEF0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6AE084282851E7B3003BEEF0 /* Published.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Published.swift; sourceTree = "<group>"; };
+		6AE1817228C59B57009ADDDB /* JSModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSModels.swift; sourceTree = "<group>"; };
+		6AE1817528C5A2E6009ADDDB /* GasManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasManager.swift; sourceTree = "<group>"; };
+		6AE1817828C5A457009ADDDB /* FCLScripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCLScripts.swift; sourceTree = "<group>"; };
+		6AE1817B28C5D654009ADDDB /* FCLAuthnResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCLAuthnResponse.swift; sourceTree = "<group>"; };
+		6AE1817E28C5D69A009ADDDB /* FCLAuthzResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCLAuthzResponse.swift; sourceTree = "<group>"; };
+		6AE1818128C5E296009ADDDB /* FCLSignMessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCLSignMessageResponse.swift; sourceTree = "<group>"; };
 		6AE4605D286ED142009C2B96 /* TokenDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailViewModel.swift; sourceTree = "<group>"; };
 		6AE69E9128C08310004D4709 /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		6AE69E9528C085F0004D4709 /* BrowserActionBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserActionBarView.swift; sourceTree = "<group>"; };
@@ -3184,6 +3208,7 @@
 				6AE08415284EF667003BEEF0 /* LocalUserDefaults.swift */,
 				6A382E23289BDAFF00163564 /* SecurityManager.swift */,
 				6A95CFB328B7747F00267F86 /* TransactionManager.swift */,
+				6AE1817528C5A2E6009ADDDB /* GasManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -3568,6 +3593,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		6A73BF5028C59019004B836A /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				6A73BF5128C59028004B836A /* JSMessageHandler.swift */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
 		6A7F650C289A709F007188DC /* ProfileSecure */ = {
 			isa = PBXGroup;
 			children = (
@@ -3806,12 +3839,27 @@
 			path = DeveloperMode;
 			sourceTree = "<group>";
 		};
+		6AE1817128C59B4B009ADDDB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6AE1817228C59B57009ADDDB /* JSModels.swift */,
+				6AE1817828C5A457009ADDDB /* FCLScripts.swift */,
+				6AE1817B28C5D654009ADDDB /* FCLAuthnResponse.swift */,
+				6AE1817E28C5D69A009ADDDB /* FCLAuthzResponse.swift */,
+				6AE1818128C5E296009ADDDB /* FCLSignMessageResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6AE69E9028C082BF004D4709 /* Browser */ = {
 			isa = PBXGroup;
 			children = (
+				6AE1817128C59B4B009ADDDB /* Model */,
+				6A73BF5028C59019004B836A /* Handler */,
 				6AE69EA128C0AE85004D4709 /* Input */,
 				6AE69E9428C085C9004D4709 /* View */,
 				6AE69E9128C08310004D4709 /* BrowserViewController.swift */,
+				6A45898E28C20CA300B1024B /* BrowserViewController+JS.swift */,
 			);
 			path = Browser;
 			sourceTree = "<group>";
@@ -4294,6 +4342,7 @@
 				15DC21ED27819C57000B187A /* StateColors_OOID.swift in Sources */,
 				6A115972288E72CC005EF797 /* Coordinator.swift in Sources */,
 				6AF2ED9228364BC200F06AD3 /* UIFont.swift in Sources */,
+				6AE1817D28C5D654009ADDDB /* FCLAuthnResponse.swift in Sources */,
 				15DC217D27819C56000B187A /* _VModal.swift in Sources */,
 				6A49C19F2899364100C8FF05 /* ProfileBackupViewModel.swift in Sources */,
 				4EB17C872862947600CA4DAE /* NFTCollectionModel.swift in Sources */,
@@ -4353,6 +4402,7 @@
 				6A62122D28ACC592002046CA /* UIImage.swift in Sources */,
 				6AF1F35E2869977B0084DF3D /* AddTokenView.swift in Sources */,
 				6A4A235128365B31001F1FDE /* Image.swift in Sources */,
+				6AE1818028C5D69A009ADDDB /* FCLAuthzResponse.swift in Sources */,
 				1570467F2793EBA100D1747B /* GithubEndpoint.swift in Sources */,
 				6A65690C289128EE007D9BDA /* RouterNavigationController.swift in Sources */,
 				1588331B28943D1D00142B35 /* Texts.swift in Sources */,
@@ -4421,6 +4471,7 @@
 				4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */,
 				6AA591F728854FB300F4B5CA /* BackupGDTarget.swift in Sources */,
 				6A8D223E2881499D005A7081 /* RecentListCache.swift in Sources */,
+				6A45899028C20CA400B1024B /* BrowserViewController+JS.swift in Sources */,
 				15DC20D127819C56000B187A /* VNavigationLinkType.swift in Sources */,
 				6A37AD9C28BE15700047E5F7 /* SendAmountTransactionProcessView.swift in Sources */,
 				4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */,
@@ -4458,6 +4509,7 @@
 				1575A71528B25EE800ADC513 /* FluidView.swift in Sources */,
 				6ACDD17728587FF800F406EB /* ProfileEditNameViewModel.swift in Sources */,
 				15DC211F27819C56000B187A /* VSpinnerType.swift in Sources */,
+				6AE1817428C59B57009ADDDB /* JSModels.swift in Sources */,
 				15DC207F27819C56000B187A /* VBaseViewNavigationBarLeading.swift in Sources */,
 				6AEA374728A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift in Sources */,
 				15DC207B27819C56000B187A /* VBaseView.swift in Sources */,
@@ -4473,6 +4525,7 @@
 				4EC482D3284A3D75000A7E1B /* MMCQ.swift in Sources */,
 				15DC21AB27819C56000B187A /* FocusableTextField.swift in Sources */,
 				15DC219B27819C56000B187A /* VTextFieldActions.swift in Sources */,
+				6A73BF5328C59029004B836A /* JSMessageHandler.swift in Sources */,
 				6A16F19428B8B1AC0055936E /* TransactionHolderView.swift in Sources */,
 				154B8908276A1EEB00780E93 /* ColorBook.swift in Sources */,
 				1565FB9028B15D890086A652 /* LottieView.swift in Sources */,
@@ -4593,6 +4646,7 @@
 				6A8FA4B4285B192900EE5BE3 /* ScrollView+SnappableModifier.swift in Sources */,
 				15DC214F27819C56000B187A /* VNavigationViewNavigationBar.swift in Sources */,
 				6A164F602845F1CB0026B31E /* IndexBarBackground.swift in Sources */,
+				6AE1817A28C5A457009ADDDB /* FCLScripts.swift in Sources */,
 				1552DC652787063100EAA7D5 /* PinStackView.swift in Sources */,
 				15DC212D27819C56000B187A /* VWheelPicker.swift in Sources */,
 				15DC20EB27819C56000B187A /* VAccordionLayoutType.swift in Sources */,
@@ -4675,6 +4729,7 @@
 				158832EE28942FCE00142B35 /* Signable.swift in Sources */,
 				15DC211927819C56000B187A /* VPageIndicatorType.swift in Sources */,
 				15DC20AF27819C56000B187A /* VBaseButtonGestureState.swift in Sources */,
+				6AE1817728C5A2E6009ADDDB /* GasManager.swift in Sources */,
 				6A8FA4A8285B192900EE5BE3 /* DraggingDetector.swift in Sources */,
 				6AE0841B284EFF6D003BEEF0 /* DeveloperModeView.swift in Sources */,
 				1588330B28943D1D00142B35 /* SPQRDetailButton.swift in Sources */,
@@ -4711,6 +4766,7 @@
 				154B8918276A1EEB00780E93 /* Endpoint.swift in Sources */,
 				15DE22E3277EACF200B5EE03 /* ChooseAccountView.swift in Sources */,
 				6A9C34F928AB6C0A00AA41A5 /* NFTUIKitSegmentControl.swift in Sources */,
+				6AE1818328C5E296009ADDDB /* FCLSignMessageResponse.swift in Sources */,
 				15DC21DF27819C56000B187A /* StateColors_EPD.swift in Sources */,
 				6AC1AE6E289BAD3500F76C7A /* PinCodeTextField.swift in Sources */,
 				1599F771278892680094B196 /* InputMnemonicViewModel.swift in Sources */,
@@ -4790,6 +4846,7 @@
 				15C58AC32868A4EE00BD4FC6 /* StateColors_OOID.swift in Sources */,
 				6A115971288E72CC005EF797 /* Coordinator.swift in Sources */,
 				15C58AC42868A4EE00BD4FC6 /* UIFont.swift in Sources */,
+				6AE1817C28C5D654009ADDDB /* FCLAuthnResponse.swift in Sources */,
 				15C58AC52868A4EE00BD4FC6 /* _VModal.swift in Sources */,
 				6A49C19E2899364100C8FF05 /* ProfileBackupViewModel.swift in Sources */,
 				15C58AC62868A4EE00BD4FC6 /* NFTCollectionModel.swift in Sources */,
@@ -4849,6 +4906,7 @@
 				6A62122C28ACC592002046CA /* UIImage.swift in Sources */,
 				6AF1F35D2869977B0084DF3D /* AddTokenView.swift in Sources */,
 				15C58AF42868A4EE00BD4FC6 /* Image.swift in Sources */,
+				6AE1817F28C5D69A009ADDDB /* FCLAuthzResponse.swift in Sources */,
 				15C58AF52868A4EE00BD4FC6 /* GithubEndpoint.swift in Sources */,
 				6A65690B289128EE007D9BDA /* RouterNavigationController.swift in Sources */,
 				1588331A28943D1D00142B35 /* Texts.swift in Sources */,
@@ -4917,6 +4975,7 @@
 				15C58B292868A4EE00BD4FC6 /* AddCollectionViewModel.swift in Sources */,
 				6AA591F628854FB300F4B5CA /* BackupGDTarget.swift in Sources */,
 				6A8D223D2881499D005A7081 /* RecentListCache.swift in Sources */,
+				6A45898F28C20CA400B1024B /* BrowserViewController+JS.swift in Sources */,
 				15C58B2A2868A4EE00BD4FC6 /* VNavigationLinkType.swift in Sources */,
 				6A37AD9B28BE15700047E5F7 /* SendAmountTransactionProcessView.swift in Sources */,
 				15C58B2B2868A4EE00BD4FC6 /* WalletViewModel.swift in Sources */,
@@ -4954,6 +5013,7 @@
 				1575A71428B25EE800ADC513 /* FluidView.swift in Sources */,
 				15C58B432868A4EE00BD4FC6 /* ProfileEditNameViewModel.swift in Sources */,
 				15C58B442868A4EE00BD4FC6 /* VSpinnerType.swift in Sources */,
+				6AE1817328C59B57009ADDDB /* JSModels.swift in Sources */,
 				15C58B452868A4EE00BD4FC6 /* VBaseViewNavigationBarLeading.swift in Sources */,
 				6AEA374628A4AD7F004545D4 /* NFTUIKitCollectionItemCell.swift in Sources */,
 				15C58B462868A4EE00BD4FC6 /* VBaseView.swift in Sources */,
@@ -4969,6 +5029,7 @@
 				15C58B502868A4EE00BD4FC6 /* MMCQ.swift in Sources */,
 				15C58B512868A4EE00BD4FC6 /* FocusableTextField.swift in Sources */,
 				15C58B522868A4EE00BD4FC6 /* VTextFieldActions.swift in Sources */,
+				6A73BF5228C59028004B836A /* JSMessageHandler.swift in Sources */,
 				6A16F19328B8B1AC0055936E /* TransactionHolderView.swift in Sources */,
 				15C58B532868A4EE00BD4FC6 /* ColorBook.swift in Sources */,
 				1565FB8F28B15D890086A652 /* LottieView.swift in Sources */,
@@ -5089,6 +5150,7 @@
 				15C58BAD2868A4EE00BD4FC6 /* ScrollView+SnappableModifier.swift in Sources */,
 				15C58BAE2868A4EE00BD4FC6 /* VNavigationViewNavigationBar.swift in Sources */,
 				15C58BAF2868A4EE00BD4FC6 /* IndexBarBackground.swift in Sources */,
+				6AE1817928C5A457009ADDDB /* FCLScripts.swift in Sources */,
 				15C58BB02868A4EE00BD4FC6 /* PinStackView.swift in Sources */,
 				15C58BB12868A4EE00BD4FC6 /* VWheelPicker.swift in Sources */,
 				15C58BB22868A4EE00BD4FC6 /* VAccordionLayoutType.swift in Sources */,
@@ -5171,6 +5233,7 @@
 				158832ED28942FCE00142B35 /* Signable.swift in Sources */,
 				15C58BF92868A4EE00BD4FC6 /* VPageIndicatorType.swift in Sources */,
 				15C58BFA2868A4EE00BD4FC6 /* VBaseButtonGestureState.swift in Sources */,
+				6AE1817628C5A2E6009ADDDB /* GasManager.swift in Sources */,
 				15C58BFB2868A4EE00BD4FC6 /* DraggingDetector.swift in Sources */,
 				15C58BFC2868A4EE00BD4FC6 /* DeveloperModeView.swift in Sources */,
 				1588330A28943D1D00142B35 /* SPQRDetailButton.swift in Sources */,
@@ -5207,6 +5270,7 @@
 				15C58C192868A4EE00BD4FC6 /* Endpoint.swift in Sources */,
 				15C58C1A2868A4EE00BD4FC6 /* ChooseAccountView.swift in Sources */,
 				6A9C34F828AB6C0A00AA41A5 /* NFTUIKitSegmentControl.swift in Sources */,
+				6AE1818228C5E296009ADDDB /* FCLSignMessageResponse.swift in Sources */,
 				15C58C1B2868A4EE00BD4FC6 /* StateColors_EPD.swift in Sources */,
 				6AC1AE6D289BAD3500F76C7A /* PinCodeTextField.swift in Sources */,
 				15C58C1C2868A4EE00BD4FC6 /* InputMnemonicViewModel.swift in Sources */,
