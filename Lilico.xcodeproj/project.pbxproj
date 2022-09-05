@@ -167,7 +167,6 @@
 		1599F771278892680094B196 /* InputMnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F76F278892680094B196 /* InputMnemonicViewModel.swift */; };
 		1599F774278894E00094B196 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F772278894E00094B196 /* String.swift */; };
 		159CFF2C27887ED3006421FB /* InputMnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CFF2A27887ED3006421FB /* InputMnemonicView.swift */; };
-		159DEC8628C666E400493E9F /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 159DEC8528C666E400493E9F /* RiveRuntime */; };
 		159DEC8828C6753700493E9F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC8728C6753700493E9F /* Colors.swift */; };
 		159DEC8928C6753700493E9F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC8728C6753700493E9F /* Colors.swift */; };
 		159DEC8C28C679F800493E9F /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC8B28C679F800493E9F /* ARViewController.swift */; };
@@ -1801,7 +1800,6 @@
 			files = (
 				156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */,
 				154B891A276A1EEB00780E93 /* Flow in Frameworks */,
-				159DEC8628C666E400493E9F /* RiveRuntime in Frameworks */,
 				15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */,
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
 				15F517FD28C6577000504FDC /* Atlantis in Frameworks */,
@@ -4084,7 +4082,6 @@
 				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
 				15D3BA7628C45F21009AEA6E /* Hero */,
 				15F517FC28C6577000504FDC /* Atlantis */,
-				159DEC8528C666E400493E9F /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -6345,11 +6342,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1588332028943F4D00142B35 /* XCRemoteSwiftPackageReference "NativeUIKit" */;
 			productName = NativeUIKit;
-		};
-		159DEC8528C666E400493E9F /* RiveRuntime */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
-			productName = RiveRuntime;
 		};
 		15C58A7F2868A4EE00BD4FC6 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
