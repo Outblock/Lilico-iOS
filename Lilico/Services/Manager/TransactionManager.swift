@@ -218,7 +218,10 @@ class TransactionManager {
             return
         }
         
-        HUD.success(title: "transaction_success".localized)
+        HUD.success(title: "transaction_success".localized, message: nil, preset: .done, haptic: .none)
+        
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
+        feedbackGenerator.impactOccurred()
         
         removeTransaction(id: holder.transactionId.hex)
         

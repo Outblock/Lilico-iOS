@@ -104,7 +104,7 @@ extension WalletConnectView {
             VStack(alignment: .center, spacing: 18) {
                 Spacer()
                 ResizableLottieView(lottieView: animationView,
-                                    color: Color(hex: "#3496FF"))
+                                    color: Color(hex: "#3B99FC"))
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 120, height: 120)
                 .frame(maxWidth: .infinity)
@@ -128,7 +128,7 @@ extension WalletConnectView {
                         .fontWeight(.semibold)
                         .foregroundColor(Color.white)
                         .padding(15)
-                        .background(Color(hex: "#3496FF"))
+                        .background(Color(hex: "#3B99FC"))
                         .cornerRadius(12)
                 }
                 .padding(.top, 12)

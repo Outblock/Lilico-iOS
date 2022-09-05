@@ -230,6 +230,7 @@ extension WalletSendAmountViewModel {
         
         isSending = true
 //        HUD.loading("sending".localized)
+
         
         Task {
             do {
@@ -249,6 +250,10 @@ extension WalletSendAmountViewModel {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         Router.dismiss()
                     }
+                    
+                    
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.notificationOccurred(.success)
                     
                     let holder = TransactionManager.TransactionHolder(id: id, type: .transferCoin, data: data)
                     TransactionManager.shared.newTransaction(holder: holder)

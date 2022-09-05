@@ -343,6 +343,7 @@ extension WalletSendAmountView {
                     Spacer()
                     
                     sendButton
+                        .padding(.bottom, 10)
                 }
                 .padding(.horizontal, 28)
             }

@@ -811,6 +811,8 @@
 		15DC21F32781F7D9000B187A /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC21F12781F7D9000B187A /* Keyboard.swift */; };
 		15DE214328C52FA4008AFE17 /* QRScan.json in Resources */ = {isa = PBXBuildFile; fileRef = 15DE214228C52FA3008AFE17 /* QRScan.json */; };
 		15DE214428C52FA4008AFE17 /* QRScan.json in Resources */ = {isa = PBXBuildFile; fileRef = 15DE214228C52FA3008AFE17 /* QRScan.json */; };
+		15DE214F28C57968008AFE17 /* AR.json in Resources */ = {isa = PBXBuildFile; fileRef = 15DE214E28C57968008AFE17 /* AR.json */; };
+		15DE215028C57968008AFE17 /* AR.json in Resources */ = {isa = PBXBuildFile; fileRef = 15DE214E28C57968008AFE17 /* AR.json */; };
 		15DE22D0277DBDF800B5EE03 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22CE277DBDF800B5EE03 /* WalletManager.swift */; };
 		15DE22D3277DBE0000B5EE03 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22D1277DBE0000B5EE03 /* UserManager.swift */; };
 		15DE22DB277DF2F600B5EE03 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 15DE22DA277DF2F600B5EE03 /* KeychainAccess */; };
@@ -1502,6 +1504,7 @@
 		15DC21F12781F7D9000B187A /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		15DDFB8F2750D03E008263A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15DE214228C52FA3008AFE17 /* QRScan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QRScan.json; sourceTree = "<group>"; };
+		15DE214E28C57968008AFE17 /* AR.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AR.json; sourceTree = "<group>"; };
 		15DE22CE277DBDF800B5EE03 /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
 		15DE22D1277DBE0000B5EE03 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		15DE22DE277DF37D00B5EE03 /* RestoreWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreWalletView.swift; sourceTree = "<group>"; };
@@ -1968,6 +1971,7 @@
 		1565FB5D28B14F140086A652 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				15DE214E28C57968008AFE17 /* AR.json */,
 				15DE214228C52FA3008AFE17 /* QRScan.json */,
 				1565FBA128B16FD60086A652 /* Category.json */,
 				1565FBA028B16FD50086A652 /* Compass.json */,
@@ -4118,6 +4122,7 @@
 				1575A72728B26B9600ADC513 /* index.html in Resources */,
 				1575A73828B28D3300ADC513 /* LDR_LLL1_0.png in Resources */,
 				154B8922276A1EEB00780E93 /* Preview Assets.xcassets in Resources */,
+				15DE215028C57968008AFE17 /* AR.json in Resources */,
 				1565FB6828B14F140086A652 /* Account.json in Resources */,
 				1565FB9F28B16B580086A652 /* CoinHover.json in Resources */,
 				4EA820C7286354E200DF36A8 /* remote_config_defaults.plist in Resources */,
@@ -4176,6 +4181,7 @@
 				15C58C632868A4EE00BD4FC6 /* Inter.ttf in Resources */,
 				1565FBAB28B171BB0086A652 /* Avatar.json in Resources */,
 				1565FB6B28B14F140086A652 /* Home.json in Resources */,
+				15DE214F28C57968008AFE17 /* AR.json in Resources */,
 				1575A72A28B26B9600ADC513 /* script.js in Resources */,
 				1565FBB328B171BB0086A652 /* Copy-soild.json in Resources */,
 				1565FBB128B171BB0086A652 /* Copy.json in Resources */,
