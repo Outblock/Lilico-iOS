@@ -138,10 +138,18 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func addPainting(_ hitResult: ARHitTestResult, _ grid: Grid) {
+        
+        let imageView = UIImageView()
+            imageView.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
+            imageView.image = image
+            imageView.contentMode = .scaleAspectFit
+            imageView.backgroundColor = .clear
+            imageView.layer.masksToBounds = true
+        
         // 1.
-        let planeGeometry = SCNPlane(width: 0.2, height: 0.2)
+        let planeGeometry = SCNPlane(width: 0.3, height: 0.3)
         let material = SCNMaterial()
-        material.diffuse.contents = image
+        material.diffuse.contents = imageView.asImage()
         planeGeometry.materials = [material]
         
         // 2.
@@ -152,5 +160,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.scene.rootNode.addChildNode(paintingNode)
         grid.removeFromParentNode()
+    }
+}
+
+extension UIView {
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+            return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
     }
 }
