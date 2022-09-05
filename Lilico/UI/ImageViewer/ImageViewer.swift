@@ -88,7 +88,7 @@ public struct ImageViewer: View {
                                         self.dragOffsetPredicted = value.predictedEndTranslation
                                     }
                                     .onEnded { value in
-                                        if((abs(self.dragOffset.height) + abs(self.dragOffset.width) > 570) || ((abs(self.dragOffsetPredicted.height)) / (abs(self.dragOffset.height)) > 3) || ((abs(self.dragOffsetPredicted.width)) / (abs(self.dragOffset.width))) > 3) {
+                                        if((abs(self.dragOffset.height) + abs(self.dragOffset.width) > 270) || ((abs(self.dragOffsetPredicted.height)) / (abs(self.dragOffset.height)) > 2) || ((abs(self.dragOffsetPredicted.width)) / (abs(self.dragOffset.width))) > 2) {
                                             withAnimation(.spring()) {
                                                 self.dragOffset = self.dragOffsetPredicted
                                             }
