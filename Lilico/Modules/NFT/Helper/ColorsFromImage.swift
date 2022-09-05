@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import ColorKit
+import Kingfisher
 
 extension UIImage {
     func colors() async -> [Color] {
@@ -34,4 +35,40 @@ extension UIImage {
         
         return [Color(palette.background), Color(palette.primary), (palette.secondary != nil) ? Color(palette.secondary!) : .LL.text]
     }
+}
+
+
+enum ImageHelper {
+    
+    static func colors(from url: String) async -> [Color] {
+        return await withCheckedContinuation { continuation in
+            ImageCache.default.retrieveImage(forKey: url) { result in
+                switch result {
+                case let .success(value):
+                    Task {
+                        let colors = await value.image!.colors()
+                        continuation.resume(returning: colors)
+                    }
+
+                case .failure:
+                    continuation.resume(returning: [Color.LL.background, Color.LL.text, Color.LL.outline])
+                }
+            }
+        }
+    }
+    
+    static func image(from url: String) async -> UIImage? {
+        return await withCheckedContinuation { continuation in
+            ImageCache.default.retrieveImage(forKey: url) { result in
+                switch result {
+                case let .success(value):
+                    continuation.resume(returning: value.image)
+
+                case .failure:
+                    continuation.resume(returning: nil)
+                }
+            }
+        }
+    }
+    
 }

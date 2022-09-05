@@ -575,8 +575,9 @@ extension NFTUIKitListStyleHandler: UICollectionViewDelegateFlowLayout, UICollec
 
 extension NFTUIKitListStyleHandler {
     class EmptyView: UIView {
-        private lazy var bgImageView: UIImageView = {
-            let view = UIImageView(image: UIImage(named: "nft_empty_bg"))
+        private lazy var bgImageView: UIView = {
+            let view = UIHostingController(rootView: NFTEmptyView()).view ?? UIView()
+//            UIImageView(image: UIImage(named: "nft_empty_bg"))
             view.contentMode = .scaleAspectFill
             view.clipsToBounds = true
             return view

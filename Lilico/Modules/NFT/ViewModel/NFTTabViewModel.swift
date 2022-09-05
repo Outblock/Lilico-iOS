@@ -77,26 +77,9 @@ extension NFTTabViewModel {
             return
         }
         Task {
-            let colors = await NFTTabViewModel.colors(from: url)
+            let colors = await ImageHelper.colors(from: url)
             DispatchQueue.main.async {
                 self.state.colorsMap[url] = colors
-            }
-        }
-    }
-
-    static func colors(from url: String) async -> [Color] {
-        return await withCheckedContinuation { continuation in
-            ImageCache.default.retrieveImage(forKey: url) { result in
-                switch result {
-                case let .success(value):
-                    Task {
-                        let colors = await value.image!.colors()
-                        continuation.resume(returning: colors)
-                    }
-
-                case .failure:
-                    continuation.resume(returning: [Color.LL.background, Color.LL.text, Color.LL.outline])
-                }
             }
         }
     }

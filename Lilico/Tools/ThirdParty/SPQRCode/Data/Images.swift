@@ -21,6 +21,7 @@
 
 import UIKit
 
+extension SPQRCodeData {
 enum Images {
     
     static func detail_safari() -> UIImage {
@@ -36,7 +37,7 @@ enum Images {
     }
     
     static func detail_flow_wallet() -> UIImage {
-        return UIImage.init(named: "flow-black") ?? UIImage()
+        return UIImage.init(named: "flow") ?? UIImage()
     }
     
 //    // MARK: - Internal
@@ -56,4 +57,5 @@ enum Images {
 //        return bundle
 //        #endif
 //    }
+}
 }

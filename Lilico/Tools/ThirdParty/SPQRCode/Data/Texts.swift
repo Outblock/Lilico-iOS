@@ -21,6 +21,7 @@
 
 import Foundation
 
+extension SPQRCodeData {
 enum Texts {
     
     static var action_handle: String { "action_handle".localized }
@@ -50,4 +51,5 @@ enum Texts {
 //        return bundle
 //        #endif
 //    }
+}
 }

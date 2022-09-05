@@ -128,6 +128,10 @@ open class SPQRCameraController: SPController {
         let duration: TimeInterval = 0.22
         if qrCodeData != nil {
             detailView.isHidden = false
+            if case .flowWallet(_) = qrCodeData {
+                detailView.applyDefaultAppearance(with: .init(content: .white, background: UIColor(hex: "#00EF8B")))
+                frameLayer.strokeColor = UIColor(hex: "#00EF8B").cgColor
+            }
             UIView.animate(withDuration: duration, delay: .zero, options: .curveEaseInOut, animations: {
                 self.detailView.transform = .identity
                 self.detailView.alpha = 1

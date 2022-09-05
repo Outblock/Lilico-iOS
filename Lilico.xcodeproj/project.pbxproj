@@ -167,6 +167,15 @@
 		1599F771278892680094B196 /* InputMnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F76F278892680094B196 /* InputMnemonicViewModel.swift */; };
 		1599F774278894E00094B196 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F772278894E00094B196 /* String.swift */; };
 		159CFF2C27887ED3006421FB /* InputMnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CFF2A27887ED3006421FB /* InputMnemonicView.swift */; };
+		159DEC8628C666E400493E9F /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 159DEC8528C666E400493E9F /* RiveRuntime */; };
+		159DEC8828C6753700493E9F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC8728C6753700493E9F /* Colors.swift */; };
+		159DEC8928C6753700493E9F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC8728C6753700493E9F /* Colors.swift */; };
+		159DEC8C28C679F800493E9F /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC8B28C679F800493E9F /* ARViewController.swift */; };
+		159DEC8D28C679F800493E9F /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC8B28C679F800493E9F /* ARViewController.swift */; };
+		159DEC8F28C67A3700493E9F /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC8E28C67A3700493E9F /* Grid.swift */; };
+		159DEC9028C67A3700493E9F /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC8E28C67A3700493E9F /* Grid.swift */; };
+		159DEC9228C67DB900493E9F /* NFTDetailPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC9128C67DB900493E9F /* NFTDetailPageViewModel.swift */; };
+		159DEC9328C67DB900493E9F /* NFTDetailPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DEC9128C67DB900493E9F /* NFTDetailPageViewModel.swift */; };
 		15B1F62D2786ABE400847BB5 /* BackupPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F62B2786ABE400847BB5 /* BackupPasswordView.swift */; };
 		15B1F6302786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F62E2786AC9E00847BB5 /* BackupPasswordViewModel.swift */; };
 		15B1F6332786B1BB00847BB5 /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1F6312786B1BB00847BB5 /* CheckboxStyle.swift */; };
@@ -1307,6 +1316,10 @@
 		159A55FE27536CD9004BCACC /* ImageBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBook.swift; sourceTree = "<group>"; };
 		159A560127536E4E004BCACC /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		159CFF2A27887ED3006421FB /* InputMnemonicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMnemonicView.swift; sourceTree = "<group>"; };
+		159DEC8728C6753700493E9F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		159DEC8B28C679F800493E9F /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		159DEC8E28C67A3700493E9F /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		159DEC9128C67DB900493E9F /* NFTDetailPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTDetailPageViewModel.swift; sourceTree = "<group>"; };
 		15B1F62B2786ABE400847BB5 /* BackupPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPasswordView.swift; sourceTree = "<group>"; };
 		15B1F62E2786AC9E00847BB5 /* BackupPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPasswordViewModel.swift; sourceTree = "<group>"; };
 		15B1F6312786B1BB00847BB5 /* CheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
@@ -1788,6 +1801,7 @@
 			files = (
 				156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */,
 				154B891A276A1EEB00780E93 /* Flow in Frameworks */,
+				159DEC8628C666E400493E9F /* RiveRuntime in Frameworks */,
 				15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */,
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
 				15F517FD28C6577000504FDC /* Atlantis in Frameworks */,
@@ -2048,6 +2062,7 @@
 		1570466A27930EA500D1747B /* NFT */ = {
 			isa = PBXGroup;
 			children = (
+				159DEC8A28C679E500493E9F /* AR */,
 				6AEA374128A4ACF9004545D4 /* UIKit */,
 				4ED2D7742850DD9400B9A572 /* Helper */,
 				4ECA7E632843719F0039A210 /* Views */,
@@ -2072,6 +2087,7 @@
 			children = (
 				157046772793243400D1747B /* NFTTabViewModel.swift */,
 				4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */,
+				159DEC9128C67DB900493E9F /* NFTDetailPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2178,6 +2194,7 @@
 			children = (
 				1588330728943D1C00142B35 /* Texts.swift */,
 				1588330828943D1C00142B35 /* Images.swift */,
+				159DEC8728C6753700493E9F /* Colors.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -2303,6 +2320,15 @@
 				159A54302753680C004BCACC /* Base */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		159DEC8A28C679E500493E9F /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				159DEC8B28C679F800493E9F /* ARViewController.swift */,
+				159DEC8E28C67A3700493E9F /* Grid.swift */,
+			);
+			path = AR;
 			sourceTree = "<group>";
 		};
 		15B1A67A276A2D670006B621 /* Frameworks */ = {
@@ -4058,6 +4084,7 @@
 				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
 				15D3BA7628C45F21009AEA6E /* Hero */,
 				15F517FC28C6577000504FDC /* Atlantis */,
+				159DEC8528C666E400493E9F /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -4416,6 +4443,7 @@
 				15DE23012780208300B5EE03 /* RestoreWalletViewModel.swift in Sources */,
 				4EE8E49C283626D000DFEF59 /* NFTLoading.swift in Sources */,
 				15DC216527819C56000B187A /* _VHalfModal.swift in Sources */,
+				159DEC8D28C679F800493E9F /* ARViewController.swift in Sources */,
 				6ACF0E642851FB2E008E7FA6 /* UserRequests.swift in Sources */,
 				154B8904276A1EEB00780E93 /* OffsetPageTabView.swift in Sources */,
 				158CE8812782BEAA006A8394 /* TYNKViewModel.swift in Sources */,
@@ -4541,6 +4569,7 @@
 				15DC214727819C56000B187A /* VTabNavigationViewPage.swift in Sources */,
 				6A8FA4AA285B192900EE5BE3 /* SnapIDModifier.swift in Sources */,
 				15DC20F927819C56000B187A /* VBaseList.swift in Sources */,
+				159DEC9028C67A3700493E9F /* Grid.swift in Sources */,
 				15DC21C127819C56000B187A /* DerivedButtonType.swift in Sources */,
 				15DC217927819C56000B187A /* VModal.swift in Sources */,
 				15DC21A127819C56000B187A /* UIKitTextFieldRepresentable.swift in Sources */,
@@ -4634,6 +4663,7 @@
 				6AEF8396286462410081E285 /* CoinRateCache.swift in Sources */,
 				15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */,
 				15DC21C527819C56000B187A /* LayoutGroup_LT.swift in Sources */,
+				159DEC8928C6753700493E9F /* Colors.swift in Sources */,
 				6ACDD17A28588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */,
 				6AE69E9A28C090E9004D4709 /* BrowserProgressView.swift in Sources */,
 				1588330D28943D1D00142B35 /* SPQRCameraController.swift in Sources */,
@@ -4657,6 +4687,7 @@
 				6A6BD9DD287D5066009FA262 /* ProgressHUD.swift in Sources */,
 				6A06CB0728AA25F400C81BE1 /* NFTUIKitListDataSource.swift in Sources */,
 				6AAD4E6A28BC6E9900AEAB1F /* TransactionModels.swift in Sources */,
+				159DEC9328C67DB900493E9F /* NFTDetailPageViewModel.swift in Sources */,
 				6A164F422840A1380026B31E /* TabBar.swift in Sources */,
 				6AE084242851D481003BEEF0 /* Logger.swift in Sources */,
 				6A382E25289BDAFF00163564 /* SecurityManager.swift in Sources */,
@@ -4922,6 +4953,7 @@
 				15C58AEB2868A4EE00BD4FC6 /* RestoreWalletViewModel.swift in Sources */,
 				15C58AEC2868A4EE00BD4FC6 /* NFTLoading.swift in Sources */,
 				15C58AED2868A4EE00BD4FC6 /* _VHalfModal.swift in Sources */,
+				159DEC8C28C679F800493E9F /* ARViewController.swift in Sources */,
 				15C58AEE2868A4EE00BD4FC6 /* UserRequests.swift in Sources */,
 				15C58AEF2868A4EE00BD4FC6 /* OffsetPageTabView.swift in Sources */,
 				15C58AF02868A4EE00BD4FC6 /* TYNKViewModel.swift in Sources */,
@@ -5047,6 +5079,7 @@
 				15C58B492868A4EE00BD4FC6 /* VTabNavigationViewPage.swift in Sources */,
 				15C58B4A2868A4EE00BD4FC6 /* SnapIDModifier.swift in Sources */,
 				15C58B4B2868A4EE00BD4FC6 /* VBaseList.swift in Sources */,
+				159DEC8F28C67A3700493E9F /* Grid.swift in Sources */,
 				15C58B4C2868A4EE00BD4FC6 /* DerivedButtonType.swift in Sources */,
 				15C58B4D2868A4EE00BD4FC6 /* VModal.swift in Sources */,
 				15C58B4E2868A4EE00BD4FC6 /* UIKitTextFieldRepresentable.swift in Sources */,
@@ -5140,6 +5173,7 @@
 				15C58B972868A4EE00BD4FC6 /* CoinRateCache.swift in Sources */,
 				15C58B982868A4EE00BD4FC6 /* FlowAddressRegistor.swift in Sources */,
 				15C58B992868A4EE00BD4FC6 /* LayoutGroup_LT.swift in Sources */,
+				159DEC8828C6753700493E9F /* Colors.swift in Sources */,
 				15C58B9A2868A4EE00BD4FC6 /* LilicoAPI+Profile.swift in Sources */,
 				6AE69E9928C090E9004D4709 /* BrowserProgressView.swift in Sources */,
 				1588330C28943D1D00142B35 /* SPQRCameraController.swift in Sources */,
@@ -5163,6 +5197,7 @@
 				6A6BD9DC287D5066009FA262 /* ProgressHUD.swift in Sources */,
 				6A06CB0628AA25F400C81BE1 /* NFTUIKitListDataSource.swift in Sources */,
 				6AAD4E6928BC6E9900AEAB1F /* TransactionModels.swift in Sources */,
+				159DEC9228C67DB900493E9F /* NFTDetailPageViewModel.swift in Sources */,
 				15C58BA52868A4EE00BD4FC6 /* TabBar.swift in Sources */,
 				15C58BA62868A4EE00BD4FC6 /* Logger.swift in Sources */,
 				6A382E24289BDAFF00163564 /* SecurityManager.swift in Sources */,
@@ -5426,7 +5461,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5469,7 +5504,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -6310,6 +6345,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1588332028943F4D00142B35 /* XCRemoteSwiftPackageReference "NativeUIKit" */;
 			productName = NativeUIKit;
+		};
+		159DEC8528C666E400493E9F /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
 		};
 		15C58A7F2868A4EE00BD4FC6 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
