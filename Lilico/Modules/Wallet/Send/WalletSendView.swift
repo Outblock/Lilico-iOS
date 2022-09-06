@@ -54,7 +54,7 @@ struct WalletSendView: RouteableView {
                     .visibility(vm.status == .normal ? .gone : .visible)
             }
         }
-        .interactiveDismissDisabled()
+//        .interactiveDismissDisabled()
         .buttonStyle(.plain)
         .backgroundFill(Color.LL.background)
         .applyRouteable(self)

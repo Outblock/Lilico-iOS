@@ -26,7 +26,16 @@ struct WalletConnectView: RouteableView {
                 VStack(spacing: 0) {
                     ForEach(manager.activeSessions, id: \.topic) { session in
                         Menu {
-                            Button {
+                            
+                            Text(session.peer.description)
+                                .font(.inter(size: 8, weight: .regular))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.LL.Neutrals.neutrals7)
+                            
+                            Divider()
+                                .foregroundColor(.LL.Neutrals.neutrals3)
+                            
+                            Button(role: .destructive) {
                                 Task {
                                     await WalletConnectManager.shared.disconnect(topic: session.topic)
                                 }
@@ -40,11 +49,12 @@ struct WalletConnectView: RouteableView {
                                      network: String(session.namespaces.values.first?.accounts.first?.reference ?? ""),
                                      icon: session.peer.icons.first ?? "https://lilico.app/placeholder.png")
                             .buttonStyle(ScaleButtonStyle())
+                            .padding(.horizontal, 16)
+                            .roundedBg()
+                            .padding(.bottom, 12)
                         }
                     }
                 }
-                .padding(.horizontal, 16)
-                .roundedBg()
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .padding(.horizontal, 18)
             }
@@ -153,6 +163,10 @@ extension WalletConnectView {
         let network: String
         let icon: String
         
+        var color: SwiftUI.Color {
+            network == "testnet" ? Color.LL.flow : Color.LL.Primary.salmonPrimary
+        }
+        
         var body: some View {
             HStack(spacing: 0) {
                 
@@ -189,10 +203,10 @@ extension WalletConnectView {
                         .textCase(.uppercase)
                         .padding(8)
                         .padding(.horizontal, 5)
-                        .foregroundColor(Color.LL.Neutrals.neutrals6)
+                        .foregroundColor(color)
                         .background {
                             Capsule()
-                                .fill(Color.LL.outline.opacity(0.5))
+                                .fill(color.opacity(0.2))
                         }
                 }
                 

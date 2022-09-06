@@ -12,7 +12,7 @@ import SPConfetti
 import SwiftUI
 import SwiftUIX
 
-private let ActionViewHeight: CGFloat = 48
+private let ActionViewHeight: CGFloat = 78
 private let CardViewHeight: CGFloat = 214
 private let CoinCellHeight: CGFloat = 73
 private let CoinIconHeight: CGFloat = 43
@@ -135,12 +135,13 @@ struct WalletView: View {
 
     var actionView: some View {
         VStack{
-            HStack(spacing: 13) {
+            HStack() {
                 Button {
                     Router.route(to: RouteMap.Wallet.send)
                 } label: {
-                    HStack(spacing: 7) {
+                    VStack(spacing: 6) {
                         Image("wallet-send-stroke")
+                            .frame(width: 28, height: 28)
                         Text("send".localized)
                             .foregroundColor(.LL.text)
                             .textCase(.uppercase)
@@ -159,8 +160,9 @@ struct WalletView: View {
                 Button {
                     Router.route(to: RouteMap.Wallet.receive)
                 } label: {
-                    HStack(spacing: 7) {
+                    VStack(spacing: 6) {
                         Image("wallet-receive-stroke")
+                            .frame(width: 28, height: 28)
                         Text("receive".localized)
                             .foregroundColor(.LL.text)
                             .textCase(.uppercase)
@@ -175,17 +177,27 @@ struct WalletView: View {
                 .buttonStyle(ScaleButtonStyle())
 
                 
-                //            Spacer()
+                Spacer()
                 
-                //            Button {} label: {
-                //                VStack(spacing: 7) {
-                //                    Image("icon-wallet-buy")
-                //                    Text("buy".localized)
-                //                        .foregroundColor(.LL.Neutrals.note)
-                //                        .font(.inter(size: 12, weight: .semibold))
-                //                }
-                //            }
-                //            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                Button {
+                    Router.route(to: RouteMap.Wallet.receive)
+                } label: {
+                    VStack(spacing: 6) {
+                        Image("wallet")
+                            .frame(width: 28, height: 28)
+                        Text("buy".localized)
+                            .foregroundColor(.LL.text)
+                            .textCase(.uppercase)
+                            .font(.inter(size: 14, weight: .semibold))
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(height: ActionViewHeight)
+                    .background(.LL.bgForIcon)
+                    .cornerRadius(12)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(ScaleButtonStyle())
+                
             }
             
             Divider()
