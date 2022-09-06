@@ -36,7 +36,7 @@ extension FCLAuthzResponse {
         let cadence: String
         let f_type: String
         let f_vsn: String
-        let keyId: String
+        let keyId: Int
         let message: String
         let roles: Roles
         let voucher: Voucher

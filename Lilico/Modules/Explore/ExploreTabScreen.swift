@@ -72,7 +72,9 @@ struct ExploreTabScreen: View {
                                 feedbackGenerator.impactOccurred()
                             
                             //TODO: Open Browser
-                            Router.route(to: RouteMap.Explore.browser(dApp.url))
+                            let url = URL(string: "https://outblock.github.io/harness/")!
+                            Router.route(to: RouteMap.Explore.browser(url))
+                            
                         } label: {
                             HStack(alignment: .top) {
                                 KFImage

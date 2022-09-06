@@ -18,7 +18,7 @@ class BrowserSearchItemCell: UICollectionViewCell {
         let view = UILabel()
         view.font = .interMedium(size: 16)
         view.textColor = UIColor(hex: "#333333")
-        view.text = "hahaha"
+        view.text = ""
         view.snp.contentHuggingHorizontalPriority = 249
         view.snp.contentCompressionResistanceHorizontalPriority = 749
         return view
