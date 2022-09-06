@@ -193,6 +193,15 @@ extension FlowNetwork {
         let idObj = Flow.ID(hex: id)
         return try await flow.accessAPI.getTransactionResultById(id: idObj)
     }
+    
+    static func getAccountAtLatestBlock(address: String) async throws -> Flow.Account {
+        return try await flow.accessAPI.getAccountAtLatestBlock(address: Flow.Address(hex: address))
+    }
+    
+    static func getLastBlockAccountKeyId(address: String) async throws -> Int {
+        let account = try await getAccountAtLatestBlock(address: address)
+        return account.keys.first?.index ?? 0
+    }
 }
 
 // MARK: - Base

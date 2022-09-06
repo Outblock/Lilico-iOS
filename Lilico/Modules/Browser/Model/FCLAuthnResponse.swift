@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Flow
+
+private let accountProofTag = Flow.DomainTag.custom("FCL-ACCOUNT-PROOF-V0.0").normalize
 
 struct FCLAuthnResponse: Codable, FCLResponseProtocol {
     let body: Body
@@ -15,6 +18,28 @@ struct FCLAuthnResponse: Codable, FCLResponseProtocol {
     
     func uniqueId() -> String {
         return "\(service.type.rawValue)-\(type)"
+    }
+    
+    func encodeAccountProof(address: String, includeDomaintag: Bool = true) -> Data? {
+        guard let nonce = body.nonce, !nonce.isEmpty else {
+            return Data()
+        }
+        
+        guard let appId = body.appIdentifier else {
+            debugPrint("Encode Message For Provable Authn Error: appIdentifier must be defined")
+            return nil
+        }
+        
+        let list: [Any] = [appId, Data(hex: address), Data(hex: nonce)]
+        guard let rpl = RLP.encode(list) else {
+            return nil
+        }
+        
+        if includeDomaintag {
+            return accountProofTag + rpl
+        } else {
+            return rpl
+        }
     }
 }
 

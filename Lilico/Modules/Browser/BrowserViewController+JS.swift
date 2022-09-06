@@ -106,6 +106,27 @@ extension BrowserViewController {
         postMessage(FCLScripts.generatePreAuthzResponse(address: address))
     }
     
+    func postAuthnViewReadyResponse(response: FCLAuthnResponse) async throws {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        var accountProofSign = ""
+        
+        if let nonce = response.body.nonce,
+           !nonce.isEmpty,
+           let proofSign = response.encodeAccountProof(address: address),
+           let sign = WalletManager.shared.signSync(signableData: proofSign) {
+            accountProofSign = sign.hexValue
+        }
+        
+        let message = try await FCLScripts.generateAuthnResponse(accountProofSign: accountProofSign, nonce: response.body.nonce ?? "", address: address)
+        
+        DispatchQueue.syncOnMain {
+            postMessage(message)
+        }
+    }
+    
     func postReadyResponse() {
         postMessage("{type: '\(JSMessageType.ready.rawValue)'}")
     }

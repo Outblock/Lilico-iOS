@@ -142,10 +142,41 @@ extension JSMessageHandler {
             debugPrint("JSMessageHandler -> handleAuthn")
             processingFCLResponse = authnResponse
             
-            // TODO: show authn dialog
+            let title = authnResponse.config?.app?.title ?? webVC?.webView.title ?? "unknown"
+            let vm = BrowserAuthnViewModel(title: title, url: webVC?.webView.url?.host ?? "unknown", logo: authnResponse.config?.app?.icon) { [weak self] result in
+                guard let self = self else {
+                    return
+                }
+                
+                if result {
+                    self.didConfirmAuthn(response: authnResponse)
+                } else {
+                    debugPrint("JSMessageHandler -> handleAuthn: cancelled")
+                }
+                
+                self.finishService()
+            }
+            
+            Router.route(to: RouteMap.Explore.authn(vm))
         } catch {
             debugPrint("JSMessageHandler -> handleAuthn: decode message failed: \(message)")
         }
+    }
+    
+    private func didConfirmAuthn(response: FCLAuthnResponse) {
+        Task {
+            do {
+                try await self.webVC?.postAuthnViewReadyResponse(response: response)
+            } catch {
+                debugPrint("JSMessageHandler -> didConfirmAuthn failed: \(error)")
+                HUD.error(title: "browser_request_failed".localized)
+            }
+        }
+    }
+    
+    private func finishService() {
+        self.processingServiceType = nil
+        self.processingFCLResponse = nil
     }
     
     private func handleAuthz(_ message: String) {
