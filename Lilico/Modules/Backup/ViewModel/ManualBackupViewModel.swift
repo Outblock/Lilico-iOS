@@ -23,9 +23,13 @@ class ManualBackupViewModel: ViewModel {
 //            ]
 //        )
 
-        guard let mnemonic = WalletManager.shared.getCurrentMnemonic(), !mnemonic.isEmpty else {
+        guard var mnemonic = WalletManager.shared.getCurrentMnemonic(), !mnemonic.isEmpty else {
             HUD.error(title: "load_wallet_error".localized)
             return
+        }
+        
+        defer {
+            mnemonic = ""
         }
 
         let wordList = mnemonic.split(separator: " ")

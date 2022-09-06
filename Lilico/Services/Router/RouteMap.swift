@@ -114,7 +114,11 @@ extension RouteMap.Wallet: RouterTarget {
         case .tokenDetail(let token):
             navi.push(content: TokenDetailView(token: token))
         case .receive:
-            navi.present(content: WalletReceiveView())
+            let vc = UIHostingController(rootView: WalletReceiveView())
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .coverVertical
+            vc.view.backgroundColor = .clear
+            navi.present(vc, animated: false)
         case .send:
             navi.present(content: WalletSendView())
         case .sendAmount(let contact, let token):

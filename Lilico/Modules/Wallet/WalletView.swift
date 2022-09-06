@@ -146,12 +146,13 @@ struct WalletView: View {
                             .textCase(.uppercase)
                             .font(.inter(size: 14, weight: .semibold))
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(height: ActionViewHeight)
+                    .background(.LL.bgForIcon)
+                    .cornerRadius(12)
+                    .contentShape(Rectangle())
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .buttonStyle(.plain)
-                .frame(height: ActionViewHeight)
-                .background(.LL.bgForIcon)
-                .cornerRadius(12)
+                .buttonStyle(ScaleButtonStyle())
                 
                 Spacer()
                 
@@ -165,12 +166,14 @@ struct WalletView: View {
                             .textCase(.uppercase)
                             .font(.inter(size: 14, weight: .semibold))
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(height: ActionViewHeight)
+                    .background(.LL.bgForIcon)
+                    .cornerRadius(12)
+                    .contentShape(Rectangle())
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .buttonStyle(.plain)
-                .frame(height: ActionViewHeight)
-                .background(.LL.bgForIcon)
-                .cornerRadius(12)
+                .buttonStyle(ScaleButtonStyle())
+
                 
                 //            Spacer()
                 

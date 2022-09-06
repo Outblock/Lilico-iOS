@@ -298,8 +298,8 @@
 "action_cancel" = "Cancel";
 "qr_code_data_text_prefix" = "Text";
 "qr_code_data_url_prefix" = "Website";
-"qr_code_data_eth_wallet_prefix" = "ETH Address";
-"qr_code_data_flow_wallet_prefix" = "FLOW Address";
+"qr_code_data_eth_wallet_prefix" = "";
+"qr_code_data_flow_wallet_prefix" = "";
 "qr_code_data_wallet_connect_prefix" = "Wallet Connect";
 
 // Wallet Connect

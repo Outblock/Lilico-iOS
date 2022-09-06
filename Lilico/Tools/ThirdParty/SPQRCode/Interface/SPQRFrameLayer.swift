@@ -32,7 +32,7 @@ class SPQRFrameLayer: CAShapeLayer {
     init(
         length: CGFloat = 16.0,
         radius: CGFloat = 16.0,
-        lineWidth: CGFloat = 5.0,
+        lineWidth: CGFloat = 3.0,
         lineColor: UIColor = UIColor(Color.LL.Primary.salmonPrimary)
     ) {
         self.cLength = length
@@ -44,6 +44,12 @@ class SPQRFrameLayer: CAShapeLayer {
         self.fillColor = UIColor.clear.cgColor
         
         self.lineWidth = lineWidth
+    }
+    
+    override init(layer: Any) {
+        self.cLength = 16
+        self.cRadius = 16
+        super.init(layer: layer)
     }
     
     required init?(coder: NSCoder) {

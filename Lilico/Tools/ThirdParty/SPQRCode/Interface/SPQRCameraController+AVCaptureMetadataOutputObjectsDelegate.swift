@@ -38,7 +38,7 @@ extension SPQRCameraController: AVCaptureMetadataOutputObjectsDelegate {
         // Update Detail
         
         if let data = observingData {
-            let splitter = ": "
+            let splitter = ""
             switch data {
             case .url(let url):
                 detailView.setTitle(data.prefix + splitter + url.absoluteString)
