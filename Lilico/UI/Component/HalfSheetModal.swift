@@ -129,7 +129,7 @@ class CustomHostingController<Content: View>: UIHostingController<Content>{
             ]
             
             // to show grab protion...
-            //            presentationController.prefersGrabberVisible = true
+            presentationController.prefersGrabberVisible = true
         }
     }
 }

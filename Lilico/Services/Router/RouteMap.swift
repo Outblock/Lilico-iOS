@@ -141,6 +141,8 @@ extension RouteMap {
         case editName
         case editAvatar
         case backupChange
+        case walletSetting
+        case privateKey
         case walletConnect
         case manualBackup
         case security(Bool)
@@ -169,8 +171,12 @@ extension RouteMap.Profile: RouterTarget {
             }
             
             navi.push(content: ProfileBackupView())
+        case .walletSetting:
+            navi.push(content: WalletSettingView())
         case .walletConnect:
             navi.push(content: WalletConnectView())
+        case .privateKey:
+            navi.push(content: PrivateKeyView())
         case .manualBackup:
             navi.push(content: RecoveryPhraseView(backupMode: true))
         case .security(let animated):

@@ -42,21 +42,6 @@ struct ProfileSecureView: RouteableView {
             }
             .padding(.horizontal, 16)
             .roundedBg()
-            
-            VStack(spacing: 0) {
-                ProfileSecureView.ItemCell(title: "private_key".localized, style: .arrow, isOn: false, toggleAction: nil)
-                Divider().foregroundColor(.LL.Neutrals.background)
-                
-                Button {
-                    vm.showRecoveryPhrasesAction()
-                } label: {
-                    ProfileSecureView.ItemCell(title: "recovery_phrase".localized, style: .arrow, isOn: false, toggleAction: nil)
-                        .contentShape(Rectangle())
-                }
-                
-            }
-            .padding(.horizontal, 16)
-            .roundedBg()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding(.horizontal, 18)

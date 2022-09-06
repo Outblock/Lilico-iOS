@@ -176,11 +176,11 @@ extension ProfileView {
                 }
 
                 ProfileView.InfoActionButton(iconName: "icon-wallet", title: "wallets".localized) {
-                    print("wallets click")
+                    Router.route(to: RouteMap.Profile.walletSetting)
                 }
 
-                ProfileView.InfoActionButton(iconName: "icon-device", title: "device".localized) {
-                    print("device click")
+                ProfileView.InfoActionButton(iconName: "icon-inbox", title: "inbox".localized) {
+                    HUD.present(title: "Feature coming soon")
                 }
             }
             .padding(.vertical, 20)

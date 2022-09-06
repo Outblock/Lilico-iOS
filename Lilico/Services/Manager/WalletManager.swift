@@ -98,6 +98,14 @@ extension WalletManager {
     func getCurrentMnemonic() -> String? {
         return hdWallet?.mnemonic
     }
+    
+    func getCurrentPublicKey() -> String? {
+        return hdWallet?.getPublicKey()
+    }
+    
+    func getCurrentPrivateKey() -> String? {
+        return hdWallet?.getPrivateKey()
+    }
 
     func getCurrentFlowAccountKey() -> Flow.AccountKey? {
         return hdWallet?.flowAccountKey
@@ -566,6 +574,12 @@ extension HDWallet {
             .dropPrefix("04")
         return p256PublicKey
     }
+    
+    func getPrivateKey() -> String {
+        let privateKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        return privateKey.data.hexValue
+    }
+
 
     func sign(_ text: String) -> String? {
         guard let textData = text.data(using: .utf8) else {
