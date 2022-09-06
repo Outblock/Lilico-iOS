@@ -6,19 +6,38 @@
 //
 
 import UIKit
+import WebKit
 
 enum JSMessageType: String {
     case ready = "FCL:VIEW:READY"
     case response = "FCL:VIEW:READY:RESPONSE"
 }
 
-class JSMessageHandler {
+class JSMessageHandler: NSObject {
     private var processingMessage: String?
     private var processingServiceType: FCLServiceType?
     private var processingFCLResponse: FCLResponseProtocol?
     private var readyToSignEnvelope: Bool = false
     
     weak var webVC: BrowserViewController?
+}
+
+extension JSMessageHandler: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        switch JSListenerType(rawValue: message.name) {
+        case .message:
+            guard let msgString = message.body as? String else {
+                debugPrint("BrowserViewController -> JSListenerType.message body invalid")
+                return
+            }
+            
+            handleMessage(msgString)
+        case .flowTransaction:
+            break
+        default:
+            break
+        }
+    }
 }
 
 extension JSMessageHandler {
@@ -41,7 +60,7 @@ extension JSMessageHandler {
                 if messageIsServce(jsonDict) {
                     handleService(message)
                 } else if jsonDict["type"] as? String == JSMessageType.response.rawValue {
-                    handleReadyResponse(message)
+                    handleViewReadyResponse(message)
                 }
             } else {
                 debugPrint("JSMessageHandler -> handleMessage: decode message failed: \(message)")
@@ -65,6 +84,11 @@ extension JSMessageHandler {
         }
         
         return false
+    }
+    
+    private func finishService() {
+        self.processingServiceType = nil
+        self.processingFCLResponse = nil
     }
 }
 
@@ -96,17 +120,17 @@ extension JSMessageHandler {
 // MARK: - Response
 
 extension JSMessageHandler {
-    private func handleReadyResponse(_ message: String) {
+    private func handleViewReadyResponse(_ message: String) {
         do {
             guard let data = message.data(using: .utf8) else {
-                debugPrint("JSMessageHandler -> handleReadyResponse: decode message failed: \(message)")
+                debugPrint("JSMessageHandler -> handleViewReadyResponse: decode message failed: \(message)")
                 return
             }
             
             let fcl = try JSONDecoder().decode(FCLSimpleResponse.self, from: data)
             
             if self.processingServiceType != fcl.serviceType {
-                debugPrint("JSMessageHandler -> handleReadyResponse: service not same (old: \(String(describing: self.processingServiceType)), new: \(fcl.serviceType))")
+                debugPrint("JSMessageHandler -> handleViewReadyResponse: service not same (old: \(String(describing: self.processingServiceType)), new: \(fcl.serviceType))")
                 return
             }
             
@@ -118,10 +142,10 @@ extension JSMessageHandler {
             case .userSignature:
                 handleUserSignature(message)
             default:
-                debugPrint("JSMessageHandler -> handleReadyResponse: unsupport service type: \(fcl.serviceType)")
+                debugPrint("JSMessageHandler -> handleViewReadyResponse: unsupport service type: \(fcl.serviceType)")
             }
         } catch {
-            debugPrint("JSMessageHandler -> handleReadyResponse: decode message failed: \(message)")
+            debugPrint("JSMessageHandler -> handleViewReadyResponse: decode message failed: \(message)")
         }
     }
     
@@ -142,9 +166,35 @@ extension JSMessageHandler {
             debugPrint("JSMessageHandler -> handleAuthn")
             processingFCLResponse = authnResponse
             
-            // TODO: show authn dialog
+            let title = authnResponse.config?.app?.title ?? webVC?.webView.title ?? "unknown"
+            let vm = BrowserAuthnViewModel(title: title, url: webVC?.webView.url?.host ?? "unknown", logo: authnResponse.config?.app?.icon) { [weak self] result in
+                guard let self = self else {
+                    return
+                }
+                
+                if result {
+                    self.didConfirmAuthn(response: authnResponse)
+                } else {
+                    debugPrint("JSMessageHandler -> handleAuthn: cancelled")
+                }
+                
+                self.finishService()
+            }
+            
+            Router.route(to: RouteMap.Explore.authn(vm))
         } catch {
             debugPrint("JSMessageHandler -> handleAuthn: decode message failed: \(message)")
+        }
+    }
+    
+    private func didConfirmAuthn(response: FCLAuthnResponse) {
+        Task {
+            do {
+                try await self.webVC?.postAuthnViewReadyResponse(response: response)
+            } catch {
+                debugPrint("JSMessageHandler -> didConfirmAuthn failed: \(error)")
+                HUD.error(title: "browser_request_failed".localized)
+            }
         }
     }
     
@@ -219,7 +269,13 @@ extension JSMessageHandler {
 
 extension JSMessageHandler {
     private func signAuthz(_ authzResponse: FCLAuthzResponse) {
-        // TODO: show authz dialog
+        let title = authzResponse.config?.app?.title ?? webVC?.webView.title ?? "unknown"
+        let url = webVC?.webView.url?.host ?? "unknown"
+        let vm = BrowserAuthzViewModel(title: title, url: url, logo: authzResponse.config?.app?.icon, cadence: authzResponse.body.cadence) { result in
+            
+        }
+        
+        Router.route(to: RouteMap.Explore.authz(vm))
     }
     
     private func signPayload(_ authzResponse: FCLAuthzResponse) {

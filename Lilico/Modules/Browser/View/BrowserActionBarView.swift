@@ -88,7 +88,7 @@ class BrowserActionBarView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = .interSemiBold(size: 14)
-        label.text = "haha"
+        label.text = ""
         return label
     }()
     

@@ -324,6 +324,8 @@ extension RouteMap.Transaction: RouterTarget {
 extension RouteMap {
     enum Explore {
         case browser(URL)
+        case authn(BrowserAuthnViewModel)
+        case authz(BrowserAuthzViewModel)
     }
 }
 
@@ -334,6 +336,12 @@ extension RouteMap.Explore: RouterTarget {
             let vc = BrowserViewController()
             vc.loadURL(url)
             navi.pushViewController(vc, animated: true)
+        case .authn(let vm):
+            let vc = CustomHostingController(rootView: BrowserAuthnView(vm: vm))
+            Router.topPresentedController().present(vc, animated: true, completion: nil)
+        case .authz(let vm):
+            let vc = CustomHostingController(rootView: BrowserAuthzView(vm: vm))
+            Router.topPresentedController().present(vc, animated: true, completion: nil)
         }
     }
 }

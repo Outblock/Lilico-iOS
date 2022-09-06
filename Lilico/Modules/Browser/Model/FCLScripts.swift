@@ -68,6 +68,56 @@ class FCLScripts {
         }
     """
     
+    private static let authnResponse = """
+        {
+          "f_type": "PollingResponse",
+          "f_vsn": "1.0.0",
+          "status": "APPROVED",
+          "reason": null,
+          "data": {
+            "f_type": "AuthnResponse",
+            "f_vsn": "1.0.0",
+            "addr": "$ADDRESS_REPLACEMENT",
+            "services": [
+              {
+                "f_type": "Service",
+                "f_vsn": "1.0.0",
+                "type": "authn",
+                "uid": "lilicoWallet#authn",
+                "endpoint": "ext:0x000",
+                "id": "$ADDRESS_REPLACEMENT",
+                "identity": {
+                  "address": "$ADDRESS_REPLACEMENT"
+                },
+                "provider": {
+                  "f_type": "ServiceProvider",
+                  "f_vsn": "1.0.0",
+                  "address": "$ADDRESS_REPLACEMENT",
+                  "name": "Lilico Wallet"
+                }
+              },
+              $PRE_AUTHZ_REPLACEMENT
+              $USER_SIGNATURE_REPLACEMENT
+              $ACCOUNT_PROOF_REPLACEMENT
+              {
+                "f_type": "Service",
+                "f_vsn": "1.0.0",
+                "type": "authz",
+                "uid": "lilicoWallet#authz",
+                "endpoint": "ext:0x000",
+                "method": "EXT/RPC",
+                "identity": {
+                  "address": "$ADDRESS_REPLACEMENT",
+                  "keyId": 0
+                }
+              }
+            ],
+            "paddr": null
+          },
+          "type": "FCL:VIEW:RESPONSE"
+        }
+    """
+    
     private static let signMessageResponse = """
         {
           "f_type": "PollingResponse",
@@ -84,6 +134,77 @@ class FCLScripts {
           "type": "FCL:VIEW:RESPONSE"
         }
     """
+    
+    private static let authnResponseUserSignature = """
+        {
+            "f_type": "Service",
+            "f_vsn": "1.0.0",
+            "type": "user-signature",
+            "uid": "lilico#user-signature",
+            "endpoint": "chrome-extension://hpclkefagolihohboafpheddmmgdffjm/popup.html",
+            "method": "EXT/RPC"
+        },
+    """
+    
+    private static let authnResponseAccountProof = """
+        {
+            "f_type": "Service",
+            "f_vsn": "1.0.0",
+            "type": "account-proof",
+            "uid": "lilico#account-proof",
+            "endpoint": "chrome-extension://hpclkefagolihohboafpheddmmgdffjm/popup.html",
+            "method": "EXT/RPC",
+            "data": {
+              "f_type": "account-proof",
+              "f_vsn": "2.0.0",
+              "address": "$ADDRESS_REPLACEMENT",
+              "nonce": "$NONCE_REPLACEMENT",
+              "signatures": [
+                {
+                  "f_type": "CompositeSignature",
+                  "f_vsn": "1.0.0",
+                  "addr": "$ADDRESS_REPLACEMENT",
+                  "keyId": 0,
+                  "signature": "$SIGNATURE_REPLACEMENT"
+                }
+              ]
+            }
+        },
+    """
+}
+
+extension FCLScripts {
+    private static func generateAuthnPreAuthz() async throws -> String {
+        let payer = RemoteConfigManager.shared.payer
+        
+        if RemoteConfigManager.shared.freeGasEnabled {
+            let keyId = try await FlowNetwork.getLastBlockAccountKeyId(address: payer)
+            
+            let str = """
+                {
+                    "f_type": "Service",
+                    "f_vsn": "1.0.0",
+                    "type": "pre-authz",
+                    "uid": "lilico#pre-authz",
+                    "endpoint": "ios://pre-authz.lilico.app",
+                    "method": "EXT/RPC",
+                    "data": {
+                        "address": "\(payer)",
+                        "keyId": \(keyId)
+                    }
+                },
+            """
+            
+            return str
+        } else {
+            return ""
+        }
+    }
+    
+    private static func generateAuthnAccountProof(accountProofSign: String, address: String, nonce: String) -> String {
+        let dict = [AddressReplacement: address, SignatureReplacement: accountProofSign, NonceReplacement: nonce]
+        return FCLScripts.authnResponseAccountProof.replace(by: dict)
+    }
 }
 
 extension FCLScripts {
@@ -101,5 +222,17 @@ extension FCLScripts {
         let hex = signedData.hexString
         let dict = [AddressReplacement: address, SignatureReplacement: hex]
         return FCLScripts.signMessageResponse.replace(by: dict)
+    }
+    
+    static func generateAuthnResponse(accountProofSign: String = "", nonce: String = "", address: String) async throws -> String {
+        let authz = try await generateAuthnPreAuthz()
+        
+        var confirmedAccountProofSign = accountProofSign
+        if !accountProofSign.isEmpty {
+            confirmedAccountProofSign = generateAuthnAccountProof(accountProofSign: accountProofSign, address: address, nonce: nonce)
+        }
+        
+        let dict = [AddressReplacement: address, PreAuthzReplacement: authz, UserSignatureReplacement: authnResponseUserSignature, AccountProofReplacement: confirmedAccountProofSign]
+        return FCLScripts.authnResponse.replace(by: dict)
     }
 }

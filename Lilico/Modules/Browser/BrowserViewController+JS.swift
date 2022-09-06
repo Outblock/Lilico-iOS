@@ -53,10 +53,6 @@ enum JSListenerType: String {
 }
 
 extension BrowserViewController {
-    var scriptMsgHandlerContentWorld: WKContentWorld {
-        return .page
-    }
-    
     var listenFCLMessageUserScript: WKUserScript {
         let us = WKUserScript(source: jsListenWindowFCLMessage, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         return us
@@ -75,8 +71,8 @@ extension BrowserViewController {
     func generateWebViewConfiguration() -> WKWebViewConfiguration {
         let config = WKWebViewConfiguration()
         let ucc = WKUserContentController()
-        ucc.addScriptMessageHandler(self, contentWorld: scriptMsgHandlerContentWorld, name: JSListenerType.message.rawValue)
-        ucc.addScriptMessageHandler(self, contentWorld: scriptMsgHandlerContentWorld, name: JSListenerType.flowTransaction.rawValue)
+        ucc.add(self.jsHandler, name: JSListenerType.message.rawValue)
+        ucc.add(self.jsHandler, name: JSListenerType.flowTransaction.rawValue)
         ucc.addUserScript(listenFCLMessageUserScript)
         ucc.addUserScript(listenFlowWalletTransactionUserScript)
         ucc.addUserScript(extensionInjectUserScript)
@@ -106,6 +102,27 @@ extension BrowserViewController {
         postMessage(FCLScripts.generatePreAuthzResponse(address: address))
     }
     
+    func postAuthnViewReadyResponse(response: FCLAuthnResponse) async throws {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        var accountProofSign = ""
+        
+        if let nonce = response.body.nonce,
+           !nonce.isEmpty,
+           let proofSign = response.encodeAccountProof(address: address),
+           let sign = WalletManager.shared.signSync(signableData: proofSign) {
+            accountProofSign = sign.hexValue
+        }
+        
+        let message = try await FCLScripts.generateAuthnResponse(accountProofSign: accountProofSign, nonce: response.body.nonce ?? "", address: address)
+        
+        DispatchQueue.syncOnMain {
+            postMessage(message)
+        }
+    }
+    
     func postReadyResponse() {
         postMessage("{type: '\(JSMessageType.ready.rawValue)'}")
     }
@@ -128,24 +145,6 @@ extension BrowserViewController {
             if let error = error {
                 debugPrint("BrowserViewController -> postMessage error: \(error)")
             }
-        }
-    }
-}
-
-extension BrowserViewController: WKScriptMessageHandlerWithReply {
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage, replyHandler: @escaping (Any?, String?) -> Void) {
-        switch JSListenerType(rawValue: message.name) {
-        case .message:
-            guard let msgString = message.body as? String else {
-                debugPrint("BrowserViewController -> JSListenerType.message body invalid")
-                return
-            }
-            
-            jsHandler.handleMessage(msgString)
-        case .flowTransaction:
-            break
-        default:
-            break
         }
     }
 }
