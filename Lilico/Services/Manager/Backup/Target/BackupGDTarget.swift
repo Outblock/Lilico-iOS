@@ -12,13 +12,22 @@ import GoogleAPIClientForRESTCore
 import GoogleSignIn
 import GTMSessionFetcherCore
 
-private let ClientID = "246247206636-srqmvc5l0fievp3ui5oshvsaml5a9pnb.apps.googleusercontent.com"
-
 class BackupGDTarget: BackupTarget {
-    private let config = GIDConfiguration(clientID: ClientID)
+    
+    private var clientID = "556216024625-sqgk4gaou6fc01qlv9ku9fr5i5o9bpif.apps.googleusercontent.com"
+    private lazy var config: GIDConfiguration = {
+        return GIDConfiguration(clientID: clientID)
+    }()
     private var api: GoogleDriveAPI?
     
     init() {
+        guard let filePath = Bundle.main.path(forResource: "GoogleOAuth2", ofType: "plist") else {
+            fatalError("fatalError ===> Can't find GoogleOAuth2.plist")
+        }
+        let plist = NSDictionary(contentsOfFile: filePath)
+        if let clientID = plist?.object(forKey: "CLIENT_ID") as? String {
+            self.clientID = clientID
+        }
         tryToRestoreLogin()
     }
     
