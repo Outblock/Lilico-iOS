@@ -24,24 +24,38 @@ private func generateFCLExtensionInject() -> String {
     let address = "0x33f75ff0b830dcec"
     
     let js = """
-        {
-          f_type: 'Service',
-          f_vsn: '1.0.0',
-          type: 'authn',
-          uid: 'Lilico',
-          endpoint: 'chrome-extension://hpclkefagolihohboafpheddmmgdffjm/popup.html',
-          method: 'EXT/RPC',
-          id: 'hpclkefagolihohboafpheddmmgdffjm',
-          identity: {
-            address: '\(address)',
-          },
-          provider: {
-            address: '\(address)',
-            name: 'Lilico',
-            icon: 'https://raw.githubusercontent.com/Outblock/Lilico-Web/main/asset/logo-dis.png',
-            description: 'Lilico is bringing an out of the world experience to your crypto assets on Flow',
-          }
+    const service = {
+      f_type: 'Service',
+      f_vsn: '1.0.0',
+      type: 'authn',
+      uid: 'Lilico',
+      endpoint: 'chrome-extension://hpclkefagolihohboafpheddmmgdffjm/popup.html',
+      method: 'EXT/RPC',
+      id: 'hpclkefagolihohboafpheddmmgdffjm',
+      identity: {
+        address: '0x33f75ff0b830dcec',
+      },
+      provider: {
+        address: '0x33f75ff0b830dcec',
+        name: 'Lilico',
+        icon: 'https://lilico.app/logo.png',
+        description: 'Lilico is bringing an out of the world experience to your crypto assets on Flow',
+      },
+    }
+    
+     function injectExtService(service) {
+      if (service.type === "authn" && service.endpoint != null) {
+        if (!Array.isArray(window.fcl_extensions)) {
+          window.fcl_extensions = []
         }
+        window.fcl_extensions.push(service)
+      } else {
+        console.warn("Authn service is required")
+      }
+    }
+    
+    injectExtService(service);
+    
     """
     
     return js
@@ -54,17 +68,17 @@ enum JSListenerType: String {
 
 extension BrowserViewController {
     var listenFCLMessageUserScript: WKUserScript {
-        let us = WKUserScript(source: jsListenWindowFCLMessage, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let us = WKUserScript(source: jsListenWindowFCLMessage, injectionTime: .atDocumentStart, forMainFrameOnly: true)
         return us
     }
     
     var listenFlowWalletTransactionUserScript: WKUserScript {
-        let us = WKUserScript(source: jsListenFlowWalletTransaction, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let us = WKUserScript(source: jsListenFlowWalletTransaction, injectionTime: .atDocumentStart, forMainFrameOnly: true)
         return us
     }
     
     var extensionInjectUserScript: WKUserScript {
-        let us = WKUserScript(source: generateFCLExtensionInject(), injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let us = WKUserScript(source: generateFCLExtensionInject(), injectionTime: .atDocumentStart, forMainFrameOnly: false)
         return us
     }
     

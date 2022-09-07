@@ -21,7 +21,7 @@ struct DAppModel: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case name, url
         case testnetURL = "testnet_url"
-        case description = "description"
+        case description
         case logo, category
     }
 }

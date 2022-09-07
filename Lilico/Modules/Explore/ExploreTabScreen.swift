@@ -73,7 +73,15 @@ struct ExploreTabScreen: View {
                             
                             //TODO: Open Browser
                             let url = URL(string: "https://outblock.github.io/harness/")!
-                            Router.route(to: RouteMap.Explore.browser(url))
+                            
+                            if LocalUserDefaults.shared.flowNetwork == .testnet,
+                                let url = dApp.testnetURL {
+                                Router.route(to: RouteMap.Explore.browser(url))
+                            } else {
+                                Router.route(to: RouteMap.Explore.browser(dApp.url))
+                            }
+                            
+    
                             
                         } label: {
                             HStack(alignment: .top) {
@@ -128,6 +136,9 @@ struct ExploreTabScreen: View {
         .task {
             vm.trigger(.fetchList)
         }
+        .onChange(of: LocalUserDefaults.shared.flowNetwork, perform: { _ in
+            vm.trigger(.fetchList)
+        })
         .background(
             Color.LL.Neutrals.background.ignoresSafeArea()
         )

@@ -20,7 +20,8 @@ extension ExploreTabScreen {
 
 class ExploreTabViewModel: ViewModel {
     
-    @Published var state: ExploreTabScreen.ViewState = .init()
+    @Published
+    var state: ExploreTabScreen.ViewState = .init()
     
     func trigger(_ input: ExploreTabScreen.Action) {
         switch input {
@@ -28,9 +29,10 @@ class ExploreTabViewModel: ViewModel {
             state.isLoading = true
             Task {
                 do {
-                    let list: [DAppModel] = try await FirebaseConfig.dapp.fetch()
+                    let isTestnet = LocalUserDefaults.shared.flowNetwork == .testnet
+                    let list: [DAppModel] = try await FirebaseConfig.dapp.fetch(decoder: JSONDecoder())
                     await MainActor.run {
-                        state.list = list
+                        state.list = isTestnet ? list.filter{ $0.testnetURL != nil } : list
                         state.isLoading = false
                     }
                 } catch {
