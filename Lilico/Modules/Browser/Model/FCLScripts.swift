@@ -171,6 +171,23 @@ class FCLScripts {
             }
         },
     """
+    
+    private static let authzResponse = """
+        {
+          "f_type": "PollingResponse",
+          "f_vsn": "1.0.0",
+          "status": "APPROVED",
+          "reason": null,
+          "data": {
+            "f_type": "CompositeSignature",
+            "f_vsn": "1.0.0",
+            "addr": "$ADDRESS_REPLACEMENT",
+            "keyId": $KEY_ID_REPLACEMENT,
+            "signature": "$SIGNATURE_REPLACEMENT"
+          },
+          "type": "FCL:VIEW:RESPONSE"
+        }
+    """
 }
 
 extension FCLScripts {
@@ -234,5 +251,10 @@ extension FCLScripts {
         
         let dict = [AddressReplacement: address, PreAuthzReplacement: authz, UserSignatureReplacement: authnResponseUserSignature, AccountProofReplacement: confirmedAccountProofSign]
         return FCLScripts.authnResponse.replace(by: dict)
+    }
+    
+    static func generateAuthzResponse(address: String, signature: String, keyId: Int = 0) -> String {
+        let dict = [AddressReplacement: address, SignatureReplacement: signature, KeyIDReplacement: "\(keyId)"]
+        return FCLScripts.authzResponse.replace(by: dict)
     }
 }

@@ -123,6 +123,29 @@ extension BrowserViewController {
         }
     }
     
+    func postAuthzPayloadSignResponse(response: FCLAuthzResponse) async throws {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        let data = Data(hex: response.body.message)
+        guard let signData = WalletManager.shared.signSync(signableData: data) else {
+            return
+        }
+        
+        let keyId = try await FlowNetwork.getLastBlockAccountKeyId(address: address)
+        
+        let message = FCLScripts.generateAuthzResponse(address: address, signature: data.hexValue, keyId: keyId)
+        DispatchQueue.syncOnMain {
+            postMessage(message)
+        }
+    }
+    
+    func postAuthzEnvelopeSignResponse(sign: FCLVoucher.Signature) {
+        let message = FCLScripts.generateAuthzResponse(address: sign.address.hex, signature: sign.sig, keyId: sign.keyId)
+        postMessage(message)
+    }
+    
     func postReadyResponse() {
         postMessage("{type: '\(JSMessageType.ready.rawValue)'}")
     }

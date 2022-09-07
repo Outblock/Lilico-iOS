@@ -371,6 +371,15 @@ struct Voucher: Codable {
     let authorizers: [String]?
     let payloadSigs: [Singature]?
     let envelopeSigs: [Singature]?
+    
+    func toFCLVoucher() -> FCLVoucher {
+        let pkey = FCLVoucher.ProposalKey(address: Flow.Address(hex: proposalKey.address ?? ""), keyId: proposalKey.keyID ?? 0, sequenceNum: UInt64(proposalKey.sequenceNum ?? 0))
+        let authorArray = authorizers?.map { Flow.Address(hex: $0) } ?? [Flow.Address]()
+        let payloadSigsArray = payloadSigs?.map { FCLVoucher.Signature(address: Flow.Address(hex: $0.address ?? ""), keyId: $0.keyId ?? 0, sig: $0.sig ?? "") } ?? [FCLVoucher.Signature]()
+        
+        let v = FCLVoucher(cadence: Flow.Script(text: cadence ?? ""), payer: Flow.Address(hex: payer ?? ""), refBlock: Flow.ID(hex: refBlock ?? ""), arguments: arguments, proposalKey: pkey, computeLimit: UInt64(computeLimit ?? 0), authorizers: authorArray, payloadSigs: payloadSigsArray)
+        return v
+    }
 }
 
 struct Accounts: Codable {

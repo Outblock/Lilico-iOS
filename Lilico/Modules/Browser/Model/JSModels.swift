@@ -80,3 +80,9 @@ struct FCLSimpleResponse: Codable {
         return service.type
     }
 }
+
+struct AuthzTransaction: Codable {
+    let url: String?
+    let title: String?
+    let voucher: Voucher
+}
