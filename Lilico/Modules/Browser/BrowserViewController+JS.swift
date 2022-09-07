@@ -144,20 +144,20 @@ extension BrowserViewController {
         }
         
         let data = Data(hex: response.body.message)
-        guard let signData = WalletManager.shared.signSync(signableData: data) else {
-            return
-        }
+        let signData = try await WalletManager.shared.sign(signableData: data)
         
-        let keyId = try await FlowNetwork.getLastBlockAccountKeyId(address: address)
+        // TODO: Make it dynamic when there is mutiple keys
+         let keyId = 0
+//        let keyId = try await FlowNetwork.getLastBlockAccountKeyId(address: address)
         
-        let message = FCLScripts.generateAuthzResponse(address: address, signature: data.hexValue, keyId: keyId)
+        let message = FCLScripts.generateAuthzResponse(address: address, signature: signData.hexValue, keyId: keyId)
         DispatchQueue.syncOnMain {
             postMessage(message)
         }
     }
     
     func postAuthzEnvelopeSignResponse(sign: FCLVoucher.Signature) {
-        let message = FCLScripts.generateAuthzResponse(address: sign.address.hex, signature: sign.sig, keyId: sign.keyId)
+        let message = FCLScripts.generateAuthzResponse(address: sign.address.hex.addHexPrefix(), signature: sign.sig, keyId: sign.keyId)
         postMessage(message)
     }
     

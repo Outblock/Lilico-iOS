@@ -188,3 +188,33 @@ extension String {
         return URL(string: "https://double-indigo-crab.b-cdn.net/\(url.host)/\(size)")
     }
 }
+
+
+extension String {
+    /// Determine string has hexadecimal prefix.
+    /// - returns: `Bool` type.
+    func hasHexPrefix() -> Bool {
+        return hasPrefix("0x")
+    }
+
+    /// If string has hexadecimal prefix, remove it
+    /// - returns: A string without hexadecimal prefix
+    func stripHexPrefix() -> String {
+        if hasPrefix("0x") {
+            let indexStart = index(startIndex, offsetBy: 2)
+            return String(self[indexStart...])
+        }
+        return self
+    }
+
+    /// Add hexadecimal prefix to a string.
+    /// If it already has it, do nothing
+    /// - returns: A string with hexadecimal prefix
+    func addHexPrefix() -> String {
+        if !hasPrefix("0x") {
+            return "0x" + self
+        }
+        return self
+    }
+}
+

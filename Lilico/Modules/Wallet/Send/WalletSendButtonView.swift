@@ -77,6 +77,9 @@ struct WalletSendButtonView: View {
                 .onEnded { value in
                     self.press.toggle()
                     self.isLoading = true
+                    
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    
                     action()
                 }
         )
