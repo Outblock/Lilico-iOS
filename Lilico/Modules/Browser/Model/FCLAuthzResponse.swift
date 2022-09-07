@@ -44,7 +44,6 @@ extension FCLAuthzResponse {
     
     struct Roles: Codable {
         let authorizer: Bool
-        let param: Bool
         let payer: Bool
         let proposer: Bool
         

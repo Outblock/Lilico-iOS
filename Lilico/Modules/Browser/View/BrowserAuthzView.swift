@@ -16,13 +16,22 @@ struct BrowserAuthzView: View {
     }
     
     var body: some View {
+        ZStack {
+            normalView.visibility(vm.isScriptShowing ? .invisible : .visible)
+            scriptView.visibility(vm.isScriptShowing ? .visible : .invisible)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .backgroundFill(Color(hex: "#282828", alpha: 1))
+    }
+    
+    var normalView: some View {
         VStack(spacing: 0) {
             titleView
             
             feeView
                 .padding(.top, 12)
             
-            scriptView
+            scriptButton
                 .padding(.top, 8)
             
             Spacer()
@@ -86,30 +95,72 @@ struct BrowserAuthzView: View {
         .cornerRadius(12)
     }
     
-    var scriptView: some View {
-        HStack(spacing: 12) {
-            Image("icon-script")
-            
-            Text("browser_script".localized)
-                .font(.inter(size: 14, weight: .regular))
-                .foregroundColor(Color(hex: "#F2F2F2"))
-                .lineLimit(1)
-            
-            Spacer()
-            
-            Image("icon-search-arrow")
-                .resizable()
-                .frame(width: 12, height: 12)
+    var scriptButton: some View {
+        Button {
+            vm.changeScriptViewShowingAction(true)
+        } label: {
+            HStack(spacing: 12) {
+                Image("icon-script")
+                
+                Text("browser_script".localized)
+                    .font(.inter(size: 14, weight: .regular))
+                    .foregroundColor(Color(hex: "#F2F2F2"))
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                Image("icon-search-arrow")
+                    .resizable()
+                    .frame(width: 12, height: 12)
+            }
+            .frame(height: 46)
+            .padding(.horizontal, 18)
+            .background(Color(hex: "#313131"))
+            .cornerRadius(12)
         }
-        .frame(height: 46)
-        .padding(.horizontal, 18)
-        .background(Color(hex: "#313131"))
-        .cornerRadius(12)
     }
     
     var actionView: some View {
         WalletSendButtonView {
-            
+            vm.didChooseAction(true)
         }
+    }
+    
+    var scriptView: some View {
+        VStack(spacing: 0) {
+            ZStack {
+                HStack(spacing: 0) {
+                    Button {
+                        vm.changeScriptViewShowingAction(false)
+                    } label: {
+                        Image("icon-back-arrow-grey")
+                            .frame(height: 72)
+                            .contentShape(Rectangle())
+                    }
+                    
+                    Spacer()
+                }
+                
+                Text("browser_script_title".localized)
+                    .font(.inter(size: 18, weight: .bold))
+                    .foregroundColor(Color(hex: "#E8E8E8"))
+            }
+            .frame(height: 72)
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                Text(vm.cadence.trim())
+                    .font(.inter(size: 12, weight: .regular))
+                    .foregroundColor(Color(hex: "#B2B2B2"))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    .padding(.all, 18)
+                    .background(Color(hex: "#313131"))
+                    .cornerRadius(12)
+            }
+        }
+        .padding(.horizontal, 18)
+        .padding(.bottom, 18)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .backgroundFill(Color(hex: "#282828", alpha: 1))
+        .transition(.move(edge: .trailing))
     }
 }

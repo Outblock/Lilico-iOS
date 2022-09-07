@@ -16,6 +16,8 @@ class BrowserAuthzViewModel: ObservableObject {
     @Published var urlString: String
     @Published var logo: String?
     @Published var cadence: String
+    @Published var isScriptShowing: Bool = false
+    
     private var callback: BrowserAuthzViewModel.Callback?
     
     init(title: String, url: String, logo: String?, cadence: String, callback: @escaping BrowserAuthnViewModel.Callback) {
@@ -30,6 +32,12 @@ class BrowserAuthzViewModel: ObservableObject {
         callback?(result)
         callback = nil
         Router.dismiss()
+    }
+    
+    func changeScriptViewShowingAction(_ show: Bool) {
+        withAnimation {
+            self.isScriptShowing = show
+        }
     }
     
     deinit {

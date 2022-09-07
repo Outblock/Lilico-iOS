@@ -279,7 +279,13 @@ extension JSMessageHandler {
     }
     
     private func signPayload(_ authzResponse: FCLAuthzResponse) {
+        let title = authzResponse.config?.app?.title ?? webVC?.webView.title ?? "unknown"
+        let url = webVC?.webView.url?.host ?? "unknown"
+        let vm = BrowserAuthzViewModel(title: title, url: url, logo: authzResponse.config?.app?.icon, cadence: authzResponse.body.cadence) { result in
+            
+        }
         
+        Router.route(to: RouteMap.Explore.authz(vm))
     }
     
     private func signEnvelope(_ authzResponse: FCLAuthzResponse) {
