@@ -78,13 +78,14 @@ extension BrowserViewController {
     }
     
     var extensionInjectUserScript: WKUserScript {
-        let us = WKUserScript(source: generateFCLExtensionInject(), injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        let us = WKUserScript(source: generateFCLExtensionInject(), injectionTime: .atDocumentStart, forMainFrameOnly: true)
         return us
     }
     
     func generateWebViewConfiguration() -> WKWebViewConfiguration {
         let config = WKWebViewConfiguration()
         let ucc = WKUserContentController()
+        config.applicationNameForUserAgent = "Chrome/101.0.4951.67"
         ucc.add(self.jsHandler, name: JSListenerType.message.rawValue)
         ucc.add(self.jsHandler, name: JSListenerType.flowTransaction.rawValue)
         ucc.addUserScript(listenFCLMessageUserScript)
