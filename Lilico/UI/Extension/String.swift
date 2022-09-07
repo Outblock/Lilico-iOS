@@ -179,4 +179,12 @@ extension String {
         
         return URL(string: "https://www.google.com/search?q=\(encodedString)")
     }
+    
+    func toFavIcon(size: Int = 256) -> URL? {
+        guard let url = URL(string: self) else {
+            return nil
+        }
+        
+        return URL(string: "https://double-indigo-crab.b-cdn.net/\(url.host)/\(size)")
+    }
 }

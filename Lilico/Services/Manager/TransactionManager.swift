@@ -43,6 +43,7 @@ extension TransactionManager {
         case addToken
         case addCollection
         case transferNFT
+        case fclTransaction
     }
     
     enum InternalStatus: Int, Codable {
@@ -111,6 +112,12 @@ extension TransactionManager {
                 return decodedObject(NFTCollectionInfo.self)?.logoURL
             case .transferNFT:
                 return decodedObject(NFTTransferModel.self)?.nft.logoUrl
+            case .fclTransaction:
+                guard let model = decodedObject(AuthzTransaction.self), let urlString = model.url else {
+                    return nil
+                }
+                
+                return urlString.toFavIcon()
             default:
                 return nil
             }
@@ -279,6 +286,16 @@ extension TransactionManager {
         holders.removeAll { $0.transactionId.hex == id }
         saveHoldersToCache()
         postDidChangedNotification()
+    }
+    
+    func isExist(tid: String) -> Bool {
+        for holder in holders {
+            if holder.transactionId.hex == tid {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func isTokenEnabling(symbol: String) -> Bool {

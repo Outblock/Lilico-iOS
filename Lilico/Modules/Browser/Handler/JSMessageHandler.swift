@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import Flow
 
 enum JSMessageType: String {
     case ready = "FCL:VIEW:READY"
@@ -29,13 +30,18 @@ extension JSMessageHandler: WKScriptMessageHandler {
         switch JSListenerType(rawValue: message.name) {
         case .message:
             guard let msgString = message.body as? String else {
-                debugPrint("BrowserViewController -> JSListenerType.message body invalid")
+                debugPrint("JSMessageHandler -> JSListenerType.message body invalid")
                 return
             }
             
             handleMessage(msgString)
         case .flowTransaction:
-            break
+            guard let msgString = message.body as? String else {
+                debugPrint("JSMessageHandler -> JSListenerType.flowTransaction body invalid")
+                return
+            }
+            
+            handleTransaction(msgString)
         default:
             break
         }
@@ -43,7 +49,38 @@ extension JSMessageHandler: WKScriptMessageHandler {
 }
 
 extension JSMessageHandler {
-    func handleMessage(_ message: String) {
+    private func handleTransaction(_ message: String) {
+        do {
+            guard let msgData = message.data(using: .utf8),
+                  let jsonDict = try JSONSerialization.jsonObject(with: msgData, options: .mutableContainers) as? [String: AnyObject],
+                  let tid = jsonDict["txId"] as? String else {
+                debugPrint("JSMessageHandler -> handleTransaction: invalid message")
+                return
+            }
+            
+            guard let processingAuthzTransaction = processingAuthzTransaction, let data = try? JSONEncoder().encode(processingAuthzTransaction) else {
+                debugPrint("JSMessageHandler -> handleTransaction: no processingAuthzTransaction")
+                return
+            }
+            
+            if TransactionManager.shared.isExist(tid: tid) {
+                debugPrint("JSMessageHandler -> handleTransaction: tid is exist")
+                return
+            }
+            
+            debugPrint("JSMessageHandler -> handleTransaction")
+            
+            let id = Flow.ID(hex: tid)
+            let holder = TransactionManager.TransactionHolder(id: id, type: .fclTransaction, data: data)
+            TransactionManager.shared.newTransaction(holder: holder)
+        } catch {
+            debugPrint("JSMessageHandler -> handleTransaction: invalid message: \(error)")
+        }
+    }
+}
+
+extension JSMessageHandler {
+    private func handleMessage(_ message: String) {
         if message.isEmpty || processingMessage == message {
             return
         }
