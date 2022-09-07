@@ -332,6 +332,7 @@ extension RouteMap {
         case browser(URL)
         case authn(BrowserAuthnViewModel)
         case authz(BrowserAuthzViewModel)
+        case signMessage(BrowserSignMessageViewModel)
     }
 }
 
@@ -347,6 +348,9 @@ extension RouteMap.Explore: RouterTarget {
             Router.topPresentedController().present(vc, animated: true, completion: nil)
         case .authz(let vm):
             let vc = CustomHostingController(rootView: BrowserAuthzView(vm: vm))
+            Router.topPresentedController().present(vc, animated: true, completion: nil)
+        case .signMessage(let vm):
+            let vc = CustomHostingController(rootView: BrowserSignMessageView(vm: vm))
             Router.topPresentedController().present(vc, animated: true, completion: nil)
         }
     }

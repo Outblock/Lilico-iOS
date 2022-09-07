@@ -267,7 +267,21 @@ extension JSMessageHandler {
             processingFCLResponse = response
             debugPrint("JSMessageHandler -> handleUserSignature, uid: \(response.uniqueId())")
             
-            // TODO: show sign dialog
+            let title = response.config?.app?.title ?? webVC?.webView.title ?? "unknown"
+            let url = webVC?.webView.url?.host ?? "unknown"
+            let vm = BrowserSignMessageViewModel(title: title, url: url, logo: response.config?.app?.icon, cadence: response.body?.message ?? "") { [weak self] result in
+                guard let self = self else {
+                    return
+                }
+                
+                if result {
+                    self.webVC?.postSignMessageResponse(response)
+                }
+                
+                self.finishService()
+            }
+            
+            Router.route(to: RouteMap.Explore.signMessage(vm))
         } catch {
             debugPrint("JSMessageHandler -> handleUserSignature: decode message failed: \(error)")
         }
@@ -333,7 +347,7 @@ extension JSMessageHandler {
             let signature: SignPayerResponse = try await Network.requestWithRawModel(FirebaseAPI.signAsPayer(request))
             let sign = signature.envelopeSigs
             
-            DispatchQueue.syncOnMain {
+            DispatchQueue.main.async {
                 self.webVC?.postAuthzEnvelopeSignResponse(sign: sign)
                 
                 let authzTransaction = AuthzTransaction(url: url, title: title, voucher: authzResponse.body.voucher)
