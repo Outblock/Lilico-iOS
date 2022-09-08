@@ -7,12 +7,22 @@
 
 import SwiftUI
 import UIKit
+import SPConfetti
 
 class BackupPasswordViewModel: ObservableObject {
     private var backupType: BackupManager.BackupType
 
     init(backupType: BackupManager.BackupType) {
         self.backupType = backupType
+        
+        SPConfettiConfiguration.particlesConfig.colors = [ Color.LL.orange.toUIColor()!,
+                                                           Color.LL.yellow.toUIColor()!,
+                                                           Color.LL.blue.toUIColor()!,
+                                                           Color.LL.Secondary.violetDiscover.toUIColor()!]
+        SPConfettiConfiguration.particlesConfig.velocity = 400
+        SPConfettiConfiguration.particlesConfig.velocityRange = 200
+        SPConfettiConfiguration.particlesConfig.birthRate = 200
+        SPConfettiConfiguration.particlesConfig.spin = 4
     }
     
     func backupToCloudAction(password: String) {
@@ -26,10 +36,14 @@ class BackupPasswordViewModel: ObservableObject {
                 HUD.dismissLoading()
                 
                 DispatchQueue.main.async {
-                    if let navi = Router.topNavigationController(), let existVC = navi.viewControllers.first { $0.navigationItem.title == "backup".localized } {
+                    if let navi = Router.topNavigationController(),
+                        let existVC = navi.viewControllers.first { $0.navigationItem.title == "backup".localized } {
                         Router.route(to: RouteMap.Profile.backupChange)
                     } else {
                         Router.popToRoot()
+                        SPConfetti.startAnimating(.fullWidthToDown,
+                                                  particles: [.triangle, .arc, .polygon, .heart, .star],
+                                                  duration: 4)
                     }
                 }
                 
