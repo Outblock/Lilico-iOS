@@ -493,15 +493,21 @@ extension ProfileView {
             VStack {
                 Section {
                     let dm = Row.developerMode(lud)
-                    ProfileView.SettingItemCell(iconName: dm.iconName, title: dm.title, style: dm.style, desc: dm.desc, toggle: dm.toggle)
-                        .onTapGestureOnBackground {
-                            Router.route(to: RouteMap.Profile.developer)
-                        }
+                    
+                    Button {
+                        Router.route(to: RouteMap.Profile.developer)
+                    } label: {
+                        ProfileView.SettingItemCell(iconName: dm.iconName, title: dm.title, style: dm.style, desc: dm.desc, toggle: dm.toggle)
+                    }
                     
                     Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
 
-                    ProfileView.SettingItemCell(iconName: Row.about.iconName, title: Row.about.title, style: Row.about.style, desc: Row.about.desc, toggle: Row.about.toggle)
-                        .onTapGestureOnBackground {}
+                    Button {
+                        Router.route(to: RouteMap.Profile.developer)
+                    } label: {
+                        ProfileView.SettingItemCell(iconName: Row.about.iconName, title: Row.about.title, style: Row.about.style, desc: Row.about.desc, toggle: Row.about.toggle)
+                    }
+                        
                 }
             }
             .background(RoundedRectangle(cornerRadius: 16)
