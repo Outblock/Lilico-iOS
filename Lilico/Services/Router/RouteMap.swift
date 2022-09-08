@@ -100,9 +100,9 @@ extension RouteMap {
         case addToken
         case tokenDetail(TokenModel)
         case receive
-        case send
-        case sendAmount(Contact, TokenModel)
-        case scan((SPQRCodeData, SPQRCameraController)->Void)
+        case send(_ address: String = "")
+        case sendAmount(Contact, TokenModel, isPush: Bool = true)
+        case scan(SPQRCodeCallback, click: SPQRCodeCallback? = nil)
         case buyCrypto
     }
 }
@@ -120,13 +120,17 @@ extension RouteMap.Wallet: RouterTarget {
             vc.modalTransitionStyle = .coverVertical
             vc.view.backgroundColor = .clear
             navi.present(vc, animated: false)
-        case .send:
-            navi.present(content: WalletSendView())
-        case .sendAmount(let contact, let token):
-            navi.push(content: WalletSendAmountView(target: contact, token: token))
-        case .scan(let handler):
+        case let .send(address):
+            navi.present(content: WalletSendView(address: address))
+        case let .sendAmount(contact, token, isPush):
+            if isPush {
+                navi.push(content: WalletSendAmountView(target: contact, token: token))
+            } else {
+                navi.present(content: WalletSendAmountView(target: contact, token: token))
+            }
+        case let .scan(handler, click):
 //            let rootVC = Router.topPresentedController()
-            SPQRCode.scanning(handled: handler, on: navi)
+            SPQRCode.scanning(handled: handler, click: click, on: navi)
         case .buyCrypto:
             let vc = CustomHostingController(rootView: BuyProvderView())
             Router.topPresentedController().present(vc, animated: true, completion: nil)

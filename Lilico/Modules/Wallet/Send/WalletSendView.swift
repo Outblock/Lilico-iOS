@@ -24,8 +24,10 @@ struct WalletSendView: RouteableView {
     @StateObject private var vm: WalletSendViewModel
     @FocusState private var searchIsFocused: Bool
     
-    init(callback: WalletSendView.WalletSendViewSelectTargetCallback? = nil) {
-        _vm = StateObject(wrappedValue: WalletSendViewModel(selectCallback: callback))
+    init(address: String = "", callback: WalletSendView.WalletSendViewSelectTargetCallback? = nil) {
+        let vm = WalletSendViewModel(selectCallback: callback)
+        vm.searchText = address
+        _vm = StateObject(wrappedValue: vm)
     }
     
     var title: String {

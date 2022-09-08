@@ -168,7 +168,7 @@ extension TokenDetailViewModel {
 extension TokenDetailViewModel {
     func sendAction() {
         LocalUserDefaults.shared.recentToken = token.symbol
-        Router.route(to: RouteMap.Wallet.send)
+        Router.route(to: RouteMap.Wallet.send())
     }
     
     func receiveAction() {

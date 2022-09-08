@@ -26,10 +26,13 @@ import NativeUIKit
 import SwiftUI
 import SnapKit
 
+public typealias SPQRCodeCallback = ((SPQRCodeData, SPQRCameraController)->Void?)
+
 open class SPQRCameraController: SPController {
     
     open var detectQRCodeData: ((SPQRCodeData, SPQRCameraController)->SPQRCodeData?) = { data, _ in return data }
-    open var handledQRCodeData: ((SPQRCodeData, SPQRCameraController)->Void?)? = nil
+    open var handledQRCodeData: SPQRCodeCallback? = nil
+    open var clickQRCodeData: SPQRCodeCallback? = nil
 
     internal var updateTimer: Timer?
     internal lazy var captureSession: AVCaptureSession = makeCaptureSession()
@@ -70,10 +73,10 @@ open class SPQRCameraController: SPController {
         view.layer.addSublayer(frameLayer)
         captureSession.startRunning()
         
+        detailView.addTarget(self, action: #selector(didTapDetailButtonClick), for: .touchUpInside)
         view.addSubview(detailView)
         
         addBackButton()
-        
         updateInterface()
     }
     
@@ -92,6 +95,11 @@ open class SPQRCameraController: SPController {
     
     @objc func didTapCancelButton() {
         dismissAnimated()
+    }
+    
+    @objc private func didTapDetailButtonClick() {
+        guard let data = qrCodeData else { return }
+        clickQRCodeData?(data, self)
     }
     
     // MARK: - Layout

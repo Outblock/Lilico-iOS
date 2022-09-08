@@ -295,7 +295,6 @@ extension WalletSendViewModel {
         let contact = Contact(address: address, avatar: nil, contactName: address, contactType: .external, domain: nil, id: UUID().hashValue, username: nil)
         let symbol = LocalUserDefaults.shared.recentToken ?? "flow"
         guard let token = WalletManager.shared.getToken(bySymbol: symbol) else {
-            
             return
         }
         Router.route(to: RouteMap.Wallet.sendAmount(contact, token))

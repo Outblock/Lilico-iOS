@@ -42,7 +42,7 @@ struct FadeAnimationBackground: View {
                                 .foregroundColor(Color(hex: "#00EF8B"))
                         }
                     }
-                    .rotationEffect(Angle(degrees: 20))
+                    .rotationEffect(Angle(degrees: 5))
                 }
                 
             }.onAppear{

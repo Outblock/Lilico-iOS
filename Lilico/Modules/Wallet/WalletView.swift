@@ -172,7 +172,7 @@ struct WalletView: View {
         VStack{
             HStack() {
                 actionButton(imageName: "wallet-send-stroke") {
-                    Router.route(to: RouteMap.Wallet.send)
+                    Router.route(to: RouteMap.Wallet.send())
                 }
                 Spacer()
                 actionButton(imageName: "wallet-receive-stroke") {

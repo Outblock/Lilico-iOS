@@ -26,7 +26,8 @@ public class SPQRCode {
     
     public static func scanning(
         detect: ((SPQRCodeData?, SPQRCameraController)->SPQRCodeData?)? = nil,
-        handled: ((SPQRCodeData, SPQRCameraController)->Void)?,
+        handled: SPQRCodeCallback?,
+        click: SPQRCodeCallback? = nil,
         on controller: UIViewController
     ) {
         let qrController = SPQRCameraController()
@@ -34,6 +35,7 @@ public class SPQRCode {
             qrController.detectQRCodeData = detect
         }
         qrController.handledQRCodeData = handled
+        qrController.clickQRCodeData = click
         qrController.modalPresentationStyle = .formSheet
         controller.present(qrController)
     }
