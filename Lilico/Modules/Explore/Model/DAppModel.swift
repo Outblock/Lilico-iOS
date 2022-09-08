@@ -17,6 +17,14 @@ struct DAppModel: Codable, Identifiable {
     var id: URL {
         url
     }
+    
+    var host: String? {
+        var host = url.host
+        if LocalUserDefaults.shared.flowNetwork == .testnet {
+            host = testnetURL?.host
+        }
+        return host
+    }
 
     enum CodingKeys: String, CodingKey {
         case name, url

@@ -12,7 +12,7 @@ import SPConfetti
 import SwiftUI
 import SwiftUIX
 
-private let ActionViewHeight: CGFloat = 78
+private let ActionViewHeight: CGFloat = 54
 private let CardViewHeight: CGFloat = 214
 private let CoinCellHeight: CGFloat = 73
 private let CoinIconHeight: CGFloat = 43
@@ -142,10 +142,10 @@ struct WalletView: View {
                     VStack(spacing: 6) {
                         Image("wallet-send-stroke")
                             .frame(width: 28, height: 28)
-                        Text("send".localized)
-                            .foregroundColor(.LL.text)
-                            .textCase(.uppercase)
-                            .font(.inter(size: 14, weight: .semibold))
+//                        Text("send".localized)
+//                            .foregroundColor(.LL.text)
+//                            .textCase(.uppercase)
+//                            .font(.inter(size: 14, weight: .semibold))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .frame(height: ActionViewHeight)
@@ -163,10 +163,6 @@ struct WalletView: View {
                     VStack(spacing: 6) {
                         Image("wallet-receive-stroke")
                             .frame(width: 28, height: 28)
-                        Text("receive".localized)
-                            .foregroundColor(.LL.text)
-                            .textCase(.uppercase)
-                            .font(.inter(size: 14, weight: .semibold))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .frame(height: ActionViewHeight)
@@ -185,10 +181,6 @@ struct WalletView: View {
                     VStack(spacing: 6) {
                         Image("wallet")
                             .frame(width: 28, height: 28)
-                        Text("buy".localized)
-                            .foregroundColor(.LL.text)
-                            .textCase(.uppercase)
-                            .font(.inter(size: 14, weight: .semibold))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .frame(height: ActionViewHeight)

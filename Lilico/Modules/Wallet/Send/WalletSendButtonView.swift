@@ -18,6 +18,8 @@ struct WalletSendButtonView: View {
     @State
     var isLoading: Bool = false
     
+    var buttonText: String = "hold_to_send".localized
+    
     var action: () -> ()
     
     var body: some View {
@@ -60,7 +62,7 @@ struct WalletSendButtonView: View {
                 
             }
             .frame(width: 25, height: 25)
-            Text("send".localized)
+            Text(buttonText)
                 .foregroundColor(Color.LL.Button.text)
                 .font(.inter(size: 14, weight: .bold))
                 .allowsHitTesting(false)
@@ -83,7 +85,7 @@ struct WalletSendButtonView: View {
                     action()
                 }
         )
-        .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0))
+        .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0), value: tap)
         //            .buttonStyle(ScaleButtonStyle())
         
     }

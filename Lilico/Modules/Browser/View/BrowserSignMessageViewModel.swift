@@ -18,6 +18,11 @@ class BrowserSignMessageViewModel: ObservableObject {
     @Published var cadence: String
     @Published var isScriptShowing: Bool = false
     
+    var message: String {
+        let data = Data(hex: cadence)
+        return String(data: data, encoding: .utf8) ?? ""
+    }
+    
     private var callback: BrowserSignMessageViewModel.Callback?
     
     init(title: String, url: String, logo: String?, cadence: String, callback: @escaping BrowserSignMessageViewModel.Callback) {

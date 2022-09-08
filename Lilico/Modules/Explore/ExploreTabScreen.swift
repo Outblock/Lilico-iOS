@@ -65,21 +65,22 @@ struct ExploreTabScreen: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     ForEach(vm.state.list, id: \.name) { dApp in
-                        
                         Button {
                             
                             let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
                                 feedbackGenerator.impactOccurred()
                             
                             //TODO: Open Browser
-                            let url = URL(string: "https://outblock.github.io/harness/")!
+                            let url = URL(string: "https://fcl-harness-eight.vercel.app/")!
                             
-                            if LocalUserDefaults.shared.flowNetwork == .testnet,
-                                let url = dApp.testnetURL {
-                                Router.route(to: RouteMap.Explore.browser(url))
-                            } else {
-                                Router.route(to: RouteMap.Explore.browser(dApp.url))
-                            }
+                            Router.route(to: RouteMap.Explore.browser(url))
+                            
+//                            if LocalUserDefaults.shared.flowNetwork == .testnet,
+//                                let url = dApp.testnetURL {
+//                                Router.route(to: RouteMap.Explore.browser(url))
+//                            } else {
+//                                Router.route(to: RouteMap.Explore.browser(dApp.url))
+//                            }
                             
     
                             
@@ -99,14 +100,27 @@ struct ExploreTabScreen: View {
                                     .padding(.leading, 8)
                                     .padding(.trailing, 16)
                                 VStack(alignment: .leading) {
-                                    Text(dApp.name)
-                                        .bold()
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .foregroundColor(.LL.text)
+                                    HStack {
+                                        Text(dApp.name)
+                                            .bold()
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .foregroundColor(.LL.text)
+                                        
+                                        Spacer()
+                                        
+                                        Text(dApp.category.uppercased())
+                                            .font(.LL.caption)
+                                            .padding(.horizontal, 8)
+                                            .padding(.vertical, 3)
+                                            .background(Color.LL.outline.opacity(0.2))
+                                            .foregroundColor(Color.LL.Neutrals.neutrals9)
+                                            .cornerRadius(20)
+                                    }
                                     
-                                    Text(dApp.url.host ?? "")
+                                    Text(dApp.host ?? "")
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                        .foregroundColor(.LL.text)
+                                        .foregroundColor(.LL.Neutrals.note)
+                                        .font(.LL.footnote)
                                     
                                     Spacer(minLength: 5)
                                     

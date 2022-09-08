@@ -13,26 +13,26 @@ struct BrowserSignMessageView: View {
     
     init(vm: BrowserSignMessageViewModel) {
         _vm = StateObject(wrappedValue: vm)
+        UITextView.appearance().backgroundColor = UIColor(hex: "#313131")
     }
     
     var body: some View {
         ZStack {
             normalView.visibility(vm.isScriptShowing ? .invisible : .visible)
-            scriptView.visibility(vm.isScriptShowing ? .visible : .invisible)
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .backgroundFill(Color(hex: "#282828", alpha: 1))
+        .background(.ultraThickMaterial)
     }
     
     var normalView: some View {
         VStack(spacing: 0) {
             titleView
             
-            scriptButton
+            scriptView
                 .padding(.top, 12)
             
             Spacer()
-            
             actionView
         }
         .padding(.all, 18)
@@ -53,7 +53,7 @@ struct BrowserSignMessageView: View {
                 .clipShape(Circle())
             
             VStack(alignment: .leading, spacing: 5) {
-                Text("browser_transaction_request_from".localized)
+                Text("browser_sign_message_request_from".localized)
                     .font(.inter(size: 14))
                     .foregroundColor(Color(hex: "#808080"))
                 
@@ -92,46 +92,48 @@ struct BrowserSignMessageView: View {
     }
     
     var actionView: some View {
-        WalletSendButtonView {
+        WalletSendButtonView(buttonText: "hold_to_sign".localized) {
             vm.didChooseAction(true)
         }
     }
     
     var scriptView: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                HStack(spacing: 0) {
-                    Button {
-                        vm.changeScriptViewShowingAction(false)
-                    } label: {
-                        Image("icon-back-arrow-grey")
-                            .frame(height: 72)
-                            .contentShape(Rectangle())
-                    }
-                    
-                    Spacer()
-                }
-                
-                Text("browser_script_title".localized)
-                    .font(.inter(size: 18, weight: .bold))
-                    .foregroundColor(Color(hex: "#E8E8E8"))
-            }
-            .frame(height: 72)
-            
-            ScrollView(.vertical, showsIndicators: false) {
-                Text(vm.cadence.trim())
-                    .font(.inter(size: 12, weight: .regular))
-                    .foregroundColor(Color(hex: "#B2B2B2"))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                    .padding(.all, 18)
-                    .background(Color(hex: "#313131"))
-                    .cornerRadius(12)
-            }
+//        ZStack {
+//            TextEditor(text: .constant(vm.message))
+//                .padding(.all, 12)
+//                .disabled(true)
+//                .backgroundFill(Color(hex: "#313131", alpha: 1))
+//                .foregroundColor(.white)
+//                .cornerRadius(16)
+//
+//            Text(vm.message).opacity(0).padding(.all, 8)
+//        }
+        
+        ScrollView(.vertical, showsIndicators: false) {
+            Text(vm.cadence.trim())
+                .font(.inter(size: 12, weight: .regular))
+                .foregroundColor(Color(hex: "#B2B2B2"))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .padding(.all, 18)
         }
-        .padding(.horizontal, 18)
+        .background(Color(hex: "#313131"))
+        .cornerRadius(12)
         .padding(.bottom, 18)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .backgroundFill(Color(hex: "#282828", alpha: 1))
         .transition(.move(edge: .trailing))
+    }
+}
+
+struct BrowserSignMessageView_Previews: PreviewProvider {
+    
+    static let vm = BrowserSignMessageViewModel(title: "Test title",
+                                                url: "https://lilico.app",
+                                                logo: "",
+                                                cadence: "464f4f") {_ in
+        
+    }
+    
+    static var previews: some View {
+        BrowserSignMessageView(vm: vm)
     }
 }
