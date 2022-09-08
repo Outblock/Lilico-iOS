@@ -34,6 +34,7 @@ extension WalletView: AppTabBarPageProtocol {
 struct WalletView: View {
     @StateObject var um = UserManager.shared
     @StateObject private var vm = WalletViewModel()
+    @State var isRefreshing: Bool = false
 
     var emptyView: some View {
         Text("no address")
@@ -64,7 +65,23 @@ struct WalletView: View {
             emptyView
                 .visibility(vm.walletState == .noAddress ? .visible : .gone)
             
-            ScrollView(.vertical, showsIndicators: false) {
+            RefreshableScrollView(showsIndicators: false, onRefresh: { done in
+                if isRefreshing {
+                    return
+                }
+                
+                isRefreshing = true
+                vm.reloadWalletData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.2) {
+                    done()
+                    isRefreshing = false
+                }
+            }, progress: { state in
+                ImageAnimated(imageSize: CGSize(width: 60, height: 60), imageNames: ImageAnimated.appRefreshImageNames(), duration: 1.6, isAnimating: state == .loading || state == .primed)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .visibility(state == .waiting ? .gone : .visible)
+            }) {
                 LazyVStack() {
                     Section(header: headerView) {
                         VStack(spacing: 32) {
@@ -99,6 +116,7 @@ struct WalletView: View {
                     .listRowBackground(Color.LL.Neutrals.background)
                     .visibility(vm.walletState == .idle ? .visible : .gone)
                 }
+
             }
             .listStyle(.plain)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
