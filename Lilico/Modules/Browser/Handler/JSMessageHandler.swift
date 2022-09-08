@@ -334,9 +334,11 @@ extension JSMessageHandler {
                 return
             }
             
-            if result {
-                self.processingAuthzTransaction = AuthzTransaction(url: self.webVC?.webView.url?.absoluteString, title: self.webVC?.webView.title, voucher: authzResponse.body.voucher)
-                self.didConfirmSignPayload(authzResponse)
+            DispatchQueue.main.async {
+                if result {
+                    self.processingAuthzTransaction = AuthzTransaction(url: self.webVC?.webView.url?.absoluteString, title: self.webVC?.webView.title, voucher: authzResponse.body.voucher)
+                    self.didConfirmSignPayload(authzResponse)
+                }
             }
             
             self.finishService()

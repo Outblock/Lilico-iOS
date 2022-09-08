@@ -69,8 +69,6 @@ class ScanHandler {
                 vc.presentingViewController?.dismiss(animated: true, completion: {
                     Router.route(to: RouteMap.Explore.browser(url))
                 })
-            default:
-                break
             }
         }
     }

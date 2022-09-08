@@ -26,7 +26,7 @@ import NativeUIKit
 import SwiftUI
 import SnapKit
 
-public typealias SPQRCodeCallback = ((SPQRCodeData, SPQRCameraController)->Void?)
+public typealias SPQRCodeCallback = ((SPQRCodeData, SPQRCameraController)-> Void)
 
 open class SPQRCameraController: SPController {
     
