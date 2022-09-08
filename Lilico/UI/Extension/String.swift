@@ -218,3 +218,50 @@ extension String {
     }
 }
 
+
+extension String {
+    var isValidURL: Bool {
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        if let match = detector.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)) {
+            // it is a link, if the match covers the whole string
+            return match.range.length == utf16.count
+        } else {
+            return false
+        }
+    }
+
+    func validateUrl() -> Bool {
+        guard !contains("..") else { return false }
+
+        let head = "((http|https)://)?([(w|W)]{3}+\\.)?"
+        let tail = "\\.+[A-Za-z]{1,10}+(\\.)?+(/(.)*)?"
+        let urlRegEx = head + "+(.)+" + tail
+
+        let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
+        return urlTest.evaluate(with: trimmingCharacters(in: .whitespaces))
+        //        return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: self)
+    }
+
+    //    func validateUrl() -> Bool {
+    //        guard let url = URL(string: self) else {
+    //            return false
+    //        }
+    //
+    //        return UIApplication.shared.canOpenURL(url)
+    //    }
+    
+
+    func addHttpsPrefix() -> String {
+        if !hasPrefix("https://") {
+            return "https://" + self
+        }
+        return self
+    }
+
+    func addHttpPrefix() -> String {
+        if !hasPrefix("http://") {
+            return "http://" + self
+        }
+        return self
+    }
+}

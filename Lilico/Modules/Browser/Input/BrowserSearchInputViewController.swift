@@ -17,7 +17,7 @@ class BrowserSearchInputViewController: UIViewController {
     private var searchingText: String = ""
     
     private var timer: Timer?
-    
+
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -94,6 +94,16 @@ class BrowserSearchInputViewController: UIViewController {
         }
     }
     
+    public func setSearchText(text: String? = "") {
+        self.searchingText = text ?? ""
+        inputBar.textField.text = text
+        inputBar.reloadView()
+        if let str = text, !str.isEmpty {
+            inputBar.textField.becomeFirstResponder()
+            inputBar.textField.selectAll(self)
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         reloadBgPaths()
@@ -136,6 +146,33 @@ extension BrowserSearchInputViewController {
         
         searchingText = trimString
         startTimer()
+    }
+    
+    static func makeUrlIfNeeded(urlString: String) -> String {
+        var urlString = urlString
+
+        if !urlString.hasPrefix("http://"), !urlString.hasPrefix("https://") {
+            urlString = urlString.addHttpPrefix()
+        }
+
+        if urlString.validateUrl() {
+            return urlString
+        }
+
+        if urlString.hasPrefix("http://") {
+            urlString = String(urlString.dropFirst(7))
+        }
+
+        if urlString.hasPrefix("https://") {
+            urlString = String(urlString.dropFirst(8))
+        }
+
+        let engine = "https://www.google.com/search?q="
+
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+        urlString = "\(engine)\(urlString)"
+
+        return urlString
     }
     
     private func doSearch() {

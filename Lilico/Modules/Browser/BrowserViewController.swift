@@ -136,11 +136,14 @@ extension BrowserViewController {
 
 extension BrowserViewController {
     private func reloadActionBarView() {
-        actionBarView.addressLabel.text = webView.title
         
+        if let title = webView.title, !title.isEmpty {
+            actionBarView.addressLabel.text = title
+        } else {
+            actionBarView.addressLabel.text =  webView.url?.absoluteString
+        }
         
         actionBarView.reloadBtn.isSelected = webView.isLoading
-        
         actionBarView.progressView.isHidden = !webView.isLoading
         actionBarView.progressView.progress = webView.isLoading ? webView.estimatedProgress : 0
     }
@@ -197,8 +200,10 @@ extension BrowserViewController {
 extension BrowserViewController {
     private func showSearchInputView() {
         let inputVC = BrowserSearchInputViewController()
+        inputVC.setSearchText(text: webView.url?.absoluteString)
         inputVC.selectTextCallback = { [weak self] text in
-            if let url = text.toSearchURL {
+            let urlString = BrowserSearchInputViewController.makeUrlIfNeeded(urlString: text)
+            if let url = URL(string: urlString) {
                 self?.loadURL(url)
             }
         }

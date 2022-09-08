@@ -144,7 +144,7 @@ class BrowserSearchInputBar: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(onTextFieldDidChanged(noti:)), name: UITextField.textDidChangeNotification, object: nil)
     }
     
-    private func reloadView() {
+    func reloadView() {
         let isEmpty = textField.text?.isEmpty ?? true
         clearBtn.isHidden = isEmpty
     }
