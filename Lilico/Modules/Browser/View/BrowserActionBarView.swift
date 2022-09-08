@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Hero
 
 let BrowserActionBarViewHeight: CGFloat = 60
 private let BtnWidth: CGFloat = 60
@@ -48,7 +49,7 @@ class BrowserActionBarView: UIView {
     
     lazy var homeBtn: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setImage(UIImage(named: "icon-btn-home"))
+        btn.setImage(UIImage(named: "icon-btn-close"))
         btn.tintColor = .white
         
         btn.snp.makeConstraints { make in
@@ -70,6 +71,7 @@ class BrowserActionBarView: UIView {
     lazy var addressBarContainer: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        view.heroID = "addressBarContainer"
         return view
     }()
     

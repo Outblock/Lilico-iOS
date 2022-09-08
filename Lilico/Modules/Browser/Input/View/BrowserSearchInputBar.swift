@@ -25,7 +25,7 @@ class BrowserSearchInputBar: UIView {
         view.layer.cornerRadius = 16
         view.layer.borderColor = UIColor(Color.LL.Primary.salmonPrimary).cgColor
         view.layer.borderWidth = 2
-        
+        view.heroID = "addressBarContainer"
         view.snp.makeConstraints { make in
             make.height.equalTo(ContentViewHeight)
         }
@@ -36,7 +36,7 @@ class BrowserSearchInputBar: UIView {
         let view = UITextField()
         view.borderStyle = .none
         view.backgroundColor = .clear
-        view.textColor = UIColor(hex: "#333333")
+        view.textColor = UIColor(named: "Text")
         view.font = .interSemiBold(size: 16)
         view.tintColor = UIColor(Color.LL.Primary.salmonPrimary)
         view.clearButtonMode = .never
@@ -57,7 +57,7 @@ class BrowserSearchInputBar: UIView {
     lazy var cancelBtn: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("cancel".localized, for: .normal)
-        btn.setTitleColor(UIColor(hex: "#808080"), for: .normal)
+        btn.setTitleColor(UIColor(named: "neutrals.note"), for: .normal)
         btn.titleLabel?.font = .interSemiBold(size: 14)
         btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         

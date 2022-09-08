@@ -302,6 +302,8 @@
 "qr_code_data_flow_wallet_prefix" = "";
 "qr_code_data_wallet_connect_prefix" = "Wallet Connect";
 
+"choose_provider" = "Choose Provider";
+
 // Wallet Connect
 "approve_failed" = "Approve failed";
 "reject_failed" = "Reject failed";

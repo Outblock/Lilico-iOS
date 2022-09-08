@@ -60,6 +60,7 @@ struct ProfileView: RouteableView {
                     }
                 }
                 .padding(.horizontal, 18)
+                .padding(.bottom, 18)
             }
             .background(.LL.Neutrals.background)
             .buttonStyle(.plain)
@@ -171,6 +172,7 @@ extension ProfileView {
     struct InfoActionView: View {
         var body: some View {
             HStack(alignment: .center, spacing: 0) {
+                
                 ProfileView.InfoActionButton(iconName: "icon-address", title: "addresses".localized) {
                     Router.route(to: RouteMap.Profile.addressBook)
                 }
@@ -221,17 +223,21 @@ extension ProfileView {
         var body: some View {
             VStack {
                 Section {
-                    ProfileView.SettingItemCell(iconName: Row.backup(vm).iconName, title: Row.backup(vm).title, style: Row.backup(vm).style, desc: Row.backup(vm).desc, imageName: Row.backup(vm).imageName, sysImageColor: Row.backup(vm).sysImageColor)
-                        .onTapGestureOnBackground {
-                            Router.route(to: RouteMap.Profile.backupChange)
-                        }
                     
+                    Button {
+                        Router.route(to: RouteMap.Profile.backupChange)
+                    } label: {
+                        ProfileView.SettingItemCell(iconName: Row.backup(vm).iconName, title: Row.backup(vm).title, style: Row.backup(vm).style, desc: Row.backup(vm).desc, imageName: Row.backup(vm).imageName, sysImageColor: Row.backup(vm).sysImageColor)
+                    }
+
                     Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
                     
-                    ProfileView.SettingItemCell(iconName: Row.security.iconName, title: Row.security.title, style: Row.security.style, desc: Row.security.desc)
-                        .onTapGestureOnBackground {
-                            vm.securityAction()
-                        }
+                    Button {
+                        vm.securityAction()
+                    } label: {
+                        ProfileView.SettingItemCell(iconName: Row.security.iconName, title: Row.security.title, style: Row.security.style, desc: Row.security.desc)
+                    }
+
                 }
             }
             .background(RoundedRectangle(cornerRadius: 16)
@@ -394,13 +400,15 @@ extension ProfileView {
             VStack {
                 Section {
                     ForEach(Row.allCases, id: \.self) { row in
-                        ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc(with: vm), toggle: row.toggle)
-                            .onTapGestureOnBackground {
-                                if row == .theme {
-                                    Router.route(to: RouteMap.Profile.themeChange)
-                                }
-                            }
                         
+                        Button {
+                            if row == .theme {
+                                Router.route(to: RouteMap.Profile.themeChange)
+                            }
+                        } label: {
+                            ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc(with: vm), toggle: row.toggle)
+                                
+                        }
                         if row != .notification {
                             Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
                         }
@@ -535,7 +543,7 @@ extension ProfileView.AboutSectionView.Row {
         case .about:
             return "about".localized
         case let .developerMode(lud):
-            return lud.flowNetwork.rawValue
+            return lud.flowNetwork.rawValue.uppercased()
         }
     }
 
@@ -667,6 +675,8 @@ extension ProfileView {
             }
             .frame(height: 64)
             .padding(.horizontal, 16)
+            .contentShape(Rectangle())
+//            .backgroundFill(Color.LL.bgForIcon)
         }
     }
 }

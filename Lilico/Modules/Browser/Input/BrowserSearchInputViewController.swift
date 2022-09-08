@@ -20,7 +20,7 @@ class BrowserSearchInputViewController: UIViewController {
 
     private lazy var contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "DeepBackground")
         return view
     }()
     
@@ -49,7 +49,7 @@ class BrowserSearchInputViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.showsVerticalScrollIndicator = false
-        view.backgroundColor = UIColor(hex: "#F4F4F7")
+        view.backgroundColor = UIColor(named: "Background")
         view.layer.cornerRadius = 24
         view.clipsToBounds = true
         view.delegate = self
@@ -92,6 +92,8 @@ class BrowserSearchInputViewController: UIViewController {
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(inputBar.snp.top)
         }
+        
+        hero.isEnabled = true
     }
     
     public func setSearchText(text: String? = "") {

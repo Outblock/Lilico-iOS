@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import SnapKit
 import WebKit
+import Hero
 
 class BrowserViewController: UIViewController {
     private var observation: NSKeyValueObservation?
@@ -62,6 +63,7 @@ class BrowserViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupObserver()
+        hero.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

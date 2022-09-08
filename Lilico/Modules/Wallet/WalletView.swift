@@ -151,65 +151,38 @@ struct WalletView: View {
         }
     }
 
+    func actionButton(imageName: String, action: @escaping () -> ()) -> some View {
+        return Button {
+            action()
+        } label: {
+            VStack(spacing: 6) {
+                Image(imageName)
+                    .frame(width: 28, height: 28)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(height: ActionViewHeight)
+            .background(.LL.bgForIcon)
+            .cornerRadius(12)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(ScaleButtonStyle())
+    }
+    
     var actionView: some View {
         VStack{
             HStack() {
-                Button {
+                actionButton(imageName: "wallet-send-stroke") {
                     Router.route(to: RouteMap.Wallet.send)
-                } label: {
-                    VStack(spacing: 6) {
-                        Image("wallet-send-stroke")
-                            .frame(width: 28, height: 28)
-//                        Text("send".localized)
-//                            .foregroundColor(.LL.text)
-//                            .textCase(.uppercase)
-//                            .font(.inter(size: 14, weight: .semibold))
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .frame(height: ActionViewHeight)
-                    .background(.LL.bgForIcon)
-                    .cornerRadius(12)
-                    .contentShape(Rectangle())
                 }
-                .buttonStyle(ScaleButtonStyle())
-                
                 Spacer()
-                
-                Button {
+                actionButton(imageName: "wallet-receive-stroke") {
                     Router.route(to: RouteMap.Wallet.receive)
-                } label: {
-                    VStack(spacing: 6) {
-                        Image("wallet-receive-stroke")
-                            .frame(width: 28, height: 28)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .frame(height: ActionViewHeight)
-                    .background(.LL.bgForIcon)
-                    .cornerRadius(12)
-                    .contentShape(Rectangle())
                 }
-                .buttonStyle(ScaleButtonStyle())
-
-                
                 Spacer()
-                
-                Button {
-                    Router.route(to: RouteMap.Wallet.receive)
-                } label: {
-                    VStack(spacing: 6) {
-                        Image("wallet")
-                            .frame(width: 28, height: 28)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .frame(height: ActionViewHeight)
-                    .background(.LL.bgForIcon)
-                    .cornerRadius(12)
-                    .contentShape(Rectangle())
+                actionButton(imageName: "wallet") {
+                    Router.route(to: RouteMap.Wallet.buyCrypto)
                 }
-                .buttonStyle(ScaleButtonStyle())
-                
             }
-            
             Divider()
                 .foregroundColor(.LL.Neutrals.neutrals4)
                 .padding(.top, 12)

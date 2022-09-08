@@ -103,6 +103,7 @@ extension RouteMap {
         case send
         case sendAmount(Contact, TokenModel)
         case scan((SPQRCodeData, SPQRCameraController)->Void)
+        case buyCrypto
     }
 }
 
@@ -126,6 +127,9 @@ extension RouteMap.Wallet: RouterTarget {
         case .scan(let handler):
 //            let rootVC = Router.topPresentedController()
             SPQRCode.scanning(handled: handler, on: navi)
+        case .buyCrypto:
+            let vc = CustomHostingController(rootView: BuyProvderView())
+            Router.topPresentedController().present(vc, animated: true, completion: nil)
         }
     }
 }
