@@ -333,7 +333,7 @@ extension RouteMap.Transaction: RouterTarget {
 
 extension RouteMap {
     enum Explore {
-        case browser(URL)
+        case browser(URL, hideBar: Bool = false)
         case authn(BrowserAuthnViewModel)
         case authz(BrowserAuthzViewModel)
         case signMessage(BrowserSignMessageViewModel)
@@ -343,9 +343,10 @@ extension RouteMap {
 extension RouteMap.Explore: RouterTarget {
     func onPresent(navi: UINavigationController) {
         switch self {
-        case .browser(let url):
+        case let .browser(url, hideBar):
             let vc = BrowserViewController()
             vc.loadURL(url)
+            vc.shouldHideActionBar = hideBar
             navi.pushViewController(vc, animated: true)
         case .authn(let vm):
             let vc = CustomHostingController(rootView: BrowserAuthnView(vm: vm))

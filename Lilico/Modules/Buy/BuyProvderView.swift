@@ -81,7 +81,7 @@ struct BuyProvderView: View {
             let response: MoonPayResponse = try await Network.request(FirebaseAPI.moonPay(request))
             HUD.dismissLoading()
             Router.dismiss(animated: true) {
-                Router.route(to: RouteMap.Explore.browser(response.url))
+                Router.route(to: RouteMap.Explore.browser(response.url, hideBar: true))
             }
             
         } catch {

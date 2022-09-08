@@ -115,12 +115,12 @@ struct ExploreTabScreen: View {
                                             .cornerRadius(20)
                                     }
                                     
-                                    Text(dApp.host ?? "")
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .foregroundColor(.LL.Neutrals.note)
-                                        .font(.LL.footnote)
+//                                    Text(dApp.host ?? "")
+//                                        .frame(maxWidth: .infinity, alignment: .leading)
+//                                        .foregroundColor(.LL.Neutrals.note)
+//                                        .font(.LL.footnote)
                                     
-                                    Spacer(minLength: 5)
+//                                    Spacer(minLength: 5)
                                     
                                     Text(dApp.description)
                                         .font(.LL.footnote)

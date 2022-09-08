@@ -14,6 +14,7 @@ import Hero
 class BrowserViewController: UIViewController {
     private var observation: NSKeyValueObservation?
     private var actionBarIsHiddenFlag: Bool = false
+    public var shouldHideActionBar: Bool = false
     
     private lazy var contentView: UIView = {
         let view = UIView()
@@ -222,6 +223,13 @@ extension BrowserViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         reloadActionBarView()
+        
+        // For some website there is a overlapping,
+        // hence we hide the tool bar at the begining.
+        if shouldHideActionBar {
+            hideActionBarView()
+            shouldHideActionBar = false
+        }
     }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
@@ -241,7 +249,6 @@ extension BrowserViewController: WKNavigationDelegate {
 extension BrowserViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
-        
         if translation.y >= 0 {
             showActionBarView()
         } else {
