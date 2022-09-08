@@ -51,6 +51,9 @@ class WalletViewModel: ObservableObject {
     @Published var balance: Double = 0
     @Published var coinItems: [WalletCoinItemModel] = []
     @Published var walletState: WalletState = .noAddress
+    
+    private var lastRefreshTS: TimeInterval = 0
+    private let autoRefreshInterval: TimeInterval = 30
 
     private var cancelSets = Set<AnyCancellable>()
 
@@ -89,6 +92,22 @@ class WalletViewModel: ObservableObject {
             if let self = self {
                 DispatchQueue.main.async {
                     self.refreshCoinItems()
+                }
+            }
+        }.store(in: &cancelSets)
+        
+        NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            
+            if self.lastRefreshTS == 0 {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if abs(self.lastRefreshTS - Date().timeIntervalSince1970) > self.autoRefreshInterval {
+                    self.reloadWalletData()
                 }
             }
         }.store(in: &cancelSets)
@@ -141,6 +160,7 @@ class WalletViewModel: ObservableObject {
 extension WalletViewModel {
     func reloadWalletData() {
         DispatchQueue.main.async {
+            self.lastRefreshTS = Date().timeIntervalSince1970
             self.walletState = .idle
         }
         
