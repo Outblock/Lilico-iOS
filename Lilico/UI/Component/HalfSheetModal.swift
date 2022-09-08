@@ -118,15 +118,26 @@ struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable{
 // Custom UIHostingController for halfSheet....
 class CustomHostingController<Content: View>: UIHostingController<Content>{
     
+    var showLarge: Bool = false
+    var showGrabber: Bool = true
+    
+    public init(rootView: Content, showLarge: Bool = false, showGrabber: Bool = true) {
+        super.init(rootView: rootView)
+        self.showLarge = showLarge
+        self.showGrabber = showGrabber
+    }
+    
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .clear
         
         // setting presentation controller properties...
         if let presentationController = presentationController as? UISheetPresentationController{
-            presentationController.detents = [
-                .medium()
-            ]
+            presentationController.detents = showLarge ? [.medium(), .large()] : [.medium()]
             
             // to show grab protion...
             presentationController.prefersGrabberVisible = true

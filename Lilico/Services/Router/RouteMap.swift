@@ -347,10 +347,10 @@ extension RouteMap.Explore: RouterTarget {
             let vc = CustomHostingController(rootView: BrowserAuthnView(vm: vm))
             Router.topPresentedController().present(vc, animated: true, completion: nil)
         case .authz(let vm):
-            let vc = CustomHostingController(rootView: BrowserAuthzView(vm: vm))
+            let vc = CustomHostingController(rootView: BrowserAuthzView(vm: vm), showLarge: true)
             Router.topPresentedController().present(vc, animated: true, completion: nil)
         case .signMessage(let vm):
-            let vc = CustomHostingController(rootView: BrowserSignMessageView(vm: vm))
+            let vc = CustomHostingController(rootView: BrowserSignMessageView(vm: vm), showLarge: true)
             Router.topPresentedController().present(vc, animated: true, completion: nil)
         }
     }

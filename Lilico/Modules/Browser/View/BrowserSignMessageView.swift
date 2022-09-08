@@ -17,10 +17,7 @@ struct BrowserSignMessageView: View {
     }
     
     var body: some View {
-        ZStack {
-            normalView.visibility(vm.isScriptShowing ? .invisible : .visible)
-            
-        }
+        normalView
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.ultraThickMaterial)
     }
@@ -110,8 +107,8 @@ struct BrowserSignMessageView: View {
 //        }
         
         ScrollView(.vertical, showsIndicators: false) {
-            Text(vm.cadence.trim())
-                .font(.inter(size: 12, weight: .regular))
+            Text(vm.message)
+                .font(.LL.body)
                 .foregroundColor(Color(hex: "#B2B2B2"))
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 .padding(.all, 18)

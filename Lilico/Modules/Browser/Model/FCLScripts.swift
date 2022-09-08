@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Flow
 
 class FCLScripts {
     private static let PreAuthzReplacement = "$PRE_AUTHZ_REPLACEMENT"
@@ -231,7 +232,7 @@ extension FCLScripts {
     }
     
     static func generateSignMessageResponse(message: String, address: String) -> String? {
-        let data = Data(hex: message)
+        let data = Flow.DomainTag.user.normalize + Data(hex: message)
         guard let signedData = WalletManager.shared.signSync(signableData: data) else {
             return nil
         }

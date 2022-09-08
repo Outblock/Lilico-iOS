@@ -30,15 +30,15 @@ struct FCLAuthnResponse: Codable, FCLResponseProtocol {
             return nil
         }
         
-        let list: [Any] = [appId, Data(hex: address), Data(hex: nonce)]
-        guard let rpl = RLP.encode(list) else {
+        let list: [Any] = [appId.data(using: .utf8) ?? Data(), Data(hex: address), Data(hex: nonce)]
+        guard let rlp = RLP.encode(list) else {
             return nil
         }
         
         if includeDomaintag {
-            return accountProofTag + rpl
+            return accountProofTag + rlp
         } else {
-            return rpl
+            return rlp
         }
     }
 }
