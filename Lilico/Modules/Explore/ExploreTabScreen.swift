@@ -52,15 +52,15 @@ struct ExploreTabScreen: View {
                         Text("dApps")
                             .bold()
                         Spacer()
-                        Button {
-                            
-                        } label: {
-                            Text("All")
-                                .font(.LL.footnote)
-                                .foregroundColor(.LL.Secondary.violetDiscover)
-                            Image(systemName: "arrow.right")
-                                .foregroundColor(.LL.Secondary.violet4)
-                        }
+                        //                        Button {
+                        //
+                        //                        } label: {
+                        //                            Text("All")
+                        //                                .font(.LL.footnote)
+                        //                                .foregroundColor(.LL.Secondary.violetDiscover)
+                        //                            Image(systemName: "arrow.right")
+                        //                                .foregroundColor(.LL.Secondary.violet4)
+                        //                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
@@ -68,21 +68,19 @@ struct ExploreTabScreen: View {
                         Button {
                             
                             let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
-                                feedbackGenerator.impactOccurred()
+                            feedbackGenerator.impactOccurred()
                             
-                            //TODO: Open Browser
-                            let url = URL(string: "https://fcl-harness-eight.vercel.app/")!
+                            //       let url = URL(string: "https://fcl-harness-eight.vercel.app/")!
+//                            Router.route(to: RouteMap.Explore.browser(url))
                             
-                            Router.route(to: RouteMap.Explore.browser(url))
+                            if LocalUserDefaults.shared.flowNetwork == .testnet,
+                               let url = dApp.testnetURL {
+                                Router.route(to: RouteMap.Explore.browser(url))
+                            } else {
+                                Router.route(to: RouteMap.Explore.browser(dApp.url))
+                            }
                             
-//                            if LocalUserDefaults.shared.flowNetwork == .testnet,
-//                                let url = dApp.testnetURL {
-//                                Router.route(to: RouteMap.Explore.browser(url))
-//                            } else {
-//                                Router.route(to: RouteMap.Explore.browser(dApp.url))
-//                            }
                             
-    
                             
                         } label: {
                             HStack(alignment: .top) {
