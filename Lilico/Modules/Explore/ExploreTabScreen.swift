@@ -122,12 +122,13 @@ struct ExploreTabScreen: View {
                                     
 //                                    Spacer(minLength: 5)
                                     
-                                    Text(dApp.description)
+                                    Text(dApp.description + "\n")
                                         .font(.LL.footnote)
                                         .lineLimit(2)
                                         .multilineTextAlignment(.leading)
                                         .foregroundColor(.LL.Neutrals.neutrals7)
                                         .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding(.trailing, 12)
                                 }
                             }
                             .padding(10)

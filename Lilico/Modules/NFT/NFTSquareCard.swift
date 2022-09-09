@@ -17,7 +17,7 @@ struct NFTSquareCard: View {
         GeometryReader { geo in
             VStack(alignment: .leading) {
                 KFImage
-                    .url(nft.image)
+                    .url(nft.imageURL)
                     .placeholder({
                         Image("placeholder")
                             .resizable()

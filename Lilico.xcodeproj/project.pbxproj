@@ -634,6 +634,8 @@
 		15D6D8E628CB44F800CBA152 /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D6D8E428CB44F800CBA152 /* DOFavoriteButton.swift */; };
 		15D6D8E828CB45BA00CBA152 /* DOFavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D6D8E728CB45BA00CBA152 /* DOFavoriteButtonView.swift */; };
 		15D6D8E928CB45BA00CBA152 /* DOFavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D6D8E728CB45BA00CBA152 /* DOFavoriteButtonView.swift */; };
+		15D6D8ED28CB730800CBA152 /* inAR.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D6D8EC28CB730700CBA152 /* inAR.json */; };
+		15D6D8EE28CB730800CBA152 /* inAR.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D6D8EC28CB730700CBA152 /* inAR.json */; };
 		15D874DC28C5C3740072C6EA /* DragGestureViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874DB28C5C3740072C6EA /* DragGestureViewModifier.swift */; };
 		15D874DD28C5C3740072C6EA /* DragGestureViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874DB28C5C3740072C6EA /* DragGestureViewModifier.swift */; };
 		15D874E028C5C7290072C6EA /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874DF28C5C7290072C6EA /* ImageViewer.swift */; };
@@ -1420,6 +1422,7 @@
 		15D57750277C224300045E79 /* LilicoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilicoAPI.swift; sourceTree = "<group>"; };
 		15D6D8E428CB44F800CBA152 /* DOFavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
 		15D6D8E728CB45BA00CBA152 /* DOFavoriteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOFavoriteButtonView.swift; sourceTree = "<group>"; };
+		15D6D8EC28CB730700CBA152 /* inAR.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = inAR.json; sourceTree = "<group>"; };
 		15D874DB28C5C3740072C6EA /* DragGestureViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragGestureViewModifier.swift; sourceTree = "<group>"; };
 		15D874DF28C5C7290072C6EA /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		15D874E228C5D37F0072C6EA /* MatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixView.swift; sourceTree = "<group>"; };
@@ -2139,6 +2142,7 @@
 		1565FB5D28B14F140086A652 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				15D6D8EC28CB730700CBA152 /* inAR.json */,
 				15DE214E28C57968008AFE17 /* AR.json */,
 				15DE214228C52FA3008AFE17 /* QRScan.json */,
 				1565FBA128B16FD60086A652 /* Category.json */,
@@ -4326,7 +4330,6 @@
 				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
 				15D3BA7628C45F21009AEA6E /* Hero */,
 				15F517FC28C6577000504FDC /* Atlantis */,
-				15CC0A7E28CA5A16006A8910 /* RiveRuntime */,
 				6A29114328CB2AA3003295BD /* JXSegmentedView */,
 			);
 			productName = "Lilico-lite";
@@ -4510,6 +4513,7 @@
 				1565FBB228B171BB0086A652 /* Copy.json in Resources */,
 				1565FB6628B14F140086A652 /* Saved.json in Resources */,
 				4E9E21E0282A71B500E1BACD /* Colors.xcassets in Resources */,
+				15D6D8EE28CB730800CBA152 /* inAR.json in Resources */,
 				1565FB9C28B1681F0086A652 /* Coin.json in Resources */,
 				158C9CA92787F7490062E0C6 /* Montserrat-Bold.ttf in Resources */,
 			);
@@ -4551,6 +4555,7 @@
 				15D3BA6728C39454009AEA6E /* Matrix Code NFI.ttf in Resources */,
 				1565FB6528B14F140086A652 /* Saved.json in Resources */,
 				15C58C652868A4EE00BD4FC6 /* Colors.xcassets in Resources */,
+				15D6D8ED28CB730800CBA152 /* inAR.json in Resources */,
 				1565FB9B28B1681F0086A652 /* Coin.json in Resources */,
 				15C58C662868A4EE00BD4FC6 /* Montserrat-Bold.ttf in Resources */,
 			);
@@ -5789,7 +5794,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "requires access to photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -5829,7 +5834,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "requires access to photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -5872,7 +5877,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Lilico requires access to photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -5913,7 +5918,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "lilico need camera to scan QR Code";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lilico-dev use Face ID to secure your assests";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Atlantis would use Bonjour Service to discover Proxyman app from your local network.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "save image";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Lilico requires access to photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;

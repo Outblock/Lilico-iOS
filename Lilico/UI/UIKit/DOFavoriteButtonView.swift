@@ -11,16 +11,11 @@ import SwiftUI
 import SnapKit
 
 struct DOFavoriteButtonView: UIViewRepresentable {
-    @Binding var isSelected: Bool
+    var isSelected: Bool
+    var imageColor: UIColor
     let size: CGFloat = 48
-    let imageColorOff: UIColor = UIColor(Color.LL.outline)
-    let imageColorOn: UIColor =  UIColor(Color.LL
-        .Secondary.mangoNFT)
-    let circleColor: UIColor = UIColor(Color.LL
-        .Secondary.mangoNFT)
-    let lineColor: UIColor = UIColor(Color.LL
-        .Primary.salmonPrimary)
-    var callback: (Bool) -> ()
+    let imageColorOff: UIColor = UIScreen.main.traitCollection.userInterfaceStyle == .dark ? UIColor(Color(hex: "#4B4B4B")) : UIColor(Color(hex: "#E6E6E6"))
+//    UIColor(Color.LL.outline)
     
     func makeUIView(context: Self.Context) -> UIView {
         let containerView = UIView(frame: CGRect(x: 0, y: 0
@@ -30,13 +25,14 @@ struct DOFavoriteButtonView: UIViewRepresentable {
                                       image: UIImage(named: "icon-star-fill"))
 
         button.imageColorOff = imageColorOff
-        button.imageColorOn = imageColorOn
-        button.circleColor = circleColor
-        button.lineColor = lineColor
-        button.duration = 1.0
+        button.imageColorOn = imageColor
+        button.circleColor = imageColor
+        button.lineColor = UIColor(Color.LL
+            .Primary.salmonPrimary)
+        button.duration = 1.5
         button.clipsToBounds = true
         button.contentMode = UIView.ContentMode.scaleAspectFill
-        button.addTarget(context.coordinator, action: #selector(Coordinator.tapped(sender:)), for: UIControl.Event.touchUpInside)
+//        button.addTarget(context.coordinator, action: #selector(Coordinator.tapped(sender:)), for: UIControl.Event.touchUpInside)
         
         containerView.addSubview(button)
         button.snp.makeConstraints { make in
@@ -44,12 +40,29 @@ struct DOFavoriteButtonView: UIViewRepresentable {
             make.width.equalTo(size)
             make.height.equalTo(size)
         }
+        
+        if isSelected {
+            button.select()
+        } else {
+            button.deselect()
+        }
 
         return containerView
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
+        guard let button = uiView.subviews.first as? DOFavoriteButton else {
+            return
+        }
         
+        button.imageColorOn = imageColor
+        button.circleColor = imageColor
+        
+        if isSelected {
+            button.select()
+        } else {
+            button.deselect()
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -67,14 +80,13 @@ struct DOFavoriteButtonView: UIViewRepresentable {
             if sender.isSelected {
                        // deselect
                sender.deselect()
-                button.callback(false)
+//                button.callback(false)
                 button.isSelected = false
            } else {
                // select with animation
                sender.select()
-               button.callback(true)
+//               button.callback(true)
                button.isSelected = true
-               UIImpactFeedbackGenerator(style: .medium).impactOccurred()
            }
             
 //            sender.image = UIImage(named: sender.isSelected ? "icon-star-fill" : "icon-star")
@@ -92,9 +104,7 @@ struct DOFavoriteButtonView_Previews: PreviewProvider {
 //                                  image: UIImage(named: "icon-star-fill"))) { view in
 //            view.addTarget(toggleColor, action: #selector(Action.perform(sender:)), for: .touchUpInside)
 //        }
-        DOFavoriteButtonView(isSelected: .constant(false)) { isSelect in
-            
-        }
+        DOFavoriteButtonView(isSelected: false, imageColor: .yellow)
         .previewLayout(.fixed(width: 50, height: 50))
         
     }

@@ -8,10 +8,13 @@
 import Foundation
 import Kingfisher
 import SwiftUI
+import Lottie
 
 class NFTDetailPageViewModel: ObservableObject {
     @Published var nft: NFTModel
     @Published var svgString: String = ""
+    
+    let animationView = AnimationView(name: "inAR", bundle: .main)
     
     init(nft: NFTModel) {
         self.nft = nft
@@ -49,7 +52,7 @@ class NFTDetailPageViewModel: ObservableObject {
     }
     
     func image() async -> UIImage {
-        guard let image = await ImageHelper.image(from: nft.response.postMedia.image ?? "") else {
+        guard let image = await ImageHelper.image(from: nft.imageURL.absoluteString) else {
             return UIImage(imageLiteralResourceName: "placeholder")
         }
         

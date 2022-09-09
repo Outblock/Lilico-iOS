@@ -48,7 +48,7 @@ struct LottieButton: View {
 
 struct LottieButton_Previews: PreviewProvider {
     static var previews: some View {
-        LottieButton(iconName: "Copy-soild") {
+        LottieButton(iconName: "inAR") {
         }.frame(width: 100, height: 100)
     }
 }

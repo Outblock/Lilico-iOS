@@ -76,7 +76,7 @@ struct NFTShareView: View {
                 }
 
                 KFImage
-                    .url(nft.image)
+                    .url(nft.imageURL)
                     .placeholder({
                         Image("placeholder")
                             .resizable()

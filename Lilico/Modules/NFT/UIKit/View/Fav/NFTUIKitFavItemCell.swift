@@ -64,7 +64,7 @@ class NFTUIKitFavItemCell: UICollectionViewCell {
     }
     
     func config(_ item: NFTModel) {
-        imageView.kf.setImage(with: item.image, placeholder: UIImage(named: "placeholder"))
+        imageView.kf.setImage(with: item.imageURL, placeholder: UIImage(named: "placeholder"))
     }
     
     static func calculateViewHeight() -> CGFloat {

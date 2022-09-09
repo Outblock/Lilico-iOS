@@ -212,7 +212,7 @@ class NFTUIKitListStyleHandler: NSObject {
         
         if !blurBgView.isHidden, favContainerView.currentIndex < NFTUIKitCache.cache.favList.count {
             let model = NFTUIKitCache.cache.favList[favContainerView.currentIndex]
-            bgImageView.kf.setImage(with: model.image, placeholder: UIImage(named: "placeholder"), options: [.transition(.fade(0.25)), .forceTransition])
+            bgImageView.kf.setImage(with: model.imageURL, placeholder: UIImage(named: "placeholder"), options: [.transition(.fade(0.25)), .forceTransition])
         }
     }
     

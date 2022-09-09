@@ -281,7 +281,7 @@ extension NFTUIKitCache {
         }
         
         // TODO: Test
-        address = "0x01d63aa89238a559"
+        address = "0x95601dba5c2506eb"
         
         if let _ = favList.firstIndex(where: { $0.id == nft.id }) {
             return
@@ -343,7 +343,7 @@ extension NFTUIKitCache {
         }
         
         // TODO: Test
-        address = "0x01d63aa89238a559"
+        address = "0x95601dba5c2506eb"
         let fAddress = address
         
         favIsRequesting = true

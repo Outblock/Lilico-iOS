@@ -37,7 +37,7 @@ struct NFTFavoriteView: View {
                                 .fill(Color.LL.background)
 
                             KFImage
-                                .url(nft.image)
+                                .url(nft.imageURL)
                                 .placeholder({
                                     Image("placeholder")
                                         .resizable()

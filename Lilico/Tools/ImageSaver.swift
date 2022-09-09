@@ -16,8 +16,9 @@ class ImageSaver: NSObject {
     @objc func saveCompleted(_: UIImage, didFinishSavingWithError error: Error?, contextInfo _: UnsafeRawPointer) {
         if error != nil {
             print("Save Image Error: \(String(describing: error))")
+            HUD.error(title: "error".localized)
         } else {
-            print("Save finished!")
+            HUD.success(title: "saved".localized)
         }
     }
 }

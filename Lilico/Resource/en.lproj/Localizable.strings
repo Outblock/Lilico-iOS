@@ -299,6 +299,8 @@
 "backup_to_x_succeeded" = "Backup to %@ succeeded";
 
 "cancel" = "Cancel";
+"saved" = "Saved";
+"error" = "Error";
 
 "action_handle" = "Catch";
 "action_cancel" = "Cancel";

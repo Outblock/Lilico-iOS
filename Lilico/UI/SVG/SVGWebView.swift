@@ -121,6 +121,18 @@ public struct SVGWebView: View {
       config.preferences = prefs
       config.allowsAirPlayForMediaPlayback = false
       
+        
+        let bodyStyle = "body { margin:0; }"
+        let source = "var node = document.createElement(\"style\"); node.innerHTML = \"\(bodyStyle)\";document.body.appendChild(node);"
+
+        let script = WKUserScript(
+                    source: source,
+                    injectionTime: .atDocumentEnd,
+                    forMainFrameOnly: false
+                )
+
+        config.userContentController.addUserScript(script)
+        
       if #available(macOS 10.5, *) {
         let pagePrefs : WKWebpagePreferences = {
           let prefs = WKWebpagePreferences()
@@ -147,6 +159,11 @@ public struct SVGWebView: View {
         webView.frame = old
       }
       
+        webView.backgroundColor = .clear
+        webView.isOpaque = false
+        webView.scrollView.backgroundColor = UIColor.clear
+        webView.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
       return webView
     }
     private func updateWebView(_ webView: WKWebView, context: Context) {

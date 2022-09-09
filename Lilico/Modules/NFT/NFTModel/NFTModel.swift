@@ -90,6 +90,14 @@ struct NFTModel: Codable, Hashable, Identifiable {
     var isSVG: Bool = false
     var response: NFTResponse
     let collection: NFTCollectionInfo?
+    
+    var imageURL: URL {
+        if isSVG {
+            return image.absoluteString.convertedSVGURL() ?? URL(string: placeholder)!
+        } else {
+              return image
+        }
+    }
 
     init(_ response: NFTResponse, in collection: NFTCollectionInfo?) {
         if let imgUrl = response.postMedia.image, let url = URL(string: imgUrl) {

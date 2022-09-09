@@ -168,7 +168,7 @@ struct NFTTransferView: View {
     
     var detailView: some View {
         HStack(alignment: .center, spacing: 13) {
-            KFImage.url(vm.nft.image)
+            KFImage.url(vm.nft.imageURL)
                 .placeholder({
                     Image("placeholder")
                         .resizable()

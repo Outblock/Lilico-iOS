@@ -73,7 +73,8 @@ class NFTUIKitItemCell: UICollectionViewCell {
     func config(_ item: NFTModel) {
         self.item = item
         
-        iconImageView.kf.setImage(with: item.image, placeholder: UIImage(named: "placeholder"))
+        iconImageView.kf.setImage(with: item.isSVG ? item.image.absoluteString.convertedSVGURL() : item.image,
+                                  placeholder: UIImage(named: "placeholder"))
         titleLabel.text = item.title
         descLabel.text = item.subtitle
     }
