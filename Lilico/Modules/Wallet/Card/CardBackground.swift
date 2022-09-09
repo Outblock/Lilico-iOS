@@ -88,8 +88,10 @@ enum CardBackground: CaseIterable {
         switch self {
         case let .color(color):
             return Color(color)
+        case .fade:
+            return Color.LL.flow
         default:
-            return Color.LL.Primary.salmonPrimary
+            return Color.LL.outline
         }
     }
     

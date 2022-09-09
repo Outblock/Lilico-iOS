@@ -95,6 +95,7 @@ struct WalletView: View {
                                 CardView()
                                     .zIndex(11)
                                 actionView
+                                    .padding(.horizontal, 18)
                             }
                             
                             loadingView
@@ -119,6 +120,7 @@ struct WalletView: View {
                                 
                             }
                         }
+                        .padding(.horizontal, 18)
                         .listRowInsets(.zero)
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.LL.Neutrals.background)
@@ -129,7 +131,6 @@ struct WalletView: View {
                 .listStyle(.plain)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.horizontal, 18)
             .backgroundFill(.LL.Neutrals.background)
             .environmentObject(vm)
             .visibility(vm.walletState != .noAddress ? .visible : .gone)
@@ -229,12 +230,27 @@ extension WalletView {
         
         var body: some View {
             VStack(spacing: 0) {
-                cardView
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+//                        .fill(Color.clear)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: CardViewHeight)
+                        .padding(.horizontal, 18)
+//                        .padding(3)
+//                        .padding(.horizontal, 24)
+                        .shadow(color: CardBackground(value: walletCardBackrgound).color.opacity(0.1),
+                                radius: 20, x: 0, y: 8)
+                    
+                    cardView
+                        .padding(.horizontal, 18)
+                }
                 
                 Button {
                     Router.route(to: RouteMap.Wallet.transactionList)
                 } label: {
                     transactionView
+                        .padding(.horizontal, 18)
                 }
                 .zIndex(-1)
             }
