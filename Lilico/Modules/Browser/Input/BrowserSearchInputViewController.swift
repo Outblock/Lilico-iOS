@@ -131,9 +131,16 @@ extension BrowserSearchInputViewController {
     }
     
     private func close() {
-        if self.parent != nil {
-            self.removeFromParentViewController()
+//        if self.parent != nil {
+//            self.removeFromParentViewController()
+//        }
+        
+        if let navi = self.navigationController {
+            navi.popViewController(animated: false)
+        } else {
+            dismiss(animated: false)
         }
+        
     }
 }
 

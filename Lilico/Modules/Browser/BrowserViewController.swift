@@ -210,7 +210,7 @@ extension BrowserViewController {
                 self?.loadURL(url)
             }
         }
-        self.show(childViewController: inputVC)
+        self.navigationController?.pushViewController(inputVC, animated: false)
     }
 }
 

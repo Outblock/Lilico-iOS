@@ -347,6 +347,7 @@ extension RouteMap {
         case authn(BrowserAuthnViewModel)
         case authz(BrowserAuthzViewModel)
         case signMessage(BrowserSignMessageViewModel)
+        case searchExplore
     }
 }
 
@@ -370,6 +371,16 @@ extension RouteMap.Explore: RouterTarget {
         case .signMessage(let vm):
             let vc = CustomHostingController(rootView: BrowserSignMessageView(vm: vm), showLarge: true)
             Router.topPresentedController().present(vc, animated: true, completion: nil)
+        case .searchExplore:
+            let inputVC = BrowserSearchInputViewController()
+            inputVC.setSearchText(text: "")
+            inputVC.selectTextCallback = { text in
+                let urlString = BrowserSearchInputViewController.makeUrlIfNeeded(urlString: text)
+                if let url = URL(string: urlString) {
+                    Router.route(to: RouteMap.Explore.browser(url))
+                }
+            }
+            navi.pushViewController(inputVC, animated: false)
         }
     }
 }

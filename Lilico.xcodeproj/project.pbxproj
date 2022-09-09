@@ -636,6 +636,8 @@
 		15D6D8E928CB45BA00CBA152 /* DOFavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D6D8E728CB45BA00CBA152 /* DOFavoriteButtonView.swift */; };
 		15D6D8ED28CB730800CBA152 /* inAR.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D6D8EC28CB730700CBA152 /* inAR.json */; };
 		15D6D8EE28CB730800CBA152 /* inAR.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D6D8EC28CB730700CBA152 /* inAR.json */; };
+		15D6D8F428CBAEBD00CBA152 /* FancyScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 15D6D8F328CBAEBD00CBA152 /* FancyScrollView */; };
+		15D6D8F628CBAEE000CBA152 /* FancyScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 15D6D8F528CBAEE000CBA152 /* FancyScrollView */; };
 		15D874DC28C5C3740072C6EA /* DragGestureViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874DB28C5C3740072C6EA /* DragGestureViewModifier.swift */; };
 		15D874DD28C5C3740072C6EA /* DragGestureViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874DB28C5C3740072C6EA /* DragGestureViewModifier.swift */; };
 		15D874E028C5C7290072C6EA /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D874DF28C5C7290072C6EA /* ImageViewer.swift */; };
@@ -1914,6 +1916,7 @@
 				15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */,
 				4E9BFF5D2867631300601339 /* UIKit.framework in Frameworks */,
 				6AE1D48E287690E7000FA0B7 /* SwiftUIPager in Frameworks */,
+				15D6D8F628CBAEE000CBA152 /* FancyScrollView in Frameworks */,
 				152BB09628AE900C00B2A2AA /* Lottie in Frameworks */,
 				4E17466C281AF840002A029C /* WalletCore.xcframework in Frameworks */,
 				6AEA375A28A51792004545D4 /* MJRefresh in Frameworks */,
@@ -1993,6 +1996,7 @@
 				15C58C562868A4EE00BD4FC6 /* SkeletonUI in Frameworks */,
 				15C58C572868A4EE00BD4FC6 /* Introspect in Frameworks */,
 				6A400925287578D400A77070 /* QRCode in Frameworks */,
+				15D6D8F428CBAEBD00CBA152 /* FancyScrollView in Frameworks */,
 				15C58C582868A4EE00BD4FC6 /* SwiftUIX in Frameworks */,
 				6AC1AE69289BACDF00F76C7A /* SnapKit in Frameworks */,
 				15C58C592868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Frameworks */,
@@ -4331,6 +4335,7 @@
 				15D3BA7628C45F21009AEA6E /* Hero */,
 				15F517FC28C6577000504FDC /* Atlantis */,
 				6A29114328CB2AA3003295BD /* JXSegmentedView */,
+				15D6D8F528CBAEE000CBA152 /* FancyScrollView */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -4391,6 +4396,7 @@
 				15CC8A6028C4E0FD001D2696 /* RiveRuntime */,
 				15F517FA28C6574C00504FDC /* Atlantis */,
 				6A29114128CB2A87003295BD /* JXSegmentedView */,
+				15D6D8F328CBAEBD00CBA152 /* FancyScrollView */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -4457,6 +4463,7 @@
 				15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */,
 				15F517F928C6574C00504FDC /* XCRemoteSwiftPackageReference "atlantis" */,
 				6A29114028CB2A87003295BD /* XCRemoteSwiftPackageReference "JXSegmentedView" */,
+				15D6D8F228CBAEBD00CBA152 /* XCRemoteSwiftPackageReference "FancyScrollView" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -6430,6 +6437,14 @@
 				minimumVersion = 15.0.0;
 			};
 		};
+		15D6D8F228CBAEBD00CBA152 /* XCRemoteSwiftPackageReference "FancyScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nerdsupremacist/FancyScrollView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
 		15DC1D4F27815891000B187A /* XCRemoteSwiftPackageReference "HanekeSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Haneke/HanekeSwift";
@@ -6828,6 +6843,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15D57753277C238B00045E79 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		15D6D8F328CBAEBD00CBA152 /* FancyScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D6D8F228CBAEBD00CBA152 /* XCRemoteSwiftPackageReference "FancyScrollView" */;
+			productName = FancyScrollView;
+		};
+		15D6D8F528CBAEE000CBA152 /* FancyScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15D6D8F228CBAEBD00CBA152 /* XCRemoteSwiftPackageReference "FancyScrollView" */;
+			productName = FancyScrollView;
 		};
 		15DC1D52278165DB000B187A /* Haneke */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -65,60 +65,69 @@ struct WalletView: View {
             emptyView
                 .visibility(vm.walletState == .noAddress ? .visible : .gone)
             
-            RefreshableScrollView(showsIndicators: false, onRefresh: { done in
-                if isRefreshing {
-                    return
-                }
+            VStack(spacing: 10) {
                 
-                isRefreshing = true
-                vm.reloadWalletData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.2) {
-                    done()
-                    isRefreshing = false
-                }
-            }, progress: { state in
-                ImageAnimated(imageSize: CGSize(width: 60, height: 60), imageNames: ImageAnimated.appRefreshImageNames(), duration: 1.6, isAnimating: state == .loading || state == .primed)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .visibility(state == .waiting ? .gone : .visible)
-            }) {
-                LazyVStack() {
-                    Section(header: headerView) {
-                        VStack(spacing: 12) {
-                            CardView()
-                            actionView
-                        }
-                        
-                        loadingView
-                            .visibility(vm.walletState == .loading ? .visible : .gone)
-                        errorView
-                            .visibility(vm.walletState == .error ? .visible : .gone)
+                headerView
+                
+                RefreshableScrollView(showsIndicators: false, onRefresh: { done in
+                    if isRefreshing {
+                        return
                     }
-                    .listRowInsets(.zero)
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.LL.Neutrals.background)
                     
-                    Section {
-                        coinSectionView
-                        ForEach(vm.coinItems, id: \.token.symbol) { coin in
-                            Button {
-                                Router.route(to: RouteMap.Wallet.tokenDetail(coin.token))
-                            } label: {
-                                CoinCell(coin: coin)
-                                    .contentShape(Rectangle())
-                            }
-                            .buttonStyle(ScaleButtonStyle())
-                            
-                        }
+                    isRefreshing = true
+                    vm.reloadWalletData()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.2) {
+                        done()
+                        isRefreshing = false
                     }
-                    .listRowInsets(.zero)
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.LL.Neutrals.background)
-                    .visibility(vm.walletState == .idle ? .visible : .gone)
+                }, progress: { state in
+                    ImageAnimated(imageSize: CGSize(width: 60, height: 60), imageNames: ImageAnimated.appRefreshImageNames(), duration: 1.6, isAnimating: state == .loading || state == .primed)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 60)
+                        .transition(AnyTransition.move(edge: .top).combined(with: .scale).combined(with: .opacity))
+                        .visibility(state == .waiting ? .gone : .visible)
+                        .zIndex(10)
+                }) {
+                    LazyVStack {
+                        Spacer(minLength: 10)
+                        Section {
+                            VStack(spacing: 12) {
+                                CardView()
+                                    .zIndex(11)
+                                actionView
+                            }
+                            
+                            loadingView
+                                .visibility(vm.walletState == .loading ? .visible : .gone)
+                            errorView
+                                .visibility(vm.walletState == .error ? .visible : .gone)
+                        }
+                        .listRowInsets(.zero)
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.LL.Neutrals.background)
+                        
+                        Section {
+                            coinSectionView
+                            ForEach(vm.coinItems, id: \.token.symbol) { coin in
+                                Button {
+                                    Router.route(to: RouteMap.Wallet.tokenDetail(coin.token))
+                                } label: {
+                                    CoinCell(coin: coin)
+                                        .contentShape(Rectangle())
+                                }
+                                .buttonStyle(ScaleButtonStyle())
+                                
+                            }
+                        }
+                        .listRowInsets(.zero)
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.LL.Neutrals.background)
+                        .visibility(vm.walletState == .idle ? .visible : .gone)
+                    }
+                    
                 }
-
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(.horizontal, 18)
             .backgroundFill(.LL.Neutrals.background)
