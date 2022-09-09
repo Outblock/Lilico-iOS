@@ -148,6 +148,7 @@ extension WalletConnectView {
             .padding(.horizontal, 24)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear{
+                animationView.backgroundBehavior = .pauseAndRestore
                 animationView.play(toProgress: .infinity, loopMode: .loop)
             }
         }
