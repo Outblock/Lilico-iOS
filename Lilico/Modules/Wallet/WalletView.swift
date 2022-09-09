@@ -84,7 +84,7 @@ struct WalletView: View {
             }) {
                 LazyVStack() {
                     Section(header: headerView) {
-                        VStack(spacing: 32) {
+                        VStack(spacing: 12) {
                             CardView()
                             actionView
                         }
@@ -219,6 +219,43 @@ extension WalletView {
         private var walletCardBackrgound: String = "fade:0"
         
         var body: some View {
+            VStack(spacing: 0) {
+                cardView
+                transactionView
+            }
+        }
+        
+        var transactionView: some View {
+            HStack(spacing: 7) {
+                Text("wallet_transactions".localized)
+                    .font(.inter(size: 14, weight: .semibold))
+                    .foregroundColor(.LL.Other.text2)
+                
+                Spacer()
+                
+                Text("999")
+                    .font(.inter(size: 14, weight: .semibold))
+                    .foregroundColor(.LL.Other.text1)
+                    .frame(height: 24)
+                    .padding(.horizontal, 6)
+                    .background(Color.LL.Other.bg1)
+                    .cornerRadius(12)
+                
+                Image("icon-account-arrow-right")
+                    .renderingMode(.template)
+                    .foregroundColor(.LL.Other.icon1)
+            }
+            .padding(.horizontal, 18)
+            .padding(.top, 12)
+            .frame(height: 64)
+            .background(.LL.Other.bg2)
+            .cornerRadius(12)
+            .padding(.horizontal, 6)
+            .padding(.top, -12)
+            .zIndex(-1)
+        }
+        
+        var cardView: some View {
             ZStack {
                 VStack {
                     Text(vm.walletName)
@@ -256,7 +293,8 @@ extension WalletView {
                         }
                     }
                 }
-                .padding(18)
+                .padding(.vertical, 18)
+                .padding(.horizontal, 24)
                 .background {                    
                     CardBackground(value: walletCardBackrgound).renderView()
                 }
