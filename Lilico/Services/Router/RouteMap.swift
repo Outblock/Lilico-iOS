@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import SwiftUIX
 import Flow
+import SafariServices
 
 enum RouteMap {
     
@@ -338,6 +339,7 @@ extension RouteMap.Transaction: RouterTarget {
 extension RouteMap {
     enum Explore {
         case browser(URL, hideBar: Bool = false)
+        case safariBrowser(URL)
         case authn(BrowserAuthnViewModel)
         case authz(BrowserAuthzViewModel)
         case signMessage(BrowserSignMessageViewModel)
@@ -352,6 +354,9 @@ extension RouteMap.Explore: RouterTarget {
             vc.loadURL(url)
             vc.shouldHideActionBar = hideBar
             navi.pushViewController(vc, animated: true)
+        case let .safariBrowser(url):
+            let vc = SFSafariViewController(url: url)
+            navi.present(vc, animated: true)
         case .authn(let vm):
             let vc = CustomHostingController(rootView: BrowserAuthnView(vm: vm))
             Router.topPresentedController().present(vc, animated: true, completion: nil)

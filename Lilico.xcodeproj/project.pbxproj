@@ -605,6 +605,7 @@
 		15CB4DFA28CA29650069ABB4 /* PayAsSignerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB4DF828CA29650069ABB4 /* PayAsSignerModel.swift */; };
 		15CB4DFC28CA298C0069ABB4 /* MoonPayRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB4DFB28CA298C0069ABB4 /* MoonPayRequest.swift */; };
 		15CB4DFD28CA298C0069ABB4 /* MoonPayRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB4DFB28CA298C0069ABB4 /* MoonPayRequest.swift */; };
+		15CC0A7F28CA5A16006A8910 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 15CC0A7E28CA5A16006A8910 /* RiveRuntime */; };
 		15CC8A6128C4E0FD001D2696 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 15CC8A6028C4E0FD001D2696 /* RiveRuntime */; };
 		15CC8A6928C4EA63001D2696 /* shapes.riv in Resources */ = {isa = PBXBuildFile; fileRef = 15CC8A6828C4EA63001D2696 /* shapes.riv */; };
 		15CC8A6A28C4EA63001D2696 /* shapes.riv in Resources */ = {isa = PBXBuildFile; fileRef = 15CC8A6828C4EA63001D2696 /* shapes.riv */; };
@@ -869,6 +870,8 @@
 		15F22F1A278B21B600FCF772 /* BiometricAuthentication in Frameworks */ = {isa = PBXBuildFile; productRef = 15F22F19278B21B600FCF772 /* BiometricAuthentication */; };
 		15F22F1D278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F1B278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift */; };
 		15F22F20278B33EE00FCF772 /* CreatePinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F22F1E278B33EE00FCF772 /* CreatePinCodeViewModel.swift */; };
+		15F2443428CAC47100C1090E /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F2443328CAC47100C1090E /* SafariView.swift */; };
+		15F2443528CAC47100C1090E /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F2443328CAC47100C1090E /* SafariView.swift */; };
 		15F517FB28C6574C00504FDC /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 15F517FA28C6574C00504FDC /* Atlantis */; };
 		15F517FD28C6577000504FDC /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 15F517FC28C6577000504FDC /* Atlantis */; };
 		4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */; };
@@ -1605,6 +1608,7 @@
 		15F22F13278B1F3D00FCF772 /* RequestSecureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSecureViewModel.swift; sourceTree = "<group>"; };
 		15F22F1B278B28CC00FCF772 /* ConfirmPinCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeViewModel.swift; sourceTree = "<group>"; };
 		15F22F1E278B33EE00FCF772 /* CreatePinCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinCodeViewModel.swift; sourceTree = "<group>"; };
+		15F2443328CAC47100C1090E /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		15F43D112753B4F6004F6F49 /* PageIndictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndictor.swift; sourceTree = "<group>"; };
 		4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCollectionViewModel.swift; sourceTree = "<group>"; };
 		4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = Lilico/Library/SwiftProtobuf.xcframework; sourceTree = "<group>"; };
@@ -1867,6 +1871,7 @@
 				156AC7AD27802FAC00ED5E3E /* GoogleAPIClientForRESTCore in Frameworks */,
 				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				4ED6DD10285A22A800105133 /* IrregularGradient in Frameworks */,
+				15CC0A7F28CA5A16006A8910 /* RiveRuntime in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
@@ -2293,6 +2298,7 @@
 		159A543327536842004BCACC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				15F2443228CAC45200C1090E /* SafariView */,
 				15BA24B328C785A100755CBF /* GradientButton */,
 				15BA24AF28C7812D00755CBF /* Share */,
 				15D874DE28C5C7180072C6EA /* ImageViewer */,
@@ -3324,6 +3330,7 @@
 				4ED21F43284E5A6700320AD0 /* DashLine.swift */,
 				6AC1AE6C289BAD3500F76C7A /* PinCodeTextField.swift */,
 				6A37AD9628BE0DE40047E5F7 /* TransactionProcessStatusView.swift */,
+				15F2443328CAC47100C1090E /* SafariView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -3434,6 +3441,13 @@
 				6A7F6513289A85B2007188DC /* VerifyPinViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		15F2443228CAC45200C1090E /* SafariView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SafariView;
 			sourceTree = "<group>";
 		};
 		4E4F79492831FC5500ED027C /* MaterialMap */ = {
@@ -4198,6 +4212,7 @@
 				15D3BA7128C3B90A009AEA6E /* ViewAnimator */,
 				15D3BA7628C45F21009AEA6E /* Hero */,
 				15F517FC28C6577000504FDC /* Atlantis */,
+				15CC0A7E28CA5A16006A8910 /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -4656,6 +4671,7 @@
 				15D9283027843D4900382226 /* ManualBackupView.swift in Sources */,
 				15DC21D927819C56000B187A /* StateColors_EPLD.swift in Sources */,
 				15BCFEFC277565F0000B7863 /* TermsAndPolicy.swift in Sources */,
+				15F2443528CAC47100C1090E /* SafariView.swift in Sources */,
 				15DC209927819C56000B187A /* VToastModel.swift in Sources */,
 				15DC20F327819C56000B187A /* VSectionList.swift in Sources */,
 				156E84AA281CDE7500415896 /* FlowNetwork.swift in Sources */,
@@ -5181,6 +5197,7 @@
 				15C58B322868A4EE00BD4FC6 /* ManualBackupView.swift in Sources */,
 				15C58B332868A4EE00BD4FC6 /* StateColors_EPLD.swift in Sources */,
 				15C58B342868A4EE00BD4FC6 /* TermsAndPolicy.swift in Sources */,
+				15F2443428CAC47100C1090E /* SafariView.swift in Sources */,
 				15C58B352868A4EE00BD4FC6 /* VToastModel.swift in Sources */,
 				15C58B362868A4EE00BD4FC6 /* VSectionList.swift in Sources */,
 				15C58B372868A4EE00BD4FC6 /* FlowNetwork.swift in Sources */,
@@ -5604,7 +5621,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5647,7 +5664,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Lilico/App/Env/Dev/Lilico-dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5687,7 +5704,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5731,7 +5748,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -6600,6 +6617,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15C58AAB2868A4EE00BD4FC6 /* XCRemoteSwiftPackageReference "SPIndicator" */;
 			productName = SPIndicator;
+		};
+		15CC0A7E28CA5A16006A8910 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
 		};
 		15CC8A6028C4E0FD001D2696 /* RiveRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
