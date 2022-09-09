@@ -12,7 +12,7 @@ struct NFTDetailPage: RouteableView {
     static var ShareNFTView: NFTShareView? = nil
     
     var title: String {
-        return vm.nft.title
+        ""
     }
     
 //    var isNavigationBarHidden: Bool {
@@ -63,6 +63,7 @@ struct NFTDetailPage: RouteableView {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             ScrollView {
+                Spacer(minLength: 15)
                 VStack(alignment: .leading) {
                     VStack(spacing: 0) {
                         if vm.nft.isSVG {
@@ -212,14 +213,11 @@ struct NFTDetailPage: RouteableView {
                         .padding(.vertical, 18)
                     }
                     .background(
-                        Color.LL.Shades.front
-                            .opacity(0.32)
+                        Color.LL.bgForIcon.opacity(0.5)
                     )
                     .shadow(color: .LL.Shades.front, radius: 16, x: 0, y: 8)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .cornerRadius(16, corners: [.topLeft, .topRight])
-                    
-                    Spacer()
-                        .frame(height: 50)
                 }
             }
         }
@@ -246,7 +244,7 @@ struct NFTDetailPage: RouteableView {
                 .padding(.vertical, 10)
                 .cornerRadius(12)
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
-                .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 16)
+                .shadow(color: theColor.opacity(0.1), radius: 15, x: 0, y: 5)
                 .visibility(vm.nft.isDomain ? .gone : .visible)
                 
                 Menu {
@@ -284,7 +282,7 @@ struct NFTDetailPage: RouteableView {
                 .padding(.vertical, 10)
                 .cornerRadius(12)
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
-                .shadow(color: theColor.opacity(0.4), radius: 24, x: 0, y: 20)
+                .shadow(color: theColor.opacity(0.1), radius: 15, x: 0, y: 5)
             }
             .padding(.trailing, 18)
         })
