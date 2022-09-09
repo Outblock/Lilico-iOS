@@ -172,5 +172,13 @@ extension Color {
             static let color = Color("button.color")
             static let text = Color("button.text")
         }
+        
+        enum Other {
+            static let text1 = Color("other.text1")
+            static let text2 = Color("other.text2")
+            static let bg1 = Color("other.bg1")
+            static let bg2 = Color("other.bg2")
+            static let icon1 = Color("other.icon1")
+        }
     }
 }

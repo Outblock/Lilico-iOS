@@ -282,6 +282,7 @@
 "account_not_found_highlight" = "your phrase";
 "account_not_found_suff" = "?";
 "create_wallet" = "Create Wallet";
+"wallet_transactions" = "Transactions";
 
 "restore_with_x_failed" = "Restore with %@ failed";
 "no_x_backup" = "No backup found in %@";

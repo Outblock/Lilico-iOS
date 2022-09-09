@@ -2298,7 +2298,6 @@
 		159A543327536842004BCACC /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				15F2443228CAC45200C1090E /* SafariView */,
 				15BA24B328C785A100755CBF /* GradientButton */,
 				15BA24AF28C7812D00755CBF /* Share */,
 				15D874DE28C5C7180072C6EA /* ImageViewer */,
@@ -3441,13 +3440,6 @@
 				6A7F6513289A85B2007188DC /* VerifyPinViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		15F2443228CAC45200C1090E /* SafariView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SafariView;
 			sourceTree = "<group>";
 		};
 		4E4F79492831FC5500ED027C /* MaterialMap */ = {
