@@ -12,12 +12,12 @@ struct NFTDetailPage: RouteableView {
     static var ShareNFTView: NFTShareView? = nil
     
     var title: String {
-        return ""
+        return vm.nft.title
     }
     
-    var isNavigationBarHidden: Bool {
-        return true
-    }
+//    var isNavigationBarHidden: Bool {
+//        return true
+//    }
     
     @StateObject
     var viewModel: NFTTabViewModel
@@ -62,9 +62,7 @@ struct NFTDetailPage: RouteableView {
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            OffsetScrollViewWithAppBar(title: vm.nft.title) {
-                Spacer()
-                    .frame(height: 64)
+            ScrollView {
                 VStack(alignment: .leading) {
                     VStack(spacing: 0) {
                         if vm.nft.isSVG {
@@ -223,13 +221,6 @@ struct NFTDetailPage: RouteableView {
                     Spacer()
                         .frame(height: 50)
                 }
-                
-                image?
-                    .resizable()
-            } appBar: {
-                BackAppBar {
-                    viewModel.trigger(.back)
-                }
             }
         }
         .background(
@@ -308,13 +299,18 @@ struct NFTDetailPage: RouteableView {
         )
         .animation(.spring(), value: self.showImageViewer)
         .navigationBarItems(trailing: HStack {
-            Button("AR") {
-                
+            Button {
                 Task {
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     let image = await vm.image()
-                    Router.route(to: RouteMap.NFT.AR(image))
+                    let itemSource = ShareActivityItemSource(shareText: vm.nft.title, shareImage: image)
+                    let activityController = UIActivityViewController(activityItems: [image, vm.nft.title, itemSource], applicationActivities: nil)
+                    activityController.isModalInPresentation = true
+                    UIApplication.shared.windows.first?.rootViewController?.present(activityController, animated: true, completion: nil)
                 }
-
+            } label: {
+                Image(systemName: "square.and.arrow.up")
+                    .foregroundColor(theColor)
             }
         })
         .applyRouteable(self)
