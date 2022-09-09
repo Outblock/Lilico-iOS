@@ -41,8 +41,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
+//        sceneView.showsStatistics = true
+//        sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
         
         // Create a new scene
         let scene = SCNScene()
@@ -52,6 +52,21 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
         sceneView.addGestureRecognizer(gestureRecognizer)
+        
+        
+        navigationItem.hidesBackButton = true
+        
+//        if let style = rootView.forceColorScheme, style != .unspecified {
+//            self.overrideUserInterfaceStyle = style
+//        }
+        
+        let backItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(onBackButtonAction))
+        backItem.tintColor = UIColor(named: "button.color")
+        navigationItem.leftBarButtonItem = backItem
+    }
+    
+    @objc private func onBackButtonAction() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +78,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 
         // Run the view's session
         sceneView.session.run(configuration)
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

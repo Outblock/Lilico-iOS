@@ -15,9 +15,9 @@ struct NFTDetailPage: RouteableView {
         ""
     }
     
-//    var isNavigationBarHidden: Bool {
-//        return true
-//    }
+    var isNavigationBarHidden: Bool {
+        return true
+    }
     
     @StateObject
     var viewModel: NFTTabViewModel
@@ -62,8 +62,9 @@ struct NFTDetailPage: RouteableView {
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            ScrollView {
-                Spacer(minLength: 15)
+            OffsetScrollViewWithAppBar(title: "") {
+                Spacer()
+                    .frame(height: 64)
                 VStack(alignment: .leading) {
                     VStack(spacing: 0) {
                         if vm.nft.isSVG {
@@ -211,6 +212,8 @@ struct NFTDetailPage: RouteableView {
                         }
                         .padding(.horizontal, 26)
                         .padding(.vertical, 18)
+                        
+                        Spacer()
                     }
                     .background(
                         Color.LL.bgForIcon.opacity(0.5)
@@ -218,6 +221,21 @@ struct NFTDetailPage: RouteableView {
                     .shadow(color: .LL.Shades.front, radius: 16, x: 0, y: 8)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .cornerRadius(16, corners: [.topLeft, .topRight])
+                }
+                .frame(minHeight: UIScreen.main.bounds.height)
+                
+            } appBar: {
+                BackAppBar(showShare: true) {
+                    viewModel.trigger(.back)
+                } onShare: {
+                    Task {
+                        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                        let image = await vm.image()
+                        let itemSource = ShareActivityItemSource(shareText: vm.nft.title, shareImage: image)
+                        let activityController = UIActivityViewController(activityItems: [image, vm.nft.title, itemSource], applicationActivities: nil)
+                        activityController.isModalInPresentation = true
+                        UIApplication.shared.windows.first?.rootViewController?.present(activityController, animated: true, completion: nil)
+                    }
                 }
             }
         }
@@ -290,27 +308,13 @@ struct NFTDetailPage: RouteableView {
             isFavorited = NFTUIKitCache.cache.isFav(id: vm.nft.id)
             vm.animationView.play()
         }
-        .overlay(ImageViewer(imageURL: vm.nft.imageURL.absoluteString,
+        .overlay(
+            ImageViewer(imageURL: vm.nft.imageURL.absoluteString,
                              viewerShown: self.$showImageViewer,
                              backgroundColor: viewModel.state.colorsMap[vm.nft.imageURL.absoluteString]?.first ?? .LL.background,
                              heroAnimation: heroAnimation)
         )
         .animation(.spring(), value: self.showImageViewer)
-        .navigationBarItems(trailing: HStack {
-            Button {
-                Task {
-                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                    let image = await vm.image()
-                    let itemSource = ShareActivityItemSource(shareText: vm.nft.title, shareImage: image)
-                    let activityController = UIActivityViewController(activityItems: [image, vm.nft.title, itemSource], applicationActivities: nil)
-                    activityController.isModalInPresentation = true
-                    UIApplication.shared.windows.first?.rootViewController?.present(activityController, animated: true, completion: nil)
-                }
-            } label: {
-                Image(systemName: "square.and.arrow.up")
-                    .foregroundColor(theColor)
-            }
-        })
         .applyRouteable(self)
     }
     

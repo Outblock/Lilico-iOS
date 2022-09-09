@@ -58,7 +58,7 @@ struct DOFavoriteButtonView: UIViewRepresentable {
         button.imageColorOn = imageColor
         button.circleColor = imageColor
         
-        if isSelected {
+        if isSelected, !button.isSelected {
             button.select()
         } else {
             button.deselect()

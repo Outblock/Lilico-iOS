@@ -9,7 +9,9 @@ import SwiftUI
 
 struct BackAppBar: View {
     var title: String?
+    var showShare = false
     var onBack: () -> Void
+    var onShare: (() -> Void)? = nil
 
     var body: some View {
         HStack(alignment: .center) {
@@ -17,10 +19,20 @@ struct BackAppBar: View {
                 onBack()
             } label: {
                 Image(systemName: "arrow.backward")
-                    .foregroundColor(.LL.Neutrals.neutrals1)
+                    .foregroundColor(.LL.Button.color)
                     .frame(width: 54, height: 30)
             }
+            
             Spacer()
+            if showShare {
+                Button {
+                   onShare?()
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                        .foregroundColor(.LL.Button.color)
+                        .frame(width: 54, height: 30)
+                }
+            }
         }
         .overlay() {
             if let title = self.title {
@@ -37,6 +49,6 @@ struct BackAppBar: View {
 
 struct NFTNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        BackAppBar(title: "I'm a Title,too long long long  long long ") {}
+        BackAppBar(title: "I'm a Title,too long long long  long long ") {} onShare: {}
     }
 }
