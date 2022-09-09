@@ -131,6 +131,7 @@ extension Color {
         enum Neutrals {
             static let neutrals1 = Color("neutrals.1")
             static let text = Color("neutrals.text")
+            static let text3 = Color("neutrals.text3")
             static let neutrals3 = Color("neutrals.3")
             static let neutrals4 = Color("neutrals.4")
             static let note = Color("neutrals.note")
