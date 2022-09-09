@@ -12,10 +12,24 @@ extension Contact {
         case domain = 2
     }
 
-    enum DomainType: Int, Codable {
+    enum DomainType: Int, Codable, CaseIterable {
         case unknown = 0
         case find = 1
         case flowns = 2
+        case meow = 3
+        
+        var domain: String {
+            switch self {
+            case .unknown:
+                return ""
+            case .find:
+                return "find"
+            case .flowns:
+                return "fn"
+            case .meow:
+                return "meow"
+            }
+        }
     }
 
     struct Domain: Codable {
@@ -43,6 +57,8 @@ struct Contact: Codable, Identifiable {
             return "icon-find"
         case .flowns:
             return "icon-flowns"
+        case .meow:
+            return "logo"
         default:
             return nil
         }

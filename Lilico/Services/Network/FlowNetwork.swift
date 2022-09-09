@@ -167,7 +167,10 @@ extension FlowNetwork {
     
     static func queryAddressByDomainFlowns(domain: String, root: String = "fn") async throws -> String {
         let cadence = Cadences.queryAddressByDomainFlowns
-        return try await fetch(cadence: cadence, arguments: [.string(domain), .string(root)])
+        var realDomain = domain
+            .replacingOccurrences(of: ".fn", with: "")
+            .replacingOccurrences(of: ".meow", with: "")
+        return try await fetch(cadence: cadence, arguments: [.string(realDomain), .string(root)])
     }
 }
 

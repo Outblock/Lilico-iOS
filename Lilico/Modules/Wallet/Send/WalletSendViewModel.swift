@@ -65,6 +65,7 @@ class WalletSendViewModel: ObservableObject {
     @Published var serverSearchList: [Contact]?
     @Published var findSearchList: [Contact]?
     @Published var flownsSearchList: [Contact]?
+    @Published var meowSearchList: [Contact]?
     
     private var cancelSets = Set<AnyCancellable>()
     
@@ -102,6 +103,10 @@ class WalletSendViewModel: ObservableObject {
             sections.append(WalletSendView.SearchSection(title: ".flowns".localized, rows: flownsSearchList))
         }
         
+        if let meowSearchList = meowSearchList, !meowSearchList.isEmpty {
+            sections.append(WalletSendView.SearchSection(title: ".meow".localized, rows: meowSearchList))
+        }
+        
         return sections
     }
 }
@@ -114,10 +119,22 @@ extension WalletSendViewModel {
         localSearchResults = addressBookVM.searchLocal(text: text)
     }
     
-    private func searchRemote() {
+    private func searchRemote(domains: [Contact.DomainType] = Contact.DomainType.allCases) {
         searchFromServer()
-        searchFromFind()
-        searchFromFlowns()
+        
+        for domain in domains {
+            switch domain {
+            case .meow:
+                searchFromMeow()
+            case .flowns:
+                searchFromFlowns()
+            case .find:
+                searchFromFind()
+            default:
+                break;
+            }
+        }
+        
     }
     
     private func searchFromServer() {
@@ -199,7 +216,7 @@ extension WalletSendViewModel {
         
         Task {
             do {
-                let address = try await FlowNetwork.queryAddressByDomainFlowns(domain: trimedText)
+                let address = try await FlowNetwork.queryAddressByDomainFlowns(domain: trimedText.removeSuffix(".fn"))
                 if trimedText != self.searchText.trim() {
                     return
                 }
@@ -209,7 +226,7 @@ extension WalletSendViewModel {
                                           avatar: nil,
                                           contactName: trimedText,
                                           contactType: .domain,
-                                          domain: Contact.Domain(domainType: .flowns, value: trimedText.removeSuffix(".find")),
+                                          domain: Contact.Domain(domainType: .flowns, value: trimedText),
                                           id: UUID().hashValue,
                                           username: nil)
                     
@@ -225,6 +242,43 @@ extension WalletSendViewModel {
                 
                 DispatchQueue.main.async {
                     self.flownsSearchList = []
+                    self.refreshCurrentSearchingStatusAfterPerSearchComplete()
+                }
+            }
+        }
+    }
+    
+    private func searchFromMeow() {
+        let trimedText = searchText.trim()
+        
+        Task {
+            do {
+                let address = try await FlowNetwork.queryAddressByDomainFlowns(domain: trimedText.removeSuffix(".meow"), root: Contact.DomainType.meow.domain)
+                if trimedText != self.searchText.trim() {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    let contact = Contact(address: address,
+                                          avatar: nil,
+                                          contactName: trimedText,
+                                          contactType: .domain,
+                                          domain: Contact.Domain(domainType: .meow, value: trimedText),
+                                          id: UUID().hashValue,
+                                          username: nil)
+                    
+                    self.meowSearchList = [contact]
+                    self.refreshCurrentSearchingStatusAfterPerSearchComplete()
+                }
+            } catch {
+                debugPrint("WalletSendViewModel -> searchFlowns failed: \(error)")
+                
+                if trimedText != self.searchText.trim() {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.meowSearchList = []
                     self.refreshCurrentSearchingStatusAfterPerSearchComplete()
                 }
             }
@@ -281,8 +335,9 @@ extension WalletSendViewModel {
             return
         }
         
-        if needAutoSearch(text: trimedText) {
-            searchCommitAction()
+        let domains = needAutoSearch(text: trimedText)
+        if !domains.isEmpty {
+            searchCommitAction(domains: domains)
             return
         }
         
@@ -300,7 +355,7 @@ extension WalletSendViewModel {
         Router.route(to: RouteMap.Wallet.sendAmount(contact, token))
     }
     
-    func searchCommitAction() {
+    func searchCommitAction(domains: [Contact.DomainType] = Contact.DomainType.allCases) {
         let trimedText = searchText.trim()
         
         if trimedText.isEmpty {
@@ -310,7 +365,7 @@ extension WalletSendViewModel {
         
         status = .searching
         clearRemoteSearch()
-        searchRemote()
+        searchRemote(domains: domains)
     }
     
     func changeTabTypeAction(type: WalletSendView.TabType) {
@@ -366,13 +421,14 @@ extension WalletSendViewModel {
 // MARK: - Helper
 
 extension WalletSendViewModel {
-    private func needAutoSearch(text: String) -> Bool {
+    private func needAutoSearch(text: String) -> [Contact.DomainType] {
         let trimedText = text.trim()
         
         if trimedText.contains(" ") {
-            return false
+            return []
         }
         
-        return trimedText.hasSuffix(".find") || trimedText.hasSuffix(".fn")
+        let allSuffix = Contact.DomainType.allCases
+        return allSuffix.filter{ trimedText.hasSuffix("." + $0.domain) }
     }
 }
