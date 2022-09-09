@@ -21,6 +21,7 @@ extension LocalUserDefaults {
         case securityType
         case lockOnExit
         case panelHolderFrame
+        case transactionCount
     }
 
     enum FlowNetworkType: String {
@@ -129,6 +130,12 @@ class LocalUserDefaults: ObservableObject {
             } else {
                 return nil
             }
+        }
+    }
+    
+    @AppStorage(Keys.transactionCount.rawValue) var transactionCount: Int = 0 {
+        didSet {
+            NotificationCenter.default.post(name: .transactionCountDidChanged, object: nil)
         }
     }
 }

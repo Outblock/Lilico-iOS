@@ -51,6 +51,12 @@ struct TokenModel: Codable, Identifiable {
     let symbol: String?
     let website: URL?
     
+    var contractId: String {
+        var addressString = LocalUserDefaults.shared.flowNetwork == .testnet ? address.testnet ?? "" : address.mainnet ?? ""
+        addressString = addressString.stripHexPrefix()
+        return "A.\(addressString).\(contractName)"
+    }
+    
     var id: String {
         return symbol ?? ""
     }

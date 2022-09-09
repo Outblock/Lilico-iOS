@@ -198,6 +198,15 @@
       }
     },
     {
+      "identity" : "jxsegmentedview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pujiaxin33/JXSegmentedView",
+      "state" : {
+        "revision" : "b7e784f21257d0947cdd4d79951d8fc749ea0602",
+        "version" : "1.3.0"
+      }
+    },
+    {
       "identity" : "keychainaccess",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kishikawakatsumi/KeychainAccess",

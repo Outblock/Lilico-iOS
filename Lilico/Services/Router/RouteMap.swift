@@ -105,6 +105,7 @@ extension RouteMap {
         case sendAmount(Contact, TokenModel, isPush: Bool = true)
         case scan(SPQRCodeCallback, click: SPQRCodeCallback? = nil)
         case buyCrypto
+        case transactionList
     }
 }
 
@@ -135,6 +136,9 @@ extension RouteMap.Wallet: RouterTarget {
         case .buyCrypto:
             let vc = CustomHostingController(rootView: BuyProvderView())
             Router.topPresentedController().present(vc, animated: true, completion: nil)
+        case .transactionList:
+            let vc = TransactionListViewController()
+            navi.pushViewController(vc, animated: true)
         }
     }
 }

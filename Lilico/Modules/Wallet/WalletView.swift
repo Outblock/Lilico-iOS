@@ -221,7 +221,13 @@ extension WalletView {
         var body: some View {
             VStack(spacing: 0) {
                 cardView
-                transactionView
+                
+                Button {
+                    Router.route(to: RouteMap.Wallet.transactionList)
+                } label: {
+                    transactionView
+                }
+                .zIndex(-1)
             }
         }
         
@@ -233,13 +239,14 @@ extension WalletView {
                 
                 Spacer()
                 
-                Text("999")
+                Text("\(vm.transactionCount)")
                     .font(.inter(size: 14, weight: .semibold))
                     .foregroundColor(.LL.Other.text1)
                     .frame(height: 24)
                     .padding(.horizontal, 6)
                     .background(Color.LL.Other.bg1)
                     .cornerRadius(12)
+                    .visibility(vm.transactionCount == 0 ? .gone : .visible)
                 
                 Image("icon-account-arrow-right")
                     .renderingMode(.template)
@@ -252,7 +259,6 @@ extension WalletView {
             .cornerRadius(12)
             .padding(.horizontal, 6)
             .padding(.top, -12)
-            .zIndex(-1)
         }
         
         var cardView: some View {

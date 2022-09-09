@@ -51,6 +51,7 @@ class WalletViewModel: ObservableObject {
     @Published var balance: Double = 0
     @Published var coinItems: [WalletCoinItemModel] = []
     @Published var walletState: WalletState = .noAddress
+    @Published var transactionCount: Int = LocalUserDefaults.shared.transactionCount
     
     private var lastRefreshTS: TimeInterval = 0
     private let autoRefreshInterval: TimeInterval = 30
@@ -111,6 +112,8 @@ class WalletViewModel: ObservableObject {
                 }
             }
         }.store(in: &cancelSets)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(transactionCountDidChanged), name: .transactionCountDidChanged, object: nil)
     }
 
     private func refreshHiddenFlag() {
@@ -153,6 +156,32 @@ class WalletViewModel: ObservableObject {
         
         balance = total
     }
+    
+    private func reloadTransactionCount() {
+        Task {
+            do {
+                var count = try await LilicoAPI.Account.fetchAccountTransferCount()
+                count += TransactionManager.shared.holders.count
+                
+                if count < LocalUserDefaults.shared.transactionCount {
+                    return
+                }
+                
+                let finalCount = count
+                DispatchQueue.main.async {
+                    LocalUserDefaults.shared.transactionCount = finalCount
+                }
+            } catch {
+                debugPrint("WalletViewModel -> reloadTransactionCount, fetch transaction count failed: \(error)")
+            }
+        }
+    }
+    
+    @objc private func transactionCountDidChanged() {
+        DispatchQueue.syncOnMain {
+            self.transactionCount = LocalUserDefaults.shared.transactionCount
+        }
+    }
 }
 
 // MARK: - Action
@@ -167,6 +196,7 @@ extension WalletViewModel {
         Task {
             do {
                 try await WalletManager.shared.fetchWalletDatas()
+                self.reloadTransactionCount()
             } catch {
                 HUD.error(title: "fetch_wallet_error".localized)
                 DispatchQueue.main.async {

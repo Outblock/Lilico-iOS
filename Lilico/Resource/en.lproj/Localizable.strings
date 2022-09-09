@@ -283,6 +283,11 @@
 "account_not_found_suff" = "?";
 "create_wallet" = "Create Wallet";
 "wallet_transactions" = "Transactions";
+"transaction_list_transaction_x" = "Transaction (%d)";
+"transaction_list_transfer_x" = "Transfer (%d)";
+"transaction_exec" = "Exec Transaction";
+"transaction_pending" = "Pending";
+"transaction_error" = "Error";
 
 "restore_with_x_failed" = "Restore with %@ failed";
 "no_x_backup" = "No backup found in %@";

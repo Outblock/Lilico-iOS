@@ -20,4 +20,6 @@ public extension Notification.Name {
     
     static let transactionManagerDidChanged = Notification.Name("transactionManagerDidChanged")
     static let transactionStatusDidChanged = Notification.Name("transactionStatusDidChanged")
+    
+    static let transactionCountDidChanged = Notification.Name("transactionCountDidChanged")
 }
