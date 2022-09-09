@@ -232,7 +232,7 @@ extension WalletView {
             VStack(spacing: 0) {
                 
                 ZStack {
-                    RoundedRectangle(cornerRadius: 16)
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
 //                        .fill(Color.clear)
                         .frame(maxWidth: .infinity)
                         .frame(height: CardViewHeight)

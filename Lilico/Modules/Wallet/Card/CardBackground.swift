@@ -90,6 +90,8 @@ enum CardBackground: CaseIterable {
             return Color(color)
         case .fade:
             return Color.LL.flow
+        case .matrix:
+            return Color(hex: "#00EF8B")
         default:
             return Color.LL.outline
         }
