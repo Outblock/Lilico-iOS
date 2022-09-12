@@ -654,11 +654,12 @@ extension NFTUIKitListStyleHandler {
                 make.top.equalTo(titleLabel.snp.bottom).offset(4)
             }
             
-            addSubview(button)
-            button.snp.makeConstraints { make in
-                make.centerX.equalToSuperview()
-                make.top.equalTo(descLabel.snp.bottom).offset(36)
-            }
+            // Hide it for now
+//            addSubview(button)
+//            button.snp.makeConstraints { make in
+//                make.centerX.equalToSuperview()
+//                make.top.equalTo(descLabel.snp.bottom).offset(36)
+//            }
         }
     }
 }

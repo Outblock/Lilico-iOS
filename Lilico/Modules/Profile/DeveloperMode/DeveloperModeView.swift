@@ -49,6 +49,32 @@ struct DeveloperModeView: RouteableView {
                     .background(.LL.bgForIcon)
                 }
                 .cornerRadius(16)
+                
+                Text("watch_address".localized)
+                    .font(.LL.footnote)
+                    .foregroundColor(.LL.Neutrals.neutrals6)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(spacing: 0) {
+                    Section {
+                        Cell(sysImageTuple: (.checkmarkSelected, .LL.Primary.salmonPrimary), title: "my_own_address".localized, desc: "")
+                            .onTapGestureOnBackground {
+                                
+                            }
+                        
+                        Divider()
+                        
+//                        HStack {
+//                            Image(systemName: sysImageTuple.0).foregroundColor(sysImageTuple.1)
+//                            Text(title).font(.inter()).frame(maxWidth: .infinity, alignment: .leading)
+//                            Text(desc).font(.inter()).foregroundColor(.LL.Neutrals.note)
+//                        }
+//                        .frame(height: 64)
+//                        .padding(.horizontal, 16)
+                        
+                    }
+                    .background(.LL.bgForIcon)
+                }
+                .cornerRadius(16)
             }
             .padding(.horizontal, 18)
         }

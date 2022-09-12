@@ -163,6 +163,9 @@
 
 // Profile
 "switch_network" = "Switch Network";
+"watch_address" = "Watch Address";
+"other_address" = "Other Address";
+"my_own_address" = "My Own Address";
 "developer_mode" = "Developer Mode";
 "welcome_to_lilico" = "Welcome to Lilico!";
 "welcome_desc" = "Join us and unlock all brilliant & new experiences!";
