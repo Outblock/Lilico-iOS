@@ -68,6 +68,7 @@ struct WalletView: View {
             VStack(spacing: 10) {
                 
                 headerView
+                    .padding(.horizontal, 18)
                 
                 RefreshableScrollView(showsIndicators: false, onRefresh: { done in
                     if isRefreshing {
