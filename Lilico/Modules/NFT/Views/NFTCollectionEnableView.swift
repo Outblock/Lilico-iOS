@@ -28,6 +28,18 @@ extension NFTAddCollectionView {
                     ZStack(alignment: .topLeading) {
                         HStack(alignment: .top,spacing: 0) {
                             VStack(alignment: .leading, spacing: 8) {
+                                KFImage
+                                    .url(item.collection.logoURL)
+                                    .placeholder({
+                                        Image("placeholder")
+                                            .resizable()
+                                    })
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 80, height: 80)
+                                    .cornerRadius(8)
+                                
+                                
                                 HStack(alignment: .center,spacing: 6) {
                                     Text(item.collection.name)
                                         .font(.LL.largeTitle3)
@@ -38,11 +50,12 @@ extension NFTAddCollectionView {
                                         .frame(width: 12, height: 12)
                                 }
                                 
-                                Spacer()
                                 Text(item.collection.description ?? "")
                                     .font(.LL.body,weight: .w400)
                                     .foregroundColor(.LL.Neutrals.neutrals7)
-                                    .padding(.trailing, 98)
+                                    .multilineTextAlignment(.leading)
+                                
+                                Spacer()
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             
@@ -67,7 +80,7 @@ extension NFTAddCollectionView {
                             HStack {
                                 Spacer()
                                 KFImage
-                                    .url(item.collection.logoURL)
+                                    .url(item.collection.bannerURL ?? item.collection.logoURL)
                                     .placeholder({
                                         Image("placeholder")
                                             .resizable()
@@ -76,7 +89,9 @@ extension NFTAddCollectionView {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: (screenWidth-38)/1.4,
                                            height: (screenWidth-38)/1.4)
+                                    .padding(-10)
                             }
+                            .blur(radius: 6)
                             LinearGradient(colors:
                                             [
                                                 .LL.Shades.front,
@@ -86,10 +101,7 @@ extension NFTAddCollectionView {
                                             ],
                                            startPoint: .leading,
                                            endPoint: .trailing)
-                            
-                            
                         }
-                            .blur(radius: 6)
                     )
                     .cornerRadius(16)
                     .padding(.top, 22)

@@ -49,6 +49,14 @@ struct NFTCollectionInfo: Codable, Hashable {
 
         return URL(string: placeholder)!
     }
+    
+    var bannerURL: URL {
+        if let bannerString = banner {
+            return URL(string: bannerString) ?? URL(string: placeholder)!
+        }
+
+        return URL(string: placeholder)!
+    }
 }
 
 struct ContractAddress: Codable, Hashable {

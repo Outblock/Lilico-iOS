@@ -67,30 +67,42 @@ extension NFTAddCollectionView {
 
         var body: some View {
             HStack(alignment: .center) {
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(alignment: .center) {
-                        Text(item.collection.name)
-                            .font(.LL.largeTitle3)
-                            .fontWeight(.w700)
-                            .foregroundColor(.LL.Neutrals.text)
-                        Image("Flow")
-                            .resizable()
-                            .frame(width: 12, height: 12)
-                        Image("arrow_right_grey")
-                            .resizable()
-                            .frame(width: 10, height: 10)
-                    }
-                    .frame(height: 26)
-
-                    Text(item.collection.description ?? "")
-                        .font(Font.inter(size: 12,weight: .w400))
-                        .fontWeight(.w400)
-                        .foregroundColor(.LL.Neutrals.neutrals7)
-                        .padding(.bottom, 18)
-                        .lineLimit(2)
+                
+                Button {
+                    
+                    if let website = item.collection.officialWebsite, let url = URL(string: website) {
                         
+                        Router.route(to: RouteMap.Explore.browser(url))
+                    }
+                    
+                } label: {
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack(alignment: .center) {
+                            Text(item.collection.name)
+                                .font(.LL.largeTitle3)
+                                .fontWeight(.w700)
+                                .foregroundColor(.LL.Neutrals.text)
+                            Image("Flow")
+                                .resizable()
+                                .frame(width: 12, height: 12)
+                            Image("arrow_right_grey")
+                                .resizable()
+                                .frame(width: 10, height: 10)
+                                .foregroundColor(.LL.text)
+                        }
+                        .frame(height: 26)
+                        
+                        Text(item.collection.description ?? "")
+                            .font(Font.inter(size: 12,weight: .w400))
+                            .fontWeight(.w400)
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(.LL.Neutrals.neutrals7)
+                            .padding(.bottom, 18)
+                            .lineLimit(2)
+                        
+                    }
+                    .padding(.leading, 18)
                 }
-                .padding(.leading, 18)
 
                 Spacer(minLength: 88)
                 Button {
@@ -124,6 +136,7 @@ extension NFTAddCollectionView {
                             .frame(width: 148,height: 148, alignment: .trailing)
                             .clipped()
                     }
+                    .blur(radius: 6)
 
                     LinearGradient(colors:
                         [
@@ -137,7 +150,6 @@ extension NFTAddCollectionView {
                         endPoint: .trailing)
                         
                 }
-                    .blur(radius: 6)
             )
             .clipShape(
                 RoundedRectangle(cornerRadius: 16)
