@@ -11,9 +11,11 @@ import SwiftUI
 import JXSegmentedView
 
 class TransactionListViewController: UIViewController {
-    
     private lazy var transactionHandler: TransactionListHandler = {
         let handler = TransactionListHandler()
+        handler.countChangeCallback = { [weak self] in
+            self?.reloadCounts()
+        }
         return handler
     }()
     
@@ -25,8 +27,8 @@ class TransactionListViewController: UIViewController {
     private lazy var segmentDataSource: JXSegmentedTitleDataSource = {
         let ds = JXSegmentedTitleDataSource()
         ds.titles = ["transaction_list_transaction_x".localized(0), "transaction_list_transfer_x".localized(0)]
-        ds.titleNormalColor = UIColor(Color.LL.Neutrals.text)
-        ds.titleSelectedColor = UIColor(Color.LL.Primary.salmonPrimary)
+        ds.titleNormalColor = UIColor.LL.Neutrals.text
+        ds.titleSelectedColor = UIColor.LL.Primary.salmonPrimary
         ds.titleNormalFont = .interMedium(size: 16)
         ds.titleSelectedFont = .interMedium(size: 16)
         ds.isTitleColorGradientEnabled = true
@@ -38,7 +40,7 @@ class TransactionListViewController: UIViewController {
     private lazy var indicator: JXSegmentedIndicatorLineView = {
         let view = JXSegmentedIndicatorLineView()
         view.indicatorHeight = 4
-        view.indicatorColor = UIColor(Color.LL.Primary.salmonPrimary)
+        view.indicatorColor = UIColor.LL.Primary.salmonPrimary
         return view
     }()
     
@@ -68,7 +70,7 @@ class TransactionListViewController: UIViewController {
     }
     
     private func setup() {
-        view.backgroundColor = UIColor(Color.LL.Neutrals.background)
+        view.backgroundColor = UIColor.LL.Neutrals.background
         
         navigationItem.hidesBackButton = true
         navigationItem.title = "wallet_transactions".localized
@@ -95,6 +97,13 @@ class TransactionListViewController: UIViewController {
     
     @objc private func onBackButtonAction() {
         Router.pop()
+    }
+}
+
+extension TransactionListViewController {
+    private func reloadCounts() {
+        segmentDataSource.titles = ["transaction_list_transaction_x".localized(transactionHandler.totalCount), "transaction_list_transfer_x".localized(0)]
+        segmentView.reloadData()
     }
 }
 

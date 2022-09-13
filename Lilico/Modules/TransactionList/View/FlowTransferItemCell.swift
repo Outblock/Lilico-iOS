@@ -36,7 +36,7 @@ class FlowTransferItemCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = .interSemiBold(size: 14)
-        view.textColor = UIColor(Color.LL.Neutrals.text)
+        view.textColor = UIColor.LL.Neutrals.text
         view.text = "transaction_exec".localized
         return view
     }()
@@ -51,21 +51,21 @@ class FlowTransferItemCell: UICollectionViewCell {
     private lazy var descLabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 12)
-        view.textColor = UIColor(Color.LL.Neutrals.text3)
+        view.textColor = UIColor.LL.Neutrals.text3
         return view
     }()
     
     private lazy var statusLabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 12)
-        view.textColor = UIColor(Color.LL.Neutrals.text3)
+        view.textColor = UIColor.LL.Neutrals.text3
         return view
     }()
     
     private lazy var amountlabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 14)
-        view.textColor = UIColor(Color.LL.Neutrals.text)
+        view.textColor = UIColor.LL.Neutrals.text
         view.text = "-"
         return view
     }()
@@ -111,11 +111,22 @@ class FlowTransferItemCell: UICollectionViewCell {
     func config(_ model: FlowScanTransfer) {
         iconImageView.kf.setImage(with: URL(string: model.image ?? ""), placeholder: UIImage(named: "placeholder"))
         typeImageView.image = model.transfer_type == .send ? UIImage(systemName: "arrow.up.right") : UIImage(systemName: "arrow.down.left")
+        titleLabel.text = model.token?.replaceBeforeLast(".", replacement: "").removePrefix(".")
         
-        // TODO:
+        let f = NumberFormatter()
+        f.maximumFractionDigits = 8
+        f.minimumFractionDigits = 0
+        f.roundingMode = .halfUp
+        if let amountString = model.amount, let doubleAmount = Double(amountString), let finalString = f.string(for: NSNumber(value: doubleAmount).decimalValue) {
+            amountlabel.text = finalString
+            amountlabel.isHidden = false
+        } else {
+            amountlabel.isHidden = true
+        }
         
-//        statusLabel.textColor = model.statusColor
-//        statusLabel.text = model.statusText
-//        descLabel.text = model.transactionDesc
+        statusLabel.textColor = model.statusColor
+        statusLabel.text = model.statusText
+        
+        descLabel.text = model.transferDesc
     }
 }

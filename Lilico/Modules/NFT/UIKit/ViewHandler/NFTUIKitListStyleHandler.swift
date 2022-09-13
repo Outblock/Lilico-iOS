@@ -48,7 +48,7 @@ class NFTUIKitListStyleHandler: NSObject {
     
     lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(Color.LL.Neutrals.background)
+        view.backgroundColor = UIColor.LL.Neutrals.background
         return view
     }()
     
@@ -591,7 +591,7 @@ extension NFTUIKitListStyleHandler {
         private lazy var titleLabel: UILabel = {
             let view = UILabel()
             view.font = .montserratBold(size: 16)
-            view.textColor = UIColor(Color.LL.Neutrals.neutrals3)
+            view.textColor = UIColor.LL.Neutrals.neutrals3
             view.text = "nft_empty".localized
             return view
         }()
@@ -599,18 +599,18 @@ extension NFTUIKitListStyleHandler {
         private lazy var descLabel: UILabel = {
             let view = UILabel()
             view.font = .inter(size: 14)
-            view.textColor = UIColor(Color.LL.Neutrals.neutrals8)
+            view.textColor = UIColor.LL.Neutrals.neutrals8
             view.text = "nft_empty_discovery".localized
             return view
         }()
         
         lazy var button: UIButton = {
             let btn = UIButton(type: .custom)
-            let bg = UIImage.image(withColor: UIColor(Color.LL.Secondary.mango4).withAlphaComponent(0.08))
+            let bg = UIImage.image(withColor: UIColor.LL.Secondary.mango4.withAlphaComponent(0.08))
             btn.setBackgroundImage(bg, for: .normal)
             
             btn.setTitle("get_new_nft".localized, for: .normal)
-            btn.setTitleColor(UIColor(Color.LL.Secondary.mangoNFT), for: .normal)
+            btn.setTitleColor(UIColor.LL.Secondary.mangoNFT, for: .normal)
             btn.titleLabel?.font = .interSemiBold(size: 14)
             
             btn.contentEdgeInsets = UIEdgeInsets(top: 10, left: 43, bottom: 10, right: 43)

@@ -33,7 +33,7 @@ class SPQRDetailButton: SPDimmedButton {
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .footnote, weight: .regular)
         titleImageInset = 4
         contentEdgeInsets = .init(horizontal: 10, vertical: 6)
-        applyDefaultAppearance(with: .init(content: .white, background: UIColor(Color.LL.Primary.salmonPrimary)))
+        applyDefaultAppearance(with: .init(content: .white, background: UIColor.LL.Primary.salmonPrimary))
     }
     
     // MARK: - Layout

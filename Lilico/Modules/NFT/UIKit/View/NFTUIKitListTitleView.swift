@@ -13,14 +13,14 @@ class NFTUIKitListTitleView: UIView {
     private lazy var iconImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "nft_logo_collection")?.withRenderingMode(.alwaysTemplate)
-        view.tintColor = UIColor(Color.LL.neutrals1)
+        view.tintColor = UIColor.LL.neutrals1
         return view
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .montserratBold(size: 22)
-        label.textColor = UIColor(Color.LL.neutrals1)
+        label.textColor = UIColor.LL.neutrals1
         label.text = "collections".localized
         return label
     }()
@@ -34,7 +34,7 @@ class NFTUIKitListTitleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor(Color.LL.Neutrals.background)
+        backgroundColor = UIColor.LL.Neutrals.background
         
         addSubview(iconImageView)
         iconImageView.snp.makeConstraints { make in

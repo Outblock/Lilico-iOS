@@ -14,6 +14,7 @@ extension String {
     static let error = "xmark.octagon.fill"
     static let add = "plus.circle"
     static let arrowDown = "chevron.down"
+    static let arrowRight = "chevron.right"
     static let arrowTriangleUp = "arrowtriangle.up.fill"
     static let arrowTriangleDown = "arrowtriangle.down.fill"
     static let delete = "xmark"

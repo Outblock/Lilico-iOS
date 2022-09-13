@@ -37,11 +37,11 @@ class NFTUIKitSegmentControl: UIView {
     }()
     
     private var unselectColor: UIColor {
-        return UIColor(Color.LL.frontColor)
+        return UIColor.LL.frontColor
     }
     
     private var selectedColor: UIColor {
-        return UIColor(Color.LL.Neutrals.text)
+        return UIColor.LL.Neutrals.text
     }
     
     required init(names: [String]) {
@@ -55,7 +55,7 @@ class NFTUIKitSegmentControl: UIView {
     }
     
     private func setupViews() {
-        backgroundColor = UIColor(Color.LL.Neutrals.neutrals3).withAlphaComponent(0.24)
+        backgroundColor = UIColor.LL.Neutrals.neutrals3.withAlphaComponent(0.24)
         layer.cornerRadius = Height * 0.5
         clipsToBounds = true
         

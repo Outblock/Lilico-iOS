@@ -32,7 +32,7 @@ class NFTUIKitCollectionRegularItemCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = .montserratBold(size: 14)
-        view.textColor = UIColor(Color.LL.neutrals1)
+        view.textColor = UIColor.LL.neutrals1
         return view
     }()
     
@@ -48,7 +48,7 @@ class NFTUIKitCollectionRegularItemCell: UICollectionViewCell {
     private lazy var descLabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 14)
-        view.textColor = UIColor(Color.LL.note)
+        view.textColor = UIColor.LL.note
         return view
     }()
     
@@ -69,7 +69,7 @@ class NFTUIKitCollectionRegularItemCell: UICollectionViewCell {
     private lazy var arrowImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "arrow_right_grey")?.withRenderingMode(.alwaysTemplate)
-        view.tintColor = UIColor(Color.LL.Primary.salmonPrimary)
+        view.tintColor = UIColor.LL.Primary.salmonPrimary
         return view
     }()
     
@@ -101,7 +101,7 @@ class NFTUIKitCollectionRegularItemCell: UICollectionViewCell {
             make.centerY.equalToSuperview()
         }
         
-        contentView.backgroundColor = UIColor(Color.LL.frontColor)
+        contentView.backgroundColor = UIColor.LL.frontColor
         contentView.layer.cornerRadius = 16
     }
     

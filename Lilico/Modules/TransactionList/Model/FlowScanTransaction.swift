@@ -33,13 +33,13 @@ struct FlowScanTransaction: Codable {
     
     var statusColor: UIColor {
         if status != "Sealed" {
-            return UIColor(Color.LL.Neutrals.text3)
+            return UIColor.LL.Neutrals.text3
         }
         
         if let error = error, !error.isEmpty {
-            return UIColor(Color.LL.Warning.warning2)
+            return UIColor.LL.Warning.warning2
         } else {
-            return UIColor(Color.LL.Success.success3)
+            return UIColor.LL.Success.success3
         }
     }
     
@@ -57,7 +57,7 @@ struct FlowScanTransaction: Codable {
     
     var transactionDesc: String {
         var dateString = ""
-        if let time = time, let df = DateFormatter().date(from: time) {
+        if let time = time, let df = ISO8601Formatter.date(from: time) {
             dateString = df.mmmddString
         }
         

@@ -14,8 +14,8 @@ struct DOFavoriteButtonView: UIViewRepresentable {
     var isSelected: Bool
     var imageColor: UIColor
     let size: CGFloat = 48
-    let imageColorOff: UIColor = UIScreen.main.traitCollection.userInterfaceStyle == .dark ? UIColor(Color(hex: "#4B4B4B")) : UIColor(Color(hex: "#E6E6E6"))
-//    UIColor(Color.LL.outline)
+    let imageColorOff: UIColor = UIScreen.main.traitCollection.userInterfaceStyle == .dark ? UIColor(hex: "#4B4B4B") : UIColor(hex: "#E6E6E6")
+//    UIColor.LL.outline)
     
     func makeUIView(context: Self.Context) -> UIView {
         let containerView = UIView(frame: CGRect(x: 0, y: 0
@@ -27,8 +27,7 @@ struct DOFavoriteButtonView: UIViewRepresentable {
         button.imageColorOff = imageColorOff
         button.imageColorOn = imageColor
         button.circleColor = imageColor
-        button.lineColor = UIColor(Color.LL
-            .Primary.salmonPrimary)
+        button.lineColor = UIColor.LL.Primary.salmonPrimary
         button.duration = 1.5
         button.clipsToBounds = true
         button.contentMode = UIView.ContentMode.scaleAspectFill

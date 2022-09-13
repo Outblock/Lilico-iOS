@@ -7,12 +7,20 @@
 
 import UIKit
 import JXSegmentedView
+import SnapKit
 
 class TransactionListBaseHandler: NSObject {
+    private(set) var contractId: String?
+    
     lazy var containerView: UIView = {
         let view = UIView()
+        view.backgroundColor = .clear
         return view
     }()
+    
+    init(contractId: String? = nil) {
+        self.contractId = contractId
+    }
 }
 
 extension TransactionListBaseHandler: JXSegmentedListContainerViewListDelegate {

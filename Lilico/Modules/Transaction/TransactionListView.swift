@@ -23,7 +23,7 @@ class TransactionListCell: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(Color.LL.Neutrals.text)
+        label.textColor = UIColor.LL.Neutrals.text
         label.font = .inter(size: 14)
         label.text = "pending_transaction".localized
         label.snp.contentHuggingHorizontalPriority = 249

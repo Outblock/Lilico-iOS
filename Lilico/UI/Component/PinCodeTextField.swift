@@ -20,14 +20,14 @@ fileprivate class LLPinCodeItemView: UIView {
     
     private lazy var bgHolder: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(Color.LL.Neutrals.outline)
+        view.backgroundColor = UIColor.LL.Neutrals.outline
         view.layer.cornerRadius = ItemSize / 2
         return view
     }()
     
     private lazy var foreHolder: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(Color.LL.Primary.salmonPrimary)
+        view.backgroundColor = UIColor.LL.Primary.salmonPrimary
         view.layer.cornerRadius = ItemSize / 2
         return view
     }()

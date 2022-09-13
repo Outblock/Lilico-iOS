@@ -35,8 +35,8 @@ struct InputMnemonicView: RouteableView {
     }()
     
     private var accountNotFoundDesc: NSAttributedString = {
-        let normalDict = [NSAttributedString.Key.foregroundColor: UIColor(Color.LL.Neutrals.text)]
-        let highlightDict = [NSAttributedString.Key.foregroundColor: UIColor(Color.LL.Primary.salmonPrimary)]
+        let normalDict = [NSAttributedString.Key.foregroundColor: UIColor.LL.Neutrals.text]
+        let highlightDict = [NSAttributedString.Key.foregroundColor: UIColor.LL.Primary.salmonPrimary]
         
         var str = NSMutableAttributedString(string: "account_not_found_prev".localized, attributes: normalDict)
         str.append(NSAttributedString(string: "account_not_found_highlight".localized, attributes: highlightDict))

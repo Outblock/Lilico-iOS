@@ -20,3 +20,28 @@ extension FlowScanAccountTransferCountResponse {
 struct FlowScanAccountTransferCountResponse: Codable {
     let data: FlowScanAccountTransferCountResponse.Data?
 }
+
+// MARK: - 
+
+extension FlowScanAccountTransferResponse {
+    struct Data: Codable {
+        let account: FlowScanAccountTransferResponse.Account?
+    }
+    
+    struct Transactions: Codable {
+        let edges: [Edge?]?
+    }
+    
+    struct Edge: Codable {
+        let node: FlowScanTransaction?
+    }
+    
+    struct Account: Codable {
+        let transactionCount: Int?
+        let transactions: FlowScanAccountTransferResponse.Transactions?
+    }
+}
+
+struct FlowScanAccountTransferResponse: Codable {
+    let data: FlowScanAccountTransferResponse.Data?
+}

@@ -22,7 +22,7 @@ class NFTUIKitListViewController: UIViewController {
     
     private lazy var contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(Color.LL.Neutrals.background)
+        view.backgroundColor = UIColor.LL.Neutrals.background
         return view
     }()
     
@@ -38,7 +38,7 @@ class NFTUIKitListViewController: UIViewController {
     
     private lazy var headerBgView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(Color.LL.Neutrals.background)
+        view.backgroundColor = UIColor.LL.Neutrals.background
         view.isUserInteractionEnabled = false
         return view
     }()
@@ -80,7 +80,7 @@ class NFTUIKitListViewController: UIViewController {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "icon-nft-add"), for: .normal)
         
-        let bgColor = UIColor(Color.LL.Neutrals.neutrals3).withAlphaComponent(0.24)
+        let bgColor = UIColor.LL.Neutrals.neutrals3.withAlphaComponent(0.24)
         btn.setBackgroundImage(UIImage.image(withColor: bgColor), for: .normal)
         
         btn.clipsToBounds = true
@@ -101,7 +101,7 @@ class NFTUIKitListViewController: UIViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = UIColor(Color.LL.Neutrals.background)
+        view.backgroundColor = UIColor.LL.Neutrals.background
         self.hero.isEnabled = true
         setupHeaderView()
         

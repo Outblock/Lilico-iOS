@@ -31,7 +31,7 @@ class NFTUIKitFavItemCell: UICollectionViewCell {
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 8
-        view.backgroundColor = UIColor(Color.LL.Neutrals.background)
+        view.backgroundColor = UIColor.LL.Neutrals.background
         return view
     }()
     
@@ -89,7 +89,7 @@ extension NFTUIKitFavItemCell: StackTransformView {
             topStackAlphaSpeedFactor: 0.30,
             perspectiveRatio: 0.30,
             shadowEnabled: true,
-            shadowColor: UIColor(Color.LL.rebackground),
+            shadowColor: UIColor.LL.rebackground,
             shadowOpacity: 0.10,
             shadowOffset: .zero,
             shadowRadius: 5.00,
