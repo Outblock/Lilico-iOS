@@ -134,12 +134,20 @@ struct Provider: Codable {
     public let fVsn: String?
     public let address: String
     public let name: String
+    public let description: String?
+    public let color: String?
+    public let supportEmail: String?
+    public let website: String?
     
     enum CodingKeys: String, CodingKey {
         case fType = "f_type"
         case fVsn = "f_vsn"
         case address
         case name
+        case description
+        case color
+        case supportEmail
+        case website
     }
 }
 

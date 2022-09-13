@@ -22,8 +22,16 @@ func serviceDefinition(address: String, keyId: Int, type: FCLServiceType) -> Ser
     
     if type == .authn {
         service.id = address
+        service.method = .walletConnect
         service.identity = Identity(address: address, keyId: keyId)
-        service.provider = Provider(fType: "ServiceProvider", fVsn: "1.0.0", address: address, name: "Flow Wallet")
+        service.provider = Provider(fType: "ServiceProvider",
+                                    fVsn: "1.0.0",
+                                    address: address,
+                                    name: "Lilico Wallet",
+                                    description: "A Mobile crypto wallet on Flow built for explorers, collectors, and gamers.",
+                                    color: "#FC814A",
+                                    supportEmail: "hi@lilico.app",
+                                    website: "https://link.lilico.app/wc")
         service.endpoint = "flow_authn"
     }
     
