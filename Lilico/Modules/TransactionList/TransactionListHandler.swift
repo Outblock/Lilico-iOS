@@ -11,6 +11,8 @@ private let Limit: Int = 30
 private let CellHeight: CGFloat = 50
 private let FooterHeight: CGFloat = 44
 
+private let AllTransactionsListCacheKey = "AllTransactionListCacheKey"
+
 class TransactionListHandler: TransactionListBaseHandler {
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -54,6 +56,7 @@ class TransactionListHandler: TransactionListBaseHandler {
     override init(contractId: String? = nil) {
         super.init(contractId: contractId)
         setup()
+        loadCache()
     }
     
     private func setup() {
@@ -63,6 +66,22 @@ class TransactionListHandler: TransactionListBaseHandler {
         }
         
         collectionView.beginRefreshing()
+    }
+    
+    private func loadCache() {
+        if contractId != nil {
+            // query by token, do not use cache
+            return
+        }
+        
+        Task {
+            if let cacheList = try? await PageCache.cache.get(forKey: AllTransactionsListCacheKey, type: [FlowScanTransaction].self) {
+                DispatchQueue.main.async {
+                    self.dataList = cacheList
+                    self.collectionView.reloadData()
+                }
+            }
+        }
     }
 }
 
@@ -93,6 +112,8 @@ extension TransactionListHandler {
     }
     
     private func requestSuccess(_ list: [FlowScanTransaction], totalCount: Int) {
+        PageCache.cache.set(value: list, forKey: AllTransactionsListCacheKey)
+        
         var transactions = TransactionManager.shared.holders.map { $0.toFlowScanTransaction }
         transactions.append(contentsOf: list)
         
@@ -100,6 +121,7 @@ extension TransactionListHandler {
         dataList = transactions
         collectionView.reloadData()
         
+        LocalUserDefaults.shared.transactionCount = totalCount
         self.totalCount = totalCount + TransactionManager.shared.holders.count
         checkIfNeedShowLoadMoreView()
     }
