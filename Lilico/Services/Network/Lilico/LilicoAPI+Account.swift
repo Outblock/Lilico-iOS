@@ -70,4 +70,60 @@ extension LilicoAPI.Account {
         let response: FlowScanAccountTransferCountResponse = try await Network.request(LilicoAPI.Account.flowScanQuery(script))
         return response.data?.account?.transactionCount ?? 0
     }
+    
+    static func fetchAccountTransfers() async throws -> ([FlowScanTransaction], Int) {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return ([], 0)
+        }
+        
+        let script = """
+           query AccountTransfers {
+               account(id: "\(address)") {
+               transactions (
+                   first: 30
+                   ordering: Descending
+               ) {
+                   edges {
+                       node {
+                           error
+                           hash
+                           status
+                           eventCount
+                           time
+                           index
+                           payer {
+                               address
+                           }
+                           proposer {
+                               address
+                           }
+                           authorizers {
+                               address
+                           }
+                           contractInteractions {
+                               identifier
+                           }
+                       }
+                   }
+               }
+               transactionCount
+               }
+           }
+        """
+        
+        let response: FlowScanAccountTransferResponse = try await Network.request(LilicoAPI.Account.flowScanQuery(script))
+        
+        guard let edges = response.data?.account?.transactions?.edges else {
+            return ([], 0)
+        }
+        
+        var results = [FlowScanTransaction]()
+        for edge in edges {
+            if let transaction = edge?.node, transaction.hash != nil, transaction.time != nil {
+                results.append(transaction)
+            }
+        }
+        
+        return (results, response.data?.account?.transactionCount ?? results.count)
+    }
 }

@@ -111,11 +111,22 @@ class FlowTransferItemCell: UICollectionViewCell {
     func config(_ model: FlowScanTransfer) {
         iconImageView.kf.setImage(with: URL(string: model.image ?? ""), placeholder: UIImage(named: "placeholder"))
         typeImageView.image = model.transfer_type == .send ? UIImage(systemName: "arrow.up.right") : UIImage(systemName: "arrow.down.left")
+        titleLabel.text = model.token?.replaceBeforeLast(".", replacement: "").removePrefix(".")
         
-        // TODO:
+        let f = NumberFormatter()
+        f.maximumFractionDigits = 8
+        f.minimumFractionDigits = 0
+        f.roundingMode = .halfUp
+        if let amountString = model.amount, let doubleAmount = Double(amountString), let finalString = f.string(for: NSNumber(value: doubleAmount).decimalValue) {
+            amountlabel.text = finalString
+            amountlabel.isHidden = false
+        } else {
+            amountlabel.isHidden = true
+        }
         
-//        statusLabel.textColor = model.statusColor
-//        statusLabel.text = model.statusText
-//        descLabel.text = model.transactionDesc
+        statusLabel.textColor = model.statusColor
+        statusLabel.text = model.statusText
+        
+        descLabel.text = model.transferDesc
     }
 }

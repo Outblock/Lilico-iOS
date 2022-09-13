@@ -26,7 +26,7 @@ class FlowTransactionItemCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = .interSemiBold(size: 14)
-        view.textColor = UIColor(Color.LL.Neutrals.text)
+        view.textColor = UIColor.LL.Neutrals.text
         view.text = "transaction_exec".localized
         return view
     }()
@@ -42,6 +42,7 @@ class FlowTransactionItemCell: UICollectionViewCell {
         let view = UILabel()
         view.font = .inter(size: 12)
         view.textColor = UIColor(Color.LL.Neutrals.text3)
+        view.textAlignment = .right
         return view
     }()
     
@@ -50,6 +51,7 @@ class FlowTransactionItemCell: UICollectionViewCell {
         view.font = .inter(size: 14)
         view.textColor = UIColor(Color.LL.Neutrals.text)
         view.text = "-"
+        view.textAlignment = .right
         return view
     }()
     
@@ -84,7 +86,7 @@ class FlowTransactionItemCell: UICollectionViewCell {
         let stackView2 = UIStackView(arrangedSubviews: [amountlabel, statusLabel])
         stackView2.axis = .vertical
         stackView2.spacing = 5
-        contentView.addSubview(stackView1)
+        contentView.addSubview(stackView2)
         stackView2.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-18)

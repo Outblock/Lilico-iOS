@@ -57,7 +57,7 @@ struct FlowScanTransaction: Codable {
     
     var transactionDesc: String {
         var dateString = ""
-        if let time = time, let df = DateFormatter().date(from: time) {
+        if let time = time, let df = ISO8601Formatter.date(from: time) {
             dateString = df.mmmddString
         }
         

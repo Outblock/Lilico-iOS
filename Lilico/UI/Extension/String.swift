@@ -65,6 +65,14 @@ extension String {
         return self
     }
     
+    func replaceBeforeLast(_ delimiter: Character, replacement: String) -> String {
+        if let index = self.lastIndex(of: delimiter) {
+            return self.replacingOccurrences(of: String(delimiter), with: replacement, options: [], range: self.startIndex..<index)
+        } else {
+            return self
+        }
+    }
+    
     var isNumber: Bool {
         return !isEmpty && Double.currencyFormatter.number(from: self) != nil
     }
@@ -263,5 +271,27 @@ extension String {
             return "http://" + self
         }
         return self
+    }
+}
+
+// MARK: - FlowScan
+
+extension String {
+    var toFlowScanAccountDetailURL: URL? {
+        var string = "https://flowscan.org/account/\(self)"
+        if LocalUserDefaults.shared.flowNetwork == .testnet {
+            string = "https://testnet.flowscan.org/account/\(self)"
+        }
+        
+        return URL(string: string)
+    }
+    
+    var toFlowScanTransactionDetailURL: URL? {
+        var string = "https://flowscan.org/transaction/\(self)"
+        if LocalUserDefaults.shared.flowNetwork == .testnet {
+            string = "https://testnet.flowscan.org/transaction/\(self)"
+        }
+        
+        return URL(string: string)
     }
 }

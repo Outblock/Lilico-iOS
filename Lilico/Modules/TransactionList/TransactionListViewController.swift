@@ -11,9 +11,11 @@ import SwiftUI
 import JXSegmentedView
 
 class TransactionListViewController: UIViewController {
-    
     private lazy var transactionHandler: TransactionListHandler = {
         let handler = TransactionListHandler()
+        handler.countChangeCallback = { [weak self] in
+            self?.reloadCounts()
+        }
         return handler
     }()
     
@@ -95,6 +97,13 @@ class TransactionListViewController: UIViewController {
     
     @objc private func onBackButtonAction() {
         Router.pop()
+    }
+}
+
+extension TransactionListViewController {
+    private func reloadCounts() {
+        segmentDataSource.titles = ["transaction_list_transaction_x".localized(transactionHandler.totalCount), "transaction_list_transfer_x".localized(0)]
+        segmentView.reloadData()
     }
 }
 

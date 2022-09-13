@@ -36,6 +36,31 @@ extension Flow.ID {
     }
 }
 
+extension TransactionManager.TransactionHolder {
+    var statusString: String {
+        switch Flow.Transaction.Status(status) {
+        case .unknown:
+            return "Unknown"
+        case .pending:
+            return "Pending"
+        case .finalized:
+            return "Finalized"
+        case .executed:
+            return "Executed"
+        case .sealed:
+            return "Sealed"
+        case .expired:
+            return "Expired"
+        }
+    }
+    
+    var toFlowScanTransaction: FlowScanTransaction {
+        let time = ISO8601Formatter.string(from: Date(timeIntervalSince1970: createTime))
+        let model = FlowScanTransaction(authorizers: nil, contractInteractions: nil, error: errorMsg, eventCount: nil, hash: transactionId.hex, index: nil, payer: nil, proposer: nil, status: statusString, time: time)
+        return model
+    }
+}
+
 extension TransactionManager {
     enum TransactionType: Int, Codable {
         case common
@@ -70,6 +95,7 @@ extension TransactionManager {
         var internalStatus: TransactionManager.InternalStatus = .pending
         var type: TransactionManager.TransactionType
         var data: Data
+        var errorMsg: String?
         
         private var timer: Timer?
         private var retryTimes: Int = 0
@@ -163,6 +189,7 @@ extension TransactionManager {
                         
                         self.status = result.status.rawValue
                         if result.isFailed && !result.errorMessage.hasPrefix("[Error Code: 1007]") {
+                            self.errorMsg = result.errorMessage
                             self.internalStatus = .failed
                             debugPrint("TransactionHolder -> onCheck result failed: \(result.errorMessage)")
                         } else if result.isComplete {
