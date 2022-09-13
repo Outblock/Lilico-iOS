@@ -18,6 +18,12 @@
 		152BB09828AE91A700B2A2AA /* ResizableLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152BB09728AE91A600B2A2AA /* ResizableLottieView.swift */; };
 		152BB09928AE91A700B2A2AA /* ResizableLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152BB09728AE91A600B2A2AA /* ResizableLottieView.swift */; };
 		1544C62828C812E700B6BA52 /* GoogleOAuth2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1544C62728C812E500B6BA52 /* GoogleOAuth2.plist */; };
+		154866EC28D0ECE400D012B8 /* FlixAuditEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EB28D0ECE400D012B8 /* FlixAuditEndpoint.swift */; };
+		154866ED28D0ECE400D012B8 /* FlixAuditEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EB28D0ECE400D012B8 /* FlixAuditEndpoint.swift */; };
+		154866F028D0EEF000D012B8 /* FlowTransactionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EF28D0EEF000D012B8 /* FlowTransactionTemplate.swift */; };
+		154866F128D0EEF000D012B8 /* FlowTransactionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EF28D0EEF000D012B8 /* FlowTransactionTemplate.swift */; };
+		154866F328D0FE8900D012B8 /* ViewCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866F228D0FE8900D012B8 /* ViewCondition.swift */; };
+		154866F428D0FE8900D012B8 /* ViewCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866F228D0FE8900D012B8 /* ViewCondition.swift */; };
 		154B8903276A1EEB00780E93 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507C7EE275634C900890C5D /* ProfileView.swift */; };
 		154B8904276A1EEB00780E93 /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */; };
 		154B8906276A1EEB00780E93 /* Lilico_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9DF1274FD1FD00F70CD9 /* Lilico_App.swift */; };
@@ -165,6 +171,7 @@
 		158CE8812782BEAA006A8394 /* TYNKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */; };
 		158CE8892782DAD7006A8394 /* UserResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE8872782DAD7006A8394 /* UserResponses.swift */; };
 		158CE88C2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */; };
+		158E0AD628D09A3000086F23 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 158E0AD528D09A3000086F23 /* RiveRuntime */; };
 		1599F771278892680094B196 /* InputMnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F76F278892680094B196 /* InputMnemonicViewModel.swift */; };
 		1599F774278894E00094B196 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F772278894E00094B196 /* String.swift */; };
 		159CFF2C27887ED3006421FB /* InputMnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CFF2A27887ED3006421FB /* InputMnemonicView.swift */; };
@@ -1312,6 +1319,9 @@
 		153C440227520752006D1E8D /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		153C440B27525D04006D1E8D /* BackgroundModifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundModifer.swift; sourceTree = "<group>"; };
 		1544C62728C812E500B6BA52 /* GoogleOAuth2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GoogleOAuth2.plist; sourceTree = "<group>"; };
+		154866EB28D0ECE400D012B8 /* FlixAuditEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixAuditEndpoint.swift; sourceTree = "<group>"; };
+		154866EF28D0EEF000D012B8 /* FlowTransactionTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTransactionTemplate.swift; sourceTree = "<group>"; };
+		154866F228D0FE8900D012B8 /* ViewCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCondition.swift; sourceTree = "<group>"; };
 		154B88832765EBF700780E93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		154B88852765F33400780E93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		154B8928276A1EEB00780E93 /* Lilico-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lilico-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1939,6 +1949,7 @@
 				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				4ED6DD10285A22A800105133 /* IrregularGradient in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
+				158E0AD628D09A3000086F23 /* RiveRuntime in Frameworks */,
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
 				154B891F276A1EEB00780E93 /* FirebaseDynamicLinks in Frameworks */,
@@ -2098,8 +2109,18 @@
 				15DE22EA277F0B0C00B5EE03 /* Shimmer.swift */,
 				15DC21F12781F7D9000B187A /* Keyboard.swift */,
 				15D874DB28C5C3740072C6EA /* DragGestureViewModifier.swift */,
+				154866F228D0FE8900D012B8 /* ViewCondition.swift */,
 			);
 			path = Modifier;
+			sourceTree = "<group>";
+		};
+		154866EE28D0EECE00D012B8 /* FlixAuditEndpoint */ = {
+			isa = PBXGroup;
+			children = (
+				154866EB28D0ECE400D012B8 /* FlixAuditEndpoint.swift */,
+				154866EF28D0EEF000D012B8 /* FlowTransactionTemplate.swift */,
+			);
+			path = FlixAuditEndpoint;
 			sourceTree = "<group>";
 		};
 		154B88C1276A1EA300780E93 /* Env */ = {
@@ -2428,6 +2449,7 @@
 		159A5438275368DA004BCACC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				154866EE28D0EECE00D012B8 /* FlixAuditEndpoint */,
 				15CB4DF628CA29350069ABB4 /* FirebaseAPI */,
 				1505E5F928363554007B98D8 /* Lilico */,
 				159A560127536E4E004BCACC /* Endpoint.swift */,
@@ -4344,6 +4366,7 @@
 				15F517FC28C6577000504FDC /* Atlantis */,
 				6A29114328CB2AA3003295BD /* JXSegmentedView */,
 				15D6D8F528CBAEE000CBA152 /* FancyScrollView */,
+				158E0AD528D09A3000086F23 /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -4871,6 +4894,7 @@
 				158832F82894363E00142B35 /* ApproveView.swift in Sources */,
 				6AE8821F288EB67A00ADF36E /* RouterExtensions.swift in Sources */,
 				6AD90069284717FC00B65CE6 /* AddAddressViewModel.swift in Sources */,
+				154866F428D0FE8900D012B8 /* ViewCondition.swift in Sources */,
 				15DC20DB27819C56000B187A /* VPrimaryButtonState.swift in Sources */,
 				1565FBB828B173960086A652 /* ExploreTabScreen.swift in Sources */,
 				6A9D7C472833B45500078F63 /* ThemeManager.swift in Sources */,
@@ -5172,6 +5196,8 @@
 				6AE69E9328C08310004D4709 /* BrowserViewController.swift in Sources */,
 				6AB5FBA328926C9100FA2261 /* iCloudAPI.swift in Sources */,
 				4EC31183284508F200F711F5 /* NFTListView.swift in Sources */,
+				154866F128D0EEF000D012B8 /* FlowTransactionTemplate.swift in Sources */,
+				154866ED28D0ECE400D012B8 /* FlixAuditEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5417,6 +5443,7 @@
 				158832F72894363E00142B35 /* ApproveView.swift in Sources */,
 				6AE8821E288EB67A00ADF36E /* RouterExtensions.swift in Sources */,
 				15C58B552868A4EE00BD4FC6 /* AddAddressViewModel.swift in Sources */,
+				154866F328D0FE8900D012B8 /* ViewCondition.swift in Sources */,
 				15C58B562868A4EE00BD4FC6 /* VPrimaryButtonState.swift in Sources */,
 				1565FBB728B173960086A652 /* ExploreTabScreen.swift in Sources */,
 				15C58B572868A4EE00BD4FC6 /* ThemeManager.swift in Sources */,
@@ -5718,6 +5745,8 @@
 				6AE69E9228C08310004D4709 /* BrowserViewController.swift in Sources */,
 				6AB5FBA228926C9100FA2261 /* iCloudAPI.swift in Sources */,
 				15C58C3B2868A4EE00BD4FC6 /* NFTListView.swift in Sources */,
+				154866F028D0EEF000D012B8 /* FlowTransactionTemplate.swift in Sources */,
+				154866EC28D0ECE400D012B8 /* FlixAuditEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6688,6 +6717,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1588332028943F4D00142B35 /* XCRemoteSwiftPackageReference "NativeUIKit" */;
 			productName = NativeUIKit;
+		};
+		158E0AD528D09A3000086F23 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
 		};
 		15C58A7F2868A4EE00BD4FC6 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;

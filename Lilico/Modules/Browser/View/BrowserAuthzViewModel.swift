@@ -18,6 +18,8 @@ class BrowserAuthzViewModel: ObservableObject {
     @Published var cadence: String
     @Published var isScriptShowing: Bool = false
     
+    @Published var template: FlowTransactionTemplate?
+    
     private var callback: BrowserAuthzViewModel.Callback?
     
     init(title: String, url: String, logo: String?, cadence: String, callback: @escaping BrowserAuthnViewModel.Callback) {
@@ -32,6 +34,27 @@ class BrowserAuthzViewModel: ObservableObject {
         callback?(result)
         callback = nil
         Router.dismiss()
+    }
+    
+    func checkTemplate() {
+        
+        let network = LocalUserDefaults.shared.flowNetwork.rawValue.lowercased()
+        guard let dataString = cadence.data(using: .utf8)?.base64EncodedString() else {
+            return
+        }
+        let request = FlixAuditRequest(cadenceBase64: dataString, network: network)
+    
+        Task {
+            do {
+                let response: FlowTransactionTemplate = try await Network.requestWithRawModel(FlixAuditEndpoint.template(request), decoder: JSONDecoder())
+                await MainActor.run {
+                    self.template = response
+                }
+            } catch {
+                print(error)
+            }
+        }
+    
     }
     
     func changeScriptViewShowingAction(_ show: Bool) {

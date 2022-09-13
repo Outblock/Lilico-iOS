@@ -25,12 +25,46 @@ struct BrowserAuthzView: View {
     }
     
     var normalView: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 10) {
             titleView
             
-            feeView
-                .padding(.top, 12)
+//            Divider()
+//                .foregroundColor(.LL.Neutrals.neutrals8)
             
+            if let template = vm.template {
+                
+                verifiedView
+                    .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+                
+                VStack {
+                    
+                    if let title = template.data.messages.title.i18N.enUS {
+                        Text(title)
+                            .font(.LL.body)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                    }
+                    
+                    if let description = template.data.messages.messagesDescription.i18N.enUS {
+                        Text(description)
+                            .font(.LL.footnote)
+                            .foregroundColor(.LL.Neutrals.note)
+                            .fontWeight(.medium)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top, 8)
+                    }
+                }
+                .padding(.vertical, 16)
+                .padding(.horizontal, 18)
+                .background(Color(hex: "#313131"))
+                .cornerRadius(12)
+                .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+            } else {
+                feeView
+                    .padding(.top, 12)
+            }
             scriptButton
                 .padding(.top, 8)
             
@@ -38,9 +72,30 @@ struct BrowserAuthzView: View {
             
             actionView
         }
+        .if(let: vm.template) {
+            $0.animation(.spring(), value: $1)
+        }
+        .task {
+            vm.checkTemplate()
+        }
         .padding(.all, 18)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .backgroundFill(Color(hex: "#282828", alpha: 1))
+    }
+    
+    var verifiedView: some View {
+        HStack(alignment: .center) {
+            Image(systemName: "checkmark.shield.fill")
+                .font(.LL.body)
+            Text("This transaction is verified")
+                .font(.LL.body)
+                .fontWeight(.semibold)
+        }
+        .foregroundColor(.LL.success)
+        .frame(maxWidth:.infinity)
+        .frame(height: 46)
+        .backgroundFill(.LL.success.opacity(0.16))
+        .cornerRadius(12)
     }
     
     var titleView: some View {
@@ -162,5 +217,30 @@ struct BrowserAuthzView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .backgroundFill(Color(hex: "#282828", alpha: 1))
         .transition(.move(edge: .trailing))
+    }
+}
+
+struct BrowserAuthzView_Previews: PreviewProvider {
+    
+    static let vm = BrowserAuthzViewModel(title: "This is title", url: "This is URL", logo: "https://lilico.app/logo.png", cadence: """
+import FungibleToken from 0x9a0766d93b6608b7
+transaction(amount: UFix64, to: Address) {
+let vault: @FungibleToken.Vault
+prepare(signer: AuthAccount) {
+self.vault <- signer
+.borrow<&{FungibleToken.Provider}>(from: /storage/flowTokenVault)!
+.withdraw(amount: amount)
+}
+execute {
+getAccount(to)
+.getCapability(/public/flowTokenReceiver)!
+.borrow<&{FungibleToken.Receiver}>()!
+.deposit(from: <-self.vault)
+}
+}
+""") {_ in }
+    
+    static var previews: some View {
+        BrowserAuthzView(vm: vm)
     }
 }
