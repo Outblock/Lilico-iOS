@@ -79,11 +79,11 @@ extension TransactionManager {
         var statusColor: UIColor {
             switch self {
             case .pending:
-                return UIColor(Color.LL.Primary.salmonPrimary)
+                return UIColor.LL.Primary.salmonPrimary
             case .success:
-                return UIColor(Color.LL.Success.success3)
+                return UIColor.LL.Success.success3
             case .failed:
-                return UIColor(Color.LL.Warning.warning3)
+                return UIColor.LL.Warning.warning3
             }
         }
     }

@@ -36,7 +36,7 @@ class FlowTransferItemCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = .interSemiBold(size: 14)
-        view.textColor = UIColor(Color.LL.Neutrals.text)
+        view.textColor = UIColor.LL.Neutrals.text
         view.text = "transaction_exec".localized
         return view
     }()
@@ -51,21 +51,21 @@ class FlowTransferItemCell: UICollectionViewCell {
     private lazy var descLabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 12)
-        view.textColor = UIColor(Color.LL.Neutrals.text3)
+        view.textColor = UIColor.LL.Neutrals.text3
         return view
     }()
     
     private lazy var statusLabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 12)
-        view.textColor = UIColor(Color.LL.Neutrals.text3)
+        view.textColor = UIColor.LL.Neutrals.text3
         return view
     }()
     
     private lazy var amountlabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 14)
-        view.textColor = UIColor(Color.LL.Neutrals.text)
+        view.textColor = UIColor.LL.Neutrals.text
         view.text = "-"
         return view
     }()

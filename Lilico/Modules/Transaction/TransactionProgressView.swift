@@ -28,7 +28,7 @@ class TransactionProgressView: UIView {
         let startAngle = -Double.pi / 2.0
         layer.path = UIBezierPath(arcCenter: CGPoint(x: ProgressViewWidth/2.0, y: ProgressViewWidth/2.0), radius: ProgressViewWidth/2.0, startAngle: startAngle, endAngle: Double.pi * 2 + startAngle, clockwise: true).cgPath
         layer.fillColor = UIColor.clear.cgColor
-        layer.strokeColor = UIColor(Color.LL.Primary.salmonPrimary).cgColor
+        layer.strokeColor = UIColor.LL.Primary.salmonPrimary.cgColor
         layer.lineWidth = 4
         layer.lineCap = .round
         layer.strokeEnd = 0.5

@@ -23,7 +23,7 @@ class BrowserSearchInputBar: UIView {
         let view = UIView()
         view.backgroundColor = .clear
         view.layer.cornerRadius = 16
-        view.layer.borderColor = UIColor(Color.LL.Primary.salmonPrimary).cgColor
+        view.layer.borderColor = UIColor.LL.Primary.salmonPrimary.cgColor
         view.layer.borderWidth = 2
         view.heroID = "addressBarContainer"
         view.snp.makeConstraints { make in
@@ -38,7 +38,7 @@ class BrowserSearchInputBar: UIView {
         view.backgroundColor = .clear
         view.textColor = UIColor(named: "Text")
         view.font = .interSemiBold(size: 16)
-        view.tintColor = UIColor(Color.LL.Primary.salmonPrimary)
+        view.tintColor = UIColor.LL.Primary.salmonPrimary
         view.clearButtonMode = .never
         view.returnKeyType = .go
         view.autocorrectionType = .no
@@ -85,7 +85,7 @@ class BrowserSearchInputBar: UIView {
         let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "icon-btn-clear"))
         btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        btn.tintColor = UIColor(Color.LL.Primary.salmonPrimary)
+        btn.tintColor = UIColor.LL.Primary.salmonPrimary
         
         btn.snp.makeConstraints { make in
             make.height.equalTo(ContentViewHeight)

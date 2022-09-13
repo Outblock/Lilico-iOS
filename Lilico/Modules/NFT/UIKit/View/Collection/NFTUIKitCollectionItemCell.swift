@@ -33,7 +33,7 @@ class NFTUIKitCollectionItemCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = .montserratBold(size: 14)
-        view.textColor = UIColor(Color.LL.neutrals1)
+        view.textColor = UIColor.LL.neutrals1
         return view
     }()
     
@@ -49,7 +49,7 @@ class NFTUIKitCollectionItemCell: UICollectionViewCell {
     private lazy var descLabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 14)
-        view.textColor = UIColor(Color.LL.note)
+        view.textColor = UIColor.LL.note
         return view
     }()
     
@@ -89,7 +89,7 @@ class NFTUIKitCollectionItemCell: UICollectionViewCell {
             make.centerY.equalToSuperview()
         }
         
-        contentView.backgroundColor = UIColor(Color.LL.frontColor)
+        contentView.backgroundColor = UIColor.LL.frontColor
         contentView.layer.cornerRadius = 16
         contentView.layer.borderWidth = 1
     }
@@ -102,7 +102,7 @@ class NFTUIKitCollectionItemCell: UICollectionViewCell {
         titleLabel.text = item.showName
         descLabel.text = "x_collections".localized(item.count)
         
-        contentView.layer.borderColor = isSelectItem ? UIColor(Color.LL.Neutrals.neutrals3).cgColor : UIColor.clear.cgColor
+        contentView.layer.borderColor = isSelectItem ? UIColor.LL.Neutrals.neutrals3.cgColor : UIColor.clear.cgColor
     }
     
     static func calculateSize(_ item: CollectionItem) -> CGSize {

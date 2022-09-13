@@ -28,14 +28,14 @@ class NFTUIKitItemCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = .montserratBold(size: 14)
-        view.textColor = UIColor(Color.LL.neutrals1)
+        view.textColor = UIColor.LL.neutrals1
         return view
     }()
     
     private lazy var descLabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 14)
-        view.textColor = UIColor(Color.LL.note)
+        view.textColor = UIColor.LL.note
         return view
     }()
     

@@ -25,7 +25,7 @@ class NFTUIKitGridStyleHandler: NSObject {
     
     lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(Color.LL.Neutrals.background)
+        view.backgroundColor = UIColor.LL.Neutrals.background
         return view
     }()
     

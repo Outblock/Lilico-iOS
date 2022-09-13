@@ -33,7 +33,7 @@ class SPQRFrameLayer: CAShapeLayer {
         length: CGFloat = 16.0,
         radius: CGFloat = 16.0,
         lineWidth: CGFloat = 3.0,
-        lineColor: UIColor = UIColor(Color.LL.Primary.salmonPrimary)
+        lineColor: UIColor = UIColor.LL.Primary.salmonPrimary
     ) {
         self.cLength = length
         self.cRadius = radius

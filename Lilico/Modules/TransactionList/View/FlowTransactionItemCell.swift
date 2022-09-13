@@ -34,14 +34,14 @@ class FlowTransactionItemCell: UICollectionViewCell {
     private lazy var descLabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 12)
-        view.textColor = UIColor(Color.LL.Neutrals.text3)
+        view.textColor = UIColor.LL.Neutrals.text3
         return view
     }()
     
     private lazy var statusLabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 12)
-        view.textColor = UIColor(Color.LL.Neutrals.text3)
+        view.textColor = UIColor.LL.Neutrals.text3
         view.textAlignment = .right
         return view
     }()
@@ -49,7 +49,7 @@ class FlowTransactionItemCell: UICollectionViewCell {
     private lazy var amountlabel: UILabel = {
         let view = UILabel()
         view.font = .inter(size: 14)
-        view.textColor = UIColor(Color.LL.Neutrals.text)
+        view.textColor = UIColor.LL.Neutrals.text
         view.text = "-"
         view.textAlignment = .right
         return view

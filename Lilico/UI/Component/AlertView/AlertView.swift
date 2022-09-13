@@ -52,8 +52,8 @@ struct AlertView: ViewModifier {
     let useDefaultCancelButton: Bool
     
     let testString: AttributedString = {
-        let normalDict = [NSAttributedString.Key.foregroundColor: UIColor(Color.LL.Neutrals.text)]
-        let highlightDict = [NSAttributedString.Key.foregroundColor: UIColor(Color.LL.Primary.salmonPrimary)]
+        let normalDict = [NSAttributedString.Key.foregroundColor: UIColor.LL.Neutrals.text]
+        let highlightDict = [NSAttributedString.Key.foregroundColor: UIColor.LL.Primary.salmonPrimary]
         
         var str = NSMutableAttributedString(string: "this is a ", attributes: normalDict)
         str.append(NSMutableAttributedString(string: "highlight", attributes: highlightDict))

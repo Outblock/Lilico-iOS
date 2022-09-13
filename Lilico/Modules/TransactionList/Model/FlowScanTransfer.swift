@@ -33,13 +33,13 @@ struct FlowScanTransfer: Codable {
     
     var statusColor: UIColor {
         if status != "Sealed" {
-            return UIColor(Color.LL.Neutrals.text3)
+            return UIColor.LL.Neutrals.text3
         }
         
         if let error = error, error == true {
-            return UIColor(Color.LL.Warning.warning2)
+            return UIColor.LL.Warning.warning2
         } else {
-            return UIColor(Color.LL.Success.success3)
+            return UIColor.LL.Success.success3
         }
     }
     

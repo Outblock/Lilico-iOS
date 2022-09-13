@@ -11,7 +11,7 @@ import SwiftUI
 class FlowTransactionViewMoreFooter: UICollectionReusableView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(Color.LL.Neutrals.text)
+        label.textColor = UIColor.LL.Neutrals.text
         label.font = .inter(size: 14)
         label.text = "view_more_transactions".localized
         return label
@@ -19,7 +19,7 @@ class FlowTransactionViewMoreFooter: UICollectionReusableView {
     
     private lazy var arrowImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: .arrowRight))
-        imageView.tintColor = UIColor(Color.LL.Neutrals.text)
+        imageView.tintColor = UIColor.LL.Neutrals.text
         return imageView
     }()
     

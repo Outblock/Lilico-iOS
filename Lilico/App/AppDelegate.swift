@@ -108,7 +108,7 @@ extension AppDelegate {
         
         UITableView.appearance().backgroundColor = .clear
         UITableView.appearance().sectionHeaderTopPadding = 0
-        UISearchBar.appearance().tintColor = UIColor(Color.LL.Secondary.violetDiscover)
+        UISearchBar.appearance().tintColor = UIColor.LL.Secondary.violetDiscover
         UINavigationBar.appearance().shadowImage = UIImage()
 
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .orange
@@ -126,7 +126,7 @@ extension AppDelegate {
 extension AppDelegate {
     private func setupUI() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = UIColor(Color.LL.Primary.salmonPrimary)
+        self.window?.backgroundColor = UIColor.LL.Primary.salmonPrimary
         
         coordinator.showRootView()
         coordinator.rootNavi?.view.alpha = 0
