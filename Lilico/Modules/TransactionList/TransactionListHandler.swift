@@ -12,6 +12,7 @@ private let CellHeight: CGFloat = 50
 private let FooterHeight: CGFloat = 44
 
 private let AllTransactionsListCacheKey = "AllTransactionListCacheKey"
+private let AllTransactionListCountKey = "AllTransactionListCountKey"
 
 class TransactionListHandler: TransactionListBaseHandler {
     private lazy var layout: UICollectionViewFlowLayout = {
@@ -69,10 +70,7 @@ class TransactionListHandler: TransactionListBaseHandler {
     }
     
     private func loadCache() {
-        if contractId != nil {
-            // query by token, do not use cache
-            return
-        }
+        totalCount = UserDefaults.standard.integer(forKey: AllTransactionListCountKey)
         
         Task {
             if let cacheList = try? await PageCache.cache.get(forKey: AllTransactionsListCacheKey, type: [FlowScanTransaction].self) {
@@ -94,10 +92,18 @@ extension TransactionListHandler {
         isRequesting = true
         Task {
             do {
-                let results = try await LilicoAPI.Account.fetchAccountTransfers()
-                DispatchQueue.main.async {
-                    self.isRequesting = false
-                    self.requestSuccess(results.0, totalCount: results.1)
+                if let contractId = self.contractId {
+                    let results = try await LilicoAPI.Account.fetchTokenTransfers(contractId: contractId)
+                    DispatchQueue.main.async {
+                        self.isRequesting = false
+                        self.requestSuccess(results, totalCount: results.count)
+                    }
+                } else {
+                    let results = try await LilicoAPI.Account.fetchAccountTransfers()
+                    DispatchQueue.main.async {
+                        self.isRequesting = false
+                        self.requestSuccess(results.0, totalCount: results.1)
+                    }
                 }
             } catch {
                 debugPrint("TransactionListHandler -> requestTransactions failed: \(error)")
@@ -121,13 +127,13 @@ extension TransactionListHandler {
         dataList = transactions
         collectionView.reloadData()
         
-        LocalUserDefaults.shared.transactionCount = totalCount
+        UserDefaults.standard.set(totalCount, forKey: AllTransactionListCountKey)
         self.totalCount = totalCount + TransactionManager.shared.holders.count
         checkIfNeedShowLoadMoreView()
     }
     
     private func checkIfNeedShowLoadMoreView() {
-        needShowLoadMoreView = totalCount > Limit
+        needShowLoadMoreView = totalCount >= Limit
         collectionView.reloadData()
     }
 }

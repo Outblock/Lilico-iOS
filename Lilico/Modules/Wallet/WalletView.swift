@@ -248,7 +248,7 @@ extension WalletView {
                 }
                 
                 Button {
-                    Router.route(to: RouteMap.Wallet.transactionList)
+                    Router.route(to: RouteMap.Wallet.transactionList(nil))
                 } label: {
                     transactionView
                         .padding(.horizontal, 18)

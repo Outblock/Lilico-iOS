@@ -43,6 +43,18 @@ struct FlowScanTransfer: Codable {
         }
     }
     
+    var swiftUIStatusColor: Color {
+        if status != "Sealed" {
+            return Color.LL.Neutrals.text3
+        }
+        
+        if let error = error, error == true {
+            return Color.LL.Warning.warning2
+        } else {
+            return Color.LL.Success.success3
+        }
+    }
+    
     var statusText: String {
         if status != "Sealed" {
             return "transaction_pending".localized
@@ -69,5 +81,17 @@ struct FlowScanTransfer: Codable {
         }
         
         return "\(dateString) \(targetStr)"
+    }
+    
+    var amountString: String {
+        let f = NumberFormatter()
+        f.maximumFractionDigits = 8
+        f.minimumFractionDigits = 0
+        f.roundingMode = .halfUp
+        if let amountString = self.amount, let doubleAmount = Double(amountString), let finalString = f.string(for: NSNumber(value: doubleAmount / 100000000.0).decimalValue) {
+            return finalString
+        } else {
+            return "-"
+        }
     }
 }

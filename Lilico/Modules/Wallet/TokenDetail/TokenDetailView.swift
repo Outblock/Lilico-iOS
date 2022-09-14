@@ -40,6 +40,7 @@ struct TokenDetailView: RouteableView {
             LazyVStack(spacing: 12) {
                 summaryView
                 moreView.visibility(vm.hasRateAndChartData ? .visible : .gone)
+                activitiesView.visibility(vm.recentTransfers.isEmpty ? .gone : .visible)
                 chartContainerView.visibility(vm.hasRateAndChartData ? .visible : .gone)
             }
             .padding(.horizontal, 18)
@@ -168,6 +169,56 @@ struct TokenDetailView: RouteableView {
             .background {
                 Color.LL.Neutrals.background.cornerRadius(16)
             }
+        }
+    }
+    
+    var activitiesView: some View {
+        VStack(spacing: 0) {
+            
+            // header
+            HStack {
+                Text("token_detail_activities".localized)
+                    .font(.inter(size: 16, weight: .semibold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Spacer()
+                
+                Button {
+                    vm.moreTransfersAction()
+                } label: {
+                    HStack(spacing: 6) {
+                        Text("more".localized)
+                            .font(.inter(size: 14))
+                            .foregroundColor(Color.LL.Primary.salmonPrimary)
+                        
+                        Image("icon-search-arrow")
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(Color.LL.Primary.salmonPrimary)
+                            .frame(width: 10, height: 10)
+                    }
+                    .contentShape(Rectangle())
+                }
+                .frame(height: 50)
+            }
+            .frame(height: 50)
+            
+            // transfer list
+            VStack(spacing: 8) {
+                ForEach(vm.recentTransfers, id: \.txid) { transfer in
+                    Button {
+                        vm.transferDetailAction(transfer)
+                    } label: {
+                        TransferItemView(model: transfer)
+                            .contentShape(Rectangle())
+                    }
+                }
+            }
+        }
+        .padding(.horizontal, 18)
+        .padding(.bottom, 8)
+        .background {
+            Color.LL.Neutrals.background.cornerRadius(16)
         }
     }
     
@@ -375,6 +426,60 @@ extension TokenDetailView {
         
         private var labelFont: Font {
             return isSelect ? .inter(size: 12, weight: .semibold) : .inter(size: 12, weight: .regular)
+        }
+    }
+    
+    struct TransferItemView: View {
+        let model: FlowScanTransfer
+        
+        var body: some View {
+            HStack(spacing: 8) {
+                KFImage.url(URL(string: model.image ?? ""))
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 32, height: 32)
+                    .clipShape(Circle())
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack(spacing: 5) {
+                        Image(systemName: model.transferType == .send ? "arrow.up.right" : "arrow.down.left")
+                            .resizable()
+                            .foregroundColor(Color.LL.Neutrals.text)
+                            .frame(width: 12, height: 12)
+                            .aspectRatio(contentMode: .fit)
+                        
+                        Text(model.token?.replaceBeforeLast(".", replacement: "").removePrefix(".") ?? "")
+                            .font(.inter(size: 14, weight: .semibold))
+                            .foregroundColor(Color.LL.Neutrals.text)
+                            .lineLimit(1)
+                    }
+                    
+                    Text(model.transferDesc)
+                        .font(.inter(size: 12))
+                        .foregroundColor(Color.LL.Neutrals.text3)
+                        .lineLimit(1)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                VStack(alignment: .trailing, spacing: 5) {
+                    Text(model.amountString)
+                        .font(.inter(size: 14))
+                        .foregroundColor(Color.LL.Neutrals.text)
+                        .lineLimit(1)
+                        .visibility(model.amountString == "-" ? .gone : .visible)
+                    
+                    Text(model.statusText)
+                        .font(.inter(size: 12))
+                        .foregroundColor(model.swiftUIStatusColor)
+                        .lineLimit(1)
+                }
+                .frame(alignment: .trailing)
+            }
+            .frame(height: 50)
         }
     }
 }

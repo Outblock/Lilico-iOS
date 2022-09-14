@@ -8,6 +8,7 @@
 import UIKit
 
 private let AllTransfersListCacheKey = "AllTransfersListCacheKey"
+private let AllTransfersListCountKey = "AllTransfersListCountKey"
 private let Limit: Int = 30
 private let CellHeight: CGFloat = 50
 
@@ -99,6 +100,8 @@ class TransferListHandler: TransactionListBaseHandler {
     }
     
     private func loadCache() {
+        totalCount = UserDefaults.standard.integer(forKey: AllTransfersListCountKey)
+        
         Task {
             if let cacheList = try? await PageCache.cache.get(forKey: cacheKey, type: [FlowScanTransfer].self) {
                 DispatchQueue.main.async {
@@ -119,11 +122,20 @@ extension TransferListHandler {
         isRequesting = true
         Task {
             do {
-                let request = TransfersRequest(address: WalletManager.shared.getPrimaryWalletAddress() ?? "", limit: Limit, after: start)
-                let response: TransfersResponse = try await Network.request(LilicoAPI.Account.transfers(request))
-                DispatchQueue.main.async {
-                    self.isRequesting = false
-                    self.requestSuccess(response, start: start)
+                if let contractId = self.contractId {
+                    let request = TokenTransfersRequest(address: WalletManager.shared.getPrimaryWalletAddress() ?? "", limit: Limit, after: start, token: contractId)
+                    let response: TransfersResponse = try await Network.request(LilicoAPI.Account.tokenTransfers(request))
+                    DispatchQueue.main.async {
+                        self.isRequesting = false
+                        self.requestSuccess(response, start: start)
+                    }
+                } else {
+                    let request = TransfersRequest(address: WalletManager.shared.getPrimaryWalletAddress() ?? "", limit: Limit, after: start)
+                    let response: TransfersResponse = try await Network.request(LilicoAPI.Account.transfers(request))
+                    DispatchQueue.main.async {
+                        self.isRequesting = false
+                        self.requestSuccess(response, start: start)
+                    }
                 }
             } catch {
                 debugPrint("TransferListHandler -> requestTransfers failed: \(error)")
@@ -167,6 +179,7 @@ extension TransferListHandler {
         }
         
         self.totalCount = response.total ?? dataList.count
+        UserDefaults.standard.set(self.totalCount, forKey: AllTransfersListCountKey)
     }
 }
 

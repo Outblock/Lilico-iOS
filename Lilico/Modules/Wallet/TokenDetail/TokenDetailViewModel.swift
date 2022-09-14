@@ -103,6 +103,7 @@ class TokenDetailViewModel: ObservableObject {
     @Published var balanceAsUSD: Double = 0
     @Published var changePercent: Double = 0
     @Published var rate: Double = 0
+    @Published var recentTransfers: [FlowScanTransfer] = []
     
     private var cancelSets = Set<AnyCancellable>()
     
@@ -191,6 +192,16 @@ extension TokenDetailViewModel {
         
         LocalUserDefaults.shared.market = market
     }
+    
+    func moreTransfersAction() {
+        Router.route(to: RouteMap.Wallet.transactionList(self.token.contractId))
+    }
+    
+    func transferDetailAction(_ model: FlowScanTransfer) {
+        if let txid = model.txid, let url = txid.toFlowScanTransactionDetailURL {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
 // MARK: - Fetch & Refresh
@@ -204,6 +215,8 @@ extension TokenDetailViewModel {
         if hasRateAndChartData {
             fetchChartData()
         }
+        
+        fetchTransactionsData()
     }
     
     private func refreshSummary() {
@@ -259,5 +272,33 @@ extension TokenDetailViewModel {
         cd.legends = []
         
         chartData = cd
+    }
+    
+    var transactionsCacheKey: String {
+        return "token_detail_transaction_cache_\(self.token.contractId)"
+    }
+    
+    private func fetchTransactionsData() {
+        Task {
+            if let cachedTransactions = try? await PageCache.cache.get(forKey: self.transactionsCacheKey, type: [FlowScanTransfer].self), !cachedTransactions.isEmpty {
+                DispatchQueue.main.async {
+                    self.recentTransfers = cachedTransactions
+                }
+            }
+            
+            do {
+                let request = TokenTransfersRequest(address: WalletManager.shared.getPrimaryWalletAddress() ?? "", limit: 3, after: "", token: self.token.contractId)
+                let response: TransfersResponse = try await Network.request(LilicoAPI.Account.tokenTransfers(request))
+                
+                let list = response.transactions ?? []
+                PageCache.cache.set(value: list, forKey: self.transactionsCacheKey)
+                
+                DispatchQueue.main.async {
+                    self.recentTransfers = list
+                }
+            } catch {
+                debugPrint("TokenDetailViewModel -> fetchTransactionsData request failed: \(error)")
+            }
+        }
     }
 }

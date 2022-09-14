@@ -113,19 +113,13 @@ class FlowTransferItemCell: UICollectionViewCell {
     
     func config(_ model: FlowScanTransfer) {
         iconImageView.kf.setImage(with: URL(string: model.image ?? ""), placeholder: UIImage(named: "placeholder"))
-        typeImageView.image = model.transferType == .send ? UIImage(systemName: "arrow.up.right") : UIImage(systemName: "arrow.down.left")
+        
+        let config = UIImage.SymbolConfiguration(scale: .large)
+        typeImageView.image = model.transferType == .send ? UIImage(systemName: "arrow.up.right", withConfiguration: config) : UIImage(systemName: "arrow.down.left", withConfiguration: config)
         titleLabel.text = model.token?.replaceBeforeLast(".", replacement: "").removePrefix(".")
         
-        let f = NumberFormatter()
-        f.maximumFractionDigits = 8
-        f.minimumFractionDigits = 0
-        f.roundingMode = .halfUp
-        if let amountString = model.amount, let doubleAmount = Double(amountString), let finalString = f.string(for: NSNumber(value: doubleAmount / 100000000.0).decimalValue) {
-            amountlabel.text = finalString
-            amountlabel.isHidden = false
-        } else {
-            amountlabel.isHidden = true
-        }
+        amountlabel.text = model.amountString
+        amountlabel.isHidden = amountlabel.text == "-"
         
         statusLabel.textColor = model.statusColor
         statusLabel.text = model.statusText

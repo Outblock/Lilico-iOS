@@ -11,8 +11,10 @@ import SwiftUI
 import JXSegmentedView
 
 class TransactionListViewController: UIViewController {
+    private(set) var contractId: String?
+    
     private lazy var transactionHandler: TransactionListHandler = {
-        let handler = TransactionListHandler()
+        let handler = TransactionListHandler(contractId: contractId)
         handler.countChangeCallback = { [weak self] in
             self?.reloadCounts()
         }
@@ -20,7 +22,7 @@ class TransactionListViewController: UIViewController {
     }()
     
     private lazy var transferHandler: TransferListHandler = {
-        let handler = TransferListHandler()
+        let handler = TransferListHandler(contractId: contractId)
         handler.countChangeCallback = { [weak self] in
             self?.reloadCounts()
         }
@@ -29,7 +31,7 @@ class TransactionListViewController: UIViewController {
     
     private lazy var segmentDataSource: JXSegmentedTitleDataSource = {
         let ds = JXSegmentedTitleDataSource()
-        ds.titles = ["transaction_list_transaction_x".localized(0), "transaction_list_transfer_x".localized(0)]
+        ds.titles = ["transaction_list_transaction_x".localized(transactionHandler.totalCount), "transaction_list_transfer_x".localized(transferHandler.totalCount)]
         ds.titleNormalColor = UIColor.LL.Neutrals.text
         ds.titleSelectedColor = UIColor.LL.Primary.salmonPrimary
         ds.titleNormalFont = .interMedium(size: 16)
@@ -62,11 +64,18 @@ class TransactionListViewController: UIViewController {
         return view
     }()
     
+    init(contractId: String? = nil) {
+        super.init(nibName: nil, bundle: nil)
+        self.contractId = contractId
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        _ = self.transactionHandler.totalCount
-        _ = self.transferHandler.totalCount
     }
     
     override func viewWillAppear(_ animated: Bool) {

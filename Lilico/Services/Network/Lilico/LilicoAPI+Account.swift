@@ -12,6 +12,7 @@ extension LilicoAPI {
     enum Account {
         case flowScanQuery(String)
         case transfers(TransfersRequest)
+        case tokenTransfers(TokenTransfersRequest)
     }
 }
 
@@ -34,6 +35,8 @@ extension LilicoAPI.Account: TargetType, AccessTokenAuthorizable {
             return "/v1/account/query"
         case .transfers:
             return "/v1/account/transfers"
+        case .tokenTransfers:
+            return "/v1/account/tokentransfers"
         }
     }
     
@@ -41,7 +44,7 @@ extension LilicoAPI.Account: TargetType, AccessTokenAuthorizable {
         switch self {
         case .flowScanQuery:
             return .post
-        case .transfers:
+        case .transfers, .tokenTransfers:
             return .get
         }
     }
@@ -51,6 +54,8 @@ extension LilicoAPI.Account: TargetType, AccessTokenAuthorizable {
         case .flowScanQuery(let query):
             return .requestJSONEncodable(["query": query])
         case .transfers(let request):
+            return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding.queryString)
+        case .tokenTransfers(let request):
             return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding.queryString)
         }
     }
@@ -132,5 +137,78 @@ extension LilicoAPI.Account {
         }
         
         return (results, response.data?.account?.transactionCount ?? results.count)
+    }
+    
+    static func fetchTokenTransfers(contractId: String) async throws -> [FlowScanTransaction] {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            return []
+        }
+        
+        let script = """
+           query AccountTransfers {
+                account(id: "\(address)") {
+                    tokenTransfers (
+                        first: 30
+                        ordering: Descending
+                        contractId: "\(contractId)"
+                    ) {
+                        pageInfo {
+                            hasNextPage
+                            endCursor
+                        }
+                        edges {
+                            node {
+                                transaction {
+                                   error
+                                   hash
+                                   status
+                                   eventCount
+                                   time
+                                   index
+                                   payer {
+                                       address
+                                   }
+                                   proposer {
+                                       address
+                                   }
+                                   authorizers {
+                                       address
+                                   }
+                                   contractInteractions {
+                                       identifier
+                                   }
+                                }
+                                type
+                                amount {
+                                    token {
+                                        id
+                                    }
+                                    value
+                                }
+                                counterparty {
+                                    address
+                                }
+                                counterpartiesCount
+                            }
+                        }
+                    }
+                }
+            }
+        """
+        
+        let response: FlowScanTokenTransferResponse = try await Network.request(LilicoAPI.Account.flowScanQuery(script))
+        
+        guard let edges = response.data?.account?.tokenTransfers?.edges else {
+            return []
+        }
+        
+        var results = [FlowScanTransaction]()
+        for edge in edges {
+            if let transaction = edge?.node?.transaction, transaction.hash != nil, transaction.time != nil {
+                results.append(transaction)
+            }
+        }
+        
+        return results
     }
 }

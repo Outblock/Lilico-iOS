@@ -12,3 +12,10 @@ struct TransfersRequest: Codable {
     let limit: Int
     let after: String
 }
+
+struct TokenTransfersRequest: Codable {
+    let address: String
+    let limit: Int
+    let after: String
+    let token: String
+}

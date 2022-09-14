@@ -296,6 +296,7 @@
 "transaction_request_failed" = "Transactions request failed";
 "transfer_request_failed" = "Transfers request failed";
 "view_more_transactions" = "View more transactions";
+"token_detail_activities" = "Activities";
 
 "restore_with_x_failed" = "Restore with %@ failed";
 "no_x_backup" = "No backup found in %@";

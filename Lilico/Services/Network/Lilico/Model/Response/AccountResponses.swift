@@ -21,6 +21,57 @@ struct FlowScanAccountTransferCountResponse: Codable {
     let data: FlowScanAccountTransferCountResponse.Data?
 }
 
+// MARK: -
+
+extension FlowScanTokenTransferResponse {
+    struct Data: Codable {
+        let account: FlowScanTokenTransferResponse.Account?
+    }
+    
+    struct Account: Codable {
+        let tokenTransfers: FlowScanTokenTransferResponse.TokenTransfers?
+    }
+    
+    struct TokenTransfers: Codable {
+        let edges: [FlowScanTokenTransferResponse.Edge?]?
+        let pageInfo: FlowScanTokenTransferResponse.PageInfo?
+    }
+    
+    struct Edge: Codable {
+        let node: FlowScanTokenTransferResponse.Node?
+    }
+    
+    struct Node: Codable {
+        let amount: FlowScanTokenTransferResponse.Amount?
+        let counterpartiesCount: Int?
+        let counterparty: FlowScanTokenTransferResponse.Counterparty?
+        let transaction: FlowScanTransaction?
+        let type: String?
+    }
+    
+    struct PageInfo: Codable {
+        let endCursor: String?
+        let hasNextPage: Bool?
+    }
+    
+    struct Amount: Codable {
+        let token: FlowScanTokenTransferResponse.Token?
+        let value: String?
+    }
+    
+    struct Counterparty: Codable {
+        let address: String?
+    }
+    
+    struct Token: Codable {
+        let id: String?
+    }
+}
+
+struct FlowScanTokenTransferResponse: Codable {
+    let data: FlowScanTokenTransferResponse.Data?
+}
+
 // MARK: - 
 
 extension FlowScanAccountTransferResponse {
