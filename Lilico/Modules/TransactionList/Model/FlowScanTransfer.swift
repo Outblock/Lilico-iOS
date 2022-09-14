@@ -10,9 +10,9 @@ import SwiftUI
 
 extension FlowScanTransfer {
     enum TransferType: Int, Codable {
-        case unknown
-        case send
-        case receive
+        case unknown = 0
+        case send = 1
+        case receive = 2
     }
 }
 
@@ -27,7 +27,7 @@ struct FlowScanTransfer: Codable {
     let time: String?
     let title: String?
     let token: String?
-    let transfer_type: TransferType?
+    let transferType: FlowScanTransfer.TransferType?
     let txid: String?
     let type: Int?
     
@@ -62,7 +62,7 @@ struct FlowScanTransfer: Codable {
         }
         
         var targetStr = ""
-        if self.transfer_type == .send {
+        if self.transferType == TransferType.send {
             targetStr = "transfer_to_x".localized(self.receiver ?? "")
         } else if self.sender != nil {
             targetStr = "transfer_from_x".localized(self.sender ?? "")

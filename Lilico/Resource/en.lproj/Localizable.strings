@@ -294,6 +294,7 @@
 "transfer_to_x" = "To %@";
 "transfer_from_x" = "From %@";
 "transaction_request_failed" = "Transactions request failed";
+"transfer_request_failed" = "Transfers request failed";
 "view_more_transactions" = "View more transactions";
 
 "restore_with_x_failed" = "Restore with %@ failed";

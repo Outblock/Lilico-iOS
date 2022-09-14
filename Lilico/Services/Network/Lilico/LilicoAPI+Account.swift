@@ -11,6 +11,7 @@ import Moya
 extension LilicoAPI {
     enum Account {
         case flowScanQuery(String)
+        case transfers(TransfersRequest)
     }
 }
 
@@ -31,6 +32,8 @@ extension LilicoAPI.Account: TargetType, AccessTokenAuthorizable {
         switch self {
         case .flowScanQuery:
             return "/v1/account/query"
+        case .transfers:
+            return "/v1/account/transfers"
         }
     }
     
@@ -38,6 +41,8 @@ extension LilicoAPI.Account: TargetType, AccessTokenAuthorizable {
         switch self {
         case .flowScanQuery:
             return .post
+        case .transfers:
+            return .get
         }
     }
     
@@ -45,6 +50,8 @@ extension LilicoAPI.Account: TargetType, AccessTokenAuthorizable {
         switch self {
         case .flowScanQuery(let query):
             return .requestJSONEncodable(["query": query])
+        case .transfers(let request):
+            return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding.queryString)
         }
     }
     

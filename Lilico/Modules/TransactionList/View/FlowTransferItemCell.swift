@@ -25,6 +25,7 @@ class FlowTransferItemCell: UICollectionViewCell {
     
     private lazy var typeImageView: UIImageView = {
         let view = UIImageView()
+        view.tintColor = UIColor.LL.Neutrals.text
         view.contentMode = .scaleAspectFit
         view.clipsToBounds = true
         view.snp.makeConstraints { make in
@@ -59,6 +60,7 @@ class FlowTransferItemCell: UICollectionViewCell {
         let view = UILabel()
         view.font = .inter(size: 12)
         view.textColor = UIColor.LL.Neutrals.text3
+        view.textAlignment = .right
         return view
     }()
     
@@ -66,6 +68,7 @@ class FlowTransferItemCell: UICollectionViewCell {
         let view = UILabel()
         view.font = .inter(size: 14)
         view.textColor = UIColor.LL.Neutrals.text
+        view.textAlignment = .right
         view.text = "-"
         return view
     }()
@@ -101,7 +104,7 @@ class FlowTransferItemCell: UICollectionViewCell {
         let stackView2 = UIStackView(arrangedSubviews: [amountlabel, statusLabel])
         stackView2.axis = .vertical
         stackView2.spacing = 5
-        contentView.addSubview(stackView1)
+        contentView.addSubview(stackView2)
         stackView2.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-18)
@@ -110,14 +113,14 @@ class FlowTransferItemCell: UICollectionViewCell {
     
     func config(_ model: FlowScanTransfer) {
         iconImageView.kf.setImage(with: URL(string: model.image ?? ""), placeholder: UIImage(named: "placeholder"))
-        typeImageView.image = model.transfer_type == .send ? UIImage(systemName: "arrow.up.right") : UIImage(systemName: "arrow.down.left")
+        typeImageView.image = model.transferType == .send ? UIImage(systemName: "arrow.up.right") : UIImage(systemName: "arrow.down.left")
         titleLabel.text = model.token?.replaceBeforeLast(".", replacement: "").removePrefix(".")
         
         let f = NumberFormatter()
         f.maximumFractionDigits = 8
         f.minimumFractionDigits = 0
         f.roundingMode = .halfUp
-        if let amountString = model.amount, let doubleAmount = Double(amountString), let finalString = f.string(for: NSNumber(value: doubleAmount).decimalValue) {
+        if let amountString = model.amount, let doubleAmount = Double(amountString), let finalString = f.string(for: NSNumber(value: doubleAmount / 100000000.0).decimalValue) {
             amountlabel.text = finalString
             amountlabel.isHidden = false
         } else {

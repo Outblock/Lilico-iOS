@@ -37,7 +37,9 @@ extension UIScrollView {
     }
     
     public func stopRefreshing() {
-        self.mj_header?.endRefreshing()
+        if isRefreshing() {
+            self.mj_header?.endRefreshing()
+        }
     }
     
     public func isRefreshing() -> Bool {
@@ -68,7 +70,9 @@ extension UIScrollView {
     }
     
     public func stopLoading() {
-        self.mj_footer?.endRefreshing()
+        if isLoading() {
+            self.mj_footer?.endRefreshing()
+        }
     }
     
     public func isLoading() -> Bool {

@@ -45,3 +45,12 @@ extension FlowScanAccountTransferResponse {
 struct FlowScanAccountTransferResponse: Codable {
     let data: FlowScanAccountTransferResponse.Data?
 }
+
+// MARK: -
+
+struct TransfersResponse: Codable {
+    let next: Bool?
+    let string: String?
+    let total: Int?
+    let transactions: [FlowScanTransfer]?
+}

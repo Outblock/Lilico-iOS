@@ -21,6 +21,9 @@ class TransactionListViewController: UIViewController {
     
     private lazy var transferHandler: TransferListHandler = {
         let handler = TransferListHandler()
+        handler.countChangeCallback = { [weak self] in
+            self?.reloadCounts()
+        }
         return handler
     }()
     
@@ -62,6 +65,8 @@ class TransactionListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        _ = self.transactionHandler.totalCount
+        _ = self.transferHandler.totalCount
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,7 +107,7 @@ class TransactionListViewController: UIViewController {
 
 extension TransactionListViewController {
     private func reloadCounts() {
-        segmentDataSource.titles = ["transaction_list_transaction_x".localized(transactionHandler.totalCount), "transaction_list_transfer_x".localized(0)]
+        segmentDataSource.titles = ["transaction_list_transaction_x".localized(transactionHandler.totalCount), "transaction_list_transfer_x".localized(transferHandler.totalCount)]
         segmentView.reloadData()
     }
 }
