@@ -49,6 +49,14 @@
 		1552DC622786F49000EAA7D5 /* CreatePinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */; };
 		1552DC652787063100EAA7D5 /* PinStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1552DC632787063100EAA7D5 /* PinStackView.swift */; };
 		1552DC6A2787090D00EAA7D5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 1552DC692787090D00EAA7D5 /* Introspect */; };
+		155E371528D35E5200834C30 /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
+		155E371628D35E5200834C30 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		155E371728D35E5200834C30 /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
+		155E371828D35E5200834C30 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		155E371928D35E6500834C30 /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
+		155E371A28D35E6500834C30 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		155E371B28D35E6500834C30 /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
+		155E371C28D35E6500834C30 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1565FB6328B14F140086A652 /* Chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5E28B14F140086A652 /* Chat.json */; };
 		1565FB6428B14F140086A652 /* Chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5E28B14F140086A652 /* Chat.json */; };
 		1565FB6528B14F140086A652 /* Saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5F28B14F140086A652 /* Saved.json */; };
@@ -572,7 +580,6 @@
 		15C58C402868A4EE00BD4FC6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A852868A4EE00BD4FC6 /* FirebaseAuth */; };
 		15C58C412868A4EE00BD4FC6 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */; };
 		15C58C422868A4EE00BD4FC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9BFF5C2867631300601339 /* UIKit.framework */; };
-		15C58C432868A4EE00BD4FC6 /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
 		15C58C442868A4EE00BD4FC6 /* SPConfetti in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A992868A4EE00BD4FC6 /* SPConfetti */; };
 		15C58C452868A4EE00BD4FC6 /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58AA82868A4EE00BD4FC6 /* GTMSessionFetcherCore */; };
 		15C58C462868A4EE00BD4FC6 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A8B2868A4EE00BD4FC6 /* Moya */; };
@@ -593,7 +600,6 @@
 		15C58C562868A4EE00BD4FC6 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A8E2868A4EE00BD4FC6 /* SkeletonUI */; };
 		15C58C572868A4EE00BD4FC6 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A972868A4EE00BD4FC6 /* Introspect */; };
 		15C58C582868A4EE00BD4FC6 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 15C58A7F2868A4EE00BD4FC6 /* SwiftUIX */; };
-		15C58C592868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
 		15C58C5B2868A4EE00BD4FC6 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA72787F7490062E0C6 /* Montserrat-Regular.ttf */; };
 		15C58C5C2868A4EE00BD4FC6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EC9DF8274FD1FD00F70CD9 /* Preview Assets.xcassets */; };
 		15C58C5D2868A4EE00BD4FC6 /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EA820C5286354E200DF36A8 /* remote_config_defaults.plist */; };
@@ -604,8 +610,6 @@
 		15C58C632868A4EE00BD4FC6 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA22787F6EA0062E0C6 /* Inter.ttf */; };
 		15C58C652868A4EE00BD4FC6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E9E21DC282A68CB00E1BACD /* Colors.xcassets */; };
 		15C58C662868A4EE00BD4FC6 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158C9CA52787F7490062E0C6 /* Montserrat-Bold.ttf */; };
-		15C58C682868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15C58C692868A4EE00BD4FC6 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15CB4DF428CA15B10069ABB4 /* BuyProvderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB4DF328CA15B10069ABB4 /* BuyProvderView.swift */; };
 		15CB4DF528CA15B10069ABB4 /* BuyProvderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB4DF328CA15B10069ABB4 /* BuyProvderView.swift */; };
 		15CB4DF928CA29650069ABB4 /* PayAsSignerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB4DF828CA29650069ABB4 /* PayAsSignerModel.swift */; };
@@ -901,10 +905,6 @@
 		15F517FB28C6574C00504FDC /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 15F517FA28C6574C00504FDC /* Atlantis */; };
 		15F517FD28C6577000504FDC /* Atlantis in Frameworks */ = {isa = PBXBuildFile; productRef = 15F517FC28C6577000504FDC /* Atlantis */; };
 		4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0A75AE2868929C00527D08 /* AddCollectionViewModel.swift */; };
-		4E17466C281AF840002A029C /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
-		4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4E17466F281AF841002A029C /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; };
-		4E174670281AF841002A029C /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E344480282EC1C40040E5A4 /* NFTCollectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */; };
 		4E3E5BE32875DC2000A5FA65 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E5BE22875DC2000A5FA65 /* SearchBar.swift */; };
 		4E3E5BE42875DC2000A5FA65 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E5BE22875DC2000A5FA65 /* SearchBar.swift */; };
@@ -1290,8 +1290,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4E174670281AF841002A029C /* SwiftProtobuf.xcframework in Embed Frameworks */,
-				4E17466D281AF840002A029C /* WalletCore.xcframework in Embed Frameworks */,
+				155E371828D35E5200834C30 /* WalletCore.xcframework in Embed Frameworks */,
+				155E371628D35E5200834C30 /* SwiftProtobuf.xcframework in Embed Frameworks */,
 				6A400928287578FF00A77070 /* QRCode in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -1303,8 +1303,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				15C58C682868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Embed Frameworks */,
-				15C58C692868A4EE00BD4FC6 /* WalletCore.xcframework in Embed Frameworks */,
+				155E371C28D35E6500834C30 /* WalletCore.xcframework in Embed Frameworks */,
+				155E371A28D35E6500834C30 /* SwiftProtobuf.xcframework in Embed Frameworks */,
 				6A37AD9528BDAB560047E5F7 /* QRCode in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -1939,11 +1939,11 @@
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
 				15F517FD28C6577000504FDC /* Atlantis in Frameworks */,
 				15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */,
+				155E371528D35E5200834C30 /* SwiftProtobuf.xcframework in Frameworks */,
 				4E9BFF5D2867631300601339 /* UIKit.framework in Frameworks */,
 				6AE1D48E287690E7000FA0B7 /* SwiftUIPager in Frameworks */,
 				15D6D8F628CBAEE000CBA152 /* FancyScrollView in Frameworks */,
 				152BB09628AE900C00B2A2AA /* Lottie in Frameworks */,
-				4E17466C281AF840002A029C /* WalletCore.xcframework in Frameworks */,
 				6AEA375A28A51792004545D4 /* MJRefresh in Frameworks */,
 				15185ED8278A73A3006B74A9 /* SPConfetti in Frameworks */,
 				15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */,
@@ -1960,6 +1960,7 @@
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
 				158E0AD628D09A3000086F23 /* RiveRuntime in Frameworks */,
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
+				155E371728D35E5200834C30 /* WalletCore.xcframework in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
 				154B891F276A1EEB00780E93 /* FirebaseDynamicLinks in Frameworks */,
 				158832CC2894267700142B35 /* WalletConnect in Frameworks */,
@@ -1974,7 +1975,6 @@
 				6A400927287578FF00A77070 /* QRCode in Frameworks */,
 				154B8920276A1EEB00780E93 /* SwiftUIX in Frameworks */,
 				6AC1AE6B289BAD0600F76C7A /* SnapKit in Frameworks */,
-				4E17466F281AF841002A029C /* SwiftProtobuf.xcframework in Frameworks */,
 				158832D42894277600142B35 /* Starscream in Frameworks */,
 				6A29114428CB2AA3003295BD /* JXSegmentedView in Frameworks */,
 			);
@@ -1990,12 +1990,12 @@
 				15D3BA6B28C3B1EE009AEA6E /* ColorKit in Frameworks */,
 				15F517FB28C6574C00504FDC /* Atlantis in Frameworks */,
 				15C58C402868A4EE00BD4FC6 /* FirebaseAuth in Frameworks */,
+				155E371928D35E6500834C30 /* SwiftProtobuf.xcframework in Frameworks */,
 				15D3BA7028C3B8E3009AEA6E /* ViewAnimator in Frameworks */,
 				15C58C412868A4EE00BD4FC6 /* AuthenticationServices.framework in Frameworks */,
 				15C58C422868A4EE00BD4FC6 /* UIKit.framework in Frameworks */,
 				6A0454CD28768E9E00A9131C /* SwiftUIPager in Frameworks */,
 				152BB09428AE8FD100B2A2AA /* Lottie in Frameworks */,
-				15C58C432868A4EE00BD4FC6 /* WalletCore.xcframework in Frameworks */,
 				6AEA374028A49DBE004545D4 /* MJRefresh in Frameworks */,
 				15C58C442868A4EE00BD4FC6 /* SPConfetti in Frameworks */,
 				15C58C452868A4EE00BD4FC6 /* GTMSessionFetcherCore in Frameworks */,
@@ -2011,6 +2011,7 @@
 				15C58C4B2868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */,
 				15C58C4C2868A4EE00BD4FC6 /* CollectionViewPagingLayout in Frameworks */,
 				15C58C4D2868A4EE00BD4FC6 /* IrregularGradient in Frameworks */,
+				155E371B28D35E6500834C30 /* WalletCore.xcframework in Frameworks */,
 				15C58C4F2868A4EE00BD4FC6 /* FirebaseCrashlytics in Frameworks */,
 				15C58C502868A4EE00BD4FC6 /* FirebaseRemoteConfig in Frameworks */,
 				15C58C512868A4EE00BD4FC6 /* CombineMoya in Frameworks */,
@@ -2025,7 +2026,6 @@
 				15D6D8F428CBAEBD00CBA152 /* FancyScrollView in Frameworks */,
 				15C58C582868A4EE00BD4FC6 /* SwiftUIX in Frameworks */,
 				6AC1AE69289BACDF00F76C7A /* SnapKit in Frameworks */,
-				15C58C592868A4EE00BD4FC6 /* SwiftProtobuf.xcframework in Frameworks */,
 				158832D22894273600142B35 /* Starscream in Frameworks */,
 				6A29114228CB2A87003295BD /* JXSegmentedView in Frameworks */,
 			);

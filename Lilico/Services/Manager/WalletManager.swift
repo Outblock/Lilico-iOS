@@ -511,7 +511,7 @@ extension WalletManager: FlowSigner {
             throw LLError.emptyWallet
         }
         
-        var privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        var privateKey = hdWallet.getKeyByCurve(curve: .secp256k1, derivationPath: WalletManager.flowPath)
         let hashedData = Hash.sha256(data: signableData)
         
         defer {
@@ -532,7 +532,7 @@ extension WalletManager: FlowSigner {
             throw LLError.emptyWallet
         }
         
-        var privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        var privateKey = hdWallet.getKeyByCurve(curve: .secp256k1, derivationPath: WalletManager.flowPath)
         let hashedData = Hash.sha256(data: signableData)
         
         defer {
@@ -553,7 +553,7 @@ extension WalletManager: FlowSigner {
             return nil
         }
         
-        var privateKey = hdWallet.getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        var privateKey = hdWallet.getKeyByCurve(curve: .secp256k1, derivationPath: WalletManager.flowPath)
         let hashedData = Hash.sha256(data: signableData)
         
         defer {
@@ -571,7 +571,7 @@ extension WalletManager: FlowSigner {
 extension HDWallet {
     
     func getPublicKey() -> String {
-        let p256PublicKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        let p256PublicKey = getKeyByCurve(curve: .secp256k1, derivationPath: WalletManager.flowPath)
             .getPublicKeySecp256k1(compressed: false)
             .uncompressed
             .data
@@ -581,7 +581,7 @@ extension HDWallet {
     }
     
     func getPrivateKey() -> String {
-        let privateKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        let privateKey = getKeyByCurve(curve: .secp256k1, derivationPath: WalletManager.flowPath)
         return privateKey.data.hexValue
     }
 
@@ -596,7 +596,7 @@ extension HDWallet {
     }
 
     func sign(_ data: Data) -> String? {
-        var privateKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        var privateKey = getKeyByCurve(curve: .secp256k1, derivationPath: WalletManager.flowPath)
         
         defer {
             privateKey = PrivateKey()
@@ -612,7 +612,7 @@ extension HDWallet {
     }
 
     var flowAccountKey: Flow.AccountKey {
-        let p256PublicKey = getCurveKey(curve: .secp256k1, derivationPath: WalletManager.flowPath)
+        let p256PublicKey = getKeyByCurve(curve: .secp256k1, derivationPath: WalletManager.flowPath)
             .getPublicKeySecp256k1(compressed: false)
             .uncompressed
             .data
@@ -626,7 +626,7 @@ extension HDWallet {
     }
 
     var flowAccountP256Key: Flow.AccountKey {
-        let p256PublicKey = getCurveKey(curve: .nist256p1, derivationPath: WalletManager.flowPath)
+        let p256PublicKey = getKeyByCurve(curve: .nist256p1, derivationPath: WalletManager.flowPath)
             .getPublicKeyNist256p1()
             .uncompressed
             .data

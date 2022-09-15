@@ -377,7 +377,9 @@ extension RouteMap.Explore: RouterTarget {
             inputVC.selectTextCallback = { text in
                 let urlString = BrowserSearchInputViewController.makeUrlIfNeeded(urlString: text)
                 if let url = URL(string: urlString) {
-                    Router.route(to: RouteMap.Explore.browser(url))
+                    navi.popViewController(animated: false) {
+                        Router.route(to: RouteMap.Explore.browser(url))
+                    }
                 }
             }
             navi.pushViewController(inputVC, animated: false)

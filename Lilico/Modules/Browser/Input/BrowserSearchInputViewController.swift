@@ -32,7 +32,6 @@ class BrowserSearchInputViewController: UIViewController {
         }
         view.textDidReturnCallback = { [weak self] text in
             self?.selectTextCallback?(text)
-            self?.close()
         }
         
         return view
@@ -92,6 +91,8 @@ class BrowserSearchInputViewController: UIViewController {
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(inputBar.snp.top)
         }
+        
+        collectionView.transform = CGAffineTransform.init(rotationAngle: (-(CGFloat)(Double.pi)))
         
         hero.isEnabled = true
     }
@@ -247,12 +248,12 @@ extension BrowserSearchInputViewController: UICollectionViewDelegateFlowLayout, 
         let model = recommendArray[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrowserSearchItemCell", for: indexPath) as! BrowserSearchItemCell
         cell.config(model, inputText: searchingText)
+        cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = recommendArray[indexPath.item]
-        selectTextCallback?(model.phrase)
-        close()
+        self.selectTextCallback?(model.phrase)
     }
 }

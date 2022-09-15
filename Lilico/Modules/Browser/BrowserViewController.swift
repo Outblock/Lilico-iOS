@@ -207,7 +207,9 @@ extension BrowserViewController {
         inputVC.selectTextCallback = { [weak self] text in
             let urlString = BrowserSearchInputViewController.makeUrlIfNeeded(urlString: text)
             if let url = URL(string: urlString) {
-                self?.loadURL(url)
+                self?.navigationController?.popViewController(animated: false) {
+                    self?.loadURL(url)
+                }
             }
         }
         self.navigationController?.pushViewController(inputVC, animated: false)

@@ -46,7 +46,7 @@ struct ExploreTabScreen: View {
                         .foregroundColor(.LL.Secondary.violet4)
                         .frame(width: 24, height: 24)
                     
-                    Text("Site Name or URL")
+                    Text("Search name or URL")
                         .font(.inter(size: 16, weight: .semibold))
                         .foregroundColor(.LL.Secondary.violet4)
                     
@@ -86,7 +86,7 @@ struct ExploreTabScreen: View {
                         HStack {
                             Image(systemName: "square.grid.2x2.fill")
                                 .font(.LL.caption)
-                            Text("dApps")
+                            Text("BookMark")
                                 .bold()
                             Spacer()
                             //                        Button {

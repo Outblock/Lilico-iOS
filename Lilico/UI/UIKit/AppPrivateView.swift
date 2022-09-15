@@ -15,7 +15,7 @@ class AppPrivateView: UIView {
     }()
     
     private lazy var iconImageView: UIImageView = {
-        let image = UIImage(named: "AppIcon")
+        let image = UIImage(named: "placeholder")
         let view = UIImageView(image: image)
         view.clipsToBounds = true
         view.layer.cornerRadius = 40
