@@ -163,7 +163,7 @@
 
 // Profile
 "switch_network" = "Switch Network";
-"watch_address" = "Watch Address";
+"watch_address" = "Watch Collectible Address";
 "other_address" = "Other Address";
 "my_own_address" = "My Own Address";
 "custom_address" = "Custom Address";

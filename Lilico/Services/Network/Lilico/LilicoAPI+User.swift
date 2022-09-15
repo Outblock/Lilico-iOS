@@ -17,6 +17,7 @@ extension LilicoAPI {
         case userInfo
         case userWallet
         case search(String)
+        case manualCheck
     }
 }
 
@@ -49,6 +50,8 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
             return "/v1/user/wallet"
         case .search:
             return "/v1/user/search"
+        case .manualCheck:
+            return "/v1/user/manualaddress"
         }
     }
 
@@ -56,14 +59,14 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
         switch self {
         case .checkUsername, .userInfo, .userWallet, .search:
             return .get
-        case .login, .register, .userAddress:
+        case .login, .register, .userAddress, .manualCheck:
             return .post
         }
     }
 
     var task: Task {
         switch self {
-        case .userAddress, .userInfo, .userWallet:
+        case .userAddress, .userInfo, .userWallet, .manualCheck:
             return .requestPlain
         case let .checkUsername(username):
             return .requestParameters(parameters: ["username": username], encoding: URLEncoding.queryString)

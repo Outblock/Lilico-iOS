@@ -29,6 +29,18 @@ class ExploreTabViewModel: ViewModel {
             state.isLoading = true
             Task {
                 do {
+                    let buildNumber: FirebaseDAppBuildNumber = try await FirebaseConfig.dappBuildNumber.fetch(decoder: JSONDecoder())
+                    let localNumber = Bundle.main.infoDictionary?["CFBundleVersion"]
+                    print("buildNumber ==> \(buildNumber)")
+                    print("localNumber ==> \(localNumber)")
+                    guard let numberString = localNumber as? String, let number = Int(numberString) else {
+                        return
+                    }
+                    
+                    if number > buildNumber.build {
+                        return
+                    }
+                    
                     let isTestnet = LocalUserDefaults.shared.flowNetwork == .testnet
                     let list: [DAppModel] = try await FirebaseConfig.dapp.fetch(decoder: JSONDecoder())
                     await MainActor.run {

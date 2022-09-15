@@ -57,6 +57,8 @@
 		155E371A28D35E6500834C30 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E17466E281AF840002A029C /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		155E371B28D35E6500834C30 /* WalletCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; };
 		155E371C28D35E6500834C30 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		155E371E28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */; };
+		155E371F28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */; };
 		1565FB6328B14F140086A652 /* Chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5E28B14F140086A652 /* Chat.json */; };
 		1565FB6428B14F140086A652 /* Chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5E28B14F140086A652 /* Chat.json */; };
 		1565FB6528B14F140086A652 /* Saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5F28B14F140086A652 /* Saved.json */; };
@@ -179,7 +181,6 @@
 		158CE8812782BEAA006A8394 /* TYNKViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE87F2782BEAA006A8394 /* TYNKViewModel.swift */; };
 		158CE8892782DAD7006A8394 /* UserResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE8872782DAD7006A8394 /* UserResponses.swift */; };
 		158CE88C2782F1FA006A8394 /* RecoveryPhraseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CE88A2782F1FA006A8394 /* RecoveryPhraseViewModel.swift */; };
-		158E0AD628D09A3000086F23 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 158E0AD528D09A3000086F23 /* RiveRuntime */; };
 		1599F771278892680094B196 /* InputMnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F76F278892680094B196 /* InputMnemonicViewModel.swift */; };
 		1599F774278894E00094B196 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599F772278894E00094B196 /* String.swift */; };
 		159CFF2C27887ED3006421FB /* InputMnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CFF2A27887ED3006421FB /* InputMnemonicView.swift */; };
@@ -1334,6 +1335,7 @@
 		1552DC5D2786EBA100EAA7D5 /* RequestSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSecureView.swift; sourceTree = "<group>"; };
 		1552DC602786F49000EAA7D5 /* CreatePinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinCodeView.swift; sourceTree = "<group>"; };
 		1552DC632787063100EAA7D5 /* PinStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStackView.swift; sourceTree = "<group>"; };
+		155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreEmptyScreen.swift; sourceTree = "<group>"; };
 		1565FB5E28B14F140086A652 /* Chat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Chat.json; sourceTree = "<group>"; };
 		1565FB5F28B14F140086A652 /* Saved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Saved.json; sourceTree = "<group>"; };
 		1565FB6028B14F140086A652 /* Account.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Account.json; sourceTree = "<group>"; };
@@ -1958,7 +1960,6 @@
 				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				4ED6DD10285A22A800105133 /* IrregularGradient in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
-				158E0AD628D09A3000086F23 /* RiveRuntime in Frameworks */,
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				155E371728D35E5200834C30 /* WalletCore.xcframework in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
@@ -2208,6 +2209,7 @@
 				15D4F9A828BCC59B00E0CADF /* ViewModel */,
 				15D4F9A428BCC21300E0CADF /* Model */,
 				1565FBB628B173960086A652 /* ExploreTabScreen.swift */,
+				155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -4378,7 +4380,6 @@
 				15F517FC28C6577000504FDC /* Atlantis */,
 				6A29114328CB2AA3003295BD /* JXSegmentedView */,
 				15D6D8F528CBAEE000CBA152 /* FancyScrollView */,
-				158E0AD528D09A3000086F23 /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -4721,6 +4722,7 @@
 				156E84AE281CDF4F00415896 /* WalletModels.swift in Sources */,
 				15DC20C527819C56000B187A /* VCloseButton.swift in Sources */,
 				4E8DD9FD282E52110016A931 /* JSONStorage.swift in Sources */,
+				155E371F28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */,
 				6A2D35BA283B6AD7008293D9 /* ProfileViewModel.swift in Sources */,
 				15DC207527819C56000B187A /* VTextType.swift in Sources */,
 				15DC21CB27819C56000B187A /* ComponentStateManager.swift in Sources */,
@@ -5273,6 +5275,7 @@
 				15C58AD52868A4EE00BD4FC6 /* WalletModels.swift in Sources */,
 				15C58AD62868A4EE00BD4FC6 /* VCloseButton.swift in Sources */,
 				15C58AD72868A4EE00BD4FC6 /* JSONStorage.swift in Sources */,
+				155E371E28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */,
 				15C58AD92868A4EE00BD4FC6 /* ProfileViewModel.swift in Sources */,
 				15C58ADB2868A4EE00BD4FC6 /* VTextType.swift in Sources */,
 				15C58ADC2868A4EE00BD4FC6 /* ComponentStateManager.swift in Sources */,
@@ -6735,11 +6738,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1588332028943F4D00142B35 /* XCRemoteSwiftPackageReference "NativeUIKit" */;
 			productName = NativeUIKit;
-		};
-		158E0AD528D09A3000086F23 /* RiveRuntime */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
-			productName = RiveRuntime;
 		};
 		15C58A7F2868A4EE00BD4FC6 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;

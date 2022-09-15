@@ -200,6 +200,7 @@ extension WalletManager {
         Task {
             do {
                 let response: UserWalletResponse = try await Network.request(LilicoAPI.User.userWallet)
+                
                 DispatchQueue.main.async {
                     self.walletInfo = response
                     self.pollingWalletInfoIfNeeded()
@@ -220,6 +221,15 @@ extension WalletManager {
         let isEmptyBlockChain = walletInfo?.primaryWalletModel?.isEmptyBlockChain ?? true
         if isEmptyBlockChain {
             startWalletInfoRetryTimer()
+            
+            Task {
+                do {
+                    let _: EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.manualCheck)
+                } catch {
+                    debugPrint(error)
+                }
+            }
+            
         } else {
             // is valid data, save to page cache
             if let info = walletInfo {

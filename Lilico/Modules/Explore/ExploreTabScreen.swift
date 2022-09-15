@@ -74,114 +74,35 @@ struct ExploreTabScreen: View {
             header
                 .shadow(color: Color.LL.Secondary.violet4.opacity(0.2),
                         radius: 12, x: 0, y: 8)
-            ScrollView {
-                LazyVStack(spacing: 18) {
-                    
+            
+            if vm.state.list.isEmpty {
+                Spacer()
+                ExploreEmptyScreen()
+                    .background(.LL.Neutrals.background)
+                Spacer()
+            } else {
+                ScrollView(.vertical) {
+                    LazyVStack(spacing: 18) {
                         
-//                        Image("meow_banner")
-//                            .resizable()
-//                            .frame(maxWidth: .infinity)
-//                            .aspectRatio(CGSize(width: 339, height: 92), contentMode: .fit)
                         
-                        HStack {
-                            Image(systemName: "square.grid.2x2.fill")
-                                .font(.LL.caption)
-                            Text("BookMark")
-                                .bold()
-                            Spacer()
-                            //                        Button {
-                            //
-                            //                        } label: {
-                            //                            Text("All")
-                            //                                .font(.LL.footnote)
-                            //                                .foregroundColor(.LL.Secondary.violetDiscover)
-                            //                            Image(systemName: "arrow.right")
-                            //                                .foregroundColor(.LL.Secondary.violet4)
-                            //                        }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        //                        Image("meow_banner")
+                        //                            .resizable()
+                        //                            .frame(maxWidth: .infinity)
+                        //                            .aspectRatio(CGSize(width: 339, height: 92), contentMode: .fit)
                         
-                        ForEach(vm.state.list, id: \.name) { dApp in
-                            Button {
-                                
-                                let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
-                                feedbackGenerator.impactOccurred()
-                                
-                                //       let url = URL(string: "https://fcl-harness-eight.vercel.app/")!
-                                //                            Router.route(to: RouteMap.Explore.browser(url))
-                                
-                                if LocalUserDefaults.shared.flowNetwork == .testnet,
-                                   let url = dApp.testnetURL {
-                                    Router.route(to: RouteMap.Explore.browser(url))
-                                } else {
-                                    Router.route(to: RouteMap.Explore.browser(dApp.url))
-                                }
-                                
-                                
-                                
-                            } label: {
-                                HStack(alignment: .top) {
-                                    KFImage
-                                        .url(dApp.logo)
-                                        .placeholder({
-                                            Image("placeholder")
-                                                .resizable()
-                                        })
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 44, height: 44, alignment: .center)
-                                        .cornerRadius(22)
-                                        .clipped()
-                                        .padding(.leading, 8)
-                                        .padding(.trailing, 16)
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Text(dApp.name)
-                                                .bold()
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                                .foregroundColor(.LL.text)
-                                            
-                                            Spacer()
-                                            
-                                            Text(dApp.category.uppercased())
-                                                .font(.LL.caption)
-                                                .padding(.horizontal, 8)
-                                                .padding(.vertical, 3)
-                                                .background(Color.LL.outline.opacity(0.2))
-                                                .foregroundColor(Color.LL.Neutrals.neutrals9)
-                                                .cornerRadius(20)
-                                        }
-                                        
-                                        //                                    Text(dApp.host ?? "")
-                                        //                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        //                                        .foregroundColor(.LL.Neutrals.note)
-                                        //                                        .font(.LL.footnote)
-                                        
-                                        //                                    Spacer(minLength: 5)
-                                        
-                                        Text(dApp.description + "\n")
-                                            .font(.LL.footnote)
-                                            .lineLimit(2)
-                                            .multilineTextAlignment(.leading)
-                                            .foregroundColor(.LL.Neutrals.neutrals7)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .padding(.trailing, 12)
-                                    }
-                                }
-                                .padding(10)
-                                .padding(.vertical, 5)
-                                .background(Color.LL.bgForIcon)
-                                .cornerRadius(16)
-                            }
-                            .buttonStyle(ScaleButtonStyle())
-                        }
+                        
+                        
+                        dAppHeader
+                        dappList
+                        
+                    }
+                    .background(.LL.Neutrals.background)
+                    .padding(.bottom, 18)
+                    .padding(.horizontal, 18)
                 }
                 .background(.LL.Neutrals.background)
-                .padding(.bottom, 18)
-                .padding(.horizontal, 18)
+                .listStyle(.plain)
             }
-            .background(.LL.Neutrals.background)
-            .listStyle(.plain)
         }
         .task {
             vm.trigger(.fetchList)
@@ -194,6 +115,104 @@ struct ExploreTabScreen: View {
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarHidden(true)
+    }
+    
+    var dAppHeader: some View {
+        HStack {
+            Image(systemName: "square.grid.2x2.fill")
+                .font(.LL.caption)
+            Text("BookMark")
+                .bold()
+            Spacer()
+            //                        Button {
+            //
+            //                        } label: {
+            //                            Text("All")
+            //                                .font(.LL.footnote)
+            //                                .foregroundColor(.LL.Secondary.violetDiscover)
+            //                            Image(systemName: "arrow.right")
+            //                                .foregroundColor(.LL.Secondary.violet4)
+            //                        }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    var dappList : some View {
+        
+        ForEach(vm.state.list, id: \.name) { dApp in
+            Button {
+                
+                let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
+                feedbackGenerator.impactOccurred()
+                
+                //       let url = URL(string: "https://fcl-harness-eight.vercel.app/")!
+                //                            Router.route(to: RouteMap.Explore.browser(url))
+                
+                if LocalUserDefaults.shared.flowNetwork == .testnet,
+                   let url = dApp.testnetURL {
+                    Router.route(to: RouteMap.Explore.browser(url))
+                } else {
+                    Router.route(to: RouteMap.Explore.browser(dApp.url))
+                }
+                
+                
+                
+            } label: {
+                HStack(alignment: .top) {
+                    KFImage
+                        .url(dApp.logo)
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 44, height: 44, alignment: .center)
+                        .cornerRadius(22)
+                        .clipped()
+                        .padding(.leading, 8)
+                        .padding(.trailing, 16)
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(dApp.name)
+                                .bold()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .foregroundColor(.LL.text)
+                            
+                            Spacer()
+                            
+                            Text(dApp.category.uppercased())
+                                .font(.LL.caption)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(Color.LL.outline.opacity(0.2))
+                                .foregroundColor(Color.LL.Neutrals.neutrals9)
+                                .cornerRadius(20)
+                        }
+                        
+                        //                                    Text(dApp.host ?? "")
+                        //                                        .frame(maxWidth: .infinity, alignment: .leading)
+                        //                                        .foregroundColor(.LL.Neutrals.note)
+                        //                                        .font(.LL.footnote)
+                        
+                        //                                    Spacer(minLength: 5)
+                        
+                        Text(dApp.description + "\n")
+                            .font(.LL.footnote)
+                            .lineLimit(2)
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(.LL.Neutrals.neutrals7)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.trailing, 12)
+                    }
+                }
+                .padding(10)
+                .padding(.vertical, 5)
+                .background(Color.LL.bgForIcon)
+                .cornerRadius(16)
+            }
+            .buttonStyle(ScaleButtonStyle())
+        }
     }
 }
 

@@ -33,3 +33,7 @@ struct DAppModel: Codable, Identifiable {
         case logo, category
     }
 }
+
+struct FirebaseDAppBuildNumber: Codable {
+    let build: Int
+}
