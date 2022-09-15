@@ -15,9 +15,9 @@ class BackupPasswordViewModel: ObservableObject {
     init(backupType: BackupManager.BackupType) {
         self.backupType = backupType
         
-        SPConfettiConfiguration.particlesConfig.colors = [ Color.LL.orange.toUIColor()!,
-                                                           Color.LL.yellow.toUIColor()!,
-                                                           Color.LL.blue.toUIColor()!,
+        SPConfettiConfiguration.particlesConfig.colors = [ Color.LL.Primary.salmonPrimary.toUIColor()!,
+                                                           Color.LL.Secondary.mangoNFT.toUIColor()!,
+                                                           Color.LL.Secondary.navy4.toUIColor()!,
                                                            Color.LL.Secondary.violetDiscover.toUIColor()!]
         SPConfettiConfiguration.particlesConfig.velocity = 400
         SPConfettiConfiguration.particlesConfig.velocityRange = 200

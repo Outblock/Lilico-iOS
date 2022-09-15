@@ -78,10 +78,10 @@ struct ExploreTabScreen: View {
                 LazyVStack(spacing: 18) {
                     
                         
-                        Image("meow_banner")
-                            .resizable()
-                            .frame(maxWidth: .infinity)
-                            .aspectRatio(CGSize(width: 339, height: 92), contentMode: .fit)
+//                        Image("meow_banner")
+//                            .resizable()
+//                            .frame(maxWidth: .infinity)
+//                            .aspectRatio(CGSize(width: 339, height: 92), contentMode: .fit)
                         
                         HStack {
                             Image(systemName: "square.grid.2x2.fill")

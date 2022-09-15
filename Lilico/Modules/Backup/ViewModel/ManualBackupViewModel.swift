@@ -6,22 +6,24 @@
 //
 
 import Foundation
-
+import SPConfetti
 import WalletCore
+import SwiftUI
 
 class ManualBackupViewModel: ViewModel {
     @Published
     private(set) var state: ManualBackupView.ViewState = .initScreen
 
     func loadScreen() {
-//        state = .init(
-//            dataSource: [
-//                .init(position: 2, correct: 1, list: ["Abstract", "Apple", "Alience"]),
-//                .init(position: 4, correct: 0, list: ["Food", "First", "Fire"]),
-//                .init(position: 8, correct: 2, list: ["Loop", "Lilico", "Libra"]),
-//                .init(position: 10, correct: 0, list: ["Zip", "Zion", "Zoo"])
-//            ]
-//        )
+        
+        SPConfettiConfiguration.particlesConfig.colors = [ Color.LL.Primary.salmonPrimary.toUIColor()!,
+                                                           Color.LL.Secondary.mangoNFT.toUIColor()!,
+                                                           Color.LL.Secondary.navy4.toUIColor()!,
+                                                           Color.LL.Secondary.violetDiscover.toUIColor()!]
+        SPConfettiConfiguration.particlesConfig.velocity = 400
+        SPConfettiConfiguration.particlesConfig.velocityRange = 200
+        SPConfettiConfiguration.particlesConfig.birthRate = 200
+        SPConfettiConfiguration.particlesConfig.spin = 4
 
         guard var mnemonic = WalletManager.shared.getCurrentMnemonic(), !mnemonic.isEmpty else {
             HUD.error(title: "load_wallet_error".localized)
@@ -67,6 +69,9 @@ class ManualBackupViewModel: ViewModel {
         switch input {
         case .backupSuccess:
             Router.popToRoot()
+            SPConfetti.startAnimating(.fullWidthToDown,
+                                      particles: [.triangle, .arc, .polygon, .heart, .star],
+                                      duration: 4)
         case .loadDataSource:
             loadScreen()
         }

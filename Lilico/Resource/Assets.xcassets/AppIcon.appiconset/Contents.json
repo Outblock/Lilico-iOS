@@ -1,82 +1,10 @@
 {
   "images" : [
     {
-      "filename" : "App Icon@40px.png",
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "20x20"
-    },
-    {
-      "filename" : "App Icon@60px.png",
-      "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "20x20"
-    },
-    {
-      "filename" : "App Icon@58px.png",
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "29x29"
-    },
-    {
-      "filename" : "App Icon@87px.png",
-      "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "29x29"
-    },
-    {
-      "filename" : "App Icon@80px.png",
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "40x40"
-    },
-    {
-      "filename" : "App Icon@120px.png",
-      "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "40x40"
-    },
-    {
-      "filename" : "App Icon@120px 1.png",
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "60x60"
-    },
-    {
-      "filename" : "App Icon@180px.png",
-      "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "60x60"
-    },
-    {
-      "filename" : "App Icon@1024px.png",
-      "idiom" : "ios-marketing",
-      "scale" : "1x",
+      "filename" : "logo.png",
+      "idiom" : "universal",
+      "platform" : "ios",
       "size" : "1024x1024"
-    },
-    {
-      "filename" : "App Icon@32px.png",
-      "idiom" : "mac",
-      "scale" : "1x",
-      "size" : "32x32"
-    },
-    {
-      "filename" : "App Icon@128px.png",
-      "idiom" : "mac",
-      "scale" : "1x",
-      "size" : "128x128"
-    },
-    {
-      "filename" : "App Icon@256px.png",
-      "idiom" : "mac",
-      "scale" : "1x",
-      "size" : "256x256"
-    },
-    {
-      "filename" : "App Icon@512px.png",
-      "idiom" : "mac",
-      "scale" : "1x",
-      "size" : "512x512"
     }
   ],
   "info" : {
