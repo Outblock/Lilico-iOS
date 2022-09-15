@@ -15,10 +15,10 @@ class AppPrivateView: UIView {
     }()
     
     private lazy var iconImageView: UIImageView = {
-        let image = UIImage(named: "placeholder")
+        let image = UIImage(named: "lilicat-grey")
         let view = UIImageView(image: image)
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 40
+//        view.clipsToBounds = true
+//        view.layer.cornerRadius = 40
         
         view.snp.makeConstraints { make in
             make.width.height.equalTo(80)
