@@ -259,6 +259,7 @@ extension NFTUIKitListStyleHandler {
         isRequesting = true
         
         hideErrorView()
+        hideEmptyView()
         
         NFTUIKitCache.cache.requestFav()
         

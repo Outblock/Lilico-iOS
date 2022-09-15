@@ -80,6 +80,11 @@ class NFTUIKitGridStyleHandler: NSObject {
         return viewLayout
     }()
     
+    private lazy var emptyView: NFTUIKitListStyleHandler.EmptyView = {
+        let view = NFTUIKitListStyleHandler.EmptyView()
+        return view
+    }()
+    
     func setup() {
         containerView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -87,6 +92,14 @@ class NFTUIKitGridStyleHandler: NSObject {
         }
         
         collectionView.reloadData()
+        
+        let offset = Router.coordinator.window.safeAreaInsets.top + 44.0
+        containerView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(-offset)
+        }
+        emptyView.isHidden = true
     }
     
     private func reloadViews() {
@@ -121,6 +134,7 @@ extension NFTUIKitGridStyleHandler {
         
         isRequesting = true
         
+        hideEmptyView()
         hideErrorView()
         
         Task {
@@ -185,11 +199,11 @@ extension NFTUIKitGridStyleHandler {
     }
     
     private func showEmptyView() {
-        
+        self.emptyView.isHidden = false
     }
     
     private func hideEmptyView() {
-        
+        self.emptyView.isHidden = true
     }
     
     private func showErrorView() {
