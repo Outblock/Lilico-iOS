@@ -115,6 +115,11 @@ extension WalletManager {
         return walletInfo?.primaryWalletModel?.getAddress
     }
     
+    /// get custom watch address first, then primary address, this method is only used for tab2.
+    func getPrimaryWalletAddressOrCustomWatchAddress() -> String? {
+        return LocalUserDefaults.shared.customWatchAddress ?? getPrimaryWalletAddress()
+    }
+    
     func isTokenActivated(symbol: String) -> Bool {
         for token in activatedCoins {
             if token.symbol == symbol {

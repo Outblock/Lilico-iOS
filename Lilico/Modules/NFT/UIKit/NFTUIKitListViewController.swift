@@ -98,6 +98,13 @@ class NFTUIKitListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onCustomAddressChanged), name: .watchAddressDidChanged, object: nil)
+    }
+    
+    @objc private func onCustomAddressChanged() {
+        listStyleHandler.collectionView.beginRefreshing()
+        gridStyleHandler.collectionView.beginRefreshing()
     }
     
     private func setupViews() {

@@ -15,6 +15,7 @@ struct DeveloperModeView_Previews: PreviewProvider {
 
 struct DeveloperModeView: RouteableView {
     @StateObject private var lud = LocalUserDefaults.shared
+    @StateObject private var vm: DeveloperModeViewModel = DeveloperModeViewModel()
     
     var title: String {
         return "developer_mode".localized
@@ -56,20 +57,53 @@ struct DeveloperModeView: RouteableView {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 VStack(spacing: 0) {
                     Section {
-                        Cell(sysImageTuple: (.checkmarkSelected, .LL.Primary.salmonPrimary), title: "my_own_address".localized, desc: "")
+                        Cell(sysImageTuple: (vm.isCustomAddress ? .checkmarkUnselected : .checkmarkSelected, vm.isCustomAddress ? .LL.Neutrals.neutrals1 : .LL.Primary.salmonPrimary), title: "my_own_address".localized, desc: "")
                             .onTapGestureOnBackground {
-                                
+                                vm.changeCustomAddressAction("")
                             }
                         
                         Divider()
                         
-//                        HStack {
-//                            Image(systemName: sysImageTuple.0).foregroundColor(sysImageTuple.1)
-//                            Text(title).font(.inter()).frame(maxWidth: .infinity, alignment: .leading)
-//                            Text(desc).font(.inter()).foregroundColor(.LL.Neutrals.note)
-//                        }
-//                        .frame(height: 64)
-//                        .padding(.horizontal, 16)
+                        Cell(sysImageTuple: (vm.isDemoAddress ? .checkmarkSelected : .checkmarkUnselected, vm.isDemoAddress ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: vm.demoAddress, desc: "")
+                            .onTapGestureOnBackground {
+                                vm.changeCustomAddressAction(vm.demoAddress)
+                            }
+                        
+                        Divider()
+                        
+                        Cell(sysImageTuple: (vm.isSVGDemoAddress ? .checkmarkSelected : .checkmarkUnselected, vm.isSVGDemoAddress ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: vm.svgDemoAddress, desc: "")
+                            .onTapGestureOnBackground {
+                                vm.changeCustomAddressAction(vm.svgDemoAddress)
+                            }
+                        
+                        Divider()
+                        
+                        HStack {
+                            Image(systemName: vm.isCustomAddress ? .checkmarkSelected : .checkmarkUnselected)
+                                .foregroundColor(vm.isCustomAddress ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1)
+                            Text("custom_address".localized)
+                                .font(.inter())
+                            
+                            TextField("", text: $vm.customAddressText)
+                                .autocorrectionDisabled()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 40)
+                                .padding(.horizontal, 10)
+                                .background(.LL.Neutrals.background)
+                                .cornerRadius(8)
+                                .onChange(of: vm.customAddressText) { _ in
+                                    let trimedAddress = vm.customAddressText.trim()
+                                    if trimedAddress == vm.customWatchAddress {
+                                        return
+                                    }
+                                    
+                                    DispatchQueue.main.async {
+                                        vm.changeCustomAddressAction(vm.customAddressText.trim())
+                                    }
+                                }
+                        }
+                        .frame(height: 64)
+                        .padding(.horizontal, 16)
                         
                     }
                     .background(.LL.bgForIcon)

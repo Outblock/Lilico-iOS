@@ -29,7 +29,7 @@ class NFTUIKitGridStyleHandler: NSObject {
         return view
     }()
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.contentInsetAdjustmentBehavior = .never
         view.backgroundColor = .clear
@@ -111,6 +111,11 @@ extension NFTUIKitGridStyleHandler {
     private func refreshAction() {
         if isRequesting {
             collectionView.stopRefreshing()
+            return
+        }
+        
+        guard WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress() != nil else {
+            showEmptyView()
             return
         }
         

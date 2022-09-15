@@ -251,6 +251,11 @@ extension NFTUIKitListStyleHandler {
             return
         }
         
+        guard WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress() != nil else {
+            showEmptyView()
+            return
+        }
+        
         isRequesting = true
         
         hideErrorView()

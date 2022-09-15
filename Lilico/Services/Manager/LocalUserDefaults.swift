@@ -22,6 +22,7 @@ extension LocalUserDefaults {
         case lockOnExit
         case panelHolderFrame
         case transactionCount
+        case customWatchAddress
     }
 
     enum FlowNetworkType: String {
@@ -136,6 +137,12 @@ class LocalUserDefaults: ObservableObject {
     @AppStorage(Keys.transactionCount.rawValue) var transactionCount: Int = 0 {
         didSet {
             NotificationCenter.default.post(name: .transactionCountDidChanged, object: nil)
+        }
+    }
+    
+    @AppStorage(Keys.customWatchAddress.rawValue) var customWatchAddress: String? {
+        didSet {
+            NotificationCenter.default.post(name: .watchAddressDidChanged, object: nil)
         }
     }
 }

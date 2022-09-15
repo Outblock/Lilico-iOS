@@ -8,11 +8,6 @@
 import UIKit
 
 class NFTUIKitListGridDataModel {
-    // TODO: Use real address
-    // "0x95601dba5c2506eb" svg test
-    // "0x85fa94a5aec10607" real on testnet
-    // "0x01d63aa89238a559" test
-    private var owner: String = "0x95601dba5c2506eb"
     var nfts: [NFTModel] = []
     var isEnd: Bool = false
     var reloadCallback: (() -> ())?
@@ -51,7 +46,11 @@ class NFTUIKitListGridDataModel {
     }
     
     private func requestGrid(offset: Int, limit: Int = 24) async throws -> [NFTModel] {
-        let request = NFTGridDetailListRequest(address: owner, offset: offset, limit: limit)
+        guard let address = WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress() else {
+            return []
+        }
+        
+        let request = NFTGridDetailListRequest(address: address, offset: offset, limit: limit)
         let response: Network.Response<NFTListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.gridDetailList(request))
         
         guard let nfts = response.data?.nfts else {
@@ -79,8 +78,6 @@ class NFTUIKitListGridDataModel {
 }
 
 class NFTUIKitListNormalDataModel {
-    // TODO: Use real address
-    private var owner: String = "0x95601dba5c2506eb"
     var items: [CollectionItem] = []
     var selectedIndex = 0
     var isCollectionListStyle: Bool = false
@@ -104,7 +101,7 @@ class NFTUIKitListNormalDataModel {
     }
     
     private func loadCache() {
-        if var cachedCollections = NFTUIKitCache.cache.getCollections() {
+        if var cachedCollections = NFTUIKitCache.cache.getCollections(), let address = WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress() {
             cachedCollections.sort {
                 if $0.count == $1.count {
                     return $0.collection.contractName < $1.collection.contractName
@@ -116,7 +113,7 @@ class NFTUIKitListNormalDataModel {
             var items = [CollectionItem]()
             for collection in cachedCollections {
                 let item = CollectionItem()
-                item.address = owner
+                item.address = address
                 item.name = collection.collection.contractName
                 item.count = collection.count
                 item.collection = collection.collection
@@ -145,6 +142,13 @@ class NFTUIKitListNormalDataModel {
         
         removeAllCache()
         
+        guard let address = WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress() else {
+            DispatchQueue.syncOnMain {
+                self.items = []
+            }
+            return
+        }
+        
         collecitons.sort {
             if $0.count == $1.count {
                 return $0.collection.contractName < $1.collection.contractName
@@ -158,7 +162,7 @@ class NFTUIKitListNormalDataModel {
         var items = [CollectionItem]()
         for collection in collecitons {
             let item = CollectionItem()
-            item.address = owner
+            item.address = address
             item.name = collection.collection.contractName
             item.count = collection.count
             item.collection = collection.collection
@@ -172,7 +176,11 @@ class NFTUIKitListNormalDataModel {
     }
     
     private func requestCollections() async throws -> [NFTCollection] {
-        let response: Network.Response<[NFTCollection]> = try await Network.requestWithRawModel(LilicoAPI.NFT.collections(owner))
+        guard let address = WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress() else {
+            return []
+        }
+        
+        let response: Network.Response<[NFTCollection]> = try await Network.requestWithRawModel(LilicoAPI.NFT.collections(address))
         if let list = response.data {
             return list
         } else {

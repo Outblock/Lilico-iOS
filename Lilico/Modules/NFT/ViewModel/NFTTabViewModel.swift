@@ -51,7 +51,7 @@ class NFTTabViewModel: ViewModel {
      0x050aa60ac445a061
      0xadca05d078ebf98a
      */
-    private var owner: String = "0x95601dba5c2506eb"
+//    private var owner: String = "0x95601dba5c2506eb"
 
     init() {
         

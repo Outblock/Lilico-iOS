@@ -276,12 +276,9 @@ extension NFTUIKitCache {
     }
     
     func addFav(nft: NFTModel) {
-        guard var address = WalletManager.shared.getPrimaryWalletAddress(), let contractName = nft.response.contract.name else {
+        guard var address = WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress(), let contractName = nft.response.contract.name else {
             return
         }
-        
-        // TODO: Test
-        address = "0x95601dba5c2506eb"
         
         if let _ = favList.firstIndex(where: { $0.id == nft.id }) {
             return
@@ -338,19 +335,15 @@ extension NFTUIKitCache {
             return
         }
         
-        guard var address = WalletManager.shared.getPrimaryWalletAddress() else {
+        guard let address = WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress() else {
             return
         }
-        
-        // TODO: Test
-        address = "0x95601dba5c2506eb"
-        let fAddress = address
         
         favIsRequesting = true
         
         Task {
             do {
-                let request: Network.Response<NFTFavListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.favList(fAddress))
+                let request: Network.Response<NFTFavListResponse> = try await Network.requestWithRawModel(LilicoAPI.NFT.favList(address))
                 
                 DispatchQueue.main.async {
                     self.favIsRequesting = false
