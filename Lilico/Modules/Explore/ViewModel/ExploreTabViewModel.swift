@@ -31,13 +31,11 @@ class ExploreTabViewModel: ViewModel {
                 do {
                     let buildNumber: FirebaseDAppBuildNumber = try await FirebaseConfig.dappBuildNumber.fetch(decoder: JSONDecoder())
                     let localNumber = Bundle.main.infoDictionary?["CFBundleVersion"]
-                    print("buildNumber ==> \(buildNumber)")
-                    print("localNumber ==> \(localNumber)")
-                    guard let numberString = localNumber as? String, let number = Int(numberString) else {
-                        return
-                    }
                     
-                    if number > buildNumber.build {
+                    debugPrint("buildNumber ==> \(buildNumber)")
+                    debugPrint("localNumber ==> \(localNumber!)")
+                    
+                    guard let numberString = localNumber as? String, let number = Int(numberString), number > buildNumber.build else {
                         return
                     }
                     

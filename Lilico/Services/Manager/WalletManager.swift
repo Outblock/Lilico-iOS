@@ -224,7 +224,7 @@ extension WalletManager {
             
             Task {
                 do {
-                    let _: EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.manualCheck)
+                    let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.User.manualCheck)
                 } catch {
                     debugPrint(error)
                 }

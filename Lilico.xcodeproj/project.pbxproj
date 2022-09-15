@@ -59,6 +59,7 @@
 		155E371C28D35E6500834C30 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		155E371E28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */; };
 		155E371F28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */; };
+		155E372128D38F6900834C30 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 155E372028D38F6900834C30 /* RiveRuntime */; };
 		1565FB6328B14F140086A652 /* Chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5E28B14F140086A652 /* Chat.json */; };
 		1565FB6428B14F140086A652 /* Chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5E28B14F140086A652 /* Chat.json */; };
 		1565FB6528B14F140086A652 /* Saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5F28B14F140086A652 /* Saved.json */; };
@@ -1960,6 +1961,7 @@
 				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				4ED6DD10285A22A800105133 /* IrregularGradient in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
+				155E372128D38F6900834C30 /* RiveRuntime in Frameworks */,
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				155E371728D35E5200834C30 /* WalletCore.xcframework in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
@@ -4380,6 +4382,7 @@
 				15F517FC28C6577000504FDC /* Atlantis */,
 				6A29114328CB2AA3003295BD /* JXSegmentedView */,
 				15D6D8F528CBAEE000CBA152 /* FancyScrollView */,
+				155E372028D38F6900834C30 /* RiveRuntime */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -5868,8 +5871,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5908,8 +5910,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5931,7 +5932,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5974,7 +5975,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -6683,6 +6684,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		155E372028D38F6900834C30 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
 		};
 		156AC7AA27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive */ = {
 			isa = XCSwiftPackageProductDependency;

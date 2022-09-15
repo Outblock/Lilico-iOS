@@ -27,7 +27,9 @@ enum FirebaseConfig: String {
             do {
                 _ = try await FirebaseConfig.all.fetchConfig()
                 onConfigLoadFinish()
-            } catch {}
+            } catch {
+                debugPrint(error)
+            }
         }
     }
 
@@ -73,6 +75,11 @@ extension FirebaseConfig {
             let remoteConfig = RemoteConfig.remoteConfig()
             let setting = RemoteConfigSettings()
             setting.minimumFetchInterval = 3600
+            
+            #if DEBUG
+            setting.minimumFetchInterval = 0
+            #endif
+            
             remoteConfig.configSettings = setting
             remoteConfig.setDefaults(fromPlist: "remote_config_defaults")
             remoteConfig.fetchAndActivate(completionHandler: { status, error in

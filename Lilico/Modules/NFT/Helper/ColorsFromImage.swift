@@ -46,7 +46,11 @@ enum ImageHelper {
                 switch result {
                 case let .success(value):
                     Task {
-                        let colors = await value.image!.colors()
+                        guard let image = value.image else {
+                            continuation.resume(returning: [Color.LL.background, Color.LL.text, Color.LL.outline])
+                            return
+                        }
+                        let colors = await image.colors()
                         continuation.resume(returning: colors)
                     }
 
