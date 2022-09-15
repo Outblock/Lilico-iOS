@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Highlightr
 
 extension BrowserAuthzViewModel {
     typealias Callback = (Bool) -> ()
@@ -16,6 +17,7 @@ class BrowserAuthzViewModel: ObservableObject {
     @Published var urlString: String
     @Published var logo: String?
     @Published var cadence: String
+    @Published var cadenceFormatted: AttributedString?
     @Published var isScriptShowing: Bool = false
     
     @Published var template: FlowTransactionTemplate?
@@ -34,6 +36,18 @@ class BrowserAuthzViewModel: ObservableObject {
         callback?(result)
         callback = nil
         Router.dismiss()
+    }
+    
+    func formatCode() {
+        guard let highlightr = Highlightr() else {
+            return
+        }
+        highlightr.setTheme(to: "paraiso-dark")
+            // You can omit the second parameter to use automatic language detection.
+        guard let highlightedCode = highlightr.highlight(cadence, as: "swift") else {
+            return
+        }
+        cadenceFormatted = AttributedString(highlightedCode)
     }
     
     func checkTemplate() {

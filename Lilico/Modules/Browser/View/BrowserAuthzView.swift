@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Highlightr
 
 struct BrowserAuthzView: View {
     @StateObject var vm: BrowserAuthzViewModel
@@ -77,6 +78,7 @@ struct BrowserAuthzView: View {
         }
         .task {
             vm.checkTemplate()
+            vm.formatCode()
         }
         .padding(.all, 18)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -203,7 +205,8 @@ struct BrowserAuthzView: View {
             .frame(height: 72)
             
             ScrollView(.vertical, showsIndicators: false) {
-                Text(vm.cadence.trim())
+                
+                Text( vm.cadenceFormatted ?? AttributedString(vm.cadence.trim()))
                     .font(.inter(size: 12, weight: .regular))
                     .foregroundColor(Color(hex: "#B2B2B2"))
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)

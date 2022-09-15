@@ -60,6 +60,8 @@
 		155E371E28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */; };
 		155E371F28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */; };
 		155E372128D38F6900834C30 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 155E372028D38F6900834C30 /* RiveRuntime */; };
+		155E372E28D3AD4700834C30 /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 155E372D28D3AD4700834C30 /* Highlightr */; };
+		155E373028D3ADC100834C30 /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 155E372F28D3ADC100834C30 /* Highlightr */; };
 		1565FB6328B14F140086A652 /* Chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5E28B14F140086A652 /* Chat.json */; };
 		1565FB6428B14F140086A652 /* Chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5E28B14F140086A652 /* Chat.json */; };
 		1565FB6528B14F140086A652 /* Saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5F28B14F140086A652 /* Saved.json */; };
@@ -1961,6 +1963,7 @@
 				1570466927930E6A00D1747B /* CollectionViewPagingLayout in Frameworks */,
 				4ED6DD10285A22A800105133 /* IrregularGradient in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
+				155E373028D3ADC100834C30 /* Highlightr in Frameworks */,
 				155E372128D38F6900834C30 /* RiveRuntime in Frameworks */,
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				155E371728D35E5200834C30 /* WalletCore.xcframework in Frameworks */,
@@ -2012,6 +2015,7 @@
 				15C58C4A2868A4EE00BD4FC6 /* Haneke in Frameworks */,
 				15CC8A6128C4E0FD001D2696 /* RiveRuntime in Frameworks */,
 				15C58C4B2868A4EE00BD4FC6 /* GoogleAPIClientForRESTCore in Frameworks */,
+				155E372E28D3AD4700834C30 /* Highlightr in Frameworks */,
 				15C58C4C2868A4EE00BD4FC6 /* CollectionViewPagingLayout in Frameworks */,
 				15C58C4D2868A4EE00BD4FC6 /* IrregularGradient in Frameworks */,
 				155E371B28D35E6500834C30 /* WalletCore.xcframework in Frameworks */,
@@ -4383,6 +4387,7 @@
 				6A29114328CB2AA3003295BD /* JXSegmentedView */,
 				15D6D8F528CBAEE000CBA152 /* FancyScrollView */,
 				155E372028D38F6900834C30 /* RiveRuntime */,
+				155E372F28D3ADC100834C30 /* Highlightr */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -4444,6 +4449,7 @@
 				15F517FA28C6574C00504FDC /* Atlantis */,
 				6A29114128CB2A87003295BD /* JXSegmentedView */,
 				15D6D8F328CBAEBD00CBA152 /* FancyScrollView */,
+				155E372D28D3AD4700834C30 /* Highlightr */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -4511,6 +4517,7 @@
 				15F517F928C6574C00504FDC /* XCRemoteSwiftPackageReference "atlantis" */,
 				6A29114028CB2A87003295BD /* XCRemoteSwiftPackageReference "JXSegmentedView" */,
 				15D6D8F228CBAEBD00CBA152 /* XCRemoteSwiftPackageReference "FancyScrollView" */,
+				155E372C28D3AD4700834C30 /* XCRemoteSwiftPackageReference "Highlightr" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -5932,7 +5939,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -5975,7 +5982,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lilico/App/Env/Prod/Lilico.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Lilico/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = C7CT739SU9;
 				ENABLE_PREVIEWS = YES;
@@ -6240,6 +6247,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.1.3;
+			};
+		};
+		155E372C28D3AD4700834C30 /* XCRemoteSwiftPackageReference "Highlightr" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raspu/Highlightr";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 		156AC7A527802F4F00ED5E3E /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
@@ -6689,6 +6704,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
 			productName = RiveRuntime;
+		};
+		155E372D28D3AD4700834C30 /* Highlightr */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 155E372C28D3AD4700834C30 /* XCRemoteSwiftPackageReference "Highlightr" */;
+			productName = Highlightr;
+		};
+		155E372F28D3ADC100834C30 /* Highlightr */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 155E372C28D3AD4700834C30 /* XCRemoteSwiftPackageReference "Highlightr" */;
+			productName = Highlightr;
 		};
 		156AC7AA27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive */ = {
 			isa = XCSwiftPackageProductDependency;

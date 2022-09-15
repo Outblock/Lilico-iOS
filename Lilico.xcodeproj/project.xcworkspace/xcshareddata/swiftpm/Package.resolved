@@ -198,6 +198,15 @@
       }
     },
     {
+      "identity" : "highlightr",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/raspu/Highlightr",
+      "state" : {
+        "branch" : "master",
+        "revision" : "048188df13e145657554a53a24882df5461fc96a"
+      }
+    },
+    {
       "identity" : "irregulargradient",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/joogps/IrregularGradient",

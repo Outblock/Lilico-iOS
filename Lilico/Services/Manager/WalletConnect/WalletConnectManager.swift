@@ -66,14 +66,6 @@ class WalletConnectManager: ObservableObject {
         DispatchQueue.main.async {
             self.activeSessions = settledSessions
         }
-//        sessionItems = settledSessions.map { session -> ActiveSessionItem in
-//            let app = session.peer
-//            return ActiveSessionItem(
-//                dappName: app.name,
-//                dappURL: app.url,
-//                iconURL: app.icons.first ?? "",
-//                topic: session.topic)
-//        }
     }
     
     func disconnect(topic: String) async {
@@ -342,8 +334,10 @@ extension WalletConnectManager {
     private func rejectRequest(request: Request) {
         Router.dismiss()
         
-        let reason = "User reject request"
-        let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(reason))
+        let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .declined,
+                                   reason: "User reject request",
+                                   compositeSignature: nil)
+        let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(result))
         
         Task {
             do {
