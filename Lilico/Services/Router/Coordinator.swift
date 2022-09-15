@@ -27,6 +27,11 @@ final class Coordinator {
     let window: UIWindow
     lazy var rootNavi: UINavigationController? = nil
     
+    private lazy var privateView: AppPrivateView = {
+        let view = AppPrivateView()
+        return view
+    }()
+    
     private var cancelSets = Set<AnyCancellable>()
     
     init(window: UIWindow) {
@@ -37,6 +42,9 @@ final class Coordinator {
                 self.refreshColorScheme()
             }
         }.store(in: &cancelSets)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     func showRootView() {
@@ -76,5 +84,26 @@ extension Coordinator {
     
     private func refreshColorScheme() {
         self.window.overrideUserInterfaceStyle = ThemeManager.shared.getUIKitStyle()
+    }
+}
+
+// MARK: - Private Screen
+extension Coordinator {
+    @objc private func didEnterBackground() {
+        privateView.alpha = 1
+        privateView.removeFromSuperview()
+        privateView.frame = window.bounds
+        window.addSubview(privateView)
+        privateView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    @objc private func didBecomeActive() {
+        UIView.animate(withDuration: 0.25) {
+            self.privateView.alpha = 0
+        } completion: { _ in
+            self.privateView.removeFromSuperview()
+        }
     }
 }
