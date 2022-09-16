@@ -53,6 +53,7 @@
 "from_name" = "FROM %@";
 "shared_via" = "Shared via";
 "lilico" = "Lilico";
+"flowns" = "Flowns";
 "loading" = "Loading...";
 "no_more_data" = "No more data";
 "top_selection" = "Top Selection";

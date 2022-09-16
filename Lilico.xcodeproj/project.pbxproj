@@ -997,6 +997,8 @@
 		6A2772A328D306B0007E06E9 /* DeveloperModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2772A128D306B0007E06E9 /* DeveloperModeViewModel.swift */; };
 		6A2772A528D329E8007E06E9 /* AppPrivateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2772A428D329E8007E06E9 /* AppPrivateView.swift */; };
 		6A2772A628D329E8007E06E9 /* AppPrivateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2772A428D329E8007E06E9 /* AppPrivateView.swift */; };
+		6A2772A928D334B2007E06E9 /* ClaimDomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2772A828D334B2007E06E9 /* ClaimDomainView.swift */; };
+		6A2772AA28D334B2007E06E9 /* ClaimDomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2772A828D334B2007E06E9 /* ClaimDomainView.swift */; };
 		6A29113728CAE7FE003295BD /* LilicoAPI+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A29113628CAE7FE003295BD /* LilicoAPI+Account.swift */; };
 		6A29113828CAE7FE003295BD /* LilicoAPI+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A29113628CAE7FE003295BD /* LilicoAPI+Account.swift */; };
 		6A29113A28CAEADC003295BD /* AccountResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A29113928CAEADC003295BD /* AccountResponses.swift */; };
@@ -1758,6 +1760,7 @@
 		6A204C68286070A600D0D3A4 /* FirebaseStorageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageUtils.swift; sourceTree = "<group>"; };
 		6A2772A128D306B0007E06E9 /* DeveloperModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperModeViewModel.swift; sourceTree = "<group>"; };
 		6A2772A428D329E8007E06E9 /* AppPrivateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPrivateView.swift; sourceTree = "<group>"; };
+		6A2772A828D334B2007E06E9 /* ClaimDomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDomainView.swift; sourceTree = "<group>"; };
 		6A29113628CAE7FE003295BD /* LilicoAPI+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+Account.swift"; sourceTree = "<group>"; };
 		6A29113928CAEADC003295BD /* AccountResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponses.swift; sourceTree = "<group>"; };
 		6A29113D28CB2377003295BD /* TransactionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListViewController.swift; sourceTree = "<group>"; };
@@ -2100,6 +2103,7 @@
 		153C440427520811006D1E8D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6A2772A728D334A5007E06E9 /* Domain */,
 				6A29113C28CB2361003295BD /* TransactionList */,
 				15CB4DF228CA15990069ABB4 /* Buy */,
 				15D3BA7828C4D293009AEA6E /* LaunchScreen */,
@@ -3769,6 +3773,14 @@
 			path = Transaction;
 			sourceTree = "<group>";
 		};
+		6A2772A728D334A5007E06E9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6A2772A828D334B2007E06E9 /* ClaimDomainView.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		6A29113C28CB2361003295BD /* TransactionList */ = {
 			isa = PBXGroup;
 			children = (
@@ -4909,6 +4921,7 @@
 				4EC482D3284A3D75000A7E1B /* MMCQ.swift in Sources */,
 				15DC21AB27819C56000B187A /* FocusableTextField.swift in Sources */,
 				15DC219B27819C56000B187A /* VTextFieldActions.swift in Sources */,
+				6A2772AA28D334B2007E06E9 /* ClaimDomainView.swift in Sources */,
 				6A98509C28C71B5D00A07C2D /* BrowserAuthnViewModel.swift in Sources */,
 				6A73BF5328C59029004B836A /* JSMessageHandler.swift in Sources */,
 				6A16F19428B8B1AC0055936E /* TransactionHolderView.swift in Sources */,
@@ -5462,6 +5475,7 @@
 				15C58B502868A4EE00BD4FC6 /* MMCQ.swift in Sources */,
 				15C58B512868A4EE00BD4FC6 /* FocusableTextField.swift in Sources */,
 				15C58B522868A4EE00BD4FC6 /* VTextFieldActions.swift in Sources */,
+				6A2772A928D334B2007E06E9 /* ClaimDomainView.swift in Sources */,
 				6A98509B28C71B5D00A07C2D /* BrowserAuthnViewModel.swift in Sources */,
 				6A73BF5228C59028004B836A /* JSMessageHandler.swift in Sources */,
 				6A16F19328B8B1AC0055936E /* TransactionHolderView.swift in Sources */,
