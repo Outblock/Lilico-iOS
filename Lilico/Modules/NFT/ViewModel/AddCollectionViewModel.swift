@@ -103,7 +103,6 @@ extension AddCollectionViewModel {
         }
         
         isAddingCollection = true
-        HUD.loading()
         
         Task {
             do {
@@ -115,7 +114,6 @@ extension AddCollectionViewModel {
                 }
                 
                 DispatchQueue.main.async {
-                    HUD.dismissLoading()
                     self.isAddingCollection = false
                     self.isConfirmSheetPresented = false
                     
