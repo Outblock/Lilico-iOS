@@ -182,7 +182,8 @@ extension ProfileView {
                 }
 
                 ProfileView.InfoActionButton(iconName: "icon-inbox", title: "inbox".localized) {
-                    HUD.present(title: "Feature coming soon")
+//                    HUD.present(title: "Feature coming soon")
+                    Router.route(to: RouteMap.Explore.claimDomain)
                 }
             }
             .padding(.vertical, 20)
