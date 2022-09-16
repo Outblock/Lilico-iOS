@@ -10,6 +10,7 @@ import Flow
 
 class ClaimDomainViewModel: ObservableObject {
     @Published var username: String? = UserManager.shared.userInfo?.username
+    @Published var isRequesting: Bool = false
     
     func claimAction() {
         guard username != nil else {
@@ -21,19 +22,19 @@ class ClaimDomainViewModel: ObservableObject {
                 let holder = TransactionManager.TransactionHolder(id: Flow.ID(hex: txId), type: .claimDomain, data: Data())
                 TransactionManager.shared.newTransaction(holder: holder)
                 
-                HUD.dismissLoading()
+                self.isRequesting = false
                 Router.pop()
             }
         }
         
         let failureBlock = {
             DispatchQueue.main.async {
-                HUD.dismissLoading()
+                self.isRequesting = false
                 HUD.error(title: "claim_domain_failed".localized)
             }
         }
         
-        HUD.loading()
+        self.isRequesting = true
         
         Task {
             do {

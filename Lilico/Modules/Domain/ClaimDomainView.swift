@@ -14,6 +14,13 @@ struct ClaimDomainView: RouteableView {
         return "free_domain".localized
     }
     
+    var buttonState: VPrimaryButtonState {
+        if vm.isRequesting {
+            return .loading
+        }
+        return .enabled
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             headerView
@@ -30,19 +37,11 @@ struct ClaimDomainView: RouteableView {
 
 extension ClaimDomainView {
     var confirmBtn: some View {
-        Button {
+        VPrimaryButton(model: ButtonStyle.primary, state: buttonState, action: {
             vm.claimAction()
-        } label: {
-            Text("domain_claim".localized)
-                .font(.inter(size: 16, weight: .semibold))
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 54)
-                .background(Color.LL.Primary.salmonPrimary)
-                .cornerRadius(16)
-                .padding(.horizontal, 18)
-                .padding(.bottom, 18)
-        }
+        }, title: buttonState == .loading ? "working_on_it".localized : "domain_claim".localized)
+        .padding(.horizontal, 18)
+        .padding(.bottom, 18)
     }
 }
 
