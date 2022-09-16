@@ -22,14 +22,20 @@ struct ClaimDomainView: RouteableView {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            headerView
-            descView
-            
-            Spacer()
-            
+        VStack {
+            ScrollView {
+                VStack(spacing: 0) {
+                    headerView
+                    descView
+                    
+                    Spacer()
+                    
+                }
+            }
+            .offset(y: 10)
             confirmBtn
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.LL.Neutrals.background)
         .applyRouteable(self)
     }

@@ -30,9 +30,9 @@ struct BrowserAuthnView: View {
             
             HStack {
                 walletView
-                if let _ = vm.network {
+//                if let _ = vm.network {
                     networkView
-                }
+//                }
             }
             .padding(.bottom, 36)
             Spacer()
@@ -126,7 +126,7 @@ struct BrowserAuthnView: View {
             
             HStack(spacing: 12) {
                 
-                Text(vm.network?.name.capitalized ?? "")
+                Text(vm.network?.name.capitalized ?? "Unknow")
                     .font(.inter(size: 14, weight: .medium))
                     .foregroundColor(vm.network?.color ?? .white)
                     .frame(maxWidth: .infinity, alignment: .leading)
