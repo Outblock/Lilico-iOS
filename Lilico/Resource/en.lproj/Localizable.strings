@@ -250,6 +250,7 @@
 "copied" = "Copied";
 "add_token" = "Add Token";
 "enable" = "Enable";
+"working_on_it" = "Working on it ...";
 "send_uppercase" = "SEND";
 "receive_uppercase" = "RECEIVE";
 "recent_price" = "Recent Price";

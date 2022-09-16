@@ -209,8 +209,9 @@ extension AddressBookView {
             HStack {
                 // avatar
                 ZStack {
-                    if let avatar = contact.avatar?.convertedAvatarString(), avatar.isEmpty == false {
-                        KFImage.url(URL(string: avatar))
+                    switch contact.contactType {
+                    case .user:
+                        KFImage.url(URL(string: contact.avatar?.convertedAvatarString() ?? placeholder))
                             .placeholder({
                                 Image("placeholder")
                                     .resizable()
@@ -218,16 +219,17 @@ extension AddressBookView {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 48, height: 48)
-                    } else if contact.needShowLocalAvatar {
+                    case .domain:
                         Image(contact.localAvatar ?? "")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 48, height: 48)
-                    } else {
+                    default:
                         Text(String((contact.contactName?.first ?? "A").uppercased()))
                             .foregroundColor(.LL.Primary.salmonPrimary)
                             .font(.inter(size: 24, weight: .semibold))
                     }
+                    
                 }
                 .frame(width: 48, height: 48)
                 .background(.LL.Primary.salmon5)
@@ -239,11 +241,11 @@ extension AddressBookView {
                         .foregroundColor(.LL.Neutrals.text)
                         .font(.inter(size: 14, weight: .bold))
 
-                    if let userName = contact.username, !userName.isEmpty {
-                        Text("@\(userName)")
-                            .foregroundColor(.LL.Neutrals.note)
-                            .font(.inter(size: 14, weight: .medium))
-                    }
+//                    if let userName = contact.username, !userName.isEmpty {
+//                        Text("@\(userName)")
+//                            .foregroundColor(.LL.Neutrals.note)
+//                            .font(.inter(size: 14, weight: .medium))
+//                    }
 
                     Text(contact.address ?? "no address")
                         .foregroundColor(.LL.Neutrals.note)

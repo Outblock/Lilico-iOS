@@ -49,7 +49,7 @@ class TransactionListCell: UIView {
     
     private lazy var contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.LL.Button.text
         return view
     }()
     
@@ -160,9 +160,9 @@ class TransactionListCell: UIView {
 }
 
 class TransactionListView: UIView {
-    private lazy var bgView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white.withAlphaComponent(0.7)
+    private lazy var bgView: UIVisualEffectView = {
+        let view = UIVisualEffectView(style: .systemChromeMaterial)
+//        view.backgroundColor = .white.withAlphaComponent(0.7)
         return view
     }()
     

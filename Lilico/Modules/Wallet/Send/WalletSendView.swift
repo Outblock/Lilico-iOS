@@ -207,6 +207,9 @@ extension WalletSendView {
         },
                             rowContent: { row in
             AddressBookView.ContactCell(contact: row)
+                .onTapGestureOnBackground {
+                    vm.sendToTargetAction(target: row)
+                }
         })
     }
     
@@ -243,6 +246,8 @@ extension WalletSendView {
                             rowContent: { row in
             AddressBookView.ContactCell(contact: row, showAddBtn: !vm.addressBookVM.isFriend(contact: row)) {
                 vm.addContactAction(contact: row)
+            }.onTapGestureOnBackground {
+                vm.sendToTargetAction(target: row)
             }
         })
     }
@@ -255,7 +260,7 @@ extension WalletSendView {
         model.layout.rowSpacing = 0
         model.layout.headerMarginBottom = 8
         model.layout.footerMarginTop = 0
-        model.colors.background = Color.LL.deepBg
+        model.colors.background = Color.LL.background
         
         return model
     }

@@ -182,13 +182,13 @@ extension TransactionManager {
                     debugPrint("TransactionHolder -> onCheck status: \(result.status)")
                     
                     DispatchQueue.main.async {
-                        if result.status == self.flowStatus {
+                        if result.status == self.flowStatus && result.status < .sealed {
                             self.startTimer()
                             return
                         }
                         
                         self.status = result.status.rawValue
-                        if result.isFailed && !result.errorMessage.hasPrefix("[Error Code: 1007]") {
+                        if result.isFailed {
                             self.errorMsg = result.errorMessage
                             self.internalStatus = .failed
                             debugPrint("TransactionHolder -> onCheck result failed: \(result.errorMessage)")

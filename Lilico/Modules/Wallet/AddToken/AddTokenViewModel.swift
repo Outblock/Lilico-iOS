@@ -153,7 +153,6 @@ extension AddTokenViewModel {
         }
         
         isRequesting = true
-        HUD.loading("loading".localized)
         
         Task {
             do {
@@ -167,13 +166,12 @@ extension AddTokenViewModel {
                 DispatchQueue.main.async {
                     self.isRequesting = false
                     self.confirmSheetIsPresented = false
-                    HUD.dismissLoading()
-                    
                     let holder = TransactionManager.TransactionHolder(id: transactionId, type: .addToken, data: data)
                     TransactionManager.shared.newTransaction(holder: holder)
                 }
             } catch {
                 debugPrint("AddTokenViewModel -> confirmActiveTokenAction error: \(error)")
+                isRequesting = false
                 failedBlock()
             }
         }

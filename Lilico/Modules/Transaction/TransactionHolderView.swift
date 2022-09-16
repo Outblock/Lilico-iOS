@@ -42,7 +42,7 @@ class TransactionHolderView: UIView {
     
     private lazy var contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.LL.Button.text
         return view
     }()
     

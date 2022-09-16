@@ -124,6 +124,13 @@ extension AddTokenView {
         @EnvironmentObject var vm: AddTokenViewModel
         let token: TokenModel?
         
+        var buttonState: VPrimaryButtonState {
+            if vm.isRequesting {
+                return .loading
+            }
+            return .enabled
+        }
+        
         var body: some View {
             VStack {
                 SheetHeaderView(title: "add_token".localized) {
@@ -164,27 +171,15 @@ extension AddTokenView {
                     
                     Spacer()
                     
-                    Button {
+
+                    VPrimaryButton(model: ButtonStyle.primary,
+                                   state: buttonState,
+                                   action: {
                         if let token = token {
                             vm.confirmActiveTokenAction(token)
                         }
-                    } label: {
-                        HStack(spacing: 5) {
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                                .visibility(vm.isRequesting ? .visible : .gone)
-                            
-                            Text("enable".localized)
-                                .foregroundColor(.LL.Button.light)
-                                .font(.inter(size: 14, weight: .bold))
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 54)
-                        .background(Color.LL.Primary.salmonPrimary)
-                        .cornerRadius(16)
-                        .opacity(vm.isRequesting ? 0.8 : 1)
-                    }
-                    .disabled(vm.isRequesting)
+                    }, title: buttonState == .loading ? "working_on_it".localized : "enable".localized)
+                    .padding(.bottom)
                 }
                 .padding(.horizontal, 36)
             }
