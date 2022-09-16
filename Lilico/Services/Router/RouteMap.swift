@@ -309,7 +309,8 @@ extension RouteMap.Transaction: RouterTarget {
         switch self {
         case .detail(let transactionId):
             if let url = transactionId.transactionFlowScanURL {
-                UIApplication.shared.open(url)
+//                UIApplication.shared.open(url)
+                Router.route(to: RouteMap.Explore.browser(url))
             }
         }
     }
@@ -319,7 +320,7 @@ extension RouteMap.Transaction: RouterTarget {
 
 extension RouteMap {
     enum Explore {
-        case browser(URL, hideBar: Bool = false)
+        case browser(URL)
         case safariBrowser(URL)
         case authn(BrowserAuthnViewModel)
         case authz(BrowserAuthzViewModel)
@@ -331,10 +332,9 @@ extension RouteMap {
 extension RouteMap.Explore: RouterTarget {
     func onPresent(navi: UINavigationController) {
         switch self {
-        case let .browser(url, hideBar):
+        case let .browser(url):
             let vc = BrowserViewController()
             vc.loadURL(url)
-            vc.shouldHideActionBar = hideBar
             navi.pushViewController(vc, animated: true)
         case let .safariBrowser(url):
             let vc = SFSafariViewController(url: url)
