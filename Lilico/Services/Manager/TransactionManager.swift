@@ -54,6 +54,24 @@ extension TransactionManager.TransactionHolder {
         }
     }
     
+    var successHUDMessage: String {
+        switch type {
+        case .claimDomain:
+            return "claim_domain_success".localized
+        default:
+            return "transaction_success".localized
+        }
+    }
+    
+    var errorHUDMessage: String {
+        switch type {
+        case .claimDomain:
+            return "claim_domain_failed".localized
+        default:
+            return "transaction_failed".localized
+        }
+    }
+    
     var toFlowScanTransaction: FlowScanTransaction {
         let time = ISO8601Formatter.string(from: Date(timeIntervalSince1970: createTime))
         let model = FlowScanTransaction(authorizers: nil, contractInteractions: nil, error: errorMsg, eventCount: nil, hash: transactionId.hex, index: nil, payer: nil, proposer: nil, status: statusString, time: time)
@@ -69,6 +87,7 @@ extension TransactionManager {
         case addCollection
         case transferNFT
         case fclTransaction
+        case claimDomain
     }
     
     enum InternalStatus: Int, Codable {
@@ -248,11 +267,11 @@ class TransactionManager {
         
         if holder.internalStatus == .failed {
             removeTransaction(id: holder.transactionId.hex)
-            HUD.error(title: "transaction_failed".localized)
+            HUD.error(title: holder.errorHUDMessage)
             return
         }
         
-        HUD.success(title: "transaction_success".localized, message: nil, preset: .done, haptic: .none)
+        HUD.success(title: holder.successHUDMessage, message: nil, preset: .done, haptic: .none)
         
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
         feedbackGenerator.impactOccurred()

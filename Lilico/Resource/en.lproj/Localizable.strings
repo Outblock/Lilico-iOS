@@ -363,3 +363,16 @@
 // Hold to send
 "hold_to_send" = "Hold to Send";
 "hold_to_sign" = "Hold to Sign";
+
+// Domain
+"free_domain" = "Free Domain";
+"things_you_should_known" = "Things You Should Know";
+"domain_tips1" = "Free lilico domain help you find each other easier on chain.";
+"domain_tips2" = "An Inbox system will help you send tokens and NFT to your firend without enable vault.";
+"domain_tips3" = "Anonymous mode will be affected, others can find your address by your domain.";
+"domain_claim" = "Claim";
+"claim_domain_failed" = "Claim Domain failed";
+"claim_domain_success" = "Claim Domain successfully";
+"claim_free_domain_substring1" = "Claim for your ";
+"claim_free_domain_substring2" = "FREE";
+"claim_free_domain_substring3" = " Lilico domain!";

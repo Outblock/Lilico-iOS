@@ -22,17 +22,69 @@ struct ProfileEditView: RouteableView {
     }
 
     var body: some View {
-        List {
-            Section {
-                editAvatarCell
-                editNicknameCell
-                editPrivateCell
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 16) {
+                editContainer
+                claimDomainBanner
             }
-            .listRowInsets(EdgeInsets(.horizontal, 16))
         }
-        .buttonStyle(.plain)
         .backgroundFill(.LL.Neutrals.background)
         .applyRouteable(self)
+    }
+    
+    var editContainer: some View {
+        VStack(spacing: 0) {
+            editAvatarCell
+            BaseDivider()
+            editNicknameCell
+            BaseDivider()
+            editPrivateCell
+        }
+        .background(Color.LL.bgForIcon)
+        .cornerRadius(16)
+        .padding(.horizontal, 18)
+    }
+    
+    var claimDomainBanner: some View {
+        Button {
+            Router.route(to: RouteMap.Explore.claimDomain)
+        } label: {
+            ZStack {
+                Image("banner-claim-domain")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: .infinity)
+                
+                HStack(spacing: 0) {
+                    Text("claim_free_domain_substring1".localized)
+                        .font(Font.LL.miniTitle2)
+                        .fontWeight(.w700)
+                        .foregroundColor(.LL.Neutrals.text)
+                    
+                    Text("claim_free_domain_substring2".localized)
+                        .font(Font.LL.miniTitle2)
+                        .fontWeight(.w700)
+                        .foregroundColor(.LL.Primary.salmonPrimary)
+                    
+                    Text("claim_free_domain_substring3".localized)
+                        .font(Font.LL.miniTitle2)
+                        .fontWeight(.w700)
+                        .foregroundColor(.LL.Neutrals.text)
+                    
+                    Spacer()
+                    
+                    Text("domain_claim".localized)
+                        .font(.inter(size: 12, weight: .semibold))
+                        .foregroundColor(.white)
+                        .frame(height: 30)
+                        .padding(.horizontal, 15)
+                        .background(Color.LL.Primary.salmonPrimary)
+                        .cornerRadius(15)
+                }
+                .padding(.horizontal, 16)
+            }
+            .padding(.horizontal, 18)
+        }
     }
 }
 
@@ -54,6 +106,7 @@ extension ProfileEditView {
                 .frame(width: 40, height: 40)
                 .clipShape(Circle())
         }
+        .padding(.horizontal, 16)
         .frame(height: 70)
         .onTapGestureOnBackground {
             vm.trigger(.editAvatar)
@@ -71,6 +124,7 @@ extension ProfileEditView {
                 .font(.inter(size: 16, weight: .medium))
                 .foregroundColor(.LL.Neutrals.note)
         }
+        .padding(.horizontal, 16)
         .frame(height: 52)
         .onTapGestureOnBackground {
             Router.route(to: RouteMap.Profile.editName)
@@ -126,6 +180,7 @@ extension ProfileEditView {
                 }
             }
         }
+        .padding(.horizontal, 16)
         .frame(height: 88)
     }
 }

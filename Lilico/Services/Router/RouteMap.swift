@@ -326,6 +326,7 @@ extension RouteMap {
         case authz(BrowserAuthzViewModel)
         case signMessage(BrowserSignMessageViewModel)
         case searchExplore
+        case claimDomain
     }
 }
 
@@ -360,6 +361,8 @@ extension RouteMap.Explore: RouterTarget {
                 }
             }
             navi.pushViewController(inputVC, animated: false)
+        case .claimDomain:
+            navi.push(content: ClaimDomainView())
         }
     }
 }
