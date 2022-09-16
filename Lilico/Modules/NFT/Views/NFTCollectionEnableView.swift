@@ -18,6 +18,13 @@ extension NFTAddCollectionView {
         @State private var offset: CGFloat = 0
         @State private var topOpacity: CGFloat = 0.72;
         
+        var buttonState: VPrimaryButtonState {
+            if vm.isAddingCollection {
+                return .loading
+            }
+            return item.status == .own ? .disabled : .enabled
+        }
+        
         var body: some View {
             VStack(spacing: 0) {
                 SheetHeaderView(title: "confirmation".localized) {
@@ -109,25 +116,14 @@ extension NFTAddCollectionView {
                     Spacer()
                     
                     if(item.status == .idle) {
-                        Button {
-                            vm.addCollectionAction(item: item)
-                        } label: {
-                            HStack(spacing: 5) {
-                                ProgressView()
-                                    .progressViewStyle(.circular)
-                                    .visibility(vm.isAddingCollection ? .visible : .gone)
-                                
-                                Text("enable_collection".localized)
-                                    .foregroundColor(Color.LL.frontColor)
-                                    .font(.inter(size: 14, weight: .bold))
-                            }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 54)
-                            .background(Color.LL.Button.color)
-                            .cornerRadius(16)
-                            .opacity(vm.isAddingCollection ? 0.8 : 1)
-                        }
-                        .disabled(vm.isAddingCollection)
+                        
+                        VPrimaryButton(model: ButtonStyle.primary,
+                                       state: buttonState,
+                                       action: {
+                                            vm.addCollectionAction(item: item)
+                                       }, title: buttonState == .loading ? "working_on_it".localized : "enable_collection".localized)
+                            .padding(.bottom)
+                        
                     }
                 }
                 .padding(.horizontal, 18)
