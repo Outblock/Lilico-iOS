@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Flow
 
 struct BrowserAuthnView: View {
     @StateObject var vm: BrowserAuthnViewModel
@@ -23,9 +24,18 @@ struct BrowserAuthnView: View {
                 .padding(.top, 12)
             
             detailView
-                .padding(.bottom, 36)
+                .frame(maxHeight: .infinity)
+                .padding(.bottom, 18)
                 .padding(.top, 18)
             
+            HStack {
+                walletView
+                if let _ = vm.network {
+                    networkView
+                }
+            }
+            .padding(.bottom, 36)
+            Spacer()
             actionView
         }
         .padding(.all, 18)
@@ -61,7 +71,8 @@ struct BrowserAuthnView: View {
     
     var sourceView: some View {
         HStack(spacing: 12) {
-            Image("icon-globe")
+            Image(systemName: "link")
+                .foregroundColor(.white.opacity(0.2))
             
             Text(vm.urlString)
                 .font(.inter(size: 14, weight: .medium))
@@ -91,6 +102,81 @@ struct BrowserAuthnView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .padding(.all, 18)
+        .background(Color(hex: "#313131"))
+        .cornerRadius(12)
+    }
+    
+    var networkView: some View {
+        
+        VStack(alignment: .leading, spacing: 8) {
+            
+            HStack {
+                
+                Image(systemName: "network")
+                    .foregroundColor(.white.opacity(0.3))
+                
+                Text("network".capitalized)
+                    .foregroundColor(.white.opacity(0.3))
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.white.opacity(0.5))
+            }
+            
+            HStack(spacing: 12) {
+                
+                Text(vm.network?.name.capitalized ?? "")
+                    .font(.inter(size: 14, weight: .medium))
+                    .foregroundColor(vm.network?.color ?? .white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                
+            }
+        }
+        //        .frame(height: 46)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 18)
+        .background(Color(hex: "#313131"))
+        .cornerRadius(12)
+    }
+    
+    var walletView: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            
+            HStack {
+                Image("logo")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.white.opacity(0.3))
+                
+                Text("wallet".capitalized)
+                    .foregroundColor(.white.opacity(0.3))
+                
+                Spacer()
+                
+            }
+            
+            HStack(spacing: 12) {
+                
+                Text(vm.walletAddress ?? "")
+                    .truncationMode(.middle)
+                    .font(.inter(size: 14, weight: .medium))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                
+            }
+        }
+        //        .frame(height: 46)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 18)
         .background(Color(hex: "#313131"))
         .cornerRadius(12)
     }
@@ -137,8 +223,31 @@ struct BrowserAuthnView: View {
     }
 }
 
-//struct BrowserAuthnView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BrowserAuthnView()
-//    }
-//}
+struct BrowserAuthnView_Previews: PreviewProvider {
+    
+    static let vm = BrowserAuthnViewModel(
+        title: "This is title",
+        url: "lilico.app",
+        logo: "https://lilico.app/logo.png",
+        walletAddress: "sadasdssadasdasda",
+        network: .testnet) {_ in
+    }
+    
+    static var previews: some View {
+        BrowserAuthnView(vm: vm)
+    }
+}
+
+
+extension Flow.ChainID {
+    var color: Color {
+        switch self {
+        case .mainnet:
+            return Color.LL.Primary.salmonPrimary
+        case .testnet:
+            return Color.LL.flow
+        default:
+            return Color.LL.note
+        }
+    }
+}

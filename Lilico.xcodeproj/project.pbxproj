@@ -13,6 +13,7 @@
 		1507A66F28BFA4CA009B050A /* WalletSendButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507A66E28BFA4CA009B050A /* WalletSendButtonView.swift */; };
 		1507A67028BFA4CA009B050A /* WalletSendButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507A66E28BFA4CA009B050A /* WalletSendButtonView.swift */; };
 		15185ED8278A73A3006B74A9 /* SPConfetti in Frameworks */ = {isa = PBXBuildFile; productRef = 15185ED7278A73A3006B74A9 /* SPConfetti */; };
+		152711A028D4C418002520EA /* NFTEmptyView_dev.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527119F28D4C3F5002520EA /* NFTEmptyView_dev.swift */; };
 		152BB09428AE8FD100B2A2AA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 152BB09328AE8FD100B2A2AA /* Lottie */; };
 		152BB09628AE900C00B2A2AA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 152BB09528AE900C00B2A2AA /* Lottie */; };
 		152BB09828AE91A700B2A2AA /* ResizableLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152BB09728AE91A600B2A2AA /* ResizableLottieView.swift */; };
@@ -59,7 +60,6 @@
 		155E371C28D35E6500834C30 /* WalletCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 158CEF27277D4493004EF2C7 /* WalletCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		155E371E28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */; };
 		155E371F28D37A7A00834C30 /* ExploreEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155E371D28D37A7A00834C30 /* ExploreEmptyScreen.swift */; };
-		155E372128D38F6900834C30 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 155E372028D38F6900834C30 /* RiveRuntime */; };
 		155E372E28D3AD4700834C30 /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 155E372D28D3AD4700834C30 /* Highlightr */; };
 		155E373028D3ADC100834C30 /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 155E372F28D3ADC100834C30 /* Highlightr */; };
 		1565FB6328B14F140086A652 /* Chat.json in Resources */ = {isa = PBXBuildFile; fileRef = 1565FB5E28B14F140086A652 /* Chat.json */; };
@@ -911,7 +911,6 @@
 		4E51B4FC2854A76500EDE4FE /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E51B4FA2854A76500EDE4FE /* CaptureView.swift */; };
 		4E51B4FF2854BEB600EDE4FE /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E51B4FD2854BEB600EDE4FE /* ImageSaver.swift */; };
 		4E7DD2622858E74600052B21 /* LilicoAPI+NFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7DD2602858E74600052B21 /* LilicoAPI+NFT.swift */; };
-		4E8DD9F9282E2FBB0016A931 /* NFTEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DD9F7282E2FBB0016A931 /* NFTEmptyView.swift */; };
 		4E8DD9FD282E52110016A931 /* JSONStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DD9FB282E52110016A931 /* JSONStorage.swift */; };
 		4E9BFF5D2867631300601339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9BFF5C2867631300601339 /* UIKit.framework */; };
 		4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9E21B1282644B100E1BACD /* WalletViewModel.swift */; };
@@ -1327,6 +1326,7 @@
 		1505E5FD2836365C007B98D8 /* LilicoAPI+AddressBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+AddressBook.swift"; sourceTree = "<group>"; };
 		1507A66E28BFA4CA009B050A /* WalletSendButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendButtonView.swift; sourceTree = "<group>"; };
 		1507C7EE275634C900890C5D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		1527119F28D4C3F5002520EA /* NFTEmptyView_dev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTEmptyView_dev.swift; sourceTree = "<group>"; };
 		152BB09728AE91A600B2A2AA /* ResizableLottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableLottieView.swift; sourceTree = "<group>"; };
 		153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
 		153C44002751CFA4006D1E8D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -1970,7 +1970,6 @@
 				4ED6DD10285A22A800105133 /* IrregularGradient in Frameworks */,
 				154B891D276A1EEB00780E93 /* FirebaseCrashlytics in Frameworks */,
 				155E373028D3ADC100834C30 /* Highlightr in Frameworks */,
-				155E372128D38F6900834C30 /* RiveRuntime in Frameworks */,
 				4EC56B2D281D3ED000246878 /* FirebaseRemoteConfig in Frameworks */,
 				155E371728D35E5200834C30 /* WalletCore.xcframework in Frameworks */,
 				15D57759277C23BF00045E79 /* CombineMoya in Frameworks */,
@@ -2244,6 +2243,7 @@
 				4E34447E282EC1C40040E5A4 /* NFTCollectionCard.swift */,
 				4E8DD9F7282E2FBB0016A931 /* NFTEmptyView.swift */,
 				4EF5129828329ADA0014F4EC /* NFTDetailPage.swift */,
+				1527119F28D4C3F5002520EA /* NFTEmptyView_dev.swift */,
 				4EF5129B28333A230014F4EC /* NFTTagsView.swift */,
 				6A95CFB028B7258100267F86 /* NFTTransferView.swift */,
 			);
@@ -4394,7 +4394,6 @@
 				15F517FC28C6577000504FDC /* Atlantis */,
 				6A29114328CB2AA3003295BD /* JXSegmentedView */,
 				15D6D8F528CBAEE000CBA152 /* FancyScrollView */,
-				155E372028D38F6900834C30 /* RiveRuntime */,
 				155E372F28D3ADC100834C30 /* Highlightr */,
 			);
 			productName = "Lilico-lite";
@@ -4796,6 +4795,7 @@
 				15DC210927819C56000B187A /* VSlider.swift in Sources */,
 				1507A67028BFA4CA009B050A /* WalletSendButtonView.swift in Sources */,
 				6AE0841E284F58F3003BEEF0 /* UserModel.swift in Sources */,
+				152711A028D4C418002520EA /* NFTEmptyView_dev.swift in Sources */,
 				15D874DD28C5C3740072C6EA /* DragGestureViewModifier.swift in Sources */,
 				15DC21D127819C56000B187A /* VPickableItems.swift in Sources */,
 				6A164F622845F1CB0026B31E /* EnvironmentValues+Extensions.swift in Sources */,
@@ -5099,7 +5099,6 @@
 				6A8FA4B2285B192900EE5BE3 /* DecelerationRate.swift in Sources */,
 				4EDDAA24285F5DC600EB8AF9 /* NFTAddCollectionView.swift in Sources */,
 				1588331D28943D1D00142B35 /* Images.swift in Sources */,
-				4E8DD9F9282E2FBB0016A931 /* NFTEmptyView.swift in Sources */,
 				6A45898A28C1DF0000B1024B /* LilicoAPI+Browser.swift in Sources */,
 				6AEA374428A4AD20004545D4 /* NFTUIKitListViewController.swift in Sources */,
 				6A8C8E7C2897B4A900335DCA /* Animation.swift in Sources */,
@@ -6711,11 +6710,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1552DC66278708AB00EAA7D5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
-		};
-		155E372028D38F6900834C30 /* RiveRuntime */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15CC8A5F28C4E0FD001D2696 /* XCRemoteSwiftPackageReference "rive-ios" */;
-			productName = RiveRuntime;
 		};
 		155E372D28D3AD4700834C30 /* Highlightr */ = {
 			isa = XCSwiftPackageProductDependency;

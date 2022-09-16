@@ -113,7 +113,19 @@ class WalletConnectManager: ObservableObject {
                     data: "")
                 self?.currentSessionInfo = info
                 
-                let authnVM = BrowserAuthnViewModel(title: info.name, url: info.dappURL, logo: info.iconURL) { result in
+                guard let chains = requiredNamespaces["flow"]?.chains,
+                      let reference = chains.first(where: { $0.namespace == "flow" })?.reference else {
+                    self?.rejectSession(proposal: sessionProposal)
+                    return
+                }
+                
+                let network = Flow.ChainID(name: reference.lowercased())
+                
+                let authnVM = BrowserAuthnViewModel(title: info.name,
+                                                    url: info.dappURL,
+                                                    logo: info.iconURL,
+                                                    walletAddress: WalletManager.shared.getPrimaryWalletAddress(),
+                                                    network: network ) { result in
                     if result {
                         self?.approveSession(proposal: sessionProposal)
                     } else {

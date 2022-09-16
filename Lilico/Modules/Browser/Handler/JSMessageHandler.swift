@@ -211,7 +211,10 @@ extension JSMessageHandler {
             processingFCLResponse = authnResponse
             
             let title = authnResponse.config?.app?.title ?? webVC?.webView.title ?? "unknown"
-            let vm = BrowserAuthnViewModel(title: title, url: webVC?.webView.url?.host ?? "unknown", logo: authnResponse.config?.app?.icon) { [weak self] result in
+            let vm = BrowserAuthnViewModel(title: title,
+                                           url: webVC?.webView.url?.host ?? "unknown",
+                                           logo: authnResponse.config?.app?.icon,
+                                           walletAddress: WalletManager.shared.getPrimaryWalletAddress()) { [weak self] result in
                 guard let self = self else {
                     return
                 }
