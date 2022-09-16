@@ -127,6 +127,7 @@ class WalletConnectManager: ObservableObject {
                                                     walletAddress: WalletManager.shared.getPrimaryWalletAddress(),
                                                     network: network ) { result in
                     if result {
+                        // TODO: Handle network mismatch
                         self?.approveSession(proposal: sessionProposal)
                     } else {
                         self?.rejectSession(proposal: sessionProposal)
