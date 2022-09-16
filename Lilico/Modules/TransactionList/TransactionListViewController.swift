@@ -31,7 +31,7 @@ class TransactionListViewController: UIViewController {
     
     private lazy var segmentDataSource: JXSegmentedTitleDataSource = {
         let ds = JXSegmentedTitleDataSource()
-        ds.titles = ["transaction_list_transaction_x".localized(transactionHandler.totalCount), "transaction_list_transfer_x".localized(transferHandler.totalCount)]
+        ds.titles = ["transaction_list_transfer_x".localized(transferHandler.totalCount), "transaction_list_transaction_x".localized(transactionHandler.totalCount)]
         ds.titleNormalColor = UIColor.LL.Neutrals.text
         ds.titleSelectedColor = UIColor.LL.Primary.salmonPrimary
         ds.titleNormalFont = .interMedium(size: 16)
@@ -44,6 +44,7 @@ class TransactionListViewController: UIViewController {
     
     private lazy var indicator: JXSegmentedIndicatorLineView = {
         let view = JXSegmentedIndicatorLineView()
+        view.indicatorCornerRadius = 0
         view.indicatorHeight = 4
         view.indicatorColor = UIColor.LL.Primary.salmonPrimary
         return view
@@ -127,7 +128,7 @@ extension TransactionListViewController: JXSegmentedListContainerViewDataSource 
     }
     
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
-        return index == 0 ? transactionHandler : transferHandler
+        return index == 0 ? transferHandler : transactionHandler
     }
 }
 

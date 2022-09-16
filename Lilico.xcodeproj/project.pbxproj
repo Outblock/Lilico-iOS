@@ -148,12 +148,6 @@
 		158832EB28942F8500142B35 /* serviceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832E928942F8500142B35 /* serviceDefinition.swift */; };
 		158832ED28942FCE00142B35 /* Signable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832EC28942FCE00142B35 /* Signable.swift */; };
 		158832EE28942FCE00142B35 /* Signable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832EC28942FCE00142B35 /* Signable.swift */; };
-		158832F1289434EF00142B35 /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F0289434EF00142B35 /* RequestView.swift */; };
-		158832F2289434EF00142B35 /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F0289434EF00142B35 /* RequestView.swift */; };
-		158832F4289435B800142B35 /* RequestMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F3289435B800142B35 /* RequestMessageView.swift */; };
-		158832F5289435B800142B35 /* RequestMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F3289435B800142B35 /* RequestMessageView.swift */; };
-		158832F72894363E00142B35 /* ApproveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F62894363E00142B35 /* ApproveView.swift */; };
-		158832F82894363E00142B35 /* ApproveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832F62894363E00142B35 /* ApproveView.swift */; };
 		1588330A28943D1D00142B35 /* SPQRDetailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FB28943D1C00142B35 /* SPQRDetailButton.swift */; };
 		1588330B28943D1D00142B35 /* SPQRDetailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FB28943D1C00142B35 /* SPQRDetailButton.swift */; };
 		1588330C28943D1D00142B35 /* SPQRCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158832FC28943D1C00142B35 /* SPQRCameraController.swift */; };
@@ -1385,9 +1379,6 @@
 		158832E628942DC600142B35 /* MessageRequestInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRequestInfo.swift; sourceTree = "<group>"; };
 		158832E928942F8500142B35 /* serviceDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDefinition.swift; sourceTree = "<group>"; };
 		158832EC28942FCE00142B35 /* Signable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signable.swift; sourceTree = "<group>"; };
-		158832F0289434EF00142B35 /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
-		158832F3289435B800142B35 /* RequestMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessageView.swift; sourceTree = "<group>"; };
-		158832F62894363E00142B35 /* ApproveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveView.swift; sourceTree = "<group>"; };
 		158832FB28943D1C00142B35 /* SPQRDetailButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPQRDetailButton.swift; sourceTree = "<group>"; };
 		158832FC28943D1C00142B35 /* SPQRCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPQRCameraController.swift; sourceTree = "<group>"; };
 		158832FD28943D1C00142B35 /* SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SPQRCameraController+AVCaptureMetadataOutputObjectsDelegate.swift"; sourceTree = "<group>"; };
@@ -2110,7 +2101,6 @@
 				6AE69E9028C082BF004D4709 /* Browser */,
 				6A16F18E28B8B0BF0055936E /* Transaction */,
 				1565FBB528B1737F0086A652 /* Explore */,
-				158832EF289434D100142B35 /* WalletConnect */,
 				1570466A27930EA500D1747B /* NFT */,
 				15F22F11278B1E7300FCF772 /* Secure */,
 				15B1F6282786A36900847BB5 /* Backup */,
@@ -2319,16 +2309,6 @@
 				158832EC28942FCE00142B35 /* Signable.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		158832EF289434D100142B35 /* WalletConnect */ = {
-			isa = PBXGroup;
-			children = (
-				158832F0289434EF00142B35 /* RequestView.swift */,
-				158832F3289435B800142B35 /* RequestMessageView.swift */,
-				158832F62894363E00142B35 /* ApproveView.swift */,
-			);
-			path = WalletConnect;
 			sourceTree = "<group>";
 		};
 		158832F928943D1C00142B35 /* SPQRCode */ = {
@@ -4855,7 +4835,6 @@
 				15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
 				15DC218727819C56000B187A /* VToggle.swift in Sources */,
 				15DC20A727819C56000B187A /* VWebLinkState.swift in Sources */,
-				158832F5289435B800142B35 /* RequestMessageView.swift in Sources */,
 				15DC218F27819C56000B187A /* VCheckBox.swift in Sources */,
 				6AD900652847175100B65CE6 /* AddAddressView.swift in Sources */,
 				4E0A75AF2868929C00527D08 /* AddCollectionViewModel.swift in Sources */,
@@ -4931,7 +4910,6 @@
 				15ECAE3C28C4FCEB00B79453 /* WalletConnectViewModel.swift in Sources */,
 				15DC212127819C56000B187A /* VSpinnerModelDashed.swift in Sources */,
 				6A63F9F328C9C69100FE96C0 /* ImageAnimated.swift in Sources */,
-				158832F82894363E00142B35 /* ApproveView.swift in Sources */,
 				6AE8821F288EB67A00ADF36E /* RouterExtensions.swift in Sources */,
 				6AD90069284717FC00B65CE6 /* AddAddressViewModel.swift in Sources */,
 				154866F428D0FE8900D012B8 /* ViewCondition.swift in Sources */,
@@ -5083,7 +5061,6 @@
 				15CB4DFD28CA298C0069ABB4 /* MoonPayRequest.swift in Sources */,
 				15DC20A527819C56000B187A /* VWebLinkType.swift in Sources */,
 				6A204C652860236600D0D3A4 /* ViewExtensions.swift in Sources */,
-				158832F2289434EF00142B35 /* RequestView.swift in Sources */,
 				15DC21E927819C57000B187A /* StateColors_OOD.swift in Sources */,
 				15DC1D3F27809F83000B187A /* BackupManager.swift in Sources */,
 				15DC21E127819C56000B187A /* StateOpacities_D.swift in Sources */,
@@ -5409,7 +5386,6 @@
 				15C58B242868A4EE00BD4FC6 /* EmptyWalletViewModel.swift in Sources */,
 				15C58B252868A4EE00BD4FC6 /* VToggle.swift in Sources */,
 				15C58B262868A4EE00BD4FC6 /* VWebLinkState.swift in Sources */,
-				158832F4289435B800142B35 /* RequestMessageView.swift in Sources */,
 				15C58B272868A4EE00BD4FC6 /* VCheckBox.swift in Sources */,
 				15C58B282868A4EE00BD4FC6 /* AddAddressView.swift in Sources */,
 				15C58B292868A4EE00BD4FC6 /* AddCollectionViewModel.swift in Sources */,
@@ -5485,7 +5461,6 @@
 				15ECAE3B28C4FCEB00B79453 /* WalletConnectViewModel.swift in Sources */,
 				15C58B542868A4EE00BD4FC6 /* VSpinnerModelDashed.swift in Sources */,
 				6A63F9F228C9C69100FE96C0 /* ImageAnimated.swift in Sources */,
-				158832F72894363E00142B35 /* ApproveView.swift in Sources */,
 				6AE8821E288EB67A00ADF36E /* RouterExtensions.swift in Sources */,
 				15C58B552868A4EE00BD4FC6 /* AddAddressViewModel.swift in Sources */,
 				154866F328D0FE8900D012B8 /* ViewCondition.swift in Sources */,
@@ -5637,7 +5612,6 @@
 				15CB4DFC28CA298C0069ABB4 /* MoonPayRequest.swift in Sources */,
 				15C58BC52868A4EE00BD4FC6 /* VWebLinkType.swift in Sources */,
 				15C58BC62868A4EE00BD4FC6 /* ViewExtensions.swift in Sources */,
-				158832F1289434EF00142B35 /* RequestView.swift in Sources */,
 				15C58BC72868A4EE00BD4FC6 /* StateColors_OOD.swift in Sources */,
 				15C58BC82868A4EE00BD4FC6 /* BackupManager.swift in Sources */,
 				15C58BCB2868A4EE00BD4FC6 /* StateOpacities_D.swift in Sources */,

@@ -112,11 +112,16 @@ class WalletConnectManager: ObservableObject {
                     pendingRequests: [],
                     data: "")
                 self?.currentSessionInfo = info
-                Router.route(to: RouteMap.WalletConnect.approve(info, {
-                    self?.approveSession(proposal: sessionProposal)
-                }, {
-                    self?.rejectSession(proposal: sessionProposal)
-                }))
+                
+                let authnVM = BrowserAuthnViewModel(title: info.name, url: info.dappURL, logo: info.iconURL) { result in
+                    if result {
+                        self?.approveSession(proposal: sessionProposal)
+                    } else {
+                        self?.rejectSession(proposal: sessionProposal)
+                    }
+                }
+                
+                Router.route(to: RouteMap.Explore.authn(authnVM))
             }.store(in: &publishers)
 
         Sign.instance.sessionSettlePublisher
@@ -166,11 +171,15 @@ class WalletConnectManager: ObservableObject {
                             let request = RequestInfo(cadence: model.cadence ?? "", agrument: model.args, name: session.peer.name, descriptionText: session.peer.description, dappURL: session.peer.url, iconURL: session.peer.icons.first ?? "", chains: Set(arrayLiteral: sessionRequest.chainId), methods: nil, pendingRequests: [], message: model.message)
                             self?.currentRequestInfo = request
                             
-                            Router.route(to: RouteMap.WalletConnect.request(request, {
-                                self?.approveRequest(request: sessionRequest, requestInfo: request)
-                            }, {
-                                self?.rejectRequest(request: sessionRequest)
-                            }))
+                            let authzVM = BrowserAuthzViewModel(title: request.name, url: request.dappURL, logo: request.iconURL, cadence: request.cadence) { result in
+                                if result {
+                                    self?.approveRequest(request: sessionRequest, requestInfo: request)
+                                } else {
+                                    self?.rejectRequest(request: sessionRequest)
+                                }
+                            }
+                            
+                            Router.route(to: RouteMap.Explore.authz(authzVM))
                         }
                         
                     } catch {
@@ -196,11 +205,15 @@ class WalletConnectManager: ObservableObject {
                             let request = RequestMessageInfo(name: session.peer.name, descriptionText: session.peer.description, dappURL: session.peer.url, iconURL: session.peer.icons.first ?? "", chains: Set(arrayLiteral: sessionRequest.chainId), methods: nil, pendingRequests: [], message: model.message)
                             self?.currentMessageInfo = request
                             
-                            Router.route(to: RouteMap.WalletConnect.requestMessage(request, {
-                                self?.approveRequestMessage(request: sessionRequest, requestInfo: request)
-                            }, {
-                                self?.rejectRequest(request: sessionRequest)
-                            }))
+                            let vm = BrowserSignMessageViewModel(title: request.name, url: request.dappURL, logo: request.iconURL, cadence: request.message) { result in
+                                if result {
+                                    self?.approveRequestMessage(request: sessionRequest, requestInfo: request)
+                                } else {
+                                    self?.rejectRequest(request: sessionRequest)
+                                }
+                            }
+                            
+                            Router.route(to: RouteMap.Explore.signMessage(vm))
                         }
                     } catch {
                         print(error)
@@ -252,8 +265,6 @@ class WalletConnectManager: ObservableObject {
 
 extension WalletConnectManager {
     private func approveSession(proposal: Session.Proposal) {
-        Router.dismiss()
-        
         guard let account = WalletManager.shared.getPrimaryWalletAddress() else {
             return
         }
@@ -286,8 +297,6 @@ extension WalletConnectManager {
     }
     
     private func rejectSession(proposal: Session.Proposal) {
-        Router.dismiss()
-        
         Task {
             do {
                 try await Sign.instance.reject(proposalId: proposal.id, reason: .disapprovedChains)
@@ -299,8 +308,6 @@ extension WalletConnectManager {
     }
     
     private func approveRequest(request: Request, requestInfo: RequestInfo) {
-        Router.dismiss()
-        
         guard let account = WalletManager.shared.getPrimaryWalletAddress() else {
             return
         }
@@ -332,8 +339,6 @@ extension WalletConnectManager {
     }
     
     private func rejectRequest(request: Request) {
-        Router.dismiss()
-        
         let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .declined,
                                    reason: "User reject request",
                                    compositeSignature: nil)
@@ -351,8 +356,6 @@ extension WalletConnectManager {
     }
     
     private func approveRequestMessage(request: Request, requestInfo: RequestMessageInfo) {
-        Router.dismiss()
-        
         guard let account = WalletManager.shared.getPrimaryWalletAddress() else {
             return
         }

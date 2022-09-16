@@ -296,29 +296,6 @@ extension RouteMap.NFT: RouterTarget {
     }
 }
 
-// MARK: - WalletConnect
-
-extension RouteMap {
-    enum WalletConnect {
-        case approve(SessionInfo, () -> (), () -> ())
-        case request(RequestInfo, () -> (), () -> ())
-        case requestMessage(RequestMessageInfo, () -> (), () -> ())
-    }
-}
-
-extension RouteMap.WalletConnect: RouterTarget {
-    func onPresent(navi: UINavigationController) {
-        switch self {
-        case .approve(let info, let approve, let reject):
-            Router.topPresentedController().present(content: ApproveView(session: info, approve: approve, reject: reject))
-        case .request(let info, let approve, let reject):
-            Router.topPresentedController().present(content: RequestView(request: info, approve: approve, reject: reject))
-        case .requestMessage(let info, let approve, let reject):
-            Router.topPresentedController().present(content: RequestMessageView(request: info, approve: approve, reject: reject))
-        }
-    }
-}
-
 // MARK: - Transaction
 
 extension RouteMap {
