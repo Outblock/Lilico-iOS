@@ -28,8 +28,10 @@ struct AddTokenView: RouteableView {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .halfSheet(showSheet: $vm.confirmSheetIsPresented, sheetView: {
-            AddTokenConfirmView(token: vm.pendingActiveToken)
-                .environmentObject(vm)
+            if let token = vm.pendingActiveToken {
+                AddTokenConfirmView(token: token)
+                    .environmentObject(vm)
+            }
         })
         .environmentObject(vm)
         .disabled(vm.isRequesting)
@@ -122,7 +124,10 @@ extension AddTokenView {
 extension AddTokenView {
     struct AddTokenConfirmView: View {
         @EnvironmentObject var vm: AddTokenViewModel
-        let token: TokenModel?
+        let token: TokenModel
+        
+        @State
+        var color = Color.LL.Neutrals.note.opacity(0.1)
         
         var buttonState: VPrimaryButtonState {
             if vm.isRequesting {
@@ -142,12 +147,13 @@ extension AddTokenView {
                     
                     ZStack {
                         ZStack(alignment: .top) {
-                            Color.LL.Primary.salmon5
+                            color
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 188)
                                 .cornerRadius(16)
+                                .animation(.easeInOut, value: color)
                             
-                            Text(token?.name ?? "Token Name")
+                            Text(token.name)
                                 .foregroundColor(.LL.Button.light)
                                 .font(.inter(size: 18, weight: .bold))
                                 .padding(.horizontal, 40)
@@ -157,7 +163,7 @@ extension AddTokenView {
                         }
                         
                         KFImage
-                            .url(token?.icon)
+                            .url(token.icon)
                             .placeholder({
                                 Image("placeholder")
                                     .resizable()
@@ -175,13 +181,18 @@ extension AddTokenView {
                     VPrimaryButton(model: ButtonStyle.primary,
                                    state: buttonState,
                                    action: {
-                        if let token = token {
-                            vm.confirmActiveTokenAction(token)
-                        }
+                        vm.confirmActiveTokenAction(token)
                     }, title: buttonState == .loading ? "working_on_it".localized : "enable".localized)
                     .padding(.bottom)
                 }
                 .padding(.horizontal, 36)
+            }
+            .task {
+                Task { @MainActor in
+                    if let color = await ImageHelper.colors(from: token.icon?.absoluteString ?? placeholder).first {
+                        self.color = color.opacity(0.1)
+                    }
+                }
             }
             .backgroundFill(Color.LL.Neutrals.background)
         }
