@@ -54,6 +54,10 @@ extension FlowNetwork {
             authorizers {
                 address
             }
+            
+            gasLimit {
+                9999
+            }
         }
     }
     
@@ -79,6 +83,10 @@ extension FlowNetwork {
             
             arguments {
                 [.ufix64(amount), .address(address)]
+            }
+            
+            gasLimit {
+                9999
             }
         })
     }
@@ -110,6 +118,10 @@ extension FlowNetwork {
             
             authorizers {
                 address
+            }
+            
+            gasLimit {
+                9999
             }
         })
     }
