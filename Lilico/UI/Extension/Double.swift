@@ -17,6 +17,11 @@ extension Double {
 
     var currencyString: String {
         let value = NSNumber(value: self).decimalValue
-        return Double.currencyFormatter.string(for: value) ?? "?"
+        
+        let f = NumberFormatter()
+        f.maximumFractionDigits = 3
+        f.minimumFractionDigits = 3
+        f.roundingMode = .down
+        return f.string(for: value) ?? "?"
     }
 }

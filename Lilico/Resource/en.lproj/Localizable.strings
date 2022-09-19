@@ -376,3 +376,12 @@
 "claim_free_domain_substring1" = "Claim for your ";
 "claim_free_domain_substring2" = "FREE";
 "claim_free_domain_substring3" = " Lilico domain!";
+
+// Inbox
+"inbox" = "Inbox";
+"inbox_token_x" = "Token (%d)";
+"inbox_nft_x" = "NFT (%d)";
+"inbox_reject" = "Reject";
+"inbox_claim" = "Claim";
+"inbox_from" = "From: ";
+"inbox_no_items" = "No Items";

@@ -12,6 +12,7 @@ extension LilicoAPI {
     enum Flowns {
         case domainPrepare
         case domainSignature(SignPayerRequest)
+        case queryInbox(String)
     }
 }
 
@@ -21,11 +22,16 @@ extension LilicoAPI.Flowns: TargetType, AccessTokenAuthorizable {
     }
     
     var baseURL: URL {
+        switch self {
+        case .queryInbox:
+            return LocalUserDefaults.shared.flowNetwork == .testnet ? .init(string: "https://testnet.flowns.io")! : .init(string: "https://flowns.io")!
+        default:
 #if LILICOPROD
-        .init(string: "https://api.lilico.app")!
+        return .init(string: "https://api.lilico.app")!
 #else
-        .init(string: "https://dev.lilico.app")!
+        return .init(string: "https://dev.lilico.app")!
 #endif
+        }
     }
     
     var path: String {
@@ -34,6 +40,8 @@ extension LilicoAPI.Flowns: TargetType, AccessTokenAuthorizable {
             return "/v1/flowns/prepare"
         case .domainSignature:
             return "/v1/flowns/signature"
+        case .queryInbox(let domain):
+            return "/api/data/domain/\(domain)"
         }
     }
     
@@ -43,6 +51,8 @@ extension LilicoAPI.Flowns: TargetType, AccessTokenAuthorizable {
             return .get
         case .domainSignature:
             return .post
+        case .queryInbox:
+            return .get
         }
     }
     
@@ -52,6 +62,8 @@ extension LilicoAPI.Flowns: TargetType, AccessTokenAuthorizable {
             return .requestParameters(parameters: [:], encoding: URLEncoding.queryString)
         case .domainSignature(let request):
             return .requestJSONEncodable(request)
+        case .queryInbox:
+            return .requestParameters(parameters: [:], encoding: URLEncoding.queryString)
         }
     }
     

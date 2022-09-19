@@ -71,6 +71,7 @@ extension UIColor {
             static let neutrals1 = UIColor(named: "neutrals.1")!
             static let text = UIColor(named: "neutrals.text")!
             static let text3 = UIColor(named: "neutrals.text3")!
+            static let text4 = UIColor(named: "neutrals.text4")!
             static let neutrals3 = UIColor(named: "neutrals.3")!
             static let neutrals4 = UIColor(named: "neutrals.4")!
             static let note = UIColor(named: "neutrals.note")!
