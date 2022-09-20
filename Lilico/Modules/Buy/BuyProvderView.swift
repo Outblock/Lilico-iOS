@@ -75,7 +75,7 @@ struct BuyProvderView: View {
         
         HUD.loading()
         
-        let request = MoonPayRequest(url: "https://buy-sandbox.moonpay.com?apiKey=pk_test_F0Y1SznEgbvGOWxFYJqStfjLeZ7XT&defaultCurrencyCode=FLOW&colorCode=%23FC814A&walletAddress=\(address)")
+        let request = MoonPayRequest(url: "https://buy.moonpay.com?apiKey=pk_live_6YNhgtZH8nyxkJiQRZsotO69G2loIyv0&defaultCurrencyCode=FLOW&colorCode=%23FC814A&walletAddress=\(address)")
         
         do {
             let response: MoonPayResponse = try await Network.request(FirebaseAPI.moonPay(request))
