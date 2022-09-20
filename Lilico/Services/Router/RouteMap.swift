@@ -149,6 +149,7 @@ extension RouteMap {
     enum Profile {
         case themeChange
         case developer
+        case about
         case addressBook
         case edit
         case editName
@@ -169,6 +170,8 @@ extension RouteMap.Profile: RouterTarget {
             navi.push(content: ThemeChangeView())
         case .developer:
             navi.push(content: DeveloperModeView())
+        case .about:
+            navi.push(content: AboutView())
         case .addressBook:
             navi.push(content: AddressBookView())
         case .edit:

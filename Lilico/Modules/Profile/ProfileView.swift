@@ -58,6 +58,12 @@ struct ProfileView: RouteableView {
                     if vm.state.isLogin {
                         MoreSectionView()
                     }
+                    
+                    Text("Version \(vm.buildVersion ?? "") (\(vm.version ?? ""))")
+                        .font(.inter(size: 13, weight: .regular))
+                        .foregroundColor(.LL.note.opacity(0.5))
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    
                 }
                 .padding(.horizontal, 18)
                 .padding(.bottom, 18)
@@ -504,7 +510,7 @@ extension ProfileView {
                     Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
 
                     Button {
-                        Router.route(to: RouteMap.Profile.developer)
+                        Router.route(to: RouteMap.Profile.about)
                     } label: {
                         ProfileView.SettingItemCell(iconName: Row.about.iconName, title: Row.about.title, style: Row.about.style, desc: Row.about.desc, toggle: Row.about.toggle)
                     }

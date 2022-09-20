@@ -31,6 +31,9 @@ extension ProfileView {
 
         private var cancelSets = Set<AnyCancellable>()
 
+        let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        let buildVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        
         init() {
             state.colorScheme = ThemeManager.shared.style
 

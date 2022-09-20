@@ -203,6 +203,8 @@
 		15BCFEFC277565F0000B7863 /* TermsAndPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */; };
 		15BCFF1527770D76000B7863 /* EmptyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1327770D76000B7863 /* EmptyWalletView.swift */; };
 		15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */; };
+		15C11BCE28D9F6CD00FD4C06 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C11BCD28D9F6CD00FD4C06 /* AboutView.swift */; };
+		15C11BCF28D9F6CD00FD4C06 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C11BCD28D9F6CD00FD4C06 /* AboutView.swift */; };
 		15C58AAF2868A4EE00BD4FC6 /* BasicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC206327819C56000B187A /* BasicAnimation.swift */; };
 		15C58AB02868A4EE00BD4FC6 /* VBaseHeaderFooterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9527819C56000B187A /* VBaseHeaderFooterType.swift */; };
 		15C58AB12868A4EE00BD4FC6 /* VSecondaryButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC1F9827819C56000B187A /* VSecondaryButtonModel.swift */; };
@@ -1435,6 +1437,7 @@
 		15BCFEFA277565F0000B7863 /* TermsAndPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndPolicy.swift; sourceTree = "<group>"; };
 		15BCFF1327770D76000B7863 /* EmptyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletView.swift; sourceTree = "<group>"; };
 		15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletViewModel.swift; sourceTree = "<group>"; };
+		15C11BCD28D9F6CD00FD4C06 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		15C58C6D2868A4EE00BD4FC6 /* Lilico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lilico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C6F4B9278A8965003CADF2 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		15CB4DF328CA15B10069ABB4 /* BuyProvderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyProvderView.swift; sourceTree = "<group>"; };
@@ -2095,6 +2098,7 @@
 		1507C7ED275634BC00890C5D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				15C11BCC28D9F6B700FD4C06 /* About */,
 				15BA24B728C7A91F00755CBF /* WalletSetting */,
 				15D4F9AC28BD026A00E0CADF /* WalletConnect */,
 				6A7F650C289A709F007188DC /* ProfileSecure */,
@@ -2580,6 +2584,14 @@
 				15BCFF1A277729BF000B7863 /* EmptyWalletViewModel.swift */,
 			);
 			path = Empty;
+			sourceTree = "<group>";
+		};
+		15C11BCC28D9F6B700FD4C06 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				15C11BCD28D9F6CD00FD4C06 /* AboutView.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		15CB4DF228CA15990069ABB4 /* Buy */ = {
@@ -4908,6 +4920,7 @@
 				6AE69E9728C085F0004D4709 /* BrowserActionBarView.swift in Sources */,
 				6A8FA4AE285B192900EE5BE3 /* SnapAlignment.swift in Sources */,
 				6A8FA4A4285B192900EE5BE3 /* CGPoint+Distance.swift in Sources */,
+				15C11BCF28D9F6CD00FD4C06 /* AboutView.swift in Sources */,
 				15DC211727819C56000B187A /* VPageIndicatorAuto.swift in Sources */,
 				15DE22D3277DBE0000B5EE03 /* UserManager.swift in Sources */,
 				1575A71528B25EE800ADC513 /* FluidView.swift in Sources */,
@@ -5465,6 +5478,7 @@
 				15C58B3F2868A4EE00BD4FC6 /* SnapAlignment.swift in Sources */,
 				15C58B402868A4EE00BD4FC6 /* CGPoint+Distance.swift in Sources */,
 				15C58B412868A4EE00BD4FC6 /* VPageIndicatorAuto.swift in Sources */,
+				15C11BCE28D9F6CD00FD4C06 /* AboutView.swift in Sources */,
 				15C58B422868A4EE00BD4FC6 /* UserManager.swift in Sources */,
 				1575A71428B25EE800ADC513 /* FluidView.swift in Sources */,
 				15C58B432868A4EE00BD4FC6 /* ProfileEditNameViewModel.swift in Sources */,
