@@ -62,7 +62,7 @@ struct AboutView: RouteableView {
                 SocialButton(imageName: "email",
                              text: "Email",
                              showDivider: false) {
-                    UIApplication.shared.open(URL(string: "mailto://hi@lilico.app")!)
+                    UIApplication.shared.open(URL(string: "mailto:hi@lilico.app")!)
                 }
                 
             }
