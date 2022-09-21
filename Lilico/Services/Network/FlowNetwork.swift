@@ -186,6 +186,31 @@ extension FlowNetwork {
     }
 }
 
+// MARK: - Inbox
+
+extension FlowNetwork {
+    static func claimInboxToken(domain: String, key: String, coin: TokenModel, amount: Double, root: String = Contact.DomainType.meow.domain) async throws -> Flow.ID {
+        let cadenceString = coin.formatCadence(cadence: Cadences.claimInboxToken)
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            arguments {
+                [.string(domain), .string(root), .string(key), .ufix64(amount)]
+            }
+            
+            gasLimit {
+                9999
+            }
+        })
+    }
+}
+
 // MARK: - Others
 
 extension FlowNetwork {

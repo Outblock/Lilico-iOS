@@ -20,7 +20,10 @@ struct InboxView: RouteableView {
     var body: some View {
         VStack(spacing: 0) {
             switchBar
+            contentView
         }
+        .backgroundFill(Color.LL.background)
+        .applyRouteable(self)
     }
     
     var switchBar: some View {
@@ -30,7 +33,7 @@ struct InboxView: RouteableView {
                     Button {
                         vm.changeTabTypeAction(type: .token)
                     } label: {
-                        Text(title)
+                        Text("inbox_token_x".localized(vm.tokenList.count))
                             .foregroundColor(vm.tabType == .token ? Color.LL.Primary.salmonPrimary : Color.LL.Neutrals.text)
                             .font(.inter(size: 16, weight: .medium))
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -39,7 +42,7 @@ struct InboxView: RouteableView {
                     Button {
                         vm.changeTabTypeAction(type: .nft)
                     } label: {
-                        Text(title)
+                        Text("inbox_nft_x".localized(vm.nftList.count))
                             .foregroundColor(vm.tabType == .nft ? Color.LL.Primary.salmonPrimary : Color.LL.Neutrals.text)
                             .font(.inter(size: 16, weight: .medium))
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -96,13 +99,15 @@ extension InboxView {
                 }
             }
             
-            emptyView.visibility(vm.tokenList.isEmpty ? .visible : .gone)
+            emptyView.visibility(!vm.isRequesting && vm.tokenList.isEmpty ? .visible : .gone)
         }
         .frame(maxHeight: .infinity)
+        .environmentObject(vm)
     }
     
     struct InboxTokenItemView: View {
         let item: InboxToken
+        @EnvironmentObject private var vm: InboxViewModel
         
         var body: some View {
             VStack(spacing: 16) {
@@ -133,7 +138,7 @@ extension InboxView {
                     Spacer()
                     
                     Button {
-                        
+                        vm.claimTokenAction(item)
                     } label: {
                         Text("domain_claim".localized)
                             .font(.inter(size: 12, weight: .semibold))
@@ -166,7 +171,7 @@ extension InboxView {
                 }
             }
             
-            emptyView.visibility(vm.nftList.isEmpty ? .visible : .gone)
+            emptyView.visibility(!vm.isRequesting && vm.nftList.isEmpty ? .visible : .gone)
         }
         .frame(maxHeight: .infinity)
     }

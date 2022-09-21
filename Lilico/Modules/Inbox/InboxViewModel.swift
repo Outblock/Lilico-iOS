@@ -7,6 +7,9 @@
 
 import SwiftUI
 import SwiftUIPager
+import Combine
+
+private let CacheKey = "InboxViewCache"
 
 extension InboxViewModel {
     enum TabType: Int, CaseIterable {
@@ -20,10 +23,105 @@ class InboxViewModel: ObservableObject {
     @Published var page: Page = .first()
     @Published var tokenList: [InboxToken] = []
     @Published var nftList: [InboxNFT] = []
+    @Published var isRequesting: Bool = false
+    
+    private var cancelable = Set<AnyCancellable>()
+    
+    init() {
+        loadCache()
+        fetchData()
+        
+        NotificationCenter.default.publisher(for: .transactionManagerDidChanged).sink { _ in
+            DispatchQueue.main.async {
+                self.fetchData()
+            }
+        }.store(in: &cancelable)
+    }
+}
+
+extension InboxViewModel {
+    private func fetchData() {
+        guard let domain = UserManager.shared.userInfo?.meowDomain else {
+            return
+        }
+        
+        if isRequesting {
+            return
+        }
+        
+        isRequesting = true
+        
+        Task {
+            do {
+                let response: InboxResponse = try await Network.requestWithRawModel(LilicoAPI.Flowns.queryInbox(domain))
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    self.fetchSuccess(response)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    HUD.error(title: "inbox_request_failed".localized)
+                }
+            }
+        }
+    }
+    
+    private func fetchSuccess(_ response: InboxResponse) {
+        tokenList = response.tokenList
+        nftList = response.nftList
+        
+        saveCache(response)
+    }
+}
+
+extension InboxViewModel {
+    private func saveCache(_ response: InboxResponse) {
+        PageCache.cache.set(value: response, forKey: CacheKey)
+    }
+    
+    private func loadCache() {
+        Task {
+            if let response = try? await PageCache.cache.get(forKey: CacheKey, type: InboxResponse.self) {
+                DispatchQueue.main.async {
+                    self.tokenList = response.tokenList
+                    self.nftList = response.nftList
+                }
+            }
+        }
+    }
 }
 
 extension InboxViewModel {
     func changeTabTypeAction(type: InboxViewModel.TabType) {
+        withAnimation(.easeInOut(duration: 0.2)) {
+            tabType = type
+            page.update(.new(index: type.rawValue))
+        }
+    }
+    
+    func claimTokenAction(_ model: InboxToken) {
+        guard let coin = model.matchedCoin, let domainHost = UserManager.shared.userInfo?.meowDomainHost else {
+            return
+        }
         
+        HUD.loading()
+        
+        Task {
+            do {
+                let txid = try await FlowNetwork.claimInboxToken(domain: domainHost, key: model.key, coin: coin, amount: model.amount)
+                let data = try JSONEncoder().encode(model)
+                
+                DispatchQueue.main.async {
+                    HUD.dismissLoading()
+                    
+                    let holder = TransactionManager.TransactionHolder(id: txid, type: .common, data: data)
+                    TransactionManager.shared.newTransaction(holder: holder)
+                }
+            } catch {
+                HUD.dismissLoading()
+                HUD.error(title: "inbox_claim_failed".localized)
+            }
+        }
     }
 }

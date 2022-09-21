@@ -160,6 +160,7 @@ extension RouteMap {
         case walletConnect
         case manualBackup
         case security(Bool)
+        case inbox
     }
 }
 
@@ -202,6 +203,8 @@ extension RouteMap.Profile: RouterTarget {
             }
             
             Router.coordinator.rootNavi?.push(content: ProfileSecureView(), animated: animated)
+        case .inbox:
+            navi.push(content: InboxView())
         }
     }
 }

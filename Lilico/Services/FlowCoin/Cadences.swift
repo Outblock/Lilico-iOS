@@ -168,4 +168,50 @@ class Cadences {
         }
       }
     """
+    
+    static let claimInboxToken = """
+      import Domains from 0xDOMAINS
+      import FungibleToken from 0xFUNGIBLETOKEN
+      import Flowns from 0xFLOWNS
+      import <Token> from <TokenAddress>
+      transaction(name: String, root:String, key:String, amount: UFix64) {
+        var domain: &{Domains.DomainPrivate}
+        var vaultRef: &<Token>.Vault
+        prepare(account: AuthAccount) {
+          let prefix = "0x"
+          let rootHahsh = Flowns.hash(node: "", lable: root)
+          let nameHash = prefix.concat(Flowns.hash(node: rootHahsh, lable: name))
+          let collectionCap = account.getCapability<&{Domains.CollectionPublic}>(Domains.CollectionPublicPath)
+          let collection = collectionCap.borrow()!
+          var domain: &{Domains.DomainPrivate}? = nil
+          let collectionPrivate = account.borrow<&{Domains.CollectionPrivate}>(from: Domains.CollectionStoragePath) ?? panic("Could not find your domain collection cap")
+          
+          let ids = collection.getIDs()
+          let id = Domains.getDomainId(nameHash)
+          if id != nil && !Domains.isDeprecated(nameHash: nameHash, domainId: id!) {
+            domain = collectionPrivate.borrowDomainPrivate(id!)
+          }
+          self.domain = domain!
+          let vaultRef = account.borrow<&<Token>.Vault>(from: <TokenStoragePath>)
+          if vaultRef == nil {
+            account.save(<- <Token>.createEmptyVault(), to: <TokenStoragePath>)
+            account.link<&<Token>.Vault{FungibleToken.Receiver}>(
+              <TokenReceiverPath>,
+              target: <TokenStoragePath>
+            )
+            account.link<&<Token>.Vault{FungibleToken.Balance}>(
+              <TokenBalancePath>,
+              target: <TokenStoragePath>
+            )
+            self.vaultRef = account.borrow<&<Token>.Vault>(from: <TokenStoragePath>)
+          ?? panic("Could not borrow reference to the owner's Vault!")
+          } else {
+            self.vaultRef = vaultRef!
+          }
+        }
+        execute {
+          self.vaultRef.deposit(from: <- self.domain.withdrawVault(key: key, amount: amount))
+        }
+      }
+    """
 }

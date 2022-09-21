@@ -385,3 +385,5 @@
 "inbox_claim" = "Claim";
 "inbox_from" = "From: ";
 "inbox_no_items" = "No Items";
+"inbox_request_failed" = "Inbox request failed";
+"inbox_claim_failed" = "Claim failed";

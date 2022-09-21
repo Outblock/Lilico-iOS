@@ -21,6 +21,14 @@ struct UserInfo: Codable {
         return self.private == 2
     }
     
+    var meowDomain: String {
+        return "\(username).\(Contact.DomainType.meow.domain)"
+    }
+    
+    var meowDomainHost: String {
+        return username
+    }
+    
     func toContact() -> Contact {
         let contact = Contact(address: address, avatar: avatar, contactName: nickname, contactType: .user, domain: nil, id: UUID().hashValue, username: username)
         return contact
