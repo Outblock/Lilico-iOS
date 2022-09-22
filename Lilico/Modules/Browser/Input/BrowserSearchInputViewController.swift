@@ -162,7 +162,7 @@ extension BrowserSearchInputViewController {
         var urlString = urlString
 
         if !urlString.hasPrefix("http://"), !urlString.hasPrefix("https://") {
-            urlString = urlString.addHttpPrefix()
+            urlString = urlString.addHttpsPrefix()
         }
 
         if urlString.validateUrl() {
