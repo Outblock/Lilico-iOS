@@ -49,7 +49,7 @@ extension ColorScheme {
         case .dark:
             return "dark"
         @unknown default:
-            return "light"
+            return "dark"
         }
     }
 
@@ -60,7 +60,7 @@ extension ColorScheme {
         case .dark:
             return "Dark"
         @unknown default:
-            return "Light"
+            return "Dark"
         }
     }
     
