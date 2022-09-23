@@ -67,11 +67,15 @@ extension CoinRateCache {
         if isRefreshing {
             return
         }
+        
+        guard let supportedCoins = WalletManager.shared.supportedCoins else {
+            return
+        }
 
         debugPrint("CoinRateCache -> start refreshing")
         isRefreshing = true
         Task {
-            for coin in WalletManager.shared.activatedCoins {
+            for coin in supportedCoins {
                 do {
                     try await fetchCoinRate(coin)
                 } catch {

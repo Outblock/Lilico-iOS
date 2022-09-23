@@ -97,6 +97,7 @@ extension InboxView {
                         InboxTokenItemView(item: model)
                     }
                 }
+                .padding(.all, 18)
             }
             
             emptyView.visibility(!vm.isRequesting && vm.tokenList.isEmpty ? .visible : .gone)
@@ -169,15 +170,18 @@ extension InboxView {
                         InboxNFTItemView(item: model)
                     }
                 }
+                .padding(.all, 18)
             }
             
             emptyView.visibility(!vm.isRequesting && vm.nftList.isEmpty ? .visible : .gone)
         }
         .frame(maxHeight: .infinity)
+        .environmentObject(vm)
     }
     
     struct InboxNFTItemView: View {
         let item: InboxNFT
+        @EnvironmentObject private var vm: InboxViewModel
         
         var body: some View {
             HStack(spacing: 16) {
@@ -190,32 +194,41 @@ extension InboxView {
                     })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
+                    .frame(width: 110, height: 110)
+                    .cornerRadius(8)
                 
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 0) {
                     
                     // title line
-                    HStack(spacing: 8) {
-                        KFImage.url(item.localCollection?.logoURL)
-                            .placeholder({
-                                Image("placeholder")
-                                    .resizable()
-                            })
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 24, height: 24)
-                            .clipShape(Circle())
-                        
-                        Text(item.localCollection?.name ?? "Unknown")
-                            .font(.inter(size: 16, weight: .semibold))
-                            .foregroundColor(Color.LL.Neutrals.text)
-                        
-                        Image("arrow_right_grey")
-                        
-                        Spacer()
+                    Button {
+                        vm.openNFTCollectionAction(item)
+                    } label: {
+                        HStack(spacing: 8) {
+                            KFImage.url(item.localCollection?.logoURL)
+                                .placeholder({
+                                    Image("placeholder")
+                                        .resizable()
+                                })
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 24, height: 24)
+                                .clipShape(Circle())
+                            
+                            Text(item.localCollection?.name ?? "Unknown")
+                                .font(.inter(size: 16, weight: .semibold))
+                                .foregroundColor(Color.LL.Neutrals.text)
+                            
+                            Image("arrow_right_grey")
+                                .renderingMode(.template)
+                                .foregroundColor(Color.LL.Other.text1)
+                            
+                            Spacer()
+                        }
                     }
                     
-                    Divider().foregroundColor(.LL.Neutrals.neutrals6)
+                    Divider()
+                        .foregroundColor(.LL.Neutrals.neutrals6)
+                        .padding(.vertical, 16)
                     
                     Text("ID: \(item.tokenId)")
                         .font(.inter(size: 12))
@@ -228,7 +241,7 @@ extension InboxView {
                         Spacer()
                         
                         Button {
-                            
+                            vm.claimNFTAction(item)
                         } label: {
                             Text("domain_claim".localized)
                                 .font(.inter(size: 12, weight: .semibold))
@@ -240,6 +253,7 @@ extension InboxView {
                         }
                     }
                 }
+                .frame(height: 110)
             }
             .frame(maxWidth: .infinity)
             .padding(.all, 16)

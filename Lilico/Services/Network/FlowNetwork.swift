@@ -190,6 +190,10 @@ extension FlowNetwork {
 
 extension FlowNetwork {
     static func claimInboxToken(domain: String, key: String, coin: TokenModel, amount: Double, root: String = Contact.DomainType.meow.domain) async throws -> Flow.ID {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            throw LLError.invalidAddress
+        }
+        
         let cadenceString = coin.formatCadence(cadence: Cadences.claimInboxToken)
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
@@ -200,8 +204,49 @@ extension FlowNetwork {
                 RemoteConfigManager.shared.payer
             }
             
+            proposer {
+                Flow.Address(hex: address)
+            }
+            
+            authorizers {
+                Flow.Address(hex: address)
+            }
+            
             arguments {
                 [.string(domain), .string(root), .string(key), .ufix64(amount)]
+            }
+            
+            gasLimit {
+                9999
+            }
+        })
+    }
+    
+    static func claimInboxNFT(domain: String, key: String, collection: NFTCollectionInfo, itemId: UInt64, root: String = Contact.DomainType.meow.domain) async throws -> Flow.ID {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            throw LLError.invalidAddress
+        }
+        
+        let cadenceString = collection.formatCadence(script: Cadences.claimInboxNFT)
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                Flow.Address(hex: address)
+            }
+            
+            authorizers {
+                Flow.Address(hex: address)
+            }
+            
+            arguments {
+                [.string(domain), .string(root), .string(key), .uint64(itemId)]
             }
             
             gasLimit {

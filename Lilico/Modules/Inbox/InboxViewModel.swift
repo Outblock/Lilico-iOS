@@ -31,9 +31,9 @@ class InboxViewModel: ObservableObject {
         loadCache()
         fetchData()
         
-        NotificationCenter.default.publisher(for: .transactionManagerDidChanged).sink { _ in
+        NotificationCenter.default.publisher(for: .transactionManagerDidChanged).sink { [weak self] _ in
             DispatchQueue.main.async {
-                self.fetchData()
+                self?.fetchData()
             }
         }.store(in: &cancelable)
     }
@@ -119,9 +119,43 @@ extension InboxViewModel {
                     TransactionManager.shared.newTransaction(holder: holder)
                 }
             } catch {
+                debugPrint("InboxViewModel -> claimTokenAction failed: \(error)")
                 HUD.dismissLoading()
                 HUD.error(title: "inbox_claim_failed".localized)
             }
         }
+    }
+    
+    func claimNFTAction(_ model: InboxNFT) {
+        guard let collection = model.localCollection, let domainHost = UserManager.shared.userInfo?.meowDomainHost else {
+            return
+        }
+        
+        HUD.loading()
+        
+        Task {
+            do {
+                let txid = try await FlowNetwork.claimInboxNFT(domain: domainHost, key: model.key, collection: collection, itemId: UInt64(model.tokenId) ?? 0)
+                let data = try JSONEncoder().encode(model)
+                
+                DispatchQueue.main.async {
+                    HUD.dismissLoading()
+                    
+                    let holder = TransactionManager.TransactionHolder(id: txid, type: .common, data: data)
+                    TransactionManager.shared.newTransaction(holder: holder)
+                }
+            } catch {
+                HUD.dismissLoading()
+                HUD.error(title: "inbox_claim_failed".localized)
+            }
+        }
+    }
+    
+    func openNFTCollectionAction(_ model: InboxNFT) {
+        guard let urlString = model.localCollection?.officialWebsite, let url = URL(string: urlString) else {
+            return
+        }
+        
+        Router.route(to: RouteMap.Explore.browser(url))
     }
 }

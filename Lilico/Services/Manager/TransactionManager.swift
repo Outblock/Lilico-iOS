@@ -293,6 +293,10 @@ class TransactionManager {
             if let model = holder.decodedObject(NFTTransferModel.self) {
                 NFTUIKitCache.cache.transferedNFT(model.nft.response)
             }
+        case .common:
+            Task {
+                try? await WalletManager.shared.fetchWalletDatas()
+            }
         default:
             break
         }
