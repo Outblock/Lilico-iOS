@@ -193,6 +193,10 @@ struct WalletView: View {
                 actionButton(imageName: "wallet") {
                     Router.route(to: RouteMap.Wallet.buyCrypto)
                 }
+                Spacer()
+                actionButton(imageName: "wallet") {
+                    Router.route(to: RouteMap.Wallet.swap)
+                }
             }
             Divider()
                 .foregroundColor(.LL.Neutrals.neutrals4)

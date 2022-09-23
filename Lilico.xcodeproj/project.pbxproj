@@ -1091,6 +1091,10 @@
 		6A73BF5228C59028004B836A /* JSMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73BF5128C59028004B836A /* JSMessageHandler.swift */; };
 		6A73BF5328C59029004B836A /* JSMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73BF5128C59028004B836A /* JSMessageHandler.swift */; };
 		6A7C080F286EE95E00020987 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 6A7C080E286EE95E00020987 /* SwiftUICharts */; };
+		6A7D9DC528DD941700333954 /* SwapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC428DD941700333954 /* SwapView.swift */; };
+		6A7D9DC628DD941700333954 /* SwapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC428DD941700333954 /* SwapView.swift */; };
+		6A7D9DC828DD95A500333954 /* SwapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC728DD95A500333954 /* SwapViewModel.swift */; };
+		6A7D9DC928DD95A500333954 /* SwapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC728DD95A500333954 /* SwapViewModel.swift */; };
 		6A7F650A289A4CE3007188DC /* PageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F6509289A4CE3007188DC /* PageCache.swift */; };
 		6A7F650B289A4CE3007188DC /* PageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F6509289A4CE3007188DC /* PageCache.swift */; };
 		6A7F650E289A70D6007188DC /* ProfileSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F650D289A70D6007188DC /* ProfileSecureView.swift */; };
@@ -1815,6 +1819,8 @@
 		6A6C410328D849A000074DE9 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		6A6C410628D84A1100074DE9 /* InboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModel.swift; sourceTree = "<group>"; };
 		6A73BF5128C59028004B836A /* JSMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSMessageHandler.swift; sourceTree = "<group>"; };
+		6A7D9DC428DD941700333954 /* SwapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapView.swift; sourceTree = "<group>"; };
+		6A7D9DC728DD95A500333954 /* SwapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewModel.swift; sourceTree = "<group>"; };
 		6A7F6509289A4CE3007188DC /* PageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCache.swift; sourceTree = "<group>"; };
 		6A7F650D289A70D6007188DC /* ProfileSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSecureView.swift; sourceTree = "<group>"; };
 		6A7F6510289A8391007188DC /* VerifyPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPinView.swift; sourceTree = "<group>"; };
@@ -2116,6 +2122,7 @@
 		153C440427520811006D1E8D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6A7D9DC328DD940700333954 /* Swap */,
 				6A6C410228D8497E00074DE9 /* Inbox */,
 				6A2772A728D334A5007E06E9 /* Domain */,
 				6A29113C28CB2361003295BD /* TransactionList */,
@@ -3976,6 +3983,15 @@
 			path = Handler;
 			sourceTree = "<group>";
 		};
+		6A7D9DC328DD940700333954 /* Swap */ = {
+			isa = PBXGroup;
+			children = (
+				6A7D9DC428DD941700333954 /* SwapView.swift */,
+				6A7D9DC728DD95A500333954 /* SwapViewModel.swift */,
+			);
+			path = Swap;
+			sourceTree = "<group>";
+		};
 		6A7F650C289A709F007188DC /* ProfileSecure */ = {
 			isa = PBXGroup;
 			children = (
@@ -4745,6 +4761,7 @@
 				4ECB9966285B8FF600F59852 /* OffsetScrollViewWithAppBar.swift in Sources */,
 				6A98509928C6E81F00A07C2D /* BrowserAuthnView.swift in Sources */,
 				1570467027931F5100D1747B /* AlchemyEndpoint.swift in Sources */,
+				6A7D9DC628DD941700333954 /* SwapView.swift in Sources */,
 				15DC20EF27819C56000B187A /* VSectionListSection.swift in Sources */,
 				6A98509F28C746A800A07C2D /* BrowserAuthzView.swift in Sources */,
 				158832CF2894269E00142B35 /* WalletConnectManager.swift in Sources */,
@@ -5167,6 +5184,7 @@
 				1505E5FF2836365C007B98D8 /* LilicoAPI+AddressBook.swift in Sources */,
 				158832EE28942FCE00142B35 /* Signable.swift in Sources */,
 				15DC211927819C56000B187A /* VPageIndicatorType.swift in Sources */,
+				6A7D9DC928DD95A500333954 /* SwapViewModel.swift in Sources */,
 				15DC20AF27819C56000B187A /* VBaseButtonGestureState.swift in Sources */,
 				6AE1817728C5A2E6009ADDDB /* RemoteConfigManager.swift in Sources */,
 				6A8FA4A8285B192900EE5BE3 /* DraggingDetector.swift in Sources */,
@@ -5303,6 +5321,7 @@
 				15C58AC72868A4EE00BD4FC6 /* OffsetScrollViewWithAppBar.swift in Sources */,
 				6A98509828C6E81F00A07C2D /* BrowserAuthnView.swift in Sources */,
 				15C58AC82868A4EE00BD4FC6 /* AlchemyEndpoint.swift in Sources */,
+				6A7D9DC528DD941700333954 /* SwapView.swift in Sources */,
 				15C58AC92868A4EE00BD4FC6 /* VSectionListSection.swift in Sources */,
 				6A98509E28C746A800A07C2D /* BrowserAuthzView.swift in Sources */,
 				158832CE2894269E00142B35 /* WalletConnectManager.swift in Sources */,
@@ -5725,6 +5744,7 @@
 				15C58BF82868A4EE00BD4FC6 /* LilicoAPI+AddressBook.swift in Sources */,
 				158832ED28942FCE00142B35 /* Signable.swift in Sources */,
 				15C58BF92868A4EE00BD4FC6 /* VPageIndicatorType.swift in Sources */,
+				6A7D9DC828DD95A500333954 /* SwapViewModel.swift in Sources */,
 				15C58BFA2868A4EE00BD4FC6 /* VBaseButtonGestureState.swift in Sources */,
 				6AE1817628C5A2E6009ADDDB /* RemoteConfigManager.swift in Sources */,
 				15C58BFB2868A4EE00BD4FC6 /* DraggingDetector.swift in Sources */,

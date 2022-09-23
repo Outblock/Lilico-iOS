@@ -70,6 +70,7 @@ extension UIColor {
         enum Neutrals {
             static let neutrals1 = UIColor(named: "neutrals.1")!
             static let text = UIColor(named: "neutrals.text")!
+            static let text2 = UIColor(named: "neutrals.text2")!
             static let text3 = UIColor(named: "neutrals.text3")!
             static let text4 = UIColor(named: "neutrals.text4")!
             static let neutrals3 = UIColor(named: "neutrals.3")!

@@ -106,6 +106,7 @@ extension RouteMap {
         case scan(SPQRCodeCallback, click: SPQRCodeCallback? = nil)
         case buyCrypto
         case transactionList(String?)
+        case swap
     }
 }
 
@@ -139,6 +140,8 @@ extension RouteMap.Wallet: RouterTarget {
         case .transactionList(let contractId):
             let vc = TransactionListViewController(contractId: contractId)
             navi.pushViewController(vc, animated: true)
+        case .swap:
+            navi.push(content: SwapView())
         }
     }
 }

@@ -387,3 +387,8 @@
 "inbox_no_items" = "No Items";
 "inbox_request_failed" = "Inbox request failed";
 "inbox_claim_failed" = "Claim failed";
+
+// Swap
+"swap_title" = "Swap";
+"swap_max" = "Max";
+"swap_select" = "Select";
