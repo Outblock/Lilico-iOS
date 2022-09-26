@@ -1095,6 +1095,12 @@
 		6A7D9DC628DD941700333954 /* SwapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC428DD941700333954 /* SwapView.swift */; };
 		6A7D9DC828DD95A500333954 /* SwapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC728DD95A500333954 /* SwapViewModel.swift */; };
 		6A7D9DC928DD95A500333954 /* SwapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC728DD95A500333954 /* SwapViewModel.swift */; };
+		6A7D9DCB28E184EF00333954 /* LilicoAPI+Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCA28E184EF00333954 /* LilicoAPI+Other.swift */; };
+		6A7D9DCC28E184EF00333954 /* LilicoAPI+Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCA28E184EF00333954 /* LilicoAPI+Other.swift */; };
+		6A7D9DCE28E1858E00333954 /* OtherRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCD28E1858E00333954 /* OtherRequests.swift */; };
+		6A7D9DCF28E1858E00333954 /* OtherRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCD28E1858E00333954 /* OtherRequests.swift */; };
+		6A7D9DD128E1923500333954 /* OtherResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DD028E1923500333954 /* OtherResponses.swift */; };
+		6A7D9DD228E1923500333954 /* OtherResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DD028E1923500333954 /* OtherResponses.swift */; };
 		6A7F650A289A4CE3007188DC /* PageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F6509289A4CE3007188DC /* PageCache.swift */; };
 		6A7F650B289A4CE3007188DC /* PageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F6509289A4CE3007188DC /* PageCache.swift */; };
 		6A7F650E289A70D6007188DC /* ProfileSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F650D289A70D6007188DC /* ProfileSecureView.swift */; };
@@ -1821,6 +1827,9 @@
 		6A73BF5128C59028004B836A /* JSMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSMessageHandler.swift; sourceTree = "<group>"; };
 		6A7D9DC428DD941700333954 /* SwapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapView.swift; sourceTree = "<group>"; };
 		6A7D9DC728DD95A500333954 /* SwapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewModel.swift; sourceTree = "<group>"; };
+		6A7D9DCA28E184EF00333954 /* LilicoAPI+Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+Other.swift"; sourceTree = "<group>"; };
+		6A7D9DCD28E1858E00333954 /* OtherRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRequests.swift; sourceTree = "<group>"; };
+		6A7D9DD028E1923500333954 /* OtherResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherResponses.swift; sourceTree = "<group>"; };
 		6A7F6509289A4CE3007188DC /* PageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCache.swift; sourceTree = "<group>"; };
 		6A7F650D289A70D6007188DC /* ProfileSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSecureView.swift; sourceTree = "<group>"; };
 		6A7F6510289A8391007188DC /* VerifyPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPinView.swift; sourceTree = "<group>"; };
@@ -2082,6 +2091,7 @@
 				6A45898828C1DF0000B1024B /* LilicoAPI+Browser.swift */,
 				6A29113628CAE7FE003295BD /* LilicoAPI+Account.swift */,
 				6AF4A6C328D46FAF00B12FAB /* LilicoAPI+Flowns.swift */,
+				6A7D9DCA28E184EF00333954 /* LilicoAPI+Other.swift */,
 			);
 			path = Lilico;
 			sourceTree = "<group>";
@@ -2398,6 +2408,7 @@
 				6AEE39EC28A24DDB00F3C56E /* NFTRequests.swift */,
 				6ADBBC9E28D1755F00F1F0DA /* AccountRequests.swift */,
 				6AF4A6C928D472F600B12FAB /* FlownsRequests.swift */,
+				6A7D9DCD28E1858E00333954 /* OtherRequests.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2412,6 +2423,7 @@
 				6A45898B28C1E05100B1024B /* BrowserResponses.swift */,
 				6A29113928CAEADC003295BD /* AccountResponses.swift */,
 				6AF4A6C628D4725300B12FAB /* FlownsResponses.swift */,
+				6A7D9DD028E1923500333954 /* OtherResponses.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -4753,6 +4765,7 @@
 				15DC21DB27819C56000B187A /* StateColorsAndOpacities_EP_D.swift in Sources */,
 				15DC21ED27819C57000B187A /* StateColors_OOID.swift in Sources */,
 				6A115972288E72CC005EF797 /* Coordinator.swift in Sources */,
+				6A7D9DCC28E184EF00333954 /* LilicoAPI+Other.swift in Sources */,
 				6AF2ED9228364BC200F06AD3 /* UIFont.swift in Sources */,
 				6AE1817D28C5D654009ADDDB /* FCLAuthnResponse.swift in Sources */,
 				15DC217D27819C56000B187A /* _VModal.swift in Sources */,
@@ -4820,6 +4833,7 @@
 				158832E828942DC600142B35 /* MessageRequestInfo.swift in Sources */,
 				6A8FA498285B192800EE5BE3 /* Introspect.swift in Sources */,
 				15DC21E727819C57000B187A /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
+				6A7D9DD228E1923500333954 /* OtherResponses.swift in Sources */,
 				15CB4DF528CA15B10069ABB4 /* BuyProvderView.swift in Sources */,
 				6A62122D28ACC592002046CA /* UIImage.swift in Sources */,
 				6AF1F35E2869977B0084DF3D /* AddTokenView.swift in Sources */,
@@ -5020,6 +5034,7 @@
 				15B1F6302786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				6A164F782845F1CB0026B31E /* ScrollAccessory.swift in Sources */,
 				15D9282A278338DB00382226 /* UIApplication.swift in Sources */,
+				6A7D9DCF28E1858E00333954 /* OtherRequests.swift in Sources */,
 				15DC20B927819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209127819C56000B187A /* VSheet.swift in Sources */,
 				6AF2ED8F2836424400F06AD3 /* UINavigationController.swift in Sources */,
@@ -5313,6 +5328,7 @@
 				15C58AC22868A4EE00BD4FC6 /* StateColorsAndOpacities_EP_D.swift in Sources */,
 				15C58AC32868A4EE00BD4FC6 /* StateColors_OOID.swift in Sources */,
 				6A115971288E72CC005EF797 /* Coordinator.swift in Sources */,
+				6A7D9DCB28E184EF00333954 /* LilicoAPI+Other.swift in Sources */,
 				15C58AC42868A4EE00BD4FC6 /* UIFont.swift in Sources */,
 				6AE1817C28C5D654009ADDDB /* FCLAuthnResponse.swift in Sources */,
 				15C58AC52868A4EE00BD4FC6 /* _VModal.swift in Sources */,
@@ -5380,6 +5396,7 @@
 				158832E728942DC600142B35 /* MessageRequestInfo.swift in Sources */,
 				15C58AF22868A4EE00BD4FC6 /* Introspect.swift in Sources */,
 				15C58AF32868A4EE00BD4FC6 /* StateColorsAndOpacities_EFSEPD_PD.swift in Sources */,
+				6A7D9DD128E1923500333954 /* OtherResponses.swift in Sources */,
 				15CB4DF428CA15B10069ABB4 /* BuyProvderView.swift in Sources */,
 				6A62122C28ACC592002046CA /* UIImage.swift in Sources */,
 				6AF1F35D2869977B0084DF3D /* AddTokenView.swift in Sources */,
@@ -5580,6 +5597,7 @@
 				15C58B732868A4EE00BD4FC6 /* ScrollAccessory.swift in Sources */,
 				15C58B742868A4EE00BD4FC6 /* UIApplication.swift in Sources */,
 				15C58B752868A4EE00BD4FC6 /* VChevronButtonModel.swift in Sources */,
+				6A7D9DCE28E1858E00333954 /* OtherRequests.swift in Sources */,
 				15C58B762868A4EE00BD4FC6 /* VSheet.swift in Sources */,
 				15C58B782868A4EE00BD4FC6 /* UINavigationController.swift in Sources */,
 				15C58B792868A4EE00BD4FC6 /* VLazyScrollViewType.swift in Sources */,

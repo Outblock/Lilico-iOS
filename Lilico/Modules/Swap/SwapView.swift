@@ -73,7 +73,7 @@ extension SwapView {
                 .foregroundColor(Color.LL.Neutrals.text)
                 .onChange(of: vm.inputFromText) { text in
                     withAnimation {
-//                        vm.inputTextDidChangeAction(text: text)
+                        vm.inputFromTextDidChangeAction(text: text)
                     }
                 }
             
@@ -88,7 +88,7 @@ extension SwapView {
             vm.selectTokenAction(isFrom: true)
         } label: {
             HStack(spacing: 0) {
-                KFImage.url(nil)
+                KFImage.url(vm.fromToken?.icon)
                     .placeholder({
                         Image("placeholder-swap-token")
                             .resizable()
@@ -98,7 +98,7 @@ extension SwapView {
                     .frame(width: 32, height: 32)
                     .clipShape(Circle())
                 
-                Text("FLOW")
+                Text(vm.fromToken?.symbol?.uppercased() ?? "swap_select".localized)
                     .font(.inter(size: 14, weight: .medium))
                     .foregroundColor(Color.LL.Neutrals.text2)
                     .padding(.leading, 4)
@@ -117,7 +117,7 @@ extension SwapView {
     
     var fromDescContainerView: some View {
         HStack {
-            Text("$0.0")
+            Text("$ \(vm.fromPriceAmountString)")
                 .font(.inter(size: 16))
                 .foregroundColor(Color.LL.Neutrals.text2)
             
@@ -152,7 +152,7 @@ extension SwapView {
                 .foregroundColor(Color.LL.Neutrals.text)
                 .onChange(of: vm.inputToText) { text in
                     withAnimation {
-//                        vm.inputTextDidChangeAction(text: text)
+                        vm.inputToTextDidChangeAction(text: text)
                     }
                 }
             
@@ -168,29 +168,33 @@ extension SwapView {
     }
     
     var toSelectButton: some View {
-        HStack(spacing: 0) {
-            KFImage.url(nil)
-                .placeholder({
-                    Image("placeholder-swap-token")
-                        .resizable()
-                })
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 32, height: 32)
-                .clipShape(Circle())
-            
-            Text("swap_select".localized)
-                .font(.inter(size: 14, weight: .medium))
-                .foregroundColor(Color.LL.Neutrals.text2)
-                .padding(.leading, 4)
-            
-            Image("icon-arrow-bottom")
-                .renderingMode(.template)
-                .foregroundColor(.LL.Neutrals.text)
-                .padding(.leading, 8)
+        Button {
+            vm.selectTokenAction(isFrom: false)
+        } label: {
+            HStack(spacing: 0) {
+                KFImage.url(vm.toToken?.icon)
+                    .placeholder({
+                        Image("placeholder-swap-token")
+                            .resizable()
+                    })
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 32, height: 32)
+                    .clipShape(Circle())
+                
+                Text(vm.toToken?.symbol?.uppercased() ?? "swap_select".localized)
+                    .font(.inter(size: 14, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text2)
+                    .padding(.leading, 4)
+                
+                Image("icon-arrow-bottom")
+                    .renderingMode(.template)
+                    .foregroundColor(.LL.Neutrals.text)
+                    .padding(.leading, 8)
+            }
+            .frame(height: 48)
+            .padding(.horizontal, 8)
+            .roundedBg(cornerRadius: 16, fillColor: Color.LL.Neutrals.neutrals4, strokeColor: Color.LL.Primary.salmonPrimary, strokeLineWidth: 1)
         }
-        .frame(height: 48)
-        .padding(.horizontal, 8)
-        .roundedBg(cornerRadius: 16, fillColor: Color.LL.Neutrals.neutrals4, strokeColor: Color.LL.Primary.salmonPrimary, strokeLineWidth: 1)
     }
 }

@@ -393,3 +393,4 @@
 "swap_max" = "Max";
 "swap_select" = "Select";
 "swap_select_token" = "Select Token";
+"swap_request_failed" = "Swap request failed";
