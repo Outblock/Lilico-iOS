@@ -84,31 +84,35 @@ extension SwapView {
     }
     
     var fromSelectButton: some View {
-        HStack(spacing: 0) {
-            KFImage.url(nil)
-                .placeholder({
-                    Image("placeholder-swap-token")
-                        .resizable()
-                })
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 32, height: 32)
-                .clipShape(Circle())
-            
-            Text("FLOW")
-                .font(.inter(size: 14, weight: .medium))
-                .foregroundColor(Color.LL.Neutrals.text2)
-                .padding(.leading, 4)
-            
-            Image("icon-arrow-bottom")
-                .renderingMode(.template)
-                .foregroundColor(.LL.Neutrals.text)
-                .padding(.leading, 8)
+        Button {
+            vm.selectTokenAction(isFrom: true)
+        } label: {
+            HStack(spacing: 0) {
+                KFImage.url(nil)
+                    .placeholder({
+                        Image("placeholder-swap-token")
+                            .resizable()
+                    })
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 32, height: 32)
+                    .clipShape(Circle())
+                
+                Text("FLOW")
+                    .font(.inter(size: 14, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text2)
+                    .padding(.leading, 4)
+                
+                Image("icon-arrow-bottom")
+                    .renderingMode(.template)
+                    .foregroundColor(.LL.Neutrals.text)
+                    .padding(.leading, 8)
+            }
+            .frame(height: 48)
+            .padding(.horizontal, 8)
+            .background(Color.LL.Neutrals.neutrals4)
+            .cornerRadius(16)
         }
-        .frame(height: 48)
-        .padding(.horizontal, 8)
-        .background(Color.LL.Neutrals.neutrals4)
-        .cornerRadius(16)
     }
     
     var fromDescContainerView: some View {

@@ -16,4 +16,10 @@ extension SwapViewModel {
     func inputTextDidChangeAction(text: String) {
         
     }
+    
+    func selectTokenAction(isFrom: Bool) {
+        Router.route(to: RouteMap.Wallet.selectToken(nil, [], { selectedToken in
+            
+        }))
+    }
 }

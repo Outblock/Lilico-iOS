@@ -16,10 +16,26 @@ import Kingfisher
 
 
 struct AddTokenView: RouteableView {
-    @StateObject var vm = AddTokenViewModel()
+    @StateObject var vm: AddTokenViewModel
+    
+    init(vm: AddTokenViewModel) {
+        _vm = StateObject(wrappedValue: vm)
+    }
     
     var title: String {
-        return "add_token".localized
+        if vm.mode == .addToken {
+            return "add_token".localized
+        } else {
+            return "swap_select_token".localized
+        }
+    }
+    
+    func backButtonAction() {
+        if vm.mode == .addToken {
+            Router.pop()
+        } else {
+            Router.dismiss()
+        }
     }
     
     var body: some View {
@@ -42,13 +58,19 @@ struct AddTokenView: RouteableView {
         IndexedList(vm.searchResults) { section in
             Section {
                 ForEach(section.tokenList) { token in
-                    TokenItemCell(token: token, isActivated: token.isActivated, action: {
-                        vm.willActiveTokenAction(token)
+                    TokenItemCell(token: token, isActivated: vm.isActivatedToken(token), action: {
+                        if vm.mode == .selectToken {
+                            vm.selectTokenAction(token)
+                        } else {
+                            vm.willActiveTokenAction(token)
+                        }
                     })
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
+                    .disabled(vm.isDisabledToken(token))
                 }
                 .buttonStyle(.plain)
+                .environmentObject(vm)
             } header: {
                 sectionHeader(section)
                     .id(section.id)
@@ -77,6 +99,7 @@ extension AddTokenView {
         let token: TokenModel
         let isActivated: Bool
         let action: () -> Void
+        @EnvironmentObject var vm: AddTokenViewModel
         
         var body: some View {
             Button {
@@ -109,6 +132,7 @@ extension AddTokenView {
                         Image(systemName: .checkmarkSelected).foregroundColor(.LL.Success.success3)
                     } else {
                         Image(systemName: .add).foregroundColor(.LL.Primary.salmonPrimary)
+                            .visibility(vm.mode == .addToken ? .visible : .gone)
                     }
                 }
                 .padding(.horizontal, 11)

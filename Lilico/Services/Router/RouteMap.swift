@@ -107,6 +107,7 @@ extension RouteMap {
         case buyCrypto
         case transactionList(String?)
         case swap
+        case selectToken(TokenModel?, [TokenModel], (TokenModel) -> ())
     }
 }
 
@@ -114,7 +115,7 @@ extension RouteMap.Wallet: RouterTarget {
     func onPresent(navi: UINavigationController) {
         switch self {
         case .addToken:
-            navi.push(content: AddTokenView())
+            navi.push(content: AddTokenView(vm: AddTokenViewModel()))
         case .tokenDetail(let token):
             navi.push(content: TokenDetailView(token: token))
         case .receive:
@@ -142,6 +143,9 @@ extension RouteMap.Wallet: RouterTarget {
             navi.pushViewController(vc, animated: true)
         case .swap:
             navi.push(content: SwapView())
+        case .selectToken(let selectedToken, let disableTokens, let callback):
+            let vm = AddTokenViewModel(selectedToken: selectedToken, disableTokens: disableTokens, selectCallback: callback)
+            navi.present(content: AddTokenView(vm: vm))
         }
     }
 }

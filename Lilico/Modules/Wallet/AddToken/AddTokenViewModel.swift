@@ -22,6 +22,11 @@ extension AddTokenViewModel {
             return Index(sectionName, contentID: id)
         }
     }
+    
+    enum Mode {
+        case addToken
+        case selectToken
+    }
 }
 
 class AddTokenViewModel: ObservableObject {
@@ -31,11 +36,24 @@ class AddTokenViewModel: ObservableObject {
     @Published var confirmSheetIsPresented = false
     var pendingActiveToken: TokenModel?
     
+    var mode: AddTokenViewModel.Mode = .addToken
+    var selectedToken: TokenModel?
+    var disableTokens: [TokenModel] = []
+    var selectCallback: ((TokenModel) -> ())?
+    
     @Published var isRequesting: Bool = false
     
     private var cancelSets = Set<AnyCancellable>()
     
-    init() {
+    init(selectedToken: TokenModel? = nil, disableTokens: [TokenModel] = [], selectCallback: ((TokenModel) -> ())? = nil) {
+        self.selectedToken = selectedToken
+        self.disableTokens = disableTokens
+        self.selectCallback = selectCallback
+        
+        if selectCallback != nil {
+            self.mode = .selectToken
+        }
+        
         WalletManager.shared.$activatedCoins.sink { _ in
             DispatchQueue.main.async {
                 self.reloadData()
@@ -114,11 +132,39 @@ extension AddTokenViewModel {
         return searchSections
 
     }
+    
+    func isDisabledToken(_ token: TokenModel) -> Bool {
+        for disToken in disableTokens {
+            if disToken.id == token.id {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func isActivatedToken(_ token: TokenModel) -> Bool {
+        if mode == .selectToken {
+            return token.id == selectedToken?.id
+        } else {
+            return token.isActivated
+        }
+    }
 }
 
 // MARK: - Action
 
 extension AddTokenViewModel {
+    func selectTokenAction(_ token: TokenModel) {
+        if token.id == selectedToken?.id {
+            Router.dismiss()
+            return
+        }
+        
+        selectCallback?(token)
+        Router.dismiss()
+    }
+    
     func willActiveTokenAction(_ token: TokenModel) {
         if token.isActivated {
             return
