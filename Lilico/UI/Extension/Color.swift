@@ -181,6 +181,7 @@ extension Color {
             static let text2 = Color("other.text2")
             static let bg1 = Color("other.bg1")
             static let bg2 = Color("other.bg2")
+            static let bg3 = Color("other.bg3")
             static let icon1 = Color("other.icon1")
         }
     }

@@ -42,6 +42,10 @@ struct SwapView: RouteableView {
         .frame(maxWidth: .infinity)
         .background(Color.LL.background)
         .applyRouteable(self)
+        .halfSheet(showSheet: $vm.showConfirmView, sheetView: {
+            SwapConfirmView()
+                .environmentObject(vm)
+        })
     }
     
     var errorTipsView: some View {

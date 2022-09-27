@@ -24,4 +24,14 @@ extension Double {
         f.roundingMode = .down
         return f.string(for: value) ?? "?"
     }
+    
+    func formatCurrencyString(digits: Int = 3, roundingMode: NumberFormatter.RoundingMode = .down) -> String {
+        let value = NSNumber(value: self).decimalValue
+        
+        let f = NumberFormatter()
+        f.maximumFractionDigits = digits
+        f.minimumFractionDigits = digits
+        f.roundingMode = roundingMode
+        return f.string(for: value) ?? "?"
+    }
 }

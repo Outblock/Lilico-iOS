@@ -31,8 +31,10 @@ class SwapViewModel: ObservableObject {
     @Published var fromToken: TokenModel?
     @Published var toToken: TokenModel?
     @Published var isRequesting: Bool = false
+    @Published var isConfirming: Bool = false
     @Published var estimateResponse: SwapEstimateResponse?
     @Published var errorType: SwapViewModel.ErrorType = .none
+    @Published var showConfirmView: Bool = false
     
     var oldInputFromText: String = ""
     var oldInputToText: String = ""
@@ -46,6 +48,14 @@ class SwapViewModel: ObservableObject {
         }
         
         return isValidToSwap ? .enabled : .disabled
+    }
+    
+    var confirmButtonState: VPrimaryButtonState {
+        if isConfirming {
+            return .loading
+        }
+        
+        return .enabled
     }
     
     var isValidToSwap: Bool {
@@ -287,6 +297,10 @@ extension SwapViewModel {
     }
     
     func swapAction() {
-        
+        showConfirmView = true
+    }
+    
+    func confirmSwapAction() {
+        isConfirming = true
     }
 }

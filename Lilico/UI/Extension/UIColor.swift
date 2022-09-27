@@ -120,6 +120,7 @@ extension UIColor {
             static let text2 = UIColor(named: "other.text2")!
             static let bg1 = UIColor(named: "other.bg1")!
             static let bg2 = UIColor(named: "other.bg2")!
+            static let bg3 = UIColor(named: "other.bg3")!
             static let icon1 = UIColor(named: "other.icon1")!
         }
     }
