@@ -16,7 +16,7 @@ struct SwapView: RouteableView {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ZStack {
                 VStack(spacing: 12) {
                     fromView
@@ -27,8 +27,11 @@ struct SwapView: RouteableView {
                     .padding(.top, 40)
             }
             
+            errorTipsView
+                .padding(.top, 12)
+            
             rateView
-                .padding(.top, 22)
+                .padding(.top, 20)
             
             Spacer()
             
@@ -41,12 +44,27 @@ struct SwapView: RouteableView {
         .applyRouteable(self)
     }
     
+    var errorTipsView: some View {
+        HStack {
+            Image(systemName: .error)
+                .foregroundColor(Color(hex: "#C44536"))
+            
+            Text(vm.errorType.desc)
+                .foregroundColor(.LL.Neutrals.note)
+                .font(.inter(size: 12, weight: .regular))
+            
+            Spacer()
+        }
+        .visibility(vm.errorType == .none ? .gone : .visible)
+    }
+    
     var switchButton: some View {
         Button {
             vm.switchTokenAction()
         } label: {
             Image("icon-swap-switch")
         }
+        .disabled(vm.fromToken == nil || vm.toToken == nil)
     }
     
     var swapBtn: some View {
@@ -96,6 +114,7 @@ extension SwapView {
                         vm.inputFromTextDidChangeAction(text: text)
                     }
                 }
+                .disabled(vm.fromToken == nil)
             
             Spacer()
             
@@ -144,7 +163,7 @@ extension SwapView {
             Spacer()
             
             Button {
-                
+                vm.maxAction()
             } label: {
                 Text("swap_max".localized)
                     .font(.inter(size: 12, weight: .medium))
@@ -154,6 +173,7 @@ extension SwapView {
                     .background(Color.LL.background)
                     .cornerRadius(12)
             }
+            .disabled(vm.fromToken == nil)
         }
     }
 }
@@ -175,6 +195,7 @@ extension SwapView {
                         vm.inputToTextDidChangeAction(text: text)
                     }
                 }
+                .disabled(vm.toToken == nil)
             
             Spacer()
             

@@ -9,6 +9,22 @@ import SwiftUI
 
 private let TimerDelay: TimeInterval = 0.4
 
+extension SwapViewModel {
+    enum ErrorType {
+        case none
+        case insufficientBalance
+        
+        var desc: String {
+            switch self {
+            case .none:
+                return ""
+            case .insufficientBalance:
+                return "insufficient_balance".localized
+            }
+        }
+    }
+}
+
 class SwapViewModel: ObservableObject {
     @Published var inputFromText: String = ""
     @Published var inputToText: String = ""
@@ -16,6 +32,7 @@ class SwapViewModel: ObservableObject {
     @Published var toToken: TokenModel?
     @Published var isRequesting: Bool = false
     @Published var estimateResponse: SwapEstimateResponse?
+    @Published var errorType: SwapViewModel.ErrorType = .none
     
     var oldInputFromText: String = ""
     var oldInputToText: String = ""
@@ -36,15 +53,10 @@ class SwapViewModel: ObservableObject {
             return false
         }
         
-        // TODO: check balance
-        return true
+        return errorType == .none
     }
     
     var rateText: String {
-        if self.timer?.isValid == true || self.isRequesting {
-            return ""
-        }
-        
         guard let fromToken = fromToken, let toToken = toToken, let response = estimateResponse else {
             return ""
         }
@@ -91,6 +103,7 @@ extension SwapViewModel {
             return
         }
         
+        self.estimateResponse = nil
         startTimer()
     }
     
@@ -167,7 +180,15 @@ extension SwapViewModel {
     }
     
     private func refreshInput() {
+        guard let fromTokenSymbol = fromToken?.symbol else {
+            return
+        }
         
+        if fromAmount > WalletManager.shared.getBalance(bySymbol: fromTokenSymbol) {
+            errorType = .insufficientBalance
+        } else {
+            errorType = .none
+        }
     }
 }
 
@@ -235,6 +256,7 @@ extension SwapViewModel {
         Router.route(to: RouteMap.Wallet.selectToken(isFrom ? fromToken : toToken, disableTokens, { selectedToken in
             if isFrom {
                 self.fromToken = selectedToken
+                self.refreshInput()
             } else {
                 self.toToken = selectedToken
             }
@@ -252,7 +274,16 @@ extension SwapViewModel {
         
         self.fromToken = toToken
         self.toToken = fromToken
+        self.refreshInput()
         self.requestEstimate(isFromInput: !self.requestIsFromInput)
+    }
+    
+    func maxAction() {
+        guard let symbol = fromToken?.symbol else {
+            return
+        }
+        
+        self.inputFromText = WalletManager.shared.getBalance(bySymbol: symbol).currencyString
     }
     
     func swapAction() {
