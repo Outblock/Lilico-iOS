@@ -27,7 +27,12 @@ struct SwapView: RouteableView {
                     .padding(.top, 40)
             }
             
+            rateView
+                .padding(.top, 22)
+            
             Spacer()
+            
+            swapBtn
         }
         .padding(.horizontal, 18)
         .padding(.top, 31)
@@ -38,10 +43,25 @@ struct SwapView: RouteableView {
     
     var switchButton: some View {
         Button {
-            
+            vm.switchTokenAction()
         } label: {
             Image("icon-swap-switch")
         }
+    }
+    
+    var swapBtn: some View {
+        VPrimaryButton(model: ButtonStyle.primary, state: vm.buttonState, action: {
+            vm.swapAction()
+        }, title: vm.buttonState == .loading ? "working_on_it".localized : "swap_title".localized)
+        .padding(.horizontal, 18)
+        .padding(.bottom, 18)
+    }
+    
+    var rateView: some View {
+        Text(vm.rateText)
+            .font(.inter(size: 14, weight: .medium))
+            .foregroundColor(Color.LL.Neutrals.text2)
+            .lineLimit(1)
     }
 }
 
@@ -129,7 +149,7 @@ extension SwapView {
                 Text("swap_max".localized)
                     .font(.inter(size: 12, weight: .medium))
                     .foregroundColor(Color.LL.Neutrals.text)
-                    .padding(.horizontal, 5)
+                    .padding(.horizontal, 10)
                     .frame(height: 24)
                     .background(Color.LL.background)
                     .cornerRadius(12)
