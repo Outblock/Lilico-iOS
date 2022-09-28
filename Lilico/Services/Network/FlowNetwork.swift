@@ -256,6 +256,65 @@ extension FlowNetwork {
     }
 }
 
+// MARK: - Swap
+
+extension FlowNetwork {
+    static func swapToken(swapPaths: [String], tokenInMax: Double, tokenOutMin: Double, tokenInVaultPath: String, tokenOutSplit: [Double], tokenInSplit: [Double], tokenOutVaultPath: String, tokenOutReceiverPath: String, tokenOutBalancePath: String, deadline: Double, isFrom: Bool) async throws -> Flow.ID {
+        guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
+            throw LLError.invalidAddress
+        }
+        
+        let tokenName = String(swapPaths.last?.split(separator: ".").last ?? "")
+        let tokenAddress = String(swapPaths.last?.split(separator: ".")[1] ?? "").addHexPrefix()
+        
+        var cadenceString = isFrom ? Cadences.swapFromTokenToOtherToken : Cadences.swapOtherTokenToFromToken
+        cadenceString = cadenceString.replace(by: ["Token1Name": tokenName, "Token1Addr": tokenAddress])
+        
+        var args = [Flow.Cadence.FValue]()
+        args.append(.array(swapPaths.map { Flow.Argument(value: .string($0)) }))
+        
+        if isFrom {
+            args.append(.array(tokenInSplit.map { Flow.Argument(value: .ufix64($0)) }))
+            args.append(.ufix64(tokenOutMin))
+        } else {
+            args.append(.array(tokenOutSplit.map { Flow.Argument(value: .ufix64($0)) }))
+            args.append(.ufix64(tokenInMax))
+        }
+        
+        args.append(.ufix64(deadline))
+        args.append(.path(Flow.Argument.Path(domain: "storage", identifier: tokenInVaultPath)))
+        args.append(.path(Flow.Argument.Path(domain: "storage", identifier: tokenOutVaultPath)))
+        args.append(.path(Flow.Argument.Path(domain: "public", identifier: tokenOutReceiverPath)))
+        args.append(.path(Flow.Argument.Path(domain: "public", identifier: tokenOutBalancePath)))
+        
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                Flow.Address(hex: address)
+            }
+            
+            authorizers {
+                Flow.Address(hex: address)
+            }
+            
+            arguments {
+                args
+            }
+            
+            gasLimit {
+                9999
+            }
+        })
+    }
+}
+
 // MARK: - Others
 
 extension FlowNetwork {

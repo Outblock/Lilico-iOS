@@ -71,4 +71,28 @@ struct SwapEstimateResponse: Codable {
         self.tokenInKey = try container.decode(String.self, forKey: .tokenInKey)
         self.tokenOutKey = try container.decode(String.self, forKey: .tokenOutKey)
     }
+    
+    var tokenKeyFlatSplitPath: [String] {
+        let array = routes.compactMap { route in
+            route?.route
+        }
+        
+        return array.flatMap { $0 }
+    }
+    
+    var amountInSplit: [Double] {
+        let array = routes.compactMap { route in
+            route?.routeAmountIn
+        }
+        
+        return array
+    }
+    
+    var amountOutSplit: [Double] {
+        let array = routes.compactMap { route in
+            route?.routeAmountOut
+        }
+        
+        return array
+    }
 }

@@ -164,6 +164,7 @@ extension SwapViewModel {
                     }
                     
                     self.estimateResponse = response
+                    self.refreshInput()
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -301,6 +302,43 @@ extension SwapViewModel {
     }
     
     func confirmSwapAction() {
+        guard let response = estimateResponse, let fromToken = fromToken, let toToken = toToken else {
+            return
+        }
+        
         isConfirming = true
+        
+        Task {
+            do {
+                let tokenKeyFlatSplitPath = response.tokenKeyFlatSplitPath
+                let amountInSplit = response.amountInSplit
+                let amountOutSplit = response.amountOutSplit
+                let deadline = Date().timeIntervalSince1970 + 60 * 10
+                let slippageRate = 0.1
+                let estimateOut = response.tokenOutAmount
+                let amountOutMin = Double((estimateOut * (1.0 - slippageRate)).formatCurrencyString(digits: 4))!
+                let storageIn = fromToken.storagePath
+                let storageOut = toToken.storagePath
+                let estimateIn = response.tokenInAmount
+                let amountInMax = Double((estimateIn / (1.0 - slippageRate)).formatCurrencyString(digits: 4))!
+                
+                let txid = try await FlowNetwork.swapToken(swapPaths: tokenKeyFlatSplitPath, tokenInMax: amountInMax, tokenOutMin: amountOutMin, tokenInVaultPath: String(storageIn.vault.split(separator: "/").last ?? ""), tokenOutSplit: amountOutSplit, tokenInSplit: amountInSplit, tokenOutVaultPath: String(storageOut.vault.split(separator: "/").last ?? ""), tokenOutReceiverPath: String(storageOut.receiver.split(separator: "/").last ?? ""), tokenOutBalancePath: String(storageOut.balance.split(separator: "/").last ?? ""), deadline: deadline, isFrom: self.requestIsFromInput)
+                
+                let data = try JSONEncoder().encode(response)
+                let holder = TransactionManager.TransactionHolder(id: txid, type: .common, data: data)
+                
+                DispatchQueue.main.async {
+                    self.isConfirming = false
+                    self.showConfirmView = false
+                    TransactionManager.shared.newTransaction(holder: holder)
+                }
+            } catch {
+                debugPrint("SwapViewModel -> confirmSwapAction failed: \(error)")
+                HUD.error(title: "swap_request_failed".localized)
+                DispatchQueue.main.async {
+                    self.isConfirming = false
+                }
+            }
+        }
     }
 }
