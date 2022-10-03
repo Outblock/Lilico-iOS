@@ -18,6 +18,14 @@
 		152BB09628AE900C00B2A2AA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 152BB09528AE900C00B2A2AA /* Lottie */; };
 		152BB09828AE91A700B2A2AA /* ResizableLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152BB09728AE91A600B2A2AA /* ResizableLottieView.swift */; };
 		152BB09928AE91A700B2A2AA /* ResizableLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152BB09728AE91A600B2A2AA /* ResizableLottieView.swift */; };
+		152EEC6928E4F26300C37A67 /* LilicoWebEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152EEC6828E4F26300C37A67 /* LilicoWebEndpoint.swift */; };
+		152EEC6A28E4F26300C37A67 /* LilicoWebEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152EEC6828E4F26300C37A67 /* LilicoWebEndpoint.swift */; };
+		152EEC6D28E4F2AB00C37A67 /* TxTemplateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152EEC6C28E4F2AB00C37A67 /* TxTemplateRequest.swift */; };
+		152EEC6E28E4F2AB00C37A67 /* TxTemplateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152EEC6C28E4F2AB00C37A67 /* TxTemplateRequest.swift */; };
+		152EEC7028E4F5EC00C37A67 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 152EEC6F28E4F5EC00C37A67 /* config.plist */; };
+		152EEC7328E4F61600C37A67 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 152EEC7228E4F61200C37A67 /* config.plist */; };
+		152EEC7528E4F68100C37A67 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152EEC7428E4F68100C37A67 /* Env.swift */; };
+		152EEC7628E4F68100C37A67 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152EEC7428E4F68100C37A67 /* Env.swift */; };
 		1544C62828C812E700B6BA52 /* GoogleOAuth2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1544C62728C812E500B6BA52 /* GoogleOAuth2.plist */; };
 		154866EC28D0ECE400D012B8 /* FlixAuditEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EB28D0ECE400D012B8 /* FlixAuditEndpoint.swift */; };
 		154866ED28D0ECE400D012B8 /* FlixAuditEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EB28D0ECE400D012B8 /* FlixAuditEndpoint.swift */; };
@@ -1097,10 +1105,8 @@
 		6A7D9DC628DD941700333954 /* SwapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC428DD941700333954 /* SwapView.swift */; };
 		6A7D9DC828DD95A500333954 /* SwapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC728DD95A500333954 /* SwapViewModel.swift */; };
 		6A7D9DC928DD95A500333954 /* SwapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DC728DD95A500333954 /* SwapViewModel.swift */; };
-		6A7D9DCB28E184EF00333954 /* LilicoAPI+Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCA28E184EF00333954 /* LilicoAPI+Other.swift */; };
-		6A7D9DCC28E184EF00333954 /* LilicoAPI+Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCA28E184EF00333954 /* LilicoAPI+Other.swift */; };
-		6A7D9DCE28E1858E00333954 /* OtherRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCD28E1858E00333954 /* OtherRequests.swift */; };
-		6A7D9DCF28E1858E00333954 /* OtherRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCD28E1858E00333954 /* OtherRequests.swift */; };
+		6A7D9DCE28E1858E00333954 /* SwapEstimateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCD28E1858E00333954 /* SwapEstimateRequest.swift */; };
+		6A7D9DCF28E1858E00333954 /* SwapEstimateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DCD28E1858E00333954 /* SwapEstimateRequest.swift */; };
 		6A7D9DD128E1923500333954 /* OtherResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DD028E1923500333954 /* OtherResponses.swift */; };
 		6A7D9DD228E1923500333954 /* OtherResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7D9DD028E1923500333954 /* OtherResponses.swift */; };
 		6A7F650A289A4CE3007188DC /* PageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7F6509289A4CE3007188DC /* PageCache.swift */; };
@@ -1346,6 +1352,11 @@
 		1507C7EE275634C900890C5D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1527119F28D4C3F5002520EA /* NFTEmptyView_dev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTEmptyView_dev.swift; sourceTree = "<group>"; };
 		152BB09728AE91A600B2A2AA /* ResizableLottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableLottieView.swift; sourceTree = "<group>"; };
+		152EEC6828E4F26300C37A67 /* LilicoWebEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilicoWebEndpoint.swift; sourceTree = "<group>"; };
+		152EEC6C28E4F2AB00C37A67 /* TxTemplateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxTemplateRequest.swift; sourceTree = "<group>"; };
+		152EEC6F28E4F5EC00C37A67 /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		152EEC7228E4F61200C37A67 /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		152EEC7428E4F68100C37A67 /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
 		153C44002751CFA4006D1E8D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		153C440227520752006D1E8D /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -1830,8 +1841,7 @@
 		6A73BF5128C59028004B836A /* JSMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSMessageHandler.swift; sourceTree = "<group>"; };
 		6A7D9DC428DD941700333954 /* SwapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapView.swift; sourceTree = "<group>"; };
 		6A7D9DC728DD95A500333954 /* SwapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewModel.swift; sourceTree = "<group>"; };
-		6A7D9DCA28E184EF00333954 /* LilicoAPI+Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+Other.swift"; sourceTree = "<group>"; };
-		6A7D9DCD28E1858E00333954 /* OtherRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRequests.swift; sourceTree = "<group>"; };
+		6A7D9DCD28E1858E00333954 /* SwapEstimateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapEstimateRequest.swift; sourceTree = "<group>"; };
 		6A7D9DD028E1923500333954 /* OtherResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherResponses.swift; sourceTree = "<group>"; };
 		6A7F6509289A4CE3007188DC /* PageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCache.swift; sourceTree = "<group>"; };
 		6A7F650D289A70D6007188DC /* ProfileSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSecureView.swift; sourceTree = "<group>"; };
@@ -2094,7 +2104,6 @@
 				6A45898828C1DF0000B1024B /* LilicoAPI+Browser.swift */,
 				6A29113628CAE7FE003295BD /* LilicoAPI+Account.swift */,
 				6AF4A6C328D46FAF00B12FAB /* LilicoAPI+Flowns.swift */,
-				6A7D9DCA28E184EF00333954 /* LilicoAPI+Other.swift */,
 			);
 			path = Lilico;
 			sourceTree = "<group>";
@@ -2130,6 +2139,24 @@
 				6A2D35B8283B6AD6008293D9 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		152EEC6728E4F24C00C37A67 /* LilicoWeb */ = {
+			isa = PBXGroup;
+			children = (
+				152EEC6B28E4F29900C37A67 /* request */,
+				152EEC6828E4F26300C37A67 /* LilicoWebEndpoint.swift */,
+			);
+			path = LilicoWeb;
+			sourceTree = "<group>";
+		};
+		152EEC6B28E4F29900C37A67 /* request */ = {
+			isa = PBXGroup;
+			children = (
+				6A7D9DCD28E1858E00333954 /* SwapEstimateRequest.swift */,
+				152EEC6C28E4F2AB00C37A67 /* TxTemplateRequest.swift */,
+			);
+			path = request;
 			sourceTree = "<group>";
 		};
 		153C440427520811006D1E8D /* Modules */ = {
@@ -2181,6 +2208,7 @@
 			children = (
 				154B892D276A1FCB00780E93 /* Prod */,
 				154B892C276A1FBC00780E93 /* Dev */,
+				152EEC7428E4F68100C37A67 /* Env.swift */,
 			);
 			path = Env;
 			sourceTree = "<group>";
@@ -2189,6 +2217,7 @@
 			isa = PBXGroup;
 			children = (
 				158C9CB627880D030062E0C6 /* Info.plist */,
+				152EEC7228E4F61200C37A67 /* config.plist */,
 				15D92827278331FE00382226 /* Lilico-dev.entitlements */,
 				15DE22FC27801ADE00B5EE03 /* GoogleOAuth2.plist */,
 				154B88832765EBF700780E93 /* GoogleService-Info.plist */,
@@ -2201,6 +2230,7 @@
 			children = (
 				1544C62728C812E500B6BA52 /* GoogleOAuth2.plist */,
 				15DDFB8F2750D03E008263A2 /* Info.plist */,
+				152EEC6F28E4F5EC00C37A67 /* config.plist */,
 				158CE88D27830889006A8394 /* Lilico.entitlements */,
 				6A37AD9328BDAA300047E5F7 /* GoogleService-Info.plist */,
 			);
@@ -2411,7 +2441,6 @@
 				6AEE39EC28A24DDB00F3C56E /* NFTRequests.swift */,
 				6ADBBC9E28D1755F00F1F0DA /* AccountRequests.swift */,
 				6AF4A6C928D472F600B12FAB /* FlownsRequests.swift */,
-				6A7D9DCD28E1858E00333954 /* OtherRequests.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2499,6 +2528,7 @@
 		159A5438275368DA004BCACC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				152EEC6728E4F24C00C37A67 /* LilicoWeb */,
 				154866EE28D0EECE00D012B8 /* FlixAuditEndpoint */,
 				15CB4DF628CA29350069ABB4 /* FirebaseAPI */,
 				1505E5F928363554007B98D8 /* Lilico */,
@@ -4616,6 +4646,7 @@
 				1575A73828B28D3300ADC513 /* LDR_LLL1_0.png in Resources */,
 				154B8922276A1EEB00780E93 /* Preview Assets.xcassets in Resources */,
 				15DE215028C57968008AFE17 /* AR.json in Resources */,
+				152EEC7328E4F61600C37A67 /* config.plist in Resources */,
 				1565FB6828B14F140086A652 /* Account.json in Resources */,
 				1565FB9F28B16B580086A652 /* CoinHover.json in Resources */,
 				4EA820C7286354E200DF36A8 /* remote_config_defaults.plist in Resources */,
@@ -4683,6 +4714,7 @@
 				15D3BA6728C39454009AEA6E /* Matrix Code NFI.ttf in Resources */,
 				1565FB6528B14F140086A652 /* Saved.json in Resources */,
 				15C58C652868A4EE00BD4FC6 /* Colors.xcassets in Resources */,
+				152EEC7028E4F5EC00C37A67 /* config.plist in Resources */,
 				15D6D8ED28CB730800CBA152 /* inAR.json in Resources */,
 				1565FB9B28B1681F0086A652 /* Coin.json in Resources */,
 				15C58C662868A4EE00BD4FC6 /* Montserrat-Bold.ttf in Resources */,
@@ -4769,7 +4801,6 @@
 				15DC21DB27819C56000B187A /* StateColorsAndOpacities_EP_D.swift in Sources */,
 				15DC21ED27819C57000B187A /* StateColors_OOID.swift in Sources */,
 				6A115972288E72CC005EF797 /* Coordinator.swift in Sources */,
-				6A7D9DCC28E184EF00333954 /* LilicoAPI+Other.swift in Sources */,
 				6AF2ED9228364BC200F06AD3 /* UIFont.swift in Sources */,
 				6AE1817D28C5D654009ADDDB /* FCLAuthnResponse.swift in Sources */,
 				15DC217D27819C56000B187A /* _VModal.swift in Sources */,
@@ -4871,6 +4902,7 @@
 				15DC212327819C56000B187A /* VSpinnerDashed.swift in Sources */,
 				6A29114728CB377A003295BD /* TransactionListHandler.swift in Sources */,
 				6A95CFB528B7747F00267F86 /* TransactionManager.swift in Sources */,
+				152EEC7628E4F68100C37A67 /* Env.swift in Sources */,
 				15D3BA6528C393CB009AEA6E /* MatrixRainView.swift in Sources */,
 				4EAF31BA2845E501002AF489 /* NFTSegmentControl.swift in Sources */,
 				15DC21A327819C56000B187A /* VBaseTextFieldActions.swift in Sources */,
@@ -4924,6 +4956,7 @@
 				15DC20D127819C56000B187A /* VNavigationLinkType.swift in Sources */,
 				6A37AD9C28BE15700047E5F7 /* SendAmountTransactionProcessView.swift in Sources */,
 				4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */,
+				152EEC6E28E4F2AB00C37A67 /* TxTemplateRequest.swift in Sources */,
 				15DC208527819C56000B187A /* VLazyScrollViewHorizontal.swift in Sources */,
 				15DC211327819C56000B187A /* VPageIndicatorInfinite.swift in Sources */,
 				6A6BD9E0287D5467009FA262 /* PlaceholderStyle.swift in Sources */,
@@ -5039,7 +5072,7 @@
 				15B1F6302786AC9E00847BB5 /* BackupPasswordViewModel.swift in Sources */,
 				6A164F782845F1CB0026B31E /* ScrollAccessory.swift in Sources */,
 				15D9282A278338DB00382226 /* UIApplication.swift in Sources */,
-				6A7D9DCF28E1858E00333954 /* OtherRequests.swift in Sources */,
+				6A7D9DCF28E1858E00333954 /* SwapEstimateRequest.swift in Sources */,
 				15DC20B927819C56000B187A /* VChevronButtonModel.swift in Sources */,
 				15DC209127819C56000B187A /* VSheet.swift in Sources */,
 				6AF2ED8F2836424400F06AD3 /* UINavigationController.swift in Sources */,
@@ -5275,6 +5308,7 @@
 				15D6D8E628CB44F800CBA152 /* DOFavoriteButton.swift in Sources */,
 				15DC21C927819C56000B187A /* LayoutGroup_LTTB.swift in Sources */,
 				6AD9EC26286C4E4C0062A9CE /* Cadences.swift in Sources */,
+				152EEC6A28E4F26300C37A67 /* LilicoWebEndpoint.swift in Sources */,
 				6A62123128ACE029002046CA /* NFTUIKitFavContainerView.swift in Sources */,
 				6A8FA4B9285B1FEB00EE5BE3 /* EditAvatarViewModel.swift in Sources */,
 				15F2444328CB370D00C1090E /* LikeView.swift in Sources */,
@@ -5333,7 +5367,6 @@
 				15C58AC22868A4EE00BD4FC6 /* StateColorsAndOpacities_EP_D.swift in Sources */,
 				15C58AC32868A4EE00BD4FC6 /* StateColors_OOID.swift in Sources */,
 				6A115971288E72CC005EF797 /* Coordinator.swift in Sources */,
-				6A7D9DCB28E184EF00333954 /* LilicoAPI+Other.swift in Sources */,
 				15C58AC42868A4EE00BD4FC6 /* UIFont.swift in Sources */,
 				6AE1817C28C5D654009ADDDB /* FCLAuthnResponse.swift in Sources */,
 				15C58AC52868A4EE00BD4FC6 /* _VModal.swift in Sources */,
@@ -5435,6 +5468,7 @@
 				6A29114628CB377A003295BD /* TransactionListHandler.swift in Sources */,
 				6A95CFB428B7747F00267F86 /* TransactionManager.swift in Sources */,
 				15D3BA6428C393CB009AEA6E /* MatrixRainView.swift in Sources */,
+				152EEC7528E4F68100C37A67 /* Env.swift in Sources */,
 				15C58B052868A4EE00BD4FC6 /* NFTSegmentControl.swift in Sources */,
 				15C58B062868A4EE00BD4FC6 /* VBaseTextFieldActions.swift in Sources */,
 				6A43BCFE2872D19C003E9D16 /* Date.swift in Sources */,
@@ -5488,6 +5522,7 @@
 				6A37AD9B28BE15700047E5F7 /* SendAmountTransactionProcessView.swift in Sources */,
 				15C58B2B2868A4EE00BD4FC6 /* WalletViewModel.swift in Sources */,
 				15C58B2C2868A4EE00BD4FC6 /* VLazyScrollViewHorizontal.swift in Sources */,
+				152EEC6D28E4F2AB00C37A67 /* TxTemplateRequest.swift in Sources */,
 				15C58B2D2868A4EE00BD4FC6 /* VPageIndicatorInfinite.swift in Sources */,
 				6A6BD9DF287D5467009FA262 /* PlaceholderStyle.swift in Sources */,
 				1588331028943D1D00142B35 /* SPQRFrameLayer.swift in Sources */,
@@ -5603,7 +5638,7 @@
 				15C58B732868A4EE00BD4FC6 /* ScrollAccessory.swift in Sources */,
 				15C58B742868A4EE00BD4FC6 /* UIApplication.swift in Sources */,
 				15C58B752868A4EE00BD4FC6 /* VChevronButtonModel.swift in Sources */,
-				6A7D9DCE28E1858E00333954 /* OtherRequests.swift in Sources */,
+				6A7D9DCE28E1858E00333954 /* SwapEstimateRequest.swift in Sources */,
 				15C58B762868A4EE00BD4FC6 /* VSheet.swift in Sources */,
 				15C58B782868A4EE00BD4FC6 /* UINavigationController.swift in Sources */,
 				15C58B792868A4EE00BD4FC6 /* VLazyScrollViewType.swift in Sources */,
@@ -5839,6 +5874,7 @@
 				15D6D8E528CB44F800CBA152 /* DOFavoriteButton.swift in Sources */,
 				15C58C272868A4EE00BD4FC6 /* LayoutGroup_LTTB.swift in Sources */,
 				6AD9EC25286C4E4C0062A9CE /* Cadences.swift in Sources */,
+				152EEC6928E4F26300C37A67 /* LilicoWebEndpoint.swift in Sources */,
 				6A62123028ACE029002046CA /* NFTUIKitFavContainerView.swift in Sources */,
 				15C58C282868A4EE00BD4FC6 /* EditAvatarViewModel.swift in Sources */,
 				15F2444228CB370D00C1090E /* LikeView.swift in Sources */,

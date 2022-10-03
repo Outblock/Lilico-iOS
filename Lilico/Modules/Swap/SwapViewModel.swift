@@ -135,7 +135,7 @@ extension SwapViewModel {
         Task {
             do {
                 let request = SwapEstimateRequest(inToken: fromToken.contractId, outToken: toToken.contractId, inAmount: localIsFromInput ? fromAmount : nil, outAmount: localIsFromInput ? nil : toAmount)
-                let response: SwapEstimateResponse = try await Network.request(LilicoAPI.Other.swapEstimate(request))
+                let response: SwapEstimateResponse = try await Network.request(LilicoWebEndpoint.swapEstimate(request))
                 
                 DispatchQueue.main.async {
                     self.isRequesting = false

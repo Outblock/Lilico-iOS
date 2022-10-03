@@ -23,11 +23,7 @@ extension LilicoAPI.AddressBook: TargetType, AccessTokenAuthorizable {
     }
 
     var baseURL: URL {
-#if LILICOPROD
-        .init(string: "https://api.lilico.app")!
-#else
-        .init(string: "https://dev.lilico.app")!
-#endif
+        return Config.get(.lilico)
     }
 
     var path: String {

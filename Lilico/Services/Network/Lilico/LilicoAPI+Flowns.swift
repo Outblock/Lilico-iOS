@@ -26,11 +26,7 @@ extension LilicoAPI.Flowns: TargetType, AccessTokenAuthorizable {
         case .queryInbox:
             return LocalUserDefaults.shared.flowNetwork == .testnet ? .init(string: "https://testnet.flowns.io")! : .init(string: "https://flowns.io")!
         default:
-#if LILICOPROD
-        return .init(string: "https://api.lilico.app")!
-#else
-        return .init(string: "https://dev.lilico.app")!
-#endif
+            return Config.get(.lilico)
         }
     }
     

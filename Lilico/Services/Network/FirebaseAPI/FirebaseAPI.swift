@@ -17,15 +17,11 @@ enum FirebaseAPI {
 
 extension FirebaseAPI: TargetType, AccessTokenAuthorizable {
     var authorizationType: AuthorizationType? {
-        return .bearer
+        .bearer
     }
 
     var baseURL: URL {
-#if LILICOPROD
-        .init(string: "https://us-central1-lilico-334404.cloudfunctions.net")!
-#else
-        .init(string: "https://us-central1-lilico-dev.cloudfunctions.net")!
-#endif
+        Config.get(.firebaseFunction)
     }
 
     var path: String {

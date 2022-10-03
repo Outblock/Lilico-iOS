@@ -17,16 +17,13 @@ struct BrowserAuthnView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 12) {
             titleView
             
             sourceView
-                .padding(.top, 12)
-            
+                
             detailView
-                .frame(maxHeight: .infinity)
-                .padding(.bottom, 18)
-                .padding(.top, 18)
+//                .frame(maxHeight: .infinity)
             
             HStack {
                 walletView
@@ -34,8 +31,7 @@ struct BrowserAuthnView: View {
                     networkView
 //                }
             }
-            .padding(.bottom, 36)
-            Spacer()
+            .padding(.bottom, 8)
             actionView
         }
         .padding(.all, 18)
@@ -65,8 +61,19 @@ struct BrowserAuthnView: View {
                     .foregroundColor(.white)
                     .lineLimit(1)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Spacer()
+            
+            Button {
+                vm.didChooseAction(false)
+            } label: {
+                Image("icon-btn-close")
+                    .renderingMode(.template)
+                    .foregroundColor(.LL.Neutrals.note)
+            }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(height: 64)
     }
     
     var sourceView: some View {
@@ -87,21 +94,20 @@ struct BrowserAuthnView: View {
     }
     
     var detailView: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("browser_app_like_to".localized)
-                .font(.inter(size: 14, weight: .medium))
-                .foregroundColor(Color(hex: "#666666"))
-                .padding(.bottom, 18)
+        VStack(alignment: .leading, spacing: 12) {
+//            Text("browser_app_like_to".localized)
+//                .font(.inter(size: 14, weight: .medium))
+//                .foregroundColor(Color(hex: "#666666"))
+//                .padding(.bottom, 18)
             
             createAuthDetailView(text: "browser_authn_tips1".localized)
-                .padding(.bottom, 12)
             
             createAuthDetailView(text: "browser_authn_tips2".localized)
             
-            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .padding(.all, 18)
+        .padding(.horizontal, 18)
+        .padding(.vertical, 12)
         .background(Color(hex: "#313131"))
         .cornerRadius(12)
     }
@@ -234,7 +240,13 @@ struct BrowserAuthnView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        BrowserAuthnView(vm: vm)
+        
+        VStack(fill: .proportionally) {
+            Color.LL.background
+                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight/2)
+            BrowserAuthnView(vm: vm)
+                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight/2)
+        }
     }
 }
 
