@@ -8,12 +8,20 @@
 import UIKit
 import SnapKit
 
-private let CellHeight: CGFloat = 50
+private let RecommendCellHeight: CGFloat = 50
+private let DAppCellHeight: CGFloat = 60
+
+private enum Section: Int {
+    case dapp
+    case recommend
+}
 
 class BrowserSearchInputViewController: UIViewController {
     var selectTextCallback: ((String) -> ())?
     
     private var recommendArray: [RecommendItemModel] = []
+    private var remoteDAppList: [DAppModel] = []
+    private var dappArray: [DAppModel] = []
     private var searchingText: String = ""
     
     private var timer: Timer?
@@ -41,7 +49,6 @@ class BrowserSearchInputViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.itemSize = CGSize(width: Router.coordinator.window.bounds.size.width, height: CellHeight)
         return layout
     }()
     
@@ -55,6 +62,7 @@ class BrowserSearchInputViewController: UIViewController {
         view.dataSource = self
         
         view.register(BrowserSearchItemCell.self, forCellWithReuseIdentifier: "BrowserSearchItemCell")
+        view.register(BrowserSearchDAppItemCell.self, forCellWithReuseIdentifier: "BrowserSearchDAppItemCell")
         return view
     }()
     
@@ -186,7 +194,6 @@ extension BrowserSearchInputViewController {
     }
     
     private func doSearch() {
-        debugPrint("doSearch")
         let currentText = self.searchingText
         
         Task {
@@ -213,6 +220,42 @@ extension BrowserSearchInputViewController {
         }
     }
     
+    private func doSearchDApp() {
+        let currentText = self.searchingText
+        
+        Task {
+            do {
+                var list = self.remoteDAppList
+                if list.isEmpty {
+                    list = try await FirebaseConfig.dapp.fetch(decoder: JSONDecoder())
+                    self.remoteDAppList = list
+                }
+                
+                if self.searchingText != currentText {
+                    // outdate result
+                    return
+                }
+                
+                var result = list.filter { $0.name.lowercased().contains(currentText.lowercased()) || $0.url.absoluteString.lowercased().contains(currentText.lowercased()) }
+                
+                if result.count > 5 {
+                    // max 5
+                    result = result.dropLast(result.count - 5)
+                }
+                
+                DispatchQueue.main.async {
+                    self.dappArray = result
+                    self.collectionView.reloadData()
+                }
+            } catch {
+                if self.searchingText != currentText {
+                    // outdate result
+                    return
+                }
+            }
+        }
+    }
+    
     private func startTimer() {
         stopTimer()
         
@@ -230,6 +273,7 @@ extension BrowserSearchInputViewController {
     
     @objc private func onTimer() {
         doSearch()
+        doSearchDApp()
     }
     
     private func clearCurrentRecommend() {
@@ -240,20 +284,62 @@ extension BrowserSearchInputViewController {
 }
 
 extension BrowserSearchInputViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recommendArray.count
+        switch Section(rawValue: section) {
+        case .recommend:
+            return recommendArray.count
+        case .dapp:
+            return dappArray.count
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model = recommendArray[indexPath.item]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrowserSearchItemCell", for: indexPath) as! BrowserSearchItemCell
-        cell.config(model, inputText: searchingText)
-        cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        return cell
+        switch Section(rawValue: indexPath.section) {
+        case .recommend:
+            let model = recommendArray[indexPath.item]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrowserSearchItemCell", for: indexPath) as! BrowserSearchItemCell
+            cell.config(model, inputText: searchingText)
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            return cell
+        case .dapp:
+            let model = dappArray[indexPath.item]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrowserSearchDAppItemCell", for: indexPath) as! BrowserSearchDAppItemCell
+            cell.config(model)
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = recommendArray[indexPath.item]
-        self.selectTextCallback?(model.phrase)
+        switch Section(rawValue: indexPath.section) {
+        case .recommend:
+            let model = recommendArray[indexPath.item]
+            self.selectTextCallback?(model.phrase)
+        case .dapp:
+            let model = dappArray[indexPath.item]
+            self.selectTextCallback?(model.url.absoluteString)
+        default:
+            break
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch Section(rawValue: indexPath.section) {
+        case .recommend:
+            return CGSize(width: Router.coordinator.window.bounds.size.width, height: RecommendCellHeight)
+        case .dapp:
+            return CGSize(width: Router.coordinator.window.bounds.size.width, height: DAppCellHeight)
+        default:
+            return .zero
+        }
     }
 }
+
