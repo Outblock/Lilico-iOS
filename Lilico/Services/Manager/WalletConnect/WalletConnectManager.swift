@@ -13,6 +13,7 @@ import Flow
 import Starscream
 import Combine
 import WalletCore
+import UIKit
 
 class WalletConnectManager: ObservableObject {
     static let shared = WalletConnectManager()
@@ -40,7 +41,10 @@ class WalletConnectManager: ObservableObject {
             description: "A crypto wallet on Flow built for Explorers, Collectors and Gamers",
             url: "https://link.lilico.app/wc",
             icons: ["https://lilico.app/logo.png"])
-        Sign.configure(metadata: metadata, projectId: "29b38ec12be4bd19bf03d7ccef29aaa6", socketFactory: SocketFactory())
+        
+        Relay.configure(projectId: "29b38ec12be4bd19bf03d7ccef29aaa6", socketFactory: SocketFactory())
+        Sign.configure(metadata: metadata)
+        
         reloadActiveSessions()
         reloadPairing()
         setUpAuthSubscribing()
@@ -51,7 +55,13 @@ class WalletConnectManager: ObservableObject {
         print("[RESPONDER] Pairing to: \(link)")
         Task {
             do {
-                try await Sign.instance.pair(uri: link)
+                if let uri = WalletConnectURI.init(string: link) {
+                    
+                    if Sign.instance.getPairings().contains(where: { $0.topic == uri.topic }) {
+                        try await Sign.instance.disconnect(topic: uri.topic)
+                    }
+                    try await Sign.instance.pair(uri: uri)
+                }
             } catch {
                 print("[PROPOSER] Pairing connect error: \(error)")
                 HUD.error(title: "Connect failed")
@@ -76,10 +86,11 @@ class WalletConnectManager: ObservableObject {
             print(error)
             HUD.error(title: "Disconnect failed")
         }
+        
     }
     
     func reloadPairing() {
-        let activePairings: [Pairing] = Sign.instance.getSettledPairings()
+        let activePairings: [Pairing] = Sign.instance.getPairings()
         self.activePairings = activePairings
     }
     
@@ -129,6 +140,11 @@ class WalletConnectManager: ObservableObject {
                     if result {
                         // TODO: Handle network mismatch
                         self?.approveSession(proposal: sessionProposal)
+                        
+                        if let url = URL(string: sessionProposal.proposer.url) {
+                            UIApplication.shared.open(url, options: [:])
+                        }
+                        
                     } else {
                         self?.rejectSession(proposal: sessionProposal)
                     }
@@ -147,11 +163,9 @@ class WalletConnectManager: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] sessionRequest in
                 print("[RESPONDER] WC: Did receive session request")
-                
-                
                 switch sessionRequest.method {
                 case FCLWalletConnectMethod.authn.rawValue:
-                    let address = WalletManager.shared.address.hex
+                    let address = WalletManager.shared.address.hex.addHexPrefix()
                     let keyId = 0 // TODO: FIX ME with dynmaic keyIndex
                     let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
                                                data: AuthnData(addr: address, fType: "AuthnResponse", fVsn: "1.0.0",
@@ -169,6 +183,7 @@ class WalletConnectManager: ObservableObject {
                             try await Sign.instance.respond(topic: sessionRequest.topic, response: .response(response))
                         } catch {
                             print("[WALLET] Respond Error: \(error.localizedDescription)")
+//                            self?.rejectRequest(request: sessionRequest)
                         }
                     }
                     
@@ -312,7 +327,7 @@ extension WalletConnectManager {
     private func rejectSession(proposal: Session.Proposal) {
         Task {
             do {
-                try await Sign.instance.reject(proposalId: proposal.id, reason: .disapprovedChains)
+                try await Sign.instance.reject(proposalId: proposal.id, reason: .userRejected)
                 HUD.success(title: "rejected".localized)
             } catch {
                 HUD.error(title: "reject_failed".localized)
