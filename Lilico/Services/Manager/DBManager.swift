@@ -86,6 +86,7 @@ extension DBManager {
 extension DBManager {
     func save(webBookmark bookmark: WebBookmark) {
         insert(into: .webBookmark, columns: ["url", "title", "is_fav", "create_time", "update_time"], values: bookmark.dbValues)
+        NotificationCenter.default.post(name: .webBookmarkDidChanged)
     }
     
     func webBookmarkCount() -> Int {
@@ -97,7 +98,10 @@ extension DBManager {
             return false
         }
         
-        return rs.next()
+        let isExist = rs.next()
+        rs.close()
+        
+        return isExist
     }
     
     func getAllWebBookmark() -> [WebBookmark] {
@@ -122,10 +126,12 @@ extension DBManager {
     
     func delete(webBookmarkByURL url: String) {
         delete(in: .webBookmark, where: "url = ?", values: [url])
+        NotificationCenter.default.post(name: .webBookmarkDidChanged)
     }
     
     func delete(webBookmark bookmark: WebBookmark) {
         delete(in: .webBookmark, where: "id = ?", values: [bookmark.id])
+        NotificationCenter.default.post(name: .webBookmarkDidChanged)
     }
 }
 

@@ -193,7 +193,8 @@ extension String {
             return nil
         }
         
-        return URL(string: "https://double-indigo-crab.b-cdn.net/\(url.host)/\(size)")
+        let urlString = "https://double-indigo-crab.b-cdn.net/\(url.host ?? "")/\(size)"
+        return URL(string: urlString)
     }
 }
 

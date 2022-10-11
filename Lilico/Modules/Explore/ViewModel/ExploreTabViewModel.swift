@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 extension ExploreTabScreen {
     struct ViewState {
@@ -22,6 +23,30 @@ class ExploreTabViewModel: ViewModel {
     
     @Published
     var state: ExploreTabScreen.ViewState = .init()
+    
+    @Published var webBookmarkList: [WebBookmark] = []
+    
+    private var cancelSets = Set<AnyCancellable>()
+    
+    init() {
+        reloadWebBookmark()
+        
+        NotificationCenter.default.publisher(for: .webBookmarkDidChanged).sink { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.reloadWebBookmark()
+            }
+        }.store(in: &cancelSets)
+    }
+    
+    private func reloadWebBookmark() {
+        var list = DBManager.shared.getAllWebBookmark()
+        list = Array(list.prefix(10))
+        webBookmarkList = list
+    }
     
     func trigger(_ input: ExploreTabScreen.Action) {
         switch input {

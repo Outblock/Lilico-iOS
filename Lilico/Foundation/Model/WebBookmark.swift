@@ -23,6 +23,14 @@ class WebBookmark: Codable {
         return Date(timeIntervalSince1970: updateTime)
     }
     
+    var host: String {
+        if let url = URL(string: url) {
+            return url.host ?? ""
+        }
+        
+        return ""
+    }
+    
     var dbValues: [Any] {
         return [url, title, isFav, createTime, updateTime]
     }

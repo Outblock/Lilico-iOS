@@ -1207,6 +1207,8 @@
 		6AC476E928F3C993008503E6 /* WebBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC476E728F3C993008503E6 /* WebBookmark.swift */; };
 		6AC476EC28F40E50008503E6 /* BrowserBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC476EB28F40E50008503E6 /* BrowserBookmarkView.swift */; };
 		6AC476ED28F40E50008503E6 /* BrowserBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC476EB28F40E50008503E6 /* BrowserBookmarkView.swift */; };
+		6AC476EF28F41563008503E6 /* BrowserBookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC476EE28F41563008503E6 /* BrowserBookmarkViewModel.swift */; };
+		6AC476F028F41563008503E6 /* BrowserBookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC476EE28F41563008503E6 /* BrowserBookmarkViewModel.swift */; };
 		6AC62AF2286AE92B000876D9 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF1286AE92B000876D9 /* FirebaseDynamicLinks */; };
 		6AC62AF4286AE936000876D9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF3286AE936000876D9 /* FirebaseAuth */; };
 		6AC62AF6286AE948000876D9 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC62AF5286AE948000876D9 /* FirebaseCrashlytics */; };
@@ -1920,6 +1922,7 @@
 		6AC1AE6C289BAD3500F76C7A /* PinCodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeTextField.swift; sourceTree = "<group>"; };
 		6AC476E728F3C993008503E6 /* WebBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBookmark.swift; sourceTree = "<group>"; };
 		6AC476EB28F40E50008503E6 /* BrowserBookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserBookmarkView.swift; sourceTree = "<group>"; };
+		6AC476EE28F41563008503E6 /* BrowserBookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserBookmarkViewModel.swift; sourceTree = "<group>"; };
 		6AC717E1287EA61100AA5040 /* WalletSendAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendAmountViewModel.swift; sourceTree = "<group>"; };
 		6ACDD1682858688700F406EB /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		6ACDD16E28587A7700F406EB /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
@@ -4285,6 +4288,7 @@
 			isa = PBXGroup;
 			children = (
 				6AC476EB28F40E50008503E6 /* BrowserBookmarkView.swift */,
+				6AC476EE28F41563008503E6 /* BrowserBookmarkViewModel.swift */,
 			);
 			path = Bookmark;
 			sourceTree = "<group>";
@@ -5185,6 +5189,7 @@
 				6AEA375828A5152E004545D4 /* UIScrollView.swift in Sources */,
 				15DC214527819C56000B187A /* VTabNavigationPageItem.swift in Sources */,
 				15DC20C127819C56000B187A /* VSquareButton.swift in Sources */,
+				6AC476F028F41563008503E6 /* BrowserBookmarkViewModel.swift in Sources */,
 				6A4009162875699E00A77070 /* WalletReceiveViewModel.swift in Sources */,
 				15DC216F27819C56000B187A /* VDialog.swift in Sources */,
 				6A29115428CB3B88003295BD /* FlowScanTransfer.swift in Sources */,
@@ -5758,6 +5763,7 @@
 				15C58BA12868A4EE00BD4FC6 /* VTabNavigationPageItem.swift in Sources */,
 				15C58BA22868A4EE00BD4FC6 /* VSquareButton.swift in Sources */,
 				6A4009152875699D00A77070 /* WalletReceiveViewModel.swift in Sources */,
+				6AC476EF28F41563008503E6 /* BrowserBookmarkViewModel.swift in Sources */,
 				15C58BA32868A4EE00BD4FC6 /* VDialog.swift in Sources */,
 				6A29115328CB3B88003295BD /* FlowScanTransfer.swift in Sources */,
 				6A9850A128C74CA600A07C2D /* BrowserAuthzViewModel.swift in Sources */,

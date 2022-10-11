@@ -340,6 +340,7 @@ extension RouteMap {
         case signMessage(BrowserSignMessageViewModel)
         case searchExplore
         case claimDomain
+        case bookmark
     }
 }
 
@@ -376,6 +377,8 @@ extension RouteMap.Explore: RouterTarget {
             navi.pushViewController(inputVC, animated: false)
         case .claimDomain:
             navi.push(content: ClaimDomainView())
+        case .bookmark:
+            navi.present(content: BrowserBookmarkView())
         }
     }
 }

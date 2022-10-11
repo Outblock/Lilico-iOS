@@ -24,4 +24,6 @@ public extension Notification.Name {
     static let transactionCountDidChanged = Notification.Name("transactionCountDidChanged")
     
     static let watchAddressDidChanged = Notification.Name("watchAddressDidChanged")
+    
+    static let webBookmarkDidChanged = Notification.Name("webBookmarkDidChanged")
 }

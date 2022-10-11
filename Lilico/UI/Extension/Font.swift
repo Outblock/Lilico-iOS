@@ -60,6 +60,10 @@ extension Font {
     static func inter(size: CGFloat = 16, weight: Weight = .regular) -> Font {
         return Font.custom("Inter", size: size).weight(weight)
     }
+    
+    static func montserrat(size: CGFloat = 16, weight: Weight = .regular) -> Font {
+        return Font.custom("Montserrat", size: size).weight(weight)
+    }
 
     static func W700(size: CGFloat = 16) -> Font {
         return Font.inter(size: size, weight: .bold)

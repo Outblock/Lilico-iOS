@@ -361,6 +361,7 @@
 "browser_bookmark" = "Bookmark";
 "browser_bookmark_added" = "Bookmark added";
 "browser_bookmark_deleted" = "Bookmark deleted";
+"browser_bookmark_view" = "View";
 
 // Hold to send
 "hold_to_send" = "Hold to Send";

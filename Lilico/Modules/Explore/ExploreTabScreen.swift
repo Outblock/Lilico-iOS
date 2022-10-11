@@ -10,6 +10,8 @@ import Kingfisher
 import SwiftUIX
 import FancyScrollView
 
+private let BookmarkCellWidth: CGFloat = 56
+
 extension ExploreTabScreen: AppTabBarPageProtocol {
     static func tabTag() -> AppTabType {
         return .explore
@@ -29,6 +31,8 @@ struct ExploreTabScreen: View {
     @StateObject private var vm = ExploreTabViewModel()
     
     @State var text: String = ""
+    
+    var bookmarkColumns: [GridItem] = Array(repeating: .init(.fixed(BookmarkCellWidth), spacing: 14), count: 5)
     
     var header: some View {
         Button {
@@ -91,6 +95,12 @@ struct ExploreTabScreen: View {
                         //                            .aspectRatio(CGSize(width: 339, height: 92), contentMode: .fit)
                         
                         
+                        
+                        VStack(spacing: 18) {
+                            bookmarkHeader
+                            bookmarkGrid
+                        }
+                        .visibility(vm.webBookmarkList.isEmpty ? .gone : .visible)
                         
                         dAppHeader
                         dappList
@@ -212,6 +222,60 @@ struct ExploreTabScreen: View {
                 .cornerRadius(16)
             }
             .buttonStyle(ScaleButtonStyle())
+        }
+    }
+}
+
+extension ExploreTabScreen {
+    var bookmarkHeader: some View {
+        HStack {
+            Image(systemName: "square.grid.2x2.fill")
+                .font(.LL.caption)
+            Text("bookmark".localized)
+                .bold()
+            
+            Spacer()
+            
+            Button {
+                Router.route(to: RouteMap.Explore.bookmark)
+            } label: {
+                HStack(spacing: 6) {
+                    Text("browser_bookmark_view".localized)
+                        .font(.inter(size: 16, weight: .medium))
+                        .foregroundColor(Color(hex: "#7D7AFF"))
+                    
+                    Image("icon-search-arrow")
+                        .renderingMode(.template)
+                        .foregroundColor(Color(hex: "#C2C3F2"))
+                }
+                .contentShape(Rectangle())
+            }
+        }
+    }
+    
+    var bookmarkGrid: some View {
+        LazyVGrid(columns: bookmarkColumns, alignment: .center, spacing: 16) {
+            ForEach(vm.webBookmarkList, id: \.id) { bookmark in
+                createBookmarkItemView(bookmark: bookmark)
+            }
+        }
+    }
+    
+    func createBookmarkItemView(bookmark: WebBookmark) -> some View {
+        Button {
+            if let url = URL(string: bookmark.url) {
+                Router.route(to: RouteMap.Explore.browser(url))
+            }
+        } label: {
+            KFImage.url(bookmark.url.toFavIcon())
+                .placeholder({
+                    Image("placeholder")
+                        .resizable()
+                })
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: BookmarkCellWidth, height: BookmarkCellWidth)
+                .clipShape(Circle())
         }
     }
 }
