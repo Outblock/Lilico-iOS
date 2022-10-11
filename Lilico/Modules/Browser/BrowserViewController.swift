@@ -49,6 +49,11 @@ class BrowserViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onAddressBarClick))
         view.addressBarContainer.addGestureRecognizer(tapGesture)
         
+        view.bookmarkAction = { [weak self] isBookmark in
+            guard let self = self else { return }
+            self.onBookmarkAction(isBookmark)
+        }
+        
         return view
     }()
     
@@ -149,6 +154,8 @@ extension BrowserViewController {
         actionBarView.reloadBtn.isSelected = webView.isLoading
         actionBarView.progressView.isHidden = !webView.isLoading
         actionBarView.progressView.progress = webView.isLoading ? webView.estimatedProgress : 0
+        
+        actionBarView.updateMenu(currentURL: webView.url)
     }
     
     private func hideActionBarView() {
@@ -195,6 +202,27 @@ extension BrowserViewController {
     
     @objc private func onAddressBarClick() {
         showSearchInputView()
+    }
+    
+    private func onBookmarkAction(_ isBookmark: Bool) {
+        guard let url = webView.url else {
+            return
+        }
+        
+        if isBookmark {
+            let bookmark = WebBookmark()
+            bookmark.url = url.absoluteString
+            bookmark.title = webView.title ?? "bookmark"
+            bookmark.createTime = Date().timeIntervalSince1970
+            bookmark.updateTime = bookmark.createTime
+            DBManager.shared.save(webBookmark: bookmark)
+            HUD.success(title: "browser_bookmark_added".localized)
+        } else {
+            DBManager.shared.delete(webBookmarkByURL: url.absoluteString)
+            HUD.success(title: "browser_bookmark_deleted".localized)
+        }
+        
+        actionBarView.updateMenu(currentURL: webView.url)
     }
 }
 

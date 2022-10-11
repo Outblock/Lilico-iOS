@@ -358,7 +358,9 @@
 "browser_transaction_fee" = "TRANSACTION FEE";
 "browser_script" = "SCRIPT";
 "browser_script_title" = "Script";
-
+"browser_bookmark" = "Bookmark";
+"browser_bookmark_added" = "Bookmark added";
+"browser_bookmark_deleted" = "Bookmark deleted";
 
 // Hold to send
 "hold_to_send" = "Hold to Send";

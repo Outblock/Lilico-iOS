@@ -19,4 +19,6 @@ extension String {
     static let arrowTriangleDown = "arrowtriangle.down.fill"
     static let delete = "xmark"
     static let warning = "exclamationmark.circle.fill"
+    static let star = "star"
+    static let starFill = "star.fill"
 }

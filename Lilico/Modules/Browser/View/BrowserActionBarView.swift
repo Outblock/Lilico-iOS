@@ -10,11 +10,13 @@ import SnapKit
 import Hero
 
 let BrowserActionBarViewHeight: CGFloat = 60
-private let BtnWidth: CGFloat = 60
+private let BtnWidth: CGFloat = 50
 private let BtnHeight: CGFloat = 40
 private let ProgressViewHeight: CGFloat = 4
 
 class BrowserActionBarView: UIView {
+    var bookmarkAction: ((Bool) -> ())?
+    
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -29,7 +31,7 @@ class BrowserActionBarView: UIView {
     }()
     
     private lazy var stackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [backBtn, addressBarContainer, homeBtn])
+        let view = UIStackView(arrangedSubviews: [backBtn, reloadBtn, addressBarContainer, menuBtn, homeBtn])
         view.axis = .horizontal
         view.spacing = 0
         return view
@@ -39,6 +41,7 @@ class BrowserActionBarView: UIView {
         let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "icon-btn-back"))
         btn.tintColor = .white
+        btn.showsMenuAsPrimaryAction = true
         
         btn.snp.makeConstraints { make in
             make.width.equalTo(BtnWidth)
@@ -65,6 +68,23 @@ class BrowserActionBarView: UIView {
         btn.setImage(UIImage(named: "icon-btn-reload-stop")?.withRenderingMode(.alwaysTemplate), for: .selected)
         btn.tintColor = .white
         
+        btn.snp.makeConstraints { make in
+            make.width.equalTo(BtnWidth)
+            make.height.equalTo(BtnHeight)
+        }
+        
+        return btn
+    }()
+    
+    lazy var menuBtn: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(UIImage(named: "icon-btn-menu"))
+        btn.tintColor = .white
+        
+        btn.snp.makeConstraints { make in
+            make.width.equalTo(BtnWidth)
+            make.height.equalTo(BtnHeight)
+        }
         return btn
     }()
     
@@ -150,17 +170,30 @@ class BrowserActionBarView: UIView {
             make.edges.equalToSuperview()
         }
         
-        addressBarContainer.addSubview(reloadBtn)
-        reloadBtn.snp.makeConstraints { make in
-            make.top.right.bottom.equalToSuperview()
-            make.width.equalTo(reloadBtn.snp.height)
-        }
-        
         addressBarContainer.addSubview(addressLabel)
         addressLabel.snp.makeConstraints { make in
             make.left.equalTo(12)
             make.centerY.equalToSuperview()
-            make.right.equalTo(reloadBtn.snp.left)
+            make.right.equalTo(-12)
         }
+    }
+}
+
+extension BrowserActionBarView {
+    func updateMenu(currentURL: URL?) {
+        var children = [UIAction]()
+        
+        if let url = currentURL {
+            let isBookmarked = DBManager.shared.webBookmarkIsExist(url: url.absoluteString)
+            let bookmarkAction = UIAction(title: "browser_bookmark".localized, image: UIImage(systemName: isBookmarked ? .starFill : .star)) { [weak self] _ in
+                guard let self = self else { return }
+                self.bookmarkAction?(!isBookmarked)
+            }
+            
+            children.append(bookmarkAction)
+        }
+        
+        menuBtn.showsMenuAsPrimaryAction = true
+        menuBtn.menu = UIMenu(title: "", children: children)
     }
 }
