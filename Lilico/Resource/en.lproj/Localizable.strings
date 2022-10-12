@@ -335,6 +335,9 @@
 "release_load_more" = "Release to start loading";
 "loading_more" = "Loading...";
 "no_more_data" = "No more data";
+"restore_account_title" = "Found an old account";
+"restore_account_msg" = "It seems that you have logged in to the app before. Do you want to try to restore login?";
+"restore_account_failed" = "Restore account failed";
 
 // Transaction
 "pending_transaction" = "Pending Transaction";

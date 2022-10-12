@@ -24,12 +24,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        
         appConfig()
         commonConfig()
         flowConfig()
         FirebaseConfig.start()
         
         setupUI()
+        tryToRestoreAccountWhenFirstLaunch()
         
         #if DEBUG
             Atlantis.start()
@@ -125,6 +127,34 @@ extension AppDelegate {
 
     private func flowConfig() {
         FlowNetwork.setup()
+    }
+    
+    private func tryToRestoreAccountWhenFirstLaunch() {
+        if LocalUserDefaults.shared.tryToRestoreAccountFlag {
+            // has been triggered or no old account to restore
+            return
+        }
+        
+        self.window?.isUserInteractionEnabled = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.window?.isUserInteractionEnabled = true
+            
+            let alertVC = UIAlertController(title: "restore_account_title".localized, message: "restore_account_msg".localized, preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "cancel".localized, style: .cancel) { _ in
+                UserManager.shared.abortRestoreOldAccountOnFirstLaunch()
+            }
+            
+            let okAction = UIAlertAction(title: "restore".localized, style: .default) { _ in
+                UserManager.shared.tryToRestoreOldAccountOnFirstLaunch()
+            }
+            
+            alertVC.addAction(cancelAction)
+            alertVC.addAction(okAction)
+            
+            Router.topNavigationController()?.present(alertVC, animated: true)
+        }
     }
 }
 
