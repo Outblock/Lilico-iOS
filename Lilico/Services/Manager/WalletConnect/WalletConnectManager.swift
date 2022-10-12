@@ -220,12 +220,10 @@ class WalletConnectManager: ObservableObject {
                         let jsonString = try sessionRequest.params.get([String].self)
                         let data = jsonString[0].data(using: .utf8)!
                         let model = try JSONDecoder().decode(Signable.self, from: data)
-                        let tx = await model.interaction.toFlowTransaction()
-                        
                         print(model.roles)
                         
                         if model.roles.payer && !model.roles.proposer && !model.roles.authorizer {
-                            self?.approvePayerRequest(request: sessionRequest, transaction: tx, message: model.message)
+                            self?.approvePayerRequest(request: sessionRequest, model: model, message: model.message)
                             self?.navigateBackTodApp(topic: sessionRequest.topic)
                             return
                         }
@@ -416,15 +414,16 @@ extension WalletConnectManager {
         }
     }
     
-    private func approvePayerRequest(request: Request, transaction: Flow.Transaction, message: String) {
+    private func approvePayerRequest(request: Request, model: Signable, message: String) {
         guard let account = WalletManager.shared.getPrimaryWalletAddress() else {
             return
         }
         
         Task {
             do {
+                let tx = try await model.interaction.toFlowTransaction()
                 let data = Data(message.hexValue)
-                let signedData = try await RemoteConfigManager.shared.sign(transaction: transaction, signableData: data)
+                let signedData = try await RemoteConfigManager.shared.sign(transaction: tx, signableData: data)
                 let signature = signedData.hexValue
                 let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
                                            data: AuthnData(addr: account, fType: "CompositeSignature", fVsn: "1.0.0", services: nil, keyId: 0, signature: signature),
