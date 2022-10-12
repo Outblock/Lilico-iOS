@@ -114,6 +114,21 @@ public enum FCLWalletConnectMethod: String, Codable {
     case authn = "flow_authn"
     case authz = "flow_authz"
     case userSignature = "flow_user_sign"
+    
+    public init?(type: FCLServiceType) {
+        switch type {
+        case .preAuthz:
+            self = .preAuthz
+        case .authn:
+            self = .authn
+        case .authz:
+            self = .authz
+        case .userSignature:
+            self = .userSignature
+        default:
+            return nil
+        }
+    }
 }
 
 public enum FCLServiceMethod: String, Codable {

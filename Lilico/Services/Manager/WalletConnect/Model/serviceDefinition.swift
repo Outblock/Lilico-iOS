@@ -30,63 +30,8 @@ func serviceDefinition(address: String, keyId: Int, type: FCLServiceType) -> Ser
                                     color: "#FC814A",
                                     supportEmail: "hi@lilico.app",
                                     website: "https://link.lilico.app/wc")
-        service.endpoint = FCLWalletConnectMethod.authn.rawValue
+        
     }
-    
-    if type == .authz {
-        service.endpoint = FCLWalletConnectMethod.authz.rawValue
-    }
-    
-    if type == .preAuthz {
-        service.endpoint = FCLWalletConnectMethod.preAuthz.rawValue
-    }
-    
-    if type == .userSignature {
-        service.endpoint = FCLWalletConnectMethod.userSignature.rawValue
-    }
-    
+    service.endpoint = FCLWalletConnectMethod(type: type)?.rawValue
     return service
 }
-
-func serviceRoleDefinition(address: String, keyId: Int, type: FCLServiceType) -> Service {
-    
-    var service = Service(fType: "Service",
-                          fVsn: "1.0.0",
-                          type: type,
-                          method: .none,
-                          endpoint: nil,
-                          uid: "https://link.lilico.app/wc",
-                          id: nil,
-                          identity: nil,
-                          provider: nil, params: nil)
-    
-    if type == .authn {
-        service.id = address
-        service.method = .walletConnect
-        service.identity = Identity(address: address, keyId: keyId)
-        service.provider = Provider(fType: "ServiceProvider",
-                                    fVsn: "1.0.0",
-                                    address: address,
-                                    name: "Lilico Wallet",
-                                    description: "A Mobile crypto wallet on Flow built for explorers, collectors, and gamers.",
-                                    color: "#FC814A",
-                                    supportEmail: "hi@lilico.app",
-                                    website: "https://link.lilico.app/wc")
-        service.endpoint = "flow_authn"
-    }
-    
-    if type == .authz {
-        service.method = .walletConnect
-        service.identity = Identity(address: address, keyId: keyId)
-        service.endpoint = "flow_authz"
-    }
-    
-    if type == .userSignature {
-        service.method = .walletConnect
-        service.identity = Identity(address: address, keyId: keyId)
-        service.endpoint = "flow_user_sign"
-    }
-    
-    return service
-}
-

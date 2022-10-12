@@ -191,6 +191,7 @@ struct WalletReceiveView: RouteableView {
                         .fontWeight(.semibold)
                         .foregroundColor(.LL.Neutrals.neutrals6)
                         .padding(.bottom, 20)
+                        .colorScheme(.light)
                 } icon: {
                     Image("Copy")
                 }
