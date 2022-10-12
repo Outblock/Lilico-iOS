@@ -278,6 +278,7 @@ class WalletConnectManager: ObservableObject {
                                 } else {
                                     self?.rejectRequest(request: sessionRequest)
                                 }
+                                self?.navigateBackTodApp(topic: sessionRequest.topic)
                             }
                             
                             Router.route(to: RouteMap.Explore.signMessage(vm))
@@ -421,9 +422,9 @@ extension WalletConnectManager {
         
         Task {
             do {
-                let tx = try await model.interaction.toFlowTransaction()
+                let tx = model.voucher.toFCLVoucher()
                 let data = Data(message.hexValue)
-                let signedData = try await RemoteConfigManager.shared.sign(transaction: tx, signableData: data)
+                let signedData = try await RemoteConfigManager.shared.sign(voucher: tx, signableData: data)
                 let signature = signedData.hexValue
                 let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
                                            data: AuthnData(addr: account, fType: "CompositeSignature", fVsn: "1.0.0", services: nil, keyId: 0, signature: signature),

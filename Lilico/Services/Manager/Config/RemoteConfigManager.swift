@@ -80,4 +80,10 @@ extension RemoteConfigManager: FlowSigner {
         let signature:SignPayerResponse = try await Network.requestWithRawModel(FirebaseAPI.signAsPayer(request))
         return Data(hex: signature.envelopeSigs.sig)
     }
+    
+    func sign(voucher: FCLVoucher, signableData: Data) async throws -> Data {
+        let request = SignPayerRequest(transaction: voucher, message: .init(envelopeMessage: signableData.hexValue))
+        let signature:SignPayerResponse = try await Network.requestWithRawModel(FirebaseAPI.signAsPayer(request))
+        return Data(hex: signature.envelopeSigs.sig)
+    }
 }
