@@ -23,6 +23,7 @@ extension LocalUserDefaults {
         case panelHolderFrame
         case transactionCount
         case customWatchAddress
+        case tryToRestoreAccountFlag
     }
 
     enum FlowNetworkType: String {
@@ -145,4 +146,6 @@ class LocalUserDefaults: ObservableObject {
             NotificationCenter.default.post(name: .watchAddressDidChanged, object: nil)
         }
     }
+    
+    @AppStorage(Keys.tryToRestoreAccountFlag.rawValue) var tryToRestoreAccountFlag: Bool = false
 }

@@ -19,7 +19,6 @@ extension WalletManager {
     static let mnemonicStrength: Int32 = 128
     private static let defaultBundleID = "io.outblock.lilico"
     private static let mnemonicStoreKeyPrefix = "lilico.mnemonic"
-    private static let mnemonicPwdStoreKey = "lilico.mnemonic.password"
     private static let walletFetchInterval: TimeInterval = 20
     
     private enum CacheKeys: String {
@@ -50,8 +49,6 @@ class WalletManager: ObservableObject {
     private var cancellableSet = Set<AnyCancellable>()
 
     init() {
-        generateMnemonicPwdIfNeeded()
-
         if UserManager.shared.isLoggedIn {
             restoreMnemonicForCurrentUser()
         }
@@ -251,9 +248,7 @@ extension WalletManager {
     }
 
     func storeAndActiveMnemonicToKeychain(_ mnemonic: String, uid: String) throws {
-        guard var password = getMnemoicPwd() else {
-            throw LLError.emptyEncryptKey
-        }
+        var password = getMnemoicPwd(uid: uid)
 
         guard var data = mnemonic.data(using: .utf8) else {
             throw LLError.createWalletFailed
@@ -264,7 +259,7 @@ extension WalletManager {
             data = Data()
         }
 
-        var encodedData = try WalletManager.encryptionAES(key: password, data: data)
+        var encodedData = try WalletManager.encryptionChaChaPoly(key: password, data: data)
         defer {
             encodedData = Data()
         }
@@ -274,17 +269,34 @@ extension WalletManager {
             throw LLError.createWalletFailed
         }
     }
-
-    private func generateMnemonicPwdIfNeeded() {
-        if getMnemoicPwd() == nil {
-            try? set(toMainKeychain: UUID().uuidString, forKey: WalletManager.mnemonicPwdStoreKey)
-        }
-    }
 }
 
 // MARK: - Mnemonic Restore
 
 extension WalletManager {
+    func getMnemonicFromKeychain(uid: String) -> String? {
+        var pwd = getMnemoicPwd(uid: uid)
+        
+        if var encryptedData = getEncryptedMnemonicData(uid: uid),
+           var decryptedData = try? WalletManager.decryptionChaChaPoly(key: pwd, data: encryptedData),
+           var mnemonic = String(data: decryptedData, encoding: .utf8)
+        {
+            defer {
+                encryptedData = Data()
+                decryptedData = Data()
+                mnemonic = ""
+            }
+
+            return mnemonic
+        }
+        
+        defer {
+            pwd = ""
+        }
+        
+        return nil
+    }
+    
     private func restoreMnemonicForCurrentUser() {
         if !UserManager.shared.isAnonymous, let uid = UserManager.shared.getUid() {
             if !restoreMnemonicFromKeychain(uid: uid) {
@@ -294,9 +306,10 @@ extension WalletManager {
     }
 
     private func restoreMnemonicFromKeychain(uid: String) -> Bool {
+        var pwd = getMnemoicPwd(uid: uid)
+        
         if var encryptedData = getEncryptedMnemonicData(uid: uid),
-           var pwd = getMnemoicPwd(),
-           var decryptedData = try? WalletManager.decryptionAES(key: pwd, data: encryptedData),
+           var decryptedData = try? WalletManager.decryptionChaChaPoly(key: pwd, data: encryptedData),
            var mnemonic = String(data: decryptedData, encoding: .utf8)
         {
             defer {
@@ -333,8 +346,8 @@ extension WalletManager {
         return getData(fromMainKeychain: getMnemonicStoreKey(uid: uid))
     }
 
-    private func getMnemoicPwd() -> String? {
-        return getString(fromMainKeychain: WalletManager.mnemonicPwdStoreKey)
+    private func getMnemoicPwd(uid: String) -> String {
+        return uid.md5
     }
 }
 
@@ -490,6 +503,16 @@ extension WalletManager {
             throw LLError.aesEncryptionFailed
         }
         return decrypted
+    }
+    
+    static func encryptionChaChaPoly(key: String, data: Data) throws -> Data {
+        let cipher = ChaChaPolyCipher(key: key)
+        return try cipher!.encrypt(data: data)
+    }
+    
+    static func decryptionChaChaPoly(key: String, data: Data) throws -> Data {
+        let cipher = ChaChaPolyCipher(key: key)
+        return try cipher!.decrypt(combinedData: data)
     }
 }
 

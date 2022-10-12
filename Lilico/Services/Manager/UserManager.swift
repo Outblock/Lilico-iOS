@@ -28,6 +28,8 @@ class UserManager: ObservableObject {
     @Published var isAnonymous: Bool = true
 
     init() {
+        checkIfHasOldAccount()
+        
         refreshFlags()
         uploadUserNameIfNeeded()
         loginAnonymousIfNeeded()
@@ -36,6 +38,17 @@ class UserManager: ObservableObject {
             Task {
                 try? await fetchUserInfo()
             }
+        }
+    }
+    
+    private func checkIfHasOldAccount() {
+        if LocalUserDefaults.shared.tryToRestoreAccountFlag == true {
+            return
+        }
+        
+        if !hasOldAccount() {
+            LocalUserDefaults.shared.tryToRestoreAccountFlag = true
+            return
         }
     }
 }
@@ -61,6 +74,41 @@ extension UserManager {
 // MARK: - Restore Login
 
 extension UserManager {
+    func hasOldAccount() -> Bool {
+        if let user = Auth.auth().currentUser, !user.isAnonymous {
+            return true
+        }
+        
+        return false
+    }
+    
+    func tryToRestoreOldAccountOnFirstLaunch() {
+        LocalUserDefaults.shared.tryToRestoreAccountFlag = true
+        
+        HUD.loading()
+        
+        guard let uid = getUid(), let mnemonic = WalletManager.shared.getMnemonicFromKeychain(uid: uid) else {
+            HUD.dismissLoading()
+            HUD.error(title: "restore_account_failed".localized)
+            return
+        }
+        
+        Task {
+            do {
+                try await UserManager.shared.restoreLogin(withMnemonic: mnemonic)
+                HUD.dismissLoading()
+                HUD.success(title: "login_success".localized)
+            } catch {
+                HUD.dismissLoading()
+                HUD.error(title: "restore_account_failed".localized)
+            }
+        }
+    }
+    
+    func abortRestoreOldAccountOnFirstLaunch() {
+        LocalUserDefaults.shared.tryToRestoreAccountFlag = true
+    }
+    
     func restoreLogin(withMnemonic mnemonic: String) async throws {
         guard let hdWallet = WalletManager.shared.createHDWallet(mnemonic: mnemonic) else {
             throw LLError.incorrectPhrase
