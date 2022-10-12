@@ -324,6 +324,57 @@ struct Interaction: Codable {
     }
 }
 
+extension Interaction {
+    func toFlowTransaction() async throws -> Flow.Transaction {
+        let proposalKey = try await createFlowProposalKey()
+
+        guard let payerAccount = payer,
+              let payerAddress = accounts[payerAccount]?.addr
+        else {
+            throw FCLError.missingPayer
+        }
+
+        var tx = Flow.Transaction(script: Flow.Script(text: message.cadence ?? ""),
+                                  arguments: message.arguments.compactMap { tempId in arguments[tempId]?.asArgument },
+                                  referenceBlockId: Flow.ID(hex: message.refBlock ?? ""),
+                                  gasLimit: BigUInt(message.computeLimit ?? 100),
+                                  proposalKey: proposalKey,
+                                  payer: Flow.Address(hex: payerAddress),
+                                  authorizers: authorizations
+                                      .compactMap { cid in accounts[cid]?.addr }
+                                      .uniqued()
+                                      .compactMap { Flow.Address(hex: $0) })
+
+        let insideSigners = findInsideSigners
+        insideSigners.forEach { address in
+            if let account = accounts[address],
+               let address = account.addr,
+               let keyId = account.keyID,
+               let signature = account.signature
+            {
+                tx.addPayloadSignature(address: Flow.Address(hex: address),
+                                       keyIndex: keyId,
+                                       signature: Data(signature.hexValue))
+            }
+        }
+
+        let outsideSigners = findOutsideSigners
+
+        outsideSigners.forEach { address in
+            if let account = accounts[address],
+               let address = account.addr,
+               let keyId = account.keyID,
+               let signature = account.signature
+            {
+                tx.addEnvelopeSignature(address: Flow.Address(hex: address),
+                                        keyIndex: keyId,
+                                        signature: Data(signature.hexValue))
+            }
+        }
+        return tx
+    }
+}
+
 struct Block: Codable {
     var id: String?
     var height: Int64?

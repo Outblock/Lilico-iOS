@@ -13,6 +13,46 @@ func serviceDefinition(address: String, keyId: Int, type: FCLServiceType) -> Ser
     var service = Service(fType: "Service",
                           fVsn: "1.0.0",
                           type: type,
+                          method: .walletConnect,
+                          endpoint: nil,
+                          uid: "https://link.lilico.app/wc",
+                          id: nil,
+                          identity: Identity(address: address, keyId: keyId),
+                          provider: nil, params: nil)
+    
+    if type == .authn {
+        service.id = address
+        service.provider = Provider(fType: "ServiceProvider",
+                                    fVsn: "1.0.0",
+                                    address: address,
+                                    name: "Lilico Wallet",
+                                    description: "A Mobile crypto wallet on Flow built for explorers, collectors, and gamers.",
+                                    color: "#FC814A",
+                                    supportEmail: "hi@lilico.app",
+                                    website: "https://link.lilico.app/wc")
+        service.endpoint = FCLWalletConnectMethod.authn.rawValue
+    }
+    
+    if type == .authz {
+        service.endpoint = FCLWalletConnectMethod.authz.rawValue
+    }
+    
+    if type == .preAuthz {
+        service.endpoint = FCLWalletConnectMethod.preAuthz.rawValue
+    }
+    
+    if type == .userSignature {
+        service.endpoint = FCLWalletConnectMethod.userSignature.rawValue
+    }
+    
+    return service
+}
+
+func serviceRoleDefinition(address: String, keyId: Int, type: FCLServiceType) -> Service {
+    
+    var service = Service(fType: "Service",
+                          fVsn: "1.0.0",
+                          type: type,
                           method: .none,
                           endpoint: nil,
                           uid: "https://link.lilico.app/wc",
@@ -49,3 +89,4 @@ func serviceDefinition(address: String, keyId: Int, type: FCLServiceType) -> Ser
     
     return service
 }
+

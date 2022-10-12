@@ -15,6 +15,7 @@ import Combine
 import WalletCore
 import UIKit
 
+@MainActor
 class WalletConnectManager: ObservableObject {
     static let shared = WalletConnectManager()
     
@@ -140,11 +141,6 @@ class WalletConnectManager: ObservableObject {
                     if result {
                         // TODO: Handle network mismatch
                         self?.approveSession(proposal: sessionProposal)
-                        
-                        if let url = URL(string: sessionProposal.proposer.url) {
-                            UIApplication.shared.open(url, options: [:])
-                        }
-                        
                     } else {
                         self?.rejectSession(proposal: sessionProposal)
                     }
@@ -163,17 +159,47 @@ class WalletConnectManager: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] sessionRequest in
                 print("[RESPONDER] WC: Did receive session request")
+                
+                let address = WalletManager.shared.address.hex.addHexPrefix()
+                let keyId = 0 // TODO: FIX ME with dynmaic keyIndex
+                
                 switch sessionRequest.method {
                 case FCLWalletConnectMethod.authn.rawValue:
-                    let address = WalletManager.shared.address.hex.addHexPrefix()
-                    let keyId = 0 // TODO: FIX ME with dynmaic keyIndex
+                    
                     let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
                                                data: AuthnData(addr: address, fType: "AuthnResponse", fVsn: "1.0.0",
                                                                services: [
+                                                                serviceDefinition(address: RemoteConfigManager.shared.payer, keyId: RemoteConfigManager.shared.keyIndex, type: .preAuthz),
                                                                 serviceDefinition(address: address, keyId: keyId, type: .authn),
                                                                 serviceDefinition(address: address, keyId: keyId, type: .authz),
                                                                 serviceDefinition(address: address, keyId: keyId, type: .userSignature)
                                                                ]),
+                                               reason: nil,
+                                               compositeSignature: nil)
+                    let response = JSONRPCResponse<AnyCodable>(id: sessionRequest.id, result: AnyCodable(result))
+                    
+                    Task {
+                        do {
+                            try await Sign.instance.respond(topic: sessionRequest.topic, response: .response(response))
+                            
+                            self?.navigateBackTodApp(topic: sessionRequest.topic)
+                            
+                        } catch {
+                            print("[WALLET] Respond Error: \(error.localizedDescription)")
+//                            self?.rejectRequest(request: sessionRequest)
+                        }
+                    }
+                    
+                case FCLWalletConnectMethod.preAuthz.rawValue:
+                    
+                    let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
+                                               data: AuthnData(addr: address, fType: "AuthnResponse", fVsn: "1.0.0",
+                                                               services: nil,
+                                                               proposer: serviceDefinition(address: address, keyId: keyId, type: .authz),
+                                                               payer:
+                                                                [serviceDefinition(address: RemoteConfigManager.shared.payer, keyId: RemoteConfigManager.shared.keyIndex, type: .authz)],
+                                                               authorization:[serviceDefinition(address: address, keyId: keyId, type: .authz)]
+                                                               ),
                                                reason: nil,
                                                compositeSignature: nil)
                     let response = JSONRPCResponse<AnyCodable>(id: sessionRequest.id, result: AnyCodable(result))
@@ -194,9 +220,19 @@ class WalletConnectManager: ObservableObject {
                         let jsonString = try sessionRequest.params.get([String].self)
                         let data = jsonString[0].data(using: .utf8)!
                         let model = try JSONDecoder().decode(Signable.self, from: data)
-
+                        let tx = await model.interaction.toFlowTransaction()
+                        
+                        print(model.roles)
+                        
+                        if model.roles.payer && !model.roles.proposer && !model.roles.authorizer {
+                            self?.approvePayerRequest(request: sessionRequest, transaction: tx, message: model.message)
+                            self?.navigateBackTodApp(topic: sessionRequest.topic)
+                            return
+                        }
+                        
                         if let session = self?.activeSessions.first(where: { $0.topic == sessionRequest.topic }) {
                             let request = RequestInfo(cadence: model.cadence ?? "", agrument: model.args, name: session.peer.name, descriptionText: session.peer.description, dappURL: session.peer.url, iconURL: session.peer.icons.first ?? "", chains: Set(arrayLiteral: sessionRequest.chainId), methods: nil, pendingRequests: [], message: model.message)
+                            
                             self?.currentRequestInfo = request
                             
                             let authzVM = BrowserAuthzViewModel(title: request.name, url: request.dappURL, logo: request.iconURL, cadence: request.cadence) { result in
@@ -209,6 +245,11 @@ class WalletConnectManager: ObservableObject {
                             
                             Router.route(to: RouteMap.Explore.authz(authzVM))
                         }
+                        
+                        if model.roles.payer {
+                            self?.navigateBackTodApp(topic: sessionRequest.topic)
+                        }
+                        
                         
                     } catch {
                         print(error)
@@ -287,6 +328,15 @@ class WalletConnectManager: ObservableObject {
 //                self?.showSessionRequest(sessionRequest)
             }.store(in: &publishers)
     }
+    
+    private func navigateBackTodApp(topic: String) {
+        DispatchQueue.main.async {
+            if  let session = self.activeSessions.first(where: { $0.topic == topic }),
+                let url = URL(string: session.peer.url) {
+                UIApplication.shared.open(url, options: [:])
+            }
+        }
+    }
 }
 
 // MARK: - Action
@@ -344,6 +394,37 @@ extension WalletConnectManager {
             do {
                 let data = Data(requestInfo.message.hexValue)
                 let signedData = try await WalletManager.shared.sign(signableData: data)
+                let signature = signedData.hexValue
+                let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
+                                           data: AuthnData(addr: account, fType: "CompositeSignature", fVsn: "1.0.0", services: nil, keyId: 0, signature: signature),
+                                           reason: nil,
+                                           compositeSignature: nil)
+                let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(result))
+                try await Sign.instance.respond(topic: request.topic, response: .response(response))
+                
+                HUD.success(title: "approved".localized)
+            } catch {
+                debugPrint("WalletConnectManager -> approveRequest failed: \(error)")
+                HUD.error(title: "approve_failed".localized)
+                
+                do {
+                    try await Sign.instance.respond(topic: request.topic, response: .error(.init(id: 0, error: .init(code: 0, message: error.localizedDescription))))
+                } catch {
+                    debugPrint("WalletConnectManager -> approveRequest, report error failed: \(error)")
+                }
+            }
+        }
+    }
+    
+    private func approvePayerRequest(request: Request, transaction: Flow.Transaction, message: String) {
+        guard let account = WalletManager.shared.getPrimaryWalletAddress() else {
+            return
+        }
+        
+        Task {
+            do {
+                let data = Data(message.hexValue)
+                let signedData = try await RemoteConfigManager.shared.sign(transaction: transaction, signableData: data)
                 let signature = signedData.hexValue
                 let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
                                            data: AuthnData(addr: account, fType: "CompositeSignature", fVsn: "1.0.0", services: nil, keyId: 0, signature: signature),

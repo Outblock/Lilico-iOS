@@ -17,10 +17,6 @@ protocol SymmetricEncryption {
 
 enum EncryptionError: Swift.Error {
     case encryptFailed
-    
-    var errorDescription: String? {
-        String.localized("generic_error_body", shared: true)
-    }
 }
 
 class ChaChaPolyCipher: SymmetricEncryption {
