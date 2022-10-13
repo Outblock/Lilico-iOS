@@ -239,13 +239,16 @@ extension ExploreTabScreen {
             Button {
                 Router.route(to: RouteMap.Explore.bookmark)
             } label: {
-                HStack(spacing: 6) {
+                HStack(spacing: 5) {
                     Text("browser_bookmark_view".localized)
                         .font(.inter(size: 16, weight: .medium))
                         .foregroundColor(Color(hex: "#7D7AFF"))
                     
                     Image("icon-search-arrow")
                         .renderingMode(.template)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 15, height: 11)
                         .foregroundColor(Color(hex: "#C2C3F2"))
                 }
                 .contentShape(Rectangle())

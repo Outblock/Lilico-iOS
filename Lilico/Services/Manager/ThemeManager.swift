@@ -37,7 +37,7 @@ class ThemeManager: ObservableObject {
             return style.toUIKitEnum
         }
         
-        return .unspecified
+        return .dark
     }
 }
 
@@ -71,7 +71,7 @@ extension ColorScheme {
         case .dark:
             return .dark
         default:
-            return .unspecified
+            return .dark
         }
     }
 
