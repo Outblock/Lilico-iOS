@@ -55,4 +55,21 @@ class HUD {
     static func dismissLoading() {
         ProgressHUD.dismiss()
     }
+    
+    static func showAlert(title: String, msg: String, cancelTitle: String = "cancel".localized, cancelAction: @escaping () -> (), confirmTitle: String, confirmAction: @escaping () -> ()) {
+        let alertVC = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { _ in
+            cancelAction()
+        }
+        
+        let okAction = UIAlertAction(title: confirmTitle, style: .default) { _ in
+            confirmAction()
+        }
+        
+        alertVC.addAction(cancelAction)
+        alertVC.addAction(okAction)
+        
+        Router.topNavigationController()?.present(alertVC, animated: true)
+    }
 }

@@ -338,6 +338,7 @@
 "restore_account_title" = "Found an old account";
 "restore_account_msg" = "It seems that you have logged in to the app before. Do you want to try to restore login?";
 "restore_account_failed" = "Restore account failed";
+"retry" = "Retry";
 
 // Transaction
 "pending_transaction" = "Pending Transaction";

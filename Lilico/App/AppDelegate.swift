@@ -139,21 +139,7 @@ extension AppDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.window?.isUserInteractionEnabled = true
-            
-            let alertVC = UIAlertController(title: "restore_account_title".localized, message: "restore_account_msg".localized, preferredStyle: .alert)
-            
-            let cancelAction = UIAlertAction(title: "cancel".localized, style: .cancel) { _ in
-                UserManager.shared.abortRestoreOldAccountOnFirstLaunch()
-            }
-            
-            let okAction = UIAlertAction(title: "restore".localized, style: .default) { _ in
-                UserManager.shared.tryToRestoreOldAccountOnFirstLaunch()
-            }
-            
-            alertVC.addAction(cancelAction)
-            alertVC.addAction(okAction)
-            
-            Router.topNavigationController()?.present(alertVC, animated: true)
+            UserManager.shared.tryToRestoreOldAccountOnFirstLaunch()
         }
     }
 }

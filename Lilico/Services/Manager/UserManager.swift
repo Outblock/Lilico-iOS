@@ -100,13 +100,14 @@ extension UserManager {
                 HUD.success(title: "login_success".localized)
             } catch {
                 HUD.dismissLoading()
-                HUD.error(title: "restore_account_failed".localized)
+                
+                HUD.showAlert(title: "", msg: "restore_account_failed".localized, cancelAction: {
+                    
+                }, confirmTitle: "retry".localized) {
+                    self.tryToRestoreOldAccountOnFirstLaunch()
+                }
             }
         }
-    }
-    
-    func abortRestoreOldAccountOnFirstLaunch() {
-        LocalUserDefaults.shared.tryToRestoreAccountFlag = true
     }
     
     func restoreLogin(withMnemonic mnemonic: String) async throws {
