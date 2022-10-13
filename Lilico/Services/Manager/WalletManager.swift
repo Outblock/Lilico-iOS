@@ -248,18 +248,15 @@ extension WalletManager {
     }
 
     func storeAndActiveMnemonicToKeychain(_ mnemonic: String, uid: String) throws {
-        var password = getMnemoicPwd(uid: uid)
-
         guard var data = mnemonic.data(using: .utf8) else {
             throw LLError.createWalletFailed
         }
 
         defer {
-            password = ""
             data = Data()
         }
 
-        var encodedData = try WalletManager.encryptionChaChaPoly(key: password, data: data)
+        var encodedData = try WalletManager.encryptionChaChaPoly(key: uid, data: data)
         defer {
             encodedData = Data()
         }
@@ -275,10 +272,8 @@ extension WalletManager {
 
 extension WalletManager {
     func getMnemonicFromKeychain(uid: String) -> String? {
-        var pwd = getMnemoicPwd(uid: uid)
-        
         if var encryptedData = getEncryptedMnemonicData(uid: uid),
-           var decryptedData = try? WalletManager.decryptionChaChaPoly(key: pwd, data: encryptedData),
+           var decryptedData = try? WalletManager.decryptionChaChaPoly(key: uid, data: encryptedData),
            var mnemonic = String(data: decryptedData, encoding: .utf8)
         {
             defer {
@@ -288,10 +283,6 @@ extension WalletManager {
             }
 
             return mnemonic
-        }
-        
-        defer {
-            pwd = ""
         }
         
         return nil
@@ -306,15 +297,12 @@ extension WalletManager {
     }
 
     private func restoreMnemonicFromKeychain(uid: String) -> Bool {
-        var pwd = getMnemoicPwd(uid: uid)
-        
         if var encryptedData = getEncryptedMnemonicData(uid: uid),
-           var decryptedData = try? WalletManager.decryptionChaChaPoly(key: pwd, data: encryptedData),
+           var decryptedData = try? WalletManager.decryptionChaChaPoly(key: uid, data: encryptedData),
            var mnemonic = String(data: decryptedData, encoding: .utf8)
         {
             defer {
                 encryptedData = Data()
-                pwd = ""
                 decryptedData = Data()
                 mnemonic = ""
             }
@@ -344,10 +332,6 @@ extension WalletManager {
 
     private func getEncryptedMnemonicData(uid: String) -> Data? {
         return getData(fromMainKeychain: getMnemonicStoreKey(uid: uid))
-    }
-
-    private func getMnemoicPwd(uid: String) -> String {
-        return uid.md5
     }
 }
 
@@ -506,13 +490,17 @@ extension WalletManager {
     }
     
     static func encryptionChaChaPoly(key: String, data: Data) throws -> Data {
-        let cipher = ChaChaPolyCipher(key: key)
-        return try cipher!.encrypt(data: data)
+        guard let cipher = ChaChaPolyCipher(key: key) else {
+            throw EncryptionError.initFailed
+        }
+        return try cipher.encrypt(data: data)
     }
     
     static func decryptionChaChaPoly(key: String, data: Data) throws -> Data {
-        let cipher = ChaChaPolyCipher(key: key)
-        return try cipher!.decrypt(combinedData: data)
+        guard let cipher = ChaChaPolyCipher(key: key) else {
+            throw EncryptionError.initFailed
+        }
+        return try cipher.decrypt(combinedData: data)
     }
 }
 

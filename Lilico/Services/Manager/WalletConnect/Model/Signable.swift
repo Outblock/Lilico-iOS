@@ -557,3 +557,18 @@ extension Array where Element: Hashable {
         return filter { seen.insert($0).inserted }
     }
 }
+
+public struct BaseConfigRequest: Codable {
+    var app: [String: String]?
+    var service: [String: String]?
+    var client: ClientInfo
+
+    var appIdentifier: String?
+    var accountProofNonce: String?
+}
+
+public struct ClientInfo: Codable {
+    var fclVersion: String?
+    var fclLibrary: URL?
+    var hostname: String?
+}

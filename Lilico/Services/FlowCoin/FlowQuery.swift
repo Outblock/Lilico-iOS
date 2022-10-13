@@ -16,7 +16,7 @@ typealias NFTCadence = LLCadence<LLCadenceAction.nft>
 enum LLCadenceAction {
     enum token {}
     enum balance {}
-    enum nft{}
+    enum nft {}
 }
 
 struct LLCadence<T> {}
@@ -27,19 +27,25 @@ extension LLCadence where T == LLCadenceAction.token {
         
         let cadence =
             """
-              import FungibleToken from 0xFUNGIBLETOKEN
+              import FungibleToken from 0xFungibleToken
               <TokenImports>
               <TokenFunctions>
               pub fun main(address: Address) : [Bool] {
                 return [<TokenCall>]
               }
             """
-            .replace(by: ScriptAddress.addressMap())
+            
             .replacingOccurrences(of: "<TokenImports>", with: importRow(with: tokens, at: network))
             .replacingOccurrences(of: "<TokenFunctions>", with: tokenEnableFunc(with: tokens, at: network))
             .replacingOccurrences(of: "<TokenCall>", with: tokenEnableCalls(with: tokens, at: network))
 
         return cadence
+    }
+    
+    static func tokenTransfer(token: TokenModel, at network: Flow.ChainID) -> String {
+        return CadenceTemplate.transferTokenWithInbox
+            .replace(by: ScriptAddress.addressMap())
+            .buildTokenInfo(token, chainId: network)
     }
 
     static private func tokenEnableFunc(with tokens: [TokenModel], at network: Flow.ChainID) -> String {
@@ -79,7 +85,7 @@ extension LLCadence where T == LLCadenceAction.balance {
     static func balance(with tokens: [TokenModel], at network: Flow.ChainID) -> String {
         let cadence =
             """
-            import FungibleToken from 0xFUNGIBLETOKEN
+            import FungibleToken from 0xFungibleToken
             <TokenImports>
             <TokenFunctions>
             pub fun main(address: Address) : [UFix64] {
@@ -173,7 +179,7 @@ extension LLCadence where T == LLCadenceAction.nft {
 
         let cadence =
             """
-            import NonFungibleToken from 0xNONFUNGIBLETOKEN
+            import NonFungibleToken from 0xNonFungibleToken
             <TokenImports>
             
             <TokenFunctions>
@@ -207,7 +213,7 @@ extension LLCadence where T == LLCadenceAction.nft {
 
         let cadence =
             """
-            import NonFungibleToken from 0xNONFUNGIBLETOKEN
+            import NonFungibleToken from 0xNonFungibleToken
             <TokenImports>
             
             pub fun main(address: Address) : {String: [UInt64]}  {

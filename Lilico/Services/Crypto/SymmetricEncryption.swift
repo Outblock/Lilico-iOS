@@ -17,6 +17,7 @@ protocol SymmetricEncryption {
 
 enum EncryptionError: Swift.Error {
     case encryptFailed
+    case initFailed
 }
 
 class ChaChaPolyCipher: SymmetricEncryption {
@@ -29,8 +30,8 @@ class ChaChaPolyCipher: SymmetricEncryption {
     }
     
     func decrypt(combinedData: Data) throws -> Data {
-        let sealedBox = try! ChaChaPoly.SealedBox(combined: combinedData)
-        let decryptedData = try! ChaChaPoly.open(sealedBox, using: key)
+        let sealedBox = try ChaChaPoly.SealedBox(combined: combinedData)
+        let decryptedData = try ChaChaPoly.open(sealedBox, using: key)
         return decryptedData
     }
     
@@ -58,8 +59,8 @@ class AESGCMCipher: SymmetricEncryption {
     }
     
     func decrypt(combinedData: Data) throws -> Data {
-        let sealedBox = try! AES.GCM.SealedBox(combined: combinedData)
-        let decryptedData = try! AES.GCM.open(sealedBox, using: key)
+        let sealedBox = try AES.GCM.SealedBox(combined: combinedData)
+        let decryptedData = try AES.GCM.open(sealedBox, using: key)
         return decryptedData
     }
     

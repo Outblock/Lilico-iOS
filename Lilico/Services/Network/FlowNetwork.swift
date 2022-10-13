@@ -36,7 +36,7 @@ extension FlowNetwork {
     }
     
     static func enableToken(at address: Flow.Address, token: TokenModel) async throws -> Flow.ID {
-        let cadenceString = token.formatCadence(cadence: Cadences.addToken)
+        let cadenceString = token.formatCadence(cadence: CadenceTemplate.addToken)
         
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared]) {
             cadence {
@@ -61,8 +61,8 @@ extension FlowNetwork {
         }
     }
     
-    static func transferToken(to address: Flow.Address, amount: Double) async throws -> Flow.ID {
-        let cadenceString = Cadences.transferToken.replace(by: ScriptAddress.addressMap())
+    static func transferToken(to address: Flow.Address, amount: Double, token: TokenModel) async throws -> Flow.ID {
+        let cadenceString = TokenCadence.tokenTransfer(token: token, at: flow.chainID)
         
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
@@ -101,7 +101,7 @@ extension FlowNetwork {
     }
     
     static func addCollection(at address: Flow.Address, collection: NFTCollectionInfo) async throws -> Flow.ID {
-        let cadenceString = collection.formatCadence(script: Cadences.nftCollectionEnable)
+        let cadenceString = collection.formatCadence(script: CadenceTemplate.nftCollectionEnable)
         
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
@@ -139,7 +139,7 @@ extension FlowNetwork {
             throw NFTError.invalidTokenId
         }
         
-        let cadenceString = collection.formatCadence(script: Cadences.nftTransfer)
+        let cadenceString = collection.formatCadence(script: CadenceTemplate.nftTransfer)
         
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
@@ -173,12 +173,12 @@ extension FlowNetwork {
 
 extension FlowNetwork {
     static func queryAddressByDomainFind(domain: String) async throws -> String {
-        let cadence = Cadences.queryAddressByDomainFind
+        let cadence = CadenceTemplate.queryAddressByDomainFind
         return try await fetch(cadence: cadence, arguments: [.string(domain)])
     }
     
     static func queryAddressByDomainFlowns(domain: String, root: String = "fn") async throws -> String {
-        let cadence = Cadences.queryAddressByDomainFlowns
+        let cadence = CadenceTemplate.queryAddressByDomainFlowns
         var realDomain = domain
             .replacingOccurrences(of: ".fn", with: "")
             .replacingOccurrences(of: ".meow", with: "")
@@ -194,7 +194,7 @@ extension FlowNetwork {
             throw LLError.invalidAddress
         }
         
-        let cadenceString = coin.formatCadence(cadence: Cadences.claimInboxToken)
+        let cadenceString = coin.formatCadence(cadence: CadenceTemplate.claimInboxToken)
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
                 cadenceString
@@ -227,7 +227,7 @@ extension FlowNetwork {
             throw LLError.invalidAddress
         }
         
-        let cadenceString = collection.formatCadence(script: Cadences.claimInboxNFT)
+        let cadenceString = collection.formatCadence(script: CadenceTemplate.claimInboxNFT)
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
                 cadenceString
@@ -267,7 +267,7 @@ extension FlowNetwork {
         let tokenName = String(swapPaths.last?.split(separator: ".").last ?? "")
         let tokenAddress = String(swapPaths.last?.split(separator: ".")[1] ?? "").addHexPrefix()
         
-        var cadenceString = isFrom ? Cadences.swapFromTokenToOtherToken : Cadences.swapOtherTokenToFromToken
+        var cadenceString = isFrom ? CadenceTemplate.swapFromTokenToOtherToken : CadenceTemplate.swapOtherTokenToFromToken
         cadenceString = cadenceString.replace(by: ["Token1Name": tokenName, "Token1Addr": tokenAddress])
         
         var args = [Flow.Cadence.FValue]()

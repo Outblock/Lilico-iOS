@@ -166,20 +166,29 @@ class WalletConnectManager: ObservableObject {
                 switch sessionRequest.method {
                 case FCLWalletConnectMethod.authn.rawValue:
                     
+                    Task {
+                        do {
+                    let jsonString = try sessionRequest.params.get([String].self)
+                    let data = jsonString[0].data(using: .utf8)!
+                    let model = try JSONDecoder().decode(BaseConfigRequest.self, from: data)
+                    print(model)
+                            
+                            
+                    
                     let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
                                                data: AuthnData(addr: address, fType: "AuthnResponse", fVsn: "1.0.0",
                                                                services: [
                                                                 serviceDefinition(address: RemoteConfigManager.shared.payer, keyId: RemoteConfigManager.shared.keyIndex, type: .preAuthz),
                                                                 serviceDefinition(address: address, keyId: keyId, type: .authn),
                                                                 serviceDefinition(address: address, keyId: keyId, type: .authz),
-                                                                serviceDefinition(address: address, keyId: keyId, type: .userSignature)
+                                                                serviceDefinition(address: address, keyId: keyId, type: .userSignature),
+                                                                
                                                                ]),
                                                reason: nil,
                                                compositeSignature: nil)
                     let response = JSONRPCResponse<AnyCodable>(id: sessionRequest.id, result: AnyCodable(result))
                     
-                    Task {
-                        do {
+
                             try await Sign.instance.respond(topic: sessionRequest.topic, response: .response(response))
                             
                             self?.navigateBackTodApp(topic: sessionRequest.topic)

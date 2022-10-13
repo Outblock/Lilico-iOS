@@ -9,16 +9,16 @@ import Foundation
 import Flow
 
 enum ScriptAddress: String, CaseIterable {
-    case fungibleToken = "0xFUNGIBLETOKEN"
-    case flowToken = "0xFLOWTOKEN"
-    case flowFees = "0xFLOWFEES"
-    case flowTablesTaking = "0xFLOWTABLESTAKING"
-    case lockedTokens = "0xLOCKEDTOKENS"
-    case stakingProxy = "0xSTAKINGPROXY"
-    case nonFungibleToken = "0xNONFUNGIBLETOKEN"
-    case findToken = "0xFIND"
-    case domainsToken = "0xDOMAINS"
-    case flownsToken = "0xFLOWNS"
+    case fungibleToken = "0xFungibleToken"
+    case flowToken = "0xFlowToken"
+    case flowFees = "0xFlowFees"
+    case flowTablesTaking = "0xFlowTableStaking"
+    case lockedTokens = "0xLockedTokens"
+    case stakingProxy = "0xStakingProxy"
+    case nonFungibleToken = "0xNonFungibleToken"
+    case findToken = "0xFind"
+    case domainsToken = "0xDomains"
+    case flownsToken = "0xFlowns"
     
     static func addressMap(on network: LocalUserDefaults.FlowNetworkType = LocalUserDefaults.shared.flowNetwork) -> [String: String] {
         let dict = ScriptAddress.allCases.reduce(into: [String: String]()) { partialResult, script in

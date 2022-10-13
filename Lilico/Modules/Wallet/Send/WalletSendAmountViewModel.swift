@@ -229,12 +229,12 @@ extension WalletSendAmountViewModel {
         saveToRecentLlist()
         
         isSending = true
-//        HUD.loading("sending".localized)
-
         
         Task {
             do {
-                let id = try await FlowNetwork.transferToken(to: Flow.Address(hex: targetContact.address ?? "0x"), amount: inputTokenNum)
+                let id = try await FlowNetwork.transferToken(to: Flow.Address(hex: targetContact.address ?? "0x"),
+                                                             amount: inputTokenNum,
+                                                             token: token)
                 
                 DispatchQueue.main.async {
                     let obj = CoinTransferModel(amount: self.inputTokenNum, symbol: self.token.symbol ?? "", target: self.targetContact, from: address)

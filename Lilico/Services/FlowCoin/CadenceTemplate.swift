@@ -7,9 +7,9 @@
 
 import Foundation
 
-class Cadences {
+class CadenceTemplate {
     static let addToken = """
-        import FungibleToken from 0xFUNGIBLETOKEN
+        import FungibleToken from 0xFungibleToken
         import <Token> from <TokenAddress>
         transaction {
             prepare(signer: AuthAccount) {
@@ -32,7 +32,7 @@ class Cadences {
     """
     
     static let queryAddressByDomainFind = """
-        import FIND from 0xFIND
+        import FIND from 0xFind
         //Check the status of a fin user
         pub fun main(name: String) : Address? {
             let status=FIND.status(name)
@@ -41,8 +41,8 @@ class Cadences {
     """
     
     static let queryAddressByDomainFlowns = """
-        import Flowns from 0xFLOWNS
-        import Domains from 0xDOMAINS
+        import Flowns from 0xFlowns
+        import Domains from 0xDomains
         pub fun main(name: String, root: String) : Address? {
             let prefix = "0x"
             let rootHahsh = Flowns.hash(node: "", lable: root)
@@ -52,43 +52,69 @@ class Cadences {
         }
     """
     
-    static let transferToken = """
-        import FungibleToken from 0xFUNGIBLETOKEN
-        import FlowToken from 0xFLOWTOKEN
-    
-        transaction(amount: UFix64, to: Address) {
-    
-            // The Vault resource that holds the tokens that are being transferred
-            let sentVault: @FungibleToken.Vault
-    
-            prepare(signer: AuthAccount) {
-    
-                // Get a reference to the signer's stored vault
-                let vaultRef = signer.borrow<&FlowToken.Vault>(from: /storage/flowTokenVault)
-                    ?? panic("Could not borrow reference to the owner's Vault!")
-    
-                // Withdraw tokens from the signer's stored vault
-                self.sentVault <- vaultRef.withdraw(amount: amount)
-            }
-    
-            execute {
-    
-                // Get the recipient's public account object
-                let recipient = getAccount(to)
-    
-                // Get a reference to the recipient's Receiver
-                let receiverRef = recipient.getCapability(/public/flowTokenReceiver)
-                    .borrow<&{FungibleToken.Receiver}>()
-                    ?? panic("Could not borrow receiver reference to the recipient's Vault")
-    
-                // Deposit the withdrawn tokens in the recipient's receiver
-                receiverRef.deposit(from: <-self.sentVault)
-            }
+    static let transferTokenWithInbox = """
+      import FungibleToken from 0xFungibleToken
+      import Domains from 0xDomains
+      import <Token> from <TokenAddress>
+
+      transaction(amount: UFix64, recipient: Address) {
+        let senderRef: &{FungibleToken.Receiver}
+        // The Vault resource that holds the tokens that are being transfered
+        let sentVault: @FungibleToken.Vault
+        let sender: Address
+
+        prepare(signer: AuthAccount) {
+          // Get a reference to the signer's stored vault
+          let vaultRef = signer.borrow<&<Token>.Vault>(from: <TokenStoragePath>)
+            ?? panic("Could not borrow reference to the owner's Vault!")
+          self.senderRef = signer.getCapability(<TokenReceiverPath>)
+            .borrow<&{FungibleToken.Receiver}>()!
+          self.sender = vaultRef.owner!.address
+          // Withdraw tokens from the signer's stored vault
+          self.sentVault <- vaultRef.withdraw(amount: amount)
         }
+
+        execute {
+          // Get the recipient's public account object
+          let recipientAccount = getAccount(recipient)
+
+          // Get a reference to the recipient's Receiver
+          let receiverRef = recipientAccount.getCapability(<TokenReceiverPath>)
+            .borrow<&{FungibleToken.Receiver}>()
+          
+          if receiverRef == nil {
+              let collectionCap = recipientAccount.getCapability<&{Domains.CollectionPublic}>(Domains.CollectionPublicPath)
+              let collection = collectionCap.borrow()!
+              var defaultDomain: &{Domains.DomainPublic}? = nil
+
+              let ids = collection.getIDs()
+
+              if ids.length == 0 {
+                  panic("Recipient have no domain ")
+              }
+              
+              defaultDomain = collection.borrowDomain(id: ids[0])!
+                  // check defualt domain
+              for id in ids {
+                let domain = collection.borrowDomain(id: id)!
+                let isDefault = domain.getText(key: "isDefault")
+                if isDefault == "true" {
+                  defaultDomain = domain
+                }
+              }
+              // Deposit the withdrawn tokens in the recipient's domain inbox
+              defaultDomain!.depositVault(from: <- self.sentVault, senderRef: self.senderRef)
+
+          } else {
+              // Deposit the withdrawn tokens in the recipient's receiver
+              receiverRef!.deposit(from: <- self.sentVault)
+          }
+        }
+      }
     """
     
     static let nftCollectionEnable = """
-        import NonFungibleToken from 0xNONFUNGIBLETOKEN
+        import NonFungibleToken from 0xNonFungibleToken
         import <NFT> from <NFTAddress>
         
         transaction {
@@ -110,8 +136,8 @@ class Cadences {
     """
     
     static let nftTransfer = """
-      import NonFungibleToken from 0xNONFUNGIBLETOKEN
-      import Domains from 0xDOMAINS
+      import NonFungibleToken from 0xNonFungibleToken
+      import Domains from 0xDomains
       import <NFT> from <NFTAddress>
       // This transaction is for transferring and NFT from
       // one account to another
@@ -170,9 +196,9 @@ class Cadences {
     """
     
     static let claimInboxToken = """
-      import Domains from 0xDOMAINS
-      import FungibleToken from 0xFUNGIBLETOKEN
-      import Flowns from 0xFLOWNS
+      import Domains from 0xDomains
+      import FungibleToken from 0xFungibleToken
+      import Flowns from 0xFlowns
       import <Token> from <TokenAddress>
       transaction(name: String, root:String, key:String, amount: UFix64) {
         var domain: &{Domains.DomainPrivate}
@@ -216,9 +242,9 @@ class Cadences {
     """
     
     static let claimInboxNFT = """
-      import Domains from 0xDOMAINS
-      import Flowns from 0xFLOWNS
-      import NonFungibleToken from 0xNONFUNGIBLETOKEN
+      import Domains from 0xDomains
+      import Flowns from 0xFlowns
+      import NonFungibleToken from 0xNonFungibleToken
       import <NFT> from <NFTAddress>
       // key will be 'A.f8d6e0586b0a20c7.Domains.Collection' of a NFT collection
       transaction(name: String, root: String, key: String, itemId: UInt64) {

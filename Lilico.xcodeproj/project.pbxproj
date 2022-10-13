@@ -1234,8 +1234,8 @@
 		6AD3581A28AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3581828AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift */; };
 		6AD900652847175100B65CE6 /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD900632847175100B65CE6 /* AddAddressView.swift */; };
 		6AD90069284717FC00B65CE6 /* AddAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD90067284717FC00B65CE6 /* AddAddressViewModel.swift */; };
-		6AD9EC25286C4E4C0062A9CE /* Cadences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD9EC24286C4E4C0062A9CE /* Cadences.swift */; };
-		6AD9EC26286C4E4C0062A9CE /* Cadences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD9EC24286C4E4C0062A9CE /* Cadences.swift */; };
+		6AD9EC25286C4E4C0062A9CE /* CadenceTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD9EC24286C4E4C0062A9CE /* CadenceTemplate.swift */; };
+		6AD9EC26286C4E4C0062A9CE /* CadenceTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD9EC24286C4E4C0062A9CE /* CadenceTemplate.swift */; };
 		6ADA4BFE28F17CEA00C7B341 /* BrowserSearchDAppItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADA4BFD28F17CEA00C7B341 /* BrowserSearchDAppItemCell.swift */; };
 		6ADA4BFF28F17CEA00C7B341 /* BrowserSearchDAppItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADA4BFD28F17CEA00C7B341 /* BrowserSearchDAppItemCell.swift */; };
 		6ADA4C0128F180C400C7B341 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADA4C0028F180C400C7B341 /* UIImageView.swift */; };
@@ -1935,7 +1935,7 @@
 		6AD3581828AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitTopSelectionHeaderView.swift; sourceTree = "<group>"; };
 		6AD900632847175100B65CE6 /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
 		6AD90067284717FC00B65CE6 /* AddAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewModel.swift; sourceTree = "<group>"; };
-		6AD9EC24286C4E4C0062A9CE /* Cadences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cadences.swift; sourceTree = "<group>"; };
+		6AD9EC24286C4E4C0062A9CE /* CadenceTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceTemplate.swift; sourceTree = "<group>"; };
 		6ADA4BFD28F17CEA00C7B341 /* BrowserSearchDAppItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserSearchDAppItemCell.swift; sourceTree = "<group>"; };
 		6ADA4C0028F180C400C7B341 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		6ADBBC9E28D1755F00F1F0DA /* AccountRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRequests.swift; sourceTree = "<group>"; };
@@ -3751,7 +3751,7 @@
 			children = (
 				4EC56B2F281FC57900246878 /* FlowQuery.swift */,
 				15832D58286816ED0066046D /* FlowAddressRegistor.swift */,
-				6AD9EC24286C4E4C0062A9CE /* Cadences.swift */,
+				6AD9EC24286C4E4C0062A9CE /* CadenceTemplate.swift */,
 			);
 			path = FlowCoin;
 			sourceTree = "<group>";
@@ -5374,7 +5374,7 @@
 				15DE22E6277EAFF300B5EE03 /* EnterRestorePasswordView.swift in Sources */,
 				15D6D8E628CB44F800CBA152 /* DOFavoriteButton.swift in Sources */,
 				15DC21C927819C56000B187A /* LayoutGroup_LTTB.swift in Sources */,
-				6AD9EC26286C4E4C0062A9CE /* Cadences.swift in Sources */,
+				6AD9EC26286C4E4C0062A9CE /* CadenceTemplate.swift in Sources */,
 				152EEC6A28E4F26300C37A67 /* LilicoWebEndpoint.swift in Sources */,
 				6A62123128ACE029002046CA /* NFTUIKitFavContainerView.swift in Sources */,
 				6A8FA4B9285B1FEB00EE5BE3 /* EditAvatarViewModel.swift in Sources */,
@@ -5948,7 +5948,7 @@
 				15C58C262868A4EE00BD4FC6 /* EnterRestorePasswordView.swift in Sources */,
 				15D6D8E528CB44F800CBA152 /* DOFavoriteButton.swift in Sources */,
 				15C58C272868A4EE00BD4FC6 /* LayoutGroup_LTTB.swift in Sources */,
-				6AD9EC25286C4E4C0062A9CE /* Cadences.swift in Sources */,
+				6AD9EC25286C4E4C0062A9CE /* CadenceTemplate.swift in Sources */,
 				152EEC6928E4F26300C37A67 /* LilicoWebEndpoint.swift in Sources */,
 				6A62123028ACE029002046CA /* NFTUIKitFavContainerView.swift in Sources */,
 				15C58C282868A4EE00BD4FC6 /* EditAvatarViewModel.swift in Sources */,
