@@ -195,7 +195,7 @@ struct WalletView: View {
                 }
                 Spacer()
                 actionButton(imageName: "wallet") {
-                    Router.route(to: RouteMap.Wallet.swap)
+                    Router.route(to: RouteMap.Wallet.swap(nil))
                 }
             }
             Divider()

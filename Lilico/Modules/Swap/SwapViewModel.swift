@@ -42,6 +42,10 @@ class SwapViewModel: ObservableObject {
     private var timer: Timer?
     private var requestIsFromInput: Bool = true
     
+    init(defaultFromToken: TokenModel?) {
+        self.fromToken = defaultFromToken
+    }
+    
     var buttonState: VPrimaryButtonState {
         if isRequesting {
             return .loading

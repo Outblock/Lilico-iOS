@@ -9,10 +9,14 @@ import SwiftUI
 import Kingfisher
 
 struct SwapView: RouteableView {
-    @StateObject var vm: SwapViewModel = SwapViewModel()
+    @StateObject var vm: SwapViewModel
     
     var title: String {
         return "swap_title".localized
+    }
+    
+    init(defaultFromToken: TokenModel? = WalletManager.shared.getToken(bySymbol: "flow")) {
+        _vm = StateObject(wrappedValue: SwapViewModel(defaultFromToken: defaultFromToken))
     }
     
     var body: some View {

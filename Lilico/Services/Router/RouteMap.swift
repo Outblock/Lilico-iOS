@@ -106,7 +106,7 @@ extension RouteMap {
         case scan(SPQRCodeCallback, click: SPQRCodeCallback? = nil)
         case buyCrypto
         case transactionList(String?)
-        case swap
+        case swap(TokenModel?)
         case selectToken(TokenModel?, [TokenModel], (TokenModel) -> ())
     }
 }
@@ -141,8 +141,8 @@ extension RouteMap.Wallet: RouterTarget {
         case .transactionList(let contractId):
             let vc = TransactionListViewController(contractId: contractId)
             navi.pushViewController(vc, animated: true)
-        case .swap:
-            navi.push(content: SwapView())
+        case .swap(let fromToken):
+            navi.push(content: fromToken != nil ? SwapView(defaultFromToken: fromToken) : SwapView())
         case .selectToken(let selectedToken, let disableTokens, let callback):
             let vm = AddTokenViewModel(selectedToken: selectedToken, disableTokens: disableTokens, selectCallback: callback)
             navi.present(content: AddTokenView(vm: vm))
