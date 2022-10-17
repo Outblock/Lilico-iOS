@@ -27,7 +27,7 @@ extension LilicoWebEndpoint: TargetType {
         case .txTemplate:
             return "template"
         case .swapEstimate:
-            return "/api/swap/v1/\(LocalUserDefaults.shared.flowNetwork == .testnet ? "testnet" : "mainnet")/estimate"
+            return "swap/v1/\(LocalUserDefaults.shared.flowNetwork.rawValue)/estimate"
         }
     }
 

@@ -79,20 +79,20 @@ struct WalletSettingView: RouteableView {
                 
             }
             
-            VStack(alignment: .trailing) {
-                
-                Button {
-                    
-                } label: {
-                    Text("Reset Wallet")
-                        .frame(maxWidth: .infinity)
-                        .frame(width: .infinity, height: 56)
-                        .background(.LL.Warning.warning2)
-                        .cornerRadius(16)
-                        .foregroundColor(.LL.background)
-                }
-                .padding(.horizontal, 18)
-            }
+//            VStack(alignment: .trailing) {
+//
+//                Button {
+//
+//                } label: {
+//                    Text("Reset Wallet")
+//                        .frame(maxWidth: .infinity)
+//                        .frame(width: .infinity, height: 56)
+//                        .background(.LL.Warning.warning2)
+//                        .cornerRadius(16)
+//                        .foregroundColor(.LL.background)
+//                }
+//                .padding(.horizontal, 18)
+//            }
                         
         }
         .backgroundFill(.LL.background)

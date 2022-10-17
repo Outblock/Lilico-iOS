@@ -28,7 +28,7 @@ struct DeveloperModeView: RouteableView {
             VStack {
                 Text("switch_network".localized)
                     .font(.LL.footnote)
-                    .foregroundColor(.LL.Neutrals.neutrals6)
+                    .foregroundColor(.LL.Neutrals.neutrals3)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 VStack(spacing: 0) {
                     Section {
@@ -53,7 +53,7 @@ struct DeveloperModeView: RouteableView {
                 
                 Text("watch_address".localized)
                     .font(.LL.footnote)
-                    .foregroundColor(.LL.Neutrals.neutrals6)
+                    .foregroundColor(.LL.Neutrals.neutrals3)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 VStack(spacing: 0) {
                     Section {

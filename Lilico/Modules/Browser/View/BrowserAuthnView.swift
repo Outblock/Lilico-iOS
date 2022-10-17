@@ -32,6 +32,7 @@ struct BrowserAuthnView: View {
 //                }
             }
             .padding(.bottom, 8)
+            Spacer()
             actionView
         }
         .padding(.all, 18)
