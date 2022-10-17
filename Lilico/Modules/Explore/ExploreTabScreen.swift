@@ -131,7 +131,7 @@ struct ExploreTabScreen: View {
         HStack {
             Image(systemName: "square.grid.2x2.fill")
                 .font(.LL.caption)
-            Text("BookMark")
+            Text("List")
                 .bold()
             Spacer()
             //                        Button {
@@ -229,9 +229,9 @@ struct ExploreTabScreen: View {
 extension ExploreTabScreen {
     var bookmarkHeader: some View {
         HStack {
-            Image(systemName: "square.grid.2x2.fill")
+            Image(systemName: "bookmark.fill")
                 .font(.LL.caption)
-            Text("bookmark".localized)
+            Text("browser_bookmark".localized)
                 .bold()
             
             Spacer()

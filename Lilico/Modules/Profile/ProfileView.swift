@@ -557,7 +557,7 @@ extension ProfileView.AboutSectionView.Row {
         case .about:
             return "about".localized
         case let .developerMode(lud):
-            return lud.flowNetwork.rawValue.uppercased()
+            return lud.flowNetwork.rawValue.capitalized
         }
     }
 
