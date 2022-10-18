@@ -186,17 +186,21 @@ struct WalletView: View {
                     Router.route(to: RouteMap.Wallet.send())
                 }
                 Spacer()
-                actionButton(imageName: "wallet-swap-stroke") {
-                    Router.route(to: RouteMap.Wallet.swap(nil))
-                }
-                Spacer()
                 actionButton(imageName: "wallet-receive-stroke") {
                     Router.route(to: RouteMap.Wallet.receive)
                 }
-                Spacer()
-                actionButton(imageName: "wallet") {
-                    Router.route(to: RouteMap.Wallet.buyCrypto)
+                
+                if RemoteConfigManager.shared.config.features.onRamp ?? false == true {
+                    Spacer()
+                    actionButton(imageName: "wallet") {
+                        Router.route(to: RouteMap.Wallet.buyCrypto)
+                    }
                 }
+                
+//                Spacer()
+//                actionButton(imageName: "wallet-swap-stroke") {
+//                    Router.route(to: RouteMap.Wallet.swap(nil))
+//                }
             }
             Divider()
                 .foregroundColor(.LL.Neutrals.neutrals4)

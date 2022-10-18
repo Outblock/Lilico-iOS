@@ -297,17 +297,27 @@ extension WalletManager {
     }
 
     private func restoreMnemonicFromKeychain(uid: String) -> Bool {
-        if var encryptedData = getEncryptedMnemonicData(uid: uid),
-           var decryptedData = try? WalletManager.decryptionChaChaPoly(key: uid, data: encryptedData),
-           var mnemonic = String(data: decryptedData, encoding: .utf8)
-        {
-            defer {
-                encryptedData = Data()
-                decryptedData = Data()
-                mnemonic = ""
+        do {
+            if var encryptedData = getEncryptedMnemonicData(uid: uid)
+            {
+                debugPrint("WalletManager -> start restore mnemonic from keychain, uid = \(uid), encryptedData.count = \(encryptedData.count)")
+                
+                var decryptedData = try WalletManager.decryptionChaChaPoly(key: uid, data: encryptedData)
+                defer {
+                    encryptedData = Data()
+                    decryptedData = Data()
+                }
+                
+                if var mnemonic = String(data: decryptedData, encoding: .utf8) {
+                    defer {
+                        mnemonic = ""
+                    }
+                    
+                    return activeMnemonic(mnemonic)
+                }
             }
-
-            return activeMnemonic(mnemonic)
+        } catch {
+            debugPrint("WalletManager -> restoreMnemonicFromKeyChain failed: uid = \(uid), error = \(error)")
         }
 
         return false

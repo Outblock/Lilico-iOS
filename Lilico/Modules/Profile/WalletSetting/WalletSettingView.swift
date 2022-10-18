@@ -24,7 +24,17 @@ struct WalletSettingView: RouteableView {
                 VStack(spacing: 16) {
                         VStack(spacing: 0) {
                             Button {
-                                Router.route(to: RouteMap.Profile.privateKey)
+                                if SecurityManager.shared.securityType == .none {
+                                    Router.route(to: RouteMap.Profile.privateKey(true))
+                                    return
+                                }
+                                
+                                Task {
+                                    let result = await SecurityManager.shared.inAppVerify()
+                                    if result {
+                                        Router.route(to: RouteMap.Profile.privateKey(false))
+                                    }
+                                }
                             } label: {
                                 ProfileSecureView.ItemCell(title: "private_key".localized, style: .arrow, isOn: false, toggleAction: nil)
                             }
@@ -32,7 +42,17 @@ struct WalletSettingView: RouteableView {
                             Divider().foregroundColor(.LL.Neutrals.background)
                             
                             Button {
-                                Router.route(to: RouteMap.Profile.manualBackup)
+                                if SecurityManager.shared.securityType == .none {
+                                    Router.route(to: RouteMap.Profile.manualBackup(true))
+                                    return
+                                }
+                                
+                                Task {
+                                    let result = await SecurityManager.shared.inAppVerify()
+                                    if result {
+                                        Router.route(to: RouteMap.Profile.manualBackup(false))
+                                    }
+                                }
                             } label: {
                                 ProfileSecureView.ItemCell(title: "recovery_phrase".localized, style: .arrow, isOn: false, toggleAction: nil)
                                     .contentShape(Rectangle())

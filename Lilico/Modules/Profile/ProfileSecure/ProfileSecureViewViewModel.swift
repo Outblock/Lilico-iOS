@@ -63,6 +63,6 @@ class ProfileSecureViewModel: ObservableObject {
     }
     
     func showRecoveryPhrasesAction() {
-        Router.route(to: RouteMap.Profile.manualBackup)
+        Router.route(to: RouteMap.Profile.manualBackup(true))
     }
 }
