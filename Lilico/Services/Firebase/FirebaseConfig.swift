@@ -17,7 +17,6 @@ enum FirebaseConfigError: Error {
 enum FirebaseConfig: String {
     case all
     case flowCoins = "flow_coins"
-    case nftCollections = "nft_collections"
     case config = "free_gas_config"
     case dapp
     case dappBuildNumber = "dapp_build_number"

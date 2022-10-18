@@ -20,27 +20,17 @@ struct NFTCollection: Codable {
 }
 
 struct NFTCollectionInfo: Codable, Hashable {
-    let logo: String?
+    let id: String
     let name: String
     let contractName: String
-    let address: ContractAddress
-    let secureCadenceCompatible: SecureCadenceCompatible
-    var banner: String?
-    var officialWebsite: String?
-    var marketplace: String?
-    var description: String?
-    var path: ContractPath
+    let address: String
     
-    func currentAddress(forceMainnet: Bool = false) -> String {
-        if(forceMainnet) {
-            return address.mainnet
-        }else {
-            if LocalUserDefaults.shared.flowNetwork == .testnet &&  address.testnet != nil && !address.testnet!.isEmpty {
-                return address.testnet!
-            }
-        }
-        return address.mainnet
-    }
+    let logo: String?
+    let banner: String?
+    let officialWebsite: String?
+    let description: String?
+    
+    let path: ContractPath
     
     var logoURL: URL {
         if let logoString = logo {
@@ -59,36 +49,17 @@ struct NFTCollectionInfo: Codable, Hashable {
     }
 }
 
-struct ContractAddress: Codable, Hashable {
-    let mainnet: String
-    let testnet: String?
-    
-    func chooseBy(network: Flow.ChainID = LocalUserDefaults.shared.flowNetwork.toFlowType()) -> String? {
-        switch network {
-        case .mainnet:
-            return mainnet
-        case .testnet:
-            return testnet
-        default:
-            return mainnet
-        }
-    }
-}
-
-struct SecureCadenceCompatible: Codable, Hashable {
-    let mainnet: Bool
-    let testnet: Bool
-}
-
 struct ContractPath: Codable, Hashable {
     let storagePath: String
     let publicPath: String
     let publicCollectionName: String
+    let publicType: String
+    let privateType: String
 }
 
 struct NFTModel: Codable, Hashable, Identifiable {
     var id: String {
-        return response.contract.address + "." + (response.contract.name ?? "") + "-" + response.id.tokenID
+        return response.uniqueId
     }
 
     let image: URL
@@ -109,7 +80,7 @@ struct NFTModel: Codable, Hashable, Identifiable {
 
     init(_ response: NFTResponse, in collection: NFTCollectionInfo?) {
         if let imgUrl = response.postMedia.image, let url = URL(string: imgUrl) {
-            if response.postMedia.isSVG == "true" {
+            if response.postMedia.isSvg == "true" {
                 image = URL(string: imgUrl) ?? URL(string: placeholder)!
                 isSVG = true
             } else {
@@ -131,7 +102,7 @@ struct NFTModel: Codable, Hashable, Identifiable {
         }
 
         subtitle = response.postMedia.description ?? ""
-        title = response.postMedia.title ?? response.contract.name ?? ""
+        title = response.postMedia.title ?? response.collectionName ?? ""
         self.collection = collection
         self.response = response
     }
@@ -159,22 +130,25 @@ struct NFTModel: Codable, Hashable, Identifiable {
         return ""
     }
 
-    var tags: [NFTMetadatum] {
-        guard let metadata = response.metadata?.metadata else {
+    var tags: [NFTTrait] {
+        guard let traits = response.traits else {
             return []
         }
         
-        return metadata.filter { meta in
-            !filterMetadata.contains(meta.name.lowercased()) && !meta.value.isEmpty && !meta.value.hasPrefix("https://")
+        return traits.filter { trait in
+            !filterMetadata.contains(trait.name?.lowercased() ?? "") && !(trait.value ?? "").isEmpty && !(trait.value ?? "").hasPrefix("https://")
         }
     }
     
     var isDomain: Bool {
-        if response.media?.first(where: { $0.uri.contains("flowns.org") && $0.uri.contains(".meow") }) != nil {
-            return true
+        if response.collectionContractName != "Domains" {
+            return false
         }
-                                 
-        return false
+        
+        let name = response.name ?? ""
+        let url = response.externalURL ?? ""
+        
+        return name.hasSuffix(".meow") || url.hasSuffix(".meow")
     }
 }
 
@@ -182,6 +156,7 @@ class CollectionItem: Identifiable, ObservableObject {
     var address: String = ""
     var id = UUID()
     var name: String = ""
+    var collectionId: String = ""
     var count: Int = 0
     var collection: NFTCollectionInfo?
     @Published var nfts: [NFTModel] = []
@@ -204,7 +179,7 @@ class CollectionItem: Identifiable, ObservableObject {
     }
     
     func loadFromCache() {
-        if let cachedNFTs = NFTUIKitCache.cache.getNFTs(contractName: name) {
+        if let cachedNFTs = NFTUIKitCache.cache.getNFTs(collectionId: collectionId) {
             let models = cachedNFTs.map { NFTModel($0, in: self.collection) }
             self.nfts = models
         }
@@ -271,6 +246,6 @@ class CollectionItem: Identifiable, ObservableObject {
     
     private func saveNFTsToCache() {
         let models = nfts.map { $0.response }
-        NFTUIKitCache.cache.saveNFTsToCache(models, contractName: name)
+        NFTUIKitCache.cache.saveNFTsToCache(models, collectionId: collectionId)
     }
 }

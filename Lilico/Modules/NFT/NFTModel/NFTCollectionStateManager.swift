@@ -33,9 +33,9 @@ final class NFTCollectionStateManager {
             
             for (index, collection) in list.enumerated() {
                 let isEnable = isEnableList[index]
-                if let oldIndex = tokenStateList.firstIndex(where: { $0.address == collection.currentAddress()}) {
+                if let oldIndex = tokenStateList.firstIndex(where: { $0.address == collection.address}) {
                     tokenStateList.remove(at: oldIndex)
-                    tokenStateList.append(NftCollectionState(name: collection.name, address: collection.currentAddress(), isAdded: isEnable))
+                    tokenStateList.append(NftCollectionState(name: collection.name, address: collection.address, isAdded: isEnable))
                 }
             }
             

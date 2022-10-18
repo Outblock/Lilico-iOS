@@ -115,6 +115,7 @@ class NFTUIKitListNormalDataModel {
                 let item = CollectionItem()
                 item.address = address
                 item.name = collection.collection.contractName
+                item.collectionId = collection.collection.id
                 item.count = collection.count
                 item.collection = collection.collection
                 
@@ -164,6 +165,7 @@ class NFTUIKitListNormalDataModel {
             let item = CollectionItem()
             item.address = address
             item.name = collection.collection.contractName
+            item.collectionId = collection.collection.id
             item.count = collection.count
             item.collection = collection.collection
             
@@ -176,11 +178,11 @@ class NFTUIKitListNormalDataModel {
     }
     
     private func requestCollections() async throws -> [NFTCollection] {
-        guard let address = WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress() else {
+        guard WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress() != nil else {
             return []
         }
         
-        let response: Network.Response<[NFTCollection]> = try await Network.requestWithRawModel(LilicoAPI.NFT.collections(address))
+        let response: Network.Response<[NFTCollection]> = try await Network.requestWithRawModel(LilicoAPI.NFT.collections)
         if let list = response.data {
             return list
         } else {

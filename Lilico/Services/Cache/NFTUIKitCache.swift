@@ -154,13 +154,13 @@ extension NFTUIKitCache {
 // MARK: - NFTs
 
 extension NFTUIKitCache {
-    func saveNFTsToCache(_ nfts: [NFTResponse], contractName: String) {
+    func saveNFTsToCache(_ nfts: [NFTResponse], collectionId: String) {
         if nfts.isEmpty {
-            removeNFTs(contractName: contractName)
+            removeNFTs(collectionId: collectionId)
             return
         }
         
-        let md5 = contractName.md5
+        let md5 = collectionId.md5
         let fileURL = nftFolder.appendingPathComponent(md5)
         
         do {
@@ -168,12 +168,12 @@ extension NFTUIKitCache {
             try data.write(to: fileURL)
         } catch {
             debugPrint("NFTUIKitCache -> saveNFTsToCache: error: \(error)")
-            removeNFTs(contractName: contractName)
+            removeNFTs(collectionId: collectionId)
         }
     }
     
-    func removeNFTs(contractName: String) {
-        let md5 = contractName.md5
+    func removeNFTs(collectionId: String) {
+        let md5 = collectionId.md5
         let fileURL = nftFolder.appendingPathComponent(md5)
         
         if FileManager.default.fileExists(atPath: fileURL.relativePath) {
@@ -196,8 +196,8 @@ extension NFTUIKitCache {
         }
     }
     
-    func getNFTs(contractName: String) -> [NFTResponse]? {
-        let md5 = contractName.md5
+    func getNFTs(collectionId: String) -> [NFTResponse]? {
+        let md5 = collectionId.md5
         let fileURL = nftFolder.appendingPathComponent(md5)
         
         if !FileManager.default.fileExists(atPath: fileURL.relativePath) {
@@ -209,7 +209,7 @@ extension NFTUIKitCache {
             let nfts = try JSONDecoder().decode([NFTResponse].self, from: data)
             return nfts
         } catch {
-            debugPrint("NFTUIKitCache -> getNFTs: \(contractName) error: \(error)")
+            debugPrint("NFTUIKitCache -> getNFTs: \(collectionId) error: \(error)")
             return nil
         }
     }
@@ -276,7 +276,7 @@ extension NFTUIKitCache {
     }
     
     func addFav(nft: NFTModel) {
-        guard var address = WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress(), let contractName = nft.response.contract.name else {
+        guard var address = WalletManager.shared.getPrimaryWalletAddressOrCustomWatchAddress(), let collectionId = nft.response.collectionID else {
             return
         }
         
@@ -287,9 +287,9 @@ extension NFTUIKitCache {
         favList.insert(nft, at: 0)
         saveCurrentFavToCache()
         
-        let tokenId = nft.response.id.tokenID
+        let tokenId = nft.response.id
         
-        let request = NFTAddFavRequest(address: address, contract: contractName, ids: tokenId)
+        let request = NFTAddFavRequest(address: address, contract: collectionId, ids: tokenId)
         Task {
             do {
                 let _: Network.EmptyResponse = try await Network.requestWithRawModel(LilicoAPI.NFT.addFav(request))
@@ -320,9 +320,9 @@ extension NFTUIKitCache {
     private func generateFavUpdateStrings() -> String {
         var array = [String]()
         for nft in favList {
-            if let contractName = nft.response.contract.name {
-                let tokenId = nft.response.id.tokenID
-                array.append("\(contractName)-\(tokenId)")
+            if let collectionId = nft.response.collectionID {
+                let tokenId = nft.response.id
+                array.append("\(collectionId)-\(tokenId)")
             }
         }
         
@@ -374,7 +374,7 @@ extension NFTUIKitCache {
 
 extension NFTUIKitCache {
     func transferedNFT(_ nft: NFTResponse) {
-        guard let contractName = nft.contract.name else {
+        guard let collectionId = nft.collectionID else {
             return
         }
         
@@ -385,18 +385,18 @@ extension NFTUIKitCache {
         }
         
         // check list cache
-        if var listNFTs = getNFTs(contractName: contractName) {
+        if var listNFTs = getNFTs(collectionId: collectionId) {
             listNFTs.removeAll { $0.uniqueId == nft.uniqueId }
-            saveNFTsToCache(listNFTs, contractName: contractName)
+            saveNFTsToCache(listNFTs, collectionId: collectionId)
             
             // remove collection if needed
-            if var collections = getCollections(), let index = collections.firstIndex(where: { $0.collection.contractName == contractName }) {
+            if var collections = getCollections(), let index = collections.firstIndex(where: { $0.collection.id == collectionId }) {
                 if listNFTs.isEmpty {
-                    collections.removeAll { $0.collection.contractName == contractName }
+                    collections.removeAll { $0.collection.id == collectionId }
                 } else {
                     var collection = collections[index]
                     collection.count -= 1
-                    if var ids = collection.ids, let thisId = Int(nft.id.tokenID) {
+                    if var ids = collection.ids, let thisId = Int(nft.id) {
                         ids.removeAll { $0 == thisId }
                         collection.ids = ids
                     }

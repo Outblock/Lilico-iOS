@@ -135,7 +135,7 @@ extension FlowNetwork {
             throw LLError.invalidAddress
         }
         
-        guard let tokenIdInt = UInt64(nft.response.id.tokenID) else {
+        guard let tokenIdInt = UInt64(nft.response.id) else {
             throw NFTError.invalidTokenId
         }
         

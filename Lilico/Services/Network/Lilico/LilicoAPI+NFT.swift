@@ -10,7 +10,8 @@ import Moya
 
 extension LilicoAPI {
     enum NFT {
-        case collections(String)
+        case collections
+        case userCollection(String)
         case collectionDetailList(NFTCollectionDetailListRequest)
         case gridDetailList(NFTGridDetailListRequest)
         case favList(String)
@@ -25,15 +26,21 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
     }
 
     var baseURL: URL {
-        return Config.get(.lilico)
+#if LILICOPROD
+        return URL(string: "https://lilico.app/api/")!
+#else
+        return URL(string: "https://test.lilico.app/api/")!
+#endif
     }
 
     var path: String {
         switch self {
         case .gridDetailList:
-            return "v2/nft/detail/list"
+            return "nft/list"
+        case .userCollection:
+            
         case .collections:
-            return "v2/nft/collections"
+            return "nft/collections"
         case .collectionDetailList:
             return "v2/nft/single"
         case .favList, .addFav, .updateFav:
@@ -58,8 +65,8 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
             return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
         case let .collectionDetailList(request):
             return .requestParameters(parameters: request.dictionary ?? [:], encoding: URLEncoding())
-        case let .collections(address):
-            return .requestParameters(parameters: ["address": address], encoding: URLEncoding())
+        case .collections:
+            return .requestParameters(parameters: [:], encoding: URLEncoding())
         case let .favList(address):
             return .requestParameters(parameters: ["address": address], encoding: URLEncoding())
         case let .addFav(request):
@@ -72,10 +79,10 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
     var headers: [String: String]? {
         var headers = LilicoAPI.commonHeaders
 
-        #if DEBUG
-            // TODO: current nft is error on testnet, remove this code if testnet nft is working someday.
-            headers["Network"] = LocalUserDefaults.FlowNetworkType.mainnet.rawValue
-        #endif
+//        #if DEBUG
+//            // TODO: current nft is error on testnet, remove this code if testnet nft is working someday.
+//            headers["Network"] = LocalUserDefaults.FlowNetworkType.mainnet.rawValue
+//        #endif
         return headers
     }
 }

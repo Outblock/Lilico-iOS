@@ -29,3 +29,5 @@ struct NFTAddFavRequest: Codable {
 struct NFTUpdateFavRequest: Codable {
     var ids: String
 }
+
+struct 

@@ -9,11 +9,8 @@ import Foundation
 
 // MARK: - NFTListResponse
 struct NFTListResponse: Codable {
-    let ownerAddress: String?
     let nfts: [NFTResponse]?
-    let chain, network: String
     let nftCount: Int
-    let offset: Int?
 }
 
 // MARK: - NFTFavListResponse
@@ -26,16 +23,26 @@ struct NFTFavListResponse: Codable {
 // MARK: - Nft
 
 struct NFTResponse: Codable, Hashable {
-    let contract: NFTContract
-    let id: NFTID
-    let title: String?
+    let id: String
+    let name: String?
     let description: String?
-    let media: [NFTMedia]?
-    let metadata: NFTMetadata?
+    let thumbnail: String?
+    let externalURL: String?
+    let contractAddress: String?
+    
+    let collectionID: String?
+    let collectionName: String?
+    let collectionDescription: String?
+    let collectionSquareImage: String?
+    let collectionExternalURL: String?
+    let collectionContractName: String?
+    let collectionBannerImage: String?
+    
+    let traits: [NFTTrait]?
     var postMedia: NFTPostMedia
     
     var uniqueId: String {
-        return contract.address + "." + (contract.name ?? "") + "-" + id.tokenID
+        return (contractAddress ?? "") + "." + (collectionName ?? "") + "-" + "\(id)"
     }
 
     func cover() -> String? {
@@ -45,32 +52,55 @@ struct NFTResponse: Codable, Hashable {
     func video() -> String? {
         return postMedia.video
     }
-
-    func name() -> String? {
-        if let title = title, !title.isEmpty {
-            return title
-        }
-
-        guard let name = contract.name else {
-            return nil
-        }
-
-        return "\(name) #\(id.tokenID)"
-    }
 }
 
-// MARK: - Contract
-
-struct NFTContract: Codable, Hashable {
-    let name: String?
-    let address, externalDomain: String
-    let contractMetadata: NFTContractMetadata?
+struct NFTRoyalty: Codable, Hashable {
+    let cut: Double?
+    let description: String?
 }
 
-// MARK: - ContractMetadata
+struct NFTRoyaltyReceiver: Codable, Hashable {
+    let address: String?
+}
 
-struct NFTContractMetadata: Codable, Hashable {
-    let storagePath, publicPath, publicCollectionName: String
+struct NFTRoyaltyReceiverPath: Codable, Hashable {
+    let type: String?
+    let value: NFTRoyaltyReceiverPathValue?
+}
+
+struct NFTRoyaltyReceiverPathValue: Codable, Hashable {
+    let identifier: String?
+    let domain: String?
+}
+
+struct NFTRoyaltyBorrowType: Codable, Hashable {
+    let kind: String?
+    let authorized: Bool?
+    let type: NFTRoyaltyBorrowTypeType?
+}
+
+struct NFTRoyaltyBorrowTypeType: Codable, Hashable {
+    let typeID: String?
+    let kind: String?
+    let type: NFTRoyaltyBorrowTypeTypeType?
+    let restrictions: [NFTRoyaltyBorrowTypeTypeType]?
+}
+
+struct NFTRoyaltyBorrowTypeTypeType: Codable, Hashable {
+    let typeID: String?
+    let fields: [NFTRoyaltyBorrowTypeTypeTypeField]?
+    let kind: String?
+//    let type:
+//    let initializers: []
+}
+
+struct NFTRoyaltyBorrowTypeTypeTypeField: Codable, Hashable {
+    let id: String?
+    let type: NFTRoyaltyBorrowTypeTypeTypeFieldType?
+}
+
+struct NFTRoyaltyBorrowTypeTypeTypeFieldType: Codable, Hashable {
+    let kind: String?
 }
 
 struct NFTPostMedia: Codable, Hashable {
@@ -78,19 +108,7 @@ struct NFTPostMedia: Codable, Hashable {
     var image: String?
     let description: String?
     let video: String?
-    let isSVG: String?
-}
-
-// MARK: - ID
-
-struct NFTID: Codable, Hashable {
-    let tokenID: String
-    let tokenMetadata: NFTTokenMetadata?
-
-    enum CodingKeys: String, CodingKey {
-        case tokenID = "tokenId"
-        case tokenMetadata
-    }
+    let isSvg: String?
 }
 
 // MARK: - TokenMetadata
@@ -99,22 +117,11 @@ struct NFTTokenMetadata: Codable, Hashable {
     let uuid: String
 }
 
-// MARK: - Media
-
-struct NFTMedia: Codable, Hashable {
-    let uri: String
-    let mimeType: String?
-}
-
 // MARK: - Metadata
 
-struct NFTMetadata: Codable, Hashable {
-    let metadata: [NFTMetadatum]?
-}
-
-// MARK: - Metadatum
-
-struct NFTMetadatum: Codable, Hashable {
-    let name: String
-    let value: String
+struct NFTTrait: Codable, Hashable {
+    let name: String?
+    let value: String?
+    let displayType: String?
+//    let rarity:
 }
