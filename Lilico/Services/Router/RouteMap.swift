@@ -323,6 +323,7 @@ extension RouteMap.Transaction: RouterTarget {
         case .detail(let transactionId):
             if let url = transactionId.transactionFlowScanURL {
 //                UIApplication.shared.open(url)
+                TransactionUIHandler.shared.dismissListView()
                 Router.route(to: RouteMap.Explore.browser(url))
             }
         }

@@ -202,9 +202,9 @@ struct WalletView: View {
 //                    Router.route(to: RouteMap.Wallet.swap(nil))
 //                }
             }
-            Divider()
-                .foregroundColor(.LL.Neutrals.neutrals4)
-                .padding(.top, 12)
+//            Divider()
+//                .foregroundColor(.LL.Neutrals.neutrals4)
+//                .padding(.top, 12)
         }
     }
 

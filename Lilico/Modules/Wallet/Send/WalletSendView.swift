@@ -119,7 +119,7 @@ extension WalletSendView {
                 .modifier(PlaceholderStyle(showPlaceHolder: vm.searchText.isEmpty,
                                            placeholder: "send_search_placeholder".localized,
                                            font: .inter(size: 14, weight: .medium),
-                                           color: Color.LL.Neutrals.neutrals6))
+                                           color: Color.LL.Neutrals.text2))
                 .submitLabel(.search)
                 .onChange(of: vm.searchText) { st in
                     vm.searchTextDidChangeAction(text: st)

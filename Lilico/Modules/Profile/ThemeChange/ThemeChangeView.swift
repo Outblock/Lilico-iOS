@@ -44,7 +44,7 @@ struct ThemeChangeView: RouteableView {
                 } header: {
                     Text("Theme")
                         .font(.LL.body)
-                        .foregroundColor(.LL.Neutrals.neutrals6)
+                        .foregroundColor(.LL.Neutrals.text2)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(.horizontal, 18)
@@ -88,7 +88,7 @@ struct ThemeChangeView: RouteableView {
                 } header: {
                     Text("Card Background")
                         .font(.LL.body)
-                        .foregroundColor(.LL.Neutrals.neutrals6)
+                        .foregroundColor(.LL.Neutrals.text2)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(.horizontal, 18)

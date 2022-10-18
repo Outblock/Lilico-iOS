@@ -17,7 +17,7 @@ class TransactionProgressView: UIView {
         let layer = CAShapeLayer()
         layer.path = UIBezierPath(arcCenter: CGPoint(x: ProgressViewWidth/2.0, y: ProgressViewWidth/2.0), radius: ProgressViewWidth/2.0, startAngle: 0, endAngle: Double.pi * 2, clockwise: true).cgPath
         layer.fillColor = UIColor.clear.cgColor
-        layer.strokeColor = UIColor.LL.Neutrals.neutrals9.cgColor
+        layer.strokeColor = UIColor.LL.Primary.salmonPrimary.alpha(0.1).cgColor
         layer.lineWidth = 4
         layer.lineCap = .round
         return layer

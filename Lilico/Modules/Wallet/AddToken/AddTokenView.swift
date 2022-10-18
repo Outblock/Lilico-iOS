@@ -85,14 +85,14 @@ struct AddTokenView: RouteableView {
     
     @ViewBuilder private func sectionHeader(_ section: AddTokenViewModel.Section) -> some View {
         let sectionName = section.sectionName
-        Text(sectionName == "#" ? "\(sectionName)" : "#\(sectionName)")
-            .foregroundColor(.LL.Neutrals.neutrals8)
-            .font(.inter(size: 18, weight: .semibold))
+        Text(sectionName)
+            .foregroundColor(.LL.Neutrals.text2)
+            .font(.inter(size: 12, weight: .semibold))
     }
 }
 
-private let TokenIconWidth: CGFloat = 32
-private let TokenCellHeight: CGFloat = 52
+private let TokenIconWidth: CGFloat = 40
+private let TokenCellHeight: CGFloat = 64
 
 extension AddTokenView {
     struct TokenItemCell: View {
@@ -135,7 +135,7 @@ extension AddTokenView {
                             .visibility(vm.mode == .addToken ? .visible : .gone)
                     }
                 }
-                .padding(.horizontal, 11)
+                .padding(.horizontal, 12)
                 .frame(height: TokenCellHeight)
                 .background({
                     Color.LL.Neutrals.background.cornerRadius(16)
