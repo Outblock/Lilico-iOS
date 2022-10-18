@@ -214,6 +214,7 @@
 "restore_with_gd" = "Restore with Google Drive";
 "restore_with_recovery_phrase" = "Restore with Recovery Phrase";
 "x_coins" = "%d Coins";
+"x_coin" = "%d Coin";
 "copied" = "Copied";
 "add_token" = "Add Token";
 "enable" = "Enable";

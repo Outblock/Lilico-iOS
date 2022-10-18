@@ -206,7 +206,7 @@ struct WalletView: View {
 
     var coinSectionView: some View {
         HStack {
-            Text("x_coins".localized(vm.coinItems.count))
+            Text(vm.coinItems.count == 1 ? "x_coin".localized(vm.coinItems.count) : "x_coins".localized(vm.coinItems.count))
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 18, weight: .bold))
 
