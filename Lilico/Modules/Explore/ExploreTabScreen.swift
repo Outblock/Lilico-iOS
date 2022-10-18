@@ -79,7 +79,7 @@ struct ExploreTabScreen: View {
                 .shadow(color: Color.LL.Secondary.violet4.opacity(0.2),
                         radius: 12, x: 0, y: 8)
             
-            if vm.state.list.isEmpty {
+            if vm.state.list.isEmpty && vm.webBookmarkList.isEmpty {
                 Spacer()
                 ExploreEmptyScreen()
                     .background(.LL.Neutrals.background)
@@ -103,8 +103,9 @@ struct ExploreTabScreen: View {
                         .visibility(vm.webBookmarkList.isEmpty ? .gone : .visible)
                         
                         dAppHeader
+                            .visibility(vm.state.list.isEmpty ? .gone : .visible)
                         dappList
-                        
+                            .visibility(vm.state.list.isEmpty ? .gone : .visible)
                     }
                     .background(.LL.Neutrals.background)
                     .padding(.bottom, 18)
