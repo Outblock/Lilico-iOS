@@ -21,7 +21,7 @@ extension BackupManager.BackupType {
 }
 
 struct ProfileBackupView: RouteableView {
-    let types: [BackupManager.BackupType] = [.icloud, .googleDrive, .manual]
+    let types: [BackupManager.BackupType] = [.icloud, .googleDrive]
     @StateObject private var vm = ProfileBackupViewModel()
     
     var title: String {

@@ -17,10 +17,12 @@ extension RemoteConfigManager {
     struct Features: Codable {
         let freeGas: Bool
         let walletConnect: Bool
+        let onRamp: Bool?
 
         enum CodingKeys: String, CodingKey {
             case freeGas = "free_gas"
             case walletConnect = "wallet_connect"
+            case onRamp = "on_ramp"
         }
     }
 

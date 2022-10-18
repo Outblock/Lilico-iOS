@@ -184,7 +184,7 @@ extension ProfileView {
                 }
 
                 ProfileView.InfoActionButton(iconName: "icon-wallet", title: "wallets".localized) {
-                    Router.route(to: RouteMap.Profile.walletSetting)
+                    Router.route(to: RouteMap.Profile.walletSetting(true))
                 }
 
                 ProfileView.InfoActionButton(iconName: "icon-inbox", title: "inbox".localized) {

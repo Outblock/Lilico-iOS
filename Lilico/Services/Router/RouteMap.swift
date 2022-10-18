@@ -162,10 +162,10 @@ extension RouteMap {
         case editName
         case editAvatar
         case backupChange
-        case walletSetting
-        case privateKey
+        case walletSetting(Bool)
+        case privateKey(Bool)
         case walletConnect
-        case manualBackup
+        case manualBackup(Bool)
         case security(Bool)
         case inbox
     }
@@ -195,14 +195,14 @@ extension RouteMap.Profile: RouterTarget {
             }
             
             navi.push(content: ProfileBackupView())
-        case .walletSetting:
-            navi.push(content: WalletSettingView())
+        case .walletSetting(let animated):
+            Router.coordinator.rootNavi?.push(content: WalletSettingView(), animated: animated)
         case .walletConnect:
             navi.push(content: WalletConnectView())
-        case .privateKey:
-            navi.push(content: PrivateKeyView())
-        case .manualBackup:
-            navi.push(content: RecoveryPhraseView(backupMode: true))
+        case .privateKey(let animated):
+            Router.coordinator.rootNavi?.push(content: PrivateKeyView(), animated: animated)
+        case .manualBackup(let animated):
+            Router.coordinator.rootNavi?.push(content: RecoveryPhraseView(backupMode: true), animated: animated)
         case .security(let animated):
             if let existVC = Router.coordinator.rootNavi?.viewControllers.first(where: { $0.navigationItem.title == "security".localized }) {
                 navi.popToViewController(existVC, animated: animated)

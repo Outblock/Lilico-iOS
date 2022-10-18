@@ -279,6 +279,10 @@ class TransactionManager {
         removeTransaction(id: holder.transactionId.hex)
         
         switch holder.type {
+        case .claimDomain:
+            DispatchQueue.main.async {
+                UserManager.shared.isMeowDomainEnabled = true
+            }
         case .transferCoin:
             Task {
                 try? await WalletManager.shared.fetchBalance()

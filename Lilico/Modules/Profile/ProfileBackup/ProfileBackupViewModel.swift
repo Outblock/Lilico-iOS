@@ -32,7 +32,7 @@ class ProfileBackupViewModel: ObservableObject {
         }
         
         if type == .manual {
-            Router.route(to: RouteMap.Profile.manualBackup)
+//            Router.route(to: RouteMap.Profile.manualBackup)
             LocalUserDefaults.shared.backupType = .manual
             return
         }
