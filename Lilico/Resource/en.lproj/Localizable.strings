@@ -55,7 +55,7 @@
 "lilico" = "Lilico";
 "flowns" = "Flowns";
 "loading" = "Loading...";
-"no_more_data" = "No more data";
+"no_more_data" = "- The End -";
 "top_selection" = "Top Selection";
 "nft_empty" = "We find nothing here.";
 "nft_empty_discovery" = "Looking forward to your new discovery.";
@@ -334,7 +334,7 @@
 "pull_up_load_more" = "Pull up to load more";
 "release_load_more" = "Release to start loading";
 "loading_more" = "Loading...";
-"no_more_data" = "No more data";
+"no_more_data" = "- The End -";
 "restore_account_title" = "Found an old account";
 "restore_account_msg" = "It seems that you have logged in to the app before. Do you want to try to restore login?";
 "restore_account_failed" = "Restore account failed";
