@@ -383,6 +383,7 @@
 "claim_free_domain_substring1" = "Claim for your ";
 "claim_free_domain_substring2" = "FREE";
 "claim_free_domain_substring3" = " Lilico domain!";
+"domain_title2" = "Lilico Domain";
 
 // Inbox
 "inbox" = "Inbox";

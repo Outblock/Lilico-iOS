@@ -298,10 +298,17 @@ extension WalletView {
         var cardView: some View {
             ZStack {
                 VStack {
-                    Text(vm.walletName)
-                        .foregroundColor(Color(hex: "#FDFBF9"))
-                        .font(.inter(size: 14, weight: .semibold))
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    HStack {
+                        Text(vm.walletName)
+                            .foregroundColor(Color(hex: "#FDFBF9"))
+                            .font(.inter(size: 14, weight: .semibold))
+                        
+                        Spacer()
+                        
+                        Text(UserManager.shared.isMeowDomainEnabled ? UserManager.shared.userInfo?.meowDomain ?? "" : "")
+                            .foregroundColor(Color(hex: "#FDFBF9"))
+                            .font(.inter(size: 14, weight: .semibold))
+                    }
 
                     Spacer()
 

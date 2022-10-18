@@ -26,6 +26,7 @@ class UserManager: ObservableObject {
     }
 
     @Published var isAnonymous: Bool = true
+    @Published var isMeowDomainEnabled: Bool = false
 
     init() {
         checkIfHasOldAccount()
@@ -170,6 +171,26 @@ extension UserManager {
         LocalUserDefaults.shared.userInfo = info
         DispatchQueue.main.async {
             self.userInfo = info
+            self.fetchMeowDomainStatus()
+        }
+    }
+    
+    private func fetchMeowDomainStatus() {
+        guard let username = self.userInfo?.username else {
+            return
+        }
+        
+        Task {
+            do {
+                let _ = try await FlowNetwork.queryAddressByDomainFlowns(domain: username, root: Contact.DomainType.meow.domain)
+                DispatchQueue.main.async {
+                    self.isMeowDomainEnabled = true
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.isMeowDomainEnabled = false
+                }
+            }
         }
     }
 }

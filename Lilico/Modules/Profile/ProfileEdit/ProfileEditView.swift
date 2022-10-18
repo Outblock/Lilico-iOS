@@ -25,6 +25,7 @@ struct ProfileEditView: RouteableView {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 16) {
                 editContainer
+                domainEnabledView
                 claimDomainBanner
             }
         }
@@ -43,6 +44,31 @@ struct ProfileEditView: RouteableView {
         .background(Color.LL.bgForIcon)
         .cornerRadius(16)
         .padding(.horizontal, 18)
+    }
+    
+    var domainEnabledView: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("domain_title2".localized)
+                    .font(titleFont)
+                    .foregroundColor(titleColor)
+                
+                Text(UserManager.shared.userInfo?.meowDomain ?? "")
+                    .font(.inter(size: 12))
+                    .foregroundColor(.LL.Neutrals.note)
+            }
+            
+            Spacer()
+            
+            Image(systemName: .checkmarkSelected)
+                .foregroundColor(Color.LL.Primary.salmonPrimary)
+        }
+        .frame(height: 70)
+        .padding(.horizontal, 16)
+        .background(Color.LL.bgForIcon)
+        .cornerRadius(16)
+        .padding(.horizontal, 18)
+        .visibility(UserManager.shared.isMeowDomainEnabled ? .visible : .gone)
     }
     
     var claimDomainBanner: some View {
@@ -85,6 +111,7 @@ struct ProfileEditView: RouteableView {
             }
             .padding(.horizontal, 18)
         }
+        .visibility(UserManager.shared.isMeowDomainEnabled ? .gone : .visible)
     }
 }
 
