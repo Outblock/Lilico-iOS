@@ -193,7 +193,7 @@ extension AddressBookView {
 
     @ViewBuilder private func sectionHeader(_ sectionVM: SectionViewModel) -> some View {
         let sectionName = sectionVM.state.sectionName
-        Text(sectionName == "#" ? "\(sectionName)" : "#\(sectionName)").foregroundColor(.LL.Neutrals.neutrals8).font(.inter(size: 18, weight: .semibold))
+        Text(sectionName).foregroundColor(.LL.Neutrals.text2).font(.inter(size: 14, weight: .semibold))
     }
 }
 

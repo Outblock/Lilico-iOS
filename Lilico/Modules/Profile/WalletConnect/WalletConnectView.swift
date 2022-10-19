@@ -127,7 +127,7 @@ extension WalletConnectView {
                 
                 Text("With WalletConnect, you can connect your wallet with hundreds of apps")
                     .font(.LL.callout)
-                    .foregroundColor(.LL.Neutrals.neutrals6)
+                    .foregroundColor(.LL.Neutrals.text3)
                     .multilineTextAlignment(.center)
                 
                 Button {
