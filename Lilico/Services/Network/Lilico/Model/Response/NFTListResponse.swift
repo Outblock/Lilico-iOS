@@ -108,7 +108,7 @@ struct NFTPostMedia: Codable, Hashable {
     var image: String?
     let description: String?
     let video: String?
-    let isSvg: String?
+    let isSvg: Bool?
 }
 
 // MARK: - TokenMetadata

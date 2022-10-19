@@ -396,8 +396,8 @@ extension NFTUIKitCache {
                 } else {
                     var collection = collections[index]
                     collection.count -= 1
-                    if var ids = collection.ids, let thisId = Int(nft.id) {
-                        ids.removeAll { $0 == thisId }
+                    if var ids = collection.ids {
+                        ids.removeAll { $0 == nft.id }
                         collection.ids = ids
                     }
                     

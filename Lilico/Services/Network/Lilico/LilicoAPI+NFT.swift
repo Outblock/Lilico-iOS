@@ -38,11 +38,11 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
         case .gridDetailList:
             return "nft/list"
         case .userCollection:
-            
+            return "nft/id"
         case .collections:
             return "nft/collections"
         case .collectionDetailList:
-            return "v2/nft/single"
+            return "nft/collectionList"
         case .favList, .addFav, .updateFav:
             return "v2/nft/favorite"
         }
@@ -50,7 +50,7 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
 
     var method: Moya.Method {
         switch self {
-        case .collections, .collectionDetailList, .gridDetailList, .favList:
+        case .collections, .collectionDetailList, .gridDetailList, .favList, .userCollection:
             return .get
         case .addFav:
             return .put
@@ -73,16 +73,18 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
             return .requestJSONEncodable(request)
         case let .updateFav(request):
             return .requestJSONEncodable(request)
+        case let .userCollection(address):
+            return .requestParameters(parameters: ["address": address], encoding: URLEncoding())
         }
     }
 
     var headers: [String: String]? {
         var headers = LilicoAPI.commonHeaders
 
-//        #if DEBUG
-//            // TODO: current nft is error on testnet, remove this code if testnet nft is working someday.
-//            headers["Network"] = LocalUserDefaults.FlowNetworkType.mainnet.rawValue
-//        #endif
+        #if DEBUG
+            // TODO: current nft is error on testnet, remove this code if testnet nft is working someday.
+            headers["Network"] = LocalUserDefaults.FlowNetworkType.mainnet.rawValue
+        #endif
         return headers
     }
 }

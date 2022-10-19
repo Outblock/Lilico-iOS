@@ -16,7 +16,7 @@ let filterMetadata = ["uri", "img", "description"]
 struct NFTCollection: Codable {
     let collection: NFTCollectionInfo
     var count: Int
-    var ids: [Int]?
+    var ids: [String]?
 }
 
 struct NFTCollectionInfo: Codable, Hashable {
@@ -80,7 +80,7 @@ struct NFTModel: Codable, Hashable, Identifiable {
 
     init(_ response: NFTResponse, in collection: NFTCollectionInfo?) {
         if let imgUrl = response.postMedia.image, let url = URL(string: imgUrl) {
-            if response.postMedia.isSvg == "true" {
+            if response.postMedia.isSvg == true {
                 image = URL(string: imgUrl) ?? URL(string: placeholder)!
                 isSVG = true
             } else {
@@ -239,7 +239,7 @@ class CollectionItem: Identifiable, ObservableObject {
     }
     
     private func requestCollectionListDetail(offset: Int, limit: Int = 24) async throws -> NFTListResponse {
-        let request = NFTCollectionDetailListRequest(address: address, contractName: name, offset: offset, limit: limit)
+        let request = NFTCollectionDetailListRequest(address: address, collectionIdentifier: collection?.id ?? "", offset: offset, limit: limit)
         let response: NFTListResponse = try await Network.request(LilicoAPI.NFT.collectionDetailList(request))
         return response
     }
