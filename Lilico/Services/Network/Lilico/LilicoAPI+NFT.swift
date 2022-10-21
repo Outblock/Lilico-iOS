@@ -26,11 +26,16 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
     }
 
     var baseURL: URL {
+        switch self {
+        case .favList, .addFav, .updateFav:
+            return Config.get(.lilico)
+        default:
 #if LILICOPROD
         return URL(string: "https://lilico.app/api/")!
 #else
         return URL(string: "https://test.lilico.app/api/")!
 #endif
+        }
     }
 
     var path: String {
