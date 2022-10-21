@@ -117,6 +117,7 @@ extension NFTAddCollectionView {
                         .clipShape(Circle())
                 }
                 .padding(.trailing, 16)
+                .visibility(item.status == .own ? .invisible : .visible)
                 
 
             }
