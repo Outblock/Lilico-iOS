@@ -117,6 +117,7 @@ extension NFTAddCollectionView {
                         .clipShape(Circle())
                 }
                 .padding(.trailing, 16)
+                .visibility(item.status == .own ? .invisible : .visible)
                 
 
             }
@@ -177,21 +178,21 @@ extension NFTAddCollectionView {
     }
 }
 
-struct NFTAddCollectionView_Previews: PreviewProvider {
-    
-    
-    
-    static let item = NFTCollectionItem(collection: NFTCollectionInfo(logo:"https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovologo.jpeg", name: "OVO", contractName: "", address: ContractAddress(mainnet: "", testnet: ""), secureCadenceCompatible: SecureCadenceCompatible(mainnet: true, testnet: true), banner: nil, officialWebsite: nil, marketplace: nil, description: "hhhhhhhh", path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")))
-    
-    
-    
-    
-    static let list: [NFTCollectionItem] = [
-        item
-    ]
-    static var previews: some View {
-        NavigationView {
-            NFTAddCollectionView()
-        }
-    }
-}
+//struct NFTAddCollectionView_Previews: PreviewProvider {
+//    
+//    
+//    
+//    static let item = NFTCollectionItem(collection: NFTCollectionInfo(logo:"https://raw.githubusercontent.com/Outblock/assets/main/nft/nyatheesovo/ovologo.jpeg", name: "OVO", contractName: "", address: ContractAddress(mainnet: "", testnet: ""), secureCadenceCompatible: SecureCadenceCompatible(mainnet: true, testnet: true), banner: nil, officialWebsite: nil, marketplace: nil, description: "hhhhhhhh", path: ContractPath(storagePath: "", publicPath: "", publicCollectionName: "")))
+//    
+//    
+//    
+//    
+//    static let list: [NFTCollectionItem] = [
+//        item
+//    ]
+//    static var previews: some View {
+//        NavigationView {
+//            NFTAddCollectionView()
+//        }
+//    }
+//}

@@ -16,7 +16,6 @@ final class NFTCollectionConfig {
     var config: [NFTCollectionInfo] = []
 
     func reload() async {
-        
         await fetchData()
     }
 
@@ -24,31 +23,17 @@ final class NFTCollectionConfig {
         if config.isEmpty {
             await fetchData()
         }
-        return config.first { $0.address.chooseBy(network: .mainnet) == address ||
-            $0.address.chooseBy(network: .testnet) == address }
+        return config.first { $0.address == address }
     }
 }
 
 extension NFTCollectionConfig {
     private func fetchData() async {
         do {
-            let list: [NFTCollectionInfo] = try await FirebaseConfig.nftCollections.fetch()
-            config.removeAll()
-            
-            config = list.filter{ item in
-                if (LocalUserDefaults.shared.flowNetwork == .testnet) {
-                    return item.secureCadenceCompatible.testnet
-                }
-                return item.secureCadenceCompatible.mainnet
-            }
-            
+            let list: [NFTCollectionInfo] = try await Network.request(LilicoAPI.NFT.collections)
+            config = list
         } catch {
-            fetchLocal()
+            debugPrint("NFTCollectionConfig -> fetchData failed: \(error)")
         }
-        // TODO:
-    }
-
-    private func fetchLocal() {
-        // TODO: fetch json from local
     }
 }

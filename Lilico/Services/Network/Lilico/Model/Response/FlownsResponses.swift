@@ -89,6 +89,6 @@ struct InboxNFT: Codable {
     let tokenId: String
     
     var localCollection: NFTCollectionInfo? {
-        return NFTCollectionConfig.share.config.first { $0.currentAddress() == collectionAddress }
+        return NFTCollectionConfig.share.config.first { $0.address == collectionAddress }
     }
 }

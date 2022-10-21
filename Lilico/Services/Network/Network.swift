@@ -24,7 +24,7 @@ enum Network {
 
     struct Response<T: Decodable>: Decodable {
         let httpCode: Int
-        let message: String
+        let message: String?
         let data: T?
 
         enum CodingKeys: String, CodingKey {

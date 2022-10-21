@@ -115,24 +115,22 @@ class CadenceTemplate {
     
     static let nftCollectionEnable = """
         import NonFungibleToken from 0xNonFungibleToken
-        import <NFT> from <NFTAddress>
-        
-        transaction {
-          prepare(signer: AuthAccount) {
-              // if the account doesn't already have a collection
-              if signer.borrow<&<NFT>.Collection>(from: <CollectionStoragePath>) == nil {
-        
-                  // create a new empty collection
+            import MetadataViews from 0xMetadataViews
+            import <NFT> from <NFTAddress>
+
+            transaction {
+
+              prepare(signer: AuthAccount) {
+                if signer.borrow<&<NFT>.Collection>(from: <CollectionStoragePath>) == nil {
                   let collection <- <NFT>.createEmptyCollection()
-                  
-                  // save it to the account
                   signer.save(<-collection, to: <CollectionStoragePath>)
-        
-                  // create a public capability for the collection
-                  signer.link<&<NFT>.Collection{NonFungibleToken.CollectionPublic, <CollectionPublic>}>(<CollectionPublicPath>, target: <CollectionStoragePath>)
+                }
+                if (signer.getCapability<&<CollectionPublicType>>(<CollectionPublicPath>).borrow() == nil) {
+                  signer.unlink(<CollectionPublicPath>)
+                  signer.link<&<CollectionPublicType>>(<CollectionPublicPath>, target: <CollectionStoragePath>)
+                }
               }
-          }
-        }
+            }
     """
     
     static let nftTransfer = """
@@ -243,38 +241,42 @@ class CadenceTemplate {
     
     static let claimInboxNFT = """
       import Domains from 0xDomains
-      import Flowns from 0xFlowns
-      import NonFungibleToken from 0xNonFungibleToken
-      import <NFT> from <NFTAddress>
-      // key will be 'A.f8d6e0586b0a20c7.Domains.Collection' of a NFT collection
-      transaction(name: String, root: String, key: String, itemId: UInt64) {
-        var domain: &{Domains.DomainPrivate}
-        var collectionRef: &<NFT>.Collection
-        prepare(account: AuthAccount) {
-          let prefix = "0x"
-          let rootHahsh = Flowns.hash(node: "", lable: root)
-          let nameHash = prefix.concat(Flowns.hash(node: rootHahsh, lable: name))
-          var domain: &{Domains.DomainPrivate}? = nil
-          let collectionPrivate = account.borrow<&{Domains.CollectionPrivate}>(from: Domains.CollectionStoragePath) ?? panic("Could not find your domain collection cap")
-          let id = Domains.getDomainId(nameHash)
-          if id !=nil {
-            domain = collectionPrivate.borrowDomainPrivate(id!)
-          }
-          self.domain = domain!
-          let collectionRef = account.borrow<&<NFT>.Collection>(from: <CollectionStoragePath>)
-          if collectionRef == nil {
-            account.save(<- <NFT>.createEmptyCollection(), to: <CollectionStoragePath>)
-            account.link<&<NFT>.Collection{NonFungibleToken.CollectionPublic, NonFungibleToken.Receiver, <CollectionPublic>}>(<CollectionPublicPath>, target: <CollectionStoragePath>)
-            self.collectionRef = account.borrow<&<NFT>.Collection>(from: <CollectionStoragePath>)?? panic("Can not borrow collection")
-          } else {
-            self.collectionRef = collectionRef!
-          }
-        
-        }
-        execute {
-          self.collectionRef.deposit(token: <- self.domain.withdrawNFT(key: key, itemId: itemId))
-        }
-      }
+            import Flowns from 0xFlowns
+            import NonFungibleToken from 0xNonFungibleToken
+            import MetadataViews from 0xMetadataViews
+            import <NFT> from <NFTAddress>
+
+            // key will be 'A.f8d6e0586b0a20c7.Domains.Collection' of a NFT collection
+            transaction(name: String, root: String, key: String, itemId: UInt64) {
+              var domain: &{Domains.DomainPrivate}
+              var collectionRef: &<NFT>.Collection
+              prepare(account: AuthAccount) {
+                let prefix = "0x"
+                let rootHahsh = Flowns.hash(node: "", lable: root)
+                let nameHash = prefix.concat(Flowns.hash(node: rootHahsh, lable: name))
+                var domain: &{Domains.DomainPrivate}? = nil
+                let collectionPrivate = account.borrow<&{Domains.CollectionPrivate}>(from: Domains.CollectionStoragePath) ?? panic("Could not find your domain collection cap")
+
+                let id = Domains.getDomainId(nameHash)
+                if id !=nil {
+                  domain = collectionPrivate.borrowDomainPrivate(id!)
+                }
+                self.domain = domain!
+
+                let collectionRef = account.borrow<&<NFT>.Collection>(from: <CollectionStoragePath>)
+                if collectionRef == nil {
+                  account.save(<- <NFT>.createEmptyCollection(), to: <CollectionStoragePath>)
+                  account.link<&<CollectionPublicType>>(<CollectionPublicPath>, target: <CollectionStoragePath>)
+                  self.collectionRef = account.borrow<&<NFT>.Collection>(from: <CollectionStoragePath>)?? panic("Can not borrow collection")
+                } else {
+                  self.collectionRef = collectionRef!
+                }
+              
+              }
+              execute {
+                self.collectionRef.deposit(token: <- self.domain.withdrawNFT(key: key, itemId: itemId))
+              }
+            }
     """
     
     static let swapFromTokenToOtherToken = """

@@ -57,12 +57,12 @@ class AddCollectionViewModel: ObservableObject {
         await NFTCollectionStateManager.share.fetch()
         collectionList.removeAll { _ in true }
         collectionList = NFTCollectionConfig.share.config.filter({ col in
-            !col.currentAddress().isEmpty
+            !col.address.isEmpty
         })
         .map({ it in
             //TODO: handle status
             var status = NFTCollectionItem.ItemStatus.idle
-            if(NFTCollectionStateManager.share.isTokenAdded(it.currentAddress())) {
+            if(NFTCollectionStateManager.share.isTokenAdded(it.address)) {
                 status = .own
             }
             //TODO: fail or pending

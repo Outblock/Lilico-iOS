@@ -260,16 +260,17 @@ extension NFTCollectionInfo {
     func formatCadence(script: String, chainId: Flow.ChainID = flow.chainID) -> String {
         let newScript = script
             .replacingOccurrences(of: "<NFT>", with: contractName.trim())
-            .replacingOccurrences(of: "<NFTAddress>", with: address.chooseBy(network: chainId) ?? "")
+            .replacingOccurrences(of: "<NFTAddress>", with: address)
             .replacingOccurrences(of: "<CollectionStoragePath>", with: path.storagePath)
             .replacingOccurrences(of: "<CollectionPublic>", with: path.publicCollectionName)
             .replacingOccurrences(of: "<CollectionPublicPath>", with: path.publicPath)
-            .replacingOccurrences(of: "<CollectionName>", with: name.trim())
             .replacingOccurrences(of: "<Token>", with: contractName.trim())
-            .replacingOccurrences(of: "<TokenAddress>", with: address.chooseBy(network: chainId) ?? "")
+            .replacingOccurrences(of: "<TokenAddress>", with: address)
             .replacingOccurrences(of: "<TokenCollectionStoragePath>", with: path.storagePath)
             .replacingOccurrences(of: "<TokenCollectionPublic>", with: path.publicCollectionName)
             .replacingOccurrences(of: "<TokenCollectionPublicPath>", with: path.publicPath)
+            .replacingOccurrences(of: "<CollectionPublicType>", with: path.publicType)
+            .replacingOccurrences(of: "<CollectionPrivateType>", with: path.privateType)
         
         return newScript.replace(by: ScriptAddress.addressMap())
     }

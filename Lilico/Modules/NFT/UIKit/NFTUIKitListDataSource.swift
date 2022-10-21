@@ -115,6 +115,7 @@ class NFTUIKitListNormalDataModel {
                 let item = CollectionItem()
                 item.address = address
                 item.name = collection.collection.contractName
+                item.collectionId = collection.collection.id
                 item.count = collection.count
                 item.collection = collection.collection
                 
@@ -164,6 +165,7 @@ class NFTUIKitListNormalDataModel {
             let item = CollectionItem()
             item.address = address
             item.name = collection.collection.contractName
+            item.collectionId = collection.collection.id
             item.count = collection.count
             item.collection = collection.collection
             
@@ -180,7 +182,7 @@ class NFTUIKitListNormalDataModel {
             return []
         }
         
-        let response: Network.Response<[NFTCollection]> = try await Network.requestWithRawModel(LilicoAPI.NFT.collections(address))
+        let response: Network.Response<[NFTCollection]> = try await Network.requestWithRawModel(LilicoAPI.NFT.userCollection(address))
         if let list = response.data {
             return list
         } else {
