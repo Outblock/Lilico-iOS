@@ -172,6 +172,10 @@ class CollectionItem: Identifiable, ObservableObject {
 
     var iconURL: URL {
         if let logoString = collection?.logo {
+            if logoString.hasSuffix("svg") {
+                return logoString.convertedSVGURL() ?? URL(string: placeholder)!
+            }
+            
             return URL(string: logoString) ?? URL(string: placeholder)!
         }
         
