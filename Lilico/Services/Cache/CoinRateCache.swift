@@ -42,6 +42,13 @@ class CoinRateCache {
                 self.refresh()
             }
         }.store(in: &cancelSets)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willReset), name: .willResetWallet, object: nil)
+    }
+    
+    @objc private func willReset() {
+        summarys = []
+        saveToCache()
     }
 
     func getSummary(for symbol: String) -> CryptoSummaryResponse? {

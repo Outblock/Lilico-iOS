@@ -43,6 +43,10 @@ extension LocalUserDefaults {
 
 class LocalUserDefaults: ObservableObject {
     static let shared = LocalUserDefaults()
+    
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(willReset), name: .willResetWallet, object: nil)
+    }
 
     #if DEBUG
         @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .testnet {
@@ -148,4 +152,11 @@ class LocalUserDefaults: ObservableObject {
     }
     
     @AppStorage(Keys.tryToRestoreAccountFlag.rawValue) var tryToRestoreAccountFlag: Bool = false
+}
+
+extension LocalUserDefaults {
+    @objc private func willReset() {
+        self.recentToken = nil
+        self.backupType = .manual
+    }
 }

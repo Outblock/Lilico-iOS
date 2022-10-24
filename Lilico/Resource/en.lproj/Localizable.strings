@@ -301,6 +301,9 @@
 "transfer_request_failed" = "Transfers request failed";
 "view_more_transactions" = "View more transactions";
 "token_detail_activities" = "Activities";
+"free_gas_fee" = "Free Gas Fee";
+"gas_fee_desc" = "Allow lilico to pay the gas fee for all my transactions";
+"reset_wallet" = "Reset Wallet";
 
 "restore_with_x_failed" = "Restore with %@ failed";
 "no_x_backup" = "No backup found in %@";

@@ -254,6 +254,13 @@ class TransactionManager {
     
     private func addNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(onHolderChanged(noti:)), name: .transactionStatusDidChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willReset), name: .willResetWallet, object: nil)
+    }
+    
+    @objc private func willReset() {
+        holders = []
+        saveHoldersToCache()
+        postDidChangedNotification()
     }
     
     @objc private func onHolderChanged(noti: Notification) {

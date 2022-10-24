@@ -1321,6 +1321,8 @@
 		6AF95B402848B0B50012C837 /* AddressBookListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF95B3E2848B0B40012C837 /* AddressBookListResponse.swift */; };
 		6AF95B452848C8D70012C837 /* BMChineseSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF95B422848C8D60012C837 /* BMChineseSort.swift */; };
 		6AF95B472848C8D70012C837 /* BMChineseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF95B432848C8D60012C837 /* BMChineseUtils.swift */; };
+		6AFED0292906794000221F95 /* WalletSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFED0282906794000221F95 /* WalletSettingViewModel.swift */; };
+		6AFED02A2906794000221F95 /* WalletSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFED0282906794000221F95 /* WalletSettingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1986,6 +1988,7 @@
 		6AF95B3E2848B0B40012C837 /* AddressBookListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookListResponse.swift; sourceTree = "<group>"; };
 		6AF95B422848C8D60012C837 /* BMChineseSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMChineseSort.swift; sourceTree = "<group>"; };
 		6AF95B432848C8D60012C837 /* BMChineseUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMChineseUtils.swift; sourceTree = "<group>"; };
+		6AFED0282906794000221F95 /* WalletSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSettingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2653,6 +2656,7 @@
 			children = (
 				15BA24B828C7A93400755CBF /* WalletSettingView.swift */,
 				15BA24BB28C7AF1B00755CBF /* PrivateKeyView.swift */,
+				6AFED0282906794000221F95 /* WalletSettingViewModel.swift */,
 			);
 			path = WalletSetting;
 			sourceTree = "<group>";
@@ -5047,6 +5051,7 @@
 				6A7F6515289A85B2007188DC /* VerifyPinViewModel.swift in Sources */,
 				154B8907276A1EEB00780E93 /* View.swift in Sources */,
 				6AE69E9728C085F0004D4709 /* BrowserActionBarView.swift in Sources */,
+				6AFED02A2906794000221F95 /* WalletSettingViewModel.swift in Sources */,
 				6A8FA4AE285B192900EE5BE3 /* SnapAlignment.swift in Sources */,
 				6A8FA4A4285B192900EE5BE3 /* CGPoint+Distance.swift in Sources */,
 				15C11BCF28D9F6CD00FD4C06 /* AboutView.swift in Sources */,
@@ -5621,6 +5626,7 @@
 				15C58B3E2868A4EE00BD4FC6 /* View.swift in Sources */,
 				6AE69E9628C085F0004D4709 /* BrowserActionBarView.swift in Sources */,
 				15C58B3F2868A4EE00BD4FC6 /* SnapAlignment.swift in Sources */,
+				6AFED0292906794000221F95 /* WalletSettingViewModel.swift in Sources */,
 				15C58B402868A4EE00BD4FC6 /* CGPoint+Distance.swift in Sources */,
 				15C58B412868A4EE00BD4FC6 /* VPageIndicatorAuto.swift in Sources */,
 				15C11BCE28D9F6CD00FD4C06 /* AboutView.swift in Sources */,

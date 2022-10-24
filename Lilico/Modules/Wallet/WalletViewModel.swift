@@ -69,6 +69,9 @@ class WalletViewModel: ObservableObject {
             guard let address = newInfo?.primaryWalletModel?.getAddress else {
                 DispatchQueue.main.async {
                     self?.walletState = .noAddress
+                    self?.address = "0x0000000000000000"
+                    self?.balance = 0
+                    self?.coinItems = []
                 }
                 return
             }
@@ -114,6 +117,7 @@ class WalletViewModel: ObservableObject {
         }.store(in: &cancelSets)
         
         NotificationCenter.default.addObserver(self, selector: #selector(transactionCountDidChanged), name: .transactionCountDidChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willReset), name: .willResetWallet, object: nil)
     }
 
     private func refreshHiddenFlag() {
@@ -182,12 +186,21 @@ class WalletViewModel: ObservableObject {
             self.transactionCount = LocalUserDefaults.shared.transactionCount
         }
     }
+    
+    @objc private func willReset() {
+        LocalUserDefaults.shared.transactionCount = 0
+        LocalUserDefaults.shared.walletHidden = false
+    }
 }
 
 // MARK: - Action
 
 extension WalletViewModel {
     func reloadWalletData() {
+        guard WalletManager.shared.getPrimaryWalletAddress() != nil else {
+            return
+        }
+        
         DispatchQueue.main.async {
             self.lastRefreshTS = Date().timeIntervalSince1970
             self.walletState = .idle

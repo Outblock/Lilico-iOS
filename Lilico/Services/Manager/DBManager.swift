@@ -7,6 +7,7 @@
 
 import Foundation
 import FMDB
+import Combine
 
 private enum DBTable: String {
     case webBookmark = "web_bookmark"
@@ -17,8 +18,25 @@ class DBManager {
     
     private var db: FMDatabase?
     
+    private var cancelSets = Set<AnyCancellable>()
+    
     init() {
         prepare()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willReset), name: .willResetWallet, object: nil)
+        
+        UserManager.shared.$isLoggedIn.sink { [weak self] isLoggedIn in
+            if isLoggedIn {
+                DispatchQueue.main.async {
+                    self?.prepare()
+                }
+            }
+        }.store(in: &cancelSets)
+    }
+    
+    @objc private func willReset() {
+        self.db?.close()
+        self.db = nil
     }
 }
     
@@ -30,6 +48,14 @@ extension DBManager {
     }
     
     private func prepare() {
+        guard UserManager.shared.getUid() != nil else {
+            return
+        }
+        
+        if self.db != nil {
+            return
+        }
+        
         let folderURL = dbURL.deletingLastPathComponent()
         if !FileManager.default.fileExists(atPath: folderURL.relativePath) {
             debugPrint("DBManager: db folder: \(folderURL) is not exist, create folder")

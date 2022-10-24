@@ -61,6 +61,8 @@ class WalletManager: ObservableObject {
                 self?.reloadWalletInfo()
             }
         }.store(in: &cancellableSet)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reset), name: .willResetWallet, object: nil)
     }
     
     private func loadCacheData() {
@@ -86,6 +88,40 @@ class WalletManager: ObservableObject {
                 }
             }
         }
+    }
+}
+
+// MARK: - Reset
+
+extension WalletManager {
+    @objc private func reset() {
+        debugPrint("WalletManager: reset start")
+        
+        self.hdWallet = nil
+        self.walletInfo = nil
+        self.supportedCoins = nil
+        self.activatedCoins = []
+        self.coinBalances = [:]
+        
+        debugPrint("WalletManager: wallet info clear success")
+        
+        do {
+            try removeCurrentMnemonicDataFromKeyChain()
+            debugPrint("WalletManager: mnemonic remove success")
+        } catch {
+            debugPrint("WalletManager: remove mnemonic failed")
+        }
+        
+        debugPrint("WalletManager: reset finished")
+    }
+    
+    private func removeCurrentMnemonicDataFromKeyChain() throws {
+        guard let uid = UserManager.shared.getUid() else {
+            return
+        }
+        
+        try mainKeychain.remove(getMnemonicStoreKey(uid: uid))
+        try backupKeychain.remove(uid)
     }
 }
 
@@ -349,6 +385,10 @@ extension WalletManager {
 
 extension WalletManager {
     func fetchWalletDatas() async throws {
+        guard getPrimaryWalletAddress() != nil else {
+            return
+        }
+        
         try await fetchSupportedCoins()
         try await fetchActivatedCoins()
         try await fetchBalance()

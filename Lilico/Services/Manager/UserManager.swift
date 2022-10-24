@@ -54,6 +54,35 @@ class UserManager: ObservableObject {
     }
 }
 
+// MARK: - Reset
+
+extension UserManager {
+    func reset() {
+        debugPrint("UserManager: reset start")
+        
+        NotificationCenter.default.post(name: .willResetWallet)
+        
+        do {
+            try Auth.auth().signOut()
+            debugPrint("UserManager: firebase signOut success")
+            
+            self.userInfo = nil
+            LocalUserDefaults.shared.userInfo = nil
+            debugPrint("UserManager: user info cache clear success")
+            
+            loginAnonymousIfNeeded()
+            
+            NotificationCenter.default.post(name: .didResetWallet)
+            
+            Router.popToRoot()
+            
+            debugPrint("UserManager: reset finished")
+        } catch {
+            debugPrint("UserManager: reset failed: \(error)")
+        }
+    }
+}
+
 // MARK: - Register
 
 extension UserManager {

@@ -45,7 +45,7 @@ extension ProfileView {
                 DispatchQueue.main.async {
                     self?.refreshBackupState()
                 }
-            }
+            }.store(in: &cancelSets)
             
             NotificationCenter.default.publisher(for: .backupTypeDidChanged).sink { _ in
                 DispatchQueue.main.async {

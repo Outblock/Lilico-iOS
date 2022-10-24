@@ -28,12 +28,17 @@ class NFTUIKitCache {
     
     init() {
         createFolderIfNeeded()
-//        // TODO: Test
-//        removeAllNFTs()
-//        removeFavCache()
-//        removeGridCache()
-        
         loadFavCache()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willReset), name: .willResetWallet, object: nil)
+    }
+    
+    @objc private func willReset() {
+        favList = []
+        removeCollectionCache()
+        removeAllNFTs()
+        removeGridCache()
+        removeFavCache()
     }
     
     private func createFolderIfNeeded() {

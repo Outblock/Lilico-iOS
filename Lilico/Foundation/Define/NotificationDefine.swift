@@ -26,4 +26,6 @@ public extension Notification.Name {
     static let watchAddressDidChanged = Notification.Name("watchAddressDidChanged")
     
     static let webBookmarkDidChanged = Notification.Name("webBookmarkDidChanged")
+    static let willResetWallet = Notification.Name("willResetWallet")
+    static let didResetWallet = Notification.Name("didResetWallet")
 }

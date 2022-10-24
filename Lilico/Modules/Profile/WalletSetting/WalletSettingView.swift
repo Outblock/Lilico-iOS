@@ -16,6 +16,8 @@ struct WalletSettingView: RouteableView {
     @State
     var isOn: Bool = true
     
+    @StateObject private var vm = WalletSettingViewModel()
+    
     var body: some View {
         
         ZStack(alignment: .bottom) {
@@ -64,7 +66,7 @@ struct WalletSettingView: RouteableView {
                     VStack(spacing: 0) {
                         
                         HStack {
-                            Text("Free Gas Fee".localized)
+                            Text("free_gas_fee".localized)
                                 .font(.inter(size: 16, weight: .medium))
                                 .foregroundColor(Color.LL.Neutrals.text)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -81,7 +83,7 @@ struct WalletSettingView: RouteableView {
                             
                         }
                         
-                        Text("Allow lilico to pay the gas fee for all my transactions".localized)
+                        Text("gas_fee_desc".localized)
                             .font(.inter(size: 12, weight: .regular))
                             .foregroundColor(Color.LL.Neutrals.neutrals7)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -99,20 +101,21 @@ struct WalletSettingView: RouteableView {
                 
             }
             
-//            VStack(alignment: .trailing) {
-//
-//                Button {
-//
-//                } label: {
-//                    Text("Reset Wallet")
-//                        .frame(maxWidth: .infinity)
-//                        .frame(width: .infinity, height: 56)
-//                        .background(.LL.Warning.warning2)
-//                        .cornerRadius(16)
-//                        .foregroundColor(.LL.background)
-//                }
-//                .padding(.horizontal, 18)
-//            }
+            VStack(alignment: .trailing) {
+
+                Button {
+                    vm.resetWalletAction()
+                } label: {
+                    Text("reset_wallet".localized)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 56)
+                        .background(.LL.Warning.warning2)
+                        .cornerRadius(16)
+                        .foregroundColor(Color.white)
+                        .font(.inter(size: 16, weight: .semibold))
+                }
+                .padding(.horizontal, 18)
+            }
                         
         }
         .backgroundFill(.LL.background)
