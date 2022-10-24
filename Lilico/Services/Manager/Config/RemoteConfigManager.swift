@@ -11,32 +11,40 @@ import Flow
 class RemoteConfigManager {
     static let shared = RemoteConfigManager()
     
-    var config: Config!
+    var config: Config?
     
     var isFailed: Bool = false
     
     var freeGasEnabled: Bool {
-        !isFailed && config.features.freeGas
+        if let config = config {
+            return config.features.freeGas
+        }
+        
+        return false
     }
     
     var payer: String {
         if !freeGasEnabled {
             return WalletManager.shared.getPrimaryWalletAddress() ?? ""
         }
+        
         if LocalUserDefaults.shared.flowNetwork.toFlowType() == .mainnet {
-            return config.payer.mainnet.address
+            return config?.payer.mainnet.address ?? ""
         }
-        return config.payer.testnet.address
+        
+        return config?.payer.testnet.address ?? ""
     }
     
     var payerKeyId: Int {
         if !freeGasEnabled {
             return 0
         }
+        
         if LocalUserDefaults.shared.flowNetwork.toFlowType() == .mainnet {
-            return config.payer.mainnet.keyID
+            return config?.payer.mainnet.keyID ?? 0
         }
-        return config.payer.testnet.keyID
+        
+        return config?.payer.testnet.keyID ?? 0
 
     }
     

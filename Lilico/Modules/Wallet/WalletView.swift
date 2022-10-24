@@ -190,7 +190,7 @@ struct WalletView: View {
                     Router.route(to: RouteMap.Wallet.receive)
                 }
                 
-                if RemoteConfigManager.shared.config.features.onRamp ?? false == true {
+                if RemoteConfigManager.shared.config?.features.onRamp ?? false == true {
                     Spacer()
                     actionButton(imageName: "wallet") {
                         Router.route(to: RouteMap.Wallet.buyCrypto)
