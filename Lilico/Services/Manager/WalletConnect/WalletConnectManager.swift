@@ -95,6 +95,21 @@ class WalletConnectManager: ObservableObject {
         self.activePairings = activePairings
     }
     
+    func encodeAccountProof(address: String, nonce: String, appIdentifier: String, includeDomaintag: Bool = true) -> Data? {
+        let list: [Any] = [appIdentifier.data(using: .utf8) ?? Data(), Data(hex: address), Data(hex: nonce)]
+        guard let rlp = RLP.encode(list) else {
+            return nil
+        }
+        
+        let accountProofTag = Flow.DomainTag.custom("FCL-ACCOUNT-PROOF-V0.0").normalize
+        
+        if includeDomaintag {
+            return accountProofTag + rlp
+        } else {
+            return rlp
+        }
+    }
+    
     func setUpAuthSubscribing() {
         Sign.instance.socketConnectionStatusPublisher
             .receive(on: DispatchQueue.main)
@@ -170,29 +185,30 @@ class WalletConnectManager: ObservableObject {
                         do {
                     let jsonString = try sessionRequest.params.get([String].self)
                     let data = jsonString[0].data(using: .utf8)!
-                    let model = try JSONDecoder().decode(BaseConfigRequest.self, from: data)
-                    print(model)
                             
                             
+                            var services = [serviceDefinition(address: RemoteConfigManager.shared.payer, keyId: RemoteConfigManager.shared.keyIndex, type: .preAuthz),
+                                serviceDefinition(address: address, keyId: keyId, type: .authn),
+                                serviceDefinition(address: address, keyId: keyId, type: .authz),
+                                serviceDefinition(address: address, keyId: keyId, type: .userSignature)]
+                            
+                            if let model = try? JSONDecoder().decode(BaseConfigRequest.self, from: data),
+                                let nonce = model.accountProofNonce,
+                               let appIdentifier = model.appIdentifier,
+                               let data = self?.encodeAccountProof(address: address, nonce: nonce, appIdentifier: appIdentifier),
+                               let signedData = try? await WalletManager.shared.sign(signableData: data) {
+                                
+                                services.append(accountProofServiceDefinition(address: address, keyId: keyId, nonce: nonce, signature: signedData.hexValue))
+                            }
                     
                     let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .approved,
                                                data: AuthnData(addr: address, fType: "AuthnResponse", fVsn: "1.0.0",
-                                                               services: [
-                                                                serviceDefinition(address: RemoteConfigManager.shared.payer, keyId: RemoteConfigManager.shared.keyIndex, type: .preAuthz),
-                                                                serviceDefinition(address: address, keyId: keyId, type: .authn),
-                                                                serviceDefinition(address: address, keyId: keyId, type: .authz),
-                                                                serviceDefinition(address: address, keyId: keyId, type: .userSignature),
-                                                                
-                                                               ]),
+                                                               services: services),
                                                reason: nil,
                                                compositeSignature: nil)
                     let response = JSONRPCResponse<AnyCodable>(id: sessionRequest.id, result: AnyCodable(result))
-                    
-
                             try await Sign.instance.respond(topic: sessionRequest.topic, response: .response(response))
-                            
                             self?.navigateBackTodApp(topic: sessionRequest.topic)
-                            
                         } catch {
                             print("[WALLET] Respond Error: \(error.localizedDescription)")
 //                            self?.rejectRequest(request: sessionRequest)
