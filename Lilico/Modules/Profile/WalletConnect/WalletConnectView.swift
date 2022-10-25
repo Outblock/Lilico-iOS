@@ -190,7 +190,7 @@ extension WalletConnectView {
                         .foregroundColor(Color.LL.Neutrals.text)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text(URL(string: url)?.host ?? "")
+                    Text(URL(string: url)?.host ?? url)
                         .font(.LL.footnote)
                         .foregroundColor(Color.LL.Neutrals.neutrals9)
                         .frame(maxWidth: .infinity, alignment: .leading)

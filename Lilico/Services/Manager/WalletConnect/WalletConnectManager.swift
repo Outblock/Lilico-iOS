@@ -40,7 +40,7 @@ class WalletConnectManager: ObservableObject {
         let metadata = AppMetadata(
             name: "Lilico",
             description: "A crypto wallet on Flow built for Explorers, Collectors and Gamers",
-            url: "https://link.lilico.app/wc",
+            url: "https://link.lilico.app",
             icons: ["https://lilico.app/logo.png"])
         
         Relay.configure(projectId: "29b38ec12be4bd19bf03d7ccef29aaa6", socketFactory: SocketFactory())
@@ -49,6 +49,10 @@ class WalletConnectManager: ObservableObject {
         reloadActiveSessions()
         reloadPairing()
         setUpAuthSubscribing()
+        
+//        #if DEBUG
+//        try? Sign.instance.cleanup()
+//        #endif
     }
     
     func connect(link: String) {
@@ -58,9 +62,9 @@ class WalletConnectManager: ObservableObject {
             do {
                 if let uri = WalletConnectURI.init(string: link) {
                     
-                    if Sign.instance.getPairings().contains(where: { $0.topic == uri.topic }) {
-                        try await Sign.instance.disconnect(topic: uri.topic)
-                    }
+//                    if Sign.instance.getPairings().contains(where: { $0.topic == uri.topic }) {
+//                        try await Sign.instance.disconnect(topic: uri.topic)
+//                    }
                     try await Sign.instance.pair(uri: uri)
                 }
             } catch {
@@ -126,6 +130,12 @@ class WalletConnectManager: ObservableObject {
             .sink { [weak self] sessionProposal in
                 print("[RESPONDER] WC: Did receive session proposal")
                 self?.currentProposal = sessionProposal
+                
+                let pairings = Sign.instance.getPairings()
+                if pairings.contains(where: { $0.peer == sessionProposal.proposer }) {
+                    self?.approveSession(proposal: sessionProposal)
+                    return
+                }
                 
                 let appMetadata = sessionProposal.proposer
                 let requiredNamespaces = sessionProposal.requiredNamespaces
@@ -336,6 +346,12 @@ class WalletConnectManager: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] sessionRequest in
                 self?.reloadActiveSessions()
+            }.store(in: &publishers)
+        
+        Sign.instance.sessionExtendPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] sessionRequest in
+                print("[RESPONDER] WC: sessionExtendPublisher")
             }.store(in: &publishers)
         
         Sign.instance.sessionEventPublisher
