@@ -9,6 +9,6 @@ import SwiftUI
 
 class WalletSettingViewModel: ObservableObject {
     func resetWalletAction() {
-        UserManager.shared.reset()
+        Router.route(to: RouteMap.Profile.resetWalletConfirm)
     }
 }
