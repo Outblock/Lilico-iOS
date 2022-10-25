@@ -48,8 +48,10 @@ extension LilicoAPI.NFT: TargetType, AccessTokenAuthorizable {
             return "nft/collections"
         case .collectionDetailList:
             return "nft/collectionList"
-        case .favList, .addFav, .updateFav:
+        case .addFav, .updateFav:
             return "v2/nft/favorite"
+        case .favList:
+            return "v3/nft/favorite"
         }
     }
 
