@@ -1232,6 +1232,10 @@
 		6AD0B27228AE121200D03822 /* NFTUIKitFavItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0B27028AE121200D03822 /* NFTUIKitFavItemCell.swift */; };
 		6AD3581928AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3581828AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift */; };
 		6AD3581A28AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3581828AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift */; };
+		6AD6D7C72907D82D0037E206 /* WalletResetConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD6D7C62907D82D0037E206 /* WalletResetConfirmView.swift */; };
+		6AD6D7C82907D82D0037E206 /* WalletResetConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD6D7C62907D82D0037E206 /* WalletResetConfirmView.swift */; };
+		6AD6D7CA2907DDA00037E206 /* WalletResetConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD6D7C92907DDA00037E206 /* WalletResetConfirmViewModel.swift */; };
+		6AD6D7CB2907DDA00037E206 /* WalletResetConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD6D7C92907DDA00037E206 /* WalletResetConfirmViewModel.swift */; };
 		6AD900652847175100B65CE6 /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD900632847175100B65CE6 /* AddAddressView.swift */; };
 		6AD90069284717FC00B65CE6 /* AddAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD90067284717FC00B65CE6 /* AddAddressViewModel.swift */; };
 		6AD9EC25286C4E4C0062A9CE /* CadenceTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD9EC24286C4E4C0062A9CE /* CadenceTemplate.swift */; };
@@ -1935,6 +1939,8 @@
 		6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
 		6AD0B27028AE121200D03822 /* NFTUIKitFavItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitFavItemCell.swift; sourceTree = "<group>"; };
 		6AD3581828AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitTopSelectionHeaderView.swift; sourceTree = "<group>"; };
+		6AD6D7C62907D82D0037E206 /* WalletResetConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletResetConfirmView.swift; sourceTree = "<group>"; };
+		6AD6D7C92907DDA00037E206 /* WalletResetConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletResetConfirmViewModel.swift; sourceTree = "<group>"; };
 		6AD900632847175100B65CE6 /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
 		6AD90067284717FC00B65CE6 /* AddAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewModel.swift; sourceTree = "<group>"; };
 		6AD9EC24286C4E4C0062A9CE /* CadenceTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceTemplate.swift; sourceTree = "<group>"; };
@@ -2657,6 +2663,8 @@
 				15BA24B828C7A93400755CBF /* WalletSettingView.swift */,
 				15BA24BB28C7AF1B00755CBF /* PrivateKeyView.swift */,
 				6AFED0282906794000221F95 /* WalletSettingViewModel.swift */,
+				6AD6D7C62907D82D0037E206 /* WalletResetConfirmView.swift */,
+				6AD6D7C92907DDA00037E206 /* WalletResetConfirmViewModel.swift */,
 			);
 			path = WalletSetting;
 			sourceTree = "<group>";
@@ -5271,7 +5279,9 @@
 				6A45898A28C1DF0000B1024B /* LilicoAPI+Browser.swift in Sources */,
 				6AEA374428A4AD20004545D4 /* NFTUIKitListViewController.swift in Sources */,
 				6A8C8E7C2897B4A900335DCA /* Animation.swift in Sources */,
+				6AD6D7C82907D82D0037E206 /* WalletResetConfirmView.swift in Sources */,
 				6ADA4BFF28F17CEA00C7B341 /* BrowserSearchDAppItemCell.swift in Sources */,
+				6AD6D7CB2907DDA00037E206 /* WalletResetConfirmViewModel.swift in Sources */,
 				154B8914276A1EEB00780E93 /* ViewModel.swift in Sources */,
 				15BA24BA28C7A93400755CBF /* WalletSettingView.swift in Sources */,
 				158832DF28942D0400142B35 /* FCLModel.swift in Sources */,
@@ -5846,7 +5856,9 @@
 				6A45898928C1DF0000B1024B /* LilicoAPI+Browser.swift in Sources */,
 				6AEA374328A4AD20004545D4 /* NFTUIKitListViewController.swift in Sources */,
 				6A8C8E7B2897B4A900335DCA /* Animation.swift in Sources */,
+				6AD6D7C72907D82D0037E206 /* WalletResetConfirmView.swift in Sources */,
 				6ADA4BFE28F17CEA00C7B341 /* BrowserSearchDAppItemCell.swift in Sources */,
+				6AD6D7CA2907DDA00037E206 /* WalletResetConfirmViewModel.swift in Sources */,
 				15C58BDC2868A4EE00BD4FC6 /* ViewModel.swift in Sources */,
 				15BA24B928C7A93400755CBF /* WalletSettingView.swift in Sources */,
 				158832DE28942D0400142B35 /* FCLModel.swift in Sources */,

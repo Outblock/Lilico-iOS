@@ -168,6 +168,7 @@ extension RouteMap {
         case manualBackup(Bool)
         case security(Bool)
         case inbox
+        case resetWalletConfirm
     }
 }
 
@@ -212,6 +213,8 @@ extension RouteMap.Profile: RouterTarget {
             Router.coordinator.rootNavi?.push(content: ProfileSecureView(), animated: animated)
         case .inbox:
             navi.push(content: InboxView())
+        case .resetWalletConfirm:
+            navi.push(content: WalletResetConfirmView())
         }
     }
 }
