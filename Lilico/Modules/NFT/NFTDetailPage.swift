@@ -208,7 +208,7 @@ struct NFTDetailPage: RouteableView {
                             
                             Text(vm.nft.declare)
                                 .font(Font.inter(size: 14, weight: .w400))
-                                .foregroundColor(.LL.Neutrals.neutrals6)
+                                .foregroundColor(.LL.Neutrals.text)
                         }
                         .padding(.horizontal, 26)
                         .padding(.vertical, 18)
@@ -279,15 +279,15 @@ struct NFTDetailPage: RouteableView {
                             .foregroundColor(.LL.Neutrals.text)
                     }
                     
-                    Button {} label: {
-                        HStack {
-                            Text("view_on_web".localized)
-                                .foregroundColor(.LL.Neutrals.text)
-                            Image(systemName: "globe.asia.australia")
-                                .font(.system(size: 16))
-                                .foregroundColor(theColor)
-                        }
-                    }
+//                    Button {} label: {
+//                        HStack {
+//                            Text("view_on_web".localized)
+//                                .foregroundColor(.LL.Neutrals.text)
+//                            Image(systemName: "globe.asia.australia")
+//                                .font(.system(size: 16))
+//                                .foregroundColor(theColor)
+//                        }
+//                    }
                     
                 } label: {
                     Image(systemName: "ellipsis")
