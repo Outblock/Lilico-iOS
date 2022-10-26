@@ -54,13 +54,9 @@ class ExploreTabViewModel: ViewModel {
             state.isLoading = true
             Task {
                 do {
-                    let buildNumber: FirebaseDAppBuildNumber = try await FirebaseConfig.dappBuildNumber.fetch(decoder: JSONDecoder())
-                    let localNumber = Bundle.main.infoDictionary?["CFBundleVersion"]
+                    let config: RemoteConfigManager.Config = try await FirebaseConfig.config.fetch(decoder: JSONDecoder())
                     
-                    debugPrint("buildNumber ==> \(buildNumber)")
-                    debugPrint("localNumber ==> \(localNumber!)")
-                    
-                    guard let numberString = localNumber as? String, let number = Int(numberString), number > buildNumber.build else {
+                    guard config.features.appList ?? false else {
                         return
                     }
                     
