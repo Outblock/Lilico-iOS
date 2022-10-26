@@ -165,13 +165,19 @@ struct WalletView: View {
         }
     }
 
-    func actionButton(imageName: String, action: @escaping () -> ()) -> some View {
+    func actionButton(imageName: String, text: String, action: @escaping () -> ()) -> some View {
         return Button {
             action()
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
         } label: {
-            VStack(spacing: 6) {
+            HStack(spacing: 6) {
                 Image(imageName)
                     .frame(width: 28, height: 28)
+                
+                Text(text)
+                    .font(.LL.body.weight(.semibold))
+                    .foregroundColor(.LL.text)
+                    .textCase(.uppercase)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .frame(height: ActionViewHeight)
@@ -185,17 +191,17 @@ struct WalletView: View {
     var actionView: some View {
         VStack{
             HStack() {
-                actionButton(imageName: "wallet-send-stroke") {
+                actionButton(imageName: "wallet-send-stroke", text: "send_uppercase".localized) {
                     Router.route(to: RouteMap.Wallet.send())
                 }
                 Spacer()
-                actionButton(imageName: "wallet-receive-stroke") {
+                actionButton(imageName: "wallet-receive-stroke", text: "receive_uppercase".localized) {
                     Router.route(to: RouteMap.Wallet.receive)
                 }
                 
                 if RemoteConfigManager.shared.config?.features.onRamp ?? false == true {
                     Spacer()
-                    actionButton(imageName: "wallet") {
+                    actionButton(imageName: "wallet", text: "buy".localized) {
                         Router.route(to: RouteMap.Wallet.buyCrypto)
                     }
                 }
