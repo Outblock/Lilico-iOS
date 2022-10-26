@@ -97,6 +97,9 @@ struct WalletView: View {
                                     .zIndex(11)
                                 actionView
                                     .padding(.horizontal, 18)
+                                pendingRequestView
+                                    .padding(.horizontal, 18)
+                                    .visibility(vm.pendingRequestCount == 0 ? .gone : .visible)
                             }
                             
                             loadingView
@@ -227,6 +230,32 @@ struct WalletView: View {
         }
         .buttonStyle(.plain)
         .padding(.top, 32)
+    }
+    
+    var pendingRequestView: some View {
+        HStack(spacing: 7) {
+            Text("pending_request".localized)
+                .font(.inter(size: 14, weight: .semibold))
+                .foregroundColor(.LL.Other.text2)
+            
+            Spacer()
+            
+            Text("\(vm.pendingRequestCount)")
+                .font(.inter(size: 14, weight: .semibold))
+                .foregroundColor(.LL.Other.text1)
+                .frame(height: 24)
+                .padding(.horizontal, 10)
+                .background(Color.LL.Other.bg1)
+                .cornerRadius(12)
+            
+            Image("icon-account-arrow-right")
+                .renderingMode(.template)
+                .foregroundColor(.LL.Other.icon1)
+        }
+        .padding(.horizontal, 18)
+        .frame(height: 48)
+        .background(.LL.Other.bg2)
+        .cornerRadius(12)
     }
 }
 

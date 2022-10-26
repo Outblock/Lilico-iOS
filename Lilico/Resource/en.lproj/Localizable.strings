@@ -340,6 +340,7 @@
 "reject_failed" = "Reject failed";
 "approved" = "Approved";
 "rejected" = "Rejected";
+"pending_request" = "Pending Request";
 
 // Other
 "pull_up_load_more" = "Pull up to load more";
