@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import Lottie
+import WalletConnectSign
 
 struct WalletConnectView: RouteableView {
     @StateObject
@@ -20,40 +21,98 @@ struct WalletConnectView: RouteableView {
         return "walletconnect".localized
     }
     
+    var connectedViews: some View {
+        VStack {
+            Text("connected_site".localized)
+                .font(.inter(size: 14, weight: .medium))
+                .foregroundColor(Color.LL.Neutrals.text2)
+            
+            ForEach(manager.activeSessions, id: \.topic) { session in
+                Menu {
+                    
+                    Text(session.peer.description)
+                        .font(.inter(size: 8, weight: .regular))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.LL.Neutrals.neutrals7)
+                    
+                    Divider()
+                        .foregroundColor(.LL.Neutrals.neutrals3)
+                    
+                    Button(role: .destructive) {
+                        Task {
+                            await WalletConnectManager.shared.disconnect(topic: session.topic)
+                        }
+                    } label: {
+                        Label("Disconnect", systemImage: "xmark.circle")
+                            .foregroundColor(.LL.warning2)
+                    }
+                } label: {
+                    ItemCell(title: session.peer.name,
+                             url: session.peer.url,
+                             network: String(session.namespaces.values.first?.accounts.first?.reference ?? ""),
+                             icon: session.peer.icons.first ?? "https://lilico.app/placeholder.png")
+                    .buttonStyle(ScaleButtonStyle())
+                    .padding(.horizontal, 16)
+                    .roundedBg()
+                    .padding(.bottom, 12)
+                }
+            }
+        }
+    }
+    
+    var pendingViews: some View {
+        VStack {
+            Text("connected_site".localized)
+                .font(.inter(size: 14, weight: .medium))
+                .foregroundColor(Color.LL.Neutrals.text2)
+            
+            ForEach(manager.pendingRequests, id: \.id) { request in
+                createPendingItemView(request: request)
+            }
+        }
+    }
+    
+    func createPendingItemView(request: WalletConnectSign.Request) -> some View {
+        Button {
+            
+        } label: {
+            HStack(spacing: 12) {
+                KFImage.url(request.logoURL)
+                    .placeholder({
+                        Image("placeholder")
+                            .resizable()
+                    })
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                
+                VStack(alignment: .leading) {
+                    Text(request.name ?? "")
+                        .font(.inter(size: 14, weight: .semibold))
+                        .foregroundColor(Color.LL.Neutrals.neutrals1)
+                    
+                    Text(request.dappURL?.host ?? "")
+                        .font(.inter(size: 12, weight: .regular))
+                        .foregroundColor(Color.LL.Neutrals.text2)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .padding(.horizontal, 16)
+            .frame(height: 72)
+            .cornerRadius(16)
+        }
+    }
+    
     var body: some View {
-        if manager.activeSessions.count > 0 {
+        if manager.activeSessions.count > 0 || manager.pendingRequests.count > 0 {
             ScrollView {
                 VStack(spacing: 0) {
-                    ForEach(manager.activeSessions, id: \.topic) { session in
-                        Menu {
-                            
-                            Text(session.peer.description)
-                                .font(.inter(size: 8, weight: .regular))
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.LL.Neutrals.neutrals7)
-                            
-                            Divider()
-                                .foregroundColor(.LL.Neutrals.neutrals3)
-                            
-                            Button(role: .destructive) {
-                                Task {
-                                    await WalletConnectManager.shared.disconnect(topic: session.topic)
-                                }
-                            } label: {
-                                Label("Disconnect", systemImage: "xmark.circle")
-                                    .foregroundColor(.LL.warning2)
-                            }
-                        } label: {
-                            ItemCell(title: session.peer.name,
-                                     url: session.peer.url,
-                                     network: String(session.namespaces.values.first?.accounts.first?.reference ?? ""),
-                                     icon: session.peer.icons.first ?? "https://lilico.app/placeholder.png")
-                            .buttonStyle(ScaleButtonStyle())
-                            .padding(.horizontal, 16)
-                            .roundedBg()
-                            .padding(.bottom, 12)
-                        }
-                    }
+                    pendingViews
+                        .visibility(manager.pendingRequests.count > 0 ? .visible : .gone)
+                    
+                    connectedViews
+                        .visibility(manager.activeSessions.count > 0 ? .visible : .gone)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .padding(.horizontal, 18)
@@ -75,9 +134,7 @@ struct WalletConnectView: RouteableView {
             }
             )
             .backgroundFill(Color.LL.Neutrals.background)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(navigationBarTitleDisplayMode)
-            .navigationBarHidden(isNavigationBarHidden)
+            .applyRouteable(self)
         } else {
             WalletConnectView.EmptyView()
                 .backgroundFill(Color.LL.Neutrals.background)
@@ -101,7 +158,6 @@ struct WalletConnectView: RouteableView {
                 }
                 )
         }
-        
     }
 }
 
@@ -219,14 +275,14 @@ extension WalletConnectView {
     }
 }
 
-struct Previews_WalletConnectView_Previews: PreviewProvider {
-    static var previews: some View {
-        //        WalletConnectView.ItemCell(title: "NBA Top",
-        //                                   url: "https://google.com",
-        //                                   network: "mainnet",
-        //                                   icon: "https://lilico.app/placeholder.png")
-        //        .previewLayout(.sizeThatFits)
-        
-        WalletConnectView.EmptyView()
-    }
-}
+//struct Previews_WalletConnectView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        //        WalletConnectView.ItemCell(title: "NBA Top",
+//        //                                   url: "https://google.com",
+//        //                                   network: "mainnet",
+//        //                                   icon: "https://lilico.app/placeholder.png")
+//        //        .previewLayout(.sizeThatFits)
+//
+//        WalletConnectView.EmptyView()
+//    }
+//}

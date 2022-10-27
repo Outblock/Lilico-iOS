@@ -341,6 +341,7 @@
 "approved" = "Approved";
 "rejected" = "Rejected";
 "pending_request" = "Pending Request";
+"connected_site" = "Connected Site";
 
 // Other
 "pull_up_load_more" = "Pull up to load more";

@@ -15,7 +15,6 @@ import Combine
 import WalletCore
 import UIKit
 
-@MainActor
 class WalletConnectManager: ObservableObject {
     static let shared = WalletConnectManager()
     
