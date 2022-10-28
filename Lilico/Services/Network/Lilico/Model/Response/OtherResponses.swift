@@ -96,3 +96,9 @@ struct SwapEstimateResponse: Codable {
         return array
     }
 }
+
+struct CurrencyRateResponse: Codable {
+    let success: Bool?
+    let result: Double?
+    let date: String?
+}
