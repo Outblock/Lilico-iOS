@@ -22,7 +22,7 @@ struct WalletConnectView: RouteableView {
     }
     
     var connectedViews: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("connected_site".localized)
                 .font(.inter(size: 14, weight: .medium))
                 .foregroundColor(Color.LL.Neutrals.text2)
@@ -58,11 +58,13 @@ struct WalletConnectView: RouteableView {
                 }
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 20)
     }
     
     var pendingViews: some View {
-        VStack {
-            Text("connected_site".localized)
+        VStack(alignment: .leading) {
+            Text("pending_request".localized)
                 .font(.inter(size: 14, weight: .medium))
                 .foregroundColor(Color.LL.Neutrals.text2)
             
@@ -70,11 +72,13 @@ struct WalletConnectView: RouteableView {
                 createPendingItemView(request: request)
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 20)
     }
     
     func createPendingItemView(request: WalletConnectSign.Request) -> some View {
         Button {
-            
+            WalletConnectManager.shared.handleRequest(request)
         } label: {
             HStack(spacing: 12) {
                 KFImage.url(request.logoURL)
@@ -89,18 +93,21 @@ struct WalletConnectView: RouteableView {
                 
                 VStack(alignment: .leading) {
                     Text(request.name ?? "")
-                        .font(.inter(size: 14, weight: .semibold))
-                        .foregroundColor(Color.LL.Neutrals.neutrals1)
+                        .font(.LL.body)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color.LL.Neutrals.text)
                     
                     Text(request.dappURL?.host ?? "")
-                        .font(.inter(size: 12, weight: .regular))
-                        .foregroundColor(Color.LL.Neutrals.text2)
+                        .font(.LL.footnote)
+                        .foregroundColor(Color.LL.Neutrals.neutrals9)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.horizontal, 16)
-            .frame(height: 72)
+            .frame(height: 64)
+            .background(.LL.bgForIcon)
             .cornerRadius(16)
+            .buttonStyle(ScaleButtonStyle())
         }
     }
     
@@ -234,9 +241,9 @@ extension WalletConnectView {
                     })
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 45, height: 45)
-                    .cornerRadius(8)
-                    .padding(.trailing, 15)
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                    .padding(.trailing, 12)
                 
                 
                 VStack {

@@ -13,7 +13,7 @@ class WalletConnectViewModel: ObservableObject {
     private var cancelSets = Set<AnyCancellable>()
     
     init() {
-        
+        WalletConnectManager.shared.reloadPendingRequests()
     }
 }
 

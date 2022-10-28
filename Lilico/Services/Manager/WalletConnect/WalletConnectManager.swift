@@ -66,6 +66,8 @@ class WalletConnectManager: ObservableObject {
                 }
             }
         }.store(in: &publishers)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadPendingRequests), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     func connect(link: String) {
@@ -258,7 +260,7 @@ extension WalletConnectManager {
         }
     }
     
-    @objc private func reloadPendingRequests() {
+    @objc func reloadPendingRequests() {
         if UserManager.shared.isLoggedIn {
             self.pendingRequests = Sign.instance.getPendingRequests()
         }

@@ -47,5 +47,6 @@ class BrowserSignMessageViewModel: ObservableObject {
     
     deinit {
         callback?(false)
+        WalletConnectManager.shared.reloadPendingRequests()
     }
 }
