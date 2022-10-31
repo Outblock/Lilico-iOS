@@ -104,7 +104,7 @@ struct TokenDetailView: RouteableView {
             }
             .padding(.top, 15)
             
-            Text("$\(vm.balanceAsUSDString) USD")
+            Text("\(CurrencyCache.cache.currencySymbol)\(vm.balanceAsCurrentCurrencyString) \(CurrencyCache.cache.currentCurrency.rawValue)")
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 16, weight: .medium))
                 .padding(.top, 3)
@@ -231,7 +231,7 @@ struct TokenDetailView: RouteableView {
                         .font(.inter(size: 16, weight: .semibold))
                     
                     HStack(spacing: 4) {
-                        Text("$\(vm.rate.currencyString)")
+                        Text("\(CurrencyCache.cache.currencySymbol)\(vm.rate.formatCurrencyString(considerCustomCurrency: true))")
                             .foregroundColor(.LL.Neutrals.text)
                             .font(.inter(size: 14, weight: .regular))
                         

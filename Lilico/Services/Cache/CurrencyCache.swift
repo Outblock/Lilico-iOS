@@ -12,6 +12,8 @@ import SwiftUI
 private let CacheUpdateInverval = TimeInterval(60)
 
 class CurrencyCache: ObservableObject {
+    static let cache = CurrencyCache()
+    
     @Published var currentCurrency: Currency = LocalUserDefaults.shared.currentCurrency
     @Published var currentCurrencyRate: Double = LocalUserDefaults.shared.currentCurrencyRate
     
@@ -21,6 +23,10 @@ class CurrencyCache: ObservableObject {
     init() {
         refreshRate()
         NotificationCenter.default.addObserver(self, selector: #selector(refreshRate), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    var currencySymbol: String {
+        return currentCurrency.symbol
     }
     
     func changeCurrency(currency: Currency, rate: Double) {

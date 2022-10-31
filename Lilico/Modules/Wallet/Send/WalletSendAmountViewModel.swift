@@ -165,16 +165,16 @@ extension WalletSendAmountViewModel {
     
     func maxAction() {
         exchangeType = .token
-        inputText = amountBalance.currencyString
+        inputText = amountBalance.formatCurrencyString()
     }
     
     func toggleExchangeTypeAction() {
         if exchangeType == .token, coinRate != 0 {
             exchangeType = .dollar
-            inputText = inputDollarNum.currencyString
+            inputText = inputDollarNum.formatCurrencyString()
         } else {
             exchangeType = .token
-            inputText = inputTokenNum.currencyString
+            inputText = inputTokenNum.formatCurrencyString()
         }
     }
     

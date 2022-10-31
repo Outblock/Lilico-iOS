@@ -362,7 +362,7 @@ extension WalletView {
 
                     Spacer()
 
-                    Text(vm.isHidden ? "****" : "$ \(vm.balance.currencyString)")
+                    Text(vm.isHidden ? "****" : "\(CurrencyCache.cache.currencySymbol) \(vm.balance.formatCurrencyString(considerCustomCurrency: true))")
                         .foregroundColor(.white)
                         .font(.inter(size: 28, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -426,13 +426,13 @@ extension WalletView {
 
                         Spacer()
 
-                        Text("\(vm.isHidden ? "****" : coin.balance.currencyString) \(coin.token.symbol?.uppercased() ?? "?")")
+                        Text("\(vm.isHidden ? "****" : coin.balance.formatCurrencyString()) \(coin.token.symbol?.uppercased() ?? "?")")
                             .foregroundColor(.LL.Neutrals.text)
                             .font(.inter(size: 12, weight: .medium))
                     }
 
                     HStack {
-                        Text("$\(coin.last.currencyString)")
+                        Text("\(CurrencyCache.cache.currencySymbol)\(coin.last.formatCurrencyString())")
                             .foregroundColor(.LL.Neutrals.neutrals8)
                             .font(.inter(size: 12, weight: .medium))
 
@@ -442,7 +442,7 @@ extension WalletView {
 
                         Spacer()
 
-                        Text(vm.isHidden ? "****" : "$\(coin.balanceAsUSD)")
+                        Text(vm.isHidden ? "****" : "\(CurrencyCache.cache.currencySymbol)\(coin.balanceAsCurrentCurrency)")
                             .foregroundColor(.LL.Neutrals.neutrals8)
                             .font(.inter(size: 12, weight: .medium))
                     }

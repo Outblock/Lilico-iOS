@@ -38,8 +38,8 @@ extension WalletViewModel {
             return changeIsNegative ? Color.LL.Warning.warning2 : Color.LL.Success.success2
         }
 
-        var balanceAsUSD: String {
-            return (balance * last).currencyString
+        var balanceAsCurrentCurrency: String {
+            return (balance * last).formatCurrencyString(considerCustomCurrency: true)
         }
     }
 }

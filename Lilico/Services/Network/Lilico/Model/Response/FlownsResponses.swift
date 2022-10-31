@@ -56,7 +56,7 @@ struct InboxToken: Codable {
     }
     
     var amountText: String {
-        return "\(amount.currencyString) \(matchedCoin?.symbol?.uppercased() ?? "")"
+        return "\(amount.formatCurrencyString()) \(matchedCoin?.symbol?.uppercased() ?? "")"
     }
     
     var marketPrice: Double {

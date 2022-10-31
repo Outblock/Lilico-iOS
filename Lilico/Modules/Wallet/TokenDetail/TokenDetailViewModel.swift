@@ -144,11 +144,11 @@ extension TokenDetailViewModel {
     }
     
     var balanceString: String {
-        return balance.currencyString
+        return balance.formatCurrencyString()
     }
     
-    var balanceAsUSDString: String {
-        return balanceAsUSD.currencyString
+    var balanceAsCurrentCurrencyString: String {
+        return balanceAsUSD.formatCurrencyString(considerCustomCurrency: true)
     }
     
     var changeIsNegative: Bool {

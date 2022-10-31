@@ -79,7 +79,7 @@ class SwapViewModel: ObservableObject {
             return ""
         }
         
-        return "1 \(fromToken.symbol?.uppercased() ?? "") ≈ \((amountOut / amountIn).currencyString) \(toToken.symbol?.uppercased() ?? "")"
+        return "1 \(fromToken.symbol?.uppercased() ?? "") ≈ \((amountOut / amountIn).formatCurrencyString()) \(toToken.symbol?.uppercased() ?? "")"
     }
     
     var fromAmount: Double {
@@ -99,7 +99,7 @@ class SwapViewModel: ObservableObject {
     }
     
     var fromPriceAmountString: String {
-        return (fromAmount * fromTokenRate).currencyString
+        return (fromAmount * fromTokenRate).formatCurrencyString()
     }
 }
 
@@ -160,11 +160,11 @@ extension SwapViewModel {
                     }
                     
                     if localIsFromInput {
-                        self.oldInputToText = "\(response.tokenOutAmount.currencyString)"
-                        self.inputToText = "\(response.tokenOutAmount.currencyString)"
+                        self.oldInputToText = "\(response.tokenOutAmount.formatCurrencyString())"
+                        self.inputToText = "\(response.tokenOutAmount.formatCurrencyString())"
                     } else {
-                        self.oldInputFromText = "\(response.tokenInAmount.currencyString)"
-                        self.inputFromText = "\(response.tokenInAmount.currencyString)"
+                        self.oldInputFromText = "\(response.tokenInAmount.formatCurrencyString())"
+                        self.inputFromText = "\(response.tokenInAmount.formatCurrencyString())"
                     }
                     
                     self.estimateResponse = response
@@ -298,7 +298,7 @@ extension SwapViewModel {
             return
         }
         
-        self.inputFromText = WalletManager.shared.getBalance(bySymbol: symbol).currencyString
+        self.inputFromText = WalletManager.shared.getBalance(bySymbol: symbol).formatCurrencyString()
     }
     
     func swapAction() {

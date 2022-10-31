@@ -19,7 +19,7 @@ extension ProfileView {
     
     struct ProfileState {
         var isLogin: Bool = false
-        var currency: String = "USD"
+        var currency: String = CurrencyCache.cache.currentCurrency.rawValue
         var colorScheme: ColorScheme?
         var backupFetchingState: BackupFetchingState = .manually
     }
@@ -36,6 +36,12 @@ extension ProfileView {
         
         init() {
             state.colorScheme = ThemeManager.shared.style
+            
+            CurrencyCache.cache.$currentCurrency.sink { currency in
+                DispatchQueue.main.async {
+                    self.state.currency = currency.rawValue
+                }
+            }.store(in: &cancelSets)
 
             ThemeManager.shared.$style.sink(receiveValue: { [weak self] newScheme in
                 self?.state.colorScheme = newScheme
