@@ -407,8 +407,8 @@ extension ProfileView {
         var body: some View {
             VStack {
                 Section {
-                    // Hide other option
-                    ForEach([Row.theme], id: \.self) { row in
+                    // Hide notification
+                    ForEach([Row.currency, Row.theme], id: \.self) { row in
                         
                         Button {
                             switch row {
@@ -424,9 +424,9 @@ extension ProfileView {
                                 
                         }
                         
-//                        if row != .notification {
-//                            Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
-//                        }
+                        if row != .theme {
+                            Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
+                        }
                         
                     }
                 }
