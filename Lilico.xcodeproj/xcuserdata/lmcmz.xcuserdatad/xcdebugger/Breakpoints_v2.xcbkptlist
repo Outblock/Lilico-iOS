@@ -588,7 +588,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "235"
             endingLineNumber = "235"
-            landmarkName = "setUpAuthSubscribing()"
+            landmarkName = "navigateBackTodApp(topic:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -604,7 +604,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "240"
             endingLineNumber = "240"
-            landmarkName = "setUpAuthSubscribing()"
+            landmarkName = "navigateBackTodApp(topic:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -650,9 +650,9 @@
             filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "428"
-            endingLineNumber = "428"
-            landmarkName = "approvePayerRequest(request:model:message:)"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
+            landmarkName = "handleRequest(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -730,9 +730,9 @@
             filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "435"
-            endingLineNumber = "435"
-            landmarkName = "approvePayerRequest(request:model:message:)"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
+            landmarkName = "approveSession(proposal:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -748,7 +748,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "275"
             endingLineNumber = "275"
-            landmarkName = "setUpAuthSubscribing()"
+            landmarkName = "handleRequest(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -764,7 +764,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "273"
             endingLineNumber = "273"
-            landmarkName = "setUpAuthSubscribing()"
+            landmarkName = "handleRequest(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -778,9 +778,9 @@
             filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
-            landmarkName = "setUpAuthSubscribing()"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "handleRequest(_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -828,7 +828,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "279"
             endingLineNumber = "279"
-            landmarkName = "setUpAuthSubscribing()"
+            landmarkName = "handleRequest(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -844,7 +844,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "280"
             endingLineNumber = "280"
-            landmarkName = "setUpAuthSubscribing()"
+            landmarkName = "handleRequest(_:)"
             landmarkType = "7">
             <Locations>
                <Location

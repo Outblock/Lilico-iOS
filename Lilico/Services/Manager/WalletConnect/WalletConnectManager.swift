@@ -282,7 +282,6 @@ extension WalletConnectManager {
                     let jsonString = try sessionRequest.params.get([String].self)
                     let data = jsonString[0].data(using: .utf8)!
                     
-                    
                     var services = [serviceDefinition(address: RemoteConfigManager.shared.payer, keyId: RemoteConfigManager.shared.keyIndex, type: .preAuthz),
                                     serviceDefinition(address: address, keyId: keyId, type: .authn),
                                     serviceDefinition(address: address, keyId: keyId, type: .authz),
@@ -302,12 +301,11 @@ extension WalletConnectManager {
                                                                services: services),
                                                reason: nil,
                                                compositeSignature: nil)
-                    let response = JSONRPCResponse<AnyCodable>(id: sessionRequest.id, result: AnyCodable(result))
-                    try await Sign.instance.respond(topic: sessionRequest.topic, response: .response(response))
+                    try await Sign.instance.respond(topic: sessionRequest.topic, requestId: sessionRequest.id, response: .response(AnyCodable(result)))
                     self.navigateBackTodApp(topic: sessionRequest.topic)
                 } catch {
                     print("[WALLET] Respond Error: \(error.localizedDescription)")
-                    //                            self?.rejectRequest(request: sessionRequest)
+                    rejectRequest(request: sessionRequest)
                 }
             }
             
@@ -323,14 +321,13 @@ extension WalletConnectManager {
                                                       ),
                                        reason: nil,
                                        compositeSignature: nil)
-            let response = JSONRPCResponse<AnyCodable>(id: sessionRequest.id, result: AnyCodable(result))
             
             Task {
                 do {
-                    try await Sign.instance.respond(topic: sessionRequest.topic, response: .response(response))
+                    try await Sign.instance.respond(topic: sessionRequest.topic, requestId: sessionRequest.id, response: .response(AnyCodable(result)))
                 } catch {
                     print("[WALLET] Respond Error: \(error.localizedDescription)")
-                    //                            self?.rejectRequest(request: sessionRequest)
+                    rejectRequest(request: sessionRequest)
                 }
             }
             
@@ -371,15 +368,8 @@ extension WalletConnectManager {
                 
                 
             } catch {
-                print(error)
-                
-                Task {
-                    do {
-                        try await Sign.instance.respond(topic: sessionRequest.topic, response: .error(.init(id: 0, error: .init(code: 0, message: "NOT Handle"))))
-                    } catch {
-                        print("[WALLET] Respond Error: \(error.localizedDescription)")
-                    }
-                }
+                print("[WALLET] Respond Error: \(error.localizedDescription)")
+                rejectRequest(request: sessionRequest)
             }
             
         case FCLWalletConnectMethod.userSignature.rawValue:
@@ -406,24 +396,11 @@ extension WalletConnectManager {
                 }
             } catch {
                 print(error)
-                
-                Task {
-                    do {
-                        try await Sign.instance.respond(topic: sessionRequest.topic, response: .error(.init(id: 0, error: .init(code: 0, message: "NOT Handle"))))
-                    } catch {
-                        print("[WALLET] Respond Error: \(error.localizedDescription)")
-                    }
-                }
+                rejectRequest(request: sessionRequest)
             }
             
         default:
-            Task {
-                do {
-                    try await Sign.instance.respond(topic: sessionRequest.topic, response: .error(.init(id: 0, error: .init(code: 0, message: "NOT Handle"))))
-                } catch {
-                    print("[WALLET] Respond Error: \(error.localizedDescription)")
-                }
-            }
+            rejectRequest(request: sessionRequest, reason: "unspport method")
         }
     }
 }
@@ -488,19 +465,13 @@ extension WalletConnectManager {
                                            data: AuthnData(addr: account, fType: "CompositeSignature", fVsn: "1.0.0", services: nil, keyId: 0, signature: signature),
                                            reason: nil,
                                            compositeSignature: nil)
-                let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(result))
-                try await Sign.instance.respond(topic: request.topic, response: .response(response))
+                
+                try await Sign.instance.respond(topic: request.topic, requestId: request.id, response: .response(AnyCodable(result)))
                 
                 HUD.success(title: "approved".localized)
             } catch {
                 debugPrint("WalletConnectManager -> approveRequest failed: \(error)")
-                HUD.error(title: "approve_failed".localized)
-                
-                do {
-                    try await Sign.instance.respond(topic: request.topic, response: .error(.init(id: 0, error: .init(code: 0, message: error.localizedDescription))))
-                } catch {
-                    debugPrint("WalletConnectManager -> approveRequest, report error failed: \(error)")
-                }
+                rejectRequest(request: request)
             }
         }
     }
@@ -520,36 +491,29 @@ extension WalletConnectManager {
                                            data: AuthnData(addr: account, fType: "CompositeSignature", fVsn: "1.0.0", services: nil, keyId: 0, signature: signature),
                                            reason: nil,
                                            compositeSignature: nil)
-                let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(result))
-                try await Sign.instance.respond(topic: request.topic, response: .response(response))
+                try await Sign.instance.respond(topic: request.topic, requestId: request.id, response: .response(AnyCodable(result)))
                 
                 HUD.success(title: "approved".localized)
             } catch {
                 debugPrint("WalletConnectManager -> approveRequest failed: \(error)")
-                HUD.error(title: "approve_failed".localized)
-                
-                do {
-                    try await Sign.instance.respond(topic: request.topic, response: .error(.init(id: 0, error: .init(code: 0, message: error.localizedDescription))))
-                } catch {
-                    debugPrint("WalletConnectManager -> approveRequest, report error failed: \(error)")
-                }
+                rejectRequest(request: request)
             }
         }
     }
     
-    private func rejectRequest(request: Request) {
+    private func rejectRequest(request: Request, reason: String = "User reject request") {
         let result = AuthnResponse(fType: "PollingResponse", fVsn: "1.0.0", status: .declined,
-                                   reason: "User reject request",
+                                   reason: reason,
                                    compositeSignature: nil)
-        let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(result))
         
         Task {
             do {
-                try await Sign.instance.respond(topic: request.topic, response: .response(response))
+                try await Sign.instance.respond(topic: request.topic, requestId: request.id, response: .response(AnyCodable(result)))
                 HUD.success(title: "rejected".localized)
             } catch {
                 debugPrint("WalletConnectManager -> rejectRequest failed: \(error)")
                 HUD.error(title: "reject_failed".localized)
+                rejectRequest(request: request)
             }
         }
     }
@@ -568,19 +532,12 @@ extension WalletConnectManager {
                                            data: AuthnData(addr: account, fType: "CompositeSignature", fVsn: "1.0.0", services: nil, keyId: 0, signature: signature),
                                            reason: nil,
                                            compositeSignature: nil)
-                let response = JSONRPCResponse<AnyCodable>(id: request.id, result: AnyCodable(result))
-                try await Sign.instance.respond(topic: request.topic, response: .response(response))
-                
+                try await Sign.instance.respond(topic: request.topic, requestId: request.id, response: .response(AnyCodable(result)))
                 HUD.success(title: "approved".localized)
             } catch {
                 debugPrint("WalletConnectManager -> approveRequestMessage failed: \(error)")
                 HUD.error(title: "approve_failed".localized)
-                
-                do {
-                    try await Sign.instance.respond(topic: request.topic, response: .error(.init(id: 0, error: .init(code: 0, message: error.localizedDescription))))
-                } catch {
-                    debugPrint("WalletConnectManager -> approveRequestMessage, report error failed: \(error)")
-                }
+                rejectRequest(request: request)
             }
         }
     }
