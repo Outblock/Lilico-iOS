@@ -650,10 +650,10 @@
             filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
-            landmarkName = "handleRequest(_:)"
-            landmarkType = "7">
+            startingLineNumber = "412"
+            endingLineNumber = "412"
+            landmarkName = "WalletConnectManager"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -730,8 +730,8 @@
             filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "416"
-            endingLineNumber = "416"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
             landmarkName = "approveSession(proposal:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -778,8 +778,8 @@
             filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "handleRequest(_:)"
             landmarkType = "7">
             <Locations>

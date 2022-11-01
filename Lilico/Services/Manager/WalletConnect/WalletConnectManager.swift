@@ -286,10 +286,13 @@ extension WalletConnectManager {
                     let jsonString = try sessionRequest.params.get([String].self)
                     let data = jsonString[0].data(using: .utf8)!
                     
-                    var services = [serviceDefinition(address: RemoteConfigManager.shared.payer, keyId: RemoteConfigManager.shared.keyIndex, type: .preAuthz),
-                                    serviceDefinition(address: address, keyId: keyId, type: .authn),
-                                    serviceDefinition(address: address, keyId: keyId, type: .authz),
-                                    serviceDefinition(address: address, keyId: keyId, type: .userSignature)]
+                    var services = [
+                        // Since fcl-js is not implement pre-authz, hence we disable it for now
+//                        serviceDefinition(address: RemoteConfigManager.shared.payer, keyId: RemoteConfigManager.shared.keyIndex, type: .preAuthz),
+                        serviceDefinition(address: address, keyId: keyId, type: .authn),
+                        serviceDefinition(address: address, keyId: keyId, type: .authz),
+                        serviceDefinition(address: address, keyId: keyId, type: .userSignature)
+                    ]
                     
                     if let model = try? JSONDecoder().decode(BaseConfigRequest.self, from: data),
                        let nonce = model.accountProofNonce,
