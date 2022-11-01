@@ -407,7 +407,8 @@ extension ProfileView {
         var body: some View {
             VStack {
                 Section {
-                    ForEach(Row.allCases, id: \.self) { row in
+                    // Hide other option
+                    ForEach([Row.theme], id: \.self) { row in
                         
                         Button {
                             if row == .theme {
@@ -417,9 +418,11 @@ extension ProfileView {
                             ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc(with: vm), toggle: row.toggle)
                                 
                         }
-                        if row != .notification {
-                            Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
-                        }
+                        
+//                        if row != .notification {
+//                            Divider().background(Color.LL.Neutrals.background).padding(.horizontal, 8)
+//                        }
+                        
                     }
                 }
             }
