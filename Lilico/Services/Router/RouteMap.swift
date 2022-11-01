@@ -169,6 +169,7 @@ extension RouteMap {
         case security(Bool)
         case inbox
         case resetWalletConfirm
+        case currency
     }
 }
 
@@ -215,6 +216,8 @@ extension RouteMap.Profile: RouterTarget {
             navi.push(content: InboxView())
         case .resetWalletConfirm:
             navi.push(content: WalletResetConfirmView())
+        case .currency:
+            navi.push(content: CurrencyListView())
         }
     }
 }

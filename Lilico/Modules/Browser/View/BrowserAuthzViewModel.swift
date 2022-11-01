@@ -79,5 +79,6 @@ class BrowserAuthzViewModel: ObservableObject {
     
     deinit {
         callback?(false)
+        WalletConnectManager.shared.reloadPendingRequests()
     }
 }

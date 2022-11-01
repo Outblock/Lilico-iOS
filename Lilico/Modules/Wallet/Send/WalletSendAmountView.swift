@@ -184,7 +184,7 @@ struct WalletSendAmountView: RouteableView {
                         .clipShape(Circle())
                         .visibility(vm.exchangeType == .dollar ? .visible : .gone)
                     
-                    Text(vm.exchangeType == .token ? vm.inputDollarNum.currencyString : vm.inputTokenNum.currencyString)
+                    Text(vm.exchangeType == .token ? vm.inputDollarNum.formatCurrencyString() : vm.inputTokenNum.formatCurrencyString())
                         .foregroundColor(.LL.Neutrals.note)
                         .font(.inter(size: 16, weight: .medium))
                         .lineLimit(1)
@@ -288,11 +288,11 @@ struct WalletSendAmountView: RouteableView {
                     .frame(width: 32, height: 32)
                     .clipShape(Circle())
                 
-                Text("\(vm.amountBalance.currencyString) \(vm.token.symbol?.uppercased() ?? "?")")
+                Text("\(vm.amountBalance.formatCurrencyString()) \(vm.token.symbol?.uppercased() ?? "?")")
                     .foregroundColor(.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .medium))
                 
-                Text("≈ $ \(vm.amountBalanceAsDollar.currencyString)")
+                Text("≈ $ \(vm.amountBalanceAsDollar.formatCurrencyString())")
                     .foregroundColor(.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .medium))
             }
@@ -437,7 +437,7 @@ extension WalletSendAmountView {
                 HStack {
                     Spacer()
                     
-                    Text("USD $ \(vm.inputDollarNum.currencyString)")
+                    Text("USD $ \(vm.inputDollarNum.formatCurrencyString())")
                         .foregroundColor(.LL.Neutrals.neutrals8)
                         .font(.inter(size: 14, weight: .medium))
                 }

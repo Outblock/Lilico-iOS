@@ -38,8 +38,8 @@ extension WalletViewModel {
             return changeIsNegative ? Color.LL.Warning.warning2 : Color.LL.Success.success2
         }
 
-        var balanceAsUSD: String {
-            return (balance * last).currencyString
+        var balanceAsCurrentCurrency: String {
+            return (balance * last).formatCurrencyString(considerCustomCurrency: true)
         }
     }
 }
@@ -93,17 +93,15 @@ class WalletViewModel: ObservableObject {
             }
         }.store(in: &cancelSets)
         
-        Task {
-            await WalletConnectManager.shared.$pendingRequests.sink { [weak self] _ in
-                guard let self = self else {
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self.pendingRequestCount = WalletConnectManager.shared.pendingRequests.count
-                }
-            }.store(in: &cancelSets)
-        }
+        WalletConnectManager.shared.$pendingRequests.sink { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.pendingRequestCount = WalletConnectManager.shared.pendingRequests.count
+            }
+        }.store(in: &cancelSets)
 
         NotificationCenter.default.publisher(for: .coinSummarysUpdated).sink { [weak self] _ in
             if let self = self {

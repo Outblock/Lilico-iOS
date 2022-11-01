@@ -239,29 +239,33 @@ struct WalletView: View {
     }
     
     var pendingRequestView: some View {
-        HStack(spacing: 7) {
-            Text("pending_request".localized)
-                .font(.inter(size: 14, weight: .semibold))
-                .foregroundColor(.LL.Other.text2)
-            
-            Spacer()
-            
-            Text("\(vm.pendingRequestCount)")
-                .font(.inter(size: 14, weight: .semibold))
-                .foregroundColor(.LL.Other.text1)
-                .frame(height: 24)
-                .padding(.horizontal, 10)
-                .background(Color.LL.Other.bg1)
-                .cornerRadius(12)
-            
-            Image("icon-account-arrow-right")
-                .renderingMode(.template)
-                .foregroundColor(.LL.Other.icon1)
+        Button {
+            Router.route(to: RouteMap.Profile.walletConnect)
+        } label: {
+            HStack(spacing: 7) {
+                Text("pending_request".localized)
+                    .font(.inter(size: 14, weight: .semibold))
+                    .foregroundColor(.LL.Other.text2)
+                
+                Spacer()
+                
+                Text("\(vm.pendingRequestCount)")
+                    .font(.inter(size: 14, weight: .semibold))
+                    .foregroundColor(.LL.Other.text1)
+                    .frame(height: 24)
+                    .padding(.horizontal, 10)
+                    .background(Color.LL.Other.bg1)
+                    .cornerRadius(12)
+                
+                Image("icon-account-arrow-right")
+                    .renderingMode(.template)
+                    .foregroundColor(.LL.Other.icon1)
+            }
+            .padding(.horizontal, 18)
+            .frame(height: 48)
+            .background(.LL.Other.bg2)
+            .cornerRadius(12)
         }
-        .padding(.horizontal, 18)
-        .frame(height: 48)
-        .background(.LL.Other.bg2)
-        .cornerRadius(12)
     }
 }
 
@@ -358,7 +362,7 @@ extension WalletView {
 
                     Spacer()
 
-                    Text(vm.isHidden ? "****" : "$ \(vm.balance.currencyString)")
+                    Text(vm.isHidden ? "****" : "\(CurrencyCache.cache.currencySymbol) \(vm.balance.formatCurrencyString(considerCustomCurrency: true))")
                         .foregroundColor(.white)
                         .font(.inter(size: 28, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -422,13 +426,13 @@ extension WalletView {
 
                         Spacer()
 
-                        Text("\(vm.isHidden ? "****" : coin.balance.currencyString) \(coin.token.symbol?.uppercased() ?? "?")")
+                        Text("\(vm.isHidden ? "****" : coin.balance.formatCurrencyString()) \(coin.token.symbol?.uppercased() ?? "?")")
                             .foregroundColor(.LL.Neutrals.text)
                             .font(.inter(size: 12, weight: .medium))
                     }
 
                     HStack {
-                        Text("$\(coin.last.currencyString)")
+                        Text("\(CurrencyCache.cache.currencySymbol)\(coin.last.formatCurrencyString())")
                             .foregroundColor(.LL.Neutrals.neutrals8)
                             .font(.inter(size: 12, weight: .medium))
 
@@ -438,7 +442,7 @@ extension WalletView {
 
                         Spacer()
 
-                        Text(vm.isHidden ? "****" : "$\(coin.balanceAsUSD)")
+                        Text(vm.isHidden ? "****" : "\(CurrencyCache.cache.currencySymbol)\(coin.balanceAsCurrentCurrency)")
                             .foregroundColor(.LL.Neutrals.neutrals8)
                             .font(.inter(size: 12, weight: .medium))
                     }

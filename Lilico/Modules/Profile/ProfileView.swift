@@ -411,8 +411,13 @@ extension ProfileView {
                     ForEach([Row.theme], id: \.self) { row in
                         
                         Button {
-                            if row == .theme {
+                            switch row {
+                            case .theme:
                                 Router.route(to: RouteMap.Profile.themeChange)
+                            case .currency:
+                                Router.route(to: RouteMap.Profile.currency)
+                            default:
+                                break
                             }
                         } label: {
                             ProfileView.SettingItemCell(iconName: row.iconName, title: row.title, style: row.style, desc: row.desc(with: vm), toggle: row.toggle)
@@ -480,7 +485,7 @@ extension ProfileView.GeneralSectionView.Row {
     func desc(with vm: ProfileView.ProfileViewModel) -> String {
         switch self {
         case .currency:
-            return "USD"
+            return vm.state.currency
         case .theme:
             return vm.state.colorScheme?.desc ?? "auto".localized
         case .notification:
