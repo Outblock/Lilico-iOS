@@ -15,6 +15,7 @@ import Combine
 import WalletCore
 import UIKit
 import WalletConnectPairing
+import WalletConnectNetworking
 
 class WalletConnectManager: ObservableObject {
     static let shared = WalletConnectManager()
@@ -39,14 +40,16 @@ class WalletConnectManager: ObservableObject {
     var currentRequestInfo: RequestInfo?
     var currentMessageInfo: RequestMessageInfo?
     
+    let metadata = AppMetadata(
+        name: "Lilico",
+        description: "A crypto wallet on Flow built for Explorers, Collectors and Gamers",
+        url: "https://link.lilico.app",
+        icons: ["https://lilico.app/logo.png"])
+    
+    let projectId = "29b38ec12be4bd19bf03d7ccef29aaa6"
+    
     init() {
-        let metadata = AppMetadata(
-            name: "Lilico",
-            description: "A crypto wallet on Flow built for Explorers, Collectors and Gamers",
-            url: "https://link.lilico.app",
-            icons: ["https://lilico.app/logo.png"])
-        
-        Relay.configure(projectId: "29b38ec12be4bd19bf03d7ccef29aaa6", socketFactory: SocketFactory())
+        Networking.configure(projectId: projectId, socketFactory: SocketFactory())
         Pair.configure(metadata: metadata)
         
         reloadActiveSessions()
