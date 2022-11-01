@@ -14,6 +14,7 @@ import Starscream
 import Combine
 import WalletCore
 import UIKit
+import WalletConnectPairing
 
 class WalletConnectManager: ObservableObject {
     static let shared = WalletConnectManager()
@@ -46,7 +47,7 @@ class WalletConnectManager: ObservableObject {
             icons: ["https://lilico.app/logo.png"])
         
         Relay.configure(projectId: "29b38ec12be4bd19bf03d7ccef29aaa6", socketFactory: SocketFactory())
-        Sign.configure(metadata: metadata)
+        Pair.configure(metadata: metadata)
         
         reloadActiveSessions()
         reloadPairing()
@@ -80,7 +81,7 @@ class WalletConnectManager: ObservableObject {
                     //                    if Sign.instance.getPairings().contains(where: { $0.topic == uri.topic }) {
                     //                        try await Sign.instance.disconnect(topic: uri.topic)
                     //                    }
-                    try await Sign.instance.pair(uri: uri)
+                    try await Pair.instance.pair(uri: uri)
                 }
             } catch {
                 print("[PROPOSER] Pairing connect error: \(error)")
@@ -110,7 +111,7 @@ class WalletConnectManager: ObservableObject {
     }
     
     func reloadPairing() {
-        let activePairings: [Pairing] = Sign.instance.getPairings()
+        let activePairings: [Pairing] = Pair.instance.getPairings()
         self.activePairings = activePairings
     }
     
@@ -146,7 +147,7 @@ class WalletConnectManager: ObservableObject {
                 print("[RESPONDER] WC: Did receive session proposal")
                 self?.currentProposal = sessionProposal
                 
-                let pairings = Sign.instance.getPairings()
+                let pairings = Pair.instance.getPairings()
                 if pairings.contains(where: { $0.peer == sessionProposal.proposer }) {
                     self?.approveSession(proposal: sessionProposal)
                     return
