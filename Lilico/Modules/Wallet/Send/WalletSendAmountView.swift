@@ -126,7 +126,7 @@ struct WalletSendAmountView: RouteableView {
             VStack(spacing: 34) {
                 HStack(spacing: 8) {
                     // dollar type string
-                    Text("$")
+                    Text(CurrencyCache.cache.currencySymbol)
                         .foregroundColor(.LL.Neutrals.note)
                         .font(.inter(size: 16, weight: .bold))
                         .visibility(vm.exchangeType == .dollar ? .visible : .gone)
@@ -168,7 +168,7 @@ struct WalletSendAmountView: RouteableView {
                         .foregroundColor(.LL.Neutrals.note)
                         .font(.inter(size: 16, weight: .medium))
                     
-                    Text("$")
+                    Text(CurrencyCache.cache.currencySymbol)
                         .foregroundColor(.LL.Neutrals.note)
                         .font(.inter(size: 16, weight: .medium))
                         .visibility(vm.exchangeType == .token ? .visible : .gone)
@@ -292,7 +292,7 @@ struct WalletSendAmountView: RouteableView {
                     .foregroundColor(.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .medium))
                 
-                Text("≈ $ \(vm.amountBalanceAsDollar.formatCurrencyString())")
+                Text("≈ \(CurrencyCache.cache.currencySymbol) \(vm.amountBalanceAsDollar.formatCurrencyString(considerCustomCurrency: true))")
                     .foregroundColor(.LL.Neutrals.text)
                     .font(.inter(size: 14, weight: .medium))
             }
@@ -437,7 +437,7 @@ extension WalletSendAmountView {
                 HStack {
                     Spacer()
                     
-                    Text("USD $ \(vm.inputDollarNum.formatCurrencyString())")
+                    Text("\(CurrencyCache.cache.currentCurrency.rawValue) \(CurrencyCache.cache.currencySymbol) \(vm.inputDollarNum.formatCurrencyString())")
                         .foregroundColor(.LL.Neutrals.neutrals8)
                         .font(.inter(size: 14, weight: .medium))
                 }

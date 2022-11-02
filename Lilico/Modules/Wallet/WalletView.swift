@@ -432,7 +432,7 @@ extension WalletView {
                     }
 
                     HStack {
-                        Text("\(CurrencyCache.cache.currencySymbol)\(coin.last.formatCurrencyString())")
+                        Text("\(CurrencyCache.cache.currencySymbol)\(coin.token.symbol == "fusd" ? CurrencyCache.cache.currentCurrencyRate.formatCurrencyString() : coin.last.formatCurrencyString(considerCustomCurrency: true))")
                             .foregroundColor(.LL.Neutrals.neutrals8)
                             .font(.inter(size: 12, weight: .medium))
 

@@ -22,7 +22,8 @@ extension TokenDetailView {
         
         var generateChartPoint: LineChartDataPoint {
             let date = Date(timeIntervalSince1970: closeTime)
-            return LineChartDataPoint(value: closePrice, description: date.ymdString, date: date)
+            let price = Double(closePrice.formatCurrencyString(digits: 2, considerCustomCurrency: true)) ?? 0
+            return LineChartDataPoint(value: price, description: date.ymdString, date: date)
         }
     }
 

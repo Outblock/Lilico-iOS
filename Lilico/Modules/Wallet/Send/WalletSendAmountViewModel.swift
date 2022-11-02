@@ -120,13 +120,13 @@ extension WalletSendAmountViewModel {
         
         if exchangeType == .token {
             inputTokenNum = Double(inputText)!
-            inputDollarNum = inputTokenNum * coinRate
+            inputDollarNum = inputTokenNum * coinRate * CurrencyCache.cache.currentCurrencyRate
         } else {
             inputDollarNum = Double(inputText)!
             if coinRate == 0 {
                 inputTokenNum = 0
             } else {
-                inputTokenNum = inputDollarNum / coinRate
+                inputTokenNum = inputDollarNum / CurrencyCache.cache.currentCurrencyRate / coinRate
             }
         }
         
