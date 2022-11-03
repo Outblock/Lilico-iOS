@@ -164,7 +164,7 @@ extension SwapView {
     
     var fromDescContainerView: some View {
         HStack {
-            Text("$ \(vm.fromPriceAmountString)")
+            Text("\(CurrencyCache.cache.currencySymbol) \(vm.fromPriceAmountString)")
                 .font(.inter(size: 16))
                 .foregroundColor(Color.LL.Neutrals.text2)
             

@@ -99,7 +99,7 @@ class SwapViewModel: ObservableObject {
     }
     
     var fromPriceAmountString: String {
-        return (fromAmount * fromTokenRate).formatCurrencyString()
+        return (fromAmount * fromTokenRate).formatCurrencyString(considerCustomCurrency: true)
     }
 }
 
