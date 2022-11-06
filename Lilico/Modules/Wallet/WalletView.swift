@@ -37,15 +37,25 @@ struct WalletView: View {
     @State var isRefreshing: Bool = false
 
     var emptyView: some View {
-        Text("no address")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .backgroundFill(.LL.Neutrals.background)
-    }
-
-    var loadingView: some View {
-        Text("loading")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .backgroundFill(.LL.Neutrals.background)
+        VStack(spacing: 12) {
+            Color.systemGray4
+                .frame(height: CardViewHeight)
+                .cornerRadius(16)
+                .padding(.top, 44)
+            
+            Spacer()
+            
+            ForEach(0..<4, id: \.self) { _ in
+                Color.systemGray4
+                    .frame(height: 60)
+                    .cornerRadius(16)
+            }
+        }
+        .padding(.horizontal, 18)
+        .padding(.bottom, 40)
+        .disabled(true)
+        .redacted(reason: .placeholder)
+        .shimmering(active: vm.walletState == .noAddress)
     }
 
     var errorView: some View {
@@ -102,8 +112,6 @@ struct WalletView: View {
                                     .visibility(vm.pendingRequestCount == 0 ? .gone : .visible)
                             }
                             
-                            loadingView
-                                .visibility(vm.walletState == .loading ? .visible : .gone)
                             errorView
                                 .visibility(vm.walletState == .error ? .visible : .gone)
                         }
