@@ -107,12 +107,25 @@ struct AddressBookView: RouteableView {
 
 extension AddressBookView {
     var loadingView: some View {
-        VStack {
-            Text("loading".localized)
+        ScrollView {
+            LazyVStack {
+                ForEach(0..<5, id: \.self) { _ in
+                    loadingItemPlaceHolder
+                }
+            }
+            .padding(.all, 18)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.LL.Neutrals.background)
+        .disabled(true)
+        .redacted(reason: .placeholder)
+        .shimmering(active: vm.state.stateType == .loading)
         .visibility(vm.state.stateType == .loading ? .visible : .gone)
+    }
+    
+    var loadingItemPlaceHolder: some View {
+        Color.systemGray4
+            .height(60)
+            .cornerRadius(16)
     }
 
     var errorView: some View {
