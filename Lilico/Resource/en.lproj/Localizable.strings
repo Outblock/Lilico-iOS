@@ -420,3 +420,11 @@
 "swap_price_impact" = "Price Impact";
 "swap_estimated_fees" = "Estimated Fees";
 "swap_confirm" = "Confirm";
+
+// Stake
+"stake_reward_title" = "Staked Flow";
+"stake_daily_reward" = "Daily Reward";
+"stake_mothly_reward" = "Mothly Reward";
+"stake_ad_title_1" = "Stake %@ and ";
+"stake_ad_title_2" = "Earn Rewards";
+"stake_ad_desc" = "Stake tokens and earn rewards";

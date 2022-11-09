@@ -24,6 +24,12 @@ struct TokenDetailView: RouteableView {
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var vm: TokenDetailViewModel
     
+    @State private var stakedFlowNum = 649.00
+    @State private var dailyRewardNum = 0.88
+    @State private var mothlyRewardNum = 0.88
+    @State private var dailyRewardFlow = 0.123
+    @State private var mothlyRewardFlow = 1.123
+    
     private let lightGradientColors: [Color] = [.white.opacity(0), Color(hex: "#E6E6E6").opacity(0), Color(hex: "#E6E6E6").opacity(1)]
     private let darkGradientColors: [Color] = [.white.opacity(0), .white.opacity(0), Color(hex: "#282828").opacity(1)]
     
@@ -40,6 +46,8 @@ struct TokenDetailView: RouteableView {
             LazyVStack(spacing: 12) {
                 summaryView
                 moreView.visibility(vm.hasRateAndChartData ? .visible : .gone)
+                stakeAdView.visibility(.visible)
+                stakeRewardView.visibility(.visible)
                 activitiesView.visibility(vm.recentTransfers.isEmpty ? .gone : .visible)
                 chartContainerView.visibility(vm.hasRateAndChartData ? .visible : .gone)
             }
@@ -480,6 +488,134 @@ extension TokenDetailView {
                 .frame(alignment: .trailing)
             }
             .frame(height: 50)
+        }
+    }
+}
+
+// MARK: - Stake
+
+extension TokenDetailView {
+    var stakeRewardView: some View {
+        VStack(spacing: 0) {
+            
+            // header
+            HStack {
+                Text("stake_reward_title".localized)
+                    .font(.inter(size: 16, weight: .semibold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Spacer()
+                
+                Button {
+                    // TODO: goto stake detail view
+                } label: {
+                    HStack(spacing: 10) {
+                        Text("\(stakedFlowNum.formatCurrencyString(digits: 2)) \(vm.token.symbol?.uppercased() ?? "?")")
+                            .font(.inter(size: 14))
+                            .foregroundColor(Color.LL.Neutrals.text)
+                        
+                        Image("icon-account-arrow-right")
+                            .renderingMode(.template)
+                            .foregroundColor(.LL.Other.icon1)
+                    }
+                    .contentShape(Rectangle())
+                }
+                .frame(height: 50)
+            }
+            .frame(height: 50)
+            
+            // reward summary
+            HStack(spacing: 12) {
+                
+                // daily
+                VStack(alignment: .leading, spacing: 13) {
+                    Text("stake_daily_reward".localized)
+                        .font(.inter(size: 14, weight: .bold))
+                        .foregroundColor(Color.LL.Neutrals.text)
+                    
+                    Text(dailyRewardNum.formatCurrencyString(digits: 2))
+                        .font(.inter(size: 24, weight: .bold))
+                        .foregroundColor(Color.LL.Neutrals.text)
+                    
+                    Text("\(dailyRewardFlow.formatCurrencyString()) \(vm.token.symbol?.uppercased() ?? "?")")
+                        .font(.inter(size: 12, weight: .semibold))
+                        .foregroundColor(Color.LL.Neutrals.text3)
+                }
+                .padding(.all, 13)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .background(Color.LL.deepBg)
+                .cornerRadius(16)
+                
+                // mothly
+                VStack(alignment: .leading, spacing: 13) {
+                    Text("stake_mothly_reward".localized)
+                        .font(.inter(size: 14, weight: .bold))
+                        .foregroundColor(Color.LL.Neutrals.text)
+                    
+                    Text(mothlyRewardNum.formatCurrencyString(digits: 2))
+                        .font(.inter(size: 24, weight: .bold))
+                        .foregroundColor(Color.LL.Neutrals.text)
+                    
+                    Text("\(mothlyRewardFlow.formatCurrencyString()) \(vm.token.symbol?.uppercased() ?? "?")")
+                        .font(.inter(size: 12, weight: .semibold))
+                        .foregroundColor(Color.LL.Neutrals.text3)
+                }
+                .padding(.all, 13)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .background(Color.LL.deepBg)
+                .cornerRadius(16)
+            }
+        }
+        .padding(.horizontal, 18)
+        .padding(.bottom, 14)
+        .background {
+            Color.LL.Neutrals.background.cornerRadius(16)
+        }
+    }
+    
+    var stakeAdView: some View {
+        ZStack(alignment: .topLeading) {
+            HStack {
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack(spacing: 0) {
+                        Text("stake_ad_title_1".localized(vm.token.symbol?.uppercased() ?? "?"))
+                            .font(.inter(size: 16, weight: .bold))
+                            .foregroundColor(Color.LL.Neutrals.text)
+                        
+                        Text("stake_ad_title_2".localized)
+                            .font(.inter(size: 16, weight: .bold))
+                            .foregroundColor(Color.clear)
+                            .background {
+                                Rectangle()
+                                    .fill(.linearGradient(colors: [Color(hex: "#FFC062"), Color(hex: "#0BD3FF")], startPoint: .leading, endPoint: .trailing))
+                                    .mask {
+                                        Text("stake_ad_title_2".localized)
+                                            .font(.inter(size: 16, weight: .bold))
+                                            .foregroundColor(Color.black)
+                                    }
+                            }
+                        
+                        Spacer()
+                    }
+                    
+                    Text("stake_ad_desc".localized)
+                        .font(.inter(size: 14, weight: .medium))
+                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals8)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Image("icon-stake-ad-arrow")
+            }
+            .frame(maxHeight: .infinity)
+            
+            Image("icon-stake-ad-crown")
+                .padding(.top, -10)
+                .padding(.leading, -10)
+        }
+        .padding(.horizontal, 18)
+        .frame(height: 72, alignment: .topLeading)
+        .background {
+            Color.LL.Neutrals.background.cornerRadius(16)
         }
     }
 }
