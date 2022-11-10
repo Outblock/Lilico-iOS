@@ -1054,6 +1054,8 @@
 		6A382E25289BDAFF00163564 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A382E23289BDAFF00163564 /* SecurityManager.swift */; };
 		6A382E27289CED9800163564 /* ProfileSecureViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A382E26289CED9800163564 /* ProfileSecureViewViewModel.swift */; };
 		6A382E28289CED9800163564 /* ProfileSecureViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A382E26289CED9800163564 /* ProfileSecureViewViewModel.swift */; };
+		6A3AD5C9291D4F9B00C30D57 /* StakingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AD5C8291D4F9B00C30D57 /* StakingListView.swift */; };
+		6A3AD5CA291D4F9B00C30D57 /* StakingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AD5C8291D4F9B00C30D57 /* StakingListView.swift */; };
 		6A4009122875615A00A77070 /* WalletReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4009112875615A00A77070 /* WalletReceiveView.swift */; };
 		6A4009132875615A00A77070 /* WalletReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4009112875615A00A77070 /* WalletReceiveView.swift */; };
 		6A4009152875699D00A77070 /* WalletReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4009142875699D00A77070 /* WalletReceiveViewModel.swift */; };
@@ -1852,6 +1854,7 @@
 		6A382E20289BD3B000163564 /* BionicErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BionicErrorHandler.swift; sourceTree = "<group>"; };
 		6A382E23289BDAFF00163564 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
 		6A382E26289CED9800163564 /* ProfileSecureViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSecureViewViewModel.swift; sourceTree = "<group>"; };
+		6A3AD5C8291D4F9B00C30D57 /* StakingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StakingListView.swift; sourceTree = "<group>"; };
 		6A4009112875615A00A77070 /* WalletReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletReceiveView.swift; sourceTree = "<group>"; };
 		6A4009142875699D00A77070 /* WalletReceiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletReceiveViewModel.swift; sourceTree = "<group>"; };
 		6A41005B28E2F4DC002946CE /* SwapConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmView.swift; sourceTree = "<group>"; };
@@ -2219,6 +2222,7 @@
 		153C440427520811006D1E8D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6A3AD5C7291D4F8800C30D57 /* Staking */,
 				6A7D9DC328DD940700333954 /* Swap */,
 				6A6C410228D8497E00074DE9 /* Inbox */,
 				6A2772A728D334A5007E06E9 /* Domain */,
@@ -4010,6 +4014,14 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
+		6A3AD5C7291D4F8800C30D57 /* Staking */ = {
+			isa = PBXGroup;
+			children = (
+				6A3AD5C8291D4F9B00C30D57 /* StakingListView.swift */,
+			);
+			path = Staking;
+			sourceTree = "<group>";
+		};
 		6A4009102875614700A77070 /* Receive */ = {
 			isa = PBXGroup;
 			children = (
@@ -5317,6 +5329,7 @@
 				15BA24BA28C7A93400755CBF /* WalletSettingView.swift in Sources */,
 				158832DF28942D0400142B35 /* FCLModel.swift in Sources */,
 				6A164F722845F1CB0026B31E /* IndexedList.swift in Sources */,
+				6A3AD5CA291D4F9B00C30D57 /* StakingListView.swift in Sources */,
 				6A95CFB228B7258100267F86 /* NFTTransferView.swift in Sources */,
 				15DC207727819C56000B187A /* VText.swift in Sources */,
 				6A164F642845F1CB0026B31E /* UIView+Extensions.swift in Sources */,
@@ -5899,6 +5912,7 @@
 				15BA24B928C7A93400755CBF /* WalletSettingView.swift in Sources */,
 				158832DE28942D0400142B35 /* FCLModel.swift in Sources */,
 				15C58BDD2868A4EE00BD4FC6 /* IndexedList.swift in Sources */,
+				6A3AD5C9291D4F9B00C30D57 /* StakingListView.swift in Sources */,
 				6A95CFB128B7258100267F86 /* NFTTransferView.swift in Sources */,
 				15C58BDE2868A4EE00BD4FC6 /* VText.swift in Sources */,
 				15C58BDF2868A4EE00BD4FC6 /* UIView+Extensions.swift in Sources */,

@@ -507,7 +507,7 @@ extension TokenDetailView {
                 Spacer()
                 
                 Button {
-                    // TODO: goto stake detail view
+                    Router.route(to: RouteMap.Wallet.stakingList)
                 } label: {
                     HStack(spacing: 10) {
                         Text("\(stakedFlowNum.formatCurrencyString(digits: 2)) \(vm.token.symbol?.uppercased() ?? "?")")

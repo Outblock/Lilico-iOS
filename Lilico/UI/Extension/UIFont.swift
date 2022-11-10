@@ -40,6 +40,10 @@ extension UIFont {
         return UIFont(name: "Inter-Regular_SemiBold", size: size)!
     }
     
+    static func interBold(size: CGFloat) -> UIFont {
+        return UIFont(name: "Inter-Regular_Bold", size: size)!
+    }
+    
     static func inter(size: CGFloat) -> UIFont {
         return UIFont(name: "Inter", size: size)!
     }

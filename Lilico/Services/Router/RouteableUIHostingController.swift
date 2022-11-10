@@ -62,6 +62,14 @@ class RouteableUIHostingController<Content: RouteableView>: UIHostingController<
         let backItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(onBackButtonAction))
         backItem.tintColor = UIColor(named: "button.color")
         navigationItem.leftBarButtonItem = backItem
+        
+        // Fix iOS 16.0 navi title jump bug (when next vc is large title and previous vc is inline title)
+        // But it won't fix the pop back jump bug (when back to previous vc)
+        // It seems like an iOS 16.0 bug. (https://stackoverflow.com/questions/73784136/ios-16-navigationbar-sets-large-title-and-hides-inline-title)
+        // Not sure if it is fixed in the new version (16.1.1 for now, I haven't tested it yet)
+        if #available(iOS 16.0, *) {
+            navigationItem.largeTitleDisplayMode = rootView.navigationBarTitleDisplayMode == .large ? .always : .automatic
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
