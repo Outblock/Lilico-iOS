@@ -967,6 +967,8 @@
 		6A06CB0B28AA485200C81BE1 /* NFTUIKitListStyleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A06CB0928AA485200C81BE1 /* NFTUIKitListStyleHandler.swift */; };
 		6A06CB1028AA54A600C81BE1 /* NFTUIKitGridStyleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A06CB0F28AA54A600C81BE1 /* NFTUIKitGridStyleHandler.swift */; };
 		6A06CB1128AA54A600C81BE1 /* NFTUIKitGridStyleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A06CB0F28AA54A600C81BE1 /* NFTUIKitGridStyleHandler.swift */; };
+		6A074E382922962D00D976F1 /* SelectProviderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A074E372922962D00D976F1 /* SelectProviderView.swift */; };
+		6A074E392922962D00D976F1 /* SelectProviderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A074E372922962D00D976F1 /* SelectProviderView.swift */; };
 		6A11596B288E710C005EF797 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A11596A288E710C005EF797 /* Router.swift */; };
 		6A11596C288E710C005EF797 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A11596A288E710C005EF797 /* Router.swift */; };
 		6A11596E288E7134005EF797 /* RouteMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A11596D288E7134005EF797 /* RouteMap.swift */; };
@@ -1800,6 +1802,7 @@
 		6A06CB0528AA25F400C81BE1 /* NFTUIKitListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitListDataSource.swift; sourceTree = "<group>"; };
 		6A06CB0928AA485200C81BE1 /* NFTUIKitListStyleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitListStyleHandler.swift; sourceTree = "<group>"; };
 		6A06CB0F28AA54A600C81BE1 /* NFTUIKitGridStyleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitGridStyleHandler.swift; sourceTree = "<group>"; };
+		6A074E372922962D00D976F1 /* SelectProviderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProviderView.swift; sourceTree = "<group>"; };
 		6A11596A288E710C005EF797 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		6A11596D288E7134005EF797 /* RouteMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMap.swift; sourceTree = "<group>"; };
 		6A115970288E72CC005EF797 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -4018,6 +4021,7 @@
 			isa = PBXGroup;
 			children = (
 				6A3AD5C8291D4F9B00C30D57 /* StakingListView.swift */,
+				6A074E372922962D00D976F1 /* SelectProviderView.swift */,
 			);
 			path = Staking;
 			sourceTree = "<group>";
@@ -5450,6 +5454,7 @@
 				15DC211527819C56000B187A /* VPageIndicator.swift in Sources */,
 				15DC20D527819C56000B187A /* VPlainButtonModel.swift in Sources */,
 				15DC219F27819C56000B187A /* VTextFieldHighlight.swift in Sources */,
+				6A074E392922962D00D976F1 /* SelectProviderView.swift in Sources */,
 				15DC217327819C56000B187A /* VDialogModel.swift in Sources */,
 				15DC219327819C56000B187A /* VCheckBoxModel.swift in Sources */,
 				156E84B2281CF01000415896 /* EventLoop+Future.swift in Sources */,
@@ -6033,6 +6038,7 @@
 				15C58C302868A4EE00BD4FC6 /* VPageIndicator.swift in Sources */,
 				15C58C312868A4EE00BD4FC6 /* VPlainButtonModel.swift in Sources */,
 				15C58C322868A4EE00BD4FC6 /* VTextFieldHighlight.swift in Sources */,
+				6A074E382922962D00D976F1 /* SelectProviderView.swift in Sources */,
 				15C58C332868A4EE00BD4FC6 /* VDialogModel.swift in Sources */,
 				15C58C342868A4EE00BD4FC6 /* VCheckBoxModel.swift in Sources */,
 				15C58C352868A4EE00BD4FC6 /* EventLoop+Future.swift in Sources */,

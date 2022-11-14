@@ -23,6 +23,7 @@ struct StakingListView: RouteableView {
     var body: some View {
         VStack {
             listView
+            newNodeBtn
         }
         .padding(.horizontal, 18)
         .padding(.top, 12)
@@ -30,6 +31,20 @@ struct StakingListView: RouteableView {
         .buttonStyle(.plain)
         .backgroundFill(.LL.deepBg)
         .applyRouteable(self)
+    }
+    
+    var newNodeBtn: some View {
+        Button {
+            Router.route(to: RouteMap.Wallet.stakingSelectProvider)
+        } label: {
+            Text("stake_new_node".localized)
+                .font(.inter(size: 16, weight: .bold))
+                .foregroundColor(Color.LL.Neutrals.text)
+                .frame(height: 54)
+                .frame(maxWidth: .infinity)
+                .background(Color.LL.Neutrals.neutrals6)
+                .cornerRadius(12)
+        }
     }
     
     var listView: some View {

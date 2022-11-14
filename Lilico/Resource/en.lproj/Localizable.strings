@@ -432,3 +432,7 @@
 "staking_claim" = "Claim";
 "staking_amount" = "Staking Amount";
 "staking_rewards" = "Rewards";
+"stake_new_node" = "Stake New Node";
+"staking_select_provider" = "Select Provider";
+"staking_recommend" = "Recommend";
+"staking_provider" = "Staking Provider";

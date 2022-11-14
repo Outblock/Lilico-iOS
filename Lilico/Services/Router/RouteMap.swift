@@ -109,6 +109,7 @@ extension RouteMap {
         case swap(TokenModel?)
         case selectToken(TokenModel?, [TokenModel], (TokenModel) -> ())
         case stakingList
+        case stakingSelectProvider
     }
 }
 
@@ -149,6 +150,8 @@ extension RouteMap.Wallet: RouterTarget {
             navi.present(content: AddTokenView(vm: vm))
         case .stakingList:
             navi.push(content: StakingListView())
+        case .stakingSelectProvider:
+            navi.push(content: SelectProviderView())
         }
     }
 }
