@@ -574,48 +574,52 @@ extension TokenDetailView {
     }
     
     var stakeAdView: some View {
-        ZStack(alignment: .topLeading) {
-            HStack {
-                VStack(alignment: .leading, spacing: 3) {
-                    HStack(spacing: 0) {
-                        Text("stake_ad_title_1".localized(vm.token.symbol?.uppercased() ?? "?"))
-                            .font(.inter(size: 16, weight: .bold))
-                            .foregroundColor(Color.LL.Neutrals.text)
+        Button {
+            Router.route(to: RouteMap.Wallet.stakeGuide)
+        } label: {
+            ZStack(alignment: .topLeading) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 3) {
+                        HStack(spacing: 0) {
+                            Text("stake_ad_title_1".localized(vm.token.symbol?.uppercased() ?? "?"))
+                                .font(.inter(size: 16, weight: .bold))
+                                .foregroundColor(Color.LL.Neutrals.text)
+                            
+                            Text("stake_ad_title_2".localized)
+                                .font(.inter(size: 16, weight: .bold))
+                                .foregroundColor(Color.clear)
+                                .background {
+                                    Rectangle()
+                                        .fill(.linearGradient(colors: [Color(hex: "#FFC062"), Color(hex: "#0BD3FF")], startPoint: .leading, endPoint: .trailing))
+                                        .mask {
+                                            Text("stake_ad_title_2".localized)
+                                                .font(.inter(size: 16, weight: .bold))
+                                                .foregroundColor(Color.black)
+                                        }
+                                }
+                            
+                            Spacer()
+                        }
                         
-                        Text("stake_ad_title_2".localized)
-                            .font(.inter(size: 16, weight: .bold))
-                            .foregroundColor(Color.clear)
-                            .background {
-                                Rectangle()
-                                    .fill(.linearGradient(colors: [Color(hex: "#FFC062"), Color(hex: "#0BD3FF")], startPoint: .leading, endPoint: .trailing))
-                                    .mask {
-                                        Text("stake_ad_title_2".localized)
-                                            .font(.inter(size: 16, weight: .bold))
-                                            .foregroundColor(Color.black)
-                                    }
-                            }
-                        
-                        Spacer()
+                        Text("stake_ad_desc".localized)
+                            .font(.inter(size: 14, weight: .medium))
+                            .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals8)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text("stake_ad_desc".localized)
-                        .font(.inter(size: 14, weight: .medium))
-                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals8)
+                    Image("icon-stake-ad-arrow")
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxHeight: .infinity)
                 
-                Image("icon-stake-ad-arrow")
+                Image("icon-stake-ad-crown")
+                    .padding(.top, -10)
+                    .padding(.leading, -10)
             }
-            .frame(maxHeight: .infinity)
-            
-            Image("icon-stake-ad-crown")
-                .padding(.top, -10)
-                .padding(.leading, -10)
-        }
-        .padding(.horizontal, 18)
-        .frame(height: 72, alignment: .topLeading)
-        .background {
-            Color.LL.Neutrals.background.cornerRadius(16)
+            .padding(.horizontal, 18)
+            .frame(height: 72, alignment: .topLeading)
+            .background {
+                Color.LL.Neutrals.background.cornerRadius(16)
+            }
         }
     }
 }

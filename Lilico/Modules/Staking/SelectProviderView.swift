@@ -97,8 +97,8 @@ struct SelectProviderView: RouteableView {
             Spacer()
             
             ZStack {
-                Color.LL.Primary.salmonPrimary
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                Rectangle()
+                    .fill(.radialGradient(colors: [Color(hex: "#FC8049", alpha: 0.5), Color(hex: "#121212", alpha: 0.5)], center: .topTrailing, startRadius: 1, endRadius: 92))
                 
                 VStack(alignment: .leading, spacing: 5) {
                     Text("12.04%")
@@ -106,7 +106,7 @@ struct SelectProviderView: RouteableView {
                         .font(.inter(size: 16, weight: .semibold))
                     
                     Text("Stake")
-                        .foregroundColor(Color(hex: "#865CFF"))
+                        .foregroundColor(Color.LL.Primary.salmonPrimary)
                         .font(.inter(size: 10, weight: .medium))
                 }
                 .padding(.leading, 12)

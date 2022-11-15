@@ -436,3 +436,29 @@
 "staking_select_provider" = "Select Provider";
 "staking_recommend" = "Recommend";
 "staking_provider" = "Staking Provider";
+"stake_flow" = "Stake Flow";
+"stake_guide_text_1" = "When You";
+"stake_guide_text_2" = "Stake Your Flow";
+"stake_guide_btn_text" = "Let's Staking";
+
+"stake_guide_desc_1_1" = "Earn up to ";
+"stake_guide_desc_1_2" = "9%";
+"stake_guide_desc_1_3" = " per year.";
+
+"stake_guide_desc_2_1" = "When you stake ";
+"stake_guide_desc_2_2" = "Flow";
+"stake_guide_desc_2_3" = " you receive";
+"stake_guide_desc_2_4" = "Flow";
+"stake_guide_desc_2_5" = ".\n";
+"stake_guide_desc_2_6" = "The amount of Flow will be";
+"stake_guide_desc_2_7" = " locked";
+"stake_guide_desc_2_8" = ".";
+
+"stake_guide_desc_3_1" = "You start earning from ";
+"stake_guide_desc_3_2" = "next epoch";
+"stake_guide_desc_3_3" = ".";
+
+"stake_guide_desc_4_1" = "Rewards are automatically credited to your\n";
+"stake_guide_desc_4_2" = "deposit";
+"stake_guide_desc_4_3" = "every week";
+"stake_guide_desc_4_4" = ".";

@@ -110,6 +110,7 @@ extension RouteMap {
         case selectToken(TokenModel?, [TokenModel], (TokenModel) -> ())
         case stakingList
         case stakingSelectProvider
+        case stakeGuide
     }
 }
 
@@ -152,6 +153,8 @@ extension RouteMap.Wallet: RouterTarget {
             navi.push(content: StakingListView())
         case .stakingSelectProvider:
             navi.push(content: SelectProviderView())
+        case .stakeGuide:
+            navi.push(content: StakeGuideView())
         }
     }
 }
