@@ -28,7 +28,7 @@ struct StakeGuideView: RouteableView {
                 Spacer()
                 
                 Button {
-                    
+                    Router.route(to: RouteMap.Wallet.stakeAmount)
                 } label: {
                     Text("stake_guide_btn_text".localized)
                         .font(.inter(size: 16, weight: .bold))
@@ -155,17 +155,5 @@ struct StakeGuideView: RouteableView {
     var descHighlightAttr: [NSAttributedString.Key: Any] {
         let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.interSemiBold(size: 14), .foregroundColor: UIColor(hex: "#865CFF")]
         return attrs
-    }
-    
-    func numAttributedString() -> NSAttributedString {
-        let boldAttrs: [NSAttributedString.Key: Any] = [.font: UIFont.interBold(size: 18), .foregroundColor: UIColor.LL.Neutrals.text]
-        let normalAttrs: [NSAttributedString.Key: Any] = [.font: UIFont.interMedium(size: 12), .foregroundColor: UIColor.LL.Neutrals.text]
-        
-        let numStr = NSMutableAttributedString(string: "309.80 ", attributes: boldAttrs)
-        let normalStr = NSAttributedString(string: "Flow", attributes: normalAttrs)
-        
-        numStr.append(normalStr)
-        
-        return numStr
     }
 }

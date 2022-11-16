@@ -462,3 +462,9 @@
 "stake_guide_desc_4_2" = "deposit";
 "stake_guide_desc_4_3" = "every week";
 "stake_guide_desc_4_4" = ".";
+
+"stake_amount" = "Stake Amount";
+"stake_amount_flow" = "Amount Flow";
+"stake" = "Stake";
+"stake_rate" = "Rate";
+"stake_annual_reward" = "Est. annual reward";
