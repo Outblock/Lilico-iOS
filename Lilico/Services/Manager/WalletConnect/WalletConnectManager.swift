@@ -16,6 +16,7 @@ import WalletCore
 import UIKit
 import WalletConnectPairing
 import WalletConnectNetworking
+import WalletConnectRouter
 
 class WalletConnectManager: ObservableObject {
     static let shared = WalletConnectManager()
@@ -235,13 +236,8 @@ class WalletConnectManager: ObservableObject {
             }.store(in: &publishers)
     }
     
-    private func navigateBackTodApp(topic: String) {
-        DispatchQueue.main.async {
-            if  let session = self.activeSessions.first(where: { $0.topic == topic }),
-                let url = URL(string: session.peer.url) {
-                UIApplication.shared.open(url, options: [:])
-            }
-        }
+    private func navigateBackTodApp() {
+        WalletConnectRouter.Router.goBack()
     }
 }
 
@@ -349,7 +345,7 @@ extension WalletConnectManager {
                 
                 if model.roles.payer && !model.roles.proposer && !model.roles.authorizer {
                     self.approvePayerRequest(request: sessionRequest, model: model, message: model.message)
-                    self.navigateBackTodApp(topic: sessionRequest.topic)
+                    self.navigateBackTodApp()
                     return
                 }
                 
@@ -370,7 +366,7 @@ extension WalletConnectManager {
                 }
                 
                 if model.roles.payer {
-                    self.navigateBackTodApp(topic: sessionRequest.topic)
+                    self.navigateBackTodApp()
                 }
                 
                 
@@ -396,7 +392,7 @@ extension WalletConnectManager {
                         } else {
                             self.rejectRequest(request: sessionRequest)
                         }
-                        self.navigateBackTodApp(topic: sessionRequest.topic)
+                        self.navigateBackTodApp()
                     }
                     
                     Router.route(to: RouteMap.Explore.signMessage(vm))
