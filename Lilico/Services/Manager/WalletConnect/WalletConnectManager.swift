@@ -80,7 +80,8 @@ class WalletConnectManager: ObservableObject {
         print("[RESPONDER] Pairing to: \(link)")
         Task {
             do {
-                if let uri = WalletConnectURI.init(string: link) {
+                if let removedLink = link.removingPercentEncoding,
+                    let uri = WalletConnectURI.init(string: removedLink) {
                     
                     //                    if Sign.instance.getPairings().contains(where: { $0.topic == uri.topic }) {
                     //                        try await Sign.instance.disconnect(topic: uri.topic)
@@ -305,7 +306,7 @@ extension WalletConnectManager {
                                                reason: nil,
                                                compositeSignature: nil)
                     try await Sign.instance.respond(topic: sessionRequest.topic, requestId: sessionRequest.id, response: .response(AnyCodable(result)))
-                    self.navigateBackTodApp(topic: sessionRequest.topic)
+                    self.navigateBackTodApp()
                 } catch {
                     print("[WALLET] Respond Error: \(error.localizedDescription)")
                     rejectRequest(request: sessionRequest)
