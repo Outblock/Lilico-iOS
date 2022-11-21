@@ -23,6 +23,7 @@ struct StakingDetailView: RouteableView {
         VStack {
             summaryCardView
             progressCardView
+            rewardCardView
             
             Spacer()
         }
@@ -177,5 +178,55 @@ struct StakingDetailView: RouteableView {
         .padding(.all, 18)
         .background(Color.LL.Neutrals.background)
         .cornerRadius(16)
+    }
+    
+    var rewardCardView: some View {
+        HStack(spacing: 13) {
+            // daily
+            VStack(alignment: .leading, spacing: 13) {
+                Text("stake_daily_reward".localized)
+                    .font(.inter(size: 14, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                HStack(alignment: .bottom, spacing: 5) {
+                    Text("$0.88")
+                        .font(.inter(size: 24, weight: .bold))
+                        .foregroundColor(Color.LL.Neutrals.text)
+                    
+                    Text("USD")
+                        .font(.inter(size: 14, weight: .medium))
+                        .foregroundColor(Color.LL.Neutrals.text3)
+                        .padding(.bottom, 5)
+                }
+                
+                Text("0.123 Flow")
+                    .font(.inter(size: 12, weight: .semibold))
+                    .foregroundColor(Color.LL.Neutrals.text3)
+            }
+            .padding(.all, 18)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .background(Color.LL.Neutrals.background)
+            .cornerRadius(16)
+            
+            // monthly
+            VStack(alignment: .leading, spacing: 13) {
+                Text("stake_mothly_reward".localized)
+                    .font(.inter(size: 14, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Text("298.09")
+                    .font(.inter(size: 24, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Text("0.123 Flow")
+                    .font(.inter(size: 12, weight: .semibold))
+                    .foregroundColor(Color.LL.Neutrals.text3)
+            }
+            .padding(.all, 18)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .background(Color.LL.Neutrals.background)
+            .cornerRadius(16)
+        }
+        .frame(height: 108)
     }
 }
