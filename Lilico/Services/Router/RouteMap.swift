@@ -112,6 +112,7 @@ extension RouteMap {
         case stakingSelectProvider
         case stakeGuide
         case stakeAmount
+        case stakeDetail
     }
 }
 
@@ -158,6 +159,8 @@ extension RouteMap.Wallet: RouterTarget {
             navi.push(content: StakeGuideView())
         case .stakeAmount:
             navi.push(content: StakeAmountView())
+        case .stakeDetail:
+            navi.push(content: StakingDetailView())
         }
     }
 }

@@ -174,7 +174,7 @@ struct StakeAmountView: RouteableView {
     
     var stakeBtn: some View {
         Button {
-            
+            Router.route(to: RouteMap.Wallet.stakeDetail)
         } label: {
             Text("stake".localized)
                 .font(.inter(size: 16, weight: .bold))

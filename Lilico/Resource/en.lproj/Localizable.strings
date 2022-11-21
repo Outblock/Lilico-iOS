@@ -468,3 +468,6 @@
 "stake" = "Stake";
 "stake_rate" = "Rate";
 "stake_annual_reward" = "Est. annual reward";
+"staking_detail" = "Staking Detail";
+"staked_flow" = "Staked Flow";
+"stake_flow_available" = "Flow available";
