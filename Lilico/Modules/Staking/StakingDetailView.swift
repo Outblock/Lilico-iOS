@@ -16,9 +16,13 @@ struct StakingDetailView: RouteableView {
         return .large
     }
     
+    @State var progressMax: Int = 7
+    @State var progressIndex: Int = 3
+    
     var body: some View {
         VStack {
             summaryCardView
+            progressCardView
             
             Spacer()
         }
@@ -128,5 +132,50 @@ struct StakingDetailView: RouteableView {
                 .aspectRatio(contentMode: .fill)
         }
         .cornerRadius(12)
+    }
+    
+    var progressCardView: some View {
+        VStack(spacing: 10) {
+            // progress bar
+            HStack(spacing: 2) {
+                ForEach(0..<progressMax, id: \.self) { index in
+                    Rectangle()
+                        .foregroundColor(index < progressIndex ? Color.LL.Primary.salmonPrimary : Color.clear)
+                        .cornerRadius(index == progressIndex - 1 ? 12 : 0, corners: [.topRight, .bottomRight])
+                }
+            }
+            .frame(height: 8)
+            .background(Color.LL.deepBg)
+            .cornerRadius(12)
+            
+            // time section title
+            HStack {
+                Text("stake_epoch_starts")
+                    .font(.inter(size: 12, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text4)
+                
+                Spacer()
+                
+                Text("stake_epoch_ends")
+                    .font(.inter(size: 12, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text4)
+            }
+            
+            // time values
+            HStack {
+                Text("2022-11-01")
+                    .font(.inter(size: 14, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Spacer()
+                
+                Text("2022-11-07")
+                    .font(.inter(size: 14, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+            }
+        }
+        .padding(.all, 18)
+        .background(Color.LL.Neutrals.background)
+        .cornerRadius(16)
     }
 }

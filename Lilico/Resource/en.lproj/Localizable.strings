@@ -471,3 +471,5 @@
 "staking_detail" = "Staking Detail";
 "staked_flow" = "Staked Flow";
 "stake_flow_available" = "Flow available";
+"stake_epoch_starts" = "Epoch Starts";
+"stake_epoch_ends" = "Epoch Ends";
