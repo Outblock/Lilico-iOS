@@ -20,19 +20,60 @@ struct StakingDetailView: RouteableView {
     @State var progressIndex: Int = 3
     
     var body: some View {
-        VStack {
-            summaryCardView
-            progressCardView
-            rewardCardView
+        ZStack(alignment: .bottom) {
+            ScrollView {
+                VStack(spacing: 12) {
+                    summaryCardView
+                    progressCardView
+                    rewardCardView
+                    stakingListView
+                }
+                .padding(.horizontal, 18)
+                .padding(.top, 12)
+                .padding(.bottom, 20 + 64 + 20)
+            }
             
-            Spacer()
+            controlContainerView
+                .padding(.bottom, 20)
         }
-        .padding(.horizontal, 18)
-        .padding(.top, 12)
-        .padding(.bottom, 20)
-        .buttonStyle(.plain)
         .backgroundFill(.LL.deepBg)
         .applyRouteable(self)
+    }
+    
+    var controlContainerView: some View {
+        HStack(spacing: 13) {
+            Button {
+                
+            } label: {
+                Text("stake_unstake".localized)
+                    .font(.inter(size: 16, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                    .frame(height: 40)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.LL.Neutrals.neutrals6)
+                    .cornerRadius(12)
+            }
+            
+            Button {
+                
+            } label: {
+                Text("stake".localized)
+                    .font(.inter(size: 16, weight: .bold))
+                    .foregroundColor(Color.white)
+                    .frame(height: 40)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.LL.stakeMain)
+                    .cornerRadius(12)
+            }
+        }
+        .padding(.horizontal, 18)
+        .padding(.vertical, 12)
+        .background {
+            RoundedRectangle(cornerRadius: 12)
+                .foregroundColor(Color.LL.deepBg)
+                .shadow(color: Color(hex: "#333333", alpha: 0.08), x: 0, y: 12, blur: 24)
+        }
+        .padding(.horizontal, 18)
     }
     
     var summaryCardView: some View {
@@ -204,7 +245,7 @@ struct StakingDetailView: RouteableView {
                     .foregroundColor(Color.LL.Neutrals.text3)
             }
             .padding(.all, 18)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.LL.Neutrals.background)
             .cornerRadius(16)
             
@@ -223,10 +264,35 @@ struct StakingDetailView: RouteableView {
                     .foregroundColor(Color.LL.Neutrals.text3)
             }
             .padding(.all, 18)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.LL.Neutrals.background)
             .cornerRadius(16)
         }
-        .frame(height: 108)
+    }
+    
+    var stakingListView: some View {
+        VStack(spacing: 0) {
+            createListCell(key: "stake_unstaking_amount".localized, value: "0.88 Flow")
+            Divider().foregroundColor(Color.LL.Neutrals.text2)
+            createListCell(key: "stake_next_epoch".localized, value: "2022-11-03")
+        }
+        .padding(.horizontal, 18)
+        .background(Color.LL.Neutrals.background)
+        .cornerRadius(16)
+    }
+    
+    func createListCell(key: String, value: String) -> some View {
+        HStack {
+            Text(key)
+                .font(.inter(size: 14, weight: .semibold))
+                .foregroundColor(Color.LL.Neutrals.text)
+            
+            Spacer()
+            
+            Text(value)
+                .font(.inter(size: 14, weight: .medium))
+                .foregroundColor(Color.LL.Neutrals.text)
+        }
+        .frame(height: 38)
     }
 }

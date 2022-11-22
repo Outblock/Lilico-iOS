@@ -473,3 +473,6 @@
 "stake_flow_available" = "Flow available";
 "stake_epoch_starts" = "Epoch Starts";
 "stake_epoch_ends" = "Epoch Ends";
+"stake_unstaking_amount" = "Unstaking Amount";
+"stake_next_epoch" = "Next Epoch";
+"stake_unstake" = "Unstake";

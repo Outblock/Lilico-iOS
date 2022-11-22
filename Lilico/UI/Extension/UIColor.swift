@@ -35,6 +35,8 @@ extension UIColor {
         static let deepBg = UIColor(named: "DeepBackground")!
 
         static let neutrals1 = UIColor(named: "Neutrals1")!
+        
+        static let stakeMain = UIColor(named: "other.stakingMain")!
 
         /// The primary color palette is used across all the iteractive elemets such as CTA’s(Call to The Action), links, inputs,active states,etc
         enum Primary {

@@ -96,6 +96,8 @@ extension Color {
         static let deepBg = Color("DeepBackground")
 
         static let neutrals1 = Color("Neutrals1")
+        
+        static let stakeMain = Color("other.stakingMain")
 
         /// The primary color palette is used across all the iteractive elemets such as CTA’s(Call to The Action), links, inputs,active states,etc
         enum Primary {
