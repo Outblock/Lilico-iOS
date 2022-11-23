@@ -83,7 +83,7 @@ struct StakingListView: RouteableView {
                     .padding(.horizontal, 5)
                     .frame(height: 18)
                     .background(Color.LL.Success.success4)
-                    .cornerRadius(12)
+                    .cornerRadius(4)
                     .padding(.leading, 8)
                 
                 Spacer()

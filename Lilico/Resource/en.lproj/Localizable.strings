@@ -434,12 +434,14 @@
 "staking_rewards" = "Rewards";
 "stake_new_node" = "Stake New Node";
 "staking_select_provider" = "Select Provider";
-"staking_recommend" = "Recommend";
-"staking_provider" = "Staking Provider";
+"staking_recommend" = "RECOMMEND";
+"staking_liquid_stake" = "LIQUID STAKE";
+"staking_stake" = "STAKE";
 "stake_flow" = "Stake Flow";
 "stake_guide_text_1" = "When You";
 "stake_guide_text_2" = "Stake Your Flow";
 "stake_guide_btn_text" = "Let's Staking";
+"stake_on_lilico_only" = "On Lilico Only";
 
 "stake_guide_desc_1_1" = "Earn up to ";
 "stake_guide_desc_1_2" = "9%";

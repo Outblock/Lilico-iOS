@@ -11,6 +11,7 @@ import Kingfisher
 struct SelectProviderView: RouteableView {
     @State var dataList = 0..<3
     @State var dataList2 = 3..<6
+    @State var dataList3 = 6..<9
     
     var title: String {
         return "staking_select_provider".localized
@@ -24,13 +25,40 @@ struct SelectProviderView: RouteableView {
         ScrollView {
             LazyVStack(spacing: 0) {
                 createSectionTitleView("staking_recommend".localized)
-                ForEach(dataList, id: \.self) { _ in
-                    createProviderView()
+                
+                VStack(spacing: 0) {
+                    HStack {
+                        Text("stake_on_lilico_only".localized)
+                            .font(.inter(size: 12, weight: .bold))
+                            .foregroundColor(Color.white.opacity(0.72))
+                        
+                        Spacer()
+                        
+                        Image("icon-account-arrow-right")
+                            .renderingMode(.template)
+                            .foregroundColor(Color.white.opacity(0.72))
+                    }
+                    .frame(height: 32)
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 18)
+                .frame(height: 64)
+                .background(Color.LL.Primary.salmonPrimary)
+                .cornerRadius(16)
+                .padding(.top, 12)
+                
+                createProviderView(gradientStart: "#FFD7C6", gradientEnd: "#FAFAFA")
+                    .padding(.top, -40)
+                
+                createSectionTitleView("staking_liquid_stake".localized)
+                ForEach(dataList2, id: \.self) { _ in
+                    createProviderView(gradientStart: "#F2EEFF", gradientEnd: "#FAFAFA")
                 }
                 
-                createSectionTitleView("staking_provider".localized)
-                ForEach(dataList2, id: \.self) { _ in
-                    createProviderView()
+                createSectionTitleView("staking_liquid_stake".localized)
+                ForEach(dataList3, id: \.self) { _ in
+                    createProviderView(gradientStart: "#F0F0F0", gradientEnd: "#FAFAFA")
                 }
             }
             .padding(.horizontal, 18)
@@ -44,7 +72,7 @@ struct SelectProviderView: RouteableView {
     func createSectionTitleView(_ title: String) -> some View {
         HStack {
             Text(title)
-                .foregroundColor(Color.LL.Neutrals.neutrals4)
+                .foregroundColor(Color.LL.Neutrals.text3)
                 .font(.inter(size: 14, weight: .bold))
             
             Spacer()
@@ -52,7 +80,7 @@ struct SelectProviderView: RouteableView {
         .padding(.top, 14)
     }
     
-    func createProviderView() -> some View {
+    func createProviderView(gradientStart: String, gradientEnd: String) -> some View {
         HStack(spacing: 0) {
             KFImage.url(nil)
                 .placeholder({
@@ -61,18 +89,18 @@ struct SelectProviderView: RouteableView {
                 })
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 34, height: 34)
+                .frame(width: 36, height: 36)
                 .clipShape(Circle())
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("Lilico")
                     .foregroundColor(Color.LL.Neutrals.text)
-                    .font(.inter(size: 14, weight: .bold))
+                    .font(.inter(size: 16, weight: .bold))
                 
                 HStack(spacing: 0) {
                     Text("Lico")
                         .foregroundColor(Color.LL.Neutrals.text2)
-                        .font(.inter(size: 10, weight: .medium))
+                        .font(.inter(size: 12, weight: .semibold))
                     
                     KFImage.url(nil)
                         .placeholder({
@@ -83,11 +111,11 @@ struct SelectProviderView: RouteableView {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 12, height: 12)
                         .clipShape(Circle())
-                        .padding(.leading, 12)
+                        .padding(.leading, 6)
                     
                     Text("Lico")
                         .foregroundColor(Color.LL.Neutrals.text2)
-                        .font(.inter(size: 10, weight: .medium))
+                        .font(.inter(size: 12, weight: .semibold))
                         .padding(.leading, 4)
                 }
             }
@@ -97,29 +125,30 @@ struct SelectProviderView: RouteableView {
             Spacer()
             
             ZStack {
-                Rectangle()
-                    .fill(.radialGradient(colors: [Color(hex: "#FC8049", alpha: 0.5), Color(hex: "#121212", alpha: 0.5)], center: .topTrailing, startRadius: 1, endRadius: 92))
-                
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(spacing: 5) {
                     Text("12.04%")
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.LL.Neutrals.text)
                         .font(.inter(size: 16, weight: .semibold))
                     
                     Text("Stake")
-                        .foregroundColor(Color.LL.Primary.salmonPrimary)
-                        .font(.inter(size: 10, weight: .medium))
+                        .foregroundColor(Color.LL.Neutrals.text3)
+                        .font(.inter(size: 12, weight: .medium))
                 }
-                .padding(.leading, 12)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity)
             }
             .frame(width: 92)
-            .frame(maxHeight: .infinity)
-            .cornerRadius(12, corners: [.bottomLeft])
+            .frame(height: 48)
+            .background(Color.LL.deepBg)
+            .cornerRadius(12)
         }
         .padding(.leading, 16)
-        .frame(height: 58)
-        .background(Color.LL.Neutrals.background)
-        .cornerRadius(12)
+        .padding(.trailing, 8)
+        .frame(height: 64)
+        .background {
+            Rectangle()
+                .fill(.radialGradient(colors: [Color(hex: gradientStart, alpha: 1), Color(hex: gradientEnd, alpha: 1)], center: .init(x: 0.5, y: -1.9), startRadius: 1, endRadius: 200))
+        }
+        .cornerRadius(16)
         .padding(.top, 8)
     }
 }
