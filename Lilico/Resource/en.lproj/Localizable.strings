@@ -478,3 +478,4 @@
 "stake_unstaking_amount" = "Unstaking Amount";
 "stake_next_epoch" = "Next Epoch";
 "stake_unstake" = "Unstake";
+"stake_confirm_title" = "Confirm Your Stake";

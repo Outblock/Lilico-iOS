@@ -35,7 +35,7 @@ struct StakeGuideView: RouteableView {
                         .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity)
                         .frame(height: 54)
-                        .background(Color(hex: "#865CFF"))
+                        .background(Color.LL.stakeMain)
                         .cornerRadius(16)
                 }
             }
@@ -153,7 +153,7 @@ struct StakeGuideView: RouteableView {
     }
     
     var descHighlightAttr: [NSAttributedString.Key: Any] {
-        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.interSemiBold(size: 14), .foregroundColor: UIColor(hex: "#865CFF")]
+        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.interSemiBold(size: 14), .foregroundColor: UIColor.LL.stakeMain]
         return attrs
     }
 }
