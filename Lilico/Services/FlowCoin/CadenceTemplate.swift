@@ -405,3 +405,13 @@ class CadenceTemplate {
         }
     """
 }
+
+extension CadenceTemplate {
+    static let checkStakingIsEnabled = """
+        import FlowIDTableStaking from 0xFlowTableStaking
+
+        pub fun main():Bool {
+            return FlowIDTableStaking.stakingEnabled()
+        }
+    """
+}

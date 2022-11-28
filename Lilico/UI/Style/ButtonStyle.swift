@@ -8,6 +8,25 @@
 import SwiftUI
 
 class ButtonStyle {
+    public static let stakePrimary: VPrimaryButtonModel = {
+        var model: VPrimaryButtonModel = .init()
+
+        model.fonts.title = Font.LL.body.bold()
+
+        model.colors.textContent = .init(enabled: Color.white,
+                                         pressed: Color.white.opacity(0.5),
+                                         loading: Color.white,
+                                         disabled: Color.white)
+
+        model.colors.background = .init(enabled: Color.LL.stakeMain,
+                                        pressed: Color.LL.stakeMain.opacity(0.5),
+                                        loading: Color.LL.stakeMain,
+                                        disabled: Color.LL.disable)
+
+        model.layout.cornerRadius = 16
+        return model
+    }()
+    
     public static let primary: VPrimaryButtonModel = {
         var model: VPrimaryButtonModel = .init()
 

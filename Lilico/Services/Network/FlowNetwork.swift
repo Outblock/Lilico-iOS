@@ -315,6 +315,14 @@ extension FlowNetwork {
     }
 }
 
+// MARK: - Stake
+
+extension FlowNetwork {
+    static func stakingIsEnabled() async throws -> Bool {
+        return try await self.fetch(cadence: CadenceTemplate.checkStakingIsEnabled, arguments: [])
+    }
+}
+
 // MARK: - Others
 
 extension FlowNetwork {

@@ -8,7 +8,57 @@
 import SwiftUI
 import UIKit
 
+class StakeGuideViewModel: ObservableObject {
+    @Published var isRequesting: Bool = false
+    
+    var buttonState: VPrimaryButtonState {
+        if isRequesting {
+            return .loading
+        }
+        return .enabled
+    }
+    
+    func goNext() {
+        if isRequesting {
+            return
+        }
+        
+        isRequesting = true
+        
+        let failureBlock = {
+            DispatchQueue.main.async {
+                self.isRequesting = false
+                HUD.error(title: "request_failed".localized)
+            }
+        }
+        
+        Task {
+            do {
+                let stakingEnabled = try await FlowNetwork.stakingIsEnabled()
+                debugPrint("StakeGuideViewModel: stakingEnabled - \(stakingEnabled)")
+                
+                if !stakingEnabled {
+                    DispatchQueue.main.async {
+                        self.isRequesting = false
+                        HUD.error(title: "staking_disabled".localized)
+                    }
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    HUD.success(title: "yes")
+                    self.isRequesting = false
+                }
+            } catch {
+                debugPrint("StakeGuideViewModel: catch error \(error)")
+                failureBlock()
+            }
+        }
+    }
+}
+
 struct StakeGuideView: RouteableView {
+    @StateObject private var vm = StakeGuideViewModel()
     
     var title: String {
         return "stake_flow".localized
@@ -27,17 +77,12 @@ struct StakeGuideView: RouteableView {
                 
                 Spacer()
                 
-                Button {
-                    Router.route(to: RouteMap.Wallet.stakeAmount)
-                } label: {
-                    Text("stake_guide_btn_text".localized)
-                        .font(.inter(size: 16, weight: .bold))
-                        .foregroundColor(Color.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 54)
-                        .background(Color.LL.stakeMain)
-                        .cornerRadius(16)
-                }
+                VPrimaryButton(model: ButtonStyle.stakePrimary,
+                               state: vm.buttonState,
+                               action: {
+                    vm.goNext()
+                }, title: vm.buttonState == .loading ? "working_on_it".localized : "stake_guide_btn_text".localized)
+                .padding(.bottom)
             }
             .padding(.top, 32)
             .padding(.bottom, 20)
