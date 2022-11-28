@@ -36,7 +36,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "180BB410-F901-4142-BB4F-58B86A60C36E - a4195c00bc79e406"
+                  uuid = "180BB410-F901-4142-BB4F-58B86A60C36E - a4195c00bc79e467"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -46,12 +46,12 @@
                   urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Firebase/FirebaseConfig.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
                   offsetFromSymbolStart = "612">
                </Location>
                <Location
-                  uuid = "180BB410-F901-4142-BB4F-58B86A60C36E - a4195c00bc79e406"
+                  uuid = "180BB410-F901-4142-BB4F-58B86A60C36E - a4195c00bc79e467"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -61,8 +61,8 @@
                   urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Firebase/FirebaseConfig.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
                   offsetFromSymbolStart = "636">
                </Location>
             </Locations>
@@ -80,8 +80,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
-            landmarkName = "sign(transaction:signableData:)"
-            landmarkType = "7">
+            landmarkName = "RemoteConfigManager"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -444,7 +444,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "269"
             endingLineNumber = "269"
-            landmarkName = "isFav(id:)"
+            landmarkName = "removeFavCache()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -460,40 +460,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "279"
             endingLineNumber = "279"
-            landmarkName = "addFav(nft:)"
+            landmarkName = "isFav(id:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CDB3EA58-A385-4E0F-B43D-340546A6CCDD - 999a75865e822e1e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Lilico.NFTUIKitCache.addFav(nft: Lilico.NFTModel) -&gt; ()"
-                  moduleName = "Lilico"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Cache/NFTUIKitCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "279"
-                  endingLineNumber = "279"
-                  offsetFromSymbolStart = "324">
-               </Location>
-               <Location
-                  uuid = "CDB3EA58-A385-4E0F-B43D-340546A6CCDD - 999a75865e822e1e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Lilico.NFTUIKitCache.addFav(nft: Lilico.NFTModel) -&gt; ()"
-                  moduleName = "Lilico"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Cache/NFTUIKitCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "279"
-                  endingLineNumber = "279"
-                  offsetFromSymbolStart = "876">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -556,104 +524,39 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "51"
                   endingLineNumber = "51"
-                  offsetFromSymbolStart = "2024">
+                  offsetFromSymbolStart = "1420">
                </Location>
                <Location
-                  uuid = "1738C8D5-9AA1-437A-AC92-F7711C30E6C3 - 96e3da57cfc87142"
+                  uuid = "1738C8D5-9AA1-437A-AC92-F7711C30E6C3 - ffcd279d88e36f12"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in Lilico.AppDelegate.application(_: __C.UIApplication, open: Foundation.URL, options: Swift.Dictionary&lt;__C.UIApplicationOpenURLOptionsKey, Any&gt;) -&gt; Swift.Bool"
+                  symbolName = "Lilico.AppDelegate.application(_: __C.UIApplication, open: Foundation.URL, options: Swift.Dictionary&lt;__C.UIApplicationOpenURLOptionsKey, Any&gt;) -&gt; Swift.Bool"
                   moduleName = "Lilico"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/App/AppDelegate.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
-                  offsetFromSymbolStart = "44">
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "1544">
                </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "67BD6B92-5A1E-4475-AA3E-71406359280E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "navigateBackTodApp(topic:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FD847EEF-C0BA-46ED-8D7A-D2722651E02C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "navigateBackTodApp(topic:)"
-            landmarkType = "7">
-            <Locations>
                <Location
-                  uuid = "FD847EEF-C0BA-46ED-8D7A-D2722651E02C - 9065b8456c6ede2d"
+                  uuid = "1738C8D5-9AA1-437A-AC92-F7711C30E6C3 - 9241fb0b1a41d58f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (WalletConnectSign.Request) -&gt; () in Lilico.WalletConnectManager.setUpAuthSubscribing() -&gt; ()"
+                  symbolName = "closure #2 (Foundation.URLQueryItem) -&gt; Swift.Bool in Lilico.AppDelegate.application(_: __C.UIApplication, open: Foundation.URL, options: Swift.Dictionary&lt;__C.UIApplicationOpenURLOptionsKey, Any&gt;) -&gt; Swift.Bool"
                   moduleName = "Lilico"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/App/AppDelegate.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "231"
-                  endingLineNumber = "231"
-                  offsetFromSymbolStart = "8108">
-               </Location>
-               <Location
-                  uuid = "FD847EEF-C0BA-46ED-8D7A-D2722651E02C - e9c3cc7ee0bc70a4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (WalletConnectSign.Session) -&gt; Swift.Bool in closure #4 (WalletConnectSign.Request) -&gt; () in Lilico.WalletConnectManager.setUpAuthSubscribing() -&gt; ()"
-                  moduleName = "Lilico"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "231"
-                  endingLineNumber = "231"
-                  offsetFromSymbolStart = "40">
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "224">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "30642118-146B-44E5-B4EA-E87A68E1E452"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "412"
-            endingLineNumber = "412"
-            landmarkName = "WalletConnectManager"
-            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -730,42 +633,10 @@
             filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "419"
-            endingLineNumber = "419"
+            startingLineNumber = "416"
+            endingLineNumber = "416"
             landmarkName = "approveSession(proposal:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "43A91F21-54FC-4A32-B0D6-F599CB9BB5B5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
-            landmarkName = "handleRequest(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "00D0427E-81C2-4ABB-A9B8-ADBB46523659"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
-            landmarkName = "WalletConnectManager"
-            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -778,104 +649,85 @@
             filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
             landmarkName = "handleRequest(_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C505B5FD-732A-4B07-B1B5-F586230E279C - 9065b8456c6ed751"
+                  uuid = "C505B5FD-732A-4B07-B1B5-F586230E279C - 1ccefcb39452a31f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (WalletConnectSign.Request) -&gt; () in Lilico.WalletConnectManager.setUpAuthSubscribing() -&gt; ()"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
                   moduleName = "Lilico"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "299"
-                  endingLineNumber = "299"
-                  offsetFromSymbolStart = "13240">
+                  startingLineNumber = "310"
+                  endingLineNumber = "310"
+                  offsetFromSymbolStart = "5268">
                </Location>
                <Location
-                  uuid = "C505B5FD-732A-4B07-B1B5-F586230E279C - e8e7f95d74a5155e"
+                  uuid = "C505B5FD-732A-4B07-B1B5-F586230E279C - 1ccefcb39452a31f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #9 @Sendable () async -&gt; () in closure #4 (WalletConnectSign.Request) -&gt; () in Lilico.WalletConnectManager.setUpAuthSubscribing() -&gt; ()"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
                   moduleName = "Lilico"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "299"
-                  endingLineNumber = "299"
-                  offsetFromSymbolStart = "0">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E953C768-672F-438E-BC26-A009D36142A6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
-            landmarkName = "handleRequest(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2E00344A-7AF1-44D1-8862-74B7FBFA60CB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "handleRequest(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2E00344A-7AF1-44D1-8862-74B7FBFA60CB - 9065b8456c6ed0f5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (WalletConnectSign.Request) -&gt; () in Lilico.WalletConnectManager.setUpAuthSubscribing() -&gt; ()"
-                  moduleName = "Lilico"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "271"
-                  endingLineNumber = "271"
-                  offsetFromSymbolStart = "11360">
+                  startingLineNumber = "310"
+                  endingLineNumber = "310"
+                  offsetFromSymbolStart = "5316">
                </Location>
                <Location
-                  uuid = "2E00344A-7AF1-44D1-8862-74B7FBFA60CB - 7a384023d2e87a7a"
+                  uuid = "C505B5FD-732A-4B07-B1B5-F586230E279C - 3ec46ff9581c2b1b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #6 (WalletConnectSign.Session) -&gt; Swift.Bool in closure #4 (WalletConnectSign.Request) -&gt; () in Lilico.WalletConnectManager.setUpAuthSubscribing() -&gt; ()"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
                   moduleName = "Lilico"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "271"
-                  endingLineNumber = "271"
-                  offsetFromSymbolStart = "40">
+                  startingLineNumber = "310"
+                  endingLineNumber = "310"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  uuid = "C505B5FD-732A-4B07-B1B5-F586230E279C - afc6a045b9c6f719"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "310"
+                  endingLineNumber = "310"
+                  offsetFromSymbolStart = "504">
+               </Location>
+               <Location
+                  uuid = "C505B5FD-732A-4B07-B1B5-F586230E279C - afc6a045b9c6f719"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "310"
+                  endingLineNumber = "310"
+                  offsetFromSymbolStart = "548">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -971,6 +823,482 @@
                   offsetFromSymbolStart = "128">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "781DC603-E8BF-4B1A-9FA9-0BEFAC176B31"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "navigateBackTodApp()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA886EA6-D617-4D44-8AE7-CACF359316A1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FA886EA6-D617-4D44-8AE7-CACF359316A1 - 1ccefcb39452a33c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "311"
+                  endingLineNumber = "311"
+                  offsetFromSymbolStart = "5328">
+               </Location>
+               <Location
+                  uuid = "FA886EA6-D617-4D44-8AE7-CACF359316A1 - afc6a045b9c6f73a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "311"
+                  endingLineNumber = "311"
+                  offsetFromSymbolStart = "560">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BEA35395-CCE9-4C83-9378-5F1BB6A4A3A1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BEA35395-CCE9-4C83-9378-5F1BB6A4A3A1 - 1ccefcb39452a2d9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "308"
+                  endingLineNumber = "308"
+                  offsetFromSymbolStart = "4772">
+               </Location>
+               <Location
+                  uuid = "BEA35395-CCE9-4C83-9378-5F1BB6A4A3A1 - 8dc1351cf67b6edb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "308"
+                  endingLineNumber = "308"
+                  offsetFromSymbolStart = "3008">
+               </Location>
+               <Location
+                  uuid = "BEA35395-CCE9-4C83-9378-5F1BB6A4A3A1 - 7e43978ebcbe3c29"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "308"
+                  endingLineNumber = "308"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "BEA35395-CCE9-4C83-9378-5F1BB6A4A3A1 - 3ec46ff9581c2add"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "308"
+                  endingLineNumber = "308"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "BEA35395-CCE9-4C83-9378-5F1BB6A4A3A1 - e645c4b7093188dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "308"
+                  endingLineNumber = "308"
+                  offsetFromSymbolStart = "3012">
+               </Location>
+               <Location
+                  uuid = "BEA35395-CCE9-4C83-9378-5F1BB6A4A3A1 - afc6a045b9c6f6df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.handleRequest(WalletConnectSign.Request) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "308"
+                  endingLineNumber = "308"
+                  offsetFromSymbolStart = "272">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "208235B1-DEC4-46E6-9C45-A0395CA06AF5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "47C4A89E-E456-45EC-9B7D-0BCD0D2AD8B6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE8A42D5-606B-4EFC-B29D-1FE0166D7E7F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C93175F2-A1AC-47E9-9526-C341F67269E6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "347"
+            endingLineNumber = "347"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "715912C8-E1B6-48F4-8D79-068F0AEEB004"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2F4CFCD5-3361-491F-A128-9D4E1A85BBDA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B238DD9A-8E5B-4AD0-9B3E-02ACBCA942C0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "48960DD8-5795-44CA-A538-6C8E643AA08B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7559AC1C-0BCA-469E-B3CE-018D12830A79"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C3FFA49-795B-4597-B264-4DCF8E0E3EE9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B53E596D-631F-4FA4-8C91-FA0A5E0EC149"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DBB22CD6-5E74-439D-AEA8-F63A4D933163"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6FC65CA-8109-4EF0-BFC4-A69259B96544"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2716CDC7-36D2-4885-A9C1-84F8A7DEB398"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "handleRequest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F9FE45E-86B2-460D-97AF-84BBDBFF85BB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
+            landmarkName = "approveRequest(request:requestInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C246765E-6BEF-4BD0-A623-539C1F84EB74"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "478"
+            endingLineNumber = "478"
+            landmarkName = "approveRequest(request:requestInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C246765E-6BEF-4BD0-A623-539C1F84EB74 - 5be35d3304a1a54c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.approveRequest(request: WalletConnectSign.Request, requestInfo: Lilico.RequestInfo) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "478"
+                  endingLineNumber = "478"
+                  offsetFromSymbolStart = "660">
+               </Location>
+               <Location
+                  uuid = "C246765E-6BEF-4BD0-A623-539C1F84EB74 - ec76fc6e8668e77b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Lilico.WalletConnectManager.approveRequest(request: WalletConnectSign.Request, requestInfo: Lilico.RequestInfo) -&gt; ()"
+                  moduleName = "Lilico"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lmcmz/outblock/Lilico-iOS/Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "478"
+                  endingLineNumber = "478"
+                  offsetFromSymbolStart = "860">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A7ABBCEC-9977-4FE5-90EF-D35B55BF5AB4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lilico/Services/Manager/WalletConnect/WalletConnectManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
+            landmarkName = "approveRequest(request:requestInfo:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

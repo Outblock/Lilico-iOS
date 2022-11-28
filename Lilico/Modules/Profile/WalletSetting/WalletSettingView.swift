@@ -106,7 +106,7 @@ struct WalletSettingView: RouteableView {
                 Button {
                     vm.resetWalletAction()
                 } label: {
-                    Text("reset_wallet".localized)
+                    Text("delete_wallet".localized)
                         .frame(maxWidth: .infinity)
                         .frame(height: 56)
                         .background(.LL.Warning.warning2)

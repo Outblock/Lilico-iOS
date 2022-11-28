@@ -11,14 +11,14 @@ class WalletResetConfirmViewModel: ObservableObject {
     @Published var text: String = ""
     
     func resetWalletAction() {
-        if text != "reset_wallet_desc_2".localized {
+        if text != "delete_wallet_desc_2".localized {
             HUD.error(title: "reset_warning_text".localized)
             return
         }
         
-        HUD.showAlert(title: "reset_warning_alert_title".localized, msg: "rest_warning_alert_desc".localized, cancelAction: {
+        HUD.showAlert(title: "reset_warning_alert_title".localized, msg: "delete_warning_alert_desc".localized, cancelAction: {
             
-        }, confirmTitle: "reset_wallet".localized) {
+        }, confirmTitle: "delete_wallet".localized) {
             UserManager.shared.reset()
         }
     }

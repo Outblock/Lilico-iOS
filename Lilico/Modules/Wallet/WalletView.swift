@@ -173,7 +173,7 @@ struct WalletView: View {
         }
     }
 
-    func actionButton(imageName: String, text: String, action: @escaping () -> ()) -> some View {
+    func actionButton(imageName: String, text: String? = nil, action: @escaping () -> ()) -> some View {
         return Button {
             action()
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -182,10 +182,12 @@ struct WalletView: View {
                 Image(imageName)
                     .frame(width: 28, height: 28)
                 
-                Text(text)
-                    .font(.LL.body.weight(.semibold))
-                    .foregroundColor(.LL.text)
-                    .textCase(.uppercase)
+                if let text {
+                    Text(text)
+                        .font(.LL.body.weight(.semibold))
+                        .foregroundColor(.LL.text)
+                        .textCase(.uppercase)
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .frame(height: ActionViewHeight)
@@ -199,39 +201,51 @@ struct WalletView: View {
     var actionView: some View {
         VStack{
             HStack() {
-                actionButton(imageName: "wallet-send-stroke", text: "send_uppercase".localized) {
+                actionButton(imageName: "wallet-send-stroke") {
                     Router.route(to: RouteMap.Wallet.send())
                 }
                 Spacer()
-                actionButton(imageName: "wallet-receive-stroke", text: "receive_uppercase".localized) {
+                actionButton(imageName: "wallet-receive-stroke") {
                     Router.route(to: RouteMap.Wallet.receive)
                 }
                 
-                if RemoteConfigManager.shared.config?.features.onRamp ?? false == true {
-                    Spacer()
-                    actionButton(imageName: "wallet", text: "buy".localized) {
-                        Router.route(to: RouteMap.Wallet.buyCrypto)
-                    }
+                Spacer()
+                actionButton(imageName: "wallet-swap-stroke") {
+                    Router.route(to: RouteMap.Wallet.swap(nil))
                 }
-                
-//                Spacer()
-//                actionButton(imageName: "wallet-swap-stroke") {
-//                    Router.route(to: RouteMap.Wallet.swap(nil))
-//                }
             }
-//            Divider()
-//                .foregroundColor(.LL.Neutrals.neutrals4)
-//                .padding(.top, 12)
         }
     }
 
     var coinSectionView: some View {
-        HStack {
+        HStack(spacing: 12) {
             Text(vm.coinItems.count == 1 ? "x_coin".localized(vm.coinItems.count) : "x_coins".localized(vm.coinItems.count))
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 18, weight: .bold))
 
             Spacer()
+            
+            if RemoteConfigManager.shared.config?.features.onRamp ?? false == true {
+                Button {
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                    Router.route(to: RouteMap.Wallet.buyCrypto)
+                } label: {
+                    HStack {
+                        Image("wallet")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(Color.LL.Neutrals.neutrals3)
+                        
+                        Text("buy_uppercase".localized)
+                            .font(.LL.footnote)
+                            .foregroundColor(Color.LL.Neutrals.neutrals3)
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 6)
+                    .background(Color.LL.Neutrals.neutrals6)
+                    .cornerRadius(30)
+                }
+            }
 
             Button {
                 Router.route(to: RouteMap.Wallet.addToken)

@@ -240,6 +240,7 @@
 "flow" = "Flow";
 "receive" = "Receive";
 "buy" = "Buy";
+"buy_uppercase" = "BUY";
 "swap" = "Swap";
 "restore" = "Restore";
 "restore_with_words_desc" = "Restore your wallet with the 12 word \nrecovery phrase that you have written down.";
@@ -303,14 +304,20 @@
 "token_detail_activities" = "Activities";
 "free_gas_fee" = "Free Gas Fee";
 "gas_fee_desc" = "Allow lilico to pay the gas fee for all my transactions";
+"delete_wallet" = "Delete Wallet";
+"delete_wallet_confirm_title" = "Are you sure that you want to delete the wallet?";
+"delete_wallet_confirm_desc" = "By deleting the wallet, you will lose the access to the wallet. Please make sure you backup your recovery phrase.";
+"delete_wallet_desc_2" = "DELETE MY WALLET";
+"delete_warning_alert_desc" = "Are you sure you want to delete your wallet? If you do not backup your wallet info, you will lose ALL your assets.";
 "reset_wallet" = "Reset Wallet";
-"reset_wallet_confirm_title" = "Really want to reset?";
+"reset_wallet_confirm_title" = "Really want to reset your wallet?";
 "reset_wallet_desc_1" = "Enter ";
 "reset_wallet_desc_2" = "RESET MY WALLET";
 "reset_wallet_desc_3" = " to confirm reset.";
 "reset_warning_text" = "Please enter the correct text";
 "reset_warning_alert_title" = "Warning";
 "rest_warning_alert_desc" = "Are you sure you want to reset your wallet? If you do not backup your wallet info, you will lose all virtual assets after reset.";
+
 
 "restore_with_x_failed" = "Restore with %@ failed";
 "no_x_backup" = "No backup found in %@";
@@ -410,7 +417,7 @@
 "inbox_claim_failed" = "Claim failed";
 
 // Swap
-"swap_title" = "Swap";
+"swap_title" = "Swap (beta)";
 "swap_max" = "Max";
 "swap_select" = "Select";
 "swap_select_token" = "Select Token";

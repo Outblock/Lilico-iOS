@@ -19,10 +19,17 @@ struct WalletResetConfirmView: RouteableView {
             Image("icon-wallet-reset")
                 .padding(.top, 40)
             
-            Text("reset_wallet_confirm_title".localized)
+            Text("delete_wallet_confirm_title".localized)
                 .font(.inter(size: 18, weight: .medium))
                 .foregroundColor(Color.LL.Neutrals.text)
                 .padding(.top, 24)
+            
+            Text("delete_wallet_confirm_desc".localized)
+                .font(.LL.footnote)
+                .foregroundColor(Color.LL.Neutrals.text)
+                .padding(.top, 12)
+                .padding(.horizontal, 12)
+            
             
             Text(AttributedString(descAttributeString))
                 .padding(.top, 20)
@@ -41,7 +48,7 @@ struct WalletResetConfirmView: RouteableView {
             Button {
                 vm.resetWalletAction()
             } label: {
-                Text("reset_wallet".localized)
+                Text("delete_wallet".localized)
                     .frame(maxWidth: .infinity)
                     .frame(height: 56)
                     .background(.LL.Warning.warning2)
@@ -61,11 +68,20 @@ struct WalletResetConfirmView: RouteableView {
         let highlightAttr: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.LL.Neutrals.text, .font: UIFont.interSemiBold(size: 16)]
         
         let str1 = NSMutableAttributedString(string: "reset_wallet_desc_1".localized, attributes: normalAttr)
-        let str2 = NSAttributedString(string: "reset_wallet_desc_2".localized, attributes: highlightAttr)
+        let str2 = NSAttributedString(string: "delete_wallet_desc_2".localized, attributes: highlightAttr)
         let str3 = NSMutableAttributedString(string: "reset_wallet_desc_3".localized, attributes: normalAttr)
         
         str1.append(str2)
         str1.append(str3)
         return str1
+    }
+}
+
+
+struct WalletResetConfirmView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            WalletResetConfirmView()
+        }
     }
 }
