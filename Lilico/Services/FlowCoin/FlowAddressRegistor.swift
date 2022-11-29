@@ -21,7 +21,7 @@ enum ScriptAddress: String, CaseIterable {
     case flownsToken = "0xFlowns"
     case metadataViews = "0xMetadataViews"
     case swapRouter = "0xSwapRouter"
-    case swapError = "SwapError"
+    case swapError = "0xSwapError"
     
     static func addressMap(on network: LocalUserDefaults.FlowNetworkType = LocalUserDefaults.shared.flowNetwork) -> [String: String] {
         let dict = ScriptAddress.allCases.reduce(into: [String: String]()) { partialResult, script in
@@ -87,5 +87,6 @@ enum ScriptAddress: String, CaseIterable {
             return Flow.Address(hex: "2f8af5ed05bbde0d")
         case (.swapError, .testnet):
             return Flow.Address(hex: "0xddb929038d45d4b3")
+        }
     }
 }
