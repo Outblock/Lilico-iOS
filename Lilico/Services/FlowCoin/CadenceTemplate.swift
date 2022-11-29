@@ -280,10 +280,10 @@ class CadenceTemplate {
     """
     
     static let swapFromTokenToOtherToken = """
-    import Token1Name from Token1Addr
-        import FungibleToken from 0x9a0766d93b6608b7
-        import SwapRouter from 0x2f8af5ed05bbde0d
-        import SwapError from 0xddb929038d45d4b3
+        import Token1Name from Token1Addr
+        import FungibleToken from 0xFungibleToken
+        import SwapRouter from 0xSwapRouter
+        import SwapError from 0xSwapError
         transaction(
             tokenKeyFlatSplitPath: [String],
             amountInSplit: [UFix64],
@@ -341,10 +341,10 @@ class CadenceTemplate {
     """
     
     static let swapOtherTokenToFromToken = """
-    import Token1Name from Token1Addr
-        import FungibleToken from 0x9a0766d93b6608b7
-        import SwapRouter from 0x2f8af5ed05bbde0d
-        import SwapError from 0xddb929038d45d4b3
+        import Token1Name from Token1Addr
+        import FungibleToken from 0xFungibleToken
+        import SwapRouter from 0xSwapRouter
+        import SwapError from 0xSwapError
         transaction(
             tokenKeyFlatSplitPath: [String],
             amountOutSplit: [UFix64],

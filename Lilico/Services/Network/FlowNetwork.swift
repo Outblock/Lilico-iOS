@@ -268,7 +268,9 @@ extension FlowNetwork {
         let tokenAddress = String(swapPaths.last?.split(separator: ".")[1] ?? "").addHexPrefix()
         
         var cadenceString = isFrom ? CadenceTemplate.swapFromTokenToOtherToken : CadenceTemplate.swapOtherTokenToFromToken
-        cadenceString = cadenceString.replace(by: ["Token1Name": tokenName, "Token1Addr": tokenAddress])
+        cadenceString = cadenceString
+            .replace(by: ["Token1Name": tokenName, "Token1Addr": tokenAddress])
+            .replace(by: ScriptAddress.addressMap())
         
         var args = [Flow.Cadence.FValue]()
         args.append(.array(swapPaths.map { Flow.Argument(value: .string($0)) }))
