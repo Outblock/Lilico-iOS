@@ -321,6 +321,43 @@ extension FlowNetwork {
     static func stakingIsEnabled() async throws -> Bool {
         return try await self.fetch(cadence: CadenceTemplate.checkStakingIsEnabled, arguments: [])
     }
+    
+    static func accountStakingIsSetup() async throws -> Bool {
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        return try await self.fetch(cadence: CadenceTemplate.checkAccountStakingIsSetup, arguments: [.address(address)])
+    }
+    
+    static func setupAccountStaking() async throws -> Bool {
+        let cadenceString = CadenceTemplate.setupAccountStaking.replace(by: ScriptAddress.addressMap())
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        
+        let txId = try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+        })
+        
+        let result = try await txId.onceSealed()
+        
+        if result.isFailed {
+            debugPrint("FlowNetwork: setupAccountStaking failed msg: \(result.errorMessage)")
+            return false
+        }
+        
+        return true
+    }
 }
 
 // MARK: - Others

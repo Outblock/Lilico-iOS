@@ -34,15 +34,23 @@ class StakeGuideViewModel: ObservableObject {
         
         Task {
             do {
-                let stakingEnabled = try await FlowNetwork.stakingIsEnabled()
-                debugPrint("StakeGuideViewModel: stakingEnabled - \(stakingEnabled)")
                 
-                if !stakingEnabled {
+                if try await FlowNetwork.stakingIsEnabled() == false {
                     DispatchQueue.main.async {
                         self.isRequesting = false
                         HUD.error(title: "staking_disabled".localized)
                     }
                     return
+                }
+                
+                if try await FlowNetwork.accountStakingIsSetup() == false {
+                    debugPrint("StakeGuideViewModel: account staking not setup, setup right now.")
+                    
+                    if try await FlowNetwork.setupAccountStaking() == false {
+                        debugPrint("StakeGuideViewModel: setup account staking failed.")
+                        failureBlock()
+                        return
+                    }
                 }
                 
                 DispatchQueue.main.async {
