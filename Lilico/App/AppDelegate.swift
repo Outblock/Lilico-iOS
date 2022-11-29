@@ -110,6 +110,7 @@ extension AppDelegate {
         _ = SecurityManager.shared
         _ = WalletConnectManager.shared
         _ = RemoteConfigManager.shared
+        _ = StakingManager.shared
     }
 
     private func commonConfig() {
