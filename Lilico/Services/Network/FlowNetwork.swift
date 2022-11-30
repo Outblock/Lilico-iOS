@@ -398,6 +398,24 @@ extension FlowNetwork {
         
         return true
     }
+    
+    static func queryStakeInfo() async throws -> StakingInfo? {
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        let response: StakingInfoInner = try await fetch(at: address, by: CadenceTemplate.queryStakeInfo)
+        debugPrint("FlowNetwork -> queryStakeInfo, response = \(response)")
+        
+        guard let values = response.value else {
+            return nil
+        }
+        
+        let compactValues = values.compactMap { $0 }
+        
+        let nodes = compactValues.map { value in
+            return StakingNode(delegatorId: Int(value.getByName("id") ?? "0") ?? 0, nodeID: value.getByName("nodeID") ?? "", tokensCommitted: Double(value.getByName("tokensCommitted") ?? "0") ?? 0, tokensStaked: Double(value.getByName("tokensStaked") ?? "0") ?? 0, tokensUnstaking: Double(value.getByName("tokensUnstaking") ?? "0") ?? 0, tokensRewarded: Double(value.getByName("tokensRewarded") ?? "0") ?? 0, tokensUnstaked: Double(value.getByName("tokensUnstaked") ?? "0") ?? 0, tokensRequestedToUnstake: Double(value.getByName("tokensRequestedToUnstake") ?? "0") ?? 0)
+        }
+        
+        return nil
+    }
 }
 
 // MARK: - Others

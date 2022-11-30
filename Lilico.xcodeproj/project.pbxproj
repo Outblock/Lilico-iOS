@@ -1225,6 +1225,8 @@
 		6AB5FBA02892652900FA2261 /* BackupiCloudTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */; };
 		6AB5FBA228926C9100FA2261 /* iCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */; };
 		6AB5FBA328926C9100FA2261 /* iCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */; };
+		6AB90AD92937C2D00008E74A /* StakingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB90AD82937C2D00008E74A /* StakingInfo.swift */; };
+		6AB90ADA2937C2D00008E74A /* StakingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB90AD82937C2D00008E74A /* StakingInfo.swift */; };
 		6ABAE52B2836288400C97AE2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE5292836288400C97AE2 /* Font.swift */; };
 		6ABAE53028362D1100C97AE2 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
 		6AC1AE69289BACDF00F76C7A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC1AE68289BACDF00F76C7A /* SnapKit */; };
@@ -1965,6 +1967,7 @@
 		6AB3732B28D084EC00E8BF05 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		6AB5FB9E2892652900FA2261 /* BackupiCloudTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupiCloudTarget.swift; sourceTree = "<group>"; };
 		6AB5FBA128926C9100FA2261 /* iCloudAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudAPI.swift; sourceTree = "<group>"; };
+		6AB90AD82937C2D00008E74A /* StakingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StakingInfo.swift; sourceTree = "<group>"; };
 		6ABAE5292836288400C97AE2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		6ABAE52E28362D1100C97AE2 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
 		6AC1AE6C289BAD3500F76C7A /* PinCodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeTextField.swift; sourceTree = "<group>"; };
@@ -4283,6 +4286,7 @@
 			isa = PBXGroup;
 			children = (
 				6A998DA22936702A00EF133B /* StakingProvider.swift */,
+				6AB90AD82937C2D00008E74A /* StakingInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5100,6 +5104,7 @@
 				6A8FA4B6285B192900EE5BE3 /* View+SnappableIDModifier.swift in Sources */,
 				6A164F682845F1CB0026B31E /* UITableViewCustomizer.swift in Sources */,
 				6A7F6512289A8391007188DC /* VerifyPinView.swift in Sources */,
+				6AB90ADA2937C2D00008E74A /* StakingInfo.swift in Sources */,
 				15DC213B27819C56000B187A /* VMenuPicker.swift in Sources */,
 				15BCFF1C277729BF000B7863 /* EmptyWalletViewModel.swift in Sources */,
 				15DC218727819C56000B187A /* VToggle.swift in Sources */,
@@ -5690,6 +5695,7 @@
 				15C58B222868A4EE00BD4FC6 /* UITableViewCustomizer.swift in Sources */,
 				6A7F6511289A8391007188DC /* VerifyPinView.swift in Sources */,
 				15C58B232868A4EE00BD4FC6 /* VMenuPicker.swift in Sources */,
+				6AB90AD92937C2D00008E74A /* StakingInfo.swift in Sources */,
 				15C58B242868A4EE00BD4FC6 /* EmptyWalletViewModel.swift in Sources */,
 				15C58B252868A4EE00BD4FC6 /* VToggle.swift in Sources */,
 				15C58B262868A4EE00BD4FC6 /* VWebLinkState.swift in Sources */,

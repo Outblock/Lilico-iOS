@@ -499,4 +499,20 @@ extension CadenceTemplate {
             }
         }
     """
+    
+    static let queryStakeInfo = """
+        import LockedTokens from 0xLockedTokens
+        import FlowIDTableStaking from 0xFlowTableStaking
+        import FlowStakingCollection from 0xStakingCollection
+        
+        pub fun main(account: Address): [FlowIDTableStaking.DelegatorInfo] {
+        
+            let stakingCollectionRef = getAccount(account)
+                .getCapability<&{FlowStakingCollection.StakingCollectionPublic}>(FlowStakingCollection.StakingCollectionPublicPath)
+                .borrow()
+                ?? panic("cannot borrow reference to acct.StakingCollection")
+        
+            return stakingCollectionRef.getAllDelegatorInfo()
+        }
+    """
 }
