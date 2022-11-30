@@ -34,7 +34,7 @@ class StakeGuideViewModel: ObservableObject {
         
         Task {
             do {
-                
+                // check staking is enabled
                 if try await FlowNetwork.stakingIsEnabled() == false {
                     DispatchQueue.main.async {
                         self.isRequesting = false
@@ -43,6 +43,7 @@ class StakeGuideViewModel: ObservableObject {
                     return
                 }
                 
+                // check account staking is setup
                 if try await FlowNetwork.accountStakingIsSetup() == false {
                     debugPrint("StakeGuideViewModel: account staking not setup, setup right now.")
                     
@@ -53,6 +54,20 @@ class StakeGuideViewModel: ObservableObject {
                     }
                 }
                 
+                // create delegator id
+                guard let lilicoProvider = StakingProviderCache.cache.providers.first(where: { $0.isLilico }) else {
+                    debugPrint("StakeGuideViewModel: can not find lilico provider.")
+                    failureBlock()
+                    return
+                }
+                
+                if try await FlowNetwork.createDelegatorId(providerId: lilicoProvider.id) == false {
+                    debugPrint("StakeGuideViewModel: createDelegatorId failed.")
+                    failureBlock()
+                    return
+                }
+                
+                debugPrint("StakeGuideViewModel: delegator id created.")
                 DispatchQueue.main.async {
                     HUD.success(title: "yes")
                     self.isRequesting = false

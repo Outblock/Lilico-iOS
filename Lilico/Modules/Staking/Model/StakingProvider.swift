@@ -14,4 +14,8 @@ struct StakingProvider: Codable {
     let name: String
     let type: String
     let website: String?
+    
+    var isLilico: Bool {
+        return name.lowercased() == "lilico"
+    }
 }
