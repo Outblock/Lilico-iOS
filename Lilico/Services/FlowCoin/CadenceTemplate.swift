@@ -515,4 +515,22 @@ extension CadenceTemplate {
             return stakingCollectionRef.getAllDelegatorInfo()
         }
     """
+    
+    static let getApyByWeek = """
+        import FlowIDTableStaking from 0xFlowTableStaking
+
+        pub fun main(): UFix64 {
+            let apr = FlowIDTableStaking.getEpochTokenPayout() / FlowIDTableStaking.getTotalStaked() * 54.0 * (1.0 - FlowIDTableStaking.getRewardCutPercentage())
+            return apr
+        }
+    """
+    
+    static let getApyByYear = """
+        import FlowIDTableStaking from 0xFlowTableStaking
+
+        pub fun main(): UFix64 {
+            let apr = FlowIDTableStaking.getEpochTokenPayout() / FlowIDTableStaking.getTotalStaked() / 7.0 * 365.0 * (1.0 - FlowIDTableStaking.getRewardCutPercentage())
+            return apr
+        }
+    """
 }

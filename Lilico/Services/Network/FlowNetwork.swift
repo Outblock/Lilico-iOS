@@ -416,6 +416,24 @@ extension FlowNetwork {
         
         return nil
     }
+    
+    static func getStakingApyByWeek() async throws -> Double? {
+        let result: Double = try await fetch(cadence: CadenceTemplate.getApyByWeek, arguments: [])
+        if result == 0 {
+            return nil
+        }
+        
+        return result
+    }
+    
+    static func getStakingApyByYear() async throws -> Double? {
+        let result: Double = try await fetch(cadence: CadenceTemplate.getApyByYear, arguments: [])
+        if result == 0 {
+            return nil
+        }
+        
+        return result
+    }
 }
 
 // MARK: - Others
