@@ -133,7 +133,7 @@ struct BrowserAuthnView: View {
             
             HStack(spacing: 12) {
                 
-                Text(vm.network?.name.capitalized ?? "Unknow")
+                Text(vm.network?.name.capitalized ?? "unknown".localized)
                     .font(.inter(size: 14, weight: .medium))
                     .foregroundColor(vm.network?.color ?? .white)
                     .frame(maxWidth: .infinity, alignment: .leading)

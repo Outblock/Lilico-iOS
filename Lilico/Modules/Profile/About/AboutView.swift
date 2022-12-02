@@ -41,7 +41,7 @@ struct AboutView: RouteableView {
             .padding(.bottom, 50)
             
             
-            Text("Contract us")
+            Text("contact_us".localized)
                 .textCase(.uppercase)
                 .font(.inter(size: 14, weight: .regular))
                 .frame(maxWidth: .infinity, alignment: .leading)

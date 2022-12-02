@@ -1823,7 +1823,6 @@
 		6A164F5E2845F1CB0026B31E /* ScrollAccessory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollAccessory.swift; sourceTree = "<group>"; };
 		6A16F18F28B8B0D80055936E /* TransactionUIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionUIHandler.swift; sourceTree = "<group>"; };
 		6A16F19228B8B1AC0055936E /* TransactionHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHolderView.swift; sourceTree = "<group>"; };
-		6A1B679728570E92009E26DD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6A204C632860236600D0D3A4 /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		6A204C68286070A600D0D3A4 /* FirebaseStorageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageUtils.swift; sourceTree = "<group>"; };
 		6A21605D29101D2B0078DCDA /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
@@ -1993,7 +1992,6 @@
 		6AEA375228A4FD2C004545D4 /* NFTUIKitItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitItemCell.swift; sourceTree = "<group>"; };
 		6AEA375628A5152E004545D4 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		6AEE39EC28A24DDB00F3C56E /* NFTRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTRequests.swift; sourceTree = "<group>"; };
-		6AEF42792875381E000A77D7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6AEF8394286462400081E285 /* CoinRateCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRateCache.swift; sourceTree = "<group>"; };
 		6AEF839728647A3B0081E285 /* WalletResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletResponses.swift; sourceTree = "<group>"; };
 		6AEF839A28647B830081E285 /* LilicoAPI+Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+Crypto.swift"; sourceTree = "<group>"; };
@@ -6058,8 +6056,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				15B1F63A2786B89800847BB5 /* en */,
-				6A1B679728570E92009E26DD /* zh-Hans */,
-				6AEF42792875381E000A77D7 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
