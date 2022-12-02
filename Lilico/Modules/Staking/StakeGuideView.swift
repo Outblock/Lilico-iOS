@@ -19,6 +19,9 @@ class StakeGuideViewModel: ObservableObject {
     }
     
     func goNext() {
+        Router.route(to: RouteMap.Wallet.stakingSelectProvider)
+        return
+        
         if isRequesting {
             return
         }

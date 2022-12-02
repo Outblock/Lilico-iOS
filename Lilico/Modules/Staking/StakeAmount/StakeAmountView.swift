@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct StakeAmountView: RouteableView {
-    @State private var inputText: String = ""
-    @State private var showConfirmView: Bool = false
+    @StateObject private var vm: StakeAmountViewModel
+    
+    init(provider: StakingProvider) {
+        _vm = StateObject(wrappedValue: StakeAmountViewModel(provider: provider))
+    }
     
     var title: String {
         return "stake_amount".localized
@@ -31,7 +34,7 @@ struct StakeAmountView: RouteableView {
         .padding(.top, 12)
         .padding(.bottom, 20)
         .backgroundFill(.LL.deepBg)
-        .halfSheet(showSheet: $showConfirmView, sheetView: {
+        .halfSheet(showSheet: $vm.showConfirmView, sheetView: {
             StakeConfirmView()
         })
         .applyRouteable(self)
@@ -40,21 +43,21 @@ struct StakeAmountView: RouteableView {
     var inputContainerView: some View {
         VStack(spacing: 0) {
             HStack {
-                TextField("", text: $inputText)
+                TextField("", text: $vm.inputText)
                     .disableAutocorrection(true)
-                    .modifier(PlaceholderStyle(showPlaceHolder: inputText.isEmpty,
+                    .modifier(PlaceholderStyle(showPlaceHolder: vm.inputText.isEmpty,
                                                placeholder: "stake_amount_flow".localized,
                                                font: .inter(size: 14, weight: .medium),
                                                color: Color.LL.Neutrals.note))
                     .font(.inter(size: 24, weight: .bold))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .onChange(of: inputText) { text in
-//                        withAnimation {
-//                            vm.inputTextDidChangeAction(text: text)
-//                        }
+                    .onChange(of: vm.inputText) { text in
+                        withAnimation {
+                            vm.inputTextDidChangeAction(text: text)
+                        }
                     }
                 
-                Text("$1851.29 USD")
+                Text(vm.inputNumAsCurrencyString)
                     .font(.inter(size: 14, weight: .medium))
                     .foregroundColor(Color.LL.Neutrals.text2)
                     .lineLimit(1)
@@ -70,7 +73,7 @@ struct StakeAmountView: RouteableView {
                     .resizable()
                     .frame(width: 12, height: 12)
                 
-                Text("112.29 Flow Available")
+                Text("\(vm.balance.formatCurrencyString()) \("stake_flow_available".localized)")
                     .font(.inter(size: 14, weight: .medium))
                     .foregroundColor(Color.LL.Neutrals.text2)
                 
@@ -137,7 +140,7 @@ struct StakeAmountView: RouteableView {
                 
                 Spacer()
                 
-                Text("12.04%")
+                Text(vm.provider.apyYearPercentString)
                     .font(.inter(size: 14, weight: .medium))
                     .foregroundColor(Color.LL.Neutrals.text)
             }
@@ -154,7 +157,7 @@ struct StakeAmountView: RouteableView {
                     
                     Spacer()
                     
-                    Text("2000.00 Flow")
+                    Text("\(vm.yearRewardFlowString) Flow")
                         .font(.inter(size: 14, weight: .medium))
                         .foregroundColor(Color.LL.Neutrals.text)
                 }
@@ -163,7 +166,7 @@ struct StakeAmountView: RouteableView {
                 HStack {
                     Spacer()
                     
-                    Text("≈ $27320.00 USD")
+                    Text("≈ \(vm.yearRewardWithCurrencyString)")
                         .font(.inter(size: 12, weight: .medium))
                         .foregroundColor(Color.LL.Neutrals.text3)
                 }
@@ -178,7 +181,7 @@ struct StakeAmountView: RouteableView {
     
     var stakeBtn: some View {
         Button {
-            showConfirmView = true
+//            showConfirmView = true
         } label: {
             Text("next".localized)
                 .font(.inter(size: 16, weight: .bold))

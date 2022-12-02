@@ -1258,6 +1258,10 @@
 		6ACDD17A28588B3F00F406EB /* LilicoAPI+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17828588B3F00F406EB /* LilicoAPI+Profile.swift */; };
 		6ACDD17D28588B7D00F406EB /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */; };
 		6ACF0E642851FB2E008E7FA6 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */; };
+		6ACFAB972939DD0E004DE47F /* SelectProviderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACFAB962939DD0E004DE47F /* SelectProviderViewModel.swift */; };
+		6ACFAB982939DD0E004DE47F /* SelectProviderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACFAB962939DD0E004DE47F /* SelectProviderViewModel.swift */; };
+		6ACFAB9B2939EC00004DE47F /* StakeAmountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACFAB9A2939EC00004DE47F /* StakeAmountViewModel.swift */; };
+		6ACFAB9C2939EC00004DE47F /* StakeAmountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACFAB9A2939EC00004DE47F /* StakeAmountViewModel.swift */; };
 		6AD0B27128AE121200D03822 /* NFTUIKitFavItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0B27028AE121200D03822 /* NFTUIKitFavItemCell.swift */; };
 		6AD0B27228AE121200D03822 /* NFTUIKitFavItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0B27028AE121200D03822 /* NFTUIKitFavItemCell.swift */; };
 		6AD3581928AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3581828AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift */; };
@@ -1982,6 +1986,8 @@
 		6ACDD17828588B3F00F406EB /* LilicoAPI+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LilicoAPI+Profile.swift"; sourceTree = "<group>"; };
 		6ACDD17B28588B7D00F406EB /* ProfileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequests.swift; sourceTree = "<group>"; };
 		6ACF0E622851FB2E008E7FA6 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
+		6ACFAB962939DD0E004DE47F /* SelectProviderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProviderViewModel.swift; sourceTree = "<group>"; };
+		6ACFAB9A2939EC00004DE47F /* StakeAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StakeAmountViewModel.swift; sourceTree = "<group>"; };
 		6AD0B27028AE121200D03822 /* NFTUIKitFavItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitFavItemCell.swift; sourceTree = "<group>"; };
 		6AD3581828AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTUIKitTopSelectionHeaderView.swift; sourceTree = "<group>"; };
 		6AD6D7C62907D82D0037E206 /* WalletResetConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletResetConfirmView.swift; sourceTree = "<group>"; };
@@ -4047,11 +4053,11 @@
 		6A3AD5C7291D4F8800C30D57 /* Staking */ = {
 			isa = PBXGroup;
 			children = (
+				6ACFAB992939EBE9004DE47F /* StakeAmount */,
+				6ACFAB952939DCF3004DE47F /* SelectProvider */,
 				6A998DA12936701B00EF133B /* Model */,
 				6A3AD5C8291D4F9B00C30D57 /* StakingListView.swift */,
-				6A074E372922962D00D976F1 /* SelectProviderView.swift */,
 				6A66AAAB2923F36E00FA766A /* StakeGuideView.swift */,
-				6AAFFEDD292544BD00B5A264 /* StakeAmountView.swift */,
 				6A3221382927B49B000B8E1F /* StakingDetailView.swift */,
 			);
 			path = Staking;
@@ -4407,6 +4413,24 @@
 				6ACDD17528587FF800F406EB /* ProfileEditNameViewModel.swift */,
 			);
 			path = EditName;
+			sourceTree = "<group>";
+		};
+		6ACFAB952939DCF3004DE47F /* SelectProvider */ = {
+			isa = PBXGroup;
+			children = (
+				6A074E372922962D00D976F1 /* SelectProviderView.swift */,
+				6ACFAB962939DD0E004DE47F /* SelectProviderViewModel.swift */,
+			);
+			path = SelectProvider;
+			sourceTree = "<group>";
+		};
+		6ACFAB992939EBE9004DE47F /* StakeAmount */ = {
+			isa = PBXGroup;
+			children = (
+				6AAFFEDD292544BD00B5A264 /* StakeAmountView.swift */,
+				6ACFAB9A2939EC00004DE47F /* StakeAmountViewModel.swift */,
+			);
+			path = StakeAmount;
 			sourceTree = "<group>";
 		};
 		6AD900662847175600B65CE6 /* Add */ = {
@@ -5120,6 +5144,7 @@
 				4E9E21B3282644B200E1BACD /* WalletViewModel.swift in Sources */,
 				152EEC6E28E4F2AB00C37A67 /* TxTemplateRequest.swift in Sources */,
 				15DC208527819C56000B187A /* VLazyScrollViewHorizontal.swift in Sources */,
+				6ACFAB982939DD0E004DE47F /* SelectProviderViewModel.swift in Sources */,
 				15DC211327819C56000B187A /* VPageIndicatorInfinite.swift in Sources */,
 				6A6BD9E0287D5467009FA262 /* PlaceholderStyle.swift in Sources */,
 				1588331128943D1D00142B35 /* SPQRFrameLayer.swift in Sources */,
@@ -5345,6 +5370,7 @@
 				15DC219527819C56000B187A /* VTextField.swift in Sources */,
 				15CB4DFD28CA298C0069ABB4 /* MoonPayRequest.swift in Sources */,
 				15DC20A527819C56000B187A /* VWebLinkType.swift in Sources */,
+				6ACFAB9C2939EC00004DE47F /* StakeAmountViewModel.swift in Sources */,
 				6A204C652860236600D0D3A4 /* ViewExtensions.swift in Sources */,
 				15DC21E927819C57000B187A /* StateColors_OOD.swift in Sources */,
 				6AF4A6CB28D472F600B12FAB /* FlownsRequests.swift in Sources */,
@@ -5711,6 +5737,7 @@
 				15C58B2C2868A4EE00BD4FC6 /* VLazyScrollViewHorizontal.swift in Sources */,
 				152EEC6D28E4F2AB00C37A67 /* TxTemplateRequest.swift in Sources */,
 				15C58B2D2868A4EE00BD4FC6 /* VPageIndicatorInfinite.swift in Sources */,
+				6ACFAB972939DD0E004DE47F /* SelectProviderViewModel.swift in Sources */,
 				6A6BD9DF287D5467009FA262 /* PlaceholderStyle.swift in Sources */,
 				1588331028943D1D00142B35 /* SPQRFrameLayer.swift in Sources */,
 				15C58B2E2868A4EE00BD4FC6 /* NFTDetailPage.swift in Sources */,
@@ -5936,6 +5963,7 @@
 				15CB4DFC28CA298C0069ABB4 /* MoonPayRequest.swift in Sources */,
 				15C58BC52868A4EE00BD4FC6 /* VWebLinkType.swift in Sources */,
 				15C58BC62868A4EE00BD4FC6 /* ViewExtensions.swift in Sources */,
+				6ACFAB9B2939EC00004DE47F /* StakeAmountViewModel.swift in Sources */,
 				15C58BC72868A4EE00BD4FC6 /* StateColors_OOD.swift in Sources */,
 				6AF4A6CA28D472F600B12FAB /* FlownsRequests.swift in Sources */,
 				15C58BC82868A4EE00BD4FC6 /* BackupManager.swift in Sources */,

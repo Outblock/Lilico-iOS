@@ -18,4 +18,17 @@ struct StakingProvider: Codable {
     var isLilico: Bool {
         return name.lowercased() == "lilico"
     }
+    
+    var iconURL: URL? {
+        return URL(string: icon ?? "")
+    }
+    
+    var apyYear: Double {
+        return isLilico ? StakingManager.shared.apyYear : StakingDefaultNormalApy
+    }
+    
+    var apyYearPercentString: String {
+        let num = (apyYear * 100).formatCurrencyString(digits: 2)
+        return "\(num)%"
+    }
 }
