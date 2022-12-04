@@ -156,7 +156,7 @@ extension ProfileView {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 82, height: 82)
-                    .clipShape(Circle())
+                    .cornerRadius(41)
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(userManager.userInfo?.nickname ?? "").foregroundColor(.LL.Neutrals.text).font(.inter(weight: .semibold))
