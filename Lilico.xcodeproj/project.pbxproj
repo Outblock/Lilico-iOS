@@ -6470,7 +6470,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
+				minimumVersion = 10.0.0;
 			};
 		};
 		154B88F2276A1EEB00780E93 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
@@ -6534,7 +6534,7 @@
 			repositoryURL = "https://github.com/google/gtm-session-fetcher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.0;
+				minimumVersion = 2.0.0;
 			};
 		};
 		1570466227906F7F00D1747B /* XCRemoteSwiftPackageReference "CollectionViewPagingLayout" */ = {
