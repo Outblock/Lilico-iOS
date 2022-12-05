@@ -163,6 +163,19 @@ struct WalletView: View {
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 24, weight: .bold))
 
+            if LocalUserDefaults.shared.flowNetwork == .testnet {
+                Text(LocalUserDefaults.shared.flowNetwork.rawValue)
+                    .textCase(.uppercase)
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 5)
+                    .font(.inter(size: 12, weight: .semibold))
+                    .foregroundColor(.LL.flow)
+                    .background(
+                        Capsule(style: .circular)
+                            .fill(Color.LL.flow.opacity(0.2))
+                    )
+            }
+            
             Spacer()
 
             Button {

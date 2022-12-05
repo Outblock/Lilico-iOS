@@ -38,8 +38,39 @@ enum QuoteMarket: String {
     }
 }
 
-let SymbolTypeFlow: String = "flow"
-let SymbolTypeFlowUSD: String = "fusd"
+enum ListedToken: String, CaseIterable {
+    case flow
+    case fusd
+    case stFlow
+    case usdc
+    
+    enum PriceAction {
+        case fixed(price: Decimal)
+        case query(String)
+        case mirror(ListedToken)
+    }
+    
+    var priceAction: PriceAction {
+        switch self {
+        case .flow:
+            return .query(LocalUserDefaults.shared.market.flowPricePair)
+        case .fusd:
+            return .fixed(price: 1.0)
+        case .stFlow:
+            return .mirror(.flow)
+        case .usdc:
+            return .query(LocalUserDefaults.shared.market.usdcPricePair)
+        }
+    }
+    
+    init?(rawValue: String) {
+        if let item = ListedToken.allCases.first(where: { $0.rawValue.lowercased() == rawValue.lowercased() }) {
+            self = item
+        } else {
+            return nil
+        }
+    }
+}
 
 struct TokenModel: Codable, Identifiable {
     let name: String
@@ -50,6 +81,10 @@ struct TokenModel: Codable, Identifiable {
     let icon: URL?
     let symbol: String?
     let website: URL?
+    
+    var listedToken: ListedToken? {
+        ListedToken(rawValue: symbol ?? "")
+    }
     
     var contractId: String {
         var addressString = LocalUserDefaults.shared.flowNetwork == .testnet ? address.testnet ?? "" : address.mainnet ?? ""
@@ -66,10 +101,10 @@ struct TokenModel: Codable, Identifiable {
     }
 
     func getPricePair(market: QuoteMarket) -> String {
-        switch symbol {
-        case SymbolTypeFlow:
+        switch listedToken {
+        case .flow:
             return market.flowPricePair
-        case SymbolTypeFlowUSD:
+        case .usdc:
             return market.usdcPricePair
         default:
             return ""

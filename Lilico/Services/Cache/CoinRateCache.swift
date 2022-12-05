@@ -82,11 +82,15 @@ extension CoinRateCache {
         debugPrint("CoinRateCache -> start refreshing")
         isRefreshing = true
         Task {
-            for coin in supportedCoins {
-                do {
-                    try await fetchCoinRate(coin)
-                } catch {
-                    debugPrint("CoinRateCache -> fetchCoinRate:\(coin.symbol ?? "") failed: \(error)")
+            await withTaskGroup(of: Void.self) { group in
+                supportedCoins.forEach { coin in
+                    group.addTask { [weak self] in
+                        do {
+                            try await self?.fetchCoinRate(coin)
+                        } catch {
+                            debugPrint("CoinRateCache -> fetchCoinRate:\(coin.symbol ?? "") failed: \(error)")
+                        }
+                    }
                 }
             }
 
@@ -108,15 +112,23 @@ extension CoinRateCache {
             }
         }
 
-        let market = LocalUserDefaults.shared.market
-        let coinPair = coin.getPricePair(market: market)
-        if coinPair.isEmpty {
+        guard let listedToken = coin.listedToken else {
             return
         }
-
-        let request = CryptoSummaryRequest(provider: market.rawValue, pair: coinPair)
-        let response: CryptoSummaryResponse = try await Network.request(LilicoAPI.Crypto.summary(request))
-        set(summary: response, forSymbol: symbol)
+        
+        switch listedToken.priceAction {
+        case let .query(coinPair):
+            let market = LocalUserDefaults.shared.market
+            let request = CryptoSummaryRequest(provider: market.rawValue, pair: coinPair)
+            let response: CryptoSummaryResponse = try await Network.request(LilicoAPI.Crypto.summary(request))
+            set(summary: response, forSymbol: symbol)
+        case let .mirror(token):
+            //TODO: - Get Token price
+            break
+        case let .fixed(price):
+            //TODO: - Get Token price
+            break
+        }
     }
 
     private func set(summary: CryptoSummaryResponse, forSymbol: String) {

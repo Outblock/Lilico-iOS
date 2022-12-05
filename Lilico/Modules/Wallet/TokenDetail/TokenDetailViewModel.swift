@@ -161,7 +161,12 @@ extension TokenDetailViewModel {
     }
     
     var hasRateAndChartData: Bool {
-        return token.symbol == SymbolTypeFlow || token.symbol == SymbolTypeFlowUSD
+        if let token = ListedToken(rawValue: token.symbol ?? "") {
+            if case .query(_) = token.priceAction {
+                return true
+            }
+        }
+        return false
     }
 }
 
@@ -234,6 +239,10 @@ extension TokenDetailViewModel {
     private func fetchChartData() {
         Task {
             let pair = token.getPricePair(market: market)
+            if pair.isEmpty {
+                return
+            }
+            
             let currentRangeType = selectedRangeType
             
             let request = CryptoHistoryRequest(provider: market.rawValue, pair: pair, after: currentRangeType.after, period: "\(currentRangeType.frequency.rawValue)")
