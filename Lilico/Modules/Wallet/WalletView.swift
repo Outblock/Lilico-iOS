@@ -225,7 +225,7 @@ struct WalletView: View {
 
             Spacer()
             
-            if RemoteConfigManager.shared.config?.features.onRamp ?? false == true {
+            if RemoteConfigManager.shared.config?.features.onRamp ?? false == true && flow.chainID == .mainnet {
                 Button {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     Router.route(to: RouteMap.Wallet.buyCrypto)
@@ -237,10 +237,10 @@ struct WalletView: View {
                             .foregroundColor(Color.LL.Neutrals.neutrals3)
                         
                         Text("buy_uppercase".localized)
-                            .font(.LL.footnote)
+                            .font(.LL.footnote.weight(.semibold))
                             .foregroundColor(Color.LL.Neutrals.neutrals3)
                     }
-                    .padding(.horizontal, 8)
+                    .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .background(Color.LL.Neutrals.neutrals6)
                     .cornerRadius(30)
