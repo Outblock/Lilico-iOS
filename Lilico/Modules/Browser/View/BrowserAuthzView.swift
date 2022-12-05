@@ -207,7 +207,7 @@ struct BrowserAuthzView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 
                 Text( vm.cadenceFormatted ?? AttributedString(vm.cadence.trim()))
-                    .font(.inter(size: 12, weight: .regular))
+                    .font(.inter(size: 8, weight: .light))
                     .foregroundColor(Color(hex: "#B2B2B2"))
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     .padding(.all, 18)
