@@ -61,7 +61,7 @@ extension FlowNetwork {
         }
     }
     
-    static func transferToken(to address: Flow.Address, amount: Double, token: TokenModel) async throws -> Flow.ID {
+    static func transferToken(to address: Flow.Address, amount: Decimal, token: TokenModel) async throws -> Flow.ID {
         let cadenceString = TokenCadence.tokenTransfer(token: token, at: flow.chainID)
         
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
@@ -189,7 +189,7 @@ extension FlowNetwork {
 // MARK: - Inbox
 
 extension FlowNetwork {
-    static func claimInboxToken(domain: String, key: String, coin: TokenModel, amount: Double, root: String = Contact.DomainType.meow.domain) async throws -> Flow.ID {
+    static func claimInboxToken(domain: String, key: String, coin: TokenModel, amount: Decimal, root: String = Contact.DomainType.meow.domain) async throws -> Flow.ID {
         guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
             throw LLError.invalidAddress
         }
@@ -259,7 +259,7 @@ extension FlowNetwork {
 // MARK: - Swap
 
 extension FlowNetwork {
-    static func swapToken(swapPaths: [String], tokenInMax: Double, tokenOutMin: Double, tokenInVaultPath: String, tokenOutSplit: [Double], tokenInSplit: [Double], tokenOutVaultPath: String, tokenOutReceiverPath: String, tokenOutBalancePath: String, deadline: Double, isFrom: Bool) async throws -> Flow.ID {
+    static func swapToken(swapPaths: [String], tokenInMax: Decimal, tokenOutMin: Decimal, tokenInVaultPath: String, tokenOutSplit: [Decimal], tokenInSplit: [Decimal], tokenOutVaultPath: String, tokenOutReceiverPath: String, tokenOutBalancePath: String, deadline: Decimal, isFrom: Bool) async throws -> Flow.ID {
         guard let address = WalletManager.shared.getPrimaryWalletAddress() else {
             throw LLError.invalidAddress
         }
@@ -273,13 +273,13 @@ extension FlowNetwork {
             .replace(by: ScriptAddress.addressMap())
         
         var args = [Flow.Cadence.FValue]()
-        args.append(.array(swapPaths.map { Flow.Argument(value: .string($0)) }))
+        args.append(.array(swapPaths.map { .string($0) }))
         
         if isFrom {
-            args.append(.array(tokenInSplit.map { Flow.Argument(value: .ufix64($0)) }))
+            args.append(.array(tokenInSplit.map { .ufix64($0) }))
             args.append(.ufix64(tokenOutMin))
         } else {
-            args.append(.array(tokenOutSplit.map { Flow.Argument(value: .ufix64($0)) }))
+            args.append(.array(tokenOutSplit.map { .ufix64($0) }))
             args.append(.ufix64(tokenInMax))
         }
         

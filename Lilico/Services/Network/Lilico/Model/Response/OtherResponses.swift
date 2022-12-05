@@ -80,20 +80,20 @@ struct SwapEstimateResponse: Codable {
         return array.flatMap { $0 }
     }
     
-    var amountInSplit: [Double] {
+    var amountInSplit: [Decimal] {
         let array = routes.compactMap { route in
             route?.routeAmountIn
         }
         
-        return array
+        return array.compactMap{ Decimal($0) }
     }
     
-    var amountOutSplit: [Double] {
+    var amountOutSplit: [Decimal] {
         let array = routes.compactMap { route in
             route?.routeAmountOut
         }
         
-        return array
+        return array.compactMap{ Decimal($0) }
     }
 }
 

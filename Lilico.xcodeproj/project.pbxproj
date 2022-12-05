@@ -130,6 +130,7 @@
 		1575A74028B29BA200ADC513 /* SVGWebUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A73E28B29BA200ADC513 /* SVGWebUIView.swift */; };
 		1575A74328B29D2700ADC513 /* SVGWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A74228B29D2700ADC513 /* SVGWebView.swift */; };
 		1575A74428B29D2700ADC513 /* SVGWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A74228B29D2700ADC513 /* SVGWebView.swift */; };
+		157D91BE293E102C00AC102B /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 157D91BD293E102C00AC102B /* GoogleSignIn */; };
 		15832B642867641D0066046D /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 15832B632867641D0066046D /* GTMSessionFetcherCore */; };
 		15832D5A286816ED0066046D /* FlowAddressRegistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832D58286816ED0066046D /* FlowAddressRegistor.swift */; };
 		1586873A28A170330037635B /* FadeAnimationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1586873928A170330037635B /* FadeAnimationBackground.swift */; };
@@ -887,7 +888,6 @@
 		15DE22E9277EDC4700B5EE03 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22E7277EDC4700B5EE03 /* WalletView.swift */; };
 		15DE22EC277F0B0C00B5EE03 /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22EA277F0B0C00B5EE03 /* Shimmer.swift */; };
 		15DE22F1277F133B00B5EE03 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 15DE22F0277F133B00B5EE03 /* SkeletonUI */; };
-		15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 15DE22FA277FF56F00B5EE03 /* GoogleSignIn */; };
 		15DE22FD27801ADE00B5EE03 /* GoogleOAuth2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DE22FC27801ADE00B5EE03 /* GoogleOAuth2.plist */; };
 		15DE23012780208300B5EE03 /* RestoreWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE22FF2780208300B5EE03 /* RestoreWalletViewModel.swift */; };
 		15ECAE3928C4FCE600B79453 /* WalletConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A6B28C4F817001D2696 /* WalletConnectView.swift */; };
@@ -2037,9 +2037,9 @@
 			files = (
 				156AC7AB27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive in Frameworks */,
 				154B891A276A1EEB00780E93 /* Flow in Frameworks */,
-				15DE22FB277FF56F00B5EE03 /* GoogleSignIn in Frameworks */,
 				154B891B276A1EEB00780E93 /* FirebaseAuth in Frameworks */,
 				15F517FD28C6577000504FDC /* Atlantis in Frameworks */,
+				157D91BE293E102C00AC102B /* GoogleSignIn in Frameworks */,
 				15F22F07278A899D00FCF772 /* AuthenticationServices.framework in Frameworks */,
 				155E371528D35E5200834C30 /* SwiftProtobuf.xcframework in Frameworks */,
 				4E9BFF5D2867631300601339 /* UIKit.framework in Frameworks */,
@@ -4556,7 +4556,6 @@
 				15D5775A277C23BF00045E79 /* Moya */,
 				15DE22DA277DF2F600B5EE03 /* KeychainAccess */,
 				15DE22F0277F133B00B5EE03 /* SkeletonUI */,
-				15DE22FA277FF56F00B5EE03 /* GoogleSignIn */,
 				156AC7AA27802F9D00ED5E3E /* GoogleAPIClientForREST_Drive */,
 				156AC7AC27802FAC00ED5E3E /* GoogleAPIClientForRESTCore */,
 				15DC1D52278165DB000B187A /* Haneke */,
@@ -4589,6 +4588,7 @@
 				6A46754728F2D46500F705A8 /* FMDB */,
 				15D1727C292667EB0049A956 /* WalletConnectRouter */,
 				6AADFB53293CB7F800E5D6B2 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				157D91BD293E102C00AC102B /* GoogleSignIn */,
 			);
 			productName = "Lilico-lite";
 			productReference = 154B8928276A1EEB00780E93 /* Lilico-dev.app */;
@@ -6837,8 +6837,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/outblock/flow-swift";
 			requirement = {
-				kind = revision;
-				revision = 4ee311572e815a494ce5440a6a5f8956d97d8c2e;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
 			};
 		};
 		15F517F928C6574C00504FDC /* XCRemoteSwiftPackageReference "atlantis" */ = {
@@ -7001,6 +7001,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 157046712793237300D1747B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		157D91BD293E102C00AC102B /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15DE22F7277FF55C00B5EE03 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 		15832B632867641D0066046D /* GTMSessionFetcherCore */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -7236,11 +7241,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15DE22ED277F132200B5EE03 /* XCRemoteSwiftPackageReference "SkeletonUI" */;
 			productName = SkeletonUI;
-		};
-		15DE22FA277FF56F00B5EE03 /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15DE22F7277FF55C00B5EE03 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
 		};
 		15F22F19278B21B600FCF772 /* BiometricAuthentication */ = {
 			isa = XCSwiftPackageProductDependency;

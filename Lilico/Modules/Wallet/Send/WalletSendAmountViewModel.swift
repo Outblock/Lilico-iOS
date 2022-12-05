@@ -242,7 +242,7 @@ extension WalletSendAmountViewModel {
         Task {
             do {
                 let id = try await FlowNetwork.transferToken(to: Flow.Address(hex: targetContact.address ?? "0x"),
-                                                             amount: inputTokenNum,
+                                                             amount: Decimal(inputTokenNum),
                                                              token: token)
                 
                 DispatchQueue.main.async {

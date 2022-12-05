@@ -109,7 +109,10 @@ extension InboxViewModel {
         
         Task {
             do {
-                let txid = try await FlowNetwork.claimInboxToken(domain: domainHost, key: model.key, coin: coin, amount: model.amount)
+                let txid = try await FlowNetwork.claimInboxToken(domain: domainHost,
+                                                                 key: model.key,
+                                                                 coin: coin,
+                                                                 amount: Decimal(model.amount))
                 let data = try JSONEncoder().encode(model)
                 
                 DispatchQueue.main.async {

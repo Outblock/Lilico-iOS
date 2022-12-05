@@ -317,14 +317,14 @@ extension SwapViewModel {
                 let tokenKeyFlatSplitPath = response.tokenKeyFlatSplitPath
                 let amountInSplit = response.amountInSplit
                 let amountOutSplit = response.amountOutSplit
-                let deadline = Date().timeIntervalSince1970 + 60 * 10
+                let deadline = Decimal(Date().timeIntervalSince1970 + 60 * 10)
                 let slippageRate = 0.1
                 let estimateOut = response.tokenOutAmount
-                let amountOutMin = Double((estimateOut * (1.0 - slippageRate)).formatCurrencyString(digits: 4))!
+                let amountOutMin = Decimal(Double((estimateOut * (1.0 - slippageRate))))
                 let storageIn = fromToken.storagePath
                 let storageOut = toToken.storagePath
                 let estimateIn = response.tokenInAmount
-                let amountInMax = Double((estimateIn / (1.0 - slippageRate)).formatCurrencyString(digits: 4))!
+                let amountInMax = Decimal(Double((estimateIn / (1.0 - slippageRate))))
                 
                 let txid = try await FlowNetwork.swapToken(swapPaths: tokenKeyFlatSplitPath, tokenInMax: amountInMax, tokenOutMin: amountOutMin, tokenInVaultPath: String(storageIn.vault.split(separator: "/").last ?? ""), tokenOutSplit: amountOutSplit, tokenInSplit: amountInSplit, tokenOutVaultPath: String(storageOut.vault.split(separator: "/").last ?? ""), tokenOutReceiverPath: String(storageOut.receiver.split(separator: "/").last ?? ""), tokenOutBalancePath: String(storageOut.balance.split(separator: "/").last ?? ""), deadline: deadline, isFrom: self.requestIsFromInput)
                 
