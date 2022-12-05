@@ -279,7 +279,7 @@ extension ExploreTabScreen {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: BookmarkCellWidth, height: BookmarkCellWidth)
-                .clipShape(Circle())
+                .cornerRadius(28)
         }
     }
 }

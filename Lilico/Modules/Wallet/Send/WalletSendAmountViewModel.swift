@@ -22,6 +22,7 @@ extension WalletSendAmountView {
         case insufficientBalance
         case formatError
         case invalidAddress
+        case belowMinimum
         
         var desc: String {
             switch self {
@@ -33,6 +34,8 @@ extension WalletSendAmountView {
                 return "format_error".localized
             case .invalidAddress:
                 return "invalid_address".localized
+            case .belowMinimum:
+                return "below_minimum_error".localized
             }
         }
     }
@@ -135,6 +138,11 @@ extension WalletSendAmountViewModel {
             return
         }
         
+        if amountBalance - inputTokenNum < 0.001 {
+            errorType = .belowMinimum
+            return
+        }
+        
         errorType = .none
     }
     
@@ -165,7 +173,8 @@ extension WalletSendAmountViewModel {
     
     func maxAction() {
         exchangeType = .token
-        inputText = amountBalance.formatCurrencyString()
+        let num = max(amountBalance - 0.001, 0)
+        inputText = num.formatCurrencyString()
     }
     
     func toggleExchangeTypeAction() {
