@@ -375,6 +375,21 @@ extension WalletSendViewModel {
         }
     }
     
+    func scan() {
+        Router.route(to: RouteMap.Wallet.scan{ data, vc in
+            switch data {
+            case .flowWallet(let address):
+                vc.stopRunning()
+                vc.presentingViewController?.dismiss(animated: true, completion: { [weak self] in
+                    self?.searchText = address
+                    self?.searchRemote()
+                })
+            default:
+                break
+            }
+        })
+    }
+    
     func addContactAction(contact: Contact) {
         let errorAction = {
             DispatchQueue.main.async {

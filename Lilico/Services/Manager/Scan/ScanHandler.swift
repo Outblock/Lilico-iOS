@@ -76,5 +76,4 @@ class ScanHandler {
     static func scan() {
         Router.route(to: RouteMap.Wallet.scan(ScanHandler.handler(), click: ScanHandler.clickHandler()))
     }
-
 }

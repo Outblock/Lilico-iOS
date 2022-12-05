@@ -448,7 +448,7 @@ extension WalletView {
 
                         Spacer()
 
-                        Text("\(vm.isHidden ? "****" : coin.balance.formatCurrencyString()) \(coin.token.symbol?.uppercased() ?? "?")")
+                        Text("\(vm.isHidden ? "****" : coin.balance.formatCurrencyString()) \(coin.token.symbol ?? "?")")
                             .foregroundColor(.LL.Neutrals.text)
                             .font(.inter(size: 12, weight: .medium))
                     }

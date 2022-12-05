@@ -128,6 +128,13 @@ extension WalletSendView {
                     vm.searchCommitAction()
                 }
                 .focused($searchIsFocused)
+            Spacer()
+            
+            Button {
+                vm.scan()
+            } label: {
+                Image("icon-wallet-scan").renderingMode(.template).foregroundColor(.primary)
+            }
         }
         .frame(height: 52)
         .padding(.horizontal, 16)
