@@ -456,10 +456,7 @@ struct SignableUser: Codable {
     var signature: String?
     var keyID: Int?
     var sequenceNum: Int?
-    //    var signingFunction: Int?
     var role: Role
-
-    var signingFunction: ((Data) -> AnyPublisher<AuthnResponse, Error>)?
 
     enum CodingKeys: String, CodingKey {
         case kind
@@ -476,7 +473,7 @@ struct SignableUser: Codable {
         addr = try? container.decode(String.self, forKey: .addr)
         signature = try? container.decode(String.self, forKey: .signature)
         keyID = try? container.decode(Int.self, forKey: .keyID)
-        sequenceNum = try container.decode(Int.self, forKey: .sequenceNum)
+        sequenceNum = try? container.decode(Int.self, forKey: .sequenceNum)
         role = try container.decode(Role.self, forKey: .role)
     }
 

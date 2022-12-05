@@ -165,7 +165,7 @@ extension WalletManager {
     
     func getToken(bySymbol symbol: String) -> TokenModel? {
         for token in activatedCoins {
-            if token.symbol == symbol {
+            if token.symbol?.lowercased() == symbol.lowercased() {
                 return token
             }
         }
