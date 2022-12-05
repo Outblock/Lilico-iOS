@@ -27,6 +27,7 @@ struct StakeAmountView: RouteableView {
             inputContainerView
             amountPercentContainerView
             rateContainerView
+            errorTipsView
             Spacer()
             stakeBtn
         }
@@ -90,19 +91,19 @@ struct StakeAmountView: RouteableView {
         VStack {
             HStack(spacing: 8) {
                 Button {
-                    
+                    vm.percentAction(percent: 0.3)
                 } label: {
                     createAmountPercentBtn("30%")
                 }
                 
                 Button {
-                    
+                    vm.percentAction(percent: 0.5)
                 } label: {
                     createAmountPercentBtn("50%")
                 }
                 
                 Button {
-                    
+                    vm.percentAction(percent: 1.0)
                 } label: {
                     createAmountPercentBtn("max".localized)
                 }
@@ -181,7 +182,7 @@ struct StakeAmountView: RouteableView {
     
     var stakeBtn: some View {
         Button {
-//            showConfirmView = true
+            vm.stakeBtnAction()
         } label: {
             Text("next".localized)
                 .font(.inter(size: 16, weight: .bold))
@@ -191,6 +192,22 @@ struct StakeAmountView: RouteableView {
                 .background(Color.LL.stakeMain)
                 .cornerRadius(16)
         }
+        .disabled(!vm.isReadyForStake)
+    }
+    
+    var errorTipsView: some View {
+        HStack(spacing: 9) {
+            Image(systemName: .error)
+                .foregroundColor(Color(hex: "#C44536"))
+            
+            Text(vm.errorType.desc)
+                .foregroundColor(Color(hex: "#C44536"))
+                .font(.inter(size: 12, weight: .regular))
+            
+            Spacer()
+        }
+        .padding(.top, 12)
+        .visibility(vm.errorType == .none ? .gone : .visible)
     }
 }
 
@@ -315,7 +332,7 @@ extension StakeAmountView {
         
         var confirmBtn: some View {
             Button {
-                Router.route(to: RouteMap.Wallet.stakeDetail)
+                
             } label: {
                 Text("next".localized)
                     .font(.inter(size: 16, weight: .bold))
