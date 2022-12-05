@@ -28,9 +28,10 @@ extension LocalUserDefaults {
         case currentCurrencyRate
     }
 
-    enum FlowNetworkType: String {
+    enum FlowNetworkType: String, CaseIterable {
         case testnet
         case mainnet
+        case sandboxnet
 
         func toFlowType() -> Flow.ChainID {
             switch self {
@@ -38,8 +39,29 @@ extension LocalUserDefaults {
                 return Flow.ChainID.testnet
             case .mainnet:
                 return Flow.ChainID.mainnet
+            case .sandboxnet:
+                return Flow.ChainID.sandbox
             }
         }
+        
+        init?(chainId: Flow.ChainID) {
+            switch chainId {
+            case .testnet:
+                self = .testnet
+            case .mainnet:
+                self = .mainnet
+            case .sandbox:
+                self = .sandboxnet
+            default:
+                return nil
+            }
+        }
+    }
+}
+
+extension Flow.ChainID {
+    var networkType: LocalUserDefaults.FlowNetworkType? {
+        .init(chainId: self)
     }
 }
 

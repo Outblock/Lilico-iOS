@@ -25,12 +25,14 @@ enum ScriptAddress: String, CaseIterable {
     
     static func addressMap(on network: LocalUserDefaults.FlowNetworkType = LocalUserDefaults.shared.flowNetwork) -> [String: String] {
         let dict = ScriptAddress.allCases.reduce(into: [String: String]()) { partialResult, script in
-            partialResult[script.rawValue] = script.address(on: network).hex.withPrefix()
+            if let address = script.address(on: network) {
+                partialResult[script.rawValue] = address.hex.withPrefix()
+            }
         }
         return dict
     }
     
-    func address(on network: LocalUserDefaults.FlowNetworkType = LocalUserDefaults.shared.flowNetwork ) -> Flow.Address {
+    func address(on network: LocalUserDefaults.FlowNetworkType = LocalUserDefaults.shared.flowNetwork ) -> Flow.Address? {
         switch (self, network) {
             // Mainnet
         case (.fungibleToken, .mainnet):
@@ -84,9 +86,26 @@ enum ScriptAddress: String, CaseIterable {
         case (.metadataViews, .testnet):
             return Flow.Address(hex: "0x631e88ae7f1d7c20")
         case (.swapRouter, .testnet):
-            return Flow.Address(hex: "2f8af5ed05bbde0d")
+            return Flow.Address(hex: "0x2f8af5ed05bbde0d")
         case (.swapError, .testnet):
             return Flow.Address(hex: "0xddb929038d45d4b3")
+            
+            // Sandboxnet
+        case (.fungibleToken, .sandboxnet):
+            return Flow.Address(hex: "0xe20612a0776ca4bf")
+        case (.flowToken, .sandboxnet):
+            return Flow.Address(hex: "0x0661ab7d6696a460")
+        case (.flowFees, .sandboxnet):
+            return Flow.Address(hex: "0xe92c2039bbe9da96")
+        case (.flowTablesTaking, .sandboxnet):
+            return Flow.Address(hex: "0xf4527793ee68aede")
+        case (.lockedTokens, .sandboxnet):
+            return Flow.Address(hex: "0xf4527793ee68aede")
+        case (.nonFungibleToken, .sandboxnet):
+            return Flow.Address(hex: "0x83ade3a54eb3870c")
+        
+        default:
+            return nil
         }
     }
 }
