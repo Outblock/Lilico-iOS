@@ -36,7 +36,7 @@ struct TermsAndPolicy: RouteableView {
             Spacer()
             
             VStack(alignment: .leading) {
-                Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
+                Link(destination: URL(string: "https://lilico.app/about/terms")!) {
                     Text("terms_of_service".localized)
                         .fontWeight(.semibold)
                         .font(.LL.body)
@@ -47,7 +47,7 @@ struct TermsAndPolicy: RouteableView {
                 
                 Divider().foregroundColor(Color.LL.outline)
                 
-                Link(destination: URL(string: "https://outblock.github.io/lilico.app/privacy-policy.html")!) {
+                Link(destination: URL(string: "https://lilico.app/about/privacy-policy")!) {
                     Text("privacy_policy".localized)
                         .font(.LL.body)
                         .fontWeight(.semibold)
