@@ -124,23 +124,30 @@ struct NFTDetailPage: RouteableView {
                                     .fontWeight(.w700)
                                     .foregroundColor(.LL.Neutrals.text)
                                     .frame(height: 28)
-                                HStack(alignment: .center, spacing: 6) {
-                                    KFImage
-                                        .url(vm.nft.logoUrl)
-                                        .placeholder({
-                                            Image("placeholder")
-                                                .resizable()
-                                        })
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 20, height: 20, alignment: .center)
-                                        .cornerRadius(20)
-                                        .clipped()
-                                    Text(vm.nft.collectionName)
-                                        .font(.LL.body)
-                                        .fontWeight(.w400)
-                                        .lineLimit(1)
-                                        .foregroundColor(.LL.Neutrals.neutrals4)
+                                
+                                Button {
+                                    if let urlString = vm.nft.response.collectionExternalURL, let url = URL(string: urlString) {
+                                        Router.route(to: RouteMap.Explore.browser(url))
+                                    }
+                                } label: {
+                                    HStack(alignment: .center, spacing: 6) {
+                                        KFImage
+                                            .url(vm.nft.logoUrl)
+                                            .placeholder({
+                                                Image("placeholder")
+                                                    .resizable()
+                                            })
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 20, height: 20, alignment: .center)
+                                            .cornerRadius(20)
+                                            .clipped()
+                                        Text(vm.nft.collectionName)
+                                            .font(.LL.body)
+                                            .fontWeight(.w400)
+                                            .lineLimit(1)
+                                            .foregroundColor(.LL.Neutrals.text2)
+                                    }
                                 }
                             }
                             Spacer()
@@ -199,30 +206,24 @@ struct NFTDetailPage: RouteableView {
                         .padding(.horizontal, 26)
                     }
                     
-                    //
-                    VStack(spacing: 0) {
-                        VStack(alignment: .leading, spacing: 18) {
-                            if !vm.nft.tags.isEmpty {
-                                NFTTagsView(tags: vm.nft.tags, color: theColor)
-                            }
-                            
-                            Text(vm.nft.declare)
-                                .font(Font.inter(size: 14, weight: .w400))
-                                .foregroundColor(.LL.Neutrals.text)
+                    VStack(alignment: .leading, spacing: 18) {
+                        if !vm.nft.tags.isEmpty {
+                            NFTTagsView(tags: vm.nft.tags, color: theColor)
                         }
-                        .padding(.horizontal, 26)
-                        .padding(.vertical, 18)
                         
-                        Spacer()
+                        Text(vm.nft.declare)
+                            .font(Font.inter(size: 14, weight: .w400))
+                            .foregroundColor(.LL.Neutrals.text)
                     }
+                    .padding(.horizontal, 26)
+                    .padding(.vertical, 18)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         Color.LL.bgForIcon.opacity(0.5)
                     )
                     .shadow(color: .LL.Shades.front, radius: 16, x: 0, y: 8)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .cornerRadius(16, corners: [.topLeft, .topRight])
+                    .cornerRadius(16)
                 }
-                .frame(minHeight: UIScreen.main.bounds.height)
                 
             } appBar: {
                 BackAppBar(showShare: true) {
