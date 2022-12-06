@@ -43,6 +43,14 @@ struct CryptoSummaryResponse: Codable {
     func getChangePercentage() -> Double {
         return result.price.change.percentage
     }
+    
+    static func createFixedRateResponse(fixedRate: Decimal) -> CryptoSummaryResponse {
+        let allowance = CryptoSummaryResponse.Allowance(cost: 0, remaining: 0)
+        let change = Change(absolute: 0, percentage: 0)
+        let price = Price(last: fixedRate.doubleValue, low: fixedRate.doubleValue, high: fixedRate.doubleValue, change: change)
+        let result = CryptoSummaryResponse.Result(price: price)
+        return CryptoSummaryResponse(allowance: allowance, result: result)
+    }
 }
 
 // MARK: -

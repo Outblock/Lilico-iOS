@@ -123,11 +123,20 @@ extension CoinRateCache {
             let response: CryptoSummaryResponse = try await Network.request(LilicoAPI.Crypto.summary(request))
             set(summary: response, forSymbol: symbol)
         case let .mirror(token):
-            //TODO: - Get Token price
-            break
+            guard let mirrorTokenModel = WalletManager.shared.supportedCoins?.first(where: { $0.symbol == token.rawValue }) else {
+                break
+            }
+            
+            try await fetchCoinRate(mirrorTokenModel)
+            
+            guard let mirrorResponse = getSummary(for: token.rawValue) else {
+                break
+            }
+            
+            set(summary: mirrorResponse, forSymbol: symbol)
         case let .fixed(price):
-            //TODO: - Get Token price
-            break
+            let response = CryptoSummaryResponse.createFixedRateResponse(fixedRate: price)
+            set(summary: response, forSymbol: symbol)
         }
     }
 
