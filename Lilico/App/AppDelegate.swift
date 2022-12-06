@@ -53,37 +53,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             WalletConnectManager.shared.onClientConnected = {
                 WalletConnectManager.shared.connect(link: uri)
             }
-            
-            
         }
         
         return GIDSignIn.sharedInstance.handle(url)
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        
         if let url = userActivity.webpageURL {
-            let uri = url.absoluteString.deletingPrefix("https://link.lilico.app/wc?uri=")
+            var uri = url.absoluteString.deletingPrefix("https://link.lilico.app/wc?uri=")
+            uri = uri.deletingPrefix("lilico://")
             WalletConnectManager.shared.onClientConnected = {
                 WalletConnectManager.shared.connect(link: uri)
             }
-            
             WalletConnectManager.shared.connect(link: uri)
         }
-        
-//        if let url = userActivity.webpageURL {
-//            var parameters: [String: String] = [:]
-//            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
-//                parameters[$0.name] = $0.value
-//            }
-//
-//            if let filtered = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?
-//                .filter({ $0.name == "uri" && $0.value?.starts(with: "wc") ?? false }),
-//                let item = filtered.first, let uri = item.value {
-//
-//               }
-//        }
-//
         return true
     }
 }
@@ -97,10 +80,6 @@ extension AppDelegate {
         let color = UIColor(named: "neutrals.text")!
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: color, .font: font!]
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: color, .font: largeFont!]
-        
-//        let emptyImage = UIImage()
-//        UINavigationBar.appearance().backIndicatorImage = emptyImage
-//        UINavigationBar.appearance().backIndicatorTransitionMaskImage = emptyImage
     }
     
     private func appConfig() {
