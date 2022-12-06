@@ -24,6 +24,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        Analytics.setAnalyticsCollectionEnabled(true)
+        Analytics.logEvent("ios_app_launch", parameters: [:])
         
         appConfig()
         commonConfig()
