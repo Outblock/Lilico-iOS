@@ -483,3 +483,5 @@
 "staking_disabled" = "Staking is disabled";
 "staking_provider" = "Provider";
 "staking_provider_section_title" = "STAKING PROVIDER";
+"staking" = "Staking";
+"staking_confirm" = "Confirm";

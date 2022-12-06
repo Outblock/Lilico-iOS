@@ -9,77 +9,8 @@ import SwiftUI
 import UIKit
 
 class StakeGuideViewModel: ObservableObject {
-    @Published var isRequesting: Bool = false
-    
-    var buttonState: VPrimaryButtonState {
-        if isRequesting {
-            return .loading
-        }
-        return .enabled
-    }
-    
     func goNext() {
         Router.route(to: RouteMap.Wallet.stakingSelectProvider)
-        return
-        
-        if isRequesting {
-            return
-        }
-        
-        isRequesting = true
-        
-        let failureBlock = {
-            DispatchQueue.main.async {
-                self.isRequesting = false
-                HUD.error(title: "request_failed".localized)
-            }
-        }
-        
-        Task {
-            do {
-                // check staking is enabled
-                if try await FlowNetwork.stakingIsEnabled() == false {
-                    DispatchQueue.main.async {
-                        self.isRequesting = false
-                        HUD.error(title: "staking_disabled".localized)
-                    }
-                    return
-                }
-                
-                // check account staking is setup
-                if try await FlowNetwork.accountStakingIsSetup() == false {
-                    debugPrint("StakeGuideViewModel: account staking not setup, setup right now.")
-                    
-                    if try await FlowNetwork.setupAccountStaking() == false {
-                        debugPrint("StakeGuideViewModel: setup account staking failed.")
-                        failureBlock()
-                        return
-                    }
-                }
-                
-                // create delegator id
-                guard let lilicoProvider = StakingProviderCache.cache.providers.first(where: { $0.isLilico }) else {
-                    debugPrint("StakeGuideViewModel: can not find lilico provider.")
-                    failureBlock()
-                    return
-                }
-                
-                if try await FlowNetwork.createDelegatorId(providerId: lilicoProvider.id) == false {
-                    debugPrint("StakeGuideViewModel: createDelegatorId failed.")
-                    failureBlock()
-                    return
-                }
-                
-                debugPrint("StakeGuideViewModel: delegator id created.")
-                DispatchQueue.main.async {
-                    HUD.success(title: "yes")
-                    self.isRequesting = false
-                }
-            } catch {
-                debugPrint("StakeGuideViewModel: catch error \(error)")
-                failureBlock()
-            }
-        }
     }
 }
 
@@ -104,10 +35,10 @@ struct StakeGuideView: RouteableView {
                 Spacer()
                 
                 VPrimaryButton(model: ButtonStyle.stakePrimary,
-                               state: vm.buttonState,
+                               state: .enabled,
                                action: {
                     vm.goNext()
-                }, title: vm.buttonState == .loading ? "working_on_it".localized : "stake_guide_btn_text".localized)
+                }, title: "stake_guide_btn_text".localized)
                 .padding(.bottom)
             }
             .padding(.top, 32)

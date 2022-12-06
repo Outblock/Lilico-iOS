@@ -70,7 +70,7 @@ struct StakingListView: RouteableView {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 24, height: 24)
-                    .clipShape(Circle())
+                    .cornerRadius(12)
                 
                 Text("Lilico")
                     .font(.inter(size: 14, weight: .bold))

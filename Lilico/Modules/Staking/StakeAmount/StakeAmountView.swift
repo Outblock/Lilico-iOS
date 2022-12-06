@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct StakeAmountView: RouteableView {
     @StateObject private var vm: StakeAmountViewModel
@@ -37,6 +38,7 @@ struct StakeAmountView: RouteableView {
         .backgroundFill(.LL.deepBg)
         .halfSheet(showSheet: $vm.showConfirmView, sheetView: {
             StakeConfirmView()
+                .environmentObject(vm)
         })
         .applyRouteable(self)
     }
@@ -181,18 +183,12 @@ struct StakeAmountView: RouteableView {
     }
     
     var stakeBtn: some View {
-        Button {
+        VPrimaryButton(model: ButtonStyle.stakePrimary,
+                       state: vm.isReadyForStake ? .enabled : .disabled,
+                       action: {
             vm.stakeBtnAction()
-        } label: {
-            Text("next".localized)
-                .font(.inter(size: 16, weight: .bold))
-                .foregroundColor(Color.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 54)
-                .background(Color.LL.stakeMain)
-                .cornerRadius(16)
-        }
-        .disabled(!vm.isReadyForStake)
+        }, title: "next".localized)
+        .padding(.bottom)
     }
     
     var errorTipsView: some View {
@@ -213,6 +209,8 @@ struct StakeAmountView: RouteableView {
 
 extension StakeAmountView {
     struct StakeConfirmView: View {
+        @EnvironmentObject var vm: StakeAmountViewModel
+        
         var body: some View {
             VStack {
                 SheetHeaderView(title: "stake_confirm_title".localized)
@@ -224,9 +222,9 @@ extension StakeAmountView {
                     Spacer()
                     
                     confirmBtn
-                        .padding(.bottom, 10)
                 }
                 .padding(.horizontal, 18)
+                .padding(.bottom, 20)
             }
             .backgroundFill(Color.LL.deepBg)
         }
@@ -234,16 +232,22 @@ extension StakeAmountView {
         var detailView: some View {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    Image("flow")
+                    KFImage.url(vm.provider.iconURL)
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
                         .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: 16, height: 16)
+                        .cornerRadius(8)
                     
-                    Text("Lilico")
+                    Text(vm.provider.name)
                         .font(.inter(size: 12, weight: .semibold))
                         .foregroundColor(Color.LL.Neutrals.text)
                         .padding(.leading, 6)
                     
-                    Text("Staking")
+                    Text("staking".localized)
                         .font(.inter(size: 12, weight: .semibold))
                         .foregroundColor(Color.LL.Neutrals.text4)
                         .padding(.leading, 4)
@@ -256,7 +260,7 @@ extension StakeAmountView {
                     .background(Color.LL.Neutrals.note)
                 
                 HStack(spacing: 0) {
-                    Text("730.08")
+                    Text(vm.inputTextNum.formatCurrencyString(digits: 2))
                         .font(.inter(size: 24, weight: .bold))
                         .foregroundColor(Color.LL.Neutrals.text)
                     
@@ -267,11 +271,11 @@ extension StakeAmountView {
                     
                     Spacer()
                     
-                    Text("$1,581.29")
+                    Text(vm.inputNumAsCurrencyStringInConfirmSheet)
                         .font(.inter(size: 14, weight: .medium))
                         .foregroundColor(Color.LL.Neutrals.text2)
                     
-                    Text("USD")
+                    Text(CurrencyCache.cache.currentCurrency.rawValue)
                         .font(.inter(size: 14, weight: .medium))
                         .foregroundColor(Color.LL.Neutrals.text4)
                         .padding(.leading, 4)
@@ -292,7 +296,7 @@ extension StakeAmountView {
                     
                     Spacer()
                     
-                    Text("12.04%")
+                    Text(vm.provider.apyYearPercentString)
                         .font(.inter(size: 14, weight: .medium))
                         .foregroundColor(Color.LL.Neutrals.text)
                 }
@@ -309,7 +313,7 @@ extension StakeAmountView {
                         
                         Spacer()
                         
-                        Text("2000.00 Flow")
+                        Text("\(vm.yearRewardFlowString) Flow")
                             .font(.inter(size: 14, weight: .medium))
                             .foregroundColor(Color.LL.Neutrals.text)
                     }
@@ -318,7 +322,7 @@ extension StakeAmountView {
                     HStack {
                         Spacer()
                         
-                        Text("≈ $27320.00 USD")
+                        Text("≈ \(vm.yearRewardWithCurrencyString)")
                             .font(.inter(size: 12, weight: .medium))
                             .foregroundColor(Color.LL.Neutrals.text3)
                     }
@@ -331,17 +335,12 @@ extension StakeAmountView {
         }
         
         var confirmBtn: some View {
-            Button {
-                
-            } label: {
-                Text("next".localized)
-                    .font(.inter(size: 16, weight: .bold))
-                    .foregroundColor(Color.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 54)
-                    .background(Color.LL.stakeMain)
-                    .cornerRadius(16)
-            }
+            VPrimaryButton(model: ButtonStyle.stakePrimary,
+                           state: vm.buttonState,
+                           action: {
+                vm.confirmStakeAction()
+            }, title: vm.buttonState == .loading ? "working_on_it".localized : "staking_confirm".localized)
+            .padding(.bottom)
         }
     }
 }
