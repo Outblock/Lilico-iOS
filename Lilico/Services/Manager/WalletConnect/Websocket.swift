@@ -11,8 +11,11 @@ import WalletConnectRelay
 
 extension WebSocket: WebSocketConnecting { }
 
-struct SocketFactory: WebSocketFactory {
+private class SocketFactory: WebSocketFactory {
+    var socket: WebSocket?
     func create(with url: URL) -> WebSocketConnecting {
-        return WebSocket(url: url)
+        let socket = WebSocket(url: url)
+        self.socket = socket
+        return socket
     }
 }
