@@ -533,4 +533,71 @@ extension CadenceTemplate {
             return apr
         }
     """
+    
+    static let getDelegatorInfo = """
+        import FlowStakingCollection from 0xStakingCollection
+        import FlowIDTableStaking from 0xFlowTableStaking
+        import LockedTokens from 0xLockedTokens
+
+        pub struct DelegateInfo {
+            pub let delegatorID: UInt32
+            pub let nodeID: String
+            pub let tokensCommitted: UFix64
+            pub let tokensStaked: UFix64
+            pub let tokensUnstaking: UFix64
+            pub let tokensRewarded: UFix64
+            pub let tokensUnstaked: UFix64
+            pub let tokensRequestedToUnstake: UFix64
+
+            // Projected Values
+
+            pub let id: String
+            pub let role: UInt8
+            pub let unstakableTokens: UFix64
+            pub let delegatedNodeInfo: FlowIDTableStaking.NodeInfo
+            pub let restakableUnstakedTokens: UFix64
+
+            init(delegatorInfo: FlowIDTableStaking.DelegatorInfo) {
+                self.delegatorID = delegatorInfo.id
+                self.nodeID = delegatorInfo.nodeID
+                self.tokensCommitted = delegatorInfo.tokensCommitted
+                self.tokensStaked = delegatorInfo.tokensStaked
+                self.tokensUnstaking = delegatorInfo.tokensUnstaking
+                self.tokensUnstaked = delegatorInfo.tokensUnstaked
+                self.tokensRewarded = delegatorInfo.tokensRewarded
+                self.tokensRequestedToUnstake = delegatorInfo.tokensRequestedToUnstake
+
+                // Projected Values
+                let nodeInfo = FlowIDTableStaking.NodeInfo(nodeID: delegatorInfo.nodeID)
+                self.delegatedNodeInfo = nodeInfo
+                self.id = nodeInfo.id
+                self.role = nodeInfo.role
+                self.unstakableTokens = self.tokensStaked + self.tokensCommitted
+                self.restakableUnstakedTokens = self.tokensUnstaked + self.tokensRequestedToUnstake
+            }
+        }
+
+        pub fun main(account: Address): {String: {UInt32: DelegateInfo}}? {
+            let doesAccountHaveStakingCollection = FlowStakingCollection.doesAccountHaveStakingCollection(address: account)
+            if (!doesAccountHaveStakingCollection) {
+                return nil
+            }
+
+            let delegatorIDs: [FlowStakingCollection.DelegatorIDs] = FlowStakingCollection.getDelegatorIDs(address: account)
+
+            let formattedDelegatorInfo: {String: {UInt32: DelegateInfo}} = {}
+
+            for delegatorID in delegatorIDs {
+                if let _formattedDelegatorInfo = formattedDelegatorInfo[delegatorID.delegatorNodeID] {
+                    let delegatorInfo: FlowIDTableStaking.DelegatorInfo = FlowIDTableStaking.DelegatorInfo(nodeID: delegatorID.delegatorNodeID, delegatorID: delegatorID.delegatorID)
+                    _formattedDelegatorInfo[delegatorID.delegatorID] = DelegateInfo(delegatorInfo: delegatorInfo)
+                } else {
+                    let delegatorInfo: FlowIDTableStaking.DelegatorInfo = FlowIDTableStaking.DelegatorInfo(nodeID: delegatorID.delegatorNodeID, delegatorID: delegatorID.delegatorID)
+                    formattedDelegatorInfo[delegatorID.delegatorNodeID] = { delegatorID.delegatorID: DelegateInfo(delegatorInfo: delegatorInfo)}
+                }
+            }
+
+            return formattedDelegatorInfo
+        }
+    """
 }

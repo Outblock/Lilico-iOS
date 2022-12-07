@@ -434,6 +434,27 @@ extension FlowNetwork {
         
         return result
     }
+    
+    static func getDelegatorInfo() async throws -> [String: Int]? {
+        let response: StakingDelegatorInner = try await fetch(cadence: CadenceTemplate.getDelegatorInfo, arguments: [])
+        debugPrint("FlowNetwork -> getDelegatorInfo, response = \(response)")
+        
+        guard let values = response.value?.value else {
+            return nil
+        }
+        
+        let compactValues = values.compactMap { $0 }
+        
+        var results: [String: Int] = [:]
+        for value in compactValues {
+            if let resultKey = value.key?.value {
+                let resultValue = Int(value.value?.value?.first??.key?.value ?? "0") ?? 0
+                results[resultKey] = resultValue
+            }
+        }
+        
+        return results
+    }
 }
 
 // MARK: - Others

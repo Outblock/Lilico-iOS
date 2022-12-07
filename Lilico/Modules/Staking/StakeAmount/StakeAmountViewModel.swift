@@ -129,8 +129,6 @@ extension StakeAmountViewModel {
     }
     
     func confirmStakeAction() {
-        // TODO: 
-        return
         if isRequesting {
             return
         }
@@ -156,34 +154,42 @@ extension StakeAmountViewModel {
                 }
                 
                 // check account staking is setup
-                if try await FlowNetwork.accountStakingIsSetup() == false {
-                    debugPrint("StakeGuideViewModel: account staking not setup, setup right now.")
+                if !StakingManager.shared.isSetup {
+                    debugPrint("StakeAmountViewModel: account staking not setup, setup right now.")
                     
-                    if try await FlowNetwork.setupAccountStaking() == false {
-                        debugPrint("StakeGuideViewModel: setup account staking failed.")
+                    if await StakingManager.shared.stakingSetup() == false {
+                        debugPrint("StakeAmountViewModel: setup account staking failed.")
                         failureBlock()
                         return
                     }
                 }
                 
-                // create delegator id
-                guard let lilicoProvider = StakingProviderCache.cache.providers.first(where: { $0.isLilico }) else {
-                    debugPrint("StakeGuideViewModel: can not find lilico provider.")
+                if provider.delegatorId == nil {
+                    // create delegator id to stake (only first time)
+                    if try await FlowNetwork.createDelegatorId(providerId: provider.id) == false {
+                        debugPrint("StakeAmountViewModel: createDelegatorId failed")
+                        failureBlock()
+                        return
+                    }
+                    
+                    // create delegator id success, delay 2 seconds then refresh delegatorIds
+                    try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
+                    try await StakingManager.shared.refreshDelegatorInfo()
+                }
+                
+                guard let delegatorId = provider.delegatorId else {
+                    // can not be nil, something went wrong.
+                    debugPrint("StakeAmountViewModel: delegatorId is still nil after fetch delegatorIds, something went wrong")
                     failureBlock()
                     return
                 }
                 
-                if try await FlowNetwork.createDelegatorId(providerId: lilicoProvider.id) == false {
-                    debugPrint("StakeGuideViewModel: createDelegatorId failed.")
-                    failureBlock()
-                    return
-                }
+                // TODO: stake with delegatorId
                 
-                debugPrint("StakeGuideViewModel: delegator id created.")
-                DispatchQueue.main.async {
-                    HUD.success(title: "yes")
-                    self.isRequesting = false
-                }
+//                DispatchQueue.main.async {
+//                    HUD.success(title: "yes")
+//                    self.isRequesting = false
+//                }
             } catch {
                 debugPrint("StakeGuideViewModel: catch error \(error)")
                 failureBlock()

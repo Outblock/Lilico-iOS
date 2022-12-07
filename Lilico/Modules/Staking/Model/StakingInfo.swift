@@ -72,3 +72,49 @@ extension StakingInfoInner.Value.Value1.Field {
         let value: String?
     }
 }
+
+// MARK: - DelegatorInner
+
+struct StakingDelegatorInner: Codable {
+    let type: String?
+    let value: StakingDelegatorInner.Value1?
+}
+
+extension StakingDelegatorInner {
+    struct Value1: Codable {
+        let type: String?
+        let value: [StakingDelegatorInner.Value1.Value2?]?
+    }
+}
+
+extension StakingDelegatorInner.Value1 {
+    struct Value2: Codable {
+        let key: StakingDelegatorInner.Value1.Value2.Key?
+        let value: StakingDelegatorInner.Value1.Value2.Value?
+    }
+}
+
+extension StakingDelegatorInner.Value1.Value2 {
+    struct Key: Codable {
+        let type: String?
+        let value: String?
+    }
+    
+    struct Value: Codable {
+        let type: String?
+        let value: [StakingDelegatorInner.Value1.Value2.Value.Value3?]?
+    }
+}
+
+extension StakingDelegatorInner.Value1.Value2.Value {
+    struct Value3: Codable {
+        let key: StakingDelegatorInner.Value1.Value2.Value.Value3.Key?
+    }
+}
+
+extension StakingDelegatorInner.Value1.Value2.Value.Value3 {
+    struct Key: Codable {
+        let type: String?
+        let value: String?
+    }
+}

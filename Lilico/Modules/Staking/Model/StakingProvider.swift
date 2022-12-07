@@ -31,4 +31,8 @@ struct StakingProvider: Codable {
         let num = (apyYear * 100).formatCurrencyString(digits: 2)
         return "\(num)%"
     }
+    
+    var delegatorId: Int? {
+        return StakingManager.shared.delegatorIds[id]
+    }
 }
