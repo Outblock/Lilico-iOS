@@ -416,7 +416,7 @@ extension CadenceTemplate {
     """
     
     static let checkAccountStakingIsSetup = """
-        import FlowStakingCollection from 0xLockedTokens
+        import FlowStakingCollection from 0xStakingCollection
 
         /// Determines if an account is set up with a Staking Collection
 
@@ -538,7 +538,7 @@ extension CadenceTemplate {
         import FlowStakingCollection from 0xStakingCollection
         import FlowIDTableStaking from 0xFlowTableStaking
         import LockedTokens from 0xLockedTokens
-
+        
         pub struct DelegateInfo {
             pub let delegatorID: UInt32
             pub let nodeID: String
@@ -548,15 +548,15 @@ extension CadenceTemplate {
             pub let tokensRewarded: UFix64
             pub let tokensUnstaked: UFix64
             pub let tokensRequestedToUnstake: UFix64
-
+        
             // Projected Values
-
+        
             pub let id: String
             pub let role: UInt8
             pub let unstakableTokens: UFix64
             pub let delegatedNodeInfo: FlowIDTableStaking.NodeInfo
             pub let restakableUnstakedTokens: UFix64
-
+        
             init(delegatorInfo: FlowIDTableStaking.DelegatorInfo) {
                 self.delegatorID = delegatorInfo.id
                 self.nodeID = delegatorInfo.nodeID
@@ -566,7 +566,7 @@ extension CadenceTemplate {
                 self.tokensUnstaked = delegatorInfo.tokensUnstaked
                 self.tokensRewarded = delegatorInfo.tokensRewarded
                 self.tokensRequestedToUnstake = delegatorInfo.tokensRequestedToUnstake
-
+        
                 // Projected Values
                 let nodeInfo = FlowIDTableStaking.NodeInfo(nodeID: delegatorInfo.nodeID)
                 self.delegatedNodeInfo = nodeInfo
@@ -576,17 +576,17 @@ extension CadenceTemplate {
                 self.restakableUnstakedTokens = self.tokensUnstaked + self.tokensRequestedToUnstake
             }
         }
-
+        
         pub fun main(account: Address): {String: {UInt32: DelegateInfo}}? {
             let doesAccountHaveStakingCollection = FlowStakingCollection.doesAccountHaveStakingCollection(address: account)
             if (!doesAccountHaveStakingCollection) {
                 return nil
             }
-
+        
             let delegatorIDs: [FlowStakingCollection.DelegatorIDs] = FlowStakingCollection.getDelegatorIDs(address: account)
-
+        
             let formattedDelegatorInfo: {String: {UInt32: DelegateInfo}} = {}
-
+        
             for delegatorID in delegatorIDs {
                 if let _formattedDelegatorInfo = formattedDelegatorInfo[delegatorID.delegatorNodeID] {
                     let delegatorInfo: FlowIDTableStaking.DelegatorInfo = FlowIDTableStaking.DelegatorInfo(nodeID: delegatorID.delegatorNodeID, delegatorID: delegatorID.delegatorID)
@@ -596,8 +596,30 @@ extension CadenceTemplate {
                     formattedDelegatorInfo[delegatorID.delegatorNodeID] = { delegatorID.delegatorID: DelegateInfo(delegatorInfo: delegatorInfo)}
                 }
             }
-
+        
             return formattedDelegatorInfo
+        }
+    """
+    
+    static let stakeFlow = """
+        import FlowStakingCollection from 0xStakingCollection
+
+        /// Commits new tokens to stake for the specified node or delegator in the staking collection
+        /// The tokens from the locked vault are used first, if it exists
+        /// followed by the tokens from the unlocked vault
+
+        transaction(nodeID: String, delegatorID: UInt32?, amount: UFix64) {
+            
+            let stakingCollectionRef: &FlowStakingCollection.StakingCollection
+
+            prepare(account: AuthAccount) {
+                self.stakingCollectionRef = account.borrow<&FlowStakingCollection.StakingCollection>(from: FlowStakingCollection.StakingCollectionStoragePath)
+                    ?? panic("Could not borrow ref to StakingCollection")
+            }
+
+            execute {
+                self.stakingCollectionRef.stakeNewTokens(nodeID: nodeID, delegatorID: delegatorID, amount: amount)
+            }
         }
     """
 }

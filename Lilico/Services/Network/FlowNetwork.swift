@@ -399,6 +399,39 @@ extension FlowNetwork {
         return true
     }
     
+    static func stakeFlow(providerId: String, delegatorId: Int, amount: Double) async throws -> Flow.ID {
+        let cadenceString = CadenceTemplate.stakeFlow.replace(by: ScriptAddress.addressMap())
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        
+        let txId = try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+            
+            arguments {
+                [.string(providerId), .uint32(UInt32(delegatorId)), .ufix64(amount)]
+            }
+            
+            gasLimit {
+                9999
+            }
+        })
+        
+        return txId
+    }
+    
     static func queryStakeInfo() async throws -> StakingInfo? {
         let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
         let response: StakingInfoInner = try await fetch(at: address, by: CadenceTemplate.queryStakeInfo)
@@ -436,15 +469,20 @@ extension FlowNetwork {
     }
     
     static func getDelegatorInfo() async throws -> [String: Int]? {
-        let response: StakingDelegatorInner = try await fetch(cadence: CadenceTemplate.getDelegatorInfo, arguments: [])
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        let replacedCadence = CadenceTemplate.getDelegatorInfo.replace(by: ScriptAddress.addressMap())
+        let rawResponse = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: replacedCadence),
+                                                                           arguments: [.address(address)])
+        
+        let response = try JSONDecoder().decode(StakingDelegatorInner.self, from: rawResponse.data)
         debugPrint("FlowNetwork -> getDelegatorInfo, response = \(response)")
         
         guard let values = response.value?.value else {
             return nil
         }
-        
+
         let compactValues = values.compactMap { $0 }
-        
+
         var results: [String: Int] = [:]
         for value in compactValues {
             if let resultKey = value.key?.value {
@@ -452,7 +490,7 @@ extension FlowNetwork {
                 results[resultKey] = resultValue
             }
         }
-        
+
         return results
     }
 }
@@ -498,7 +536,6 @@ extension FlowNetwork {
         
         let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: replacedCadence),
                                                                            arguments: [.address(address)])
-
         let model: T = try response.decode()
         return model
     }

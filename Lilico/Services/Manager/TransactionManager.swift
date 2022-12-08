@@ -88,6 +88,7 @@ extension TransactionManager {
         case transferNFT
         case fclTransaction
         case claimDomain
+        case stakeFlow
     }
     
     enum InternalStatus: Int, Codable {
@@ -304,6 +305,8 @@ class TransactionManager {
             if let model = holder.decodedObject(NFTTransferModel.self) {
                 NFTUIKitCache.cache.transferedNFT(model.nft.response)
             }
+        case .stakeFlow:
+            StakingManager.shared.refresh()
         case .common:
             Task {
                 try? await WalletManager.shared.fetchWalletDatas()

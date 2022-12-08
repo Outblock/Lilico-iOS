@@ -184,12 +184,17 @@ extension StakeAmountViewModel {
                     return
                 }
                 
-                // TODO: stake with delegatorId
+                let txId = try await FlowNetwork.stakeFlow(providerId: provider.id, delegatorId: delegatorId, amount: inputTextNum)
+                let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow, data: Data())
                 
-//                DispatchQueue.main.async {
-//                    HUD.success(title: "yes")
-//                    self.isRequesting = false
-//                }
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    self.showConfirmView = false
+                    TransactionManager.shared.newTransaction(holder: holder)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        Router.pop()
+                    }
+                }
             } catch {
                 debugPrint("StakeGuideViewModel: catch error \(error)")
                 failureBlock()

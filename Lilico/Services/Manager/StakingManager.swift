@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 let StakingDefaultApy: Double = 0.093
 let StakingDefaultNormalApy: Double = 0.08
@@ -21,8 +22,9 @@ class StakingManager: ObservableObject {
     @Published var apyYear: Double = StakingDefaultApy
     @Published var isSetup: Bool = false
     
+    private var cancelSet = Set<AnyCancellable>()
+    
     var stakingCount: Double {
-        var count: Double = 0
         return info.nodes.reduce(0.0) { partialResult, node in
             partialResult + node.tokensCommitted + node.tokensStaked
         }
@@ -40,10 +42,22 @@ class StakingManager: ObservableObject {
         _ = StakingProviderCache.cache
         loadCache()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(willReset), name: .willResetWallet, object: nil)
+        UserManager.shared.$isLoggedIn.sink { _ in
+            DispatchQueue.main.async {
+                if UserManager.shared.isLoggedIn == true {
+                    self.refresh()
+                } else {
+                    self.willReset()
+                }
+            }
+        }.store(in: &cancelSet)
     }
     
     func refresh() {
+        if !UserManager.shared.isLoggedIn {
+            return
+        }
+        
         updateApy()
         updateSetupStatus()
         queryStakingInfo()
@@ -90,6 +104,7 @@ extension StakingManager {
                 
                 if let apyYear = try await FlowNetwork.getStakingApyByYear() {
                     DispatchQueue.main.async {
+                        self.apyYear = apyYear
                         self.saveCache()
                     }
                 }
@@ -119,6 +134,8 @@ extension StakingManager {
             DispatchQueue.main.sync {
                 self.delegatorIds = response
             }
+        } else {
+            debugPrint("StakingManager -> refreshDelegatorInfo is empty")
         }
     }
     

@@ -228,7 +228,11 @@ extension UserManager {
 
 extension UserManager {
     private func refreshFlags() {
-        isLoggedIn = userInfo != nil
+        let newIsLoggedIn = userInfo != nil
+        if isLoggedIn != newIsLoggedIn {
+            isLoggedIn = newIsLoggedIn
+        }
+        
         isAnonymous = Auth.auth().currentUser?.isAnonymous ?? true
     }
 
