@@ -16,6 +16,14 @@ struct StakingNode: Codable {
     let tokensRewarded: Double
     let tokensUnstaked: Double
     let tokensRequestedToUnstake: Double
+    
+    var stakingCount: Double {
+        return tokensCommitted + tokensStaked
+    }
+    
+    var isLilico: Bool {
+        return StakingProviderCache.cache.providers.first { $0.isLilico }?.id == nodeID
+    }
 }
 
 struct StakingInfo: Codable {

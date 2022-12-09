@@ -23,12 +23,7 @@ import Kingfisher
 struct TokenDetailView: RouteableView {
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var vm: TokenDetailViewModel
-    
-    @State private var stakedFlowNum = 649.00
-    @State private var dailyRewardNum = 0.88
-    @State private var mothlyRewardNum = 0.88
-    @State private var dailyRewardFlow = 0.123
-    @State private var mothlyRewardFlow = 1.123
+    @StateObject private var stakingManager = StakingManager.shared
     
     private let lightGradientColors: [Color] = [.white.opacity(0), Color(hex: "#E6E6E6").opacity(0), Color(hex: "#E6E6E6").opacity(1)]
     private let darkGradientColors: [Color] = [.white.opacity(0), .white.opacity(0), Color(hex: "#282828").opacity(1)]
@@ -46,8 +41,8 @@ struct TokenDetailView: RouteableView {
             LazyVStack(spacing: 12) {
                 summaryView
                 moreView.visibility(vm.hasRateAndChartData ? .visible : .gone)
-                stakeAdView.visibility(.visible)
-                stakeRewardView.visibility(.visible)
+                stakeAdView.visibility(stakingManager.isStaked || !vm.token.isFlowCoin ? .gone : .visible)
+                stakeRewardView.visibility(stakingManager.isStaked && vm.token.isFlowCoin ? .visible : .gone)
                 activitiesView.visibility(vm.recentTransfers.isEmpty ? .gone : .visible)
                 chartContainerView.visibility(vm.hasRateAndChartData ? .visible : .gone)
             }
@@ -510,7 +505,7 @@ extension TokenDetailView {
                     Router.route(to: RouteMap.Wallet.stakingList)
                 } label: {
                     HStack(spacing: 10) {
-                        Text("\(stakedFlowNum.formatCurrencyString(digits: 2)) \(vm.token.symbol?.uppercased() ?? "?")")
+                        Text("\(stakingManager.stakingCount.formatCurrencyString(digits: 3)) \(vm.token.symbol?.uppercased() ?? "?")")
                             .font(.inter(size: 14))
                             .foregroundColor(Color.LL.Neutrals.text)
                         
@@ -533,11 +528,11 @@ extension TokenDetailView {
                         .font(.inter(size: 14, weight: .bold))
                         .foregroundColor(Color.LL.Neutrals.text)
                     
-                    Text(dailyRewardNum.formatCurrencyString(digits: 2))
+                    Text("\(CurrencyCache.cache.currentCurrency.symbol)\(stakingManager.dayRewardsASUSD.formatCurrencyString(digits: 3, considerCustomCurrency: true))")
                         .font(.inter(size: 24, weight: .bold))
                         .foregroundColor(Color.LL.Neutrals.text)
                     
-                    Text("\(dailyRewardFlow.formatCurrencyString()) \(vm.token.symbol?.uppercased() ?? "?")")
+                    Text("\(stakingManager.dayRewards.formatCurrencyString(digits: 3)) \(vm.token.symbol?.uppercased() ?? "?")")
                         .font(.inter(size: 12, weight: .semibold))
                         .foregroundColor(Color.LL.Neutrals.text3)
                 }
@@ -552,11 +547,11 @@ extension TokenDetailView {
                         .font(.inter(size: 14, weight: .bold))
                         .foregroundColor(Color.LL.Neutrals.text)
                     
-                    Text(mothlyRewardNum.formatCurrencyString(digits: 2))
+                    Text("\(CurrencyCache.cache.currentCurrency.symbol)\(stakingManager.monthRewardsASUSD.formatCurrencyString(digits: 3, considerCustomCurrency: true))")
                         .font(.inter(size: 24, weight: .bold))
                         .foregroundColor(Color.LL.Neutrals.text)
                     
-                    Text("\(mothlyRewardFlow.formatCurrencyString()) \(vm.token.symbol?.uppercased() ?? "?")")
+                    Text("\(stakingManager.monthRewards.formatCurrencyString(digits: 3)) \(vm.token.symbol?.uppercased() ?? "?")")
                         .font(.inter(size: 12, weight: .semibold))
                         .foregroundColor(Color.LL.Neutrals.text3)
                 }

@@ -451,7 +451,7 @@ extension FlowNetwork {
             return StakingNode(delegatorId: Int(value.getByName("id") ?? "0") ?? 0, nodeID: value.getByName("nodeID") ?? "", tokensCommitted: Double(value.getByName("tokensCommitted") ?? "0") ?? 0, tokensStaked: Double(value.getByName("tokensStaked") ?? "0") ?? 0, tokensUnstaking: Double(value.getByName("tokensUnstaking") ?? "0") ?? 0, tokensRewarded: Double(value.getByName("tokensRewarded") ?? "0") ?? 0, tokensUnstaked: Double(value.getByName("tokensUnstaked") ?? "0") ?? 0, tokensRequestedToUnstake: Double(value.getByName("tokensRequestedToUnstake") ?? "0") ?? 0)
         }
         
-        return nil
+        return StakingInfo(nodes: nodes)
     }
     
     static func getStakingApyByWeek() async throws -> Double? {

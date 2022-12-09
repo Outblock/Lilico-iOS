@@ -32,11 +32,30 @@ class StakingManager: ObservableObject {
         }
     }
     
-    var isStaked: Bool {
-        if info.nodes.isEmpty {
-            refresh()
+    var dayRewards: Double {
+        let yearTotalRewards = info.nodes.reduce(0.0) { partialResult, node in
+            let apy = node.isLilico ? apy : StakingDefaultNormalApy
+            return partialResult + (node.stakingCount * apy)
         }
         
+        return yearTotalRewards / 365.0
+    }
+    
+    var monthRewards: Double {
+        return dayRewards * 30
+    }
+    
+    var dayRewardsASUSD: Double {
+        let coinRate = CoinRateCache.cache.getSummary(for: "flow")?.getLastRate() ?? 0
+        return dayRewards * coinRate
+    }
+    
+    var monthRewardsASUSD: Double {
+        let coinRate = CoinRateCache.cache.getSummary(for: "flow")?.getLastRate() ?? 0
+        return monthRewards * coinRate
+    }
+    
+    var isStaked: Bool {
         return stakingCount > 0
     }
     
