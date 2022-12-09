@@ -146,6 +146,7 @@ extension StakeAmountViewModel {
             do {
                 // check staking is enabled
                 if try await FlowNetwork.stakingIsEnabled() == false {
+                    debugPrint("StakeAmountViewModel: staking is disabled")
                     DispatchQueue.main.async {
                         self.isRequesting = false
                         HUD.error(title: "staking_disabled".localized)
@@ -165,6 +166,7 @@ extension StakeAmountViewModel {
                 }
                 
                 if provider.delegatorId == nil {
+                    debugPrint("StakeAmountViewModel: provider.delegatorId is nil, will create delegator id")
                     // create delegator id to stake (only first time)
                     if try await FlowNetwork.createDelegatorId(providerId: provider.id) == false {
                         debugPrint("StakeAmountViewModel: createDelegatorId failed")
@@ -172,9 +174,13 @@ extension StakeAmountViewModel {
                         return
                     }
                     
+                    debugPrint("StakeAmountViewModel: create delegator id success, refresh delegator info after 2 seconds")
+                    
                     // create delegator id success, delay 2 seconds then refresh delegatorIds
                     try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
                     try await StakingManager.shared.refreshDelegatorInfo()
+                    
+                    debugPrint("StakeAmountViewModel: refreshDelegatorInfo success")
                 }
                 
                 guard let delegatorId = provider.delegatorId else {
@@ -183,6 +189,8 @@ extension StakeAmountViewModel {
                     failureBlock()
                     return
                 }
+                
+                debugPrint("StakeAmountViewModel: provider.delegatorId now get, will stake flow")
                 
                 let txId = try await FlowNetwork.stakeFlow(providerId: provider.id, delegatorId: delegatorId, amount: inputTextNum)
                 let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow, data: Data())
@@ -196,7 +204,7 @@ extension StakeAmountViewModel {
                     }
                 }
             } catch {
-                debugPrint("StakeGuideViewModel: catch error \(error)")
+                debugPrint("StakeAmountViewModel: catch error \(error)")
                 failureBlock()
             }
         }

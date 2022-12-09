@@ -238,6 +238,8 @@ extension WalletManager {
                     self.walletInfo = response
                     self.pollingWalletInfoIfNeeded()
                     debugPrint(response)
+                    
+                    StakingManager.shared.refresh()
                 }
             } catch {
                 DispatchQueue.main.async {

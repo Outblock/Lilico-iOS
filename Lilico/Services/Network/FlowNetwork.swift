@@ -434,7 +434,11 @@ extension FlowNetwork {
     
     static func queryStakeInfo() async throws -> StakingInfo? {
         let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
-        let response: StakingInfoInner = try await fetch(at: address, by: CadenceTemplate.queryStakeInfo)
+        let replacedCadence = CadenceTemplate.queryStakeInfo.replace(by: ScriptAddress.addressMap())
+        let rawResponse = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: replacedCadence),
+                                                                           arguments: [.address(address)])
+        
+        let response = try JSONDecoder().decode(StakingInfoInner.self, from: rawResponse.data)
         debugPrint("FlowNetwork -> queryStakeInfo, response = \(response)")
         
         guard let values = response.value else {
