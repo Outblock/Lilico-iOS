@@ -30,6 +30,17 @@ struct StakingInfo: Codable {
     var nodes: [StakingNode] = []
 }
 
+struct NewStakingInfoInner: Codable {
+    let id: UInt32
+    let nodeID: String
+    let tokensCommitted: Decimal
+    let tokensStaked: Decimal
+    let tokensUnstaking: Decimal
+    let tokensRewarded: Decimal
+    let tokensUnstaked: Decimal
+    let tokensRequestedToUnstake: Decimal
+}
+
 struct StakingInfoInner: Codable {
     let type: String?
     let value: [StakingInfoInner.Value?]?

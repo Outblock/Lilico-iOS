@@ -27,6 +27,8 @@
 		152EEC7528E4F68100C37A67 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152EEC7428E4F68100C37A67 /* Env.swift */; };
 		152EEC7628E4F68100C37A67 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152EEC7428E4F68100C37A67 /* Env.swift */; };
 		1544C62828C812E700B6BA52 /* GoogleOAuth2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1544C62728C812E500B6BA52 /* GoogleOAuth2.plist */; };
+		1545705029461AB7004A278E /* MJRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 1545704F29461AB7004A278E /* MJRefresh */; };
+		1545705229461ABD004A278E /* FMDB in Frameworks */ = {isa = PBXBuildFile; productRef = 1545705129461ABD004A278E /* FMDB */; };
 		154866EC28D0ECE400D012B8 /* FlixAuditEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EB28D0ECE400D012B8 /* FlixAuditEndpoint.swift */; };
 		154866ED28D0ECE400D012B8 /* FlixAuditEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EB28D0ECE400D012B8 /* FlixAuditEndpoint.swift */; };
 		154866F028D0EEF000D012B8 /* FlowTransactionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EF28D0EEF000D012B8 /* FlowTransactionTemplate.swift */; };
@@ -2058,9 +2060,11 @@
 				6AC62AF2286AE92B000876D9 /* FirebaseDynamicLinks in Frameworks */,
 				6AC62AF4286AE936000876D9 /* FirebaseAuth in Frameworks */,
 				6AC62AFC286AE98E000876D9 /* GTMSessionFetcherCore in Frameworks */,
+				1545705029461AB7004A278E /* MJRefresh in Frameworks */,
 				6AC62AFA286AE964000876D9 /* FirebaseStorage in Frameworks */,
 				6AC62B00286AE9D2000876D9 /* GoogleAPIClientForRESTCore in Frameworks */,
 				6AC62AF8286AE955000876D9 /* FirebaseRemoteConfig in Frameworks */,
+				1545705229461ABD004A278E /* FMDB in Frameworks */,
 				6AC62B02286AEA04000876D9 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4599,6 +4603,8 @@
 				6AC62AFD286AE9B6000876D9 /* GoogleAPIClientForREST_Drive */,
 				6AC62AFF286AE9D2000876D9 /* GoogleAPIClientForRESTCore */,
 				6AC62B01286AEA04000876D9 /* GoogleSignIn */,
+				1545704F29461AB7004A278E /* MJRefresh */,
+				1545705129461ABD004A278E /* FMDB */,
 			);
 			productName = LilicoTests;
 			productReference = 1500783B286830EF00A00109 /* LilicoTests.xctest */;
@@ -7032,6 +7038,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 152BB09228AE8FD100B2A2AA /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		1545704F29461AB7004A278E /* MJRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AEA373E28A49DBD004545D4 /* XCRemoteSwiftPackageReference "MJRefresh" */;
+			productName = MJRefresh;
+		};
+		1545705129461ABD004A278E /* FMDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A46754428F2D44800F705A8 /* XCRemoteSwiftPackageReference "fmdb" */;
+			productName = FMDB;
 		};
 		154B88F1276A1EEB00780E93 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;

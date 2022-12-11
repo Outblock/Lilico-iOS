@@ -21,6 +21,7 @@ enum ScriptAddress: String, CaseIterable {
     case flownsToken = "0xFlowns"
     case metadataViews = "0xMetadataViews"
     case stakingCollection = "0xStakingCollection"
+    case flowIDTableStaking = "0xFlowIDTableStaking"
     
     static func addressMap(on network: LocalUserDefaults.FlowNetworkType = LocalUserDefaults.shared.flowNetwork) -> [String: String] {
         let dict = ScriptAddress.allCases.reduce(into: [String: String]()) { partialResult, script in
@@ -56,6 +57,8 @@ enum ScriptAddress: String, CaseIterable {
             return Flow.Address(hex: "0x1d7e57aa55817448")
         case (.stakingCollection, .mainnet):
             return Flow.Address(hex: "0x8d0e87b65159ae63")
+        case (.flowIDTableStaking, .mainnet):
+            return Flow.Address(hex: "0x8624b52f9ddcd04a")
             
             // Testnet
         case (.fungibleToken, .testnet):
@@ -82,6 +85,8 @@ enum ScriptAddress: String, CaseIterable {
             return Flow.Address(hex: "0x631e88ae7f1d7c20")
         case (.stakingCollection, .testnet):
             return Flow.Address(hex: "0x95e019a17d0e23d7")
+        case (.flowIDTableStaking, .testnet):
+            return Flow.Address(hex: "0x9eca2b38b18b5dfe")
         }
     }
 }

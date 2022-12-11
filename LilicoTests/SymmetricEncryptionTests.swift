@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Dapper_Pro
+@testable import Lilico_dev
 
 final class SymmetricEncryptionTests: XCTestCase {
     
