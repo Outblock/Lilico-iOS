@@ -10,6 +10,17 @@ import XCTest
 import WalletCore
 import Flow
 
+struct NewStakingInfoInner: Codable {
+    let id: UInt32
+    let nodeID: String
+    let tokensCommitted: Decimal
+    let tokensStaked: Decimal
+    let tokensUnstaking: Decimal
+    let tokensRewarded: Decimal
+    let tokensUnstaked: Decimal
+    let tokensRequestedToUnstake: Decimal
+}
+
 final class LilicoTests: XCTestCase {
 
     override func setUpWithError() throws {

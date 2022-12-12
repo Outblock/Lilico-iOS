@@ -18,7 +18,7 @@ class StakingManager: ObservableObject {
     private lazy var rootFolder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("staking_cache")
     private lazy var cacheFile = rootFolder.appendingPathComponent("cache_file")
     
-    @Published var info: StakingInfo = StakingInfo()
+    @Published var nodeInfos: [StakingNode] = []
     @Published var delegatorIds: [String: Int] = [:]
     @Published var apy: Double = StakingDefaultApy
     @Published var apyYear: Double = StakingDefaultApy
@@ -27,13 +27,13 @@ class StakingManager: ObservableObject {
     private var cancelSet = Set<AnyCancellable>()
     
     var stakingCount: Double {
-        return info.nodes.reduce(0.0) { partialResult, node in
+        return nodeInfos.reduce(0.0) { partialResult, node in
             partialResult + node.tokensCommitted + node.tokensStaked
         }
     }
     
     var dayRewards: Double {
-        let yearTotalRewards = info.nodes.reduce(0.0) { partialResult, node in
+        let yearTotalRewards = nodeInfos.reduce(0.0) { partialResult, node in
             let apy = node.isLilico ? apy : StakingDefaultNormalApy
             return partialResult + (node.stakingCount * apy)
         }
@@ -139,9 +139,12 @@ extension StakingManager {
             do {
                 if let response = try await FlowNetwork.queryStakeInfo() {
                     DispatchQueue.main.async {
-                        self.info = response
+                        debugPrint("StakingManager -> queryStakingInfo success")
+                        self.nodeInfos = response
                         self.saveCache()
                     }
+                } else {
+                    debugPrint("StakingManager -> queryStakingInfo is empty")
                 }
             } catch {
                 debugPrint("StakingManager -> queryStakingInfo failed: \(error)")
@@ -151,6 +154,7 @@ extension StakingManager {
     
     func refreshDelegatorInfo() async throws {
         if let response = try await FlowNetwork.getDelegatorInfo(), !response.isEmpty {
+            debugPrint("StakingManager -> refreshDelegatorInfo success, \(response)")
             DispatchQueue.main.sync {
                 self.delegatorIds = response
             }
@@ -174,7 +178,7 @@ extension StakingManager {
     }
     
     @objc private func willReset() {
-        self.info = StakingInfo()
+        self.nodeInfos = []
         self.delegatorIds.removeAll()
         self.apy = StakingDefaultApy
         self.apyYear = StakingDefaultApy
@@ -186,7 +190,7 @@ extension StakingManager {
 
 extension StakingManager {
     struct StakingCache: Codable {
-        var info: StakingInfo?
+        var nodeInfos: [StakingNode] = []
         var apy: Double = StakingDefaultApy
         var apyYear: Double = StakingDefaultApy
         var isSetup: Bool = false
@@ -203,7 +207,7 @@ extension StakingManager {
     }
     
     private func saveCache() {
-        let cacheObj = StakingCache(info: info, apy: apy, apyYear: apyYear, isSetup: isSetup)
+        let cacheObj = StakingCache(nodeInfos: nodeInfos, apy: apy, apyYear: apyYear, isSetup: isSetup)
         
         do {
             let data = try JSONEncoder().encode(cacheObj)
@@ -222,14 +226,13 @@ extension StakingManager {
         do {
             let data = try Data(contentsOf: cacheFile)
             let cacheObj = try JSONDecoder().decode(StakingCache.self, from: data)
-            if let info = cacheObj.info {
-                self.info = info
-            }
+            self.nodeInfos = cacheObj.nodeInfos
             self.apy = cacheObj.apy
             self.apyYear = cacheObj.apyYear
             self.isSetup = cacheObj.isSetup
         } catch {
             debugPrint("StakingManager -> loadCache error: \(error)")
+            clearCache()
             return
         }
     }

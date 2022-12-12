@@ -432,26 +432,11 @@ extension FlowNetwork {
         return txId
     }
     
-    static func queryStakeInfo() async throws -> StakingInfo? {
+    static func queryStakeInfo() async throws -> [StakingNode]? {
         let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
-        let replacedCadence = CadenceTemplate.queryStakeInfo.replace(by: ScriptAddress.addressMap())
-        let rawResponse = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: replacedCadence),
-                                                                           arguments: [.address(address)])
-        
-        let response = try JSONDecoder().decode(StakingInfoInner.self, from: rawResponse.data)
+        let response: [StakingNode] = try await self.fetch(at: address, by: CadenceTemplate.queryStakeInfo)
         debugPrint("FlowNetwork -> queryStakeInfo, response = \(response)")
-        
-        guard let values = response.value else {
-            return nil
-        }
-        
-        let compactValues = values.compactMap { $0 }
-        
-        let nodes = compactValues.map { value in
-            return StakingNode(delegatorId: Int(value.getByName("id") ?? "0") ?? 0, nodeID: value.getByName("nodeID") ?? "", tokensCommitted: Double(value.getByName("tokensCommitted") ?? "0") ?? 0, tokensStaked: Double(value.getByName("tokensStaked") ?? "0") ?? 0, tokensUnstaking: Double(value.getByName("tokensUnstaking") ?? "0") ?? 0, tokensRewarded: Double(value.getByName("tokensRewarded") ?? "0") ?? 0, tokensUnstaked: Double(value.getByName("tokensUnstaked") ?? "0") ?? 0, tokensRequestedToUnstake: Double(value.getByName("tokensRequestedToUnstake") ?? "0") ?? 0)
-        }
-        
-        return StakingInfo(nodes: nodes)
+        return response
     }
     
     static func getStakingApyByWeek() async throws -> Double? {
