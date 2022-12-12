@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct StakingDetailView: RouteableView {
+    @StateObject private var vm: StakingDetailViewModel
+    
+    init(provider: StakingProvider, node: StakingNode) {
+        _vm = StateObject(wrappedValue: StakingDetailViewModel(provider: provider, node: node))
+    }
+    
     var title: String {
         return "staking_detail".localized
     }
@@ -87,11 +93,11 @@ struct StakingDetailView: RouteableView {
             Spacer()
             
             HStack(alignment: .bottom, spacing: 0) {
-                Text("$1580.88")
+                Text("\(CurrencyCache.cache.currencySymbol)\(vm.node.stakingCountASUSD.formatCurrencyString(digits: 3, considerCustomCurrency: true))")
                     .font(.inter(size: 32, weight: .semibold))
                     .foregroundColor(Color.LL.Neutrals.text)
                 
-                Text("USD")
+                Text(CurrencyCache.cache.currentCurrency.rawValue)
                     .font(.inter(size: 14, weight: .medium))
                     .foregroundColor(Color.LL.Neutrals.text)
                     .padding(.leading, 4)
@@ -105,7 +111,7 @@ struct StakingDetailView: RouteableView {
                     .resizable()
                     .frame(width: 16, height: 16)
                 
-                Text("90.76")
+                Text(vm.node.stakingCount.formatCurrencyString(digits: 3))
                     .font(.inter(size: 14, weight: .semibold))
                     .foregroundColor(Color.LL.Neutrals.text)
                 
@@ -117,7 +123,7 @@ struct StakingDetailView: RouteableView {
                     .frame(width: 1, height: 12)
                     .background(Color.LL.Neutrals.note)
                 
-                Text("1299.87")
+                Text("\(vm.availableAmount.formatCurrencyString(digits: 3))")
                     .font(.inter(size: 14, weight: .semibold))
                     .foregroundColor(Color.LL.Neutrals.text)
                 
@@ -136,7 +142,7 @@ struct StakingDetailView: RouteableView {
                     .padding(.bottom, 4)
                 
                 HStack(alignment: .bottom, spacing: 0) {
-                    Text("187.00")
+                    Text("\(vm.node.tokensRewarded.formatCurrencyString(digits: 3))")
                         .font(.inter(size: 24, weight: .semibold))
                         .foregroundColor(Color.LL.Neutrals.text)
                     

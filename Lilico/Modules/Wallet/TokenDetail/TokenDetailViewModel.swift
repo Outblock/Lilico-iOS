@@ -203,6 +203,10 @@ extension TokenDetailViewModel {
             UIApplication.shared.open(url)
         }
     }
+    
+    func stakeDetailAction() {
+        Router.route(to: RouteMap.Wallet.stakingList)
+    }
 }
 
 // MARK: - Fetch & Refresh

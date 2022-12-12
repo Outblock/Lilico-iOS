@@ -8,9 +8,38 @@
 import SwiftUI
 import Kingfisher
 import UIKit
+import Combine
+
+struct StakingListItemModel {
+    let provider: StakingProvider
+    let nodeInfo: StakingNode
+}
+
+class StakingListViewModel: ObservableObject {
+    @Published var items: [StakingListItemModel] = []
+    private var cancelSet = Set<AnyCancellable>()
+    
+    init() {
+        StakingManager.shared.$nodeInfos.sink { infos in
+            DispatchQueue.main.async {
+                self.refresh()
+            }
+        }.store(in: &cancelSet)
+    }
+    
+    private func refresh() {
+        var items = [StakingListItemModel]()
+        for node in StakingManager.shared.nodeInfos {
+            if let provider = StakingManager.shared.providerForNodeId(node.nodeID) {
+                items.append(StakingListItemModel(provider: provider, nodeInfo: node))
+            }
+        }
+        self.items = items
+    }
+}
 
 struct StakingListView: RouteableView {
-    @State var dataList = 0...1
+    @StateObject private var vm = StakingListViewModel()
     
     var title: String {
         return "staking_list_title".localized
@@ -50,19 +79,23 @@ struct StakingListView: RouteableView {
     var listView: some View {
         ScrollView {
             LazyVStack(spacing: 12) {
-                ForEach(dataList, id: \.self) { _ in
-                    createListCell()
+                ForEach(vm.items, id: \.nodeInfo.id) { item in
+                    Button {
+                        Router.route(to: RouteMap.Wallet.stakeDetail(item.provider, item.nodeInfo))
+                    } label: {
+                        createListCell(item)
+                    }
                 }
             }
         }
     }
     
-    func createListCell() -> some View {
+    func createListCell(_ item: StakingListItemModel) -> some View {
         VStack(spacing: 0) {
             
             // header
             HStack(spacing: 0) {
-                KFImage.url(nil)
+                KFImage.url(item.provider.iconURL)
                     .placeholder({
                         Image("placeholder")
                             .resizable()
@@ -72,12 +105,12 @@ struct StakingListView: RouteableView {
                     .frame(width: 24, height: 24)
                     .cornerRadius(12)
                 
-                Text("Lilico")
+                Text(item.provider.name)
                     .font(.inter(size: 14, weight: .bold))
                     .foregroundColor(Color.LL.Neutrals.text)
                     .padding(.leading, 8)
                 
-                Text("+5.2%")
+                Text(item.provider.apyYearPercentString)
                     .font(.inter(size: 12, weight: .semibold))
                     .foregroundColor(Color.LL.Success.success1)
                     .padding(.horizontal, 5)
@@ -111,7 +144,7 @@ struct StakingListView: RouteableView {
                         .font(.inter(size: 12, weight: .medium))
                         .foregroundColor(Color.LL.Neutrals.text4)
                     
-                    Text(AttributedString(numAttributedString()))
+                    Text(AttributedString(numAttributedString(num: item.nodeInfo.stakingCount)))
                 }
                 .padding(.all, 13)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -124,7 +157,7 @@ struct StakingListView: RouteableView {
                         .font(.inter(size: 12, weight: .medium))
                         .foregroundColor(Color.LL.Neutrals.text4)
                     
-                    Text(AttributedString(numAttributedString()))
+                    Text(AttributedString(numAttributedString(num: item.nodeInfo.tokensRewarded)))
                 }
                 .padding(.all, 13)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -140,11 +173,11 @@ struct StakingListView: RouteableView {
         }
     }
     
-    func numAttributedString() -> NSAttributedString {
+    func numAttributedString(num: Double) -> NSAttributedString {
         let boldAttrs: [NSAttributedString.Key: Any] = [.font: UIFont.interBold(size: 18), .foregroundColor: UIColor.LL.Neutrals.text]
         let normalAttrs: [NSAttributedString.Key: Any] = [.font: UIFont.interMedium(size: 12), .foregroundColor: UIColor.LL.Neutrals.text]
         
-        let numStr = NSMutableAttributedString(string: "309.80 ", attributes: boldAttrs)
+        let numStr = NSMutableAttributedString(string: "\(num.formatCurrencyString(digits: 3)) ", attributes: boldAttrs)
         let normalStr = NSAttributedString(string: "Flow", attributes: normalAttrs)
         
         numStr.append(normalStr)

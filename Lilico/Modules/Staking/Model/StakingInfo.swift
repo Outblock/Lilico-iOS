@@ -24,6 +24,11 @@ struct StakingNode: Codable {
     var isLilico: Bool {
         return StakingProviderCache.cache.providers.first { $0.isLilico }?.id == nodeID
     }
+    
+    var stakingCountASUSD: Double {
+        let rate = CoinRateCache.cache.getSummary(for: "flow")?.getLastRate() ?? 0.0
+        return stakingCount * rate
+    }
 }
 
 // MARK: - DelegatorInner

@@ -491,19 +491,19 @@ extension TokenDetailView {
 
 extension TokenDetailView {
     var stakeRewardView: some View {
-        VStack(spacing: 0) {
-            
-            // header
-            HStack {
-                Text("stake_reward_title".localized)
-                    .font(.inter(size: 16, weight: .semibold))
-                    .foregroundColor(Color.LL.Neutrals.text)
+        Button {
+            vm.stakeDetailAction()
+        } label: {
+            VStack(spacing: 0) {
                 
-                Spacer()
-                
-                Button {
-                    Router.route(to: RouteMap.Wallet.stakingList)
-                } label: {
+                // header
+                HStack {
+                    Text("stake_reward_title".localized)
+                        .font(.inter(size: 16, weight: .semibold))
+                        .foregroundColor(Color.LL.Neutrals.text)
+                    
+                    Spacer()
+                    
                     HStack(spacing: 10) {
                         Text("\(stakingManager.stakingCount.formatCurrencyString(digits: 3)) \(vm.token.symbol?.uppercased() ?? "?")")
                             .font(.inter(size: 14))
@@ -514,57 +514,57 @@ extension TokenDetailView {
                             .foregroundColor(.LL.Other.icon1)
                     }
                     .contentShape(Rectangle())
+                    .frame(height: 50)
                 }
                 .frame(height: 50)
-            }
-            .frame(height: 50)
-            
-            // reward summary
-            HStack(spacing: 12) {
                 
-                // daily
-                VStack(alignment: .leading, spacing: 13) {
-                    Text("stake_daily_reward".localized)
-                        .font(.inter(size: 14, weight: .bold))
-                        .foregroundColor(Color.LL.Neutrals.text)
+                // reward summary
+                HStack(spacing: 12) {
                     
-                    Text("\(CurrencyCache.cache.currentCurrency.symbol)\(stakingManager.dayRewardsASUSD.formatCurrencyString(digits: 3, considerCustomCurrency: true))")
-                        .font(.inter(size: 24, weight: .bold))
-                        .foregroundColor(Color.LL.Neutrals.text)
+                    // daily
+                    VStack(alignment: .leading, spacing: 13) {
+                        Text("stake_daily_reward".localized)
+                            .font(.inter(size: 14, weight: .bold))
+                            .foregroundColor(Color.LL.Neutrals.text)
+                        
+                        Text("\(CurrencyCache.cache.currentCurrency.symbol)\(stakingManager.dayRewardsASUSD.formatCurrencyString(digits: 3, considerCustomCurrency: true))")
+                            .font(.inter(size: 24, weight: .bold))
+                            .foregroundColor(Color.LL.Neutrals.text)
+                        
+                        Text("\(stakingManager.dayRewards.formatCurrencyString(digits: 3)) \(vm.token.symbol?.uppercased() ?? "?")")
+                            .font(.inter(size: 12, weight: .semibold))
+                            .foregroundColor(Color.LL.Neutrals.text3)
+                    }
+                    .padding(.all, 13)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    .background(Color.LL.deepBg)
+                    .cornerRadius(16)
                     
-                    Text("\(stakingManager.dayRewards.formatCurrencyString(digits: 3)) \(vm.token.symbol?.uppercased() ?? "?")")
-                        .font(.inter(size: 12, weight: .semibold))
-                        .foregroundColor(Color.LL.Neutrals.text3)
+                    // mothly
+                    VStack(alignment: .leading, spacing: 13) {
+                        Text("stake_mothly_reward".localized)
+                            .font(.inter(size: 14, weight: .bold))
+                            .foregroundColor(Color.LL.Neutrals.text)
+                        
+                        Text("\(CurrencyCache.cache.currentCurrency.symbol)\(stakingManager.monthRewardsASUSD.formatCurrencyString(digits: 3, considerCustomCurrency: true))")
+                            .font(.inter(size: 24, weight: .bold))
+                            .foregroundColor(Color.LL.Neutrals.text)
+                        
+                        Text("\(stakingManager.monthRewards.formatCurrencyString(digits: 3)) \(vm.token.symbol?.uppercased() ?? "?")")
+                            .font(.inter(size: 12, weight: .semibold))
+                            .foregroundColor(Color.LL.Neutrals.text3)
+                    }
+                    .padding(.all, 13)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    .background(Color.LL.deepBg)
+                    .cornerRadius(16)
                 }
-                .padding(.all, 13)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                .background(Color.LL.deepBg)
-                .cornerRadius(16)
-                
-                // mothly
-                VStack(alignment: .leading, spacing: 13) {
-                    Text("stake_mothly_reward".localized)
-                        .font(.inter(size: 14, weight: .bold))
-                        .foregroundColor(Color.LL.Neutrals.text)
-                    
-                    Text("\(CurrencyCache.cache.currentCurrency.symbol)\(stakingManager.monthRewardsASUSD.formatCurrencyString(digits: 3, considerCustomCurrency: true))")
-                        .font(.inter(size: 24, weight: .bold))
-                        .foregroundColor(Color.LL.Neutrals.text)
-                    
-                    Text("\(stakingManager.monthRewards.formatCurrencyString(digits: 3)) \(vm.token.symbol?.uppercased() ?? "?")")
-                        .font(.inter(size: 12, weight: .semibold))
-                        .foregroundColor(Color.LL.Neutrals.text3)
-                }
-                .padding(.all, 13)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                .background(Color.LL.deepBg)
-                .cornerRadius(16)
             }
-        }
-        .padding(.horizontal, 18)
-        .padding(.bottom, 14)
-        .background {
-            Color.LL.Neutrals.background.cornerRadius(16)
+            .padding(.horizontal, 18)
+            .padding(.bottom, 14)
+            .background {
+                Color.LL.Neutrals.background.cornerRadius(16)
+            }
         }
     }
     

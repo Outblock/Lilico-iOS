@@ -59,6 +59,10 @@ class StakingManager: ObservableObject {
         return stakingCount > 0
     }
     
+    func providerForNodeId(_ nodeId: String) -> StakingProvider? {
+        return StakingProviderCache.cache.providers.first { $0.id == nodeId }
+    }
+    
     init() {
         _ = StakingProviderCache.cache
         createFolderIfNeeded()
