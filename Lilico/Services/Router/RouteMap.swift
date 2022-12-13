@@ -111,7 +111,7 @@ extension RouteMap {
         case stakingList
         case stakingSelectProvider
         case stakeGuide
-        case stakeAmount(StakingProvider)
+        case stakeAmount(StakingProvider, isUnstake: Bool = false)
         case stakeDetail(StakingProvider, StakingNode)
     }
 }
@@ -157,8 +157,8 @@ extension RouteMap.Wallet: RouterTarget {
             navi.push(content: SelectProviderView())
         case .stakeGuide:
             navi.push(content: StakeGuideView())
-        case .stakeAmount(let provider):
-            navi.push(content: StakeAmountView(provider: provider))
+        case .stakeAmount(let provider, let isUnstake):
+            navi.push(content: StakeAmountView(provider: provider, isUnstake: isUnstake))
         case .stakeDetail(let provider, let node):
             navi.push(content: StakingDetailView(provider: provider, node: node))
         }

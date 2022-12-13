@@ -466,6 +466,7 @@
 "stake_guide_desc_4_4" = ".";
 
 "stake_amount" = "Stake Amount";
+"unstake_amount" = "Unstake Amount";
 "stake_amount_flow" = "Amount Flow";
 "stake" = "Stake";
 "stake_rate" = "Rate";
@@ -482,9 +483,12 @@
 "stake_apr" = "APR";
 "stake_unstake" = "Unstake";
 "stake_confirm_title" = "Confirm Your Stake";
+"unstake_confirm_title" = "Confirm Your Unstake";
 
 "staking_disabled" = "Staking is disabled";
 "staking_provider" = "Provider";
 "staking_provider_section_title" = "STAKING PROVIDER";
 "staking" = "Staking";
 "staking_confirm" = "Confirm";
+"hold_to_stake" = "Hold to stake";
+"hold_to_unstake" = "Hold to unstake";

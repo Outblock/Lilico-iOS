@@ -53,6 +53,6 @@ class StakingDetailViewModel: ObservableObject {
     }
     
     func unstakeAction() {
-        
+        Router.route(to: RouteMap.Wallet.stakeAmount(provider, isUnstake: true))
     }
 }

@@ -29,6 +29,7 @@ extension StakeAmountViewModel {
 
 class StakeAmountViewModel: ObservableObject {
     @Published var provider: StakingProvider
+    @Published var isUnstake: Bool
     
     @Published var inputText: String = ""
     @Published var inputTextNum: Double = 0
@@ -71,9 +72,10 @@ class StakeAmountViewModel: ObservableObject {
         return errorType == .none && inputTextNum > 0
     }
     
-    init(provider: StakingProvider) {
+    init(provider: StakingProvider, isUnstake: Bool) {
         self.provider = provider
-        balance = WalletManager.shared.getBalance(bySymbol: "flow")
+        self.isUnstake = isUnstake
+        balance = isUnstake ? (provider.currentNode?.stakingCount ?? 0) : WalletManager.shared.getBalance(bySymbol: "flow")
     }
     
     private func refreshState() {
@@ -82,7 +84,7 @@ class StakeAmountViewModel: ObservableObject {
             return
         }
         
-        if balance - inputTextNum < 0.001 {
+        if balance - inputTextNum < 0.001, !isUnstake {
             errorType = .belowMinimum
             return
         }

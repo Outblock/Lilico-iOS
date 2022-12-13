@@ -48,7 +48,7 @@ struct StakingDetailView: RouteableView {
     var controlContainerView: some View {
         HStack(spacing: 13) {
             Button {
-                
+                vm.unstakeAction()
             } label: {
                 Text("stake_unstake".localized)
                     .font(.inter(size: 16, weight: .bold))

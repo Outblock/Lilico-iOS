@@ -10,13 +10,15 @@ import Kingfisher
 
 struct StakeAmountView: RouteableView {
     @StateObject private var vm: StakeAmountViewModel
+    private var isUnstake: Bool = false
     
-    init(provider: StakingProvider) {
-        _vm = StateObject(wrappedValue: StakeAmountViewModel(provider: provider))
+    init(provider: StakingProvider, isUnstake: Bool) {
+        _vm = StateObject(wrappedValue: StakeAmountViewModel(provider: provider, isUnstake: isUnstake))
+        self.isUnstake = isUnstake
     }
     
     var title: String {
-        return "stake_amount".localized
+        return self.isUnstake ? "unstake_amount".localized : "stake_amount".localized
     }
     
     var navigationBarTitleDisplayMode: NavigationBarItem.TitleDisplayMode {
@@ -76,7 +78,7 @@ struct StakeAmountView: RouteableView {
                     .resizable()
                     .frame(width: 12, height: 12)
                 
-                Text("\(vm.balance.formatCurrencyString()) \("stake_flow_available".localized)")
+                Text("\(vm.balance.formatCurrencyString()) \(vm.isUnstake ? "staked_flow".localized : "stake_flow_available".localized)")
                     .font(.inter(size: 14, weight: .medium))
                     .foregroundColor(Color.LL.Neutrals.text2)
                 
@@ -180,6 +182,7 @@ struct StakeAmountView: RouteableView {
         .background(Color.LL.Neutrals.background)
         .cornerRadius(16)
         .padding(.top, 12)
+        .visibility(vm.isUnstake ? .gone : .visible)
     }
     
     var stakeBtn: some View {
@@ -213,7 +216,7 @@ extension StakeAmountView {
         
         var body: some View {
             VStack {
-                SheetHeaderView(title: "stake_confirm_title".localized)
+                SheetHeaderView(title: vm.isUnstake ? "unstake_confirm_title".localized : "stake_confirm_title".localized)
                 
                 VStack(spacing: 18) {
                     detailView
@@ -332,14 +335,13 @@ extension StakeAmountView {
             .padding(.horizontal, 18)
             .background(Color.LL.Neutrals.background)
             .cornerRadius(16)
+            .visibility(vm.isUnstake ? .gone : .visible)
         }
         
         var confirmBtn: some View {
-            VPrimaryButton(model: ButtonStyle.stakePrimary,
-                           state: vm.buttonState,
-                           action: {
+            WalletSendButtonView(buttonText: vm.isUnstake ? "hold_to_unstake".localized : "hold_to_stake".localized) {
                 vm.confirmStakeAction()
-            }, title: vm.buttonState == .loading ? "working_on_it".localized : "staking_confirm".localized)
+            }
             .padding(.bottom)
         }
     }

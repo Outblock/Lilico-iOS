@@ -35,4 +35,8 @@ struct StakingProvider: Codable {
     var delegatorId: Int? {
         return StakingManager.shared.delegatorIds[id]
     }
+    
+    var currentNode: StakingNode? {
+        return StakingManager.shared.nodeInfos.first(where: { $0.nodeID == self.id })
+    }
 }
