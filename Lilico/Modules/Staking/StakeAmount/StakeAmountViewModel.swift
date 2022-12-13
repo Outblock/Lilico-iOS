@@ -59,11 +59,11 @@ class StakeAmountViewModel: ObservableObject {
     }
     
     var yearRewardFlowString: String {
-        return (inputTextNum * (1 + provider.apyYear)).formatCurrencyString(digits: 2)
+        return (inputTextNum * (1 + provider.rate)).formatCurrencyString(digits: 2)
     }
     
     var yearRewardWithCurrencyString: String {
-        let numString = (inputNumAsUSD * (1 + provider.apyYear)).formatCurrencyString(digits: 2, considerCustomCurrency: true)
+        let numString = (inputNumAsUSD * (1 + provider.rate)).formatCurrencyString(digits: 2, considerCustomCurrency: true)
         return "\(CurrencyCache.cache.currencySymbol)\(numString) \(CurrencyCache.cache.currentCurrency.rawValue)"
     }
     

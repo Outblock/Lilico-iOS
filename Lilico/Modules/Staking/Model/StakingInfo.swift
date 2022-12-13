@@ -29,6 +29,25 @@ struct StakingNode: Codable {
         let rate = CoinRateCache.cache.getSummary(for: "flow")?.getLastRate() ?? 0.0
         return stakingCount * rate
     }
+    
+    var dayRewards: Double {
+        let apy = isLilico ? StakingManager.shared.apy : StakingDefaultNormalApy
+        return stakingCount * apy / 365.0
+    }
+    
+    var monthRewards: Double {
+        return dayRewards * 30
+    }
+    
+    var dayRewardsASUSD: Double {
+        let coinRate = CoinRateCache.cache.getSummary(for: "flow")?.getLastRate() ?? 0
+        return dayRewards * coinRate
+    }
+    
+    var monthRewardsASUSD: Double {
+        let coinRate = CoinRateCache.cache.getSummary(for: "flow")?.getLastRate() ?? 0
+        return monthRewards * coinRate
+    }
 }
 
 // MARK: - DelegatorInner

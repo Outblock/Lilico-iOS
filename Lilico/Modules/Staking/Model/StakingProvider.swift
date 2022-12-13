@@ -23,12 +23,12 @@ struct StakingProvider: Codable {
         return URL(string: icon ?? "")
     }
     
-    var apyYear: Double {
-        return isLilico ? StakingManager.shared.apyYear : StakingDefaultNormalApy
+    var rate: Double {
+        return isLilico ? StakingManager.shared.apy : StakingDefaultNormalApy
     }
     
     var apyYearPercentString: String {
-        let num = (apyYear * 100).formatCurrencyString(digits: 2)
+        let num = (rate * 100).formatCurrencyString(digits: 2)
         return "\(num)%"
     }
     

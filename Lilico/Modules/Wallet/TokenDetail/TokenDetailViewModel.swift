@@ -205,7 +205,11 @@ extension TokenDetailViewModel {
     }
     
     func stakeDetailAction() {
-        Router.route(to: RouteMap.Wallet.stakingList)
+        if StakingManager.shared.nodeInfos.count == 1, let node = StakingManager.shared.nodeInfos.first, let provider = StakingProviderCache.cache.providers.first(where: { $0.id == node.nodeID }) {
+            Router.route(to: RouteMap.Wallet.stakeDetail(provider, node))
+        } else {
+            Router.route(to: RouteMap.Wallet.stakingList)
+        }
     }
 }
 

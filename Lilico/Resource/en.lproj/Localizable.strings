@@ -475,8 +475,11 @@
 "stake_flow_available" = "Flow available";
 "stake_epoch_starts" = "Epoch Starts";
 "stake_epoch_ends" = "Epoch Ends";
+"stake_unstaked_amount" = "Unstaked Amount";
 "stake_unstaking_amount" = "Unstaking Amount";
-"stake_next_epoch" = "Next Epoch";
+"stake_committed_amount" = "Committed Amount";
+"stake_requested_to_unstake_amount" = "Requested To Unstake Amount";
+"stake_apr" = "APR";
 "stake_unstake" = "Unstake";
 "stake_confirm_title" = "Confirm Your Stake";
 

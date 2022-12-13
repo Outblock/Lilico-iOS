@@ -20,9 +20,9 @@ class StakingListViewModel: ObservableObject {
     private var cancelSet = Set<AnyCancellable>()
     
     init() {
-        StakingManager.shared.$nodeInfos.sink { infos in
+        StakingManager.shared.$nodeInfos.sink { [weak self] infos in
             DispatchQueue.main.async {
-                self.refresh()
+                self?.refresh()
             }
         }.store(in: &cancelSet)
     }
@@ -122,7 +122,7 @@ struct StakingListView: RouteableView {
                 Spacer()
                 
                 Button {
-                    
+                    Router.route(to: RouteMap.Wallet.stakeAmount(item.provider))
                 } label: {
                     Text("staking_claim".localized)
                         .font(.inter(size: 14, weight: .bold))

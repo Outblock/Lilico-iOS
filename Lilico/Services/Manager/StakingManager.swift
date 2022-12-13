@@ -12,6 +12,10 @@ import Combine
 let StakingDefaultApy: Double = 0.093
 let StakingDefaultNormalApy: Double = 0.08
 
+// 2022-10-27 07:00
+private let StakeStartTime: TimeInterval = 1666825200
+private let StakingGapSeconds: TimeInterval = 7 * 24 * 60 * 60
+
 class StakingManager: ObservableObject {
     static let shared = StakingManager()
     
@@ -21,7 +25,6 @@ class StakingManager: ObservableObject {
     @Published var nodeInfos: [StakingNode] = []
     @Published var delegatorIds: [String: Int] = [:]
     @Published var apy: Double = StakingDefaultApy
-    @Published var apyYear: Double = StakingDefaultApy
     @Published var isSetup: Bool = false
     
     private var cancelSet = Set<AnyCancellable>()
@@ -57,6 +60,20 @@ class StakingManager: ObservableObject {
     
     var isStaked: Bool {
         return stakingCount > 0
+    }
+    
+    var stakingEpochStartTime: Date {
+        let current = Date().timeIntervalSince1970
+        var startTime = StakeStartTime
+        while startTime + StakingGapSeconds < current {
+            startTime += StakingGapSeconds
+        }
+        
+        return Date(timeIntervalSince1970: startTime)
+    }
+    
+    var stakingEpochEndTime: Date {
+        return stakingEpochStartTime.addingTimeInterval(StakingGapSeconds)
     }
     
     func providerForNodeId(_ nodeId: String) -> StakingProvider? {
@@ -125,13 +142,6 @@ extension StakingManager {
                         self.saveCache()
                     }
                 }
-                
-                if let apyYear = try await FlowNetwork.getStakingApyByYear() {
-                    DispatchQueue.main.async {
-                        self.apyYear = apyYear
-                        self.saveCache()
-                    }
-                }
             } catch {
                 debugPrint("StakingManager -> updateApy failed: \(error)")
             }
@@ -185,7 +195,6 @@ extension StakingManager {
         self.nodeInfos = []
         self.delegatorIds.removeAll()
         self.apy = StakingDefaultApy
-        self.apyYear = StakingDefaultApy
         self.isSetup = false
         
         clearCache()
@@ -196,7 +205,6 @@ extension StakingManager {
     struct StakingCache: Codable {
         var nodeInfos: [StakingNode] = []
         var apy: Double = StakingDefaultApy
-        var apyYear: Double = StakingDefaultApy
         var isSetup: Bool = false
     }
     
@@ -211,7 +219,7 @@ extension StakingManager {
     }
     
     private func saveCache() {
-        let cacheObj = StakingCache(nodeInfos: nodeInfos, apy: apy, apyYear: apyYear, isSetup: isSetup)
+        let cacheObj = StakingCache(nodeInfos: nodeInfos, apy: apy, isSetup: isSetup)
         
         do {
             let data = try JSONEncoder().encode(cacheObj)
@@ -232,7 +240,6 @@ extension StakingManager {
             let cacheObj = try JSONDecoder().decode(StakingCache.self, from: data)
             self.nodeInfos = cacheObj.nodeInfos
             self.apy = cacheObj.apy
-            self.apyYear = cacheObj.apyYear
             self.isSetup = cacheObj.isSetup
         } catch {
             debugPrint("StakingManager -> loadCache error: \(error)")
