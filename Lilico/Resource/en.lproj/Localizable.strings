@@ -492,3 +492,5 @@
 "staking_confirm" = "Confirm";
 "hold_to_stake" = "Hold to stake";
 "hold_to_unstake" = "Hold to unstake";
+
+"staking_not_enabled" = "Staking is under maintenance, please try again later.";

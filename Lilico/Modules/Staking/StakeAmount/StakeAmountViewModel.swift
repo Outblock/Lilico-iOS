@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Flow
 
 extension StakeAmountViewModel {
     enum ErrorType {
@@ -130,6 +131,77 @@ extension StakeAmountViewModel {
         }
     }
     
+    private func stake() async throws -> Flow.ID {
+        // check account staking is setup
+        if !StakingManager.shared.isSetup {
+            debugPrint("StakeAmountViewModel: account staking not setup, setup right now.")
+            
+            if await StakingManager.shared.stakingSetup() == false {
+                debugPrint("StakeAmountViewModel: setup account staking failed.")
+                throw StakingError.stakingSetupFailed
+            }
+        }
+        
+        if provider.delegatorId == nil {
+            debugPrint("StakeAmountViewModel: provider.delegatorId is nil, will create delegator id")
+            // create delegator id to stake (only first time)
+            if try await FlowNetwork.createDelegatorId(providerId: provider.id) == false {
+                debugPrint("StakeAmountViewModel: createDelegatorId failed")
+                throw StakingError.stakingCreateDelegatorIdFailed
+            }
+            
+            debugPrint("StakeAmountViewModel: create delegator id success, refresh delegator info after 2 seconds")
+            
+            // create delegator id success, delay 2 seconds then refresh delegatorIds
+            try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
+            try await StakingManager.shared.refreshDelegatorInfo()
+            
+            debugPrint("StakeAmountViewModel: refreshDelegatorInfo success")
+        }
+        
+        guard let delegatorId = provider.delegatorId else {
+            // can not be nil, something went wrong.
+            debugPrint("StakeAmountViewModel: delegatorId is still nil after fetch delegatorIds, something went wrong")
+            throw StakingError.unknown
+        }
+        
+        debugPrint("StakeAmountViewModel: provider.delegatorId now get, will stake flow")
+        
+        let txId = try await FlowNetwork.stakeFlow(providerId: provider.id, delegatorId: delegatorId, amount: inputTextNum)
+        return txId
+        
+    }
+    
+    private func unstake() async throws -> Flow.ID {
+        if provider.delegatorId == nil {
+            debugPrint("StakeAmountViewModel: provider.delegatorId is nil, will create delegator id")
+            // create delegator id to stake (only first time)
+            if try await FlowNetwork.createDelegatorId(providerId: provider.id) == false {
+                debugPrint("StakeAmountViewModel: createDelegatorId failed")
+                throw StakingError.stakingCreateDelegatorIdFailed
+            }
+            
+            debugPrint("StakeAmountViewModel: create delegator id success, refresh delegator info after 2 seconds")
+            
+            // create delegator id success, delay 2 seconds then refresh delegatorIds
+            try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
+            try await StakingManager.shared.refreshDelegatorInfo()
+            
+            debugPrint("StakeAmountViewModel: refreshDelegatorInfo success")
+        }
+        
+        guard let delegatorId = provider.delegatorId else {
+            // can not be nil, something went wrong.
+            debugPrint("StakeAmountViewModel: delegatorId is still nil after fetch delegatorIds, something went wrong")
+            throw StakingError.unknown
+        }
+        
+        debugPrint("StakeAmountViewModel: provider.delegatorId now get, will unstake flow")
+        
+        let txId = try await FlowNetwork.unstakeFlow(providerId: provider.id, delegatorId: delegatorId, amount: inputTextNum)
+        return txId
+    }
+    
     func confirmStakeAction() {
         if isRequesting {
             return
@@ -137,10 +209,22 @@ extension StakeAmountViewModel {
         
         isRequesting = true
         
-        let failureBlock = {
+        let failureBlock: (String) -> Void = { errorMsg in
             DispatchQueue.main.async {
                 self.isRequesting = false
-                HUD.error(title: "request_failed".localized)
+                HUD.error(title: errorMsg)
+            }
+        }
+        
+        let successBlock: (Flow.ID) -> Void = { txId in
+            DispatchQueue.main.async {
+                self.isRequesting = false
+                self.showConfirmView = false
+                let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow, data: Data())
+                TransactionManager.shared.newTransaction(holder: holder)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    Router.pop()
+                }
             }
         }
         
@@ -149,65 +233,17 @@ extension StakeAmountViewModel {
                 // check staking is enabled
                 if try await FlowNetwork.stakingIsEnabled() == false {
                     debugPrint("StakeAmountViewModel: staking is disabled")
-                    DispatchQueue.main.async {
-                        self.isRequesting = false
-                        HUD.error(title: "staking_disabled".localized)
-                    }
-                    return
+                    throw StakingError.stakingDisabled
                 }
                 
-                // check account staking is setup
-                if !StakingManager.shared.isSetup {
-                    debugPrint("StakeAmountViewModel: account staking not setup, setup right now.")
-                    
-                    if await StakingManager.shared.stakingSetup() == false {
-                        debugPrint("StakeAmountViewModel: setup account staking failed.")
-                        failureBlock()
-                        return
-                    }
-                }
-                
-                if provider.delegatorId == nil {
-                    debugPrint("StakeAmountViewModel: provider.delegatorId is nil, will create delegator id")
-                    // create delegator id to stake (only first time)
-                    if try await FlowNetwork.createDelegatorId(providerId: provider.id) == false {
-                        debugPrint("StakeAmountViewModel: createDelegatorId failed")
-                        failureBlock()
-                        return
-                    }
-                    
-                    debugPrint("StakeAmountViewModel: create delegator id success, refresh delegator info after 2 seconds")
-                    
-                    // create delegator id success, delay 2 seconds then refresh delegatorIds
-                    try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
-                    try await StakingManager.shared.refreshDelegatorInfo()
-                    
-                    debugPrint("StakeAmountViewModel: refreshDelegatorInfo success")
-                }
-                
-                guard let delegatorId = provider.delegatorId else {
-                    // can not be nil, something went wrong.
-                    debugPrint("StakeAmountViewModel: delegatorId is still nil after fetch delegatorIds, something went wrong")
-                    failureBlock()
-                    return
-                }
-                
-                debugPrint("StakeAmountViewModel: provider.delegatorId now get, will stake flow")
-                
-                let txId = try await FlowNetwork.stakeFlow(providerId: provider.id, delegatorId: delegatorId, amount: inputTextNum)
-                let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow, data: Data())
-                
-                DispatchQueue.main.async {
-                    self.isRequesting = false
-                    self.showConfirmView = false
-                    TransactionManager.shared.newTransaction(holder: holder)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        Router.pop()
-                    }
-                }
+                let txId = isUnstake ? try await unstake() : try await stake()
+                successBlock(txId)
+            } catch let error as StakingError {
+                debugPrint("StakeAmountViewModel: catch StakingError \(error)")
+                failureBlock(error.desc)
             } catch {
-                debugPrint("StakeAmountViewModel: catch error \(error)")
-                failureBlock()
+                debugPrint("StakeAmountViewModel: catch extra error \(error)")
+                failureBlock("request_failed".localized)
             }
         }
     }

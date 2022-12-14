@@ -432,6 +432,39 @@ extension FlowNetwork {
         return txId
     }
     
+    static func unstakeFlow(providerId: String, delegatorId: Int, amount: Double) async throws -> Flow.ID {
+        let cadenceString = CadenceTemplate.unstakeFlow.replace(by: ScriptAddress.addressMap())
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        
+        let txId = try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+            
+            arguments {
+                [.string(providerId), .uint32(UInt32(delegatorId)), .ufix64(amount)]
+            }
+            
+            gasLimit {
+                9999
+            }
+        })
+        
+        return txId
+    }
+    
     static func queryStakeInfo() async throws -> [StakingNode]? {
         let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
         let response: [StakingNode] = try await self.fetch(at: address, by: CadenceTemplate.queryStakeInfo)
