@@ -263,7 +263,7 @@ extension StakeAmountView {
                     .background(Color.LL.Neutrals.note)
                 
                 HStack(spacing: 0) {
-                    Text(vm.inputTextNum.formatCurrencyString(digits: 2))
+                    Text(vm.inputTextNum.formatCurrencyString())
                         .font(.inter(size: 24, weight: .bold))
                         .foregroundColor(Color.LL.Neutrals.text)
                     

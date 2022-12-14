@@ -53,19 +53,19 @@ class StakeAmountViewModel: ObservableObject {
     }
     
     var inputNumAsCurrencyString: String {
-        return "\(CurrencyCache.cache.currencySymbol)\(inputNumAsUSD.formatCurrencyString(digits: 2, considerCustomCurrency: true)) \(CurrencyCache.cache.currentCurrency.rawValue)"
+        return "\(CurrencyCache.cache.currencySymbol)\(inputNumAsUSD.formatCurrencyString(considerCustomCurrency: true)) \(CurrencyCache.cache.currentCurrency.rawValue)"
     }
     
     var inputNumAsCurrencyStringInConfirmSheet: String {
-        return "\(CurrencyCache.cache.currencySymbol)\(inputNumAsUSD.formatCurrencyString(digits: 2, considerCustomCurrency: true))"
+        return "\(CurrencyCache.cache.currencySymbol)\(inputNumAsUSD.formatCurrencyString(considerCustomCurrency: true))"
     }
     
     var yearRewardFlowString: String {
-        return (inputTextNum * (1 + provider.rate)).formatCurrencyString(digits: 2)
+        return (inputTextNum * (1 + provider.rate)).formatCurrencyString()
     }
     
     var yearRewardWithCurrencyString: String {
-        let numString = (inputNumAsUSD * (1 + provider.rate)).formatCurrencyString(digits: 2, considerCustomCurrency: true)
+        let numString = (inputNumAsUSD * (1 + provider.rate)).formatCurrencyString(considerCustomCurrency: true)
         return "\(CurrencyCache.cache.currencySymbol)\(numString) \(CurrencyCache.cache.currentCurrency.rawValue)"
     }
     
@@ -116,7 +116,7 @@ extension StakeAmountViewModel {
     }
     
     func percentAction(percent: Double) {
-        inputText = "\((balance * percent).formatCurrencyString(digits: 2))"
+        inputText = "\((balance * percent).formatCurrencyString()"
     }
     
     func stakeBtnAction() {
