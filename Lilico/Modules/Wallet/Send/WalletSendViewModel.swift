@@ -326,6 +326,12 @@ extension WalletSendViewModel {
         let trimedText = text.trim()
         
         if trimedText.isAddress {
+            if let callback = selectCallback {
+                let target = Contact(address: trimedText, avatar: nil, contactName: trimedText, contactType: .external, domain: nil, id: UUID().hashValue, username: nil)
+                callback(target)
+                return
+            }
+            
             sendToAddressAction(trimedText)
             return
         }
