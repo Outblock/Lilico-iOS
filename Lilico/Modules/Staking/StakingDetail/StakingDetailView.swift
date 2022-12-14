@@ -167,9 +167,8 @@ struct StakingDetailView: RouteableView {
             .frame(height: 90)
             .padding(.horizontal, 18)
             .background {
-                Image("bg-stake-detail-card-2")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
+                Rectangle()
+                    .fill(.linearGradient(colors: [Color.LL.Neutrals.background.opacity(0.4), Color(hex: "#FAFAFA")], startPoint: .topLeading, endPoint: .bottomTrailing))
             }
         }
         .frame(height: 236)

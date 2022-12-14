@@ -116,7 +116,7 @@ extension StakeAmountViewModel {
     }
     
     func percentAction(percent: Double) {
-        inputText = "\((balance * percent).formatCurrencyString()"
+        inputText = "\((balance * percent).formatCurrencyString())"
     }
     
     func stakeBtnAction() {
