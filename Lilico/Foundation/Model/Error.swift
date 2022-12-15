@@ -65,6 +65,7 @@ enum NFTError: Error {
 
 enum StakingError: Error {
     case stakingDisabled
+    case stakingNeedSetup
     case stakingSetupFailed
     case stakingCreateDelegatorIdFailed
     case unknown
@@ -73,6 +74,8 @@ enum StakingError: Error {
         switch self {
         case .stakingDisabled:
             return "staking_not_enabled".localized
+        case .stakingSetupFailed:
+            return "staking_setup_failed".localized
         default:
             return "request_failed".localized
         }

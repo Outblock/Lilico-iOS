@@ -119,6 +119,24 @@ extension StakeAmountViewModel {
         inputText = "\((balance * percent).formatCurrencyString())"
     }
     
+    func confirmSetupAction() {
+        Router.dismiss()
+        
+        Task {
+            if await StakingManager.shared.stakingSetup() == false {
+                debugPrint("StakeAmountViewModel: setup account staking failed.")
+                DispatchQueue.main.async {
+                    HUD.error(title: StakingError.stakingSetupFailed.desc)
+                }
+            } else {
+                debugPrint("StakeAmountViewModel: setup account staking success.")
+                DispatchQueue.main.async {
+                    self.confirmStakeAction()
+                }
+            }
+        }
+    }
+    
     func stakeBtnAction() {
         UIApplication.shared.endEditing()
         
@@ -131,15 +149,15 @@ extension StakeAmountViewModel {
         }
     }
     
+    private func stakingSetup() {
+        Router.route(to: RouteMap.Wallet.stakeSetupConfirm(self))
+    }
+    
     private func stake() async throws -> Flow.ID {
         // check account staking is setup
         if !StakingManager.shared.isSetup {
-            debugPrint("StakeAmountViewModel: account staking not setup, setup right now.")
-            
-            if await StakingManager.shared.stakingSetup() == false {
-                debugPrint("StakeAmountViewModel: setup account staking failed.")
-                throw StakingError.stakingSetupFailed
-            }
+            debugPrint("StakeAmountViewModel: account staking not setup")
+            throw StakingError.stakingNeedSetup
         }
         
         if provider.delegatorId == nil {
@@ -238,6 +256,12 @@ extension StakeAmountViewModel {
                 
                 let txId = isUnstake ? try await unstake() : try await stake()
                 successBlock(txId)
+            } catch StakingError.stakingNeedSetup {
+                // run staking setup logic
+                DispatchQueue.main.async {
+                    self.isRequesting = false
+                    self.stakingSetup()
+                }
             } catch let error as StakingError {
                 debugPrint("StakeAmountViewModel: catch StakingError \(error)")
                 failureBlock(error.desc)

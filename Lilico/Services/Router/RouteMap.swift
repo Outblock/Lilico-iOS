@@ -113,6 +113,7 @@ extension RouteMap {
         case stakeGuide
         case stakeAmount(StakingProvider, isUnstake: Bool = false)
         case stakeDetail(StakingProvider, StakingNode)
+        case stakeSetupConfirm(StakeAmountViewModel)
     }
 }
 
@@ -161,6 +162,9 @@ extension RouteMap.Wallet: RouterTarget {
             navi.push(content: StakeAmountView(provider: provider, isUnstake: isUnstake))
         case .stakeDetail(let provider, let node):
             navi.push(content: StakingDetailView(provider: provider, node: node))
+        case .stakeSetupConfirm(let vm):
+            let vc = CustomHostingController(rootView: StakeAmountView.StakeSetupView(vm: vm))
+            Router.topPresentedController().present(vc, animated: true, completion: nil)
         }
     }
 }

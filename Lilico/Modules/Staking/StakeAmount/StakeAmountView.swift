@@ -346,3 +346,57 @@ extension StakeAmountView {
         }
     }
 }
+
+extension StakeAmountView {
+    struct StakeSetupView: View {
+        var vm: StakeAmountViewModel
+        
+        var body: some View {
+            VStack {
+                SheetHeaderView(title: "setup_stake".localized)
+                
+                VStack {
+                    descView
+                    
+                    Image("icon-pig")
+                    
+                    Spacer()
+                    
+                    confirmBtn
+                }
+                .padding(.horizontal, 18)
+                .padding(.bottom, 20)
+            }
+            .backgroundFill(Color.LL.deepBg)
+        }
+        
+        var descView: some View {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("staking_collection_upgrade".localized)
+                    .foregroundColor(Color.LL.Neutrals.text)
+                    .font(.inter(size: 12, weight: .semibold))
+                
+                Divider()
+                    .background(Color.LL.Neutrals.note)
+                
+                Text("setup_stake_desc".localized)
+                    .foregroundColor(Color.LL.Neutrals.text2)
+                    .font(.inter(size: 10, weight: .medium))
+                    .lineSpacing(5)
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 15)
+            .background(Color.LL.Neutrals.background)
+            .cornerRadius(16)
+        }
+        
+        var confirmBtn: some View {
+            VPrimaryButton(model: ButtonStyle.stakePrimary,
+                           state: .enabled,
+                           action: {
+                vm.confirmSetupAction()
+            }, title: "staking_confirm".localized)
+            .padding(.bottom)
+        }
+    }
+}
