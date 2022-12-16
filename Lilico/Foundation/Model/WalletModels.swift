@@ -86,6 +86,10 @@ struct TokenModel: Codable, Identifiable {
         ListedToken(rawValue: symbol ?? "")
     }
     
+    var isFlowCoin: Bool {
+        return symbol?.lowercased() ?? "" == ListedToken.flow.rawValue
+    }
+    
     var contractId: String {
         var addressString = LocalUserDefaults.shared.flowNetwork == .testnet ? address.testnet ?? "" : address.mainnet ?? ""
         addressString = addressString.stripHexPrefix()

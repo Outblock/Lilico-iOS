@@ -440,51 +440,88 @@ extension WalletView {
     struct CoinCell: View {
         let coin: WalletViewModel.WalletCoinItemModel
         @EnvironmentObject var vm: WalletViewModel
+        @StateObject var stakingManager = StakingManager.shared
 
         var body: some View {
-            HStack(spacing: 9) {
-                KFImage.url(coin.token.icon)
-                    .placeholder({
-                        Image("placeholder")
-                            .resizable()
-                    })
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: CoinIconHeight, height: CoinIconHeight)
-                    .clipShape(Circle())
+            VStack(spacing: 0) {
+                HStack(spacing: 18) {
+                    KFImage.url(coin.token.icon)
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: CoinIconHeight, height: CoinIconHeight)
+                        .clipShape(Circle())
 
-                VStack(spacing: 7) {
-                    HStack {
-                        Text(coin.token.name)
-                            .foregroundColor(.LL.Neutrals.text)
-                            .font(.inter(size: 15, weight: .medium))
+                    VStack(spacing: 7) {
+                        HStack {
+                            Text(coin.token.name)
+                                .foregroundColor(.LL.Neutrals.text)
+                                .font(.inter(size: 14, weight: .bold))
 
-                        Spacer()
+                            Spacer()
 
-                        Text("\(vm.isHidden ? "****" : coin.balance.formatCurrencyString()) \(coin.token.symbol ?? "?")")
-                            .foregroundColor(.LL.Neutrals.text)
-                            .font(.inter(size: 12, weight: .medium))
+                            Text("\(vm.isHidden ? "****" : coin.balance.formatCurrencyString()) \(coin.token.symbol?.uppercased() ?? "?")")
+                                .foregroundColor(.LL.Neutrals.text)
+                                .font(.inter(size: 14, weight: .medium))
+                        }
+
+                        HStack {
+                            Text("\(CurrencyCache.cache.currencySymbol)\(coin.token.symbol == "fusd" ? CurrencyCache.cache.currentCurrencyRate.formatCurrencyString() : coin.last.formatCurrencyString(considerCustomCurrency: true))")
+                                .foregroundColor(.LL.Neutrals.neutrals8)
+                                .font(.inter(size: 14, weight: .medium))
+
+                            Text(coin.changeString)
+                                .foregroundColor(coin.changeColor)
+                                .font(.inter(size: 14, weight: .medium))
+
+                            Spacer()
+
+                            Text(vm.isHidden ? "****" : "\(CurrencyCache.cache.currencySymbol)\(coin.balanceAsCurrentCurrency)")
+                                .foregroundColor(.LL.Neutrals.neutrals8)
+                                .font(.inter(size: 14, weight: .medium))
+                        }
                     }
-
-                    HStack {
-                        Text("\(CurrencyCache.cache.currencySymbol)\(coin.token.symbol == "fusd" ? CurrencyCache.cache.currentCurrencyRate.formatCurrencyString() : coin.last.formatCurrencyString(considerCustomCurrency: true))")
-                            .foregroundColor(.LL.Neutrals.neutrals8)
-                            .font(.inter(size: 12, weight: .medium))
-
-                        Text(coin.changeString)
-                            .foregroundColor(coin.changeColor)
-                            .font(.inter(size: 11, weight: .medium))
-
+                    .frame(maxWidth: .infinity)
+                }
+                .frame(height: CoinCellHeight)
+                
+                HStack(spacing: 0) {
+                    Divider()
+                        .frame(width: 1, height: 10)
+                        .foregroundColor(Color.LL.Neutrals.neutrals4)
+                    
+                    Spacer()
+                }
+                .padding(.leading, 24)
+                .offset(y: -5)
+                .visibility(coin.token.isFlowCoin && stakingManager.isStaked ? .visible : .gone)
+                
+                Button {
+                    StakingManager.shared.goStakingAction()
+                } label: {
+                    HStack(spacing: 0) {
+                        Circle()
+                            .frame(width: 10, height: 10)
+                            .foregroundColor(Color.LL.Neutrals.neutrals4)
+                        
+                        Text("staked_flow".localized)
+                            .foregroundColor(.LL.Neutrals.text)
+                            .font(.inter(size: 14, weight: .semibold))
+                            .padding(.leading, 31)
+                        
                         Spacer()
-
-                        Text(vm.isHidden ? "****" : "\(CurrencyCache.cache.currencySymbol)\(coin.balanceAsCurrentCurrency)")
-                            .foregroundColor(.LL.Neutrals.neutrals8)
-                            .font(.inter(size: 12, weight: .medium))
+                        
+                        Text("\(vm.isHidden ? "****" : stakingManager.stakingCount.formatCurrencyString()) FLOW")
+                            .foregroundColor(.LL.Neutrals.text)
+                            .font(.inter(size: 14, weight: .medium))
                     }
                 }
-                .frame(maxWidth: .infinity)
+                .padding(.leading, 19)
+                .visibility(coin.token.isFlowCoin && stakingManager.isStaked ? .visible : .gone)
             }
-            .frame(height: CoinCellHeight)
         }
     }
 }

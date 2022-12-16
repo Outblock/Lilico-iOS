@@ -108,6 +108,12 @@ extension RouteMap {
         case transactionList(String?)
         case swap(TokenModel?)
         case selectToken(TokenModel?, [TokenModel], (TokenModel) -> ())
+        case stakingList
+        case stakingSelectProvider
+        case stakeGuide
+        case stakeAmount(StakingProvider, isUnstake: Bool = false)
+        case stakeDetail(StakingProvider, StakingNode)
+        case stakeSetupConfirm(StakeAmountViewModel)
     }
 }
 
@@ -146,6 +152,19 @@ extension RouteMap.Wallet: RouterTarget {
         case .selectToken(let selectedToken, let disableTokens, let callback):
             let vm = AddTokenViewModel(selectedToken: selectedToken, disableTokens: disableTokens, selectCallback: callback)
             navi.present(content: AddTokenView(vm: vm))
+        case .stakingList:
+            navi.push(content: StakingListView())
+        case .stakingSelectProvider:
+            navi.push(content: SelectProviderView())
+        case .stakeGuide:
+            navi.push(content: StakeGuideView())
+        case .stakeAmount(let provider, let isUnstake):
+            navi.push(content: StakeAmountView(provider: provider, isUnstake: isUnstake))
+        case .stakeDetail(let provider, let node):
+            navi.push(content: StakingDetailView(provider: provider, node: node))
+        case .stakeSetupConfirm(let vm):
+            let vc = CustomHostingController(rootView: StakeAmountView.StakeSetupView(vm: vm))
+            Router.topPresentedController().present(vc, animated: true, completion: nil)
         }
     }
 }

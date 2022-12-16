@@ -174,7 +174,7 @@ extension WalletManager {
     }
     
     func getBalance(bySymbol symbol: String) -> Double {
-        return coinBalances[symbol] ?? 0
+        return coinBalances[symbol.lowercased()] ?? coinBalances[symbol.uppercased()] ?? 0
     }
 }
 
@@ -238,6 +238,8 @@ extension WalletManager {
                     self.walletInfo = response
                     self.pollingWalletInfoIfNeeded()
                     debugPrint(response)
+                    
+                    StakingManager.shared.refresh()
                 }
             } catch {
                 DispatchQueue.main.async {

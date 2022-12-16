@@ -317,6 +317,208 @@ extension FlowNetwork {
     }
 }
 
+// MARK: - Stake
+
+extension FlowNetwork {
+    static func stakingIsEnabled() async throws -> Bool {
+        return try await self.fetch(cadence: CadenceTemplate.checkStakingIsEnabled, arguments: [])
+    }
+    
+    static func accountStakingIsSetup() async throws -> Bool {
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        return try await self.fetch(cadence: CadenceTemplate.checkAccountStakingIsSetup, arguments: [.address(address)])
+    }
+    
+    static func setupAccountStaking() async throws -> Bool {
+        let cadenceString = CadenceTemplate.setupAccountStaking.replace(by: ScriptAddress.addressMap())
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        
+        let txId = try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+        })
+        
+        let result = try await txId.onceSealed()
+        
+        if result.isFailed {
+            debugPrint("FlowNetwork: setupAccountStaking failed msg: \(result.errorMessage)")
+            return false
+        }
+        
+        return true
+    }
+    
+    static func createDelegatorId(providerId: String) async throws -> Bool {
+        let cadenceString = CadenceTemplate.createDelegatorId.replace(by: ScriptAddress.addressMap())
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        
+        let txId = try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+            
+            arguments {
+                [.string(providerId), .ufix64(0)]
+            }
+            
+            gasLimit {
+                9999
+            }
+        })
+        
+        let result = try await txId.onceSealed()
+        
+        if result.isFailed {
+            debugPrint("FlowNetwork: createDelegatorId failed msg: \(result.errorMessage)")
+            return false
+        }
+        
+        return true
+    }
+    
+    static func stakeFlow(providerId: String, delegatorId: Int, amount: Double) async throws -> Flow.ID {
+        let cadenceString = CadenceTemplate.stakeFlow.replace(by: ScriptAddress.addressMap())
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        
+        let txId = try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+            
+            arguments {
+                [.string(providerId), .uint32(UInt32(delegatorId)), .ufix64(amount)]
+            }
+            
+            gasLimit {
+                9999
+            }
+        })
+        
+        return txId
+    }
+    
+    static func unstakeFlow(providerId: String, delegatorId: Int, amount: Double) async throws -> Flow.ID {
+        let cadenceString = CadenceTemplate.unstakeFlow.replace(by: ScriptAddress.addressMap())
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        
+        let txId = try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
+            cadence {
+                cadenceString
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+            
+            arguments {
+                [.string(providerId), .uint32(UInt32(delegatorId)), .ufix64(amount)]
+            }
+            
+            gasLimit {
+                9999
+            }
+        })
+        
+        return txId
+    }
+    
+    static func queryStakeInfo() async throws -> [StakingNode]? {
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        let response: [StakingNode] = try await self.fetch(at: address, by: CadenceTemplate.queryStakeInfo)
+        debugPrint("FlowNetwork -> queryStakeInfo, response = \(response)")
+        return response
+    }
+    
+    static func getStakingApyByWeek() async throws -> Double? {
+        let result: Double = try await fetch(cadence: CadenceTemplate.getApyByWeek, arguments: [])
+        if result == 0 {
+            return nil
+        }
+        
+        return result
+    }
+    
+    static func getStakingApyByYear() async throws -> Double? {
+        let result: Double = try await fetch(cadence: CadenceTemplate.getApyByYear, arguments: [])
+        if result == 0 {
+            return nil
+        }
+        
+        return result
+    }
+    
+    static func getDelegatorInfo() async throws -> [String: Int]? {
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        let replacedCadence = CadenceTemplate.getDelegatorInfo.replace(by: ScriptAddress.addressMap())
+        let rawResponse = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: replacedCadence),
+                                                                           arguments: [.address(address)])
+        
+        let response = try JSONDecoder().decode(StakingDelegatorInner.self, from: rawResponse.data)
+        debugPrint("FlowNetwork -> getDelegatorInfo, response = \(response)")
+        
+        guard let values = response.value?.value else {
+            return nil
+        }
+
+        let compactValues = values.compactMap { $0 }
+
+        var results: [String: Int] = [:]
+        for value in compactValues {
+            if let resultKey = value.key?.value {
+                let resultValue = Int(value.value?.value?.first??.key?.value ?? "0") ?? 0
+                results[resultKey] = resultValue
+            }
+        }
+
+        return results
+    }
+}
+
 // MARK: - Others
 
 extension FlowNetwork {
@@ -358,7 +560,6 @@ extension FlowNetwork {
         
         let response = try await flow.accessAPI.executeScriptAtLatestBlock(script: Flow.Script(text: replacedCadence),
                                                                            arguments: [.address(address)])
-
         let model: T = try response.decode()
         return model
     }

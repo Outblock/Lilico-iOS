@@ -62,6 +62,9 @@ class RouteableUIHostingController<Content: RouteableView>: UIHostingController<
         let backItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(onBackButtonAction))
         backItem.tintColor = UIColor(named: "button.color")
         navigationItem.leftBarButtonItem = backItem
+        
+        navigationController?.navigationBar.prefersLargeTitles = rootView.navigationBarTitleDisplayMode == .large
+        navigationItem.largeTitleDisplayMode = rootView.navigationBarTitleDisplayMode == .large ? .always : .never
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +74,6 @@ class RouteableUIHostingController<Content: RouteableView>: UIHostingController<
             navigationController?.navigationBar.overrideUserInterfaceStyle = style
         }
         
-        navigationController?.navigationBar.prefersLargeTitles = rootView.navigationBarTitleDisplayMode == .large
         navigationController?.setNavigationBarHidden(rootView.isNavigationBarHidden, animated: true)
     }
     

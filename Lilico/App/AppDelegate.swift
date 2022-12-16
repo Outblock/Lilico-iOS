@@ -22,6 +22,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
     lazy var coordinator = Coordinator(window: window!)
     
+    static var isUnitTest : Bool {
+        #if DEBUG
+        return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+        #else
+        return false
+        #endif
+    }
+    
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         Analytics.setAnalyticsCollectionEnabled(true)
@@ -30,7 +38,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         appConfig()
         commonConfig()
         flowConfig()
-        FirebaseConfig.start()
+        
+        if !AppDelegate.isUnitTest {
+            FirebaseConfig.start()
+        }
         
         setupUI()
         tryToRestoreAccountWhenFirstLaunch()
@@ -90,7 +101,10 @@ extension AppDelegate {
         _ = BackupManager.shared
         _ = SecurityManager.shared
         _ = WalletConnectManager.shared
-        _ = RemoteConfigManager.shared
+        if !AppDelegate.isUnitTest {
+            _ = RemoteConfigManager.shared
+        }
+        _ = StakingManager.shared
     }
 
     private func commonConfig() {

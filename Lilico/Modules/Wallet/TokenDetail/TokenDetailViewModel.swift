@@ -208,6 +208,10 @@ extension TokenDetailViewModel {
             UIApplication.shared.open(url)
         }
     }
+    
+    func stakeDetailAction() {
+        StakingManager.shared.goStakingAction()
+    }
 }
 
 // MARK: - Fetch & Refresh

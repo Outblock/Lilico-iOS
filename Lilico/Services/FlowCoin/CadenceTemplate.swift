@@ -405,3 +405,241 @@ class CadenceTemplate {
         }
     """
 }
+
+extension CadenceTemplate {
+    static let checkStakingIsEnabled = """
+        import FlowIDTableStaking from 0xFlowTableStaking
+
+        pub fun main():Bool {
+            return FlowIDTableStaking.stakingEnabled()
+        }
+    """
+    
+    static let checkAccountStakingIsSetup = """
+        import FlowStakingCollection from 0xStakingCollection
+
+        /// Determines if an account is set up with a Staking Collection
+
+        pub fun main(address: Address): Bool {
+            return FlowStakingCollection.doesAccountHaveStakingCollection(address: address)
+        }
+    """
+    
+    static let setupAccountStaking = """
+        import FungibleToken from 0xFungibleToken
+        import FlowToken from 0xFlowToken
+        import FlowIDTableStaking from 0xFlowTableStaking
+        import LockedTokens from 0xLockedTokens
+        import FlowStakingCollection from 0xStakingCollection
+
+        /// This transaction sets up an account to use a staking collection
+        /// It will work regardless of whether they have a regular account, a two-account locked tokens setup,
+        /// or staking objects stored in the unlocked account
+
+        transaction {
+            prepare(signer: AuthAccount) {
+
+                // If there isn't already a staking collection
+                if signer.borrow<&FlowStakingCollection.StakingCollection>(from: FlowStakingCollection.StakingCollectionStoragePath) == nil {
+
+                    // Create private capabilities for the token holder and unlocked vault
+                    let lockedHolder = signer.link<&LockedTokens.TokenHolder>(/private/flowTokenHolder, target: LockedTokens.TokenHolderStoragePath)!
+                    let flowToken = signer.link<&FlowToken.Vault>(/private/flowTokenVault, target: /storage/flowTokenVault)!
+                    
+                    // Create a new Staking Collection and put it in storage
+                    if lockedHolder.check() {
+                        signer.save(<-FlowStakingCollection.createStakingCollection(unlockedVault: flowToken, tokenHolder: lockedHolder), to: FlowStakingCollection.StakingCollectionStoragePath)
+                    } else {
+                        signer.save(<-FlowStakingCollection.createStakingCollection(unlockedVault: flowToken, tokenHolder: nil), to: FlowStakingCollection.StakingCollectionStoragePath)
+                    }
+
+                    // Create a public link to the staking collection
+                    signer.link<&FlowStakingCollection.StakingCollection{FlowStakingCollection.StakingCollectionPublic}>(
+                        FlowStakingCollection.StakingCollectionPublicPath,
+                        target: FlowStakingCollection.StakingCollectionStoragePath
+                    )
+                }
+
+                // borrow a reference to the staking collection
+                let collectionRef = signer.borrow<&FlowStakingCollection.StakingCollection>(from: FlowStakingCollection.StakingCollectionStoragePath)
+                    ?? panic("Could not borrow staking collection reference")
+
+                // If there is a node staker object in the account, put it in the staking collection
+                if signer.borrow<&FlowIDTableStaking.NodeStaker>(from: FlowIDTableStaking.NodeStakerStoragePath) != nil {
+                    let node <- signer.load<@FlowIDTableStaking.NodeStaker>(from: FlowIDTableStaking.NodeStakerStoragePath)!
+                    collectionRef.addNodeObject(<-node, machineAccountInfo: nil)
+                }
+
+                // If there is a delegator object in the account, put it in the staking collection
+                if signer.borrow<&FlowIDTableStaking.NodeDelegator>(from: FlowIDTableStaking.DelegatorStoragePath) != nil {
+                    let delegator <- signer.load<@FlowIDTableStaking.NodeDelegator>(from: FlowIDTableStaking.DelegatorStoragePath)!
+                    collectionRef.addDelegatorObject(<-delegator)
+                }
+            }
+        }
+    """
+    
+    static let createDelegatorId = """
+        import FlowStakingCollection from 0xStakingCollection
+
+        /// Registers a delegator in the staking collection resource
+        /// for the specified nodeID and the amount of tokens to commit
+
+        transaction(id: String, amount: UFix64) {
+            
+            let stakingCollectionRef: &FlowStakingCollection.StakingCollection
+
+            prepare(account: AuthAccount) {
+                self.stakingCollectionRef = account.borrow<&FlowStakingCollection.StakingCollection>(from: FlowStakingCollection.StakingCollectionStoragePath)
+                    ?? panic("Could not borrow ref to StakingCollection")
+            }
+
+            execute {
+                self.stakingCollectionRef.registerDelegator(nodeID: id, amount: amount)
+            }
+        }
+    """
+    
+    static let queryStakeInfo = """
+        import LockedTokens from 0xLockedTokens
+        import FlowIDTableStaking from 0xFlowTableStaking
+        import FlowStakingCollection from 0xStakingCollection
+        
+        pub fun main(account: Address): [FlowIDTableStaking.DelegatorInfo] {
+        
+            let stakingCollectionRef = getAccount(account)
+                .getCapability<&{FlowStakingCollection.StakingCollectionPublic}>(FlowStakingCollection.StakingCollectionPublicPath)
+                .borrow()
+                ?? panic("cannot borrow reference to acct.StakingCollection")
+        
+            return stakingCollectionRef.getAllDelegatorInfo()
+        }
+    """
+    
+    static let getApyByWeek = """
+        import FlowIDTableStaking from 0xFlowTableStaking
+
+        pub fun main(): UFix64 {
+            let apr = FlowIDTableStaking.getEpochTokenPayout() / FlowIDTableStaking.getTotalStaked() * 54.0 * (1.0 - FlowIDTableStaking.getRewardCutPercentage())
+            return apr
+        }
+    """
+    
+    static let getApyByYear = """
+        import FlowIDTableStaking from 0xFlowTableStaking
+
+        pub fun main(): UFix64 {
+            let apr = FlowIDTableStaking.getEpochTokenPayout() / FlowIDTableStaking.getTotalStaked() / 7.0 * 365.0 * (1.0 - FlowIDTableStaking.getRewardCutPercentage())
+            return apr
+        }
+    """
+    
+    static let getDelegatorInfo = """
+        import FlowStakingCollection from 0xStakingCollection
+        import FlowIDTableStaking from 0xFlowTableStaking
+        import LockedTokens from 0xLockedTokens
+        
+        pub struct DelegateInfo {
+            pub let delegatorID: UInt32
+            pub let nodeID: String
+            pub let tokensCommitted: UFix64
+            pub let tokensStaked: UFix64
+            pub let tokensUnstaking: UFix64
+            pub let tokensRewarded: UFix64
+            pub let tokensUnstaked: UFix64
+            pub let tokensRequestedToUnstake: UFix64
+        
+            // Projected Values
+        
+            pub let id: String
+            pub let role: UInt8
+            pub let unstakableTokens: UFix64
+            pub let delegatedNodeInfo: FlowIDTableStaking.NodeInfo
+            pub let restakableUnstakedTokens: UFix64
+        
+            init(delegatorInfo: FlowIDTableStaking.DelegatorInfo) {
+                self.delegatorID = delegatorInfo.id
+                self.nodeID = delegatorInfo.nodeID
+                self.tokensCommitted = delegatorInfo.tokensCommitted
+                self.tokensStaked = delegatorInfo.tokensStaked
+                self.tokensUnstaking = delegatorInfo.tokensUnstaking
+                self.tokensUnstaked = delegatorInfo.tokensUnstaked
+                self.tokensRewarded = delegatorInfo.tokensRewarded
+                self.tokensRequestedToUnstake = delegatorInfo.tokensRequestedToUnstake
+        
+                // Projected Values
+                let nodeInfo = FlowIDTableStaking.NodeInfo(nodeID: delegatorInfo.nodeID)
+                self.delegatedNodeInfo = nodeInfo
+                self.id = nodeInfo.id
+                self.role = nodeInfo.role
+                self.unstakableTokens = self.tokensStaked + self.tokensCommitted
+                self.restakableUnstakedTokens = self.tokensUnstaked + self.tokensRequestedToUnstake
+            }
+        }
+        
+        pub fun main(account: Address): {String: {UInt32: DelegateInfo}}? {
+            let doesAccountHaveStakingCollection = FlowStakingCollection.doesAccountHaveStakingCollection(address: account)
+            if (!doesAccountHaveStakingCollection) {
+                return nil
+            }
+        
+            let delegatorIDs: [FlowStakingCollection.DelegatorIDs] = FlowStakingCollection.getDelegatorIDs(address: account)
+        
+            let formattedDelegatorInfo: {String: {UInt32: DelegateInfo}} = {}
+        
+            for delegatorID in delegatorIDs {
+                if let _formattedDelegatorInfo = formattedDelegatorInfo[delegatorID.delegatorNodeID] {
+                    let delegatorInfo: FlowIDTableStaking.DelegatorInfo = FlowIDTableStaking.DelegatorInfo(nodeID: delegatorID.delegatorNodeID, delegatorID: delegatorID.delegatorID)
+                    _formattedDelegatorInfo[delegatorID.delegatorID] = DelegateInfo(delegatorInfo: delegatorInfo)
+                } else {
+                    let delegatorInfo: FlowIDTableStaking.DelegatorInfo = FlowIDTableStaking.DelegatorInfo(nodeID: delegatorID.delegatorNodeID, delegatorID: delegatorID.delegatorID)
+                    formattedDelegatorInfo[delegatorID.delegatorNodeID] = { delegatorID.delegatorID: DelegateInfo(delegatorInfo: delegatorInfo)}
+                }
+            }
+        
+            return formattedDelegatorInfo
+        }
+    """
+    
+    static let stakeFlow = """
+        import FlowStakingCollection from 0xStakingCollection
+
+        /// Commits new tokens to stake for the specified node or delegator in the staking collection
+        /// The tokens from the locked vault are used first, if it exists
+        /// followed by the tokens from the unlocked vault
+
+        transaction(nodeID: String, delegatorID: UInt32?, amount: UFix64) {
+            
+            let stakingCollectionRef: &FlowStakingCollection.StakingCollection
+
+            prepare(account: AuthAccount) {
+                self.stakingCollectionRef = account.borrow<&FlowStakingCollection.StakingCollection>(from: FlowStakingCollection.StakingCollectionStoragePath)
+                    ?? panic("Could not borrow ref to StakingCollection")
+            }
+
+            execute {
+                self.stakingCollectionRef.stakeNewTokens(nodeID: nodeID, delegatorID: delegatorID, amount: amount)
+            }
+        }
+    """
+    
+    static let unstakeFlow = """
+        import FlowStakingCollection from 0xStakingCollection
+
+        /// Requests unstaking for the specified node or delegator in the staking collection
+        
+        transaction(nodeID: String, delegatorID: UInt32?, amount: UFix64) {
+            
+            let stakingCollectionRef: &FlowStakingCollection.StakingCollection
+        
+            prepare(account: AuthAccount) {
+                self.stakingCollectionRef = account.borrow<&FlowStakingCollection.StakingCollection>(from: FlowStakingCollection.StakingCollectionStoragePath)
+                    ?? panic("Could not borrow ref to StakingCollection")
+            }
+        
+            execute {
+                self.stakingCollectionRef.requestUnstaking(nodeID: nodeID, delegatorID: delegatorID, amount: amount)
+            }
+        }
+    """
+}

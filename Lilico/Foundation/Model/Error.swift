@@ -62,3 +62,22 @@ enum NFTError: Error {
     case noCollectionInfo
     case invalidTokenId
 }
+
+enum StakingError: Error {
+    case stakingDisabled
+    case stakingNeedSetup
+    case stakingSetupFailed
+    case stakingCreateDelegatorIdFailed
+    case unknown
+    
+    var desc: String {
+        switch self {
+        case .stakingDisabled:
+            return "staking_not_enabled".localized
+        case .stakingSetupFailed:
+            return "staking_setup_failed".localized
+        default:
+            return "request_failed".localized
+        }
+    }
+}

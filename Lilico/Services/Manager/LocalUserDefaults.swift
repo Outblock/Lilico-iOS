@@ -77,6 +77,7 @@ class LocalUserDefaults: ObservableObject {
             didSet {
                 FlowNetwork.setup()
                 WalletManager.shared.reloadWalletInfo()
+                StakingManager.shared.refresh()
             }
         }
     #else
@@ -84,6 +85,7 @@ class LocalUserDefaults: ObservableObject {
             didSet {
                 FlowNetwork.setup()
                 WalletManager.shared.reloadWalletInfo()
+                StakingManager.shared.refresh()
             }
         }
     #endif
