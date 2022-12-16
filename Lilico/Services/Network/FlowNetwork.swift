@@ -423,7 +423,7 @@ extension FlowNetwork {
             }
             
             arguments {
-                [.string(providerId), .uint32(UInt32(delegatorId)), .ufix64(amount)]
+                [.string(providerId), .uint32(UInt32(delegatorId)), .ufix64(Decimal(amount))]
             }
             
             gasLimit {
@@ -456,7 +456,7 @@ extension FlowNetwork {
             }
             
             arguments {
-                [.string(providerId), .uint32(UInt32(delegatorId)), .ufix64(amount)]
+                [.string(providerId), .uint32(UInt32(delegatorId)), .ufix64(Decimal(amount))]
             }
             
             gasLimit {
