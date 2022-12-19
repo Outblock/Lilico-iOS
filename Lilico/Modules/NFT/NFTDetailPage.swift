@@ -126,9 +126,7 @@ struct NFTDetailPage: RouteableView {
                                     .frame(height: 28)
                                 
                                 Button {
-                                    if let urlString = vm.nft.response.collectionExternalURL, let url = URL(string: urlString) {
-                                        Router.route(to: RouteMap.Explore.browser(url))
-                                    }
+                                    NotificationCenter.default.post(name: .openNFTCollectionList, object: vm.nft.collection?.id)
                                 } label: {
                                     HStack(alignment: .center, spacing: 6) {
                                         KFImage

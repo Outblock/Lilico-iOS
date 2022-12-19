@@ -162,6 +162,8 @@ class NFTUIKitListStyleHandler: NSObject {
         reloadBgView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(onCollectionsDidChanged), name: .nftCollectionsDidChanged, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(openCollectionListNoti(noti:)), name: .openNFTCollectionList, object: nil)
     }
     
     private func setupBlurBgView() {
@@ -235,6 +237,17 @@ class NFTUIKitListStyleHandler: NSObject {
     
     @objc private func onAddButtonClick() {
         Router.route(to: RouteMap.NFT.addCollection)
+    }
+    
+    @objc private func openCollectionListNoti(noti: Notification) {
+        if let id = noti.object as? String, let vm = vm {
+            for item in dataModel.items {
+                if item.collectionId == id {
+                    Router.route(to: RouteMap.NFT.collection(vm, item))
+                    return
+                }
+            }
+        }
     }
 }
 
