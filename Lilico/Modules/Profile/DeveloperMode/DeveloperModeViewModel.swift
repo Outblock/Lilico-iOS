@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Flow
 
 class DeveloperModeViewModel: ObservableObject {
     @Published var customWatchAddress: String? = LocalUserDefaults.shared.customWatchAddress
@@ -66,5 +67,44 @@ extension DeveloperModeViewModel {
         }
         
         LocalUserDefaults.shared.customWatchAddress = address
+    }
+    
+    func enableSandboxnetAction() {
+        HUD.loading()
+        
+        let failedBlock = {
+            DispatchQueue.main.async {
+                HUD.dismissLoading()
+                HUD.error(title: "enable_sandbox_failed".localized)
+                FlowNetwork.setup()
+            }
+        }
+        
+        let successBlock = {
+            DispatchQueue.main.async {
+                HUD.dismissLoading()
+                LocalUserDefaults.shared.flowNetwork = .sandboxnet
+            }
+        }
+        
+        Task {
+            do {
+                let id: String = try await Network.request(LilicoAPI.User.sandboxnet)
+                let txId = Flow.ID(hex: id)
+                
+                flow.configure(chainID: .sandbox)
+                
+                let result = try await txId.onceSealed()
+                if result.isFailed {
+                    failedBlock()
+                    return
+                }
+                
+                successBlock()
+            } catch {
+                debugPrint("DeveloperModeViewModel -> enableSandboxnetAction failed: \(error)")
+                failedBlock()
+            }
+        }
     }
 }

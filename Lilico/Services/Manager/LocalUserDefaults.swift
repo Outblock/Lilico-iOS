@@ -26,6 +26,7 @@ extension LocalUserDefaults {
         case tryToRestoreAccountFlag
         case currentCurrency
         case currentCurrencyRate
+        case sandboxnetEnabled
     }
 
     enum FlowNetworkType: String, CaseIterable {
@@ -181,6 +182,8 @@ class LocalUserDefaults: ObservableObject {
     
     @AppStorage(Keys.currentCurrency.rawValue) var currentCurrency: Currency = .USD
     @AppStorage(Keys.currentCurrencyRate.rawValue) var currentCurrencyRate: Double = 1
+    
+    @AppStorage(Keys.sandboxnetEnabled.rawValue) var sandboxnetEnabled: Bool = false
 }
 
 extension LocalUserDefaults {

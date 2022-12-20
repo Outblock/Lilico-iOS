@@ -18,6 +18,7 @@ extension LilicoAPI {
         case userWallet
         case search(String)
         case manualCheck
+        case sandboxnet
     }
 }
 
@@ -48,6 +49,8 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
             return "/v1/user/search"
         case .manualCheck:
             return "/v1/user/manualaddress"
+        case .sandboxnet:
+            return "/v1/user/address/sandboxnet"
         }
     }
 
@@ -55,14 +58,14 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
         switch self {
         case .checkUsername, .userInfo, .userWallet, .search:
             return .get
-        case .login, .register, .userAddress, .manualCheck:
+        case .login, .register, .userAddress, .manualCheck, .sandboxnet:
             return .post
         }
     }
 
     var task: Task {
         switch self {
-        case .userAddress, .userInfo, .userWallet, .manualCheck:
+        case .userAddress, .userInfo, .userWallet, .manualCheck, .sandboxnet:
             return .requestPlain
         case let .checkUsername(username):
             return .requestParameters(parameters: ["username": username], encoding: URLEncoding.queryString)
@@ -76,6 +79,14 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
     }
 
     var headers: [String: String]? {
-        return LilicoAPI.commonHeaders
+        var headers = LilicoAPI.commonHeaders
+        switch self {
+        case .sandboxnet:
+            headers["Network"] = "sandboxnet"
+        default:
+            break
+        }
+        
+        return headers
     }
 }

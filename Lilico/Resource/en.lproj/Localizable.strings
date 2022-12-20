@@ -508,3 +508,5 @@
 "staking_collection_upgrade" = "Staking Collection Upgrade";
 "setup_stake_desc" = "If you have existing nodes and delegations, they are safe, and will be migrated to your new Staking Collection during the transaction.";
 "staking_setup_failed" = "Set Up Stake failed";
+
+"enable_sandbox_failed" = "Enable Sandbox failed";

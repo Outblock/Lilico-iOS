@@ -48,17 +48,33 @@ struct DeveloperModeView: RouteableView {
                     VStack(spacing: 0) {
                         Section {
                             let isMainnet = lud.flowNetwork == .mainnet
+                            let isTestnet = lud.flowNetwork == .testnet
+                            let isSandboxnet = lud.flowNetwork == .sandboxnet
+                            
                             Cell(sysImageTuple: (isMainnet ? .checkmarkSelected : .checkmarkUnselected, isMainnet ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: "Mainnet", desc: isMainnet ? "Selected" : "")
                                 .onTapGestureOnBackground {
                                     if lud.flowNetwork != .mainnet {
                                         lud.flowNetwork = .mainnet
                                     }
                                 }
+                            
                             Divider()
-                            Cell(sysImageTuple: (isMainnet ? .checkmarkUnselected : .checkmarkSelected, isMainnet ? .LL.Neutrals.neutrals1 : .LL.Primary.salmonPrimary), title: "Testnet", desc: isMainnet ? "" : "Selected")
+                            Cell(sysImageTuple: (isTestnet ? .checkmarkSelected : .checkmarkUnselected, isTestnet ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: "Testnet", desc: isTestnet ? "Selected" : "")
                                 .onTapGestureOnBackground {
                                     if lud.flowNetwork != .testnet {
                                         lud.flowNetwork = .testnet
+                                    }
+                                }
+                            
+                            Divider()
+                            Cell(sysImageTuple: (isSandboxnet ? .checkmarkSelected : .checkmarkUnselected, isSandboxnet ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: "Sandbox", desc: isSandboxnet ? "Selected" : "", btnTitle: lud.sandboxnetEnabled ? nil : "Enable", btnAction: {
+                                if !lud.sandboxnetEnabled {
+                                    vm.enableSandboxnetAction()
+                                }
+                            }, titleAlpha: lud.sandboxnetEnabled ? 1 : 0.5)
+                                .onTapGestureOnBackground {
+                                    if lud.sandboxnetEnabled, lud.flowNetwork != .sandboxnet {
+                                        lud.flowNetwork = .sandboxnet
                                     }
                                 }
                         }
@@ -140,12 +156,30 @@ extension DeveloperModeView {
         let sysImageTuple: (String, Color)
         let title: String
         let desc: String
+        var btnTitle: String? = nil
+        var btnAction: (() -> ())? = nil
+        var titleAlpha: Double = 1.0
         
         var body: some View {
             HStack {
                 Image(systemName: sysImageTuple.0).foregroundColor(sysImageTuple.1)
-                Text(title).font(.inter()).frame(maxWidth: .infinity, alignment: .leading)
+                Text(title).font(.inter()).frame(maxWidth: .infinity, alignment: .leading).opacity(titleAlpha)
                 Text(desc).font(.inter()).foregroundColor(.LL.Neutrals.note)
+                
+                Button {
+                    if let btnAction = btnAction {
+                        btnAction()
+                    }
+                } label: {
+                    Text(btnTitle ?? "")
+                        .font(.inter(size: 12, weight: .medium))
+                        .foregroundColor(Color.black)
+                        .padding(.horizontal, 12)
+                        .frame(height: 32)
+                        .background(Color(hex: "#F3EA5F"))
+                        .cornerRadius(16)
+                }
+                .visibility(btnTitle?.isEmpty ?? true ? .gone : .visible)
             }
             .frame(height: 64)
             .padding(.horizontal, 16)
