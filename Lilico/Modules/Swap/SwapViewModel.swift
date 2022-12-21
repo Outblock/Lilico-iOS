@@ -335,6 +335,11 @@ extension SwapViewModel {
                     self.isConfirming = false
                     self.showConfirmView = false
                     TransactionManager.shared.newTransaction(holder: holder)
+                    
+                    // Wait for half sheet dismiss first
+                    delay(.seconds(1)) {
+                        Router.dismiss()
+                    }
                 }
             } catch {
                 debugPrint("SwapViewModel -> confirmSwapAction failed: \(error)")
