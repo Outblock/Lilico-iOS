@@ -26,9 +26,13 @@ extension Router {
     static func pop(animated: Bool = true) {
         safeMainThreadCall {
             if let navi = topNavigationController() {
-                navi.popViewController(animated: animated)
+                if let vc = navi.presentingViewController {
+                    vc.dismiss(animated: animated)
+                } else {
+                    navi.popViewController(animated: animated)
+                }
             } else {
-                dismiss(animated: animated)
+                Router.dismiss(animated: animated)
             }
         }
     }
