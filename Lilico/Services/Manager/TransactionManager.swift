@@ -28,10 +28,13 @@ extension Flow.Transaction.Status {
 
 extension Flow.ID {
     var transactionFlowScanURL: URL? {
-        if LocalUserDefaults.shared.flowNetwork == .testnet {
+        switch LocalUserDefaults.shared.flowNetwork {
+        case .testnet:
             return URL(string: "https://testnet.flowscan.org/transaction/\(self.hex)")
-        } else {
+        case .mainnet:
             return URL(string: "https://flowscan.org/transaction/\(self.hex)")
+        case .sandboxnet:
+            return URL(string: "https://sandboxnet.flowscan.org/transaction/\(self.hex)")
         }
     }
 }

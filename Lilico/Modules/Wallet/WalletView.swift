@@ -163,7 +163,7 @@ struct WalletView: View {
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 24, weight: .bold))
 
-            if LocalUserDefaults.shared.flowNetwork == .testnet {
+            if LocalUserDefaults.shared.flowNetwork == .testnet || LocalUserDefaults.shared.flowNetwork == .sandboxnet {
                 Text(LocalUserDefaults.shared.flowNetwork.rawValue)
                     .textCase(.uppercase)
                     .padding(.horizontal, 15)

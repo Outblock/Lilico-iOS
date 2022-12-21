@@ -91,7 +91,17 @@ struct TokenModel: Codable, Identifiable {
     }
     
     var contractId: String {
-        var addressString = LocalUserDefaults.shared.flowNetwork == .testnet ? address.testnet ?? "" : address.mainnet ?? ""
+        var addressString = ""
+        
+        switch LocalUserDefaults.shared.flowNetwork {
+        case .testnet:
+            addressString = address.testnet ?? ""
+        case .mainnet:
+            addressString = address.mainnet ?? ""
+        case .sandboxnet:
+            addressString = address.sandboxnet ?? ""
+        }
+        
         addressString = addressString.stripHexPrefix()
         return "A.\(addressString).\(contractName)"
     }

@@ -171,8 +171,8 @@ struct WalletReceiveView: RouteableView {
                         .foregroundColor(.LL.Neutrals.background)
                         .colorScheme(.light)
                     
-                    if LocalUserDefaults.shared.flowNetwork == .testnet {
-                        Text("testnet".localized)
+                    if LocalUserDefaults.shared.flowNetwork == .testnet || LocalUserDefaults.shared.flowNetwork == .sandboxnet {
+                        Text(LocalUserDefaults.shared.flowNetwork == .testnet ? "testnet".localized : "sandboxnet".localized)
                             .textCase(.uppercase)
                             .padding(.horizontal, 15)
                             .padding(.vertical, 5)

@@ -28,11 +28,16 @@ class RemoteConfigManager {
             return WalletManager.shared.getPrimaryWalletAddress() ?? ""
         }
         
-        if LocalUserDefaults.shared.flowNetwork.toFlowType() == .mainnet {
+        switch LocalUserDefaults.shared.flowNetwork.toFlowType() {
+        case .mainnet:
             return config?.payer.mainnet.address ?? ""
+        case .testnet:
+            return config?.payer.testnet.address ?? ""
+        case .sandbox:
+            return config?.payer.sandboxnet.address ?? ""
+        default:
+            return ""
         }
-        
-        return config?.payer.testnet.address ?? ""
     }
     
     var payerKeyId: Int {
@@ -40,12 +45,16 @@ class RemoteConfigManager {
             return 0
         }
         
-        if LocalUserDefaults.shared.flowNetwork.toFlowType() == .mainnet {
+        switch LocalUserDefaults.shared.flowNetwork.toFlowType() {
+        case .mainnet:
             return config?.payer.mainnet.keyID ?? 0
+        case .testnet:
+            return config?.payer.testnet.keyID ?? 0
+        case .sandbox:
+            return config?.payer.sandboxnet.keyID ?? 0
+        default:
+            return 0
         }
-        
-        return config?.payer.testnet.keyID ?? 0
-
     }
     
     init() {

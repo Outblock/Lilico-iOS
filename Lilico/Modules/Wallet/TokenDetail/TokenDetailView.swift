@@ -149,8 +149,13 @@ struct TokenDetailView: RouteableView {
     
     var moreView: some View {
         Button {
-            if LocalUserDefaults.shared.flowNetwork == .testnet {
+            switch LocalUserDefaults.shared.flowNetwork {
+            case .testnet:
                 UIApplication.shared.open(URL(string: "https://testnet-faucet.onflow.org/fund-account")!)
+            case .sandboxnet:
+                UIApplication.shared.open(URL(string: "https://sandboxnet-faucet.flow.com/")!)
+            default:
+                break
             }
         } label: {
             HStack {

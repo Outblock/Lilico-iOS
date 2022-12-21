@@ -288,6 +288,8 @@ extension String {
         var string = "https://flowscan.org/account/\(self)"
         if LocalUserDefaults.shared.flowNetwork == .testnet {
             string = "https://testnet.flowscan.org/account/\(self)"
+        } else if LocalUserDefaults.shared.flowNetwork == .sandboxnet {
+            string = "https://sandboxnet.flowscan.org/account/\(self)"
         }
         
         return URL(string: string)
@@ -297,6 +299,8 @@ extension String {
         var string = "https://flowscan.org/transaction/\(self)"
         if LocalUserDefaults.shared.flowNetwork == .testnet {
             string = "https://testnet.flowscan.org/transaction/\(self)"
+        } else if LocalUserDefaults.shared.flowNetwork == .sandboxnet {
+            string = "https://sandboxnet.flowscan.org/transaction/\(self)"
         }
         
         return URL(string: string)
