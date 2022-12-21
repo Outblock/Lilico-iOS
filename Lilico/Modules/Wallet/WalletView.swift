@@ -470,18 +470,18 @@ extension WalletView {
 
                         HStack {
                             Text("\(CurrencyCache.cache.currencySymbol)\(coin.token.symbol == "fusd" ? CurrencyCache.cache.currentCurrencyRate.formatCurrencyString() : coin.last.formatCurrencyString(considerCustomCurrency: true))")
-                                .foregroundColor(.LL.Neutrals.neutrals8)
-                                .font(.inter(size: 14, weight: .medium))
+                                .foregroundColor(.LL.Neutrals.neutrals7)
+                                .font(.inter(size: 14, weight: .regular))
 
                             Text(coin.changeString)
                                 .foregroundColor(coin.changeColor)
-                                .font(.inter(size: 14, weight: .medium))
+                                .font(.inter(size: 14, weight: .regular))
 
                             Spacer()
 
                             Text(vm.isHidden ? "****" : "\(CurrencyCache.cache.currencySymbol)\(coin.balanceAsCurrentCurrency)")
-                                .foregroundColor(.LL.Neutrals.neutrals8)
-                                .font(.inter(size: 14, weight: .medium))
+                                .foregroundColor(.LL.Neutrals.neutrals7)
+                                .font(.inter(size: 14, weight: .regular))
                         }
                     }
                     .frame(maxWidth: .infinity)

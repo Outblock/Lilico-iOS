@@ -10,7 +10,15 @@ import Haneke
 import SwiftUI
 
 extension CoinRateCache {
-    struct CoinRateModel: Codable {
+    struct CoinRateModel: Codable, Hashable {
+        static func == (lhs: CoinRateCache.CoinRateModel, rhs: CoinRateCache.CoinRateModel) -> Bool {
+            return lhs.symbol == rhs.symbol
+        }
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(symbol)
+        }
+        
         let updateTime: TimeInterval
         let symbol: String
         let summary: CryptoSummaryResponse
@@ -22,7 +30,7 @@ private let CacheUpdateInverval = TimeInterval(30)
 class CoinRateCache {
     static let cache = CoinRateCache()
 
-    private var summarys: [CoinRateModel] = []
+    private var summarys = Set<CoinRateModel>()
 
     private var isRefreshing = false
 
@@ -59,15 +67,14 @@ class CoinRateCache {
 extension CoinRateCache {
     private func loadFromCache() {
         if let cacheList = LocalUserDefaults.shared.coinSummarys {
-            summarys.removeAll()
-            summarys.append(contentsOf: cacheList)
+            summarys = Set(cacheList)
         } else {
             summarys.removeAll()
         }
     }
 
     private func saveToCache() {
-        LocalUserDefaults.shared.coinSummarys = summarys
+        LocalUserDefaults.shared.coinSummarys = Array(summarys)
     }
 
     private func refresh() {
@@ -142,11 +149,7 @@ extension CoinRateCache {
 
     private func set(summary: CryptoSummaryResponse, forSymbol: String) {
         let model = CoinRateModel(updateTime: Date().timeIntervalSince1970, symbol: forSymbol, summary: summary)
-        summarys.removeAll { m in
-            m.symbol == model.symbol
-        }
-
-        summarys.append(model)
+        summarys.update(with: model)
         saveToCache()
         NotificationCenter.default.post(name: .coinSummarysUpdated, object: nil)
     }
