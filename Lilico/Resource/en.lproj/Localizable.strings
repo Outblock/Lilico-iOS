@@ -510,3 +510,6 @@
 "staking_setup_failed" = "Set Up Stake failed";
 
 "enable_sandbox_failed" = "Enable Sandbox failed";
+
+"widget_name" = "Lilico Widget";
+"widget_desc" = "Show your favorite nft.";

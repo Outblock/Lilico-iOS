@@ -16,6 +16,7 @@ struct DeveloperModeView_Previews: PreviewProvider {
 struct DeveloperModeView: RouteableView {
     @StateObject private var lud = LocalUserDefaults.shared
     @StateObject private var vm: DeveloperModeViewModel = DeveloperModeViewModel()
+    @StateObject private var walletManager = WalletManager.shared
     
     @AppStorage("isDeveloperMode") private var isDeveloperMode = false
     
@@ -67,13 +68,13 @@ struct DeveloperModeView: RouteableView {
                                 }
                             
                             Divider()
-                            Cell(sysImageTuple: (isSandboxnet ? .checkmarkSelected : .checkmarkUnselected, isSandboxnet ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: "Sandbox", desc: isSandboxnet ? "Selected" : "", btnTitle: lud.sandboxnetEnabled ? nil : "Enable", btnAction: {
-                                if !lud.sandboxnetEnabled {
+                            Cell(sysImageTuple: (isSandboxnet ? .checkmarkSelected : .checkmarkUnselected, isSandboxnet ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: "Sandbox", desc: isSandboxnet ? "Selected" : "", btnTitle: walletManager.isSandboxnetEnabled ? nil : "Enable", btnAction: {
+                                if !walletManager.isSandboxnetEnabled {
                                     vm.enableSandboxnetAction()
                                 }
-                            }, titleAlpha: lud.sandboxnetEnabled ? 1 : 0.5)
+                            }, titleAlpha: walletManager.isSandboxnetEnabled ? 1 : 0.5)
                                 .onTapGestureOnBackground {
-                                    if lud.sandboxnetEnabled, lud.flowNetwork != .sandboxnet {
+                                    if walletManager.isSandboxnetEnabled, lud.flowNetwork != .sandboxnet {
                                         lud.flowNetwork = .sandboxnet
                                     }
                                 }

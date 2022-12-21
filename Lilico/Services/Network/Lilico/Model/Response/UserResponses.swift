@@ -31,20 +31,24 @@ struct UserInfoResponse: Codable {
 
 struct UserWalletResponse: Codable {
     let id: String
-    let primaryWallet: Int
+//    let primaryWallet: Int
     let username: String?
     let wallets: [WalletResponse]?
 
-    var primaryWalletModel: WalletResponse? {
-        if let wallets = wallets {
-            for wallet in wallets {
-                if wallet.id == primaryWallet {
-                    return wallet
-                }
-            }
-        }
-
-        return nil
+//    var primaryWalletModel: WalletResponse? {
+//        if let wallets = wallets {
+//            for wallet in wallets {
+//                if wallet.id == primaryWallet {
+//                    return wallet
+//                }
+//            }
+//        }
+//
+//        return nil
+//    }
+    
+    var currentNetworkWalletModel: WalletResponse? {
+        return wallets?.first(where: { $0.chainId == LocalUserDefaults.shared.flowNetwork.rawValue })
     }
 }
 
@@ -53,6 +57,7 @@ struct WalletResponse: Codable {
     let icon: String?
     let name: String?
     let id: Int
+    let chainId: String
     let blockchain: [BlockChainResponse]?
 
     var isEmptyBlockChain: Bool {

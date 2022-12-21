@@ -127,6 +127,7 @@ struct TokenModel: Codable, Identifiable {
 struct FlowNetworkModel: Codable {
     let mainnet: String?
     let testnet: String?
+    let sandboxnet: String?
 
     func addressByNetwork(_ network: Flow.ChainID) -> String? {
         switch network {
@@ -134,6 +135,8 @@ struct FlowNetworkModel: Codable {
             return mainnet
         case .testnet:
             return testnet
+        case .sandbox:
+            return sandboxnet
         default:
             return nil
         }

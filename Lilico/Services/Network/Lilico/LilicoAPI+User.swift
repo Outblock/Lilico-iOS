@@ -44,7 +44,7 @@ extension LilicoAPI.User: TargetType, AccessTokenAuthorizable {
         case .userInfo:
             return "/v1/user/info"
         case .userWallet:
-            return "/v1/user/wallet"
+            return "/v2/user/wallet"
         case .search:
             return "/v1/user/search"
         case .manualCheck:

@@ -145,12 +145,16 @@ extension WalletManager {
     }
     
     func getPrimaryWalletAddress() -> String? {
-        return walletInfo?.primaryWalletModel?.getAddress
+        return walletInfo?.currentNetworkWalletModel?.getAddress
     }
     
     /// get custom watch address first, then primary address, this method is only used for tab2.
     func getPrimaryWalletAddressOrCustomWatchAddress() -> String? {
         return LocalUserDefaults.shared.customWatchAddress ?? getPrimaryWalletAddress()
+    }
+    
+    var isSandboxnetEnabled: Bool {
+        return walletInfo?.wallets?.first(where: { $0.chainId == LocalUserDefaults.FlowNetworkType.sandboxnet.rawValue })?.getAddress != nil
     }
     
     func isTokenActivated(symbol: String) -> Bool {
@@ -253,7 +257,7 @@ extension WalletManager {
     /// polling wallet info, if wallet address is not exists
     private func pollingWalletInfoIfNeeded() {
         debugPrint("WalletManager -> pollingWalletInfoIfNeeded")
-        let isEmptyBlockChain = walletInfo?.primaryWalletModel?.isEmptyBlockChain ?? true
+        let isEmptyBlockChain = walletInfo?.currentNetworkWalletModel?.isEmptyBlockChain ?? true
         if isEmptyBlockChain {
             startWalletInfoRetryTimer()
             
@@ -399,19 +403,25 @@ extension WalletManager {
     private func fetchSupportedCoins() async throws {
         let coins: [TokenModel] = try await FirebaseConfig.flowCoins.fetch()
         let validCoins = coins.filter { $0.getAddress()?.isEmpty == false }
-        supportedCoins = validCoins
+        DispatchQueue.main.sync {
+            self.supportedCoins = validCoins
+        }
         
         PageCache.cache.set(value: validCoins, forKey: CacheKeys.supportedCoins.rawValue)
     }
 
     private func fetchActivatedCoins() async throws {
         guard let supportedCoins = supportedCoins, supportedCoins.count != 0 else {
-            activatedCoins.removeAll()
+            DispatchQueue.main.sync {
+                self.activatedCoins.removeAll()
+            }
             return
         }
 
-        guard let address = walletInfo?.primaryWalletModel?.getAddress, !address.isEmpty else {
-            activatedCoins.removeAll()
+        guard let address = walletInfo?.currentNetworkWalletModel?.getAddress, !address.isEmpty else {
+            DispatchQueue.main.sync {
+                self.activatedCoins.removeAll()
+            }
             return
         }
 
@@ -427,7 +437,9 @@ extension WalletManager {
             }
         }
 
-        activatedCoins = list
+        DispatchQueue.main.sync {
+            self.activatedCoins = list
+        }
         preloadActivatedIcons()
         
         PageCache.cache.set(value: list, forKey: CacheKeys.activatedCoins.rawValue)
@@ -438,7 +450,7 @@ extension WalletManager {
             return
         }
 
-        guard let address = walletInfo?.primaryWalletModel?.getAddress, !address.isEmpty else {
+        guard let address = walletInfo?.currentNetworkWalletModel?.getAddress, !address.isEmpty else {
             throw WalletError.fetchBalanceFailed
         }
 
@@ -459,7 +471,9 @@ extension WalletManager {
             newBalanceMap[symbol] = balance
         }
 
-        coinBalances = newBalanceMap
+        DispatchQueue.main.sync {
+            self.coinBalances = newBalanceMap
+        }
         
         PageCache.cache.set(value: newBalanceMap, forKey: CacheKeys.coinBalances.rawValue)
     }

@@ -1212,6 +1212,7 @@
 		6A9DFBCE29519D9A00E10EAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A9DFBCD29519D9A00E10EAC /* Assets.xcassets */; };
 		6A9DFBD229519D9A00E10EAC /* LilicoWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6A9DFBC329519D9800E10EAC /* LilicoWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6A9DFBDA2951A1F900E10EAC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6A9DFBD92951A1F900E10EAC /* Kingfisher */; };
+		6A9DFBDC2951C31200E10EAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B1F63B2786B89800847BB5 /* Localizable.strings */; };
 		6AA2E75A289D28EC00B4DD96 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */; };
 		6AA2E75B289D28EC00B4DD96 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */; };
 		6AA591F628854FB300F4B5CA /* BackupGDTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */; };
@@ -1998,6 +1999,7 @@
 		6A9DFBCB29519D9800E10EAC /* LilicoWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilicoWidgets.swift; sourceTree = "<group>"; };
 		6A9DFBCD29519D9A00E10EAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A9DFBCF29519D9A00E10EAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A9DFBDD2951CDC000E10EAC /* LilicoWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LilicoWidgetsExtension.entitlements; sourceTree = "<group>"; };
 		6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupGDTarget.swift; sourceTree = "<group>"; };
 		6AA78E0228A0BF2C00FF6CF9 /* ScanHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHandler.swift; sourceTree = "<group>"; };
@@ -3740,6 +3742,7 @@
 		15EC9DE5274FD1FC00F70CD9 = {
 			isa = PBXGroup;
 			children = (
+				6A9DFBDD2951CDC000E10EAC /* LilicoWidgetsExtension.entitlements */,
 				15EC9DF0274FD1FC00F70CD9 /* Lilico */,
 				1500783C286830EF00A00109 /* LilicoTests */,
 				6A9DFBC829519D9800E10EAC /* LilicoWidgets */,
@@ -5017,6 +5020,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A9DFBCE29519D9A00E10EAC /* Assets.xcassets in Resources */,
+				6A9DFBDC2951C31200E10EAC /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6636,6 +6640,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = LilicoWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C7CT739SU9;
@@ -6665,6 +6670,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = LilicoWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C7CT739SU9;

@@ -67,7 +67,7 @@ class WalletViewModel: ObservableObject {
         }.store(in: &cancelSets)
 
         WalletManager.shared.$walletInfo.sink { [weak self] newInfo in
-            guard let address = newInfo?.primaryWalletModel?.getAddress else {
+            guard let address = newInfo?.currentNetworkWalletModel?.getAddress else {
                 DispatchQueue.main.async {
                     self?.walletState = .noAddress
                     self?.address = "0x0000000000000000"
@@ -136,7 +136,7 @@ class WalletViewModel: ObservableObject {
     }
 
     private func refreshWalletInfo() {
-        if let walletInfo = WalletManager.shared.walletInfo?.primaryWalletModel {
+        if let walletInfo = WalletManager.shared.walletInfo?.currentNetworkWalletModel {
             walletName = walletInfo.getName ?? "wallet".localized
             address = walletInfo.getAddress ?? "0x0000000000000000"
         }

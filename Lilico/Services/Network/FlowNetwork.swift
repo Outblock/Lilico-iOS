@@ -12,13 +12,9 @@ import BigInt
 
 class FlowNetwork {
     static func setup() {
-        if LocalUserDefaults.shared.flowNetwork == .testnet {
-            debugPrint("did setup flow chainID to testnet")
-            flow.configure(chainID: .testnet)
-        } else {
-            debugPrint("did setup flow chainID to mainnet")
-            flow.configure(chainID: .mainnet)
-        }
+        let type = LocalUserDefaults.shared.flowNetwork.toFlowType()
+        debugPrint("did setup flow chainID to \(LocalUserDefaults.shared.flowNetwork.rawValue)")
+        flow.configure(chainID: type)
     }
 }
 

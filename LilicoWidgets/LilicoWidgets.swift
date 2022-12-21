@@ -9,14 +9,44 @@ import WidgetKit
 import SwiftUI
 import Kingfisher
 
+extension String {
+    var localized: String {
+        let value = NSLocalizedString(self, comment: "")
+        if value != self || NSLocale.preferredLanguages.first == "en" {
+            return value
+        }
+        
+        guard let path = Bundle.main.path(forResource: "en", ofType: "lproj"), let bundle = Bundle(path: path) else {
+            return value
+        }
+        
+        return NSLocalizedString(self, bundle: bundle, comment: "")
+    }
+
+    func localized(_ args: CVarArg...) -> String {
+        return String.localizedStringWithFormat(localized, args)
+    }
+}
+
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+        SimpleEntry(date: Date(), image: nil)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
-        completion(entry)
+        let urlString = ""
+        let urlObj = URL(string: urlString)!
+        KingfisherManager.shared.retrieveImage(with: urlObj) { result in
+            switch result {
+            case .success(let value):
+                let entry = SimpleEntry(date: Date(), image: value.image)
+                completion(entry)
+            case .failure(let error):
+                debugPrint("getSnapshot fetch image failed: \(error) ")
+                let entry = SimpleEntry(date: Date(), image: nil)
+                completion(entry)
+            }
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
@@ -26,7 +56,7 @@ struct Provider: TimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate)
+            let entry = SimpleEntry(date: entryDate, image: nil)
             entries.append(entry)
         }
 
@@ -37,25 +67,38 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let image: UIImage?
 }
 
 struct LilicoWidgetsEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Image("AppIcon")
+        if let image = entry.image {
+            SmallView(image: image)
+        } else {
+            PlaceholderView()
+        }
+    }
+}
+
+struct PlaceholderView: View {
+    var body: some View {
+        Image("logo-new")
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        KFImage.url(nil)
-//            .placeholder({
-//                Image("placeholder")
-//                    .resizable()
-//            })
-//            .resizable()
-//            .aspectRatio(contentMode: .fill)
-//            .frame(width: 16, height: 16)
-//            .cornerRadius(8)
+    }
+}
+
+struct SmallView: View {
+    let image: UIImage
+    
+    var body: some View {
+        Image(uiImage: image)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -66,14 +109,7 @@ struct LilicoWidgets: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             LilicoWidgetsEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
-    }
-}
-
-struct LilicoWidgets_Previews: PreviewProvider {
-    static var previews: some View {
-        LilicoWidgetsEntryView(entry: SimpleEntry(date: Date()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .configurationDisplayName("widget_name".localized)
+        .description("widget_desc".localized)
     }
 }

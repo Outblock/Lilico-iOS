@@ -26,7 +26,6 @@ extension LocalUserDefaults {
         case tryToRestoreAccountFlag
         case currentCurrency
         case currentCurrencyRate
-        case sandboxnetEnabled
     }
 
     enum FlowNetworkType: String, CaseIterable {
@@ -77,16 +76,26 @@ class LocalUserDefaults: ObservableObject {
         @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .testnet {
             didSet {
                 FlowNetwork.setup()
-                WalletManager.shared.reloadWalletInfo()
-                StakingManager.shared.refresh()
+                
+                if WalletManager.shared.getPrimaryWalletAddress() == nil {
+                    WalletManager.shared.reloadWalletInfo()
+                } else {
+                    WalletManager.shared.walletInfo = WalletManager.shared.walletInfo
+                    StakingManager.shared.refresh()
+                }
             }
         }
     #else
         @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .mainnet {
             didSet {
                 FlowNetwork.setup()
-                WalletManager.shared.reloadWalletInfo()
-                StakingManager.shared.refresh()
+                
+                if WalletManager.shared.getPrimaryWalletAddress() == nil {
+                    WalletManager.shared.reloadWalletInfo()
+                } else {
+                    WalletManager.shared.walletInfo = WalletManager.shared.walletInfo
+                    StakingManager.shared.refresh()
+                }
             }
         }
     #endif
@@ -182,8 +191,6 @@ class LocalUserDefaults: ObservableObject {
     
     @AppStorage(Keys.currentCurrency.rawValue) var currentCurrency: Currency = .USD
     @AppStorage(Keys.currentCurrencyRate.rawValue) var currentCurrencyRate: Double = 1
-    
-    @AppStorage(Keys.sandboxnetEnabled.rawValue) var sandboxnetEnabled: Bool = false
 }
 
 extension LocalUserDefaults {
