@@ -148,7 +148,7 @@ extension RouteMap.Wallet: RouterTarget {
             let vc = TransactionListViewController(contractId: contractId)
             navi.pushViewController(vc, animated: true)
         case .swap(let fromToken):
-            navi.push(content: fromToken != nil ? SwapView(defaultFromToken: fromToken) : SwapView())
+            navi.present(content: fromToken != nil ? SwapView(defaultFromToken: fromToken) : SwapView())
         case .selectToken(let selectedToken, let disableTokens, let callback):
             let vm = AddTokenViewModel(selectedToken: selectedToken, disableTokens: disableTokens, selectCallback: callback)
             navi.present(content: AddTokenView(vm: vm))

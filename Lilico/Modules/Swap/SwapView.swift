@@ -11,6 +11,12 @@ import Kingfisher
 struct SwapView: RouteableView {
     @StateObject var vm: SwapViewModel
     
+    enum Field: Hashable {
+        case fromToken
+        case toToken
+    }
+    @FocusState private var focusedField: Field?
+    
     var title: String {
         return "swap_title".localized
     }
@@ -50,6 +56,9 @@ struct SwapView: RouteableView {
             SwapConfirmView()
                 .environmentObject(vm)
         })
+        .onSubmit {
+            focusedField = nil
+        }
     }
     
     var errorTipsView: some View {
@@ -77,6 +86,7 @@ struct SwapView: RouteableView {
     
     var swapBtn: some View {
         VPrimaryButton(model: ButtonStyle.primary, state: vm.buttonState, action: {
+            focusedField = nil
             vm.swapAction()
         }, title: vm.buttonState == .loading ? "working_on_it".localized : "swap_title".localized)
         .padding(.horizontal, 18)
@@ -123,6 +133,7 @@ extension SwapView {
                     }
                 }
                 .disabled(vm.fromToken == nil)
+                .focused($focusedField, equals: .fromToken)
             
             Spacer()
             
@@ -204,6 +215,7 @@ extension SwapView {
                     }
                 }
                 .disabled(vm.toToken == nil)
+                .focused($focusedField, equals: .toToken)
             
             Spacer()
             

@@ -56,7 +56,8 @@ enum Network {
     static func request<T: Decodable, U: TargetType>(_ target: U, decoder: JSONDecoder = LilicoAPI.jsonDecoder, needToken: Bool = true) async throws -> T {
         let token = try await fetchIDToken()
         let authPlugin = AccessTokenPlugin { _ in token }
-        let provider = MoyaProvider<U>(plugins: needToken ? [NetworkLoggerPlugin(), authPlugin] : [NetworkLoggerPlugin()])
+        let logPlugin = NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))
+        let provider = MoyaProvider<U>(plugins: needToken ? [logPlugin, authPlugin] : [logPlugin])
         let result = await provider.asyncRequest(target)
         switch result {
         case let .success(response):

@@ -27,6 +27,8 @@ extension Router {
         safeMainThreadCall {
             if let navi = topNavigationController() {
                 navi.popViewController(animated: animated)
+            } else {
+                dismiss(animated: animated)
             }
         }
     }
