@@ -34,34 +34,28 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let urlString = ""
-        let urlObj = URL(string: urlString)!
-        KingfisherManager.shared.retrieveImage(with: urlObj) { result in
-            switch result {
-            case .success(let value):
-                let entry = SimpleEntry(date: Date(), image: value.image)
-                completion(entry)
-            case .failure(let error):
-                debugPrint("getSnapshot fetch image failed: \(error) ")
-                let entry = SimpleEntry(date: Date(), image: nil)
-                completion(entry)
-            }
-        }
+        let entry = SimpleEntry(date: Date(), image: nil)
+        completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, image: nil)
-            entries.append(entry)
+        guard let userDefaults = groupUserDefaults(), let url = userDefaults.url(forKey: FirstFavNFTImageURL) else {
+            let entry = SimpleEntry(date: Date(), image: nil)
+            completion(Timeline(entries: [entry], policy: .never))
+            return
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        
+        KingfisherManager.shared.retrieveImage(with: url) { result in
+            switch result {
+            case .success(let value):
+                let entry = SimpleEntry(date: Date(), image: value.image)
+                completion(Timeline(entries: [entry], policy: .never))
+            case .failure(let error):
+                debugPrint("getTimeline fetch image failed: \(error) ")
+                let entry = SimpleEntry(date: Date(), image: nil)
+                completion(Timeline(entries: [entry], policy: .never))
+            }
+        }
     }
 }
 

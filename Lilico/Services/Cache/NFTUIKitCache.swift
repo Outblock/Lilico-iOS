@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 class NFTUIKitCache {
     static let cache = NFTUIKitCache()
@@ -242,10 +243,28 @@ extension NFTUIKitCache {
             let data = try JSONEncoder().encode(favList)
             try data.write(to: favCacheFile)
             
+            updateAppGroupFav()
+            
             NotificationCenter.default.post(name: .nftFavDidChanged, object: nil)
         } catch {
             debugPrint("NFTUIKitCache -> saveCurrentFavToCache error: \(error)")
         }
+    }
+    
+    private func updateAppGroupFav() {
+        let oldFav = groupUserDefaults()?.url(forKey: FirstFavNFTImageURL)
+        
+        if let firstFav = favList.first {
+            if oldFav == firstFav.imageURL {
+                return
+            }
+            
+            groupUserDefaults()?.set(firstFav.imageURL, forKey: FirstFavNFTImageURL)
+        } else {
+            groupUserDefaults()?.set(nil, forKey: FirstFavNFTImageURL)
+        }
+        
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     func removeFavCache() {
