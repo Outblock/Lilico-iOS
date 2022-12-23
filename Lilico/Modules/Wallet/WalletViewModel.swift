@@ -242,4 +242,13 @@ extension WalletViewModel {
     func scanAction() {
         ScanHandler.scan()
     }
+    
+    func stakingAction() {
+        if !LocalUserDefaults.shared.stakingGuideDisplayed && !StakingManager.shared.isStaked {
+            Router.route(to: RouteMap.Wallet.stakeGuide)
+            return
+        }
+        
+        Router.route(to: RouteMap.Wallet.stakingList)
+    }
 }

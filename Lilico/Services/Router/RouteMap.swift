@@ -114,6 +114,7 @@ extension RouteMap {
         case stakeAmount(StakingProvider, isUnstake: Bool = false)
         case stakeDetail(StakingProvider, StakingNode)
         case stakeSetupConfirm(StakeAmountViewModel)
+        case backToTokenDetail
     }
 }
 
@@ -165,6 +166,13 @@ extension RouteMap.Wallet: RouterTarget {
         case .stakeSetupConfirm(let vm):
             let vc = CustomHostingController(rootView: StakeAmountView.StakeSetupView(vm: vm))
             Router.topPresentedController().present(vc, animated: true, completion: nil)
+        case .backToTokenDetail:
+            if let existVC = navi.viewControllers.first(where: { $0 as? RouteableUIHostingController<TokenDetailView> != nil }) {
+                navi.popToViewController(existVC, animated: true)
+                return
+            }
+            
+            navi.popToRootViewController(animated: true)
         }
     }
 }

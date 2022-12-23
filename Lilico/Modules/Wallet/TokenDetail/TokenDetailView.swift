@@ -40,8 +40,7 @@ struct TokenDetailView: RouteableView {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(spacing: 12) {
                 summaryView
-                moreView.visibility(vm.hasRateAndChartData ? .visible : .gone)
-                stakeAdView.visibility(stakingManager.isStaked || !vm.token.isFlowCoin ? .gone : .visible)
+                stakeAdView.visibility(stakingManager.isStaked || !vm.token.isFlowCoin || LocalUserDefaults.shared.stakingGuideDisplayed ? .gone : .visible)
                 stakeRewardView.visibility(stakingManager.isStaked && vm.token.isFlowCoin ? .visible : .gone)
                 activitiesView.visibility(vm.recentTransfers.isEmpty ? .gone : .visible)
                 chartContainerView.visibility(vm.hasRateAndChartData ? .visible : .gone)
@@ -144,39 +143,6 @@ struct TokenDetailView: RouteableView {
         .padding(.horizontal, 18)
         .background {
             Color.LL.Neutrals.background.cornerRadius(16)
-        }
-    }
-    
-    var moreView: some View {
-        Button {
-            switch LocalUserDefaults.shared.flowNetwork {
-            case .testnet:
-                UIApplication.shared.open(URL(string: "https://testnet-faucet.onflow.org/fund-account")!)
-            case .sandboxnet:
-                UIApplication.shared.open(URL(string: "https://sandboxnet-faucet.flow.com/")!)
-            default:
-                break
-            }
-        } label: {
-            HStack {
-                VStack(alignment: .leading, spacing: 3) {
-                    Text("Get more FLOW")
-                        .foregroundColor(.LL.Neutrals.text)
-                        .font(.inter(size: 16, weight: .semibold))
-                    
-                    Text("Stake tokens and earn rewards")
-                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals8)
-                        .font(.inter(size: 14, weight: .medium))
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Image("icon-bitcoin")
-            }
-            .frame(height: 68)
-            .padding(.horizontal, 18)
-            .background {
-                Color.LL.Neutrals.background.cornerRadius(16)
-            }
         }
     }
     
@@ -575,7 +541,12 @@ extension TokenDetailView {
     
     var stakeAdView: some View {
         Button {
-            Router.route(to: RouteMap.Wallet.stakeGuide)
+            if !LocalUserDefaults.shared.stakingGuideDisplayed {
+                Router.route(to: RouteMap.Wallet.stakeGuide)
+                return
+            }
+            
+            Router.route(to: RouteMap.Wallet.stakingSelectProvider)
         } label: {
             ZStack(alignment: .topLeading) {
                 HStack {

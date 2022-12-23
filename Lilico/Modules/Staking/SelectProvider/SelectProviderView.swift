@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct SelectProviderView: RouteableView {
+    @Environment(\.colorScheme) var colorScheme
     @StateObject private var vm = SelectProviderViewModel()
     
     var title: String {
@@ -47,7 +48,7 @@ struct SelectProviderView: RouteableView {
                     .cornerRadius(16)
                     .padding(.top, 12)
                     
-                    createProviderView(provider: vm.lilicoProvider, gradientStart: "#FFD7C6", gradientEnd: "#FAFAFA")
+                    createProviderView(provider: vm.lilicoProvider, gradientStart: colorScheme == .light ? "#FFD7C6" : "#292929", gradientEnd: colorScheme == .light ? "#FAFAFA" : "#292929")
                         .padding(.top, -40)
                 }
                 .visibility(vm.lilicoProvider != nil ? .visible : .gone)
@@ -60,7 +61,7 @@ struct SelectProviderView: RouteableView {
                 Group {
                     createSectionTitleView("staking_provider_section_title".localized)
                     ForEach(vm.otherProviders, id: \.id) { provider in
-                        createProviderView(provider: provider, gradientStart: "#F0F0F0", gradientEnd: "#FAFAFA")
+                        createProviderView(provider: provider, gradientStart: colorScheme == .light ? "#F0F0F0" : "#292929", gradientEnd: colorScheme == .light ? "#FAFAFA" : "#292929")
                     }
                 }
                 .visibility(vm.otherProviders.isEmpty ? .gone : .visible)
@@ -105,6 +106,7 @@ struct SelectProviderView: RouteableView {
                     Text(provider?.name ?? "unknown")
                         .foregroundColor(Color.LL.Neutrals.text)
                         .font(.inter(size: 16, weight: .bold))
+                        .lineLimit(1)
                     
                     HStack(spacing: 0) {
                         Text("staking_provider".localized)
@@ -126,6 +128,7 @@ struct SelectProviderView: RouteableView {
                             .foregroundColor(Color.LL.Neutrals.text2)
                             .font(.inter(size: 12, weight: .semibold))
                             .padding(.leading, 4)
+                            .lineLimit(1)
                     }
                 }
                 .padding(.leading, 12)

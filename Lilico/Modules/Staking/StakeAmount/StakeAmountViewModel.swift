@@ -241,7 +241,7 @@ extension StakeAmountViewModel {
                 let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow, data: Data())
                 TransactionManager.shared.newTransaction(holder: holder)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    Router.pop()
+                    Router.route(to: RouteMap.Wallet.backToTokenDetail)
                 }
             }
         }

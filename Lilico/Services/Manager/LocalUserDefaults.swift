@@ -26,6 +26,7 @@ extension LocalUserDefaults {
         case tryToRestoreAccountFlag
         case currentCurrency
         case currentCurrencyRate
+        case stakingGuideDisplayed
     }
 
     enum FlowNetworkType: String, CaseIterable {
@@ -191,6 +192,8 @@ class LocalUserDefaults: ObservableObject {
     
     @AppStorage(Keys.currentCurrency.rawValue) var currentCurrency: Currency = .USD
     @AppStorage(Keys.currentCurrencyRate.rawValue) var currentCurrencyRate: Double = 1
+    
+    @AppStorage(Keys.stakingGuideDisplayed.rawValue) var stakingGuideDisplayed: Bool = false
 }
 
 extension LocalUserDefaults {

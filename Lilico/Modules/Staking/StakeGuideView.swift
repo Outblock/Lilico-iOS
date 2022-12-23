@@ -9,6 +9,10 @@ import SwiftUI
 import UIKit
 
 class StakeGuideViewModel: ObservableObject {
+    init() {
+        LocalUserDefaults.shared.stakingGuideDisplayed = true
+    }
+    
     func goNext() {
         Router.route(to: RouteMap.Wallet.stakingSelectProvider)
     }

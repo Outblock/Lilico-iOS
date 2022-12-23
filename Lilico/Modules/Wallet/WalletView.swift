@@ -226,6 +226,11 @@ struct WalletView: View {
                 actionButton(imageName: "wallet-swap-stroke") {
                     Router.route(to: RouteMap.Wallet.swap(nil))
                 }
+                
+                Spacer()
+                actionButton(imageName: "wallet-staking") {
+                    vm.stakingAction()
+                }
             }
         }
     }
