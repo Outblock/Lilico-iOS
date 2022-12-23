@@ -169,10 +169,10 @@ struct WalletView: View {
                     .padding(.horizontal, 15)
                     .padding(.vertical, 5)
                     .font(.inter(size: 12, weight: .semibold))
-                    .foregroundColor(.LL.flow)
+                    .foregroundColor(LocalUserDefaults.shared.flowNetwork == .sandboxnet ? Color(hex: "#F3EA5F") : Color.LL.flow)
                     .background(
                         Capsule(style: .circular)
-                            .fill(Color.LL.flow.opacity(0.2))
+                            .fill(LocalUserDefaults.shared.flowNetwork == .sandboxnet ? Color(hex: "#F3EA5F").opacity(0.2) : Color.LL.flow.opacity(0.2))
                     )
             }
             
