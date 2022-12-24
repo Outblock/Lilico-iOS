@@ -117,7 +117,7 @@ extension TransactionManager {
         var status: Int = Flow.Transaction.Status.pending.rawValue
         var internalStatus: TransactionManager.InternalStatus = .pending
         var type: TransactionManager.TransactionType
-        var data: Data
+        var data: Data = .init()
         var errorMsg: String?
         
         private var timer: Timer?
@@ -136,7 +136,7 @@ extension TransactionManager {
             case internalStatus
         }
         
-        init(id: Flow.ID, createTime: TimeInterval = Date().timeIntervalSince1970, type: TransactionManager.TransactionType, data: Data) {
+        init(id: Flow.ID, createTime: TimeInterval = Date().timeIntervalSince1970, type: TransactionManager.TransactionType, data: Data = Data()) {
             self.transactionId = id
             self.createTime = createTime
             self.type = type

@@ -87,7 +87,7 @@ struct SelectProviderView: RouteableView {
     
     func createProviderView(provider: StakingProvider?, gradientStart: String, gradientEnd: String) -> some View {
         Button {
-            if let provider = provider, provider.isLilico {
+            if let provider = provider {
                 Router.route(to: RouteMap.Wallet.stakeAmount(provider))
             }
         } label: {
@@ -109,22 +109,22 @@ struct SelectProviderView: RouteableView {
                         .lineLimit(1)
                     
                     HStack(spacing: 0) {
-                        Text("staking_provider".localized)
-                            .foregroundColor(Color.LL.Neutrals.text2)
-                            .font(.inter(size: 12, weight: .semibold))
+//                        Text("staking_provider".localized)
+//                            .foregroundColor(Color.LL.Neutrals.text2)
+//                            .font(.inter(size: 12, weight: .semibold))
+//
+//                        KFImage.url(provider?.iconURL)
+//                            .placeholder({
+//                                Image("placeholder")
+//                                    .resizable()
+//                            })
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fill)
+//                            .frame(width: 12, height: 12)
+//                            .clipShape(Circle())
+//                            .padding(.leading, 6)
                         
-                        KFImage.url(provider?.iconURL)
-                            .placeholder({
-                                Image("placeholder")
-                                    .resizable()
-                            })
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 12, height: 12)
-                            .clipShape(Circle())
-                            .padding(.leading, 6)
-                        
-                        Text(provider?.name ?? "unknown")
+                        Text(provider?.website ?? "unknown")
                             .foregroundColor(Color.LL.Neutrals.text2)
                             .font(.inter(size: 12, weight: .semibold))
                             .padding(.leading, 4)
@@ -135,24 +135,25 @@ struct SelectProviderView: RouteableView {
                 .frame(alignment: .leading)
                 
                 Spacer()
-                
-                ZStack {
-                    VStack(spacing: 5) {
-                        Text(provider?.apyYearPercentString ?? "0%")
-                            .foregroundColor(Color.LL.Neutrals.text)
-                            .font(.inter(size: 16, weight: .semibold))
-                        
-                        Text("stake".localized)
-                            .foregroundColor(Color.LL.Neutrals.text3)
-                            .font(.inter(size: 12, weight: .medium))
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .frame(width: 92)
-                .frame(height: 48)
-                .background(Color.LL.deepBg)
-                .cornerRadius(12)
+//
+//                ZStack {
+//                    VStack(spacing: 5) {
+//                        Text(provider?.apyYearPercentString ?? "0%")
+//                            .foregroundColor(Color.LL.Neutrals.text)
+//                            .font(.inter(size: 16, weight: .semibold))
+//
+//                        Text("stake".localized)
+//                            .foregroundColor(Color.LL.Neutrals.text3)
+//                            .font(.inter(size: 12, weight: .medium))
+//                    }
+//                    .frame(maxWidth: .infinity)
+//                }
+//                .frame(width: 92)
+//                .frame(height: 48)
+//                .background(Color.LL.deepBg)
+//                .cornerRadius(12)
             }
+            .frame(maxWidth: .infinity)
             .padding(.leading, 16)
             .padding(.trailing, 8)
             .frame(height: 64)

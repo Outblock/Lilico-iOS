@@ -315,6 +315,10 @@ extension FlowNetwork {
 
 // MARK: - Stake
 
+enum LilicoError: Error {
+    case emptyWallet
+}
+
 extension FlowNetwork {
     static func stakingIsEnabled() async throws -> Bool {
         return try await self.fetch(cadence: CadenceTemplate.checkStakingIsEnabled, arguments: [])
@@ -325,9 +329,43 @@ extension FlowNetwork {
         return try await self.fetch(cadence: CadenceTemplate.checkAccountStakingIsSetup, arguments: [.address(address)])
     }
     
+    static func claimReward(nodeID: String, amount: Decimal) async throws -> Flow.ID {
+        guard let walletAddress = WalletManager.shared.getPrimaryWalletAddress() else {
+            throw LilicoError.emptyWallet
+        }
+        
+        let address = Flow.Address(hex: walletAddress)
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared]) {
+            cadence {
+                CadenceTemplate.Stake.claimReward
+                    .replace(by: ScriptAddress.addressMap())
+            }
+            
+            arguments {
+                [.string(nodeID), .optional(nil), .ufix64(amount)]
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+        }
+    }
+    
     static func setupAccountStaking() async throws -> Bool {
         let cadenceString = CadenceTemplate.setupAccountStaking.replace(by: ScriptAddress.addressMap())
-        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        
+        guard let walletAddress = WalletManager.shared.getPrimaryWalletAddress() else {
+            throw LilicoError.emptyWallet
+        }
+        let address = Flow.Address(hex: walletAddress)
         
         let txId = try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {
@@ -470,22 +508,16 @@ extension FlowNetwork {
         return response
     }
     
-    static func getStakingApyByWeek() async throws -> Double? {
-        let result: Double = try await fetch(cadence: CadenceTemplate.getApyByWeek, arguments: [])
-        if result == 0 {
-            return nil
-        }
+    static func getStakingApyByWeek() async throws -> Double {
+        let result: Decimal = try await fetch(cadence: CadenceTemplate.getApyByWeek, arguments: [])
         
-        return result
+        return result.doubleValue
     }
     
-    static func getStakingApyByYear() async throws -> Double? {
-        let result: Double = try await fetch(cadence: CadenceTemplate.getApyByYear, arguments: [])
-        if result == 0 {
-            return nil
-        }
-        
-        return result
+    static func getStakingApyByYear() async throws -> Double {
+        let result: Decimal = try await fetch(cadence: CadenceTemplate.getApyByYear, arguments: [])
+
+        return result.doubleValue
     }
     
     static func getDelegatorInfo() async throws -> [String: Int]? {

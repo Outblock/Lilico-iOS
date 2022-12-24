@@ -92,7 +92,7 @@ extension DeveloperModeViewModel {
                 let id: String = try await Network.request(LilicoAPI.User.sandboxnet)
                 let txId = Flow.ID(hex: id)
                 
-                flow.configure(chainID: .sandbox)
+                flow.configure(chainID: .sandboxnet)
                 
                 let result = try await txId.onceSealed()
                 if result.isFailed {

@@ -43,7 +43,7 @@ extension LLCadence where T == LLCadenceAction.token {
     }
     
     static func tokenTransfer(token: TokenModel, at network: Flow.ChainID) -> String {
-        let script = network == .sandbox ?
+        let script = network == .sandboxnet ?
         CadenceTemplate.transferToken : CadenceTemplate.transferTokenWithInbox
         return script
             .replace(by: ScriptAddress.addressMap())

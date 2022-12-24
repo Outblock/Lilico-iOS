@@ -49,7 +49,17 @@ class StakingDetailViewModel: ObservableObject {
     }
     
     func stakeAction() {
-        Router.route(to: RouteMap.Wallet.stakeAmount(provider))
+        Task {
+            do {
+                HUD.loading("staking_claim_rewards".localized)
+                let _ = try await StakingManager.shared.claimReward(nodeID: node.nodeID, amount: node.tokensRewarded.decimalValue)
+                HUD.dismissLoading()
+            } catch {
+                debugPrint(error)
+                HUD.dismissLoading()
+                HUD.error(title: "Error", message: error.localizedDescription)
+            }
+        }
     }
     
     func unstakeAction() {

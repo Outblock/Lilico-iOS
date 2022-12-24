@@ -33,7 +33,7 @@ class RemoteConfigManager {
             return config?.payer.mainnet.address ?? ""
         case .testnet:
             return config?.payer.testnet.address ?? ""
-        case .sandbox:
+        case .sandboxnet:
             return config?.payer.sandboxnet.address ?? ""
         default:
             return ""
@@ -50,7 +50,7 @@ class RemoteConfigManager {
             return config?.payer.mainnet.keyID ?? 0
         case .testnet:
             return config?.payer.testnet.keyID ?? 0
-        case .sandbox:
+        case .sandboxnet:
             return config?.payer.sandboxnet.keyID ?? 0
         default:
             return 0

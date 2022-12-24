@@ -60,7 +60,7 @@ extension LocalUserDefaults {
             case .mainnet:
                 return Flow.ChainID.mainnet
             case .sandboxnet:
-                return Flow.ChainID.sandbox
+                return Flow.ChainID.sandboxnet
             }
         }
         
@@ -70,7 +70,7 @@ extension LocalUserDefaults {
                 self = .testnet
             case .mainnet:
                 self = .mainnet
-            case .sandbox:
+            case .sandboxnet:
                 self = .sandboxnet
             default:
                 return nil

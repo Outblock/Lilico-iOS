@@ -12,6 +12,12 @@ struct StakeAmountView: RouteableView {
     @StateObject private var vm: StakeAmountViewModel
     private var isUnstake: Bool = false
     
+    enum FocusField: Hashable {
+      case field
+    }
+
+    @FocusState private var focusedField: FocusField?
+    
     init(provider: StakingProvider, isUnstake: Bool) {
         _vm = StateObject(wrappedValue: StakeAmountViewModel(provider: provider, isUnstake: isUnstake))
         self.isUnstake = isUnstake
@@ -49,6 +55,7 @@ struct StakeAmountView: RouteableView {
         VStack(spacing: 0) {
             HStack {
                 TextField("", text: $vm.inputText)
+                    .keyboardType(.numberPad)
                     .disableAutocorrection(true)
                     .modifier(PlaceholderStyle(showPlaceHolder: vm.inputText.isEmpty,
                                                placeholder: "stake_amount_flow".localized,
@@ -60,6 +67,10 @@ struct StakeAmountView: RouteableView {
                         withAnimation {
                             vm.inputTextDidChangeAction(text: text)
                         }
+                    }
+                    .focused($focusedField, equals: .field)
+                    .onAppear {
+                        self.focusedField = .field
                     }
                 
                 Text(vm.inputNumAsCurrencyString)

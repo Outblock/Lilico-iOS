@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 import Combine
+import Flow
 
 let StakingDefaultApy: Double = 0.093
-let StakingDefaultNormalApy: Double = 0.08
+let StakingDefaultNormalApy: Double = 0.09
 
 // 2022-10-27 07:00
 private let StakeStartTime: TimeInterval = 1666825200
@@ -131,6 +132,14 @@ class StakingManager: ObservableObject {
         }
     }
     
+    func claimReward(nodeID: String, amount: Decimal) async throws-> Flow.ID {
+        let txId = try await FlowNetwork.claimReward(nodeID: nodeID, amount: amount)
+        let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow)
+        TransactionManager.shared.newTransaction(holder: holder)
+        refresh()        
+        return txId
+    }
+    
     func goStakingAction() {
         if nodeInfos.count == 1, let node = nodeInfos.first, let provider = StakingProviderCache.cache.providers.first(where: { $0.id == node.nodeID }) {
             Router.route(to: RouteMap.Wallet.stakeDetail(provider, node))
@@ -144,11 +153,10 @@ extension StakingManager {
     private func updateApy() {
         Task {
             do {
-                if let apy = try await FlowNetwork.getStakingApyByWeek() {
-                    DispatchQueue.main.async {
-                        self.apy = apy
-                        self.saveCache()
-                    }
+                let apy = try await FlowNetwork.getStakingApyByWeek()
+                DispatchQueue.main.async {
+                    self.apy = apy
+                    self.saveCache()
                 }
             } catch {
                 debugPrint("StakingManager -> updateApy failed: \(error)")

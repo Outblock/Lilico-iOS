@@ -24,4 +24,9 @@ extension Double {
         f.roundingMode = roundingMode
         return f.string(for: value) ?? "?"
     }
+    
+    var decimalValue: Decimal {
+        // Deal with precision issue with swift decimal
+        Decimal(string: String(self)) ?? Decimal(self)
+    }
 }

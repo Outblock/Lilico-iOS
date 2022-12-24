@@ -155,7 +155,7 @@ struct StakingDetailView: RouteableView {
                     Button {
                         vm.stakeAction()
                     } label: {
-                        Text("domain_claim".localized)
+                        Text("staking_claim".localized)
                             .font(.inter(size: 14, weight: .bold))
                             .foregroundColor(Color.LL.Neutrals.text)
                             .frame(width: 80, height: 32)

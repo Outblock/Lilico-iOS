@@ -145,7 +145,7 @@ struct FlowNetworkModel: Codable {
             return mainnet
         case .testnet:
             return testnet
-        case .sandbox:
+        case .sandboxnet:
             return sandboxnet
         default:
             return nil

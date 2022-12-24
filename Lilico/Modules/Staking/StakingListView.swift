@@ -25,6 +25,21 @@ class StakingListViewModel: ObservableObject {
                 self?.refresh()
             }
         }.store(in: &cancelSet)
+        StakingManager.shared.refresh()
+    }
+    
+    func claimReward(node: StakingNode) {
+        Task {
+            do {
+                HUD.loading("staking_claim_rewards".localized)
+                let _ = try await StakingManager.shared.claimReward(nodeID: node.nodeID, amount: node.tokensRewarded.decimalValue)
+                HUD.dismissLoading()
+            } catch {
+                debugPrint(error)
+                HUD.dismissLoading()
+                HUD.error(title: "Error", message: error.localizedDescription)
+            }
+        }
     }
     
     private func refresh() {
@@ -136,7 +151,7 @@ struct StakingListView: RouteableView {
                 Spacer()
                 
                 Button {
-                    Router.route(to: RouteMap.Wallet.stakeAmount(item.provider))
+                    vm.claimReward(node: item.nodeInfo)
                 } label: {
                     Text("staking_claim".localized)
                         .font(.inter(size: 14, weight: .bold))
