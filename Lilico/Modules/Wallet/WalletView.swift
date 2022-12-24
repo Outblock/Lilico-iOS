@@ -496,7 +496,7 @@ extension WalletView {
                     }
                     .frame(maxWidth: .infinity)
                 }
-                .frame(height: CoinCellHeight)
+                .frame(minHeight: CoinCellHeight)
                 
                 HStack(spacing: 0) {
                     Divider()

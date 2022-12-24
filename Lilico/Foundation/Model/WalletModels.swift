@@ -59,7 +59,7 @@ enum ListedToken: String, CaseIterable {
         case .stFlow:
             return .mirror(.flow)
         case .usdc:
-            return .query(LocalUserDefaults.shared.market.usdcPricePair)
+            return .fixed(price: 1.0)
         }
     }
     
