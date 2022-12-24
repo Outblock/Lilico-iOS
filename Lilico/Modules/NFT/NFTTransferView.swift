@@ -55,7 +55,6 @@ class NFTTransferViewModel: ObservableObject {
         }
         
         self.isRequesting = true
-        HUD.loading()
         
         Task {
             do {
@@ -69,14 +68,13 @@ class NFTTransferViewModel: ObservableObject {
                 
                 DispatchQueue.main.async {
                     HUD.dismissLoading()
-                    self.isRequesting = false
                     Router.dismiss()
-                    
                     let holder = TransactionManager.TransactionHolder(id: tid, type: .transferNFT, data: data)
                     TransactionManager.shared.newTransaction(holder: holder)
                 }
             } catch {
                 debugPrint("NFTTransferViewModel -> sendAction error: \(error)")
+                self.isRequesting = false
                 failedBlock()
             }
         }
@@ -196,7 +194,7 @@ struct NFTTransferView: View {
                         .cornerRadius(10)
                     
                     Text(vm.nft.collection?.name ?? "")
-                        .foregroundColor(.LL.Neutrals.neutrals4)
+                        .foregroundColor(.LL.Neutrals.neutrals7)
                         .font(.inter(size: 14, weight: .regular))
                     
                     Image("flow")
@@ -214,18 +212,8 @@ struct NFTTransferView: View {
     }
     
     var sendButton: some View {
-        Button {
+        WalletSendButtonView {
             vm.sendAction()
-        } label: {
-            ZStack {
-                Text("send".localized)
-                    .foregroundColor(Color.LL.Button.text)
-                    .font(.inter(size: 14, weight: .bold))
-            }
-            .frame(height: 54)
-            .frame(maxWidth: .infinity)
-            .background(Color.LL.Button.color)
-            .cornerRadius(16)
         }
     }
     

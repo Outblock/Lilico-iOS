@@ -222,9 +222,11 @@ struct WalletView: View {
                     Router.route(to: RouteMap.Wallet.receive)
                 }
                 
-                Spacer()
-                actionButton(imageName: "wallet-swap-stroke") {
-                    Router.route(to: RouteMap.Wallet.swap(nil))
+                if currentNetwork.isMainnet || currentNetwork == .testnet {
+                    Spacer()
+                    actionButton(imageName: "wallet-swap-stroke") {
+                        Router.route(to: RouteMap.Wallet.swap(nil))
+                    }
                 }
                 
                 if currentNetwork.isMainnet {

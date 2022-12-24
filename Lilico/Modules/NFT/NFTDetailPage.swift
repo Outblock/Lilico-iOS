@@ -209,6 +209,7 @@ struct NFTDetailPage: RouteableView {
                             NFTTagsView(tags: vm.nft.tags, color: theColor)
                         }
                         
+                        
                         Text(vm.nft.declare)
                             .font(Font.inter(size: 14, weight: .w400))
                             .foregroundColor(.LL.Neutrals.text)
@@ -278,15 +279,21 @@ struct NFTDetailPage: RouteableView {
                             .foregroundColor(.LL.Neutrals.text)
                     }
                     
-//                    Button {} label: {
-//                        HStack {
-//                            Text("view_on_web".localized)
-//                                .foregroundColor(.LL.Neutrals.text)
-//                            Image(systemName: "globe.asia.australia")
-//                                .font(.system(size: 16))
-//                                .foregroundColor(theColor)
-//                        }
-//                    }
+                    if let urlString = vm.nft.response.externalURL,
+                       let url = URL(string: urlString) {
+                        
+                        Button {
+                            Router.route(to: RouteMap.Explore.browser(url))
+                        } label: {
+                            HStack {
+                                Text("view_on_web".localized)
+                                    .foregroundColor(.LL.Neutrals.text)
+                                Image(systemName: "globe.asia.australia")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(theColor)
+                            }
+                        }
+                    }
                     
                 } label: {
                     Image(systemName: "ellipsis")

@@ -270,6 +270,7 @@ extension WalletSendAmountViewModel {
             } catch {
                 debugPrint("WalletSendAmountViewModel -> sendAction error: \(error)")
                 failureBlock()
+                showConfirmView = false
             }
         }
     }
