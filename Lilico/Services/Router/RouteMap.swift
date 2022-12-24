@@ -401,6 +401,7 @@ extension RouteMap.Explore: RouterTarget {
             let inputVC = BrowserSearchInputViewController()
             inputVC.setSearchText(text: "")
             inputVC.selectTextCallback = { text in
+                UISelectionFeedbackGenerator().selectionChanged()
                 let urlString = BrowserSearchInputViewController.makeUrlIfNeeded(urlString: text)
                 if let url = URL(string: urlString) {
                     navi.popViewController(animated: false) {
