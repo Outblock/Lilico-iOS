@@ -60,7 +60,7 @@ struct DeveloperModeView: RouteableView {
                                 }
                             
                             Divider()
-                            Cell(sysImageTuple: (isTestnet ? .checkmarkSelected : .checkmarkUnselected, isTestnet ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: "Testnet", desc: isTestnet ? "Selected" : "")
+                            Cell(sysImageTuple: (isTestnet ? .checkmarkSelected : .checkmarkUnselected, isTestnet ? LocalUserDefaults.FlowNetworkType.testnet.color : .LL.Neutrals.neutrals1), title: "Testnet", desc: isTestnet ? "Selected" : "")
                                 .onTapGestureOnBackground {
                                     if lud.flowNetwork != .testnet {
                                         lud.flowNetwork = .testnet
@@ -68,7 +68,7 @@ struct DeveloperModeView: RouteableView {
                                 }
                             
                             Divider()
-                            Cell(sysImageTuple: (isSandboxnet ? .checkmarkSelected : .checkmarkUnselected, isSandboxnet ? .LL.Primary.salmonPrimary : .LL.Neutrals.neutrals1), title: "Sandbox", desc: isSandboxnet ? "Selected" : "", btnTitle: walletManager.isSandboxnetEnabled ? nil : "Enable", btnAction: {
+                            Cell(sysImageTuple: (isSandboxnet ? .checkmarkSelected : .checkmarkUnselected, isSandboxnet ? LocalUserDefaults.FlowNetworkType.sandboxnet.color : .LL.Neutrals.neutrals1), title: "Sandbox", desc: isSandboxnet ? "Selected" : "", btnTitle: walletManager.isSandboxnetEnabled ? nil : "Enable", btnAction: {
                                 if !walletManager.isSandboxnetEnabled {
                                     vm.enableSandboxnetAction()
                                 }
