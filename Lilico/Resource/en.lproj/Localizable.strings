@@ -439,6 +439,7 @@
 "stake_ad_title_2" = "Earn Rewards";
 "stake_ad_desc" = "Stake tokens and earn rewards";
 "staking_list_title" = "Staking List";
+"staking_empty_list" = "Empty Staking List";
 "staking_claim" = "Claim";
 "staking_amount" = "Staking Amount";
 "staking_rewards" = "Rewards";

@@ -9,6 +9,10 @@ import Flow
 import SwiftUI
 import UIKit
 
+var currentNetwork: LocalUserDefaults.FlowNetworkType {
+    LocalUserDefaults.shared.flowNetwork
+}
+
 extension LocalUserDefaults {
     enum Keys: String {
         case flowNetwork
@@ -33,6 +37,21 @@ extension LocalUserDefaults {
         case testnet
         case mainnet
         case sandboxnet
+        
+        var color: Color {
+            switch self {
+            case .mainnet:
+                return Color.LL.Primary.salmonPrimary
+            case .testnet:
+                return Color.LL.flow
+            case .sandboxnet:
+                return Color(hex: "#F3EA5F")
+            }
+        }
+        
+        var isMainnet: Bool {
+            self == .mainnet
+        }
 
         func toFlowType() -> Flow.ChainID {
             switch self {
@@ -77,26 +96,28 @@ class LocalUserDefaults: ObservableObject {
         @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .testnet {
             didSet {
                 FlowNetwork.setup()
-                
                 if WalletManager.shared.getPrimaryWalletAddress() == nil {
                     WalletManager.shared.reloadWalletInfo()
                 } else {
                     WalletManager.shared.walletInfo = WalletManager.shared.walletInfo
                     StakingManager.shared.refresh()
                 }
+                
+                NotificationCenter.default.post(name: .networkChange)
             }
         }
     #else
         @AppStorage(Keys.flowNetwork.rawValue) var flowNetwork: FlowNetworkType = .mainnet {
             didSet {
                 FlowNetwork.setup()
-                
                 if WalletManager.shared.getPrimaryWalletAddress() == nil {
                     WalletManager.shared.reloadWalletInfo()
                 } else {
                     WalletManager.shared.walletInfo = WalletManager.shared.walletInfo
                     StakingManager.shared.refresh()
                 }
+                
+                NotificationCenter.default.post(name: .networkChange)
             }
         }
     #endif
@@ -200,5 +221,6 @@ extension LocalUserDefaults {
     @objc private func willReset() {
         self.recentToken = nil
         self.backupType = .manual
+        self.flowNetwork = .mainnet
     }
 }

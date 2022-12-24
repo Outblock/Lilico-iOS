@@ -51,7 +51,11 @@ struct StakingListView: RouteableView {
     
     var body: some View {
         VStack {
-            listView
+            if vm.items.isEmpty {
+                emptyListView
+            } else {
+                listView
+            }
             newNodeBtn
         }
         .padding(.horizontal, 18)
@@ -74,6 +78,16 @@ struct StakingListView: RouteableView {
                 .background(Color.LL.Neutrals.neutrals6)
                 .cornerRadius(12)
         }
+    }
+    
+    var emptyListView: some View {
+        VStack {
+            Spacer()
+            Text("staking_empty_list".localized)
+                .font(.inter(size: 20, weight: .bold))
+                .foregroundColor(Color.LL.Neutrals.neutrals7)
+            Spacer()
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     var listView: some View {

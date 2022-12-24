@@ -101,6 +101,7 @@ extension AppDelegate {
         _ = BackupManager.shared
         _ = SecurityManager.shared
         _ = WalletConnectManager.shared
+        _ = CoinRateCache.cache
         if !AppDelegate.isUnitTest {
             _ = RemoteConfigManager.shared
         }
@@ -143,8 +144,11 @@ extension AppDelegate {
 
 extension AppDelegate {
     private func setupUI() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNetworkChange), name: .networkChange, object: nil)
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = UIColor.LL.Primary.salmonPrimary
+        self.window?.backgroundColor = currentNetwork.isMainnet ? UIColor.LL.Neutrals.background : UIColor(currentNetwork.color)
         
         coordinator.showRootView()
         coordinator.rootNavi?.view.alpha = 0
@@ -156,5 +160,9 @@ extension AppDelegate {
         UIView.animate(withDuration: 0.2, delay: 0.1) {
             self.coordinator.rootNavi?.view.alpha = 1
         }
+    }
+    
+    @objc func handleNetworkChange() {
+        self.window?.backgroundColor = currentNetwork.isMainnet ? UIColor.LL.Neutrals.background : UIColor(currentNetwork.color)
     }
 }

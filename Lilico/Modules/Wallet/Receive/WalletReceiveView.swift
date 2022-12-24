@@ -146,7 +146,7 @@ struct WalletReceiveView: RouteableView {
             .cornerRadius(25)
             .overlay(
                 RoundedRectangle(cornerRadius: 25)
-                    .stroke(LocalUserDefaults.shared.flowNetwork == .mainnet ? Color.LL.Neutrals.background : Color.LL.flow, lineWidth: 5)
+                    .stroke(currentNetwork.isMainnet ? Color.LL.Neutrals.background : currentNetwork.color, lineWidth: 5)
                     .colorScheme(.light)
             )
             .aspectRatio(1, contentMode: .fit)
@@ -171,16 +171,16 @@ struct WalletReceiveView: RouteableView {
                         .foregroundColor(.LL.Neutrals.background)
                         .colorScheme(.light)
                     
-                    if LocalUserDefaults.shared.flowNetwork == .testnet || LocalUserDefaults.shared.flowNetwork == .sandboxnet {
-                        Text(LocalUserDefaults.shared.flowNetwork == .testnet ? "testnet".localized : "sandboxnet".localized)
+                    if !currentNetwork.isMainnet {
+                        Text(currentNetwork.rawValue)
                             .textCase(.uppercase)
                             .padding(.horizontal, 15)
                             .padding(.vertical, 5)
                             .font(.inter(size: 12, weight: .semibold))
-                            .foregroundColor(.LL.flow)
+                            .foregroundColor(currentNetwork.color)
                             .background(
                                 Capsule(style: .circular)
-                                    .fill(Color.LL.flow.opacity(0.2))
+                                    .fill(currentNetwork.color.opacity(0.2))
                             )
                     }
                 }
@@ -244,8 +244,6 @@ extension WalletReceiveView {
     }
     
     var color: Color {
-        LocalUserDefaults.shared.flowNetwork == .mainnet ?
-        Color.LL.Neutrals.text :
         Color.LL.Neutrals.text
     }
     
@@ -262,7 +260,7 @@ extension WalletReceiveView {
             codeView
                 .components(.eyePupil)
                 .fill(
-                    LocalUserDefaults.shared.flowNetwork == .mainnet ?
+                    currentNetwork.isMainnet ?
                     Color.LL.Primary.salmonPrimary:
                     Color.LL.text
                 )

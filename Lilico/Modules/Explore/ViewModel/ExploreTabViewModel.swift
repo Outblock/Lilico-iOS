@@ -60,10 +60,9 @@ class ExploreTabViewModel: ViewModel {
                         return
                     }
                     
-                    let isTestnet = LocalUserDefaults.shared.flowNetwork == .testnet
                     let list: [DAppModel] = try await FirebaseConfig.dapp.fetch(decoder: JSONDecoder())
                     await MainActor.run {
-                        state.list = isTestnet ? list.filter{ $0.testnetURL != nil } : list
+                        state.list = list.filter{ $0.networkURL != nil }
                         state.isLoading = false
                     }
                 } catch {

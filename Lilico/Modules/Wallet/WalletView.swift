@@ -163,16 +163,16 @@ struct WalletView: View {
                 .foregroundColor(.LL.Neutrals.text)
                 .font(.inter(size: 24, weight: .bold))
 
-            if LocalUserDefaults.shared.flowNetwork == .testnet || LocalUserDefaults.shared.flowNetwork == .sandboxnet {
+            if !currentNetwork.isMainnet {
                 Text(LocalUserDefaults.shared.flowNetwork.rawValue)
                     .textCase(.uppercase)
                     .padding(.horizontal, 15)
                     .padding(.vertical, 5)
                     .font(.inter(size: 12, weight: .semibold))
-                    .foregroundColor(LocalUserDefaults.shared.flowNetwork == .sandboxnet ? Color(hex: "#F3EA5F") : Color.LL.flow)
+                    .foregroundColor(LocalUserDefaults.shared.flowNetwork.color)
                     .background(
                         Capsule(style: .circular)
-                            .fill(LocalUserDefaults.shared.flowNetwork == .sandboxnet ? Color(hex: "#F3EA5F").opacity(0.2) : Color.LL.flow.opacity(0.2))
+                            .fill(LocalUserDefaults.shared.flowNetwork.color.opacity(0.2))
                     )
             }
             
@@ -227,9 +227,11 @@ struct WalletView: View {
                     Router.route(to: RouteMap.Wallet.swap(nil))
                 }
                 
-                Spacer()
-                actionButton(imageName: "wallet-staking") {
-                    vm.stakingAction()
+                if currentNetwork.isMainnet {
+                    Spacer()
+                    actionButton(imageName: "wallet-staking") {
+                        vm.stakingAction()
+                    }
                 }
             }
         }
@@ -410,15 +412,16 @@ extension WalletView {
                     Spacer()
 
                     HStack(spacing: 8) {
-                        Text(vm.isHidden ? "******************" : vm.address)
-                            .foregroundColor(Color(hex: "#FDFBF9"))
-                            .font(.inter(size: 15, weight: .bold))
-                                                
                         Button {
                             vm.copyAddressAction()
                         } label: {
-                            Image("icon-address-copy")
-                                .frame(width: 25, height: 25)
+                            HStack(spacing: 8) {
+                                Text(vm.isHidden ? "******************" : vm.address)
+                                    .foregroundColor(Color(hex: "#FDFBF9"))
+                                    .font(.inter(size: 15, weight: .bold))
+                                Image("icon-address-copy")
+                                    .frame(width: 25, height: 25)
+                            }
                         }
 
                         Spacer()
