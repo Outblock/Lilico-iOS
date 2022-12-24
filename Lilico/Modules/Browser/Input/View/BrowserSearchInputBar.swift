@@ -43,7 +43,7 @@ class BrowserSearchInputBar: UIView {
         view.returnKeyType = .go
         view.autocorrectionType = .no
         view.delegate = self
-        
+        view.keyboardType = .webSearch
         view.snp.makeConstraints { make in
             make.height.equalTo(ContentViewHeight)
         }

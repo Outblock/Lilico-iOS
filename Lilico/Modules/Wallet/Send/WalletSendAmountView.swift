@@ -136,6 +136,7 @@ struct WalletSendAmountView: RouteableView {
 
                     // input view
                     TextField("", text: $vm.inputText)
+                        .keyboardType(.decimalPad)
                         .disableAutocorrection(true)
                         .modifier(PlaceholderStyle(showPlaceHolder: vm.inputText.isEmpty,
                                                    placeholder: "enter_amount".localized,

@@ -124,7 +124,7 @@ struct SelectProviderView: RouteableView {
 //                            .clipShape(Circle())
 //                            .padding(.leading, 6)
                         
-                        Text(provider?.website ?? "unknown")
+                        Text(provider?.website?.removeHTTPPrefix() ?? "unknown")
                             .foregroundColor(Color.LL.Neutrals.text2)
                             .font(.inter(size: 12, weight: .semibold))
                             .padding(.leading, 4)

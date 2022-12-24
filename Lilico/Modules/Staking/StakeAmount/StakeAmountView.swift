@@ -55,7 +55,7 @@ struct StakeAmountView: RouteableView {
         VStack(spacing: 0) {
             HStack {
                 TextField("", text: $vm.inputText)
-                    .keyboardType(.numberPad)
+                    .keyboardType(.decimalPad)
                     .disableAutocorrection(true)
                     .modifier(PlaceholderStyle(showPlaceHolder: vm.inputText.isEmpty,
                                                placeholder: "stake_amount_flow".localized,

@@ -120,6 +120,7 @@ extension SwapView {
         HStack {
             // input view
             TextField("", text: $vm.inputFromText)
+                .keyboardType(.decimalPad)
                 .disableAutocorrection(true)
                 .modifier(PlaceholderStyle(showPlaceHolder: vm.inputFromText.isEmpty,
                                            placeholder: "0.00",
@@ -202,6 +203,7 @@ extension SwapView {
         HStack {
             // input view
             TextField("", text: $vm.inputToText)
+                .keyboardType(.decimalPad)
                 .disableAutocorrection(true)
                 .modifier(PlaceholderStyle(showPlaceHolder: vm.inputToText.isEmpty,
                                            placeholder: "0.00",

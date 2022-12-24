@@ -279,6 +279,18 @@ extension String {
         }
         return self
     }
+    
+    func removeHTTPPrefix() -> String {
+        if hasPrefix("http://") {
+            return self.removePrefix("http://")
+        }
+        
+        if hasPrefix("https://") {
+            return self.removePrefix("https://")
+        }
+        
+        return self
+    }
 }
 
 // MARK: - FlowScan
