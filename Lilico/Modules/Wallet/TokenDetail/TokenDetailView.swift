@@ -344,10 +344,10 @@ extension TokenDetailView {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 10, height: 10)
-                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
+                        .foregroundColor(.LL.Neutrals.neutrals9)
                     
                     Text("data_from".localized)
-                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
+                        .foregroundColor(.LL.Neutrals.neutrals9)
                         .font(.inter(size: 14, weight: .regular))
                 }
                 
@@ -356,10 +356,10 @@ extension TokenDetailView {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 15, height: 15)
-                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
+                        .foregroundColor(.LL.Neutrals.neutrals9)
                     
                     Text(vm.market.rawValue.capitalized)
-                        .foregroundColor(colorScheme == .dark ? .LL.Neutrals.neutrals9 : .LL.Neutrals.neutrals6)
+                        .foregroundColor(.LL.Neutrals.neutrals9)
                         .font(.inter(size: 14, weight: .regular))
                 }
             }
