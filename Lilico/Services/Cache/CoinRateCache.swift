@@ -30,7 +30,15 @@ private let CacheUpdateInverval = TimeInterval(30)
 class CoinRateCache {
     static let cache = CoinRateCache()
 
-    private var summarys = Set<CoinRateModel>()
+    private var queue = DispatchQueue(label: "CoinRateCache.cache", attributes: .concurrent)
+       
+    
+    private var _summarys = Set<CoinRateModel>()
+    var summarys: Set<CoinRateModel> {
+        queue.sync {
+            _summarys
+        }
+    }
 
     private var isRefreshing = false
 
@@ -55,7 +63,9 @@ class CoinRateCache {
     }
     
     @objc private func willReset() {
-        summarys = []
+        queue.sync {
+            _summarys.removeAll()
+        }
         saveToCache()
     }
 
@@ -66,10 +76,12 @@ class CoinRateCache {
 
 extension CoinRateCache {
     private func loadFromCache() {
-        if let cacheList = LocalUserDefaults.shared.coinSummarys {
-            summarys = Set(cacheList)
-        } else {
-            summarys.removeAll()
+        queue.sync {
+            if let cacheList = LocalUserDefaults.shared.coinSummarys {
+                _summarys = Set(cacheList)
+            } else {
+                _summarys.removeAll()
+            }
         }
     }
 
@@ -149,8 +161,10 @@ extension CoinRateCache {
 
     private func set(summary: CryptoSummaryResponse, forSymbol: String) {
         let model = CoinRateModel(updateTime: Date().timeIntervalSince1970, symbol: forSymbol, summary: summary)
-        summarys.update(with: model)
-        saveToCache()
+        queue.sync {
+            _summarys.update(with: model)
+            saveToCache()
+        }
         NotificationCenter.default.post(name: .coinSummarysUpdated, object: nil)
     }
 }
