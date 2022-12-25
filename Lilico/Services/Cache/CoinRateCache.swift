@@ -32,7 +32,6 @@ class CoinRateCache {
 
     private var queue = DispatchQueue(label: "CoinRateCache.cache", attributes: .concurrent)
        
-    
     private var _summarys = Set<CoinRateModel>()
     var summarys: Set<CoinRateModel> {
         queue.sync {
@@ -140,7 +139,7 @@ extension CoinRateCache {
             let market = LocalUserDefaults.shared.market
             let request = CryptoSummaryRequest(provider: market.rawValue, pair: coinPair)
             let response: CryptoSummaryResponse = try await Network.request(LilicoAPI.Crypto.summary(request))
-            set(summary: response, forSymbol: symbol)
+            await set(summary: response, forSymbol: symbol)
         case let .mirror(token):
             guard let mirrorTokenModel = WalletManager.shared.supportedCoins?.first(where: { $0.symbol == token.rawValue }) else {
                 break
@@ -152,19 +151,20 @@ extension CoinRateCache {
                 break
             }
             
-            set(summary: mirrorResponse, forSymbol: symbol)
+            await set(summary: mirrorResponse, forSymbol: symbol)
         case let .fixed(price):
             let response = CryptoSummaryResponse.createFixedRateResponse(fixedRate: price)
-            set(summary: response, forSymbol: symbol)
+            await set(summary: response, forSymbol: symbol)
         }
     }
 
+    @MainActor
     private func set(summary: CryptoSummaryResponse, forSymbol: String) {
         let model = CoinRateModel(updateTime: Date().timeIntervalSince1970, symbol: forSymbol, summary: summary)
-        queue.sync {
+        let _ = queue.sync {
             _summarys.update(with: model)
-            saveToCache()
         }
+        saveToCache()
         NotificationCenter.default.post(name: .coinSummarysUpdated, object: nil)
     }
 }
