@@ -148,7 +148,7 @@ extension AppDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handleNetworkChange), name: .networkChange, object: nil)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = currentNetwork.isMainnet ? UIColor.LL.Neutrals.background : UIColor(currentNetwork.color)
+        self.window?.backgroundColor = UIColor.LL.Neutrals.background
         
         coordinator.showRootView()
         coordinator.rootNavi?.view.alpha = 0
@@ -159,6 +159,12 @@ extension AppDelegate {
         
         UIView.animate(withDuration: 0.2, delay: 0.1) {
             self.coordinator.rootNavi?.view.alpha = 1
+        }
+        
+        delay(.seconds(5)) {
+            UIView.animate(withDuration: 0.2) {
+                self.window?.backgroundColor = currentNetwork.isMainnet ? UIColor.LL.Neutrals.background : UIColor(currentNetwork.color)
+            }
         }
     }
     
