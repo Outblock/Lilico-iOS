@@ -49,6 +49,10 @@ class StakingDetailViewModel: ObservableObject {
     }
     
     func stakeAction() {
+        StakingManager.shared.goStakingAction()
+    }
+    
+    func claimStake() {
         Task {
             do {
                 HUD.loading("staking_claim_rewards".localized)
@@ -60,6 +64,10 @@ class StakingDetailViewModel: ObservableObject {
                 HUD.error(title: "Error", message: error.localizedDescription)
             }
         }
+    }
+    
+    func restake() {
+        // TODO:
     }
     
     func unstakeAction() {
