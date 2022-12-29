@@ -93,6 +93,10 @@ class StakingManager: ObservableObject {
                 }
             }
         }.store(in: &cancelSet)
+        
+        TransactionManager.shared.$holders.receive(on: DispatchQueue.main).sink { _ in
+            self.refresh()
+        }.store(in: &cancelSet)
     }
     
     func refresh() {
@@ -136,9 +140,18 @@ class StakingManager: ObservableObject {
         let txId = try await FlowNetwork.claimReward(nodeID: nodeID, amount: amount)
         let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow)
         TransactionManager.shared.newTransaction(holder: holder)
-        refresh()        
+//        refresh()
         return txId
     }
+    
+    func reStakeReward(nodeID: String, amount: Decimal) async throws-> Flow.ID {
+        let txId = try await FlowNetwork.reStakeReward(nodeID: nodeID, amount: amount)
+        let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow)
+        TransactionManager.shared.newTransaction(holder: holder)
+//        refresh()
+        return txId
+    }
+    
     
     func goStakingAction() {
         if nodeInfos.count == 1, let node = nodeInfos.first, let provider = StakingProviderCache.cache.providers.first(where: { $0.id == node.nodeID }) {

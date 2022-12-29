@@ -11,6 +11,8 @@ import Flow
 class RemoteConfigManager {
     static let shared = RemoteConfigManager()
     
+    let emptyAddress = "0x0000000000000000"
+    
     var config: Config?
     
     var isFailed: Bool = false
@@ -25,18 +27,18 @@ class RemoteConfigManager {
     
     var payer: String {
         if !freeGasEnabled {
-            return WalletManager.shared.getPrimaryWalletAddress() ?? ""
+            return emptyAddress
         }
         
         switch LocalUserDefaults.shared.flowNetwork.toFlowType() {
         case .mainnet:
-            return config?.payer.mainnet.address ?? ""
+            return config?.payer.mainnet.address ?? emptyAddress
         case .testnet:
-            return config?.payer.testnet.address ?? ""
+            return config?.payer.testnet.address ?? emptyAddress
         case .sandboxnet:
-            return config?.payer.sandboxnet.address ?? ""
+            return config?.payer.sandboxnet.address ?? emptyAddress
         default:
-            return ""
+            return emptyAddress
         }
     }
     

@@ -152,15 +152,29 @@ struct StakingDetailView: RouteableView {
                     
                     Spacer()
                     
-                    Button {
-                        vm.claimStake()
-                    } label: {
-                        Text("staking_claim".localized)
-                            .font(.inter(size: 14, weight: .bold))
-                            .foregroundColor(Color.LL.Neutrals.text)
-                            .frame(width: 80, height: 32)
-                            .background(Color.LL.deepBg)
-                            .cornerRadius(12)
+                    HStack {
+                        Button {
+                            vm.restake()
+                        } label: {
+                            Text("staking_reStake".localized)
+                                .font(.inter(size: 14, weight: .bold))
+                                .foregroundColor(Color.LL.Neutrals.text)
+                                .frame(width: 80, height: 32)
+                                .background(Color.LL.deepBg)
+                                .cornerRadius(12)
+                        }
+                        
+                        Button {
+                            vm.claimStake()
+                        } label: {
+                            Text("staking_claim".localized)
+                                .font(.inter(size: 14, weight: .bold))
+                                .foregroundColor(Color.LL.Neutrals.text)
+                                .frame(width: 80, height: 32)
+                                .background(Color.LL.deepBg)
+                                .cornerRadius(12)
+                        }
+                        
                     }
                 }
             }

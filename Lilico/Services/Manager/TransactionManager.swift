@@ -241,12 +241,13 @@ extension TransactionManager {
     }
 }
 
-class TransactionManager {
+class TransactionManager: ObservableObject {
     static let shared = TransactionManager()
     
     private lazy var rootFolder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("transaction_cache")
     private lazy var transactionCacheFile = rootFolder.appendingPathComponent("transaction_cache_file")
     
+    @Published
     private(set) var holders: [TransactionHolder] = []
     
     init() {

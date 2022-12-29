@@ -359,6 +359,36 @@ extension FlowNetwork {
         }
     }
     
+    static func reStakeReward(nodeID: String, amount: Decimal) async throws -> Flow.ID {
+        guard let walletAddress = WalletManager.shared.getPrimaryWalletAddress() else {
+            throw LilicoError.emptyWallet
+        }
+        
+        let address = Flow.Address(hex: walletAddress)
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared]) {
+            cadence {
+                CadenceTemplate.Stake.reSatkeReward
+                    .replace(by: ScriptAddress.addressMap())
+            }
+            
+            arguments {
+                [.string(nodeID), .optional(nil), .ufix64(amount)]
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+        }
+    }
+    
     static func setupAccountStaking() async throws -> Bool {
         let cadenceString = CadenceTemplate.setupAccountStaking.replace(by: ScriptAddress.addressMap())
         

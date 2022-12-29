@@ -67,7 +67,17 @@ class StakingDetailViewModel: ObservableObject {
     }
     
     func restake() {
-        // TODO:
+        Task {
+            do {
+                HUD.loading("staking_reStake_rewards".localized)
+                let _ = try await StakingManager.shared.reStakeReward(nodeID: node.nodeID, amount: node.tokensRewarded.decimalValue)
+                HUD.dismissLoading()
+            } catch {
+                debugPrint(error)
+                HUD.dismissLoading()
+                HUD.error(title: "Error", message: error.localizedDescription)
+            }
+        }
     }
     
     func unstakeAction() {

@@ -442,6 +442,8 @@
 "staking_empty_list" = "Empty Staking List";
 "staking_claim" = "Claim";
 "staking_claim_rewards" = "Claiming Rewards";
+"staking_reStake" = "ReSatke";
+"staking_reStake_rewards" = "Restaking Rewards";
 "staking_amount" = "Staking Amount";
 "staking_rewards" = "Rewards";
 "stake_new_node" = "Stake New Node";
