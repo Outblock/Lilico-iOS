@@ -168,8 +168,9 @@ extension TransactionListHandler: UICollectionViewDelegateFlowLayout, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = dataList[indexPath.item]
+        UISelectionFeedbackGenerator().selectionChanged()
         if let hash = item.hash, let url = hash.toFlowScanTransactionDetailURL {
-            UIApplication.shared.open(url)
+            Router.route(to: RouteMap.Explore.browser(url))
         }
     }
 }
