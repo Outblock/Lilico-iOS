@@ -19,6 +19,8 @@ import Combine
 struct WalletSendAmountView: RouteableView {
     @StateObject private var vm: WalletSendAmountViewModel
     
+    @FocusState private var isAmountFocused: Bool
+    
     var title: String {
         return "send_to".localized
     }
@@ -42,6 +44,12 @@ struct WalletSendAmountView: RouteableView {
                 
                 nextButton
             }
+        }
+        .onAppear{
+            isAmountFocused = true
+        }
+        .onDisappear{
+            isAmountFocused = false
         }
         .hideKeyboardWhenTappedAround()
 //        .interactiveDismissDisabled()
@@ -148,6 +156,7 @@ struct WalletSendAmountView: RouteableView {
                                 vm.inputTextDidChangeAction(text: text)
                             }
                         }
+                        .focused($isAmountFocused)
                     
                     // max btn
                     Button {
@@ -304,6 +313,7 @@ struct WalletSendAmountView: RouteableView {
     
     var nextButton: some View {
         Button {
+            isAmountFocused = false
             vm.nextAction()
         } label: {
             ZStack {
