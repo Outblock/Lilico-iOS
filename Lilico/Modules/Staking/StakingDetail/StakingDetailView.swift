@@ -200,7 +200,7 @@ struct StakingDetailView: RouteableView {
             HStack(spacing: 2) {
                 ForEach(0..<progressMax, id: \.self) { index in
                     Rectangle()
-                        .foregroundColor(index < vm.currentProgress ? Color.LL.Primary.salmonPrimary : Color.clear)
+                        .foregroundColor(index < vm.currentProgress ? Color.LL.stakeMain : Color.clear)
                         .cornerRadius(index == vm.currentProgress - 1 ? 12 : 0, corners: [.topRight, .bottomRight])
                 }
             }

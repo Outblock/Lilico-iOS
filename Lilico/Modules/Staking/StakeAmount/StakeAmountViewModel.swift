@@ -60,12 +60,16 @@ class StakeAmountViewModel: ObservableObject {
         return "\(CurrencyCache.cache.currencySymbol)\(inputNumAsUSD.formatCurrencyString(considerCustomCurrency: true))"
     }
     
+    var yearReward: Double {
+        inputTextNum * provider.rate
+    }
+    
     var yearRewardFlowString: String {
-        return (inputTextNum * (1 + provider.rate)).formatCurrencyString()
+        yearReward.formatCurrencyString()
     }
     
     var yearRewardWithCurrencyString: String {
-        let numString = (inputNumAsUSD * (1 + provider.rate)).formatCurrencyString(considerCustomCurrency: true)
+        let numString = (inputNumAsUSD * provider.rate).formatCurrencyString(considerCustomCurrency: true)
         return "\(CurrencyCache.cache.currencySymbol)\(numString) \(CurrencyCache.cache.currentCurrency.rawValue)"
     }
     
