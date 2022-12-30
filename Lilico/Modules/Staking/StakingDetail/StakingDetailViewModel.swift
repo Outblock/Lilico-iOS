@@ -49,7 +49,7 @@ class StakingDetailViewModel: ObservableObject {
     }
     
     func stakeAction() {
-        StakingManager.shared.goStakingAction()
+        Router.route(to: RouteMap.Wallet.stakeAmount(provider, isUnstake: false))
     }
     
     func claimStake() {

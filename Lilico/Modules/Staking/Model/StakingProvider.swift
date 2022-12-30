@@ -39,4 +39,11 @@ struct StakingProvider: Codable {
     var currentNode: StakingNode? {
         return StakingManager.shared.nodeInfos.first(where: { $0.nodeID == self.id })
     }
+    
+    var host: String {
+        if let website, let url = URL(string: website) {
+            return url.host ?? ""
+        }
+        return ""
+    }
 }

@@ -124,7 +124,7 @@ struct SelectProviderView: RouteableView {
 //                            .clipShape(Circle())
 //                            .padding(.leading, 6)
                         
-                        Text(provider?.website?.removeHTTPPrefix() ?? "unknown")
+                        Text(provider?.host ?? "")
                             .foregroundColor(Color.LL.Neutrals.text2)
                             .font(.inter(size: 12, weight: .semibold))
                             .padding(.leading, 4)
@@ -135,23 +135,25 @@ struct SelectProviderView: RouteableView {
                 .frame(alignment: .leading)
                 
                 Spacer()
-//
-//                ZStack {
-//                    VStack(spacing: 5) {
-//                        Text(provider?.apyYearPercentString ?? "0%")
-//                            .foregroundColor(Color.LL.Neutrals.text)
-//                            .font(.inter(size: 16, weight: .semibold))
-//
-//                        Text("stake".localized)
-//                            .foregroundColor(Color.LL.Neutrals.text3)
-//                            .font(.inter(size: 12, weight: .medium))
-//                    }
-//                    .frame(maxWidth: .infinity)
-//                }
-//                .frame(width: 92)
-//                .frame(height: 48)
-//                .background(Color.LL.deepBg)
-//                .cornerRadius(12)
+
+                if let provider, provider.isLilico {
+                    ZStack {
+                        VStack(spacing: 5) {
+                            Text(provider.apyYearPercentString)
+                                .foregroundColor(Color.LL.Neutrals.text)
+                                .font(.inter(size: 16, weight: .semibold))
+                            
+                            Text("stake".localized)
+                                .foregroundColor(Color.LL.Neutrals.text3)
+                                .font(.inter(size: 12, weight: .medium))
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .frame(width: 92)
+                    .frame(height: 48)
+                    .background(Color.LL.deepBg)
+                    .cornerRadius(12)
+                }
             }
             .frame(maxWidth: .infinity)
             .padding(.leading, 16)
