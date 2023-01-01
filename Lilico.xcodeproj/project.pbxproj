@@ -4756,6 +4756,7 @@
 				154B8921276A1EEB00780E93 /* Resources */,
 				158CEFBE277DB3FF004EF2C7 /* Embed Frameworks */,
 				6A0C6E2C29542DFE005F0EF6 /* Embed Foundation Extensions */,
+				6A04A4732961A71000F069C4 /* dSYM Upload */,
 			);
 			buildRules = (
 			);
@@ -4822,6 +4823,7 @@
 				15C58C5A2868A4EE00BD4FC6 /* Resources */,
 				15C58C672868A4EE00BD4FC6 /* Embed Frameworks */,
 				6A9DFBD329519D9A00E10EAC /* Embed Foundation Extensions */,
+				6A04A4722961A5A900F069C4 /* dSYM Upload */,
 			);
 			buildRules = (
 			);
@@ -5158,6 +5160,46 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n# Not workimg well with SwiftUI\n#if [ `uname -m` == 'arm64' ] && [ -d /opt/homebrew/bin/ ]; then\n#  export PATH=/opt/homebrew/bin:$PATH\n#fi\n\n#if which rswift >/dev/null; then\n#    rswift generate \"$SRCROOT/R.generated.swift\"\n#else\n#  echo \"warning: Rswift not installed, download from https://github.com/mac-cain13/R.swift/releases/tag/v6.0.0\"\n#fi\n";
+		};
+		6A04A4722961A5A900F069C4 /* dSYM Upload */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "dSYM Upload";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+		6A04A4732961A71000F069C4 /* dSYM Upload */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "dSYM Upload";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
