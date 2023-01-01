@@ -30,7 +30,7 @@ private let CacheUpdateInverval = TimeInterval(30)
 class CoinRateCache {
     static let cache = CoinRateCache()
 
-    private var queue = DispatchQueue(label: "CoinRateCache.cache", attributes: .concurrent)
+    private var queue = DispatchQueue(label: "CoinRateCache.cache")
        
     private var _summarys = Set<CoinRateModel>()
     var summarys: Set<CoinRateModel> {
