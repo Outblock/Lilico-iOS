@@ -113,7 +113,11 @@ enum ScriptAddress: String, CaseIterable {
             return Flow.Address(hex: "0xf4527793ee68aede")
         case (.nonFungibleToken, .sandboxnet):
             return Flow.Address(hex: "0x83ade3a54eb3870c")
-        
+        case (.domainsToken, .sandboxnet):
+            return Flow.Address(hex: "0x8998b29311d1f3da")
+        case (.flownsToken, .sandboxnet):
+            return Flow.Address(hex: "0x8998b29311d1f3da")
+            
         default:
             return nil
         }

@@ -19,7 +19,6 @@ enum FirebaseConfig: String {
     case flowCoins = "flow_coins"
     case config = "free_gas_config"
     case dapp
-//    case dappBuildNumber = "dapp_build_number"
 
     static func start() {
         Task {

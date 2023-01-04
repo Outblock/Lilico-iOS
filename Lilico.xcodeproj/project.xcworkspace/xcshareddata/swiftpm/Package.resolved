@@ -82,15 +82,6 @@
       }
     },
     {
-      "identity" : "cryptoswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
-      "state" : {
-        "revision" : "19b3c3ceed117c5cc883517c4e658548315ba70b",
-        "version" : "1.6.0"
-      }
-    },
-    {
       "identity" : "fancyscrollview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nerdsupremacist/FancyScrollView",
@@ -315,15 +306,6 @@
       }
     },
     {
-      "identity" : "promisekit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mxcl/PromiseKit.git",
-      "state" : {
-        "revision" : "43772616c46a44a9977e41924ae01d0e55f2f9ca",
-        "version" : "6.18.1"
-      }
-    },
-    {
       "identity" : "promises",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/promises.git",
@@ -375,15 +357,6 @@
       "state" : {
         "revision" : "b4307ba0b6425c0ba4178e138799946c3da594f8",
         "version" : "6.5.0"
-      }
-    },
-    {
-      "identity" : "secp256k1.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Boilertalk/secp256k1.swift.git",
-      "state" : {
-        "revision" : "cd187c632fb812fd93711a9f7e644adb7e5f97f0",
-        "version" : "0.1.7"
       }
     },
     {
@@ -552,17 +525,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/WalletConnect/WalletConnectSwiftV2",
       "state" : {
-        "revision" : "84197cd011da4b1986fc7a431cdf3f0f32199db1",
-        "version" : "1.0.5"
-      }
-    },
-    {
-      "identity" : "web3.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/WalletConnect/Web3.swift",
-      "state" : {
-        "revision" : "bdaaed96eee3a9bf7f341165f89a94288961d14c",
-        "version" : "1.0.0"
+        "revision" : "c9b6e10e6572b5cec0e4086ecb87812035fb6225",
+        "version" : "1.2.0"
       }
     }
   ],
