@@ -159,9 +159,25 @@ struct WalletView: View {
 
     var headerView: some View {
         HStack {
-            Text("wallet".localized)
-                .foregroundColor(.LL.Neutrals.text)
-                .font(.inter(size: 24, weight: .bold))
+            Button {
+                vm.sideToggleAction()
+            } label: {
+                HStack {
+                    KFImage.url(URL(string: um.userInfo?.avatar.convertedAvatarString() ?? ""))
+                        .placeholder({
+                            Image("placeholder")
+                                .resizable()
+                        })
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 28, height: 28)
+                        .cornerRadius(14)
+                    
+                    Text(um.userInfo?.nickname ?? "Lilico")
+                        .foregroundColor(.LL.Neutrals.text)
+                        .font(.inter(size: 18, weight: .semibold))
+                }
+            }
 
             if !currentNetwork.isMainnet {
                 Text(LocalUserDefaults.shared.flowNetwork.rawValue)

@@ -48,7 +48,7 @@ final class Coordinator {
     }
     
     func showRootView() {
-        let rootView = makeTabView()
+        let rootView = SideContainerView()
         let hostingView = UIHostingController(rootView: rootView)
         let navi = RouterNavigationController(rootViewController: hostingView)
         navi.setNavigationBarHidden(true, animated: true)
@@ -62,26 +62,6 @@ final class Coordinator {
 }
 
 extension Coordinator {
-    @ViewBuilder private func makeTabView() -> some View {
-        let wallet = TabBarPageModel<AppTabType>(tag: WalletView.tabTag(), iconName: WalletView.iconName(), color: WalletView.color()) {
-            AnyView(WalletView())
-        }
-
-        let nft = TabBarPageModel<AppTabType>(tag: NFTTabScreen.tabTag(), iconName: NFTTabScreen.iconName(), color: NFTTabScreen.color()) {
-            AnyView(NFTTabScreen())
-        }
-        
-        let explore = TabBarPageModel<AppTabType>(tag: ExploreTabScreen.tabTag(), iconName: ExploreTabScreen.iconName(), color: ExploreTabScreen.color()) {
-            AnyView(ExploreTabScreen())
-        }
-
-        let profile = TabBarPageModel<AppTabType>(tag: ProfileView.tabTag(), iconName: ProfileView.iconName(), color: ProfileView.color()) {
-            AnyView(ProfileView())
-        }
-
-        TabBarView(current: .wallet, pages: [wallet, nft, explore, profile], maxWidth: UIScreen.main.bounds.width)
-    }
-    
     private func refreshColorScheme() {
         self.window.overrideUserInterfaceStyle = ThemeManager.shared.getUIKitStyle()
     }
