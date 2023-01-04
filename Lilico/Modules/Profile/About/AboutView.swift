@@ -41,37 +41,63 @@ struct AboutView: RouteableView {
             .padding(.bottom, 50)
             
             
-            Text("contact_us".localized)
-                .textCase(.uppercase)
-                .font(.inter(size: 14, weight: .regular))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundColor(.LL.note)
-            
-            VStack(spacing: 0) {
-                
-                SocialButton(imageName: "disocrd",
-                             text: "Disocrd") {
-                    UIApplication.shared.open(URL(string: "https://discord.gg/sfQKARA3SA")!)
+            Section {
+                VStack(spacing: 0) {
+                    
+                    SocialButton(imageName: "disocrd",
+                                 text: "Disocrd") {
+                        UIApplication.shared.open(URL(string: "https://discord.gg/sfQKARA3SA")!)
+                    }
+                    
+                    SocialButton(imageName: "twitter",
+                                 text: "Twitter") {
+                        UIApplication.shared.open(URL(string: "https://twitter.com/lilico_app")!)
+                    }
+                    
+                    SocialButton(imageName: "email",
+                                 text: "Email",
+                                 showDivider: false) {
+                        UIApplication.shared.open(URL(string: "mailto:hi@lilico.app")!)
+                    }
                 }
-                
-                SocialButton(imageName: "twitter",
-                             text: "Twitter") {
-                    UIApplication.shared.open(URL(string: "https://twitter.com/lilico_app")!)
-                }
-                
-                SocialButton(imageName: "email",
-                             text: "Email",
-                             showDivider: false) {
-                    UIApplication.shared.open(URL(string: "mailto:hi@lilico.app")!)
-                }
-                
+                .cornerRadius(16)
+            } header: {
+                Text("contact_us".localized)
+                    .textCase(.uppercase)
+                    .font(.inter(size: 14, weight: .regular))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.LL.note)
             }
-            .cornerRadius(16)
+            
+            Section {
+                VStack(spacing: 0) {
+                    
+                    SocialButton(imageName: "logo",
+                                 text: "Lilico Extension",
+                                 showDivider: false) {
+                        UIApplication.shared.open(URL(string: "https://chrome.google.com/webstore/detail/lilico/hpclkefagolihohboafpheddmmgdffjm")!)
+                    }
+                    
+                }
+                .cornerRadius(16)
+            } header: {
+                Text("more".localized)
+                    .textCase(.uppercase)
+                    .font(.inter(size: 14, weight: .regular))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.LL.note)
+                    .padding(.top, 20)
+            }
+            
+
             Spacer()
             
             Image("outblock-logo")
                 .resizable()
                 .frame(width: 50, height: 50)
+                .onTapGesture {
+                    UIApplication.shared.open(URL(string: "https://outblock.io")!)
+                }
             
         }
         .padding(.horizontal, 24)
