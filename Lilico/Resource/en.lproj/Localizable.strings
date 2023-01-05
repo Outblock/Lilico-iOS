@@ -517,3 +517,5 @@
 
 "widget_name" = "Lilico Widget";
 "widget_desc" = "Show your favorite nft.";
+
+"scan" = "Scan";
