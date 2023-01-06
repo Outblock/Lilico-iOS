@@ -251,4 +251,8 @@ extension WalletViewModel {
         
         Router.route(to: RouteMap.Wallet.stakingList)
     }
+    
+    func sideToggleAction() {
+        NotificationCenter.default.post(name: .toggleSideMenu, object: nil)
+    }
 }

@@ -31,4 +31,7 @@ public extension Notification.Name {
     static let networkChange = Notification.Name("networkChange")
     
     static let openNFTCollectionList = Notification.Name("openNFTCollectionList")
+    static let toggleSideMenu = Notification.Name("toggleSideMenu")
+    
+    static let nftCountChanged = Notification.Name("nftCountChanged")
 }

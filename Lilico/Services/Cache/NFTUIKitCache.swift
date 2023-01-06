@@ -122,9 +122,17 @@ extension NFTUIKitCache {
             return
         }
         
+        let count = collections.reduce(0) { partialResult, nftc in
+            partialResult + nftc.count
+        }
+        
         do {
             let data = try JSONEncoder().encode(collections)
             try data.write(to: collectionCacheFile)
+            
+            DispatchQueue.main.async {
+                LocalUserDefaults.shared.nftCount = count
+            }
         } catch {
             debugPrint("NFTUIKitCache -> saveCollectionToCache: error: \(error)")
             removeCollectionCache()
@@ -138,6 +146,10 @@ extension NFTUIKitCache {
             } catch {
                 debugPrint("NFTUIKitCache -> removeCollectionCache error: \(error)")
             }
+        }
+        
+        DispatchQueue.main.async {
+            LocalUserDefaults.shared.nftCount = 0
         }
     }
     

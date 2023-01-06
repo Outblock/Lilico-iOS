@@ -148,6 +148,10 @@ extension WalletManager {
         return walletInfo?.currentNetworkWalletModel?.getAddress
     }
     
+    func getFlowNetworkTypeAddress(network: LocalUserDefaults.FlowNetworkType) -> String? {
+        return walletInfo?.getNetworkWalletModel(network: network)?.getAddress
+    }
+    
     /// get custom watch address first, then primary address, this method is only used for tab2.
     func getPrimaryWalletAddressOrCustomWatchAddress() -> String? {
         return LocalUserDefaults.shared.customWatchAddress ?? getPrimaryWalletAddress()
