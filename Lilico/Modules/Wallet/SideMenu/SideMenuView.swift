@@ -221,6 +221,29 @@ class SideContainerViewModel: ObservableObject {
 
 struct SideContainerView: View {
     @StateObject private var vm = SideContainerViewModel()
+    @State private var dragOffset: CGSize = .zero
+    @State private var isDragging: Bool = false
+    
+    var drag: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                isDragging = true
+                dragOffset = value.translation
+                debugPrint("dragging: \(dragOffset)")
+            }
+            .onEnded { value in
+                if !vm.isOpen && dragOffset.width > 20 {
+                    vm.isOpen = true
+                }
+                
+                if vm.isOpen && dragOffset.width < -20 {
+                    vm.isOpen = false
+                }
+                
+                isDragging = false
+                dragOffset = .zero
+            }
+    }
     
     var body: some View {
         ZStack {
