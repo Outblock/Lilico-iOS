@@ -16,6 +16,8 @@ class SideMenuViewModel: ObservableObject {
     private var cancelSets = Set<AnyCancellable>()
     
     init() {
+        nftCount = LocalUserDefaults.shared.nftCount
+        
         NotificationCenter.default.publisher(for: .nftCountChanged).sink { [weak self] noti in
             DispatchQueue.main.async {
                 self?.nftCount = LocalUserDefaults.shared.nftCount
@@ -34,6 +36,7 @@ class SideMenuViewModel: ObservableObject {
 struct SideMenuView: View {
     @StateObject private var vm = SideMenuViewModel()
     @StateObject private var um = UserManager.shared
+    @StateObject private var wm = WalletManager.shared
     
     var body: some View {
         HStack(spacing: 0) {
@@ -42,6 +45,7 @@ struct SideMenuView: View {
                     cardView
                     scanView
                         .padding(.top, 24)
+                    addressListView
                 }
                 .padding(.horizontal, 12)
                 .padding(.top, 25)
@@ -117,7 +121,87 @@ struct SideMenuView: View {
     }
     
     var addressListView: some View {
-        
+        VStack(spacing: 0) {
+            if let mainnetAddress = wm.getFlowNetworkTypeAddress(network: .mainnet) {
+                Button {
+                    if LocalUserDefaults.shared.flowNetwork != .mainnet {
+                        LocalUserDefaults.shared.flowNetwork = .mainnet
+                    }
+                    
+                    NotificationCenter.default.post(name: .toggleSideMenu)
+                } label: {
+                    addressCell(type: .mainnet, address: mainnetAddress, isSelected: LocalUserDefaults.shared.flowNetwork == .mainnet)
+                }
+            }
+            
+            if let testnetAddress = wm.getFlowNetworkTypeAddress(network: .testnet) {
+                Button {
+                    if LocalUserDefaults.shared.flowNetwork != .testnet {
+                        LocalUserDefaults.shared.flowNetwork = .testnet
+                    }
+                    
+                    NotificationCenter.default.post(name: .toggleSideMenu)
+                } label: {
+                    addressCell(type: .testnet, address: testnetAddress, isSelected: LocalUserDefaults.shared.flowNetwork == .testnet)
+                }
+            }
+            
+            if let sandboxAddress = wm.getFlowNetworkTypeAddress(network: .sandboxnet) {
+                Button {
+                    if LocalUserDefaults.shared.flowNetwork != .sandboxnet {
+                        LocalUserDefaults.shared.flowNetwork = .sandboxnet
+                    }
+                    
+                    NotificationCenter.default.post(name: .toggleSideMenu)
+                } label: {
+                    addressCell(type: .sandboxnet, address: sandboxAddress, isSelected: LocalUserDefaults.shared.flowNetwork == .sandboxnet)
+                }
+            }
+        }
+        .background(Color.LL.Neutrals.neutrals6)
+        .cornerRadius(12)
+    }
+    
+    func addressCell(type: LocalUserDefaults.FlowNetworkType, address: String, isSelected: Bool) -> some View {
+        HStack(spacing: 15) {
+            Image("flow")
+                .resizable()
+                .frame(width: 24, height: 24)
+            
+            VStack(alignment: .leading, spacing: 6) {
+                HStack {
+                    Text("My Wallet")
+                        .foregroundColor(Color.LL.Neutrals.text)
+                        .font(.inter(size: 14, weight: .semibold))
+                    
+                    Text(type.rawValue)
+                        .textCase(.uppercase)
+                        .lineLimit(1)
+                        .foregroundColor(type.color)
+                        .font(.inter(size: 10, weight: .semibold))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(
+                            Capsule(style: .circular)
+                                .fill(type.color.opacity(0.2))
+                        )
+                        .visibility(type == .mainnet ? .gone : .visible)
+                }
+                .frame(alignment: .leading)
+                
+                Text(address)
+                    .foregroundColor(Color.LL.Neutrals.text3)
+                    .font(.inter(size: 12))
+            }
+            .frame(alignment: .leading)
+            
+            Spacer()
+            
+            Image("icon-checkmark")
+                .visibility(isSelected ? .visible : .gone)
+        }
+        .padding(.horizontal, 18)
+        .frame(height: 70)
     }
 }
 
