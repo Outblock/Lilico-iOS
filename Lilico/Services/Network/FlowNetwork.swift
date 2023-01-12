@@ -608,6 +608,11 @@ extension FlowNetwork {
         let account = try await getAccountAtLatestBlock(address: address)
         return account.keys.first?.index ?? 0
     }
+    
+    static func checkStorageInfo() async throws -> Flow.StorageInfo  {
+        let address = Flow.Address(hex: WalletManager.shared.getPrimaryWalletAddress() ?? "")
+        return try await flow.checkStorageInfo(address: address)
+    }
 }
 
 // MARK: - Base

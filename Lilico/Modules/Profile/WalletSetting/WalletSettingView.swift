@@ -94,10 +94,14 @@ struct WalletSettingView: RouteableView {
                     .frame(height: 80)
                     .padding(.horizontal, 16)
                     .roundedBg()
-
-
                     
-                }.padding(.horizontal, 18)
+                    storageView
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 16)
+                        .roundedBg()
+                    
+                }
+                .padding(.horizontal, 18)
                 
             }
             
@@ -120,6 +124,31 @@ struct WalletSettingView: RouteableView {
         }
         .backgroundFill(.LL.background)
         .applyRouteable(self)
+    }
+    
+    var storageView: some View {
+        VStack {
+            Text("storage".localized)
+                .font(.inter(size: 16, weight: .medium))
+                .foregroundColor(Color.LL.Neutrals.text)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            HStack {
+                Text(vm.usagePercentString)
+                    .font(.inter(size: 12, weight: .regular))
+                    .foregroundColor(Color.LL.Neutrals.neutrals7)
+                
+                Spacer()
+                
+                Text(vm.storageUsageDesc)
+                    .font(.inter(size: 12, weight: .regular))
+                    .foregroundColor(Color.LL.Neutrals.neutrals7)
+            }
+            .padding(.top, 5)
+            
+            ProgressView(value: vm.storageUsagePercent, total: 1.0)
+                .tint(Color.LL.Primary.salmonPrimary)
+        }
     }
 }
 
