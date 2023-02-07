@@ -25,9 +25,9 @@ struct StakingNode: Codable {
         return StakingProviderCache.cache.providers.first { $0.isLilico }?.id == nodeID
     }
     
-    var stakingCountASUSD: Double {
+    var tokenStakedASUSD: Double {
         let rate = CoinRateCache.cache.getSummary(for: "flow")?.getLastRate() ?? 0.0
-        return stakingCount * rate
+        return tokensStaked * rate
     }
     
     var dayRewards: Double {

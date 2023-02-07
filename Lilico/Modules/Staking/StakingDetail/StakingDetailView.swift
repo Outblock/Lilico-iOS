@@ -29,7 +29,11 @@ struct StakingDetailView: RouteableView {
             ScrollView {
                 VStack(spacing: 12) {
                     summaryCardView
+                    unstakedCardView
                     progressCardView
+                    stakeCommitedCardView
+                    requetUnstakeInProgressCardView
+                    unstakeInProgressCardView
                     rewardCardView
                     stakingListView
                 }
@@ -92,7 +96,7 @@ struct StakingDetailView: RouteableView {
             Spacer()
             
             HStack(alignment: .bottom, spacing: 0) {
-                Text("\(CurrencyCache.cache.currencySymbol)\(vm.node.stakingCountASUSD.formatCurrencyString(digits: 3, considerCustomCurrency: true))")
+                Text("\(CurrencyCache.cache.currencySymbol)\(vm.node.tokenStakedASUSD.formatCurrencyString(digits: 3, considerCustomCurrency: true))")
                     .font(.inter(size: 32, weight: .semibold))
                     .foregroundColor(Color.LL.Neutrals.text)
                 
@@ -110,7 +114,7 @@ struct StakingDetailView: RouteableView {
                     .resizable()
                     .frame(width: 16, height: 16)
                 
-                Text(vm.node.stakingCount.formatCurrencyString(digits: 3))
+                Text(vm.node.tokensStaked.formatCurrencyString(digits: 3))
                     .font(.inter(size: 14, weight: .semibold))
                     .foregroundColor(Color.LL.Neutrals.text)
                 
@@ -136,18 +140,18 @@ struct StakingDetailView: RouteableView {
             
             VStack(alignment: .leading, spacing: 0) {
                 Text("staking_rewards".localized)
-                    .font(.inter(size: 14, weight: .medium))
+                    .font(.inter(size: 14, weight: .bold))
                     .foregroundColor(Color.LL.Neutrals.text)
                     .padding(.bottom, 4)
                 
-                HStack(alignment: .bottom, spacing: 0) {
+                HStack(spacing: 0) {
                     Text("\(vm.node.tokensRewarded.formatCurrencyString(digits: 3))")
                         .font(.inter(size: 24, weight: .semibold))
                         .foregroundColor(Color.LL.Neutrals.text)
                     
                     Text("Flow")
                         .font(.inter(size: 14, weight: .medium))
-                        .foregroundColor(Color.LL.Neutrals.text)
+                        .foregroundColor(Color.LL.Neutrals.text4)
                         .padding(.leading, 6)
                     
                     Spacer()
@@ -232,6 +236,152 @@ struct StakingDetailView: RouteableView {
                 Text(StakingManager.shared.stakingEpochEndTime.ymdString)
                     .font(.inter(size: 14, weight: .bold))
                     .foregroundColor(Color.LL.Neutrals.text)
+            }
+        }
+        .padding(.all, 18)
+        .background(Color.LL.Neutrals.background)
+        .cornerRadius(16)
+    }
+    
+    var unstakedCardView: some View {
+        VStack(spacing: 10) {
+            HStack {
+                Text("stake_unstaked_amount".localized)
+                    .font(.inter(size: 14, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Spacer()
+            }
+            
+            HStack(spacing: 0) {
+                Text("\(vm.node.tokensUnstaked.formatCurrencyString(digits: 3))")
+                    .font(.inter(size: 24, weight: .semibold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Text("Flow")
+                    .font(.inter(size: 14, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text4)
+                    .padding(.leading, 6)
+                
+                Spacer()
+                
+                HStack {
+                    Button {
+                        vm.restake()
+                    } label: {
+                        Text("staking_reStake".localized)
+                            .font(.inter(size: 14, weight: .bold))
+                            .foregroundColor(Color.LL.Neutrals.text)
+                            .frame(width: 80, height: 32)
+                            .background(Color.LL.deepBg)
+                            .cornerRadius(12)
+                    }
+                    
+                    Button {
+                        vm.claimStake()
+                    } label: {
+                        Text("staking_claim".localized)
+                            .font(.inter(size: 14, weight: .bold))
+                            .foregroundColor(Color.LL.Neutrals.text)
+                            .frame(width: 80, height: 32)
+                            .background(Color.LL.deepBg)
+                            .cornerRadius(12)
+                    }
+                }
+            }
+        }
+        .padding(.all, 18)
+        .background(Color.LL.Neutrals.background)
+        .cornerRadius(16)
+    }
+    
+    var stakeCommitedCardView: some View {
+        VStack(spacing: 6) {
+            HStack {
+                Text("stake_commited".localized)
+                    .font(.inter(size: 14, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Spacer()
+                
+                Text("+\(vm.node.tokensCommitted.formatCurrencyString(digits: 3))")
+                    .font(.inter(size: 20, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Text("Flow")
+                    .font(.inter(size: 14, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text4)
+            }
+            
+            HStack {
+                Text("stake_progress_desc".localized)
+                    .font(.inter(size: 12))
+                    .foregroundColor(Color.LL.Neutrals.text4)
+                
+                Spacer()
+            }
+        }
+        .padding(.all, 18)
+        .background(Color.LL.Neutrals.background)
+        .cornerRadius(16)
+    }
+    
+    var requetUnstakeInProgressCardView: some View {
+        VStack(spacing: 6) {
+            HStack {
+                Text("stake_request_unstake_in_progress".localized)
+                    .font(.inter(size: 14, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                Text("-\(vm.node.tokensRequestedToUnstake.formatCurrencyString(digits: 3))")
+                    .font(.inter(size: 20, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Text("Flow")
+                    .font(.inter(size: 14, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text4)
+            }
+            
+            HStack {
+                Text("stake_progress_desc".localized)
+                    .font(.inter(size: 12))
+                    .foregroundColor(Color.LL.Neutrals.text4)
+                
+                Spacer()
+            }
+        }
+        .padding(.all, 18)
+        .background(Color.LL.Neutrals.background)
+        .cornerRadius(16)
+    }
+    
+    var unstakeInProgressCardView: some View {
+        VStack(spacing: 6) {
+            HStack {
+                Text("stake_unstake_in_progress".localized)
+                    .font(.inter(size: 14, weight: .bold))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Spacer()
+                
+                Text("-\(vm.node.tokensUnstaking.formatCurrencyString(digits: 3))")
+                    .font(.inter(size: 20, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text)
+                
+                Text("Flow")
+                    .font(.inter(size: 14, weight: .medium))
+                    .foregroundColor(Color.LL.Neutrals.text4)
+            }
+            
+            HStack {
+                Text("stake_progress_desc".localized)
+                    .font(.inter(size: 12))
+                    .foregroundColor(Color.LL.Neutrals.text4)
+                
+                Spacer()
             }
         }
         .padding(.all, 18)

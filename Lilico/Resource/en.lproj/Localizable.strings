@@ -442,7 +442,7 @@
 "staking_empty_list" = "Empty Staking List";
 "staking_claim" = "Claim";
 "staking_claim_rewards" = "Claiming Rewards";
-"staking_reStake" = "ReSatke";
+"staking_reStake" = "ReStake";
 "staking_reStake_rewards" = "Restaking Rewards";
 "staking_amount" = "Staking Amount";
 "staking_rewards" = "Rewards";
@@ -493,6 +493,10 @@
 "stake_unstaked_amount" = "Unstaked Amount";
 "stake_unstaking_amount" = "Unstaking Amount";
 "stake_committed_amount" = "Committed Amount";
+"stake_commited" = "Stake Commited";
+"stake_request_unstake_in_progress" = "Request UnStake In Progress";
+"stake_unstake_in_progress" = "UnStake In Progress";
+"stake_progress_desc" = "Will be processed at the next epoch";
 "stake_requested_to_unstake_amount" = "Requested To Unstake Amount";
 "stake_apr" = "APR";
 "stake_unstake" = "Unstake";
