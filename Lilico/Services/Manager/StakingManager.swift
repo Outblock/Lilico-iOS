@@ -136,22 +136,33 @@ class StakingManager: ObservableObject {
         }
     }
     
-    func claimReward(nodeID: String, amount: Decimal) async throws-> Flow.ID {
-        let txId = try await FlowNetwork.claimReward(nodeID: nodeID, amount: amount)
+    func claimReward(nodeID: String, delegatorId: Int, amount: Decimal) async throws-> Flow.ID {
+        let txId = try await FlowNetwork.claimReward(nodeID: nodeID, delegatorId: delegatorId, amount: amount)
         let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow)
         TransactionManager.shared.newTransaction(holder: holder)
-//        refresh()
         return txId
     }
     
-    func reStakeReward(nodeID: String, amount: Decimal) async throws-> Flow.ID {
-        let txId = try await FlowNetwork.reStakeReward(nodeID: nodeID, amount: amount)
+    func reStakeReward(nodeID: String, delegatorId: Int, amount: Decimal) async throws-> Flow.ID {
+        let txId = try await FlowNetwork.reStakeReward(nodeID: nodeID, delegatorId: delegatorId, amount: amount)
         let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow)
         TransactionManager.shared.newTransaction(holder: holder)
-//        refresh()
         return txId
     }
     
+    func claimUnstake(nodeID: String, delegatorId: Int, amount: Decimal) async throws-> Flow.ID {
+        let txId = try await FlowNetwork.claimUnstake(nodeID: nodeID, delegatorId: delegatorId, amount: amount)
+        let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow)
+        TransactionManager.shared.newTransaction(holder: holder)
+        return txId
+    }
+    
+    func reStakeUnstake(nodeID: String, delegatorId: Int, amount: Decimal) async throws-> Flow.ID {
+        let txId = try await FlowNetwork.reStakeUnstake(nodeID: nodeID, delegatorId: delegatorId, amount: amount)
+        let holder = TransactionManager.TransactionHolder(id: txId, type: .stakeFlow)
+        TransactionManager.shared.newTransaction(holder: holder)
+        return txId
+    }
     
     func goStakingAction() {
         if nodeInfos.count == 1, let node = nodeInfos.first, let provider = StakingProviderCache.cache.providers.first(where: { $0.id == node.nodeID }) {

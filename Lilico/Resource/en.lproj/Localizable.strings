@@ -498,6 +498,7 @@
 "stake_unstake_in_progress" = "UnStake In Progress";
 "stake_progress_desc" = "Will be processed at the next epoch";
 "stake_requested_to_unstake_amount" = "Requested To Unstake Amount";
+"stake_insufficient_balance" = "Insufficient balance";
 "stake_apr" = "APR";
 "stake_unstake" = "Unstake";
 "stake_confirm_title" = "Confirm Your Stake";

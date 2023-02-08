@@ -53,10 +53,19 @@ class StakingDetailViewModel: ObservableObject {
     }
     
     func claimStake() {
+        guard let delegatorId = provider.delegatorId else {
+            return
+        }
+        
+        if node.tokensRewarded.decimalValue <= 0 {
+            HUD.error(title: "stake_insufficient_balance".localized)
+            return
+        }
+        
         Task {
             do {
                 HUD.loading("staking_claim_rewards".localized)
-                let _ = try await StakingManager.shared.claimReward(nodeID: node.nodeID, amount: node.tokensRewarded.decimalValue)
+                let _ = try await StakingManager.shared.claimReward(nodeID: node.nodeID, delegatorId: delegatorId, amount: node.tokensRewarded.decimalValue)
                 HUD.dismissLoading()
             } catch {
                 debugPrint(error)
@@ -67,10 +76,65 @@ class StakingDetailViewModel: ObservableObject {
     }
     
     func restake() {
+        guard let delegatorId = provider.delegatorId else {
+            return
+        }
+        
+        if node.tokensRewarded.decimalValue <= 0 {
+            HUD.error(title: "stake_insufficient_balance".localized)
+            return
+        }
+        
         Task {
             do {
                 HUD.loading("staking_reStake_rewards".localized)
-                let _ = try await StakingManager.shared.reStakeReward(nodeID: node.nodeID, amount: node.tokensRewarded.decimalValue)
+                let _ = try await StakingManager.shared.reStakeReward(nodeID: node.nodeID, delegatorId: delegatorId, amount: node.tokensRewarded.decimalValue)
+                HUD.dismissLoading()
+            } catch {
+                debugPrint(error)
+                HUD.dismissLoading()
+                HUD.error(title: "Error", message: error.localizedDescription)
+            }
+        }
+    }
+    
+    func claimUnstakeAction() {
+        guard let delegatorId = provider.delegatorId else {
+            return
+        }
+        
+        if node.tokensUnstaked.decimalValue <= 0 {
+            HUD.error(title: "stake_insufficient_balance".localized)
+            return
+        }
+        
+        Task {
+            do {
+                HUD.loading()
+                let _ = try await StakingManager.shared.claimUnstake(nodeID: node.nodeID, delegatorId: delegatorId, amount: node.tokensUnstaked.decimalValue)
+                HUD.dismissLoading()
+            } catch {
+                debugPrint(error)
+                HUD.dismissLoading()
+                HUD.error(title: "Error", message: error.localizedDescription)
+            }
+        }
+    }
+    
+    func restakeUnstakeAction() {
+        guard let delegatorId = provider.delegatorId else {
+            return
+        }
+        
+        if node.tokensUnstaked.decimalValue <= 0 {
+            HUD.error(title: "stake_insufficient_balance".localized)
+            return
+        }
+        
+        Task {
+            do {
+                HUD.loading()
+                let _ = try await StakingManager.shared.reStakeUnstake(nodeID: node.nodeID, delegatorId: delegatorId, amount: node.tokensUnstaked.decimalValue)
                 HUD.dismissLoading()
             } catch {
                 debugPrint(error)

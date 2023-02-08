@@ -329,7 +329,7 @@ extension FlowNetwork {
         return try await self.fetch(cadence: CadenceTemplate.checkAccountStakingIsSetup, arguments: [.address(address)])
     }
     
-    static func claimReward(nodeID: String, amount: Decimal) async throws -> Flow.ID {
+    static func claimUnstake(nodeID: String, delegatorId: Int, amount: Decimal) async throws -> Flow.ID {
         guard let walletAddress = WalletManager.shared.getPrimaryWalletAddress() else {
             throw LilicoError.emptyWallet
         }
@@ -337,12 +337,12 @@ extension FlowNetwork {
         let address = Flow.Address(hex: walletAddress)
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared]) {
             cadence {
-                CadenceTemplate.Stake.claimReward
+                CadenceTemplate.Stake.claimUnstake
                     .replace(by: ScriptAddress.addressMap())
             }
             
             arguments {
-                [.string(nodeID), .optional(nil), .ufix64(amount)]
+                [.string(nodeID), .uint32(UInt32(delegatorId)), .ufix64(amount)]
             }
             
             payer {
@@ -359,7 +359,67 @@ extension FlowNetwork {
         }
     }
     
-    static func reStakeReward(nodeID: String, amount: Decimal) async throws -> Flow.ID {
+    static func reStakeUnstake(nodeID: String, delegatorId: Int, amount: Decimal) async throws -> Flow.ID {
+        guard let walletAddress = WalletManager.shared.getPrimaryWalletAddress() else {
+            throw LilicoError.emptyWallet
+        }
+        
+        let address = Flow.Address(hex: walletAddress)
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared]) {
+            cadence {
+                CadenceTemplate.Stake.restakeUnstake
+                    .replace(by: ScriptAddress.addressMap())
+            }
+            
+            arguments {
+                [.string(nodeID), .uint32(UInt32(delegatorId)), .ufix64(amount)]
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+        }
+    }
+    
+    static func claimReward(nodeID: String, delegatorId: Int, amount: Decimal) async throws -> Flow.ID {
+        guard let walletAddress = WalletManager.shared.getPrimaryWalletAddress() else {
+            throw LilicoError.emptyWallet
+        }
+        
+        let address = Flow.Address(hex: walletAddress)
+        return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared]) {
+            cadence {
+                CadenceTemplate.Stake.claimReward
+                    .replace(by: ScriptAddress.addressMap())
+            }
+            
+            arguments {
+                [.string(nodeID), .uint32(UInt32(delegatorId)), .ufix64(amount)]
+            }
+            
+            payer {
+                RemoteConfigManager.shared.payer
+            }
+            
+            proposer {
+                address
+            }
+            
+            authorizers {
+                address
+            }
+        }
+    }
+    
+    static func reStakeReward(nodeID: String, delegatorId: Int, amount: Decimal) async throws -> Flow.ID {
         guard let walletAddress = WalletManager.shared.getPrimaryWalletAddress() else {
             throw LilicoError.emptyWallet
         }
@@ -372,7 +432,7 @@ extension FlowNetwork {
             }
             
             arguments {
-                [.string(nodeID), .optional(nil), .ufix64(amount)]
+                [.string(nodeID), .uint32(UInt32(delegatorId)), .ufix64(amount)]
             }
             
             payer {

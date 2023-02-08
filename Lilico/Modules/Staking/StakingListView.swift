@@ -29,10 +29,19 @@ class StakingListViewModel: ObservableObject {
     }
     
     func claimReward(node: StakingNode) {
+        guard let delegatorId = StakingManager.shared.providerForNodeId(node.nodeID)?.delegatorId else {
+            return
+        }
+        
+        if node.tokensRewarded.decimalValue <= 0 {
+            HUD.error(title: "stake_insufficient_balance".localized)
+            return
+        }
+        
         Task {
             do {
                 HUD.loading("staking_claim_rewards".localized)
-                let _ = try await StakingManager.shared.claimReward(nodeID: node.nodeID, amount: node.tokensRewarded.decimalValue)
+                let _ = try await StakingManager.shared.claimReward(nodeID: node.nodeID, delegatorId: delegatorId, amount: node.tokensRewarded.decimalValue)
                 HUD.dismissLoading()
             } catch {
                 debugPrint(error)

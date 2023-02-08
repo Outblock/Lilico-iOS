@@ -267,7 +267,7 @@ struct StakingDetailView: RouteableView {
                 
                 HStack {
                     Button {
-                        vm.restake()
+                        vm.restakeUnstakeAction()
                     } label: {
                         Text("staking_reStake".localized)
                             .font(.inter(size: 14, weight: .bold))
@@ -278,7 +278,7 @@ struct StakingDetailView: RouteableView {
                     }
                     
                     Button {
-                        vm.claimStake()
+                        vm.claimUnstakeAction()
                     } label: {
                         Text("staking_claim".localized)
                             .font(.inter(size: 14, weight: .bold))

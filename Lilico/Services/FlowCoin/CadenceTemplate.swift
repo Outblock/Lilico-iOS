@@ -10,6 +10,48 @@ import Foundation
 class CadenceTemplate {
     
     enum Stake {
+        static let claimUnstake = """
+        import FlowStakingCollection from 0xStakingCollection
+
+        /// Request to withdraw unstaked tokens for the specified node or delegator in the staking collection
+        /// The tokens are automatically deposited to the unlocked account vault first,
+        /// And then any locked tokens are deposited into the locked account vault if it is there
+
+        transaction(nodeID: String, delegatorID: UInt32?, amount: UFix64) {
+            
+            let stakingCollectionRef: &FlowStakingCollection.StakingCollection
+
+            prepare(account: AuthAccount) {
+                self.stakingCollectionRef = account.borrow<&FlowStakingCollection.StakingCollection>(from: FlowStakingCollection.StakingCollectionStoragePath)
+                    ?? panic("Could not borrow ref to StakingCollection")
+            }
+
+            execute {
+                self.stakingCollectionRef.withdrawUnstakedTokens(nodeID: nodeID, delegatorID: delegatorID, amount: amount)
+            }
+        }
+        """
+        
+        static let restakeUnstake = """
+        import FlowStakingCollection from 0xStakingCollection
+
+        /// Commits unstaked tokens to stake for the specified node or delegator in the staking collection
+
+        transaction(nodeID: String, delegatorID: UInt32?, amount: UFix64) {
+            
+            let stakingCollectionRef: &FlowStakingCollection.StakingCollection
+
+            prepare(account: AuthAccount) {
+                self.stakingCollectionRef = account.borrow<&FlowStakingCollection.StakingCollection>(from: FlowStakingCollection.StakingCollectionStoragePath)
+                    ?? panic("Could not borrow ref to StakingCollection")
+            }
+
+            execute {
+                self.stakingCollectionRef.stakeUnstakedTokens(nodeID: nodeID, delegatorID: delegatorID, amount: amount)
+            }
+        }
+        """
+        
         static let claimReward = """
         import FlowStakingCollection from 0xStakingCollection
 
