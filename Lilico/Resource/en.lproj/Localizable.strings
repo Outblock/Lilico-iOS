@@ -493,10 +493,14 @@
 "stake_unstaked_amount" = "Unstaked Amount";
 "stake_unstaking_amount" = "Unstaking Amount";
 "stake_committed_amount" = "Committed Amount";
-"stake_commited" = "Stake Commited";
-"stake_request_unstake_in_progress" = "Request UnStake In Progress";
-"stake_unstake_in_progress" = "UnStake In Progress";
+
+"stake_commited" = "Commit To Stake";
+"stake_request_unstake_in_progress" = "Request To UnStake";
+"stake_unstake_in_progress" = "UnStaking";
 "stake_progress_desc" = "Will be processed at the next epoch";
+"stake_committed" = "Committed";
+"stake_in_progress" = "In progress";
+
 "stake_requested_to_unstake_amount" = "Requested To Unstake Amount";
 "stake_insufficient_balance" = "Insufficient balance";
 "stake_apr" = "APR";

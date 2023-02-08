@@ -31,9 +31,18 @@ struct StakingDetailView: RouteableView {
                     summaryCardView
                     unstakedCardView
                     progressCardView
-                    stakeCommitedCardView
-                    requetUnstakeInProgressCardView
-                    unstakeInProgressCardView
+                    if vm.node.tokensCommitted > 0 {
+                        stakeCommitedCardView
+                    }
+                    
+                    if vm.node.tokensUnstaking > 0 {
+                        unstakeInProgressCardView
+                    }
+                    
+                    if vm.node.tokensRequestedToUnstake > 0 {
+                        requetUnstakeInProgressCardView
+                    }
+                    
                     rewardCardView
                     stakingListView
                 }
@@ -313,12 +322,19 @@ struct StakingDetailView: RouteableView {
                     .foregroundColor(Color.LL.Neutrals.text4)
             }
             
-            HStack {
+            HStack(spacing: 5) {
+                Image("icon-clock-countdown")
+                    .renderingMode(.template)
+                    .foregroundColor(Color.LL.Success.success1)
+                Text("stake_committed".localized)
+                    .font(.inter(size: 12, weight: .medium))
+                    .foregroundColor(Color.LL.Success.success1)
+                
+                Spacer()
+                
                 Text("stake_progress_desc".localized)
                     .font(.inter(size: 12))
                     .foregroundColor(Color.LL.Neutrals.text4)
-                
-                Spacer()
             }
         }
         .padding(.all, 18)
@@ -345,12 +361,19 @@ struct StakingDetailView: RouteableView {
                     .foregroundColor(Color.LL.Neutrals.text4)
             }
             
-            HStack {
+            HStack(spacing: 5) {
+                Image("icon-clock-countdown")
+                    .renderingMode(.template)
+                    .foregroundColor(Color(hex: "#F1BF0C"))
+                Text("stake_in_progress".localized)
+                    .font(.inter(size: 12, weight: .medium))
+                    .foregroundColor(Color(hex: "#F1BF0C"))
+                
+                Spacer()
+                
                 Text("stake_progress_desc".localized)
                     .font(.inter(size: 12))
                     .foregroundColor(Color.LL.Neutrals.text4)
-                
-                Spacer()
             }
         }
         .padding(.all, 18)
@@ -376,12 +399,19 @@ struct StakingDetailView: RouteableView {
                     .foregroundColor(Color.LL.Neutrals.text4)
             }
             
-            HStack {
+            HStack(spacing: 5) {
+                Image("icon-clock-countdown")
+                    .renderingMode(.template)
+                    .foregroundColor(Color(hex: "#F1BF0C"))
+                Text("stake_in_progress".localized)
+                    .font(.inter(size: 12, weight: .medium))
+                    .foregroundColor(Color(hex: "#F1BF0C"))
+                
+                Spacer()
+                
                 Text("stake_progress_desc".localized)
                     .font(.inter(size: 12))
                     .foregroundColor(Color.LL.Neutrals.text4)
-                
-                Spacer()
             }
         }
         .padding(.all, 18)
