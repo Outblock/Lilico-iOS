@@ -1257,6 +1257,7 @@
 		6AB90ADA2937C2D00008E74A /* StakingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB90AD82937C2D00008E74A /* StakingInfo.swift */; };
 		6ABAE52B2836288400C97AE2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE5292836288400C97AE2 /* Font.swift */; };
 		6ABAE53028362D1100C97AE2 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABAE52E28362D1100C97AE2 /* Others.swift */; };
+		6AC0B43C2999251600C1D95E /* Translized in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC0B43B2999251600C1D95E /* Translized */; };
 		6AC1AE69289BACDF00F76C7A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC1AE68289BACDF00F76C7A /* SnapKit */; };
 		6AC1AE6B289BAD0600F76C7A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6AC1AE6A289BAD0600F76C7A /* SnapKit */; };
 		6AC1AE6D289BAD3500F76C7A /* PinCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC1AE6C289BAD3500F76C7A /* PinCodeTextField.swift */; };
@@ -2243,6 +2244,7 @@
 				15C58C532868A4EE00BD4FC6 /* Kingfisher in Frameworks */,
 				15C58C542868A4EE00BD4FC6 /* FirebaseStorage in Frameworks */,
 				15C58C552868A4EE00BD4FC6 /* SPIndicator in Frameworks */,
+				6AC0B43C2999251600C1D95E /* Translized in Frameworks */,
 				15C58C562868A4EE00BD4FC6 /* SkeletonUI in Frameworks */,
 				15C58C572868A4EE00BD4FC6 /* Introspect in Frameworks */,
 				6A400925287578D400A77070 /* QRCode in Frameworks */,
@@ -4888,6 +4890,7 @@
 				6A46754528F2D44800F705A8 /* FMDB */,
 				15D1727A292667DF0049A956 /* WalletConnectRouter */,
 				6AADFB55293CB81A00E5D6B2 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				6AC0B43B2999251600C1D95E /* Translized */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -5003,6 +5006,7 @@
 				15D6D8F228CBAEBD00CBA152 /* XCRemoteSwiftPackageReference "FancyScrollView" */,
 				155E372C28D3AD4700834C30 /* XCRemoteSwiftPackageReference "Highlightr" */,
 				6A46754428F2D44800F705A8 /* XCRemoteSwiftPackageReference "fmdb" */,
+				6AC0B43A2999251600C1D95E /* XCRemoteSwiftPackageReference "iOS-SDK" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -7432,6 +7436,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		6AC0B43A2999251600C1D95E /* XCRemoteSwiftPackageReference "iOS-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/translized/iOS-SDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		6AC1AE67289BACDF00F76C7A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -7883,6 +7895,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		6AC0B43B2999251600C1D95E /* Translized */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AC0B43A2999251600C1D95E /* XCRemoteSwiftPackageReference "iOS-SDK" */;
+			productName = Translized;
 		};
 		6AC1AE68289BACDF00F76C7A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

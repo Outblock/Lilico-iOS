@@ -12,6 +12,7 @@ import Resolver
 import SwiftUI
 import UIKit
 import WalletCore
+import Translized
 
 #if DEBUG
 import Atlantis
@@ -23,17 +24,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     lazy var coordinator = Coordinator(window: window!)
     
     static var isUnitTest : Bool {
-        #if DEBUG
+#if DEBUG
         return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
-        #else
+#else
         return false
-        #endif
+#endif
     }
     
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         Analytics.setAnalyticsCollectionEnabled(true)
         Analytics.logEvent("ios_app_launch", parameters: [:])
+        
+        Translized.shared.setup(projectId: "VFaReNDZGX", otaToken: "02d0e5ca-6f53-4bc1-ae48-e54033d55ba4")
+        Translized.shared.swizzleMainBundle()
         
         appConfig()
         commonConfig()
@@ -46,13 +50,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         setupUI()
         tryToRestoreAccountWhenFirstLaunch()
         
-        #if DEBUG
-            Atlantis.start()
-        #endif
-
+#if DEBUG
+        Atlantis.start()
+#endif
+        
         return true
     }
-
+    
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         
         var parameters: [String: String] = [:]
@@ -107,7 +111,7 @@ extension AppDelegate {
         }
         _ = StakingManager.shared
     }
-
+    
     private func commonConfig() {
         setupNavigationBar()
         
@@ -115,12 +119,12 @@ extension AppDelegate {
         UITableView.appearance().sectionHeaderTopPadding = 0
         UISearchBar.appearance().tintColor = UIColor.LL.Secondary.violetDiscover
         UINavigationBar.appearance().shadowImage = UIImage()
-
+        
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .orange
         
         HUD.setupProgressHUD()
     }
-
+    
     private func flowConfig() {
         FlowNetwork.setup()
     }
@@ -170,5 +174,13 @@ extension AppDelegate {
     
     @objc func handleNetworkChange() {
         self.window?.backgroundColor = currentNetwork.isMainnet ? UIColor.LL.Neutrals.background : UIColor(currentNetwork.color)
+    }
+}
+
+extension AppDelegate {
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        Translized.shared.checkForUpdates { (updated, error) in
+            print("Updated: \(updated)\nError: \(error)")
+        }
     }
 }

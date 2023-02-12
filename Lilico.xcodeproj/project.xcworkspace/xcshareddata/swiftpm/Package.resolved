@@ -216,6 +216,15 @@
       }
     },
     {
+      "identity" : "ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/translized/iOS-SDK",
+      "state" : {
+        "revision" : "dcbf2adb58561d87260cd31a4e491ade590f8843",
+        "version" : "1.2.0"
+      }
+    },
+    {
       "identity" : "irregulargradient",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/joogps/IrregularGradient",
