@@ -366,7 +366,7 @@ extension WalletView {
         
         var transactionView: some View {
             HStack(spacing: 7) {
-                Text("sdk_test".localized)
+                Text("wallet_transactions".localized)
                     .font(.inter(size: 14, weight: .semibold))
                     .foregroundColor(.LL.Other.text2)
                 

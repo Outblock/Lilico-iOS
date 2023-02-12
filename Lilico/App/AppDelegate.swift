@@ -180,7 +180,7 @@ extension AppDelegate {
 extension AppDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         Translized.shared.checkForUpdates { (updated, error) in
-            print("Updated: \(updated)\nError: \(error)")
+            debugPrint("Translized updated: \(updated), error: \(error)")
         }
     }
 }
