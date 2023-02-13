@@ -135,7 +135,7 @@ extension FlowNetwork {
             throw NFTError.invalidTokenId
         }
         
-        let cadenceString = collection.formatCadence(script: CadenceTemplate.nftTransfer)
+        let cadenceString = collection.formatCadence(script: nft.isNBA ? CadenceTemplate.nbaNFTTransfer : CadenceTemplate.nftTransfer)
         
         return try await flow.sendTransaction(signers: [WalletManager.shared, RemoteConfigManager.shared], builder: {
             cadence {

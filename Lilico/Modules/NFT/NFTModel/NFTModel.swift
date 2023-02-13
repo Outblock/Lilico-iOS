@@ -78,6 +78,10 @@ struct NFTModel: Codable, Hashable, Identifiable {
         }
     }
 
+    var isNBA: Bool {
+        collection?.contractName.trim() == "TopShot"
+    }
+    
     init(_ response: NFTResponse, in collection: NFTCollectionInfo?) {
         if let imgUrl = response.postMedia.image, let url = URL(string: imgUrl) {
             if response.postMedia.isSvg == true {
