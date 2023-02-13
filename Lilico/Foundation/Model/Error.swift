@@ -23,6 +23,7 @@ enum LLError: Error {
     case fetchUserInfoFailed
     case invalidAddress
     case signFailed
+    case decodeFailed
     case unknown
 }
 

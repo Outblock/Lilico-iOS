@@ -17,6 +17,7 @@ import UIKit
 import WalletConnectPairing
 import WalletConnectNetworking
 import WalletConnectRouter
+import Gzip
 
 class WalletConnectManager: ObservableObject {
     static let shared = WalletConnectManager()
@@ -340,9 +341,23 @@ extension WalletConnectManager {
             do {
                 self.currentRequest = sessionRequest
                 let jsonString = try sessionRequest.params.get([String].self)
-                let data = jsonString[0].data(using: .utf8)!
-                let model = try JSONDecoder().decode(Signable.self, from: data)
-                print(model.roles)
+                
+                guard let json = jsonString.first else {
+                    throw LLError.decodeFailed
+                }
+                
+                var model: Signable? = nil
+                if let data = Data(base64Encoded: json),
+                   data.isGzipped,
+                   let uncompressData = try? data.gunzipped() {
+                    model = try JSONDecoder().decode(Signable.self, from: uncompressData)
+                } else if let data = json.data(using: .utf8) {
+                    model = try JSONDecoder().decode(Signable.self, from: data)
+                }
+                
+                guard let model else {
+                    throw LLError.decodeFailed
+                }
                 
                 if model.roles.payer && !model.roles.proposer && !model.roles.authorizer {
                     self.approvePayerRequest(request: sessionRequest, model: model, message: model.message)

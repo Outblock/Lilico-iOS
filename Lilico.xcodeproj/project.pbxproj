@@ -35,6 +35,7 @@
 		154866F128D0EEF000D012B8 /* FlowTransactionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866EF28D0EEF000D012B8 /* FlowTransactionTemplate.swift */; };
 		154866F328D0FE8900D012B8 /* ViewCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866F228D0FE8900D012B8 /* ViewCondition.swift */; };
 		154866F428D0FE8900D012B8 /* ViewCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154866F228D0FE8900D012B8 /* ViewCondition.swift */; };
+		1549CF03299A10C2002B37A5 /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 1549CF02299A10C2002B37A5 /* Gzip */; };
 		154B8903276A1EEB00780E93 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507C7EE275634C900890C5D /* ProfileView.swift */; };
 		154B8904276A1EEB00780E93 /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C43FE2751CF74006D1E8D /* OffsetPageTabView.swift */; };
 		154B8906276A1EEB00780E93 /* Lilico_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC9DF1274FD1FD00F70CD9 /* Lilico_App.swift */; };
@@ -2221,6 +2222,7 @@
 				152BB09428AE8FD100B2A2AA /* Lottie in Frameworks */,
 				6AEA374028A49DBE004545D4 /* MJRefresh in Frameworks */,
 				15C58C442868A4EE00BD4FC6 /* SPConfetti in Frameworks */,
+				1549CF03299A10C2002B37A5 /* Gzip in Frameworks */,
 				15C58C452868A4EE00BD4FC6 /* GTMSessionFetcherCore in Frameworks */,
 				6AE46062286EE644009C2B96 /* SwiftUICharts in Frameworks */,
 				1588332228943F4D00142B35 /* NativeUIKit in Frameworks */,
@@ -4891,6 +4893,7 @@
 				15D1727A292667DF0049A956 /* WalletConnectRouter */,
 				6AADFB55293CB81A00E5D6B2 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				6AC0B43B2999251600C1D95E /* Translized */,
+				1549CF02299A10C2002B37A5 /* Gzip */,
 			);
 			productName = "Lilico-lite";
 			productReference = 15C58C6D2868A4EE00BD4FC6 /* Lilico.app */;
@@ -5007,6 +5010,7 @@
 				155E372C28D3AD4700834C30 /* XCRemoteSwiftPackageReference "Highlightr" */,
 				6A46754428F2D44800F705A8 /* XCRemoteSwiftPackageReference "fmdb" */,
 				6AC0B43A2999251600C1D95E /* XCRemoteSwiftPackageReference "iOS-SDK" */,
+				1549CF01299A10C2002B37A5 /* XCRemoteSwiftPackageReference "GzipSwift" */,
 			);
 			productRefGroup = 15EC9DEF274FD1FC00F70CD9 /* Products */;
 			projectDirPath = "";
@@ -7011,6 +7015,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		1549CF01299A10C2002B37A5 /* XCRemoteSwiftPackageReference "GzipSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/1024jp/GzipSwift";
+			requirement = {
+				kind = exactVersion;
+				version = 5.2.0;
+			};
+		};
 		154B887C2765EBA700780E93 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -7500,6 +7512,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6A46754428F2D44800F705A8 /* XCRemoteSwiftPackageReference "fmdb" */;
 			productName = FMDB;
+		};
+		1549CF02299A10C2002B37A5 /* Gzip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1549CF01299A10C2002B37A5 /* XCRemoteSwiftPackageReference "GzipSwift" */;
+			productName = Gzip;
 		};
 		154B88F1276A1EEB00780E93 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
