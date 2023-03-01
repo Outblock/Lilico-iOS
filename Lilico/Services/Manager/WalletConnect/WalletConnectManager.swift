@@ -206,9 +206,7 @@ class WalletConnectManager: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] sessionRequest in
                 print("[RESPONDER] WC: Did receive session request")
-                
                 self?.handleRequest(sessionRequest)
-                
             }.store(in: &publishers)
         
         Sign.instance.sessionDeletePublisher
@@ -436,9 +434,12 @@ extension WalletConnectManager {
         proposal.requiredNamespaces.forEach {
             let caip2Namespace = $0.key
             let proposalNamespace = $0.value
-            let accounts = Set(proposalNamespace.chains.compactMap { WalletConnectSign.Account($0.absoluteString + ":\(account)") } )
-            let sessionNamespace = SessionNamespace(accounts: accounts, methods: proposalNamespace.methods, events: proposalNamespace.events)
-            sessionNamespaces[caip2Namespace] = sessionNamespace
+            
+            if let chains = proposalNamespace.chains {
+                let accounts = Set(chains.compactMap { WalletConnectSign.Account($0.absoluteString + ":\(account)") } )
+                let sessionNamespace = SessionNamespace(accounts: accounts, methods: proposalNamespace.methods, events: proposalNamespace.events)
+                sessionNamespaces[caip2Namespace] = sessionNamespace
+            }
         }
         
         let namespaces = sessionNamespaces
