@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "LilicoExt",
+  "version": "1.0.0",
+  "action": { "default_popup": "index.html" },
+  "host_permissions": [
+    "https://fcl-harness-eight.vercel.app/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://fcl-harness-eight.vercel.app/*"],
+      "js": ["src/scripts/content.ts"],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "service_worker": "src/scripts/background.ts"
+  },
+  "permissions": ["nativeMessaging"]
+}

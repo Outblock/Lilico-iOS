@@ -1256,6 +1256,18 @@
 		6A9DFBD229519D9A00E10EAC /* LilicoWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6A9DFBC329519D9800E10EAC /* LilicoWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6A9DFBDA2951A1F900E10EAC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6A9DFBD92951A1F900E10EAC /* Kingfisher */; };
 		6A9DFBDC2951C31200E10EAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B1F63B2786B89800847BB5 /* Localizable.strings */; };
+		6A9FB32E2A57D12500FD612C /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FB32D2A57D12500FD612C /* SafariWebExtensionHandler.swift */; };
+		6A9FB3432A57D12600FD612C /* LilicoSafariExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6A9FB32B2A57D12500FD612C /* LilicoSafariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6A9FB34C2A57D15D00FD612C /* vite.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB3472A57D15D00FD612C /* vite.svg */; };
+		6A9FB34D2A57D15D00FD612C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB3482A57D15D00FD612C /* manifest.json */; };
+		6A9FB34E2A57D15D00FD612C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB3492A57D15D00FD612C /* assets */; };
+		6A9FB34F2A57D15D00FD612C /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB34A2A57D15D00FD612C /* index.html */; };
+		6A9FB3502A57D15D00FD612C /* service-worker-loader.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB34B2A57D15D00FD612C /* service-worker-loader.js */; };
+		6A9FB3522A57D1E800FD612C /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 6A9FB3512A57D1E800FD612C /* SwiftyBeaver */; };
+		6A9FB3552A57FF8A00FD612C /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FB3542A57FF8A00FD612C /* Defines.swift */; };
+		6A9FB3572A58001E00FD612C /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FB3562A58001E00FD612C /* SharedModels.swift */; };
+		6A9FB3582A58001E00FD612C /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FB3562A58001E00FD612C /* SharedModels.swift */; };
+		6A9FB3592A58001E00FD612C /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FB3562A58001E00FD612C /* SharedModels.swift */; };
 		6AA2E75A289D28EC00B4DD96 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */; };
 		6AA2E75B289D28EC00B4DD96 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */; };
 		6AA591F628854FB300F4B5CA /* BackupGDTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */; };
@@ -1472,6 +1484,13 @@
 			remoteGlobalIDString = 6A9DFBC229519D9700E10EAC;
 			remoteInfo = LilicoWidgetsExtension;
 		};
+		6A9FB3412A57D12600FD612C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15EC9DE6274FD1FC00F70CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A9FB32A2A57D12500FD612C;
+			remoteInfo = LilicoSafariExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1520,6 +1539,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				6A9FB3432A57D12600FD612C /* LilicoSafariExtension.appex in Embed Foundation Extensions */,
 				6A9DFBD229519D9A00E10EAC /* LilicoWidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -2112,6 +2132,17 @@
 		6A9DFBCD29519D9A00E10EAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A9DFBCF29519D9A00E10EAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A9DFBDD2951CDC000E10EAC /* LilicoWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LilicoWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		6A9FB32B2A57D12500FD612C /* LilicoSafariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LilicoSafariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A9FB32D2A57D12500FD612C /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		6A9FB3402A57D12600FD612C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A9FB3472A57D15D00FD612C /* vite.svg */ = {isa = PBXFileReference; lastKnownFileType = file; name = vite.svg; path = "safari-extension/dist/vite.svg"; sourceTree = SOURCE_ROOT; };
+		6A9FB3482A57D15D00FD612C /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = "safari-extension/dist/manifest.json"; sourceTree = SOURCE_ROOT; };
+		6A9FB3492A57D15D00FD612C /* assets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = assets; path = "safari-extension/dist/assets"; sourceTree = SOURCE_ROOT; };
+		6A9FB34A2A57D15D00FD612C /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = "safari-extension/dist/index.html"; sourceTree = SOURCE_ROOT; };
+		6A9FB34B2A57D15D00FD612C /* service-worker-loader.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "service-worker-loader.js"; path = "safari-extension/dist/service-worker-loader.js"; sourceTree = SOURCE_ROOT; };
+		6A9FB3532A57FF1C00FD612C /* LilicoSafariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LilicoSafariExtension.entitlements; sourceTree = "<group>"; };
+		6A9FB3542A57FF8A00FD612C /* Defines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
+		6A9FB3562A58001E00FD612C /* SharedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModels.swift; sourceTree = "<group>"; };
 		6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupGDTarget.swift; sourceTree = "<group>"; };
 		6AA78E0228A0BF2C00FF6CF9 /* ScanHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHandler.swift; sourceTree = "<group>"; };
@@ -2361,6 +2392,14 @@
 				6A9DFBDA2951A1F900E10EAC /* Kingfisher in Frameworks */,
 				6A9DFBC729519D9800E10EAC /* SwiftUI.framework in Frameworks */,
 				6A9DFBC529519D9800E10EAC /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A9FB3282A57D12500FD612C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A9FB3522A57D1E800FD612C /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3893,6 +3932,7 @@
 				1500783C286830EF00A00109 /* LilicoTests */,
 				6A9DFBC829519D9800E10EAC /* LilicoWidgets */,
 				6A0C6E1E29542DFD005F0EF6 /* LilicoDevWidgets */,
+				6A9FB32C2A57D12500FD612C /* LilicoSafariExtension */,
 				15EC9DEF274FD1FC00F70CD9 /* Products */,
 				15B1A67A276A2D670006B621 /* Frameworks */,
 			);
@@ -3906,6 +3946,7 @@
 				15C58C6D2868A4EE00BD4FC6 /* Lilico.app */,
 				6A9DFBC329519D9800E10EAC /* LilicoWidgetsExtension.appex */,
 				6A0C6E1B29542DFC005F0EF6 /* LilicoDevWidgetsExtension.appex */,
+				6A9FB32B2A57D12500FD612C /* LilicoSafariExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4570,6 +4611,31 @@
 			path = LilicoWidgets;
 			sourceTree = "<group>";
 		};
+		6A9FB32C2A57D12500FD612C /* LilicoSafariExtension */ = {
+			isa = PBXGroup;
+			children = (
+				6A9FB3532A57FF1C00FD612C /* LilicoSafariExtension.entitlements */,
+				6A9FB32D2A57D12500FD612C /* SafariWebExtensionHandler.swift */,
+				6A9FB3402A57D12600FD612C /* Info.plist */,
+				6A9FB32F2A57D12500FD612C /* Resources */,
+				6A9FB3542A57FF8A00FD612C /* Defines.swift */,
+				6A9FB3562A58001E00FD612C /* SharedModels.swift */,
+			);
+			path = LilicoSafariExtension;
+			sourceTree = "<group>";
+		};
+		6A9FB32F2A57D12500FD612C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6A9FB3492A57D15D00FD612C /* assets */,
+				6A9FB34A2A57D15D00FD612C /* index.html */,
+				6A9FB3482A57D15D00FD612C /* manifest.json */,
+				6A9FB34B2A57D15D00FD612C /* service-worker-loader.js */,
+				6A9FB3472A57D15D00FD612C /* vite.svg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		6AA591F328854F5900F4B5CA /* Backup */ = {
 			isa = PBXGroup;
 			children = (
@@ -4994,6 +5060,7 @@
 			);
 			dependencies = (
 				6A9DFBD129519D9A00E10EAC /* PBXTargetDependency */,
+				6A9FB3422A57D12600FD612C /* PBXTargetDependency */,
 			);
 			name = Lilico;
 			packageProductDependencies = (
@@ -5088,6 +5155,26 @@
 			productReference = 6A9DFBC329519D9800E10EAC /* LilicoWidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		6A9FB32A2A57D12500FD612C /* LilicoSafariExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A9FB3462A57D12600FD612C /* Build configuration list for PBXNativeTarget "LilicoSafariExtension" */;
+			buildPhases = (
+				6A9FB3272A57D12500FD612C /* Sources */,
+				6A9FB3282A57D12500FD612C /* Frameworks */,
+				6A9FB3292A57D12500FD612C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LilicoSafariExtension;
+			packageProductDependencies = (
+				6A9FB3512A57D1E800FD612C /* SwiftyBeaver */,
+			);
+			productName = LilicoSafariExtension;
+			productReference = 6A9FB32B2A57D12500FD612C /* LilicoSafariExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -5095,7 +5182,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					1500783A286830EF00A00109 = {
@@ -5107,6 +5194,9 @@
 					};
 					6A9DFBC229519D9700E10EAC = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					6A9FB32A2A57D12500FD612C = {
+						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
 			};
@@ -5171,6 +5261,7 @@
 				1500783A286830EF00A00109 /* LilicoTests */,
 				6A9DFBC229519D9700E10EAC /* LilicoWidgetsExtension */,
 				6A0C6E1A29542DFC005F0EF6 /* LilicoDevWidgetsExtension */,
+				6A9FB32A2A57D12500FD612C /* LilicoSafariExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -5289,6 +5380,18 @@
 			files = (
 				6A9DFBCE29519D9A00E10EAC /* Assets.xcassets in Resources */,
 				6A9DFBDC2951C31200E10EAC /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A9FB3292A57D12500FD612C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A9FB34E2A57D15D00FD612C /* assets in Resources */,
+				6A9FB34F2A57D15D00FD612C /* index.html in Resources */,
+				6A9FB34D2A57D15D00FD612C /* manifest.json in Resources */,
+				6A9FB3502A57D15D00FD612C /* service-worker-loader.js in Resources */,
+				6A9FB34C2A57D15D00FD612C /* vite.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5939,6 +6042,7 @@
 				1599F771278892680094B196 /* InputMnemonicViewModel.swift in Sources */,
 				15DC21B727819C56000B187A /* View.ReadSize.swift in Sources */,
 				6AD3581A28AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift in Sources */,
+				6A9FB3582A58001E00FD612C /* SharedModels.swift in Sources */,
 				1575A74028B29BA200ADC513 /* SVGWebUIView.swift in Sources */,
 				4ED21F38284E2E6E00320AD0 /* ShareSheet.swift in Sources */,
 				6A32213A2927B49B000B8E1F /* StakingDetailView.swift in Sources */,
@@ -6553,6 +6657,7 @@
 				15C58C1C2868A4EE00BD4FC6 /* InputMnemonicViewModel.swift in Sources */,
 				15C58C1D2868A4EE00BD4FC6 /* View.ReadSize.swift in Sources */,
 				6AD3581928AF700C00BC510A /* NFTUIKitTopSelectionHeaderView.swift in Sources */,
+				6A9FB3572A58001E00FD612C /* SharedModels.swift in Sources */,
 				1575A73F28B29BA200ADC513 /* SVGWebUIView.swift in Sources */,
 				15C58C1E2868A4EE00BD4FC6 /* ShareSheet.swift in Sources */,
 				6A3221392927B49B000B8E1F /* StakingDetailView.swift in Sources */,
@@ -6636,6 +6741,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6A9FB3272A57D12500FD612C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A9FB3552A57FF8A00FD612C /* Defines.swift in Sources */,
+				6A9FB3592A58001E00FD612C /* SharedModels.swift in Sources */,
+				6A9FB32E2A57D12500FD612C /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -6658,6 +6773,11 @@
 			isa = PBXTargetDependency;
 			target = 6A9DFBC229519D9700E10EAC /* LilicoWidgetsExtension */;
 			targetProxy = 6A9DFBD029519D9A00E10EAC /* PBXContainerItemProxy */;
+		};
+		6A9FB3422A57D12600FD612C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A9FB32A2A57D12500FD612C /* LilicoSafariExtension */;
+			targetProxy = 6A9FB3412A57D12600FD612C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -7130,6 +7250,70 @@
 			};
 			name = Release;
 		};
+		6A9FB3442A57D12600FD612C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = LilicoSafariExtension/LilicoSafariExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C7CT739SU9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LilicoSafariExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LilicoSafariExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.outblock.lilico.LilicoSafariExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A9FB3452A57D12600FD612C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = LilicoSafariExtension/LilicoSafariExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C7CT739SU9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LilicoSafariExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LilicoSafariExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.outblock.lilico.LilicoSafariExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -7183,6 +7367,15 @@
 			buildConfigurations = (
 				6A9DFBD429519D9A00E10EAC /* Debug */,
 				6A9DFBD529519D9A00E10EAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A9FB3462A57D12600FD612C /* Build configuration list for PBXNativeTarget "LilicoSafariExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A9FB3442A57D12600FD612C /* Debug */,
+				6A9FB3452A57D12600FD612C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -8116,6 +8309,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 157046712793237300D1747B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		6A9FB3512A57D1E800FD612C /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A5F15F62A3185300035AC38 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
 		};
 		6AADFB53293CB7F800E5D6B2 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;
