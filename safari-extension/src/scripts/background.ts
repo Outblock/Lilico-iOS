@@ -1,7 +1,14 @@
 import browser from "webextension-polyfill";
-import { ExtMessageType, FCLServiceType, Message } from "./define";
+import { ExtMessageType, Message } from "./define";
+import { FCLServiceType } from "./fcl_scripts";
+import { fetchSharedData } from "./storage";
+import { postPreAuthzResponse, postReadyResponse } from "./sender";
 
-let processingMessage: any = null
+fetchSharedData().then((model) => {
+  console.log("fetch shared data from app", model);
+});
+
+let processingMessage: any = null;
 
 browser.runtime.onMessage.addListener((message: Message) => {
   console.log(
@@ -10,61 +17,74 @@ browser.runtime.onMessage.addListener((message: Message) => {
   );
 
   if (!message.payload) {
-    console.warn('message.payload is nil')
+    console.warn("message.payload is nil");
     return;
   }
 
   switch (message.type) {
     case ExtMessageType.ReceiveMessage:
-      handleReceiveMessage(message.payload)
+      handleReceiveMessage(message.payload);
       break;
-  
+
     default:
       break;
   }
 });
 
-function handleReceiveMessage(payload: any) {
+async function handleReceiveMessage(payload: any) {
   if (processingMessage === payload) {
-    console.warn('same message is processing')
-    return
+    console.warn("same message is processing");
+    return;
   }
 
-  // TODO: - check required info
+  const sharedData = await fetchSharedData();
+  if (!sharedData) {
+    // TODO: - data is not prepared action
+    console.warn("shared data is not prepared");
+    return;
+  }
 
   try {
     if (messageIsService(payload)) {
-      handleService(payload)
+      handleService(payload);
+    } else if (payload.type === "FCL:VIEW:READY:RESPONSE") {
+      handleViewReady(payload);
+    } else {
+      console.warn("unknown message", payload);
     }
   } catch (error) {
-    console.error('handleReceiveMessage failed', error)
-    processingMessage = null
+    console.error("handleReceiveMessage failed", error);
+    processingMessage = null;
   }
 }
 
+function handleViewReady(payload: any) {
+  console.log("will handle view ready", payload);
+}
+
 function handleService(payload: any) {
-  console.log('will handle service')
+  console.log("will handle service");
 
   if (payload.service.type === FCLServiceType.PreAuthz) {
-    // post preAuthz response
+    postPreAuthzResponse();
   } else {
-    // post ready response
+    postReadyResponse();
   }
 }
 
 function messageIsService(payload: any): boolean {
   if (!payload.type) {
-    return false
+    return false;
   }
 
-  const service = payload.service as {[key: string]: any};
+  const service = payload.service as { [key: string]: any };
   if (!service) {
-    return false
+    return false;
   }
 
-  if (service.type || (service.f_type as string) === 'Service') {
-    return true
+  if (service.type || (service.f_type as string) === "Service") {
+    return true;
   }
 
-  return false
+  return false;
 }

@@ -13,23 +13,14 @@ export enum ExtMessageType {
 }
 
 export enum NativeMessageType {
-  Init = "init",
+  Fetch = "fetch",
 }
 
-export function sendNativeMessage(event: NativeMessageType, payload?: any) {
+export function sendNativeMessage(event: NativeMessageType, payload?: any): Promise<any> {
   const e: Message = {
     type: event,
     payload: payload ?? null,
   };
 
-  browser.runtime.sendNativeMessage(applicationName, e).then((response) => {
-    console.log("receive message from native", response);
-  });
-}
-
-export enum FCLServiceType {
-  PreAuthz = "pre-authz",
-  Authn = "authn",
-  Authz = "authz",
-  UserSignature = "user-signature"
+  return browser.runtime.sendNativeMessage(applicationName, e);
 }

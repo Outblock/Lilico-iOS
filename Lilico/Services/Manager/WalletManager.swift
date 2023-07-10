@@ -32,7 +32,11 @@ extension WalletManager {
 class WalletManager: ObservableObject {
     static let shared = WalletManager()
 
-    @Published var walletInfo: UserWalletResponse?
+    @Published var walletInfo: UserWalletResponse? {
+        didSet {
+            updateExtRequiredData()
+        }
+    }
     @Published var supportedCoins: [TokenModel]?
     @Published var activatedCoins: [TokenModel] = []
     @Published var coinBalances: [String: Double] = [:]
@@ -604,6 +608,16 @@ extension WalletManager {
                     
                 }
             }
+        }
+    }
+    
+    private func updateExtRequiredData() {
+        do {
+            let address = walletInfo?.currentNetworkWalletModel?.getAddress ?? ""
+            let payer = RemoteConfigManager.shared.payer
+            try? ExtConnectivity.shared.updateSharedModel(SharedModel(address: address, payer: payer))
+        } catch {
+            log.error("update ext data failed", context: error)
         }
     }
 
