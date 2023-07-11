@@ -1163,6 +1163,12 @@
 		6A65690C289128EE007D9BDA /* RouterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A65690A289128EE007D9BDA /* RouterNavigationController.swift */; };
 		6A66AAAC2923F36E00FA766A /* StakeGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A66AAAB2923F36E00FA766A /* StakeGuideView.swift */; };
 		6A66AAAD2923F36E00FA766A /* StakeGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A66AAAB2923F36E00FA766A /* StakeGuideView.swift */; };
+		6A687D132A5D581900562782 /* vite.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D0D2A5D581800562782 /* vite.svg */; };
+		6A687D142A5D581900562782 /* service-worker-loader.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D0E2A5D581800562782 /* service-worker-loader.js */; };
+		6A687D152A5D581900562782 /* content_script.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D0F2A5D581800562782 /* content_script.js */; };
+		6A687D162A5D581900562782 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D102A5D581800562782 /* assets */; };
+		6A687D172A5D581900562782 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D112A5D581800562782 /* index.html */; };
+		6A687D182A5D581900562782 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D122A5D581800562782 /* manifest.json */; };
 		6A6BD9D8287D1726009FA262 /* WalletSendAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */; };
 		6A6BD9D9287D1726009FA262 /* WalletSendAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */; };
 		6A6BD9DC287D5066009FA262 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9DB287D5066009FA262 /* ProgressHUD.swift */; };
@@ -1261,11 +1267,6 @@
 		6A9DFBDC2951C31200E10EAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B1F63B2786B89800847BB5 /* Localizable.strings */; };
 		6A9FB32E2A57D12500FD612C /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FB32D2A57D12500FD612C /* SafariWebExtensionHandler.swift */; };
 		6A9FB3432A57D12600FD612C /* LilicoSafariExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6A9FB32B2A57D12500FD612C /* LilicoSafariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		6A9FB34C2A57D15D00FD612C /* vite.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB3472A57D15D00FD612C /* vite.svg */; };
-		6A9FB34D2A57D15D00FD612C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB3482A57D15D00FD612C /* manifest.json */; };
-		6A9FB34E2A57D15D00FD612C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB3492A57D15D00FD612C /* assets */; };
-		6A9FB34F2A57D15D00FD612C /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB34A2A57D15D00FD612C /* index.html */; };
-		6A9FB3502A57D15D00FD612C /* service-worker-loader.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FB34B2A57D15D00FD612C /* service-worker-loader.js */; };
 		6A9FB3522A57D1E800FD612C /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 6A9FB3512A57D1E800FD612C /* SwiftyBeaver */; };
 		6AA2E75A289D28EC00B4DD96 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */; };
 		6AA2E75B289D28EC00B4DD96 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */; };
@@ -2069,6 +2070,12 @@
 		6A63F9F128C9C69100FE96C0 /* ImageAnimated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnimated.swift; sourceTree = "<group>"; };
 		6A65690A289128EE007D9BDA /* RouterNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterNavigationController.swift; sourceTree = "<group>"; };
 		6A66AAAB2923F36E00FA766A /* StakeGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StakeGuideView.swift; sourceTree = "<group>"; };
+		6A687D0D2A5D581800562782 /* vite.svg */ = {isa = PBXFileReference; lastKnownFileType = file; name = vite.svg; path = "safari-extension/dist/vite.svg"; sourceTree = SOURCE_ROOT; };
+		6A687D0E2A5D581800562782 /* service-worker-loader.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "service-worker-loader.js"; path = "safari-extension/dist/service-worker-loader.js"; sourceTree = SOURCE_ROOT; };
+		6A687D0F2A5D581800562782 /* content_script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = content_script.js; path = "safari-extension/dist/content_script.js"; sourceTree = SOURCE_ROOT; };
+		6A687D102A5D581800562782 /* assets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = assets; path = "safari-extension/dist/assets"; sourceTree = SOURCE_ROOT; };
+		6A687D112A5D581800562782 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = "safari-extension/dist/index.html"; sourceTree = SOURCE_ROOT; };
+		6A687D122A5D581800562782 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = "safari-extension/dist/manifest.json"; sourceTree = SOURCE_ROOT; };
 		6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendAmountView.swift; sourceTree = "<group>"; };
 		6A6BD9DB287D5066009FA262 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		6A6BD9DE287D5467009FA262 /* PlaceholderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderStyle.swift; sourceTree = "<group>"; };
@@ -2135,11 +2142,6 @@
 		6A9FB32B2A57D12500FD612C /* LilicoSafariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LilicoSafariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A9FB32D2A57D12500FD612C /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		6A9FB3402A57D12600FD612C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6A9FB3472A57D15D00FD612C /* vite.svg */ = {isa = PBXFileReference; lastKnownFileType = text; name = vite.svg; path = "safari-extension/dist/vite.svg"; sourceTree = SOURCE_ROOT; };
-		6A9FB3482A57D15D00FD612C /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = "safari-extension/dist/manifest.json"; sourceTree = SOURCE_ROOT; };
-		6A9FB3492A57D15D00FD612C /* assets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = assets; path = "safari-extension/dist/assets"; sourceTree = SOURCE_ROOT; };
-		6A9FB34A2A57D15D00FD612C /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = "safari-extension/dist/index.html"; sourceTree = SOURCE_ROOT; };
-		6A9FB34B2A57D15D00FD612C /* service-worker-loader.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "service-worker-loader.js"; path = "safari-extension/dist/service-worker-loader.js"; sourceTree = SOURCE_ROOT; };
 		6A9FB3532A57FF1C00FD612C /* LilicoSafariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LilicoSafariExtension.entitlements; sourceTree = "<group>"; };
 		6AA2E759289D28EC00B4DD96 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		6AA591F528854FB300F4B5CA /* BackupGDTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupGDTarget.swift; sourceTree = "<group>"; };
@@ -4624,11 +4626,12 @@
 		6A9FB32F2A57D12500FD612C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6A9FB3492A57D15D00FD612C /* assets */,
-				6A9FB34A2A57D15D00FD612C /* index.html */,
-				6A9FB3482A57D15D00FD612C /* manifest.json */,
-				6A9FB34B2A57D15D00FD612C /* service-worker-loader.js */,
-				6A9FB3472A57D15D00FD612C /* vite.svg */,
+				6A687D102A5D581800562782 /* assets */,
+				6A687D0F2A5D581800562782 /* content_script.js */,
+				6A687D112A5D581800562782 /* index.html */,
+				6A687D122A5D581800562782 /* manifest.json */,
+				6A687D0E2A5D581800562782 /* service-worker-loader.js */,
+				6A687D0D2A5D581800562782 /* vite.svg */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -5384,11 +5387,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A9FB34E2A57D15D00FD612C /* assets in Resources */,
-				6A9FB34F2A57D15D00FD612C /* index.html in Resources */,
-				6A9FB34D2A57D15D00FD612C /* manifest.json in Resources */,
-				6A9FB3502A57D15D00FD612C /* service-worker-loader.js in Resources */,
-				6A9FB34C2A57D15D00FD612C /* vite.svg in Resources */,
+				6A687D172A5D581900562782 /* index.html in Resources */,
+				6A687D132A5D581900562782 /* vite.svg in Resources */,
+				6A687D162A5D581900562782 /* assets in Resources */,
+				6A687D142A5D581900562782 /* service-worker-loader.js in Resources */,
+				6A687D182A5D581900562782 /* manifest.json in Resources */,
+				6A687D152A5D581900562782 /* content_script.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

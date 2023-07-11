@@ -10,13 +10,17 @@ export interface Message {
 export enum ExtMessageType {
   ReceiveMessage = "message",
   ReceiveTransactionMessage = "transaction",
+  PostMessage = "post_message",
 }
 
 export enum NativeMessageType {
   Fetch = "fetch",
 }
 
-export function sendNativeMessage(event: NativeMessageType, payload?: any): Promise<any> {
+export function sendNativeMessage(
+  event: NativeMessageType,
+  payload?: any
+): Promise<any> {
   const e: Message = {
     type: event,
     payload: payload ?? null,

@@ -37,10 +37,12 @@ async function handleReceiveMessage(payload: any) {
     return;
   }
 
-  const sharedData = await fetchSharedData();
+  let sharedData = await fetchSharedData();
   if (!sharedData) {
     // TODO: - data is not prepared action
     console.warn("shared data is not prepared");
+    // debug code on chrome, don't forget delete this.
+    // sharedData = { address: "0xf026a227d3723067", payer: "0xcb1cf3196916f9e2" };
     return;
   }
 
@@ -73,7 +75,7 @@ function handleService(payload: any) {
 }
 
 function messageIsService(payload: any): boolean {
-  if (!payload.type) {
+  if (payload.type) {
     return false;
   }
 

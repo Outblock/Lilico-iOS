@@ -18,13 +18,13 @@ export interface Replacement {
 export function generateMessage(
   originStr: string,
   replacements: Replacement[]
-): string {
+): any {
   let finalStr = originStr;
   replacements.forEach((element) => {
     finalStr = finalStr.replace(element.key, element.value);
   });
 
-  return finalStr;
+  return JSON.parse(finalStr);
 }
 
 export const preAuthzResponse = `

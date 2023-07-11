@@ -1,9 +1,11 @@
+import browser from "webextension-polyfill";
 import {
   generateMessage,
   preAuthzResponse,
   FCLScriptsReplacement,
 } from "./fcl_scripts";
 import { fetchSharedData } from "./storage";
+import { ExtMessageType } from "./define";
 
 export async function postPreAuthzResponse() {
   const sharedModel = await fetchSharedData();
@@ -18,19 +20,27 @@ export async function postPreAuthzResponse() {
   ];
 
   const message = generateMessage(preAuthzResponse, replacements);
-  postMessage(message);
+  postToContent(message);
   console.log("postPreAuthzResponse sent");
 }
 
 export function postReadyResponse() {
-  const message = `
-    { type: 'FCL:VIEW:READY' }
-  `;
+  const message = { type: "FCL:VIEW:READY" };
 
-  postMessage(message);
+  postToContent(message);
   console.log("postReadyResponse sent");
 }
 
-function postMessage(message: string) {
-  window && window.postMessage(JSON.parse(JSON.stringify(message || {})), "*");
+async function postToContent(message: any) {
+  const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+  const tabId = tabs[0].id;
+  if (!tabId) {
+    console.error("tabId is nil");
+    return;
+  }
+
+  browser.tabs.sendMessage(tabId, {
+    type: ExtMessageType.PostMessage,
+    payload: message,
+  });
 }
