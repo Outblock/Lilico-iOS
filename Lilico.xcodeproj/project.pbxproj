@@ -1028,6 +1028,13 @@
 		6A1A908C2A5BABCE002B5083 /* ExtConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A908B2A5BABCE002B5083 /* ExtConnectivity.swift */; };
 		6A1A908D2A5BABCE002B5083 /* ExtConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A908B2A5BABCE002B5083 /* ExtConnectivity.swift */; };
 		6A1A908E2A5BAC0B002B5083 /* EnvDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0C6E1529540696005F0EF6 /* EnvDefine.swift */; };
+		6A1FC2BB2A5E98D3006ACBE0 /* service-worker-loader.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A1FC2B42A5E98D3006ACBE0 /* service-worker-loader.js */; };
+		6A1FC2BC2A5E98D3006ACBE0 /* content_script.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A1FC2B52A5E98D3006ACBE0 /* content_script.js */; };
+		6A1FC2BD2A5E98D3006ACBE0 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A1FC2B62A5E98D3006ACBE0 /* manifest.json */; };
+		6A1FC2BE2A5E98D3006ACBE0 /* src in Resources */ = {isa = PBXBuildFile; fileRef = 6A1FC2B72A5E98D3006ACBE0 /* src */; };
+		6A1FC2BF2A5E98D3006ACBE0 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6A1FC2B82A5E98D3006ACBE0 /* index.html */; };
+		6A1FC2C02A5E98D3006ACBE0 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 6A1FC2B92A5E98D3006ACBE0 /* assets */; };
+		6A1FC2C12A5E98D3006ACBE0 /* vite.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6A1FC2BA2A5E98D3006ACBE0 /* vite.svg */; };
 		6A204C652860236600D0D3A4 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A204C632860236600D0D3A4 /* ViewExtensions.swift */; };
 		6A204C6A286070A600D0D3A4 /* FirebaseStorageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A204C68286070A600D0D3A4 /* FirebaseStorageUtils.swift */; };
 		6A204C6C2860784B00D0D3A4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6A204C6B2860784B00D0D3A4 /* FirebaseStorage */; };
@@ -1163,12 +1170,6 @@
 		6A65690C289128EE007D9BDA /* RouterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A65690A289128EE007D9BDA /* RouterNavigationController.swift */; };
 		6A66AAAC2923F36E00FA766A /* StakeGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A66AAAB2923F36E00FA766A /* StakeGuideView.swift */; };
 		6A66AAAD2923F36E00FA766A /* StakeGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A66AAAB2923F36E00FA766A /* StakeGuideView.swift */; };
-		6A687D132A5D581900562782 /* vite.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D0D2A5D581800562782 /* vite.svg */; };
-		6A687D142A5D581900562782 /* service-worker-loader.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D0E2A5D581800562782 /* service-worker-loader.js */; };
-		6A687D152A5D581900562782 /* content_script.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D0F2A5D581800562782 /* content_script.js */; };
-		6A687D162A5D581900562782 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D102A5D581800562782 /* assets */; };
-		6A687D172A5D581900562782 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D112A5D581800562782 /* index.html */; };
-		6A687D182A5D581900562782 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A687D122A5D581800562782 /* manifest.json */; };
 		6A6BD9D8287D1726009FA262 /* WalletSendAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */; };
 		6A6BD9D9287D1726009FA262 /* WalletSendAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */; };
 		6A6BD9DC287D5066009FA262 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6BD9DB287D5066009FA262 /* ProgressHUD.swift */; };
@@ -2004,6 +2005,13 @@
 		6A18DDF82A3AFFC6003232AB /* ChildAccountLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildAccountLinkViewModel.swift; sourceTree = "<group>"; };
 		6A18DDFB2A3B10F5003232AB /* ChildAccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildAccountManager.swift; sourceTree = "<group>"; };
 		6A1A908B2A5BABCE002B5083 /* ExtConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtConnectivity.swift; sourceTree = "<group>"; };
+		6A1FC2B42A5E98D3006ACBE0 /* service-worker-loader.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "service-worker-loader.js"; path = "safari-extension/dist/service-worker-loader.js"; sourceTree = SOURCE_ROOT; };
+		6A1FC2B52A5E98D3006ACBE0 /* content_script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = content_script.js; path = "safari-extension/dist/content_script.js"; sourceTree = SOURCE_ROOT; };
+		6A1FC2B62A5E98D3006ACBE0 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = "safari-extension/dist/manifest.json"; sourceTree = SOURCE_ROOT; };
+		6A1FC2B72A5E98D3006ACBE0 /* src */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = src; path = "safari-extension/dist/src"; sourceTree = SOURCE_ROOT; };
+		6A1FC2B82A5E98D3006ACBE0 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = "safari-extension/dist/index.html"; sourceTree = SOURCE_ROOT; };
+		6A1FC2B92A5E98D3006ACBE0 /* assets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = assets; path = "safari-extension/dist/assets"; sourceTree = SOURCE_ROOT; };
+		6A1FC2BA2A5E98D3006ACBE0 /* vite.svg */ = {isa = PBXFileReference; lastKnownFileType = file; name = vite.svg; path = "safari-extension/dist/vite.svg"; sourceTree = SOURCE_ROOT; };
 		6A204C632860236600D0D3A4 /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		6A204C68286070A600D0D3A4 /* FirebaseStorageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageUtils.swift; sourceTree = "<group>"; };
 		6A21605D29101D2B0078DCDA /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
@@ -2070,12 +2078,6 @@
 		6A63F9F128C9C69100FE96C0 /* ImageAnimated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnimated.swift; sourceTree = "<group>"; };
 		6A65690A289128EE007D9BDA /* RouterNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterNavigationController.swift; sourceTree = "<group>"; };
 		6A66AAAB2923F36E00FA766A /* StakeGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StakeGuideView.swift; sourceTree = "<group>"; };
-		6A687D0D2A5D581800562782 /* vite.svg */ = {isa = PBXFileReference; lastKnownFileType = file; name = vite.svg; path = "safari-extension/dist/vite.svg"; sourceTree = SOURCE_ROOT; };
-		6A687D0E2A5D581800562782 /* service-worker-loader.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "service-worker-loader.js"; path = "safari-extension/dist/service-worker-loader.js"; sourceTree = SOURCE_ROOT; };
-		6A687D0F2A5D581800562782 /* content_script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = content_script.js; path = "safari-extension/dist/content_script.js"; sourceTree = SOURCE_ROOT; };
-		6A687D102A5D581800562782 /* assets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = assets; path = "safari-extension/dist/assets"; sourceTree = SOURCE_ROOT; };
-		6A687D112A5D581800562782 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = "safari-extension/dist/index.html"; sourceTree = SOURCE_ROOT; };
-		6A687D122A5D581800562782 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = "safari-extension/dist/manifest.json"; sourceTree = SOURCE_ROOT; };
 		6A6BD9D7287D1726009FA262 /* WalletSendAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSendAmountView.swift; sourceTree = "<group>"; };
 		6A6BD9DB287D5066009FA262 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		6A6BD9DE287D5467009FA262 /* PlaceholderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderStyle.swift; sourceTree = "<group>"; };
@@ -4626,12 +4628,13 @@
 		6A9FB32F2A57D12500FD612C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6A687D102A5D581800562782 /* assets */,
-				6A687D0F2A5D581800562782 /* content_script.js */,
-				6A687D112A5D581800562782 /* index.html */,
-				6A687D122A5D581800562782 /* manifest.json */,
-				6A687D0E2A5D581800562782 /* service-worker-loader.js */,
-				6A687D0D2A5D581800562782 /* vite.svg */,
+				6A1FC2B92A5E98D3006ACBE0 /* assets */,
+				6A1FC2B52A5E98D3006ACBE0 /* content_script.js */,
+				6A1FC2B82A5E98D3006ACBE0 /* index.html */,
+				6A1FC2B62A5E98D3006ACBE0 /* manifest.json */,
+				6A1FC2B42A5E98D3006ACBE0 /* service-worker-loader.js */,
+				6A1FC2B72A5E98D3006ACBE0 /* src */,
+				6A1FC2BA2A5E98D3006ACBE0 /* vite.svg */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -5387,12 +5390,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A687D172A5D581900562782 /* index.html in Resources */,
-				6A687D132A5D581900562782 /* vite.svg in Resources */,
-				6A687D162A5D581900562782 /* assets in Resources */,
-				6A687D142A5D581900562782 /* service-worker-loader.js in Resources */,
-				6A687D182A5D581900562782 /* manifest.json in Resources */,
-				6A687D152A5D581900562782 /* content_script.js in Resources */,
+				6A1FC2BF2A5E98D3006ACBE0 /* index.html in Resources */,
+				6A1FC2BB2A5E98D3006ACBE0 /* service-worker-loader.js in Resources */,
+				6A1FC2BD2A5E98D3006ACBE0 /* manifest.json in Resources */,
+				6A1FC2C02A5E98D3006ACBE0 /* assets in Resources */,
+				6A1FC2BC2A5E98D3006ACBE0 /* content_script.js in Resources */,
+				6A1FC2C12A5E98D3006ACBE0 /* vite.svg in Resources */,
+				6A1FC2BE2A5E98D3006ACBE0 /* src in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

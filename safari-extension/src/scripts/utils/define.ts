@@ -7,6 +7,14 @@ export interface Message {
   payload?: any;
 }
 
+export enum PortName {
+  Authn = "authn",
+}
+
+// export enum AuthnMessageType {
+//   Close = "close",
+// }
+
 export enum ExtMessageType {
   ReceiveMessage = "message",
   ReceiveTransactionMessage = "transaction",

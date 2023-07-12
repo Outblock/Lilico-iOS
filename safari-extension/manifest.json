@@ -7,12 +7,12 @@
   "content_scripts": [
     {
       "matches": ["https://outblock.github.io/harness/*"],
-      "js": ["src/scripts/content.ts"],
+      "js": ["src/scripts/content/content.ts"],
       "run_at": "document_start"
     }
   ],
   "background": {
-    "service_worker": "src/scripts/background.ts"
+    "service_worker": "src/scripts/background/background.ts"
   },
   "permissions": ["nativeMessaging", "tabs"],
   "web_accessible_resources": [

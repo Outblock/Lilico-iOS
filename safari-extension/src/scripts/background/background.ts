@@ -1,6 +1,6 @@
 import browser from "webextension-polyfill";
-import { ExtMessageType, Message } from "./define";
-import { FCLServiceType } from "./fcl_scripts";
+import { ExtMessageType, Message, PortName } from "../utils/define";
+import { FCLServiceType } from "../utils/fcl_scripts";
 import { fetchSharedData } from "./storage";
 import { postPreAuthzResponse, postReadyResponse } from "./sender";
 
@@ -8,8 +8,33 @@ fetchSharedData().then((model) => {
   console.log("fetch shared data from app", model);
 });
 
-let processingMessage: any = null;
+let processingMessage: any | undefined;
+let processingServiceType: FCLServiceType | undefined;
+let processingFCLResponse: any | undefined;
 
+// receive event from port
+browser.runtime.onConnect.addListener((port) => {
+  switch (port.name) {
+    case PortName.Authn:
+      handleAuthnConnection(port);
+      break;
+
+    default:
+      console.warn("unknown port name", port);
+      break;
+  }
+});
+
+let authnPort: browser.Runtime.Port | undefined;
+function handleAuthnConnection(port: browser.Runtime.Port) {
+  authnPort = port;
+  port.onMessage.addListener((message) => {
+    console.log("background receive message via authn connection", message);
+    authnPort?.postMessage("response from background");
+  });
+}
+
+// receive event from content
 browser.runtime.onMessage.addListener((message: Message) => {
   console.log(
     "background.ts received content.js message",
@@ -41,15 +66,15 @@ async function handleReceiveMessage(payload: any) {
   if (!sharedData) {
     // TODO: - data is not prepared action
     console.warn("shared data is not prepared");
-    // debug code on chrome, don't forget delete this.
-    // sharedData = { address: "0xf026a227d3723067", payer: "0xcb1cf3196916f9e2" };
     return;
   }
 
   try {
     if (messageIsService(payload)) {
+      processingMessage = payload;
       handleService(payload);
     } else if (payload.type === "FCL:VIEW:READY:RESPONSE") {
+      processingMessage = payload;
       handleViewReady(payload);
     } else {
       console.warn("unknown message", payload);
@@ -62,10 +87,50 @@ async function handleReceiveMessage(payload: any) {
 
 function handleViewReady(payload: any) {
   console.log("will handle view ready", payload);
+
+  const type = payload.service.type;
+  if (processingServiceType !== type) {
+    console.error(
+      "service type is not same, old: " +
+        processingServiceType +
+        ". new: " +
+        type
+    );
+
+    return;
+  }
+
+  switch (type) {
+    case FCLServiceType.Authn:
+      handleAuthn(payload);
+      break;
+
+    default:
+      break;
+  }
+}
+
+function handleAuthn(payload: any) {
+  console.log("will handle authn");
+
+  if (
+    payload.service.type === processingFCLResponse?.service?.type &&
+    payload.type === processingFCLResponse?.type
+  ) {
+    console.error(
+      "handle authn is processing: " + payload.service.type + "-" + payload.type
+    );
+    return;
+  }
+
+  processingFCLResponse = payload;
+  // TODO: //
 }
 
 function handleService(payload: any) {
   console.log("will handle service");
+
+  processingServiceType = payload.service.type;
 
   if (payload.service.type === FCLServiceType.PreAuthz) {
     postPreAuthzResponse();

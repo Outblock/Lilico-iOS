@@ -3,9 +3,9 @@ import {
   generateMessage,
   preAuthzResponse,
   FCLScriptsReplacement,
-} from "./fcl_scripts";
+} from "../utils/fcl_scripts";
 import { fetchSharedData } from "./storage";
-import { ExtMessageType } from "./define";
+import { ExtMessageType } from "../utils/define";
 
 export async function postPreAuthzResponse() {
   const sharedModel = await fetchSharedData();

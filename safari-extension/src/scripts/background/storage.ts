@@ -1,4 +1,4 @@
-import { NativeMessageType, sendNativeMessage } from "./define";
+import { NativeMessageType, sendNativeMessage } from "../utils/define";
 
 export interface SharedModel {
   address: string;

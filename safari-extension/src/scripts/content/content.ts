@@ -1,5 +1,8 @@
 import browser from "webextension-polyfill";
-import { ExtMessageType, Message } from "./define";
+import { ExtMessageType, Message } from "../utils/define";
+import Authn from "../../pages/authn/Authn.vue";
+import { createApp } from "vue";
+import "../../style.css"; // import css will effect web page style, so need careful modifiy
 
 console.log("content.ts will start");
 
@@ -8,6 +11,12 @@ const script = document.createElement("script");
 script.setAttribute("type", "text/javascript");
 script.setAttribute("src", browser.runtime.getURL("./content_script.js"));
 document.body.appendChild(script);
+
+// test, mount vue page
+const uiContainer = document.createElement("div");
+uiContainer.setAttribute("id", "lilico-page-container");
+document.body.appendChild(uiContainer);
+createApp(Authn).mount("#lilico-page-container");
 
 // receive event from page
 window.addEventListener("message", function (event) {
